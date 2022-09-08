@@ -1,0 +1,10 @@
+openapi: 3.0.0
+info:
+  title: Contoso Real Estate API
+  description: |
+    This is a sample server for Contoso Real Estate company.
+  version: 1.0.0
+servers:
+  - url: /api
+paths:
+  todo: ...
