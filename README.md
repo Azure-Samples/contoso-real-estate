@@ -1,5 +1,13 @@
 # Contoso Real Estate Application
 
+### Projects
+
+| Project | Location                                                                     | Branch | Build Status |
+| ------- | ---------------------------------------------------------------------------- | ------ | ------------ |
+| Portal  | [packages/contoso-real-estate-portal](./packages/contoso-real-estate-portal) | TODO   | TODO         |
+| Blog    | [packages/contoso-real-estate-blog](./packages/contoso-real-estate-blog)     | TODO   | TODO         |
+| Tests   | [packages/contoso-real-estate-test](./packages/contoso-real-estate-test)     | TODO   | TODO         |
+
 ### Prerequisites
 
 The following prerequisites are required to use this application. Please ensure that you have them all installed locally.
