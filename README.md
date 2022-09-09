@@ -6,7 +6,7 @@
 | ------- | ---------------------------------------------------------------------------- | ------ | ------------ |
 | Portal  | [packages/contoso-real-estate-portal](./packages/contoso-real-estate-portal) | TODO   | TODO         |
 | Blog    | [packages/contoso-real-estate-blog](./packages/contoso-real-estate-blog)     | TODO   | TODO         |
-| Tests   | [packages/contoso-real-estate-test](./packages/contoso-real-estate-test)     | TODO   | TODO         |
+| Testing   | [packages/contoso-real-estate-testing](./packages/contoso-real-estate-testing)     | TODO   | TODO         |
 
 ### Prerequisites
 
