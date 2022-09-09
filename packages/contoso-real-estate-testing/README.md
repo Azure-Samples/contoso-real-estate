@@ -1,6 +1,6 @@
 # Application Tests
 
-The included [Playwright](https://playwright.dev/) smoke test will hit the ToDo app web endpoint, create, and delete an item.
+The included [Playwright](https://playwright.dev/) smoke test will test the Contoso web apps and APIs.
 
 ## Run Tests
 
