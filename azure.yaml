@@ -3,6 +3,6 @@
 name: contoso-real-estate
 services:
   api:
-    project: packages/contoso-real-estate-api
+    project: packages/contoso-real-estate-portal
     language: ts
     host: function
