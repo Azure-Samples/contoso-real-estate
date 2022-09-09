@@ -1,6 +1,7 @@
 # TypeScript output
 dist
 out
+*.zip
 
 # Azure Functions artifacts
 bin
