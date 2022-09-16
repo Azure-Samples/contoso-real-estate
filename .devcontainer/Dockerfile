@@ -26,7 +26,9 @@ RUN apt-get update \
     # Clean up
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/ \
     # Install global node packages
-    && su node -c "umask 0002 && npm install --cache /tmp/empty-cache -g @azure/static-web-apps-cli"
+    && su node -c "umask 0002 && npm install --cache /tmp/empty-cache -g @azure/static-web-apps-cli" \
+    # Install Azure Dev CLI
+    && curl -fsSL https://aka.ms/install-azd.sh | bash
 
 # Setting the ENTRYPOINT to docker-init.sh will configure non-root access 
 # to the Docker socket. The script will also execute CMD as needed.
