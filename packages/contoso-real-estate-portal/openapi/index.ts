@@ -2,8 +2,6 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { existsSync, readFileSync } from "fs";
 import yaml from "yamljs";
 
-import { generateHTML } from "./lib";
-
 import * as swaggerUi from "swagger-ui-dist";
 
 const openApi: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
@@ -13,14 +11,14 @@ const openApi: AzureFunction = async function (context: Context, req: HttpReques
   const swaggerDocument = yaml.load("openapi.yaml");
   let mimetype = "text/html";
   let fileContent = "";
-  
+
   if (!existsSync(filepath)) {
     context.res = {
       status: 404,
     };
     return;
   }
-  
+
   if (filename.endsWith("swagger-initializer.js")) {
     fileContent = `
 window.onload = function() {
@@ -39,8 +37,7 @@ window.onload = function() {
   });
 };
       `;
-  }
-  else {
+  } else {
     fileContent = readFileSync(filepath).toString("utf8");
   }
 
