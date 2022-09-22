@@ -120,5 +120,5 @@ resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
 }
 
 #disable-next-line outputs-should-not-contain-secrets
-output connectionString string = cosmos.listConnectionStrings().connectionStrings[0].connectionString
+output ConnectionString string = cosmos.listConnectionStrings().connectionStrings[0].connectionString
 output name string = cosmos::database.name

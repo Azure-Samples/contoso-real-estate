@@ -22,4 +22,4 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-03
   })
 }
 
-output workspaceId string = logAnalyticsWorkspace.id
+output id string = logAnalyticsWorkspace.id

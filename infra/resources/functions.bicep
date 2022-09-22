@@ -91,3 +91,6 @@ resource apiAppSettings 'Microsoft.Web/sites/config@2022-03-01' = {
   kind: 'string'
   properties: appSettings
 }
+
+
+output url string = api.properties.defaultHostName

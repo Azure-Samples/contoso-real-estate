@@ -18,6 +18,9 @@ var abbrs = loadJsonContent('abbreviations.json')
 
 var azureCosmosConnectionStringKey = 'AZURE_COSMOS_CONNECTION_STRING_KEY'
 
+// Note: Application Insights is required for "azd monitor"
+var deployAppInsights = true
+
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: '${abbrs.resourcesResourceGroups}${name}'
   location: location
@@ -32,7 +35,7 @@ module keyVaultResources 'resources/key-vault.bicep' = {
     enableSoftDelete: false
     keyVaultName: '${abbrs.keyVaultVaults}${resourceToken}'
     location: location
-    databaseConnectionString: databaseResources.outputs.connectionString
+    databaseConnectionString: databaseResources.outputs.ConnectionString
     principalId: principalId
     tags: tags
   }
@@ -62,10 +65,9 @@ module applicationInsightsResources 'resources/applicationinsights.bicep' = {
   name: 'applicationinsights-resources'
   scope: resourceGroup
   params: {
-    applicationInsightsDashboardName: '${abbrs.portalDashboards}${resourceToken}'
     applicationInsightsName: '${abbrs.insightsComponents}${resourceToken}'
     location: location
-    workspaceId: logAnalyticsResources.outputs.workspaceId
+    logAnalyticsWorkspaceId: logAnalyticsResources.outputs.id
     tags: tags
   }
 }
@@ -75,6 +77,17 @@ module databaseResources 'resources/database.bicep' = {
   scope: resourceGroup
   params: {
     databaseAccountName: '${abbrs.documentDBDatabaseAccounts}${resourceToken}'
+    location: location
+    tags: tags
+  }
+}
+
+module containerAppsResources 'resources/container-apps.bicep' = {
+  name: 'containerapps-resources'
+  scope: resourceGroup
+  params: {
+    logAnalyticsWorkspaceId: logAnalyticsResources.outputs.id
+    environmentName: '${abbrs.appContainerApps}${resourceToken}'
     location: location
     tags: tags
   }
@@ -95,9 +108,13 @@ module funcResources 'resources/functions.bicep' = {
       FUNCTIONS_WORKER_RUNTIME: 'node'
       SCM_DO_BUILD_DURING_DEPLOYMENT: 'true'
       ENABLE_ORYX_BUILD: 'true'
-      AZURE_COSMOS_CONNECTION_STRING_KEY: azureCosmosConnectionStringKey
-      AZURE_COSMOS_DATABASE_NAME: databaseResources.outputs.name
+      STORAGE_CONNECTION_STRING: storageResources.outputs.ConnectionString
+      DATABASE_CONNECTION_STRING_KEY: azureCosmosConnectionStringKey
+      DATABASE_NAME: databaseResources.outputs.name
       AZURE_KEY_VAULT_ENDPOINT: keyVaultResources.outputs.keyVaultEndpoint
+
+      // TODO(manekinekko): remove this once we enable key vault integration
+      DATABASE_CONNECTION_STRING: databaseResources.outputs.ConnectionString
 
       // https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file-or-url#issues-and-investigation
       SCM_ZIPDEPLOY_DONOT_PRESERVE_FILETIME: '1'
@@ -106,11 +123,42 @@ module funcResources 'resources/functions.bicep' = {
   }
 }
 
+var swaNames = [
+  'portal'
+  'blog'
+]
+
+module swaResources 'resources/static-sites.bicep' = [for name in swaNames: {
+  name: 'static-sites-resources-${name}'
+  scope: resourceGroup
+  params: {
+    appSettings: {
+      APPINSIGHTS_INSTRUMENTATIONKEY: deployAppInsights ? applicationInsightsResources.outputs.ConnectionString : null
+      STORAGE_CONNECTION_STRING: storageResources.outputs.ConnectionString
+      DATABASE_CONNECTION_STRING: databaseResources.outputs.ConnectionString
+      AzureWebJobsStorage: storageResources.outputs.ConnectionString
+      FUNCTIONS_EXTENSION_VERSION: '~4'
+      FUNCTIONS_WORKER_RUNTIME: 'node'
+      SCM_DO_BUILD_DURING_DEPLOYMENT: 'true'
+    }
+    buildProperties: {
+      skipGithubActionWorkflowGeneration: true
+    }
+    location: location
+    staticSiteName: '${abbrs.webStaticSites}${resourceToken}-${name}'
+    tags: tags
+  }
+}]
+
 output AZURE_KEY_VAULT_ENDPOINT string = keyVaultResources.outputs.keyVaultEndpoint	
-output AZURE_COSMOS_CONNECTION_STRING_KEY string = azureCosmosConnectionStringKey
-output STORAGE_CONNECTION_STRING string = storageResources.outputs.ConnectionString
-output DATABASE_CONNECTION_STRING string = databaseResources.outputs.connectionString
+output DATABASE_CONNECTION_STRING_KEY string = azureCosmosConnectionStringKey
+output DATABASE_CONNECTION_STRING string = databaseResources.outputs.ConnectionString
 output DATABASE_NAME string = databaseResources.outputs.name
+output STORAGE_CONNECTION_STRING string = storageResources.outputs.ConnectionString
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = applicationInsightsResources.outputs.ConnectionString
 output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
+output CONTAINER_APP_URL string = containerAppsResources.outputs.url
+output AZURE_FUNCTION_URL string = funcResources.outputs.url
+output SWA_URL_PORTAL string = swaResources[0].outputs.url
+output SWA_URL_BLOG string = swaResources[1].outputs.url
