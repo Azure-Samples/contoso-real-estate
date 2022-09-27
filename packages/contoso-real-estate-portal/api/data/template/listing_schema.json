@@ -118,5 +118,11 @@
                 "pic-yellowgreen.png"
             ]
         }
+    },
+    "slug": {
+        "$numberLong": {
+            "min": 100000,
+            "max": 999999
+        }
     }
 }

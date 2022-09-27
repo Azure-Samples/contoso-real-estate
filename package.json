@@ -15,6 +15,9 @@
   "keywords": [],
   "author": "Microsoft",
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "engines": {
     "node": ">=16",
     "npm": ">=7"
