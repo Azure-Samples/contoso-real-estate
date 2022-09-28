@@ -1,0 +1,14 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "contoso-real-estate": {
+      "appLocation": "packages/portal",
+      "apiLocation": "packages/api",
+      "outputLocation": "dist/contoso-app",
+      "appBuildCommand": "npm run build",
+      "apiBuildCommand": "npm run build --if-present",
+      "run": "npm start",
+      "appDevserverUrl": "http://localhost:4200"
+    }
+  }
+}
