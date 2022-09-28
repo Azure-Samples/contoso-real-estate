@@ -8,9 +8,9 @@
     "format": "npm run prettier -- --write",
     "format:check": "npm run prettier -- --check",
     "lint": "npm run format:check",
-    "prettier": "prettier \"*.{js,json,md}\" \"packages/**/*\"",
     "compile": "tsc -b tsconfig.build.json",
-    "clean": "rimraf \"packages/**/*.tsbuildinfo\""
+    "clean": "rimraf \"packages/**/*.tsbuildinfo\"",
+    "postinstall": "npm install --prefix packages/contoso-real-estate-portal"
   },
   "keywords": [],
   "author": "Microsoft",
