@@ -1,0 +1,341 @@
+{"title":"Practical loft downtown","city":"Cologne","bedrooms":2,"bathrooms":1,"amenities":["parking","jacuzzi","wi-fi"],"img":"pic-bluegreen.png","slug":{"$numberLong":"488008"}}
+{"title":"Bright apartment close to the park","city":"London","bedrooms":2,"bathrooms":3,"amenities":["laundry room","wi-fi","furniture"],"img":"pic-pink.png","slug":{"$numberLong":"160979"}}
+{"title":"Spacious apartment for a young family","city":"Charlotte","bedrooms":1,"bathrooms":3,"amenities":["wi-fi","dishwasher","laundry room"],"img":"pic-pink.png","slug":{"$numberLong":"190731"}}
+{"title":"Spacious house in the suburbs","city":"Tokyo","bedrooms":4,"bathrooms":3,"amenities":["balcony","no furniture","heating"],"img":"pic-purple.png","slug":{"$numberLong":"434170"}}
+{"title":"Bright apartment close to the park","city":"Edinburgh","bedrooms":4,"bathrooms":3,"amenities":["no furniture","heating","jacuzzi"],"img":"pic-green.png","slug":{"$numberLong":"801824"}}
+{"title":"Beautiful house in the countryside","city":"Dallas","bedrooms":1,"bathrooms":1,"amenities":["gym","parking","fireplace"],"img":"pic-green.png","slug":{"$numberLong":"541569"}}
+{"title":"Practical loft downtown","city":"Philiadeplhia","bedrooms":5,"bathrooms":2,"amenities":["furniture","sauna","swimming pool"],"img":"pic-purple.png","slug":{"$numberLong":"101064"}}
+{"title":"Spacious house in the suburbs","city":"Guangzhou","bedrooms":1,"bathrooms":1,"amenities":["dishwasher","laundry room","heating"],"img":"pic-blue.png","slug":{"$numberLong":"683328"}}
+{"title":"Wonderful chalet close to the train station","city":"Sidney","bedrooms":2,"bathrooms":3,"amenities":["terrace","sauna","laundry room"],"img":"pic-purple.png","slug":{"$numberLong":"454462"}}
+{"title":"Art-deco loft close to the metro station","city":"New York","bedrooms":1,"bathrooms":3,"amenities":["air conditioning","heating","swimming pool"],"img":"pic-blue.png","slug":{"$numberLong":"427781"}}
+{"title":"Wonderful chalet close to the train station","city":"Sao Paulo","bedrooms":5,"bathrooms":2,"amenities":["wi-fi","laundry room","sauna"],"img":"pic-bluegreen.png","slug":{"$numberLong":"517708"}}
+{"title":"Practical loft downtown","city":"Montral","bedrooms":1,"bathrooms":1,"amenities":["patio","sauna","parking"],"img":"pic-salmon.png","slug":{"$numberLong":"239804"}}
+{"title":"Bright apartment close to the park","city":"Houston","bedrooms":3,"bathrooms":2,"amenities":["elevator","no furniture","balcony"],"img":"pic-bluegreen.png","slug":{"$numberLong":"385181"}}
+{"title":"Bright apartment close to the park","city":"Guangzhou","bedrooms":4,"bathrooms":1,"amenities":["balcony","gym","microwave"],"img":"pic-blue.png","slug":{"$numberLong":"627014"}}
+{"title":"Modern apartment close to the metro station","city":"Taipei","bedrooms":1,"bathrooms":1,"amenities":["air conditioning","no furniture","heating"],"img":"pic-bluegreen.png","slug":{"$numberLong":"952303"}}
+{"title":"Charming house close to the train station","city":"Tokyo","bedrooms":2,"bathrooms":2,"amenities":["balcony","patio","gym"],"img":"pic-blue.png","slug":{"$numberLong":"452658"}}
+{"title":"Luxurious house in the suburbs","city":"Mumbai","bedrooms":3,"bathrooms":3,"amenities":["microwave","swimming pool","jacuzzi"],"img":"pic-pink.png","slug":{"$numberLong":"902378"}}
+{"title":"Spacious apartment for a young family","city":"Mumbai","bedrooms":2,"bathrooms":1,"amenities":["balcony","elevator","dishwasher"],"img":"pic-orange.png","slug":{"$numberLong":"359544"}}
+{"title":"Spacious apartment for a young family","city":"Sao Paulo","bedrooms":3,"bathrooms":1,"amenities":["dishwasher","laundry room","parking"],"img":"pic-orange.png","slug":{"$numberLong":"417464"}}
+{"title":"Cozy apartment in the heart of the city","city":"Tel Aviv","bedrooms":4,"bathrooms":3,"amenities":["swimming pool","air conditioning","balcony"],"img":"pic-salmon.png","slug":{"$numberLong":"726222"}}
+{"title":"Modern apartment close to the metro station","city":"San Francisco","bedrooms":4,"bathrooms":3,"amenities":["heating","parking","terrace"],"img":"pic-green.png","slug":{"$numberLong":"333227"}}
+{"title":"Charming house close to the train station","city":"Singapore","bedrooms":3,"bathrooms":2,"amenities":["garden","swimming pool","laundry room"],"img":"pic-orange.png","slug":{"$numberLong":"579770"}}
+{"title":"Practical loft downtown","city":"Singapore","bedrooms":1,"bathrooms":1,"amenities":["swimming pool","garden","laundry room"],"img":"pic-blue.png","slug":{"$numberLong":"412023"}}
+{"title":"Bright apartment close to the park","city":"Dallas","bedrooms":4,"bathrooms":3,"amenities":["balcony","gym","fireplace"],"img":"pic-orange.png","slug":{"$numberLong":"733231"}}
+{"title":"Luxurious house in the suburbs","city":"Atlanta","bedrooms":4,"bathrooms":3,"amenities":["microwave","laundry room","terrace"],"img":"pic-blue.png","slug":{"$numberLong":"420227"}}
+{"title":"Art-deco loft close to the metro station","city":"Bangalore","bedrooms":1,"bathrooms":1,"amenities":["dishwasher","swimming pool","sauna"],"img":"pic-bluegreen.png","slug":{"$numberLong":"378083"}}
+{"title":"Luxurious house in the suburbs","city":"Boston","bedrooms":2,"bathrooms":1,"amenities":["gym","dishwasher","sauna"],"img":"pic-bluegreen.png","slug":{"$numberLong":"154927"}}
+{"title":"Wonderful chalet close to the train station","city":"Sidney","bedrooms":5,"bathrooms":3,"amenities":["balcony","sauna","laundry room"],"img":"pic-blue.png","slug":{"$numberLong":"876862"}}
+{"title":"Spacious apartment for a young family","city":"Bangalore","bedrooms":4,"bathrooms":2,"amenities":["heating","wi-fi","jacuzzi"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"680315"}}
+{"title":"Modern apartment close to the metro station","city":"Sao Paulo","bedrooms":3,"bathrooms":3,"amenities":["fireplace","wi-fi","furniture"],"img":"pic-blue.png","slug":{"$numberLong":"424415"}}
+{"title":"Charming apartment close to the train station","city":"Chicago","bedrooms":2,"bathrooms":2,"amenities":["air conditioning","balcony","heating"],"img":"pic-salmon.png","slug":{"$numberLong":"419674"}}
+{"title":"Practical loft downtown","city":"Bangalore","bedrooms":5,"bathrooms":3,"amenities":["parking","swimming pool","air conditioning"],"img":"pic-blue.png","slug":{"$numberLong":"822990"}}
+{"title":"Charming apartment close to the train station","city":"Beijing","bedrooms":5,"bathrooms":1,"amenities":["microwave","swimming pool","dishwasher"],"img":"pic-purple.png","slug":{"$numberLong":"166919"}}
+{"title":"Spacious house in the suburbs","city":"Tokyo","bedrooms":2,"bathrooms":1,"amenities":["sauna","terrace","laundry room"],"img":"pic-orange.png","slug":{"$numberLong":"923441"}}
+{"title":"Bright apartment close to the park","city":"Guangzhou","bedrooms":2,"bathrooms":1,"amenities":["air conditioning","balcony","jacuzzi"],"img":"pic-orange.png","slug":{"$numberLong":"281579"}}
+{"title":"Luxurious apartment by the park","city":"Tokyo","bedrooms":1,"bathrooms":2,"amenities":["swimming pool","terrace","heating"],"img":"pic-salmon.png","slug":{"$numberLong":"179168"}}
+{"title":"Bright apartment close to the park","city":"Sao Paulo","bedrooms":5,"bathrooms":3,"amenities":["dishwasher","fireplace","heating"],"img":"pic-pink.png","slug":{"$numberLong":"967667"}}
+{"title":"Beautiful house in the countryside","city":"Tel Aviv","bedrooms":1,"bathrooms":2,"amenities":["swimming pool","furniture","heating"],"img":"pic-green.png","slug":{"$numberLong":"745619"}}
+{"title":"Charming apartment close to the train station","city":"Milan","bedrooms":1,"bathrooms":2,"amenities":["fireplace","balcony","garden"],"img":"pic-pink.png","slug":{"$numberLong":"842789"}}
+{"title":"Spacious apartment for a young family","city":"London","bedrooms":3,"bathrooms":2,"amenities":["elevator","heating","balcony"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"476495"}}
+{"title":"Wonderful chalet close to the train station","city":"Irvine","bedrooms":4,"bathrooms":3,"amenities":["microwave","no furniture","laundry room"],"img":"pic-bluegreen.png","slug":{"$numberLong":"503983"}}
+{"title":"Spacious apartment for a young family","city":"Sao Paulo","bedrooms":3,"bathrooms":2,"amenities":["dishwasher","furniture","no furniture"],"img":"pic-pink.png","slug":{"$numberLong":"807584"}}
+{"title":"Beautiful house in the countryside","city":"Edinburgh","bedrooms":4,"bathrooms":3,"amenities":["terrace","sauna","swimming pool"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"348519"}}
+{"title":"Charming apartment close to the mall","city":"Dubai","bedrooms":2,"bathrooms":1,"amenities":["jacuzzi","air conditioning","elevator"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"665868"}}
+{"title":"Cozy apartment in the heart of the city","city":"Cologne","bedrooms":4,"bathrooms":3,"amenities":["air conditioning","no furniture","laundry room"],"img":"pic-orange.png","slug":{"$numberLong":"473143"}}
+{"title":"Practical loft downtown","city":"Mumbai","bedrooms":2,"bathrooms":2,"amenities":["fireplace","parking","sauna"],"img":"pic-purple.png","slug":{"$numberLong":"984367"}}
+{"title":"Charming apartment close to the mall","city":"Atlanta","bedrooms":1,"bathrooms":3,"amenities":["elevator","wi-fi","swimming pool"],"img":"pic-purple.png","slug":{"$numberLong":"751851"}}
+{"title":"Luminous apartment in the heart of the city","city":"New York","bedrooms":1,"bathrooms":3,"amenities":["swimming pool","heating","balcony"],"img":"pic-pink.png","slug":{"$numberLong":"364711"}}
+{"title":"Bright apartment close to the park","city":"Cologne","bedrooms":3,"bathrooms":2,"amenities":["elevator","parking","air conditioning"],"img":"pic-orange.png","slug":{"$numberLong":"916769"}}
+{"title":"Spacious house in the suburbs","city":"Houston","bedrooms":1,"bathrooms":3,"amenities":["parking","wi-fi","elevator"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"234012"}}
+{"title":"Luxurious house in the suburbs","city":"Beijing","bedrooms":3,"bathrooms":3,"amenities":["patio","sauna","air conditioning"],"img":"pic-pink.png","slug":{"$numberLong":"156716"}}
+{"title":"Charming house close to the train station","city":"New York","bedrooms":4,"bathrooms":1,"amenities":["no furniture","sauna","swimming pool"],"img":"pic-green.png","slug":{"$numberLong":"450860"}}
+{"title":"Modern apartment close to the metro station","city":"Tel Aviv","bedrooms":2,"bathrooms":3,"amenities":["furniture","gym","heating"],"img":"pic-purple.png","slug":{"$numberLong":"315813"}}
+{"title":"Luxurious apartment by the park","city":"London","bedrooms":3,"bathrooms":3,"amenities":["microwave","garden","gym"],"img":"pic-green.png","slug":{"$numberLong":"976994"}}
+{"title":"Wonderful chalet close to the train station","city":"Edinburgh","bedrooms":3,"bathrooms":3,"amenities":["parking","gym","air conditioning"],"img":"pic-orange.png","slug":{"$numberLong":"600234"}}
+{"title":"Bright apartment close to the park","city":"Bangalore","bedrooms":5,"bathrooms":3,"amenities":["jacuzzi","dishwasher","parking"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"811777"}}
+{"title":"Charming apartment close to the mall","city":"Milan","bedrooms":3,"bathrooms":1,"amenities":["balcony","parking","fireplace"],"img":"pic-pink.png","slug":{"$numberLong":"480938"}}
+{"title":"Spacious house in the suburbs","city":"Chicago","bedrooms":4,"bathrooms":3,"amenities":["wi-fi","sauna","laundry room"],"img":"pic-pink.png","slug":{"$numberLong":"688741"}}
+{"title":"Luminous apartment in the heart of the city","city":"Bangalore","bedrooms":4,"bathrooms":3,"amenities":["furniture","terrace","microwave"],"img":"pic-salmon.png","slug":{"$numberLong":"595055"}}
+{"title":"Charming apartment close to the mall","city":"Taipei","bedrooms":3,"bathrooms":1,"amenities":["air conditioning","microwave","garden"],"img":"pic-salmon.png","slug":{"$numberLong":"804967"}}
+{"title":"Charming house close to the train station","city":"Cologne","bedrooms":5,"bathrooms":2,"amenities":["fireplace","balcony","elevator"],"img":"pic-pink.png","slug":{"$numberLong":"376437"}}
+{"title":"Bright apartment close to the park","city":"Tel Aviv","bedrooms":1,"bathrooms":2,"amenities":["furniture","heating","fireplace"],"img":"pic-pink.png","slug":{"$numberLong":"606912"}}
+{"title":"Spacious house in the suburbs","city":"Singapore","bedrooms":3,"bathrooms":2,"amenities":["garden","parking","sauna"],"img":"pic-blue.png","slug":{"$numberLong":"384832"}}
+{"title":"Wonderful chalet close to the train station","city":"Los Angeles","bedrooms":2,"bathrooms":2,"amenities":["air conditioning","garden","sauna"],"img":"pic-pink.png","slug":{"$numberLong":"543596"}}
+{"title":"Practical loft downtown","city":"Sidney","bedrooms":5,"bathrooms":3,"amenities":["heating","air conditioning","garden"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"122920"}}
+{"title":"Wonderful house close to the mall","city":"Montral","bedrooms":3,"bathrooms":3,"amenities":["wi-fi","balcony","patio"],"img":"pic-purple.png","slug":{"$numberLong":"417579"}}
+{"title":"Charming house close to the train station","city":"Los Angeles","bedrooms":2,"bathrooms":2,"amenities":["parking","laundry room","heating"],"img":"pic-orange.png","slug":{"$numberLong":"597567"}}
+{"title":"Practical loft downtown","city":"Singapore","bedrooms":5,"bathrooms":1,"amenities":["terrace","jacuzzi","parking"],"img":"pic-bluegreen.png","slug":{"$numberLong":"990562"}}
+{"title":"Charming apartment close to the train station","city":"Singapore","bedrooms":3,"bathrooms":2,"amenities":["heating","parking","no furniture"],"img":"pic-salmon.png","slug":{"$numberLong":"438961"}}
+{"title":"Charming apartment close to the mall","city":"Charlotte","bedrooms":3,"bathrooms":1,"amenities":["balcony","gym","dishwasher"],"img":"pic-pink.png","slug":{"$numberLong":"489188"}}
+{"title":"Wonderful chalet close to the train station","city":"Milan","bedrooms":5,"bathrooms":3,"amenities":["jacuzzi","balcony","terrace"],"img":"pic-salmon.png","slug":{"$numberLong":"322681"}}
+{"title":"Art-deco loft close to the metro station","city":"San Francisco","bedrooms":2,"bathrooms":2,"amenities":["heating","parking","garden"],"img":"pic-bluegreen.png","slug":{"$numberLong":"649820"}}
+{"title":"Spacious house in the suburbs","city":"Philiadeplhia","bedrooms":4,"bathrooms":3,"amenities":["balcony","microwave","swimming pool"],"img":"pic-purple.png","slug":{"$numberLong":"880515"}}
+{"title":"Spacious apartment for a young family","city":"Bangalore","bedrooms":1,"bathrooms":3,"amenities":["jacuzzi","microwave","garden"],"img":"pic-green.png","slug":{"$numberLong":"224474"}}
+{"title":"Charming apartment close to the train station","city":"Milan","bedrooms":3,"bathrooms":2,"amenities":["sauna","microwave","parking"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"295095"}}
+{"title":"Beautiful house in the countryside","city":"Atlanta","bedrooms":1,"bathrooms":2,"amenities":["elevator","dishwasher","microwave"],"img":"pic-purple.png","slug":{"$numberLong":"323954"}}
+{"title":"Practical loft downtown","city":"Chicago","bedrooms":4,"bathrooms":2,"amenities":["wi-fi","elevator","balcony"],"img":"pic-pink.png","slug":{"$numberLong":"367995"}}
+{"title":"Luminous apartment in the heart of the city","city":"Guangzhou","bedrooms":5,"bathrooms":2,"amenities":["gym","dishwasher","terrace"],"img":"pic-purple.png","slug":{"$numberLong":"752588"}}
+{"title":"Charming apartment close to the mall","city":"Taipei","bedrooms":5,"bathrooms":3,"amenities":["gym","fireplace","heating"],"img":"pic-purple.png","slug":{"$numberLong":"620416"}}
+{"title":"Cozy apartment in the heart of the city","city":"Johannesburg","bedrooms":3,"bathrooms":2,"amenities":["balcony","dishwasher","garden"],"img":"pic-bluegreen.png","slug":{"$numberLong":"485581"}}
+{"title":"Spacious house in the suburbs","city":"Milan","bedrooms":5,"bathrooms":1,"amenities":["garden","heating","dishwasher"],"img":"pic-purple.png","slug":{"$numberLong":"591559"}}
+{"title":"Beautiful house in the countryside","city":"Philiadeplhia","bedrooms":2,"bathrooms":3,"amenities":["wi-fi","fireplace","patio"],"img":"pic-blue.png","slug":{"$numberLong":"949760"}}
+{"title":"Charming apartment close to the mall","city":"Los Angeles","bedrooms":1,"bathrooms":3,"amenities":["heating","jacuzzi","parking"],"img":"pic-blue.png","slug":{"$numberLong":"388500"}}
+{"title":"Wonderful house close to the mall","city":"Houston","bedrooms":5,"bathrooms":3,"amenities":["dishwasher","gym","furniture"],"img":"pic-salmon.png","slug":{"$numberLong":"257313"}}
+{"title":"Wonderful chalet close to the train station","city":"Montral","bedrooms":3,"bathrooms":1,"amenities":["sauna","jacuzzi","furniture"],"img":"pic-pink.png","slug":{"$numberLong":"831902"}}
+{"title":"Bright apartment close to the park","city":"Bangalore","bedrooms":2,"bathrooms":1,"amenities":["air conditioning","microwave","parking"],"img":"pic-bluegreen.png","slug":{"$numberLong":"349527"}}
+{"title":"Charming apartment close to the mall","city":"Los Angeles","bedrooms":4,"bathrooms":3,"amenities":["terrace","patio","jacuzzi"],"img":"pic-green.png","slug":{"$numberLong":"268141"}}
+{"title":"Spacious apartment for a young family","city":"Tokyo","bedrooms":1,"bathrooms":2,"amenities":["furniture","gym","fireplace"],"img":"pic-purple.png","slug":{"$numberLong":"953349"}}
+{"title":"Charming apartment close to the train station","city":"Dubai","bedrooms":4,"bathrooms":1,"amenities":["elevator","no furniture","gym"],"img":"pic-blue.png","slug":{"$numberLong":"218281"}}
+{"title":"Charming apartment close to the train station","city":"Cologne","bedrooms":3,"bathrooms":2,"amenities":["swimming pool","patio","terrace"],"img":"pic-pink.png","slug":{"$numberLong":"666976"}}
+{"title":"Charming house close to the train station","city":"Mumbai","bedrooms":5,"bathrooms":1,"amenities":["heating","microwave","laundry room"],"img":"pic-purple.png","slug":{"$numberLong":"614737"}}
+{"title":"Modern apartment close to the metro station","city":"Guangzhou","bedrooms":2,"bathrooms":1,"amenities":["wi-fi","elevator","furniture"],"img":"pic-salmon.png","slug":{"$numberLong":"975160"}}
+{"title":"Modern apartment close to the metro station","city":"Tokyo","bedrooms":5,"bathrooms":1,"amenities":["parking","sauna","wi-fi"],"img":"pic-orange.png","slug":{"$numberLong":"837169"}}
+{"title":"Luxurious apartment by the park","city":"Dubai","bedrooms":4,"bathrooms":1,"amenities":["air conditioning","terrace","wi-fi"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"568005"}}
+{"title":"Charming apartment close to the train station","city":"New York","bedrooms":3,"bathrooms":3,"amenities":["laundry room","patio","jacuzzi"],"img":"pic-blue.png","slug":{"$numberLong":"638736"}}
+{"title":"Charming house close to the train station","city":"Tel Aviv","bedrooms":2,"bathrooms":1,"amenities":["fireplace","air conditioning","patio"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"199794"}}
+{"title":"Practical loft downtown","city":"Philiadeplhia","bedrooms":1,"bathrooms":3,"amenities":["balcony","garden","dishwasher"],"img":"pic-orange.png","slug":{"$numberLong":"194654"}}
+{"title":"Bright apartment close to the park","city":"Sidney","bedrooms":5,"bathrooms":2,"amenities":["air conditioning","patio","furniture"],"img":"pic-blue.png","slug":{"$numberLong":"721853"}}
+{"title":"Spacious apartment for a young family","city":"Boston","bedrooms":2,"bathrooms":1,"amenities":["air conditioning","gym","dishwasher"],"img":"pic-pink.png","slug":{"$numberLong":"455163"}}
+{"title":"Luxurious apartment by the park","city":"Taipei","bedrooms":1,"bathrooms":3,"amenities":["no furniture","terrace","fireplace"],"img":"pic-purple.png","slug":{"$numberLong":"554142"}}
+{"title":"Wonderful house close to the mall","city":"Edinburgh","bedrooms":5,"bathrooms":2,"amenities":["jacuzzi","elevator","patio"],"img":"pic-blue.png","slug":{"$numberLong":"557608"}}
+{"title":"Bright apartment close to the park","city":"New York","bedrooms":5,"bathrooms":3,"amenities":["terrace","elevator","patio"],"img":"pic-orange.png","slug":{"$numberLong":"736524"}}
+{"title":"Charming apartment close to the mall","city":"Montral","bedrooms":1,"bathrooms":2,"amenities":["sauna","balcony","patio"],"img":"pic-blue.png","slug":{"$numberLong":"987896"}}
+{"title":"Art-deco loft close to the metro station","city":"Tokyo","bedrooms":3,"bathrooms":1,"amenities":["swimming pool","gym","jacuzzi"],"img":"pic-purple.png","slug":{"$numberLong":"221799"}}
+{"title":"Art-deco loft close to the metro station","city":"Paris","bedrooms":4,"bathrooms":2,"amenities":["wi-fi","dishwasher","gym"],"img":"pic-purple.png","slug":{"$numberLong":"633764"}}
+{"title":"Beautiful house in the countryside","city":"Sao Paulo","bedrooms":1,"bathrooms":3,"amenities":["fireplace","air conditioning","garden"],"img":"pic-blue.png","slug":{"$numberLong":"842132"}}
+{"title":"Charming house close to the train station","city":"Mumbai","bedrooms":2,"bathrooms":1,"amenities":["sauna","air conditioning","laundry room"],"img":"pic-orange.png","slug":{"$numberLong":"850056"}}
+{"title":"Wonderful house close to the mall","city":"Houston","bedrooms":3,"bathrooms":2,"amenities":["laundry room","elevator","garden"],"img":"pic-purple.png","slug":{"$numberLong":"914119"}}
+{"title":"Luxurious house in the suburbs","city":"Philiadeplhia","bedrooms":1,"bathrooms":2,"amenities":["patio","elevator","dishwasher"],"img":"pic-purple.png","slug":{"$numberLong":"216198"}}
+{"title":"Beautiful house in the countryside","city":"Charlotte","bedrooms":4,"bathrooms":3,"amenities":["sauna","furniture","gym"],"img":"pic-purple.png","slug":{"$numberLong":"533797"}}
+{"title":"Wonderful chalet close to the train station","city":"Edinburgh","bedrooms":2,"bathrooms":1,"amenities":["air conditioning","jacuzzi","wi-fi"],"img":"pic-bluegreen.png","slug":{"$numberLong":"869633"}}
+{"title":"Bright apartment close to the park","city":"Taipei","bedrooms":3,"bathrooms":3,"amenities":["gym","sauna","wi-fi"],"img":"pic-orange.png","slug":{"$numberLong":"229574"}}
+{"title":"Art-deco loft close to the metro station","city":"Taipei","bedrooms":3,"bathrooms":2,"amenities":["dishwasher","microwave","patio"],"img":"pic-bluegreen.png","slug":{"$numberLong":"665278"}}
+{"title":"Wonderful house close to the mall","city":"Boston","bedrooms":2,"bathrooms":1,"amenities":["furniture","heating","wi-fi"],"img":"pic-salmon.png","slug":{"$numberLong":"785127"}}
+{"title":"Cozy apartment in the heart of the city","city":"Cologne","bedrooms":4,"bathrooms":1,"amenities":["garden","dishwasher","heating"],"img":"pic-orange.png","slug":{"$numberLong":"371386"}}
+{"title":"Luminous apartment in the heart of the city","city":"Edinburgh","bedrooms":3,"bathrooms":1,"amenities":["swimming pool","sauna","microwave"],"img":"pic-salmon.png","slug":{"$numberLong":"981770"}}
+{"title":"Modern apartment close to the metro station","city":"New York","bedrooms":3,"bathrooms":3,"amenities":["balcony","wi-fi","swimming pool"],"img":"pic-purple.png","slug":{"$numberLong":"618404"}}
+{"title":"Cozy apartment in the heart of the city","city":"Cologne","bedrooms":5,"bathrooms":1,"amenities":["jacuzzi","garden","swimming pool"],"img":"pic-pink.png","slug":{"$numberLong":"201629"}}
+{"title":"Spacious apartment for a young family","city":"London","bedrooms":2,"bathrooms":1,"amenities":["laundry room","garden","no furniture"],"img":"pic-orange.png","slug":{"$numberLong":"728205"}}
+{"title":"Wonderful house close to the mall","city":"Taipei","bedrooms":3,"bathrooms":2,"amenities":["air conditioning","laundry room","microwave"],"img":"pic-bluegreen.png","slug":{"$numberLong":"561909"}}
+{"title":"Wonderful chalet close to the train station","city":"Los Angeles","bedrooms":3,"bathrooms":2,"amenities":["furniture","heating","gym"],"img":"pic-purple.png","slug":{"$numberLong":"267031"}}
+{"title":"Charming apartment close to the mall","city":"Bangalore","bedrooms":4,"bathrooms":1,"amenities":["sauna","patio","heating"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"803311"}}
+{"title":"Spacious apartment for a young family","city":"Paris","bedrooms":3,"bathrooms":1,"amenities":["garden","swimming pool","patio"],"img":"pic-salmon.png","slug":{"$numberLong":"837988"}}
+{"title":"Luminous apartment in the heart of the city","city":"Dallas","bedrooms":1,"bathrooms":2,"amenities":["parking","swimming pool","wi-fi"],"img":"pic-orange.png","slug":{"$numberLong":"420375"}}
+{"title":"Bright apartment close to the park","city":"Houston","bedrooms":5,"bathrooms":2,"amenities":["sauna","heating","elevator"],"img":"pic-pink.png","slug":{"$numberLong":"386920"}}
+{"title":"Charming apartment close to the mall","city":"Guangzhou","bedrooms":5,"bathrooms":2,"amenities":["fireplace","no furniture","sauna"],"img":"pic-blue.png","slug":{"$numberLong":"114854"}}
+{"title":"Beautiful house in the countryside","city":"Milan","bedrooms":2,"bathrooms":1,"amenities":["dishwasher","elevator","terrace"],"img":"pic-orange.png","slug":{"$numberLong":"368418"}}
+{"title":"Wonderful house close to the mall","city":"Taipei","bedrooms":1,"bathrooms":1,"amenities":["sauna","furniture","garden"],"img":"pic-pink.png","slug":{"$numberLong":"408725"}}
+{"title":"Luminous apartment in the heart of the city","city":"Tokyo","bedrooms":2,"bathrooms":1,"amenities":["swimming pool","jacuzzi","parking"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"272854"}}
+{"title":"Luxurious house in the suburbs","city":"Philiadeplhia","bedrooms":4,"bathrooms":1,"amenities":["wi-fi","patio","jacuzzi"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"271041"}}
+{"title":"Bright apartment close to the park","city":"Atlanta","bedrooms":4,"bathrooms":2,"amenities":["parking","swimming pool","microwave"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"250865"}}
+{"title":"Spacious house in the suburbs","city":"Milan","bedrooms":5,"bathrooms":1,"amenities":["laundry room","garden","furniture"],"img":"pic-blue.png","slug":{"$numberLong":"413379"}}
+{"title":"Charming apartment close to the mall","city":"Tokyo","bedrooms":4,"bathrooms":1,"amenities":["wi-fi","furniture","air conditioning"],"img":"pic-bluegreen.png","slug":{"$numberLong":"440631"}}
+{"title":"Spacious house in the suburbs","city":"Guangzhou","bedrooms":2,"bathrooms":3,"amenities":["patio","microwave","swimming pool"],"img":"pic-green.png","slug":{"$numberLong":"326702"}}
+{"title":"Spacious house in the suburbs","city":"Tokyo","bedrooms":2,"bathrooms":1,"amenities":["elevator","wi-fi","garden"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"847673"}}
+{"title":"Charming apartment close to the train station","city":"Cologne","bedrooms":3,"bathrooms":1,"amenities":["dishwasher","swimming pool","laundry room"],"img":"pic-pink.png","slug":{"$numberLong":"153150"}}
+{"title":"Spacious house in the suburbs","city":"Singapore","bedrooms":4,"bathrooms":3,"amenities":["wi-fi","dishwasher","patio"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"211083"}}
+{"title":"Beautiful house in the countryside","city":"Montral","bedrooms":5,"bathrooms":3,"amenities":["terrace","dishwasher","swimming pool"],"img":"pic-orange.png","slug":{"$numberLong":"993983"}}
+{"title":"Practical loft downtown","city":"Philiadeplhia","bedrooms":4,"bathrooms":3,"amenities":["sauna","furniture","jacuzzi"],"img":"pic-green.png","slug":{"$numberLong":"157037"}}
+{"title":"Beautiful house in the countryside","city":"Guangzhou","bedrooms":5,"bathrooms":1,"amenities":["parking","wi-fi","laundry room"],"img":"pic-bluegreen.png","slug":{"$numberLong":"264692"}}
+{"title":"Spacious house in the suburbs","city":"Taipei","bedrooms":2,"bathrooms":1,"amenities":["air conditioning","fireplace","elevator"],"img":"pic-green.png","slug":{"$numberLong":"677082"}}
+{"title":"Bright apartment close to the park","city":"Sidney","bedrooms":1,"bathrooms":1,"amenities":["patio","heating","wi-fi"],"img":"pic-salmon.png","slug":{"$numberLong":"869931"}}
+{"title":"Bright apartment close to the park","city":"Singapore","bedrooms":4,"bathrooms":2,"amenities":["air conditioning","heating","sauna"],"img":"pic-green.png","slug":{"$numberLong":"978584"}}
+{"title":"Wonderful house close to the mall","city":"Chicago","bedrooms":4,"bathrooms":3,"amenities":["laundry room","garden","wi-fi"],"img":"pic-salmon.png","slug":{"$numberLong":"107714"}}
+{"title":"Charming apartment close to the train station","city":"Edinburgh","bedrooms":4,"bathrooms":1,"amenities":["patio","no furniture","balcony"],"img":"pic-bluegreen.png","slug":{"$numberLong":"373617"}}
+{"title":"Spacious apartment for a young family","city":"Montral","bedrooms":4,"bathrooms":3,"amenities":["laundry room","terrace","swimming pool"],"img":"pic-blue.png","slug":{"$numberLong":"939600"}}
+{"title":"Art-deco loft close to the metro station","city":"Edinburgh","bedrooms":4,"bathrooms":1,"amenities":["laundry room","terrace","heating"],"img":"pic-purple.png","slug":{"$numberLong":"946697"}}
+{"title":"Charming apartment close to the train station","city":"Boston","bedrooms":4,"bathrooms":3,"amenities":["balcony","dishwasher","wi-fi"],"img":"pic-purple.png","slug":{"$numberLong":"204984"}}
+{"title":"Spacious house in the suburbs","city":"New York","bedrooms":3,"bathrooms":1,"amenities":["balcony","gym","garden"],"img":"pic-orange.png","slug":{"$numberLong":"835796"}}
+{"title":"Spacious house in the suburbs","city":"Taipei","bedrooms":5,"bathrooms":2,"amenities":["fireplace","furniture","microwave"],"img":"pic-orange.png","slug":{"$numberLong":"375222"}}
+{"title":"Modern apartment close to the metro station","city":"Sidney","bedrooms":1,"bathrooms":3,"amenities":["sauna","furniture","laundry room"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"733046"}}
+{"title":"Beautiful house in the countryside","city":"Montral","bedrooms":2,"bathrooms":2,"amenities":["jacuzzi","wi-fi","microwave"],"img":"pic-blue.png","slug":{"$numberLong":"213147"}}
+{"title":"Practical loft downtown","city":"Boston","bedrooms":3,"bathrooms":1,"amenities":["fireplace","swimming pool","no furniture"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"761851"}}
+{"title":"Wonderful house close to the mall","city":"London","bedrooms":1,"bathrooms":2,"amenities":["jacuzzi","patio","fireplace"],"img":"pic-bluegreen.png","slug":{"$numberLong":"722485"}}
+{"title":"Bright apartment close to the park","city":"Atlanta","bedrooms":5,"bathrooms":3,"amenities":["balcony","dishwasher","heating"],"img":"pic-pink.png","slug":{"$numberLong":"599819"}}
+{"title":"Spacious apartment for a young family","city":"Los Angeles","bedrooms":4,"bathrooms":3,"amenities":["no furniture","wi-fi","laundry room"],"img":"pic-green.png","slug":{"$numberLong":"548642"}}
+{"title":"Beautiful house in the countryside","city":"Milan","bedrooms":5,"bathrooms":2,"amenities":["garden","patio","wi-fi"],"img":"pic-salmon.png","slug":{"$numberLong":"601684"}}
+{"title":"Art-deco loft close to the metro station","city":"Bangalore","bedrooms":1,"bathrooms":2,"amenities":["dishwasher","jacuzzi","patio"],"img":"pic-bluegreen.png","slug":{"$numberLong":"546670"}}
+{"title":"Luminous apartment in the heart of the city","city":"New York","bedrooms":4,"bathrooms":3,"amenities":["microwave","laundry room","elevator"],"img":"pic-bluegreen.png","slug":{"$numberLong":"140472"}}
+{"title":"Wonderful house close to the mall","city":"Dublin","bedrooms":5,"bathrooms":1,"amenities":["balcony","gym","parking"],"img":"pic-pink.png","slug":{"$numberLong":"532713"}}
+{"title":"Wonderful chalet close to the train station","city":"London","bedrooms":3,"bathrooms":3,"amenities":["balcony","air conditioning","swimming pool"],"img":"pic-purple.png","slug":{"$numberLong":"810374"}}
+{"title":"Charming house close to the train station","city":"Dallas","bedrooms":2,"bathrooms":1,"amenities":["patio","heating","gym"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"802497"}}
+{"title":"Charming apartment close to the mall","city":"Philiadeplhia","bedrooms":1,"bathrooms":1,"amenities":["laundry room","swimming pool","balcony"],"img":"pic-pink.png","slug":{"$numberLong":"252831"}}
+{"title":"Bright apartment close to the park","city":"San Francisco","bedrooms":4,"bathrooms":1,"amenities":["no furniture","swimming pool","sauna"],"img":"pic-salmon.png","slug":{"$numberLong":"937967"}}
+{"title":"Wonderful chalet close to the train station","city":"Cologne","bedrooms":5,"bathrooms":2,"amenities":["terrace","parking","sauna"],"img":"pic-bluegreen.png","slug":{"$numberLong":"669416"}}
+{"title":"Practical loft downtown","city":"Boston","bedrooms":5,"bathrooms":3,"amenities":["air conditioning","microwave","elevator"],"img":"pic-bluegreen.png","slug":{"$numberLong":"956670"}}
+{"title":"Luxurious apartment by the park","city":"Cologne","bedrooms":4,"bathrooms":1,"amenities":["wi-fi","microwave","garden"],"img":"pic-green.png","slug":{"$numberLong":"785704"}}
+{"title":"Luminous apartment in the heart of the city","city":"Cologne","bedrooms":4,"bathrooms":3,"amenities":["furniture","balcony","dishwasher"],"img":"pic-orange.png","slug":{"$numberLong":"235111"}}
+{"title":"Charming apartment close to the mall","city":"Tokyo","bedrooms":3,"bathrooms":2,"amenities":["wi-fi","sauna","heating"],"img":"pic-purple.png","slug":{"$numberLong":"377561"}}
+{"title":"Luxurious house in the suburbs","city":"Taipei","bedrooms":2,"bathrooms":2,"amenities":["swimming pool","patio","sauna"],"img":"pic-purple.png","slug":{"$numberLong":"476824"}}
+{"title":"Charming apartment close to the mall","city":"Milan","bedrooms":2,"bathrooms":3,"amenities":["sauna","balcony","heating"],"img":"pic-bluegreen.png","slug":{"$numberLong":"793783"}}
+{"title":"Beautiful house in the countryside","city":"Tel Aviv","bedrooms":5,"bathrooms":2,"amenities":["swimming pool","parking","balcony"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"639539"}}
+{"title":"Practical loft downtown","city":"Paris","bedrooms":5,"bathrooms":1,"amenities":["no furniture","fireplace","furniture"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"931325"}}
+{"title":"Charming house close to the train station","city":"Chicago","bedrooms":2,"bathrooms":1,"amenities":["garden","terrace","no furniture"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"259020"}}
+{"title":"Art-deco loft close to the metro station","city":"Mumbai","bedrooms":1,"bathrooms":2,"amenities":["elevator","heating","wi-fi"],"img":"pic-blue.png","slug":{"$numberLong":"522232"}}
+{"title":"Wonderful house close to the mall","city":"Mumbai","bedrooms":3,"bathrooms":3,"amenities":["jacuzzi","elevator","air conditioning"],"img":"pic-green.png","slug":{"$numberLong":"101971"}}
+{"title":"Beautiful house in the countryside","city":"Bangalore","bedrooms":5,"bathrooms":1,"amenities":["swimming pool","garden","balcony"],"img":"pic-pink.png","slug":{"$numberLong":"363296"}}
+{"title":"Charming apartment close to the train station","city":"Dallas","bedrooms":1,"bathrooms":2,"amenities":["parking","patio","balcony"],"img":"pic-green.png","slug":{"$numberLong":"173557"}}
+{"title":"Beautiful house in the countryside","city":"Taipei","bedrooms":3,"bathrooms":1,"amenities":["heating","swimming pool","gym"],"img":"pic-blue.png","slug":{"$numberLong":"986267"}}
+{"title":"Wonderful chalet close to the train station","city":"Los Angeles","bedrooms":2,"bathrooms":2,"amenities":["heating","furniture","garden"],"img":"pic-bluegreen.png","slug":{"$numberLong":"881714"}}
+{"title":"Wonderful chalet close to the train station","city":"Beijing","bedrooms":5,"bathrooms":2,"amenities":["parking","gym","elevator"],"img":"pic-pink.png","slug":{"$numberLong":"599313"}}
+{"title":"Charming apartment close to the train station","city":"Irvine","bedrooms":5,"bathrooms":3,"amenities":["swimming pool","gym","jacuzzi"],"img":"pic-green.png","slug":{"$numberLong":"685865"}}
+{"title":"Charming apartment close to the mall","city":"Tokyo","bedrooms":3,"bathrooms":1,"amenities":["air conditioning","heating","dishwasher"],"img":"pic-salmon.png","slug":{"$numberLong":"349213"}}
+{"title":"Charming apartment close to the mall","city":"New York","bedrooms":1,"bathrooms":1,"amenities":["balcony","no furniture","patio"],"img":"pic-bluegreen.png","slug":{"$numberLong":"481704"}}
+{"title":"Charming apartment close to the mall","city":"Boston","bedrooms":4,"bathrooms":3,"amenities":["dishwasher","furniture","swimming pool"],"img":"pic-bluegreen.png","slug":{"$numberLong":"680132"}}
+{"title":"Charming apartment close to the train station","city":"Mumbai","bedrooms":1,"bathrooms":1,"amenities":["microwave","elevator","heating"],"img":"pic-green.png","slug":{"$numberLong":"570625"}}
+{"title":"Luminous apartment in the heart of the city","city":"Dublin","bedrooms":5,"bathrooms":3,"amenities":["garden","swimming pool","sauna"],"img":"pic-blue.png","slug":{"$numberLong":"681875"}}
+{"title":"Spacious apartment for a young family","city":"Johannesburg","bedrooms":4,"bathrooms":3,"amenities":["wi-fi","parking","dishwasher"],"img":"pic-orange.png","slug":{"$numberLong":"932464"}}
+{"title":"Beautiful house in the countryside","city":"Taipei","bedrooms":1,"bathrooms":3,"amenities":["parking","wi-fi","patio"],"img":"pic-pink.png","slug":{"$numberLong":"841107"}}
+{"title":"Art-deco loft close to the metro station","city":"Milan","bedrooms":2,"bathrooms":3,"amenities":["terrace","patio","no furniture"],"img":"pic-orange.png","slug":{"$numberLong":"991770"}}
+{"title":"Wonderful house close to the mall","city":"Johannesburg","bedrooms":1,"bathrooms":3,"amenities":["fireplace","sauna","jacuzzi"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"942508"}}
+{"title":"Practical loft downtown","city":"New York","bedrooms":3,"bathrooms":3,"amenities":["elevator","wi-fi","patio"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"649878"}}
+{"title":"Charming apartment close to the mall","city":"Tokyo","bedrooms":1,"bathrooms":2,"amenities":["laundry room","heating","patio"],"img":"pic-purple.png","slug":{"$numberLong":"334179"}}
+{"title":"Beautiful house in the countryside","city":"Dublin","bedrooms":2,"bathrooms":1,"amenities":["fireplace","balcony","microwave"],"img":"pic-orange.png","slug":{"$numberLong":"679511"}}
+{"title":"Modern apartment close to the metro station","city":"Boston","bedrooms":3,"bathrooms":1,"amenities":["dishwasher","terrace","fireplace"],"img":"pic-green.png","slug":{"$numberLong":"395968"}}
+{"title":"Art-deco loft close to the metro station","city":"London","bedrooms":3,"bathrooms":1,"amenities":["no furniture","dishwasher","swimming pool"],"img":"pic-salmon.png","slug":{"$numberLong":"891387"}}
+{"title":"Charming house close to the train station","city":"Los Angeles","bedrooms":2,"bathrooms":2,"amenities":["fireplace","laundry room","swimming pool"],"img":"pic-orange.png","slug":{"$numberLong":"426839"}}
+{"title":"Charming apartment close to the train station","city":"Dubai","bedrooms":1,"bathrooms":3,"amenities":["wi-fi","elevator","microwave"],"img":"pic-green.png","slug":{"$numberLong":"106243"}}
+{"title":"Spacious house in the suburbs","city":"Dublin","bedrooms":2,"bathrooms":2,"amenities":["gym","balcony","heating"],"img":"pic-bluegreen.png","slug":{"$numberLong":"127656"}}
+{"title":"Luxurious house in the suburbs","city":"Guangzhou","bedrooms":2,"bathrooms":2,"amenities":["fireplace","no furniture","microwave"],"img":"pic-green.png","slug":{"$numberLong":"118305"}}
+{"title":"Art-deco loft close to the metro station","city":"Sidney","bedrooms":5,"bathrooms":2,"amenities":["patio","microwave","air conditioning"],"img":"pic-pink.png","slug":{"$numberLong":"955176"}}
+{"title":"Charming apartment close to the train station","city":"Bangalore","bedrooms":5,"bathrooms":1,"amenities":["no furniture","fireplace","swimming pool"],"img":"pic-pink.png","slug":{"$numberLong":"768908"}}
+{"title":"Bright apartment close to the park","city":"Milan","bedrooms":1,"bathrooms":3,"amenities":["laundry room","patio","microwave"],"img":"pic-green.png","slug":{"$numberLong":"901423"}}
+{"title":"Luminous apartment in the heart of the city","city":"Edinburgh","bedrooms":1,"bathrooms":3,"amenities":["elevator","no furniture","balcony"],"img":"pic-green.png","slug":{"$numberLong":"146982"}}
+{"title":"Charming apartment close to the mall","city":"London","bedrooms":5,"bathrooms":2,"amenities":["no furniture","microwave","furniture"],"img":"pic-purple.png","slug":{"$numberLong":"387458"}}
+{"title":"Practical loft downtown","city":"Bangalore","bedrooms":4,"bathrooms":2,"amenities":["furniture","air conditioning","heating"],"img":"pic-blue.png","slug":{"$numberLong":"487783"}}
+{"title":"Wonderful chalet close to the train station","city":"London","bedrooms":4,"bathrooms":1,"amenities":["air conditioning","jacuzzi","garden"],"img":"pic-orange.png","slug":{"$numberLong":"844478"}}
+{"title":"Beautiful house in the countryside","city":"Irvine","bedrooms":1,"bathrooms":3,"amenities":["garden","laundry room","dishwasher"],"img":"pic-bluegreen.png","slug":{"$numberLong":"546810"}}
+{"title":"Wonderful chalet close to the train station","city":"Cologne","bedrooms":5,"bathrooms":2,"amenities":["microwave","elevator","heating"],"img":"pic-purple.png","slug":{"$numberLong":"426456"}}
+{"title":"Luxurious apartment by the park","city":"Philiadeplhia","bedrooms":3,"bathrooms":1,"amenities":["air conditioning","jacuzzi","fireplace"],"img":"pic-pink.png","slug":{"$numberLong":"516180"}}
+{"title":"Bright apartment close to the park","city":"Sidney","bedrooms":2,"bathrooms":3,"amenities":["garden","balcony","wi-fi"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"535721"}}
+{"title":"Bright apartment close to the park","city":"Dublin","bedrooms":3,"bathrooms":2,"amenities":["gym","microwave","balcony"],"img":"pic-salmon.png","slug":{"$numberLong":"249188"}}
+{"title":"Bright apartment close to the park","city":"Chicago","bedrooms":1,"bathrooms":3,"amenities":["balcony","fireplace","elevator"],"img":"pic-purple.png","slug":{"$numberLong":"293958"}}
+{"title":"Beautiful house in the countryside","city":"Irvine","bedrooms":4,"bathrooms":2,"amenities":["parking","terrace","wi-fi"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"138214"}}
+{"title":"Modern apartment close to the metro station","city":"Johannesburg","bedrooms":4,"bathrooms":1,"amenities":["heating","sauna","swimming pool"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"587853"}}
+{"title":"Spacious house in the suburbs","city":"Montral","bedrooms":5,"bathrooms":2,"amenities":["parking","garden","furniture"],"img":"pic-blue.png","slug":{"$numberLong":"297421"}}
+{"title":"Charming apartment close to the mall","city":"Taipei","bedrooms":2,"bathrooms":3,"amenities":["patio","elevator","balcony"],"img":"pic-purple.png","slug":{"$numberLong":"375124"}}
+{"title":"Wonderful house close to the mall","city":"Bangalore","bedrooms":3,"bathrooms":3,"amenities":["sauna","jacuzzi","microwave"],"img":"pic-bluegreen.png","slug":{"$numberLong":"766075"}}
+{"title":"Cozy apartment in the heart of the city","city":"Charlotte","bedrooms":5,"bathrooms":2,"amenities":["garden","dishwasher","fireplace"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"651369"}}
+{"title":"Wonderful chalet close to the train station","city":"Paris","bedrooms":1,"bathrooms":3,"amenities":["swimming pool","sauna","heating"],"img":"pic-purple.png","slug":{"$numberLong":"227170"}}
+{"title":"Luxurious house in the suburbs","city":"Tel Aviv","bedrooms":4,"bathrooms":1,"amenities":["terrace","garden","balcony"],"img":"pic-salmon.png","slug":{"$numberLong":"117099"}}
+{"title":"Beautiful house in the countryside","city":"Tel Aviv","bedrooms":2,"bathrooms":3,"amenities":["heating","gym","sauna"],"img":"pic-salmon.png","slug":{"$numberLong":"524830"}}
+{"title":"Luxurious house in the suburbs","city":"Taipei","bedrooms":3,"bathrooms":3,"amenities":["furniture","parking","air conditioning"],"img":"pic-salmon.png","slug":{"$numberLong":"181807"}}
+{"title":"Spacious apartment for a young family","city":"San Francisco","bedrooms":3,"bathrooms":3,"amenities":["dishwasher","air conditioning","laundry room"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"889342"}}
+{"title":"Art-deco loft close to the metro station","city":"Tokyo","bedrooms":5,"bathrooms":3,"amenities":["swimming pool","patio","no furniture"],"img":"pic-pink.png","slug":{"$numberLong":"747666"}}
+{"title":"Wonderful chalet close to the train station","city":"Milan","bedrooms":1,"bathrooms":2,"amenities":["elevator","terrace","patio"],"img":"pic-blue.png","slug":{"$numberLong":"246757"}}
+{"title":"Charming apartment close to the mall","city":"San Francisco","bedrooms":2,"bathrooms":1,"amenities":["furniture","garden","terrace"],"img":"pic-orange.png","slug":{"$numberLong":"828540"}}
+{"title":"Bright apartment close to the park","city":"Edinburgh","bedrooms":5,"bathrooms":3,"amenities":["air conditioning","jacuzzi","elevator"],"img":"pic-salmon.png","slug":{"$numberLong":"914189"}}
+{"title":"Modern apartment close to the metro station","city":"Houston","bedrooms":1,"bathrooms":1,"amenities":["furniture","fireplace","laundry room"],"img":"pic-blue.png","slug":{"$numberLong":"231863"}}
+{"title":"Modern apartment close to the metro station","city":"Edinburgh","bedrooms":4,"bathrooms":2,"amenities":["terrace","fireplace","no furniture"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"180096"}}
+{"title":"Cozy apartment in the heart of the city","city":"Bangalore","bedrooms":1,"bathrooms":3,"amenities":["balcony","swimming pool","wi-fi"],"img":"pic-green.png","slug":{"$numberLong":"253379"}}
+{"title":"Luxurious apartment by the park","city":"Dubai","bedrooms":1,"bathrooms":1,"amenities":["garden","no furniture","patio"],"img":"pic-bluegreen.png","slug":{"$numberLong":"358613"}}
+{"title":"Bright apartment close to the park","city":"Cologne","bedrooms":1,"bathrooms":3,"amenities":["jacuzzi","air conditioning","laundry room"],"img":"pic-pink.png","slug":{"$numberLong":"363641"}}
+{"title":"Spacious apartment for a young family","city":"Dallas","bedrooms":1,"bathrooms":2,"amenities":["jacuzzi","air conditioning","balcony"],"img":"pic-purple.png","slug":{"$numberLong":"944043"}}
+{"title":"Luxurious house in the suburbs","city":"Charlotte","bedrooms":2,"bathrooms":3,"amenities":["wi-fi","patio","no furniture"],"img":"pic-green.png","slug":{"$numberLong":"445904"}}
+{"title":"Spacious apartment for a young family","city":"London","bedrooms":1,"bathrooms":1,"amenities":["sauna","wi-fi","air conditioning"],"img":"pic-blue.png","slug":{"$numberLong":"647877"}}
+{"title":"Luxurious apartment by the park","city":"Cologne","bedrooms":4,"bathrooms":2,"amenities":["furniture","elevator","heating"],"img":"pic-green.png","slug":{"$numberLong":"879858"}}
+{"title":"Spacious apartment for a young family","city":"Los Angeles","bedrooms":5,"bathrooms":2,"amenities":["balcony","jacuzzi","microwave"],"img":"pic-blue.png","slug":{"$numberLong":"966752"}}
+{"title":"Wonderful chalet close to the train station","city":"London","bedrooms":3,"bathrooms":3,"amenities":["balcony","air conditioning","sauna"],"img":"pic-blue.png","slug":{"$numberLong":"219567"}}
+{"title":"Charming house close to the train station","city":"Sao Paulo","bedrooms":3,"bathrooms":3,"amenities":["heating","elevator","microwave"],"img":"pic-purple.png","slug":{"$numberLong":"886167"}}
+{"title":"Charming house close to the train station","city":"Montral","bedrooms":3,"bathrooms":2,"amenities":["air conditioning","elevator","no furniture"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"519371"}}
+{"title":"Modern apartment close to the metro station","city":"Dallas","bedrooms":1,"bathrooms":2,"amenities":["elevator","swimming pool","no furniture"],"img":"pic-blue.png","slug":{"$numberLong":"694908"}}
+{"title":"Luminous apartment in the heart of the city","city":"Paris","bedrooms":1,"bathrooms":2,"amenities":["no furniture","elevator","air conditioning"],"img":"pic-green.png","slug":{"$numberLong":"308993"}}
+{"title":"Beautiful house in the countryside","city":"London","bedrooms":1,"bathrooms":2,"amenities":["microwave","parking","laundry room"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"635940"}}
+{"title":"Beautiful house in the countryside","city":"Paris","bedrooms":1,"bathrooms":2,"amenities":["dishwasher","jacuzzi","heating"],"img":"pic-purple.png","slug":{"$numberLong":"639670"}}
+{"title":"Luminous apartment in the heart of the city","city":"Johannesburg","bedrooms":4,"bathrooms":2,"amenities":["jacuzzi","no furniture","patio"],"img":"pic-pink.png","slug":{"$numberLong":"596169"}}
+{"title":"Wonderful chalet close to the train station","city":"Bangalore","bedrooms":5,"bathrooms":2,"amenities":["parking","jacuzzi","fireplace"],"img":"pic-blue.png","slug":{"$numberLong":"592915"}}
+{"title":"Charming apartment close to the train station","city":"Dallas","bedrooms":4,"bathrooms":2,"amenities":["jacuzzi","wi-fi","patio"],"img":"pic-orange.png","slug":{"$numberLong":"613816"}}
+{"title":"Luxurious house in the suburbs","city":"Boston","bedrooms":5,"bathrooms":1,"amenities":["terrace","wi-fi","air conditioning"],"img":"pic-bluegreen.png","slug":{"$numberLong":"111336"}}
+{"title":"Luxurious apartment by the park","city":"Atlanta","bedrooms":4,"bathrooms":1,"amenities":["garden","elevator","sauna"],"img":"pic-blue.png","slug":{"$numberLong":"760999"}}
+{"title":"Bright apartment close to the park","city":"Cologne","bedrooms":4,"bathrooms":1,"amenities":["balcony","wi-fi","gym"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"267354"}}
+{"title":"Modern apartment close to the metro station","city":"Dubai","bedrooms":5,"bathrooms":3,"amenities":["swimming pool","furniture","parking"],"img":"pic-pink.png","slug":{"$numberLong":"558214"}}
+{"title":"Bright apartment close to the park","city":"Sidney","bedrooms":2,"bathrooms":3,"amenities":["wi-fi","no furniture","sauna"],"img":"pic-bluegreen.png","slug":{"$numberLong":"769546"}}
+{"title":"Spacious apartment for a young family","city":"Milan","bedrooms":2,"bathrooms":3,"amenities":["elevator","air conditioning","jacuzzi"],"img":"pic-orange.png","slug":{"$numberLong":"460878"}}
+{"title":"Charming house close to the train station","city":"Irvine","bedrooms":1,"bathrooms":1,"amenities":["gym","heating","no furniture"],"img":"pic-purple.png","slug":{"$numberLong":"876072"}}
+{"title":"Beautiful house in the countryside","city":"Mumbai","bedrooms":3,"bathrooms":3,"amenities":["terrace","microwave","swimming pool"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"683481"}}
+{"title":"Wonderful chalet close to the train station","city":"New York","bedrooms":2,"bathrooms":3,"amenities":["furniture","microwave","wi-fi"],"img":"pic-blue.png","slug":{"$numberLong":"690615"}}
+{"title":"Beautiful house in the countryside","city":"Houston","bedrooms":5,"bathrooms":1,"amenities":["parking","furniture","laundry room"],"img":"pic-green.png","slug":{"$numberLong":"239085"}}
+{"title":"Wonderful house close to the mall","city":"Mumbai","bedrooms":1,"bathrooms":2,"amenities":["no furniture","terrace","air conditioning"],"img":"pic-bluegreen.png","slug":{"$numberLong":"931837"}}
+{"title":"Spacious apartment for a young family","city":"Houston","bedrooms":3,"bathrooms":2,"amenities":["jacuzzi","garden","wi-fi"],"img":"pic-orange.png","slug":{"$numberLong":"763866"}}
+{"title":"Bright apartment close to the park","city":"Charlotte","bedrooms":1,"bathrooms":2,"amenities":["elevator","laundry room","microwave"],"img":"pic-bluegreen.png","slug":{"$numberLong":"930184"}}
+{"title":"Luxurious apartment by the park","city":"Dublin","bedrooms":3,"bathrooms":1,"amenities":["furniture","garden","heating"],"img":"pic-blue.png","slug":{"$numberLong":"477261"}}
+{"title":"Modern apartment close to the metro station","city":"Charlotte","bedrooms":1,"bathrooms":1,"amenities":["laundry room","parking","gym"],"img":"pic-pink.png","slug":{"$numberLong":"616152"}}
+{"title":"Beautiful house in the countryside","city":"Atlanta","bedrooms":2,"bathrooms":2,"amenities":["fireplace","wi-fi","dishwasher"],"img":"pic-salmon.png","slug":{"$numberLong":"128429"}}
+{"title":"Cozy apartment in the heart of the city","city":"Los Angeles","bedrooms":4,"bathrooms":3,"amenities":["dishwasher","heating","swimming pool"],"img":"pic-orange.png","slug":{"$numberLong":"224832"}}
+{"title":"Luxurious house in the suburbs","city":"Tokyo","bedrooms":4,"bathrooms":3,"amenities":["fireplace","gym","wi-fi"],"img":"pic-green.png","slug":{"$numberLong":"423279"}}
+{"title":"Bright apartment close to the park","city":"Philiadeplhia","bedrooms":4,"bathrooms":1,"amenities":["patio","wi-fi","gym"],"img":"pic-blue.png","slug":{"$numberLong":"895898"}}
+{"title":"Cozy apartment in the heart of the city","city":"Singapore","bedrooms":3,"bathrooms":3,"amenities":["garden","elevator","gym"],"img":"pic-green.png","slug":{"$numberLong":"203815"}}
+{"title":"Luminous apartment in the heart of the city","city":"Guangzhou","bedrooms":2,"bathrooms":1,"amenities":["no furniture","laundry room","microwave"],"img":"pic-orange.png","slug":{"$numberLong":"125954"}}
+{"title":"Wonderful house close to the mall","city":"Johannesburg","bedrooms":3,"bathrooms":1,"amenities":["furniture","swimming pool","gym"],"img":"pic-purple.png","slug":{"$numberLong":"486994"}}
+{"title":"Modern apartment close to the metro station","city":"Mumbai","bedrooms":1,"bathrooms":1,"amenities":["air conditioning","patio","no furniture"],"img":"pic-blue.png","slug":{"$numberLong":"137782"}}
+{"title":"Luxurious apartment by the park","city":"Guangzhou","bedrooms":3,"bathrooms":3,"amenities":["furniture","sauna","terrace"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"158602"}}
+{"title":"Wonderful house close to the mall","city":"Sidney","bedrooms":2,"bathrooms":1,"amenities":["no furniture","heating","jacuzzi"],"img":"pic-pink.png","slug":{"$numberLong":"455975"}}
+{"title":"Beautiful house in the countryside","city":"Singapore","bedrooms":2,"bathrooms":3,"amenities":["microwave","patio","jacuzzi"],"img":"pic-green.png","slug":{"$numberLong":"385719"}}
+{"title":"Wonderful house close to the mall","city":"Philiadeplhia","bedrooms":2,"bathrooms":2,"amenities":["sauna","heating","no furniture"],"img":"pic-bluegreen.png","slug":{"$numberLong":"327942"}}
+{"title":"Wonderful house close to the mall","city":"Dublin","bedrooms":2,"bathrooms":1,"amenities":["balcony","gym","no furniture"],"img":"pic-pink.png","slug":{"$numberLong":"850808"}}
+{"title":"Charming apartment close to the train station","city":"Sao Paulo","bedrooms":4,"bathrooms":1,"amenities":["garden","wi-fi","elevator"],"img":"pic-green.png","slug":{"$numberLong":"224368"}}
+{"title":"Beautiful house in the countryside","city":"Dublin","bedrooms":1,"bathrooms":3,"amenities":["wi-fi","swimming pool","air conditioning"],"img":"pic-orange.png","slug":{"$numberLong":"686005"}}
+{"title":"Cozy apartment in the heart of the city","city":"Edinburgh","bedrooms":5,"bathrooms":1,"amenities":["microwave","no furniture","furniture"],"img":"pic-bluegreen.png","slug":{"$numberLong":"915307"}}
+{"title":"Luxurious apartment by the park","city":"Taipei","bedrooms":5,"bathrooms":1,"amenities":["microwave","elevator","furniture"],"img":"pic-green.png","slug":{"$numberLong":"808870"}}
+{"title":"Wonderful house close to the mall","city":"Sao Paulo","bedrooms":5,"bathrooms":1,"amenities":["garden","balcony","dishwasher"],"img":"pic-blue.png","slug":{"$numberLong":"767695"}}
+{"title":"Luxurious apartment by the park","city":"Atlanta","bedrooms":2,"bathrooms":3,"amenities":["wi-fi","patio","garden"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"116493"}}
+{"title":"Luxurious apartment by the park","city":"Johannesburg","bedrooms":2,"bathrooms":1,"amenities":["terrace","parking","garden"],"img":"pic-bluegreen.png","slug":{"$numberLong":"721717"}}
+{"title":"Cozy apartment in the heart of the city","city":"Sao Paulo","bedrooms":4,"bathrooms":2,"amenities":["air conditioning","terrace","garden"],"img":"pic-orange.png","slug":{"$numberLong":"796911"}}
+{"title":"Charming apartment close to the mall","city":"Philiadeplhia","bedrooms":5,"bathrooms":2,"amenities":["garden","terrace","gym"],"img":"pic-blue.png","slug":{"$numberLong":"509857"}}
+{"title":"Spacious house in the suburbs","city":"Sao Paulo","bedrooms":5,"bathrooms":3,"amenities":["balcony","patio","swimming pool"],"img":"pic-purple.png","slug":{"$numberLong":"566975"}}
+{"title":"Bright apartment close to the park","city":"Houston","bedrooms":1,"bathrooms":2,"amenities":["microwave","wi-fi","patio"],"img":"pic-orange.png","slug":{"$numberLong":"601901"}}
+{"title":"Spacious house in the suburbs","city":"San Francisco","bedrooms":2,"bathrooms":2,"amenities":["balcony","furniture","sauna"],"img":"pic-bluegreen.png","slug":{"$numberLong":"439464"}}
+{"title":"Spacious house in the suburbs","city":"Taipei","bedrooms":2,"bathrooms":2,"amenities":["air conditioning","jacuzzi","furniture"],"img":"pic-purple.png","slug":{"$numberLong":"288704"}}
+{"title":"Wonderful chalet close to the train station","city":"Edinburgh","bedrooms":1,"bathrooms":1,"amenities":["patio","laundry room","air conditioning"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"899694"}}
+{"title":"Spacious apartment for a young family","city":"Dubai","bedrooms":2,"bathrooms":3,"amenities":["balcony","heating","fireplace"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"125955"}}
+{"title":"Beautiful house in the countryside","city":"Johannesburg","bedrooms":2,"bathrooms":2,"amenities":["heating","no furniture","jacuzzi"],"img":"pic-pink.png","slug":{"$numberLong":"170584"}}
+{"title":"Beautiful house in the countryside","city":"Dublin","bedrooms":4,"bathrooms":2,"amenities":["heating","balcony","patio"],"img":"pic-blue.png","slug":{"$numberLong":"732563"}}
+{"title":"Beautiful house in the countryside","city":"Singapore","bedrooms":1,"bathrooms":3,"amenities":["laundry room","elevator","swimming pool"],"img":"pic-purple.png","slug":{"$numberLong":"184298"}}
+{"title":"Bright apartment close to the park","city":"Taipei","bedrooms":5,"bathrooms":3,"amenities":["heating","jacuzzi","laundry room"],"img":"pic-bluegreen.png","slug":{"$numberLong":"449646"}}
+{"title":"Beautiful house in the countryside","city":"Tokyo","bedrooms":5,"bathrooms":3,"amenities":["elevator","parking","no furniture"],"img":"pic-pink.png","slug":{"$numberLong":"542155"}}
+{"title":"Art-deco loft close to the metro station","city":"Guangzhou","bedrooms":4,"bathrooms":1,"amenities":["laundry room","parking","garden"],"img":"pic-pink.png","slug":{"$numberLong":"348777"}}
+{"title":"Cozy apartment in the heart of the city","city":"Johannesburg","bedrooms":4,"bathrooms":1,"amenities":["elevator","laundry room","air conditioning"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"639743"}}
+{"title":"Spacious apartment for a young family","city":"London","bedrooms":2,"bathrooms":3,"amenities":["swimming pool","air conditioning","wi-fi"],"img":"pic-orange.png","slug":{"$numberLong":"783519"}}
+{"title":"Charming house close to the train station","city":"Houston","bedrooms":3,"bathrooms":1,"amenities":["fireplace","parking","furniture"],"img":"pic-orange.png","slug":{"$numberLong":"847914"}}
+{"title":"Wonderful house close to the mall","city":"Dallas","bedrooms":3,"bathrooms":3,"amenities":["gym","fireplace","no furniture"],"img":"pic-purple.png","slug":{"$numberLong":"250473"}}
+{"title":"Beautiful house in the countryside","city":"Taipei","bedrooms":2,"bathrooms":3,"amenities":["gym","no furniture","heating"],"img":"pic-bluegreen.png","slug":{"$numberLong":"485437"}}
+{"title":"Cozy apartment in the heart of the city","city":"Edinburgh","bedrooms":3,"bathrooms":1,"amenities":["microwave","balcony","swimming pool"],"img":"pic-blue.png","slug":{"$numberLong":"102754"}}
+{"title":"Beautiful house in the countryside","city":"Houston","bedrooms":5,"bathrooms":2,"amenities":["sauna","elevator","parking"],"img":"pic-purple.png","slug":{"$numberLong":"900256"}}
+{"title":"Charming apartment close to the mall","city":"Irvine","bedrooms":4,"bathrooms":2,"amenities":["jacuzzi","patio","elevator"],"img":"pic-bluegreen.png","slug":{"$numberLong":"784276"}}
+{"title":"Charming house close to the train station","city":"Charlotte","bedrooms":4,"bathrooms":3,"amenities":["swimming pool","heating","gym"],"img":"pic-pink.png","slug":{"$numberLong":"618944"}}
+{"title":"Art-deco loft close to the metro station","city":"London","bedrooms":4,"bathrooms":2,"amenities":["heating","laundry room","balcony"],"img":"pic-pink.png","slug":{"$numberLong":"252096"}}
+{"title":"Spacious house in the suburbs","city":"Cologne","bedrooms":1,"bathrooms":3,"amenities":["gym","sauna","terrace"],"img":"pic-purple.png","slug":{"$numberLong":"709846"}}
+{"title":"Charming house close to the train station","city":"San Francisco","bedrooms":1,"bathrooms":1,"amenities":["wi-fi","fireplace","elevator"],"img":"pic-pink.png","slug":{"$numberLong":"228941"}}
+{"title":"Art-deco loft close to the metro station","city":"Dallas","bedrooms":3,"bathrooms":1,"amenities":["wi-fi","terrace","laundry room"],"img":"pic-purple.png","slug":{"$numberLong":"433664"}}
+{"title":"Beautiful house in the countryside","city":"Dubai","bedrooms":5,"bathrooms":3,"amenities":["microwave","balcony","patio"],"img":"pic-pink.png","slug":{"$numberLong":"104317"}}
+{"title":"Bright apartment close to the park","city":"Taipei","bedrooms":2,"bathrooms":3,"amenities":["parking","furniture","wi-fi"],"img":"pic-purple.png","slug":{"$numberLong":"507226"}}
+{"title":"Modern apartment close to the metro station","city":"Edinburgh","bedrooms":4,"bathrooms":1,"amenities":["swimming pool","garden","patio"],"img":"pic-blue.png","slug":{"$numberLong":"894591"}}
+{"title":"Bright apartment close to the park","city":"Bangalore","bedrooms":5,"bathrooms":1,"amenities":["wi-fi","microwave","laundry room"],"img":"pic-purple.png","slug":{"$numberLong":"909110"}}
+{"title":"Luxurious house in the suburbs","city":"Philiadeplhia","bedrooms":1,"bathrooms":1,"amenities":["jacuzzi","microwave","wi-fi"],"img":"pic-orange.png","slug":{"$numberLong":"460175"}}
+{"title":"Practical loft downtown","city":"Chicago","bedrooms":3,"bathrooms":3,"amenities":["no furniture","garden","sauna"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"381355"}}
+{"title":"Spacious apartment for a young family","city":"Dublin","bedrooms":3,"bathrooms":1,"amenities":["sauna","swimming pool","parking"],"img":"pic-salmon.png","slug":{"$numberLong":"677927"}}
+{"title":"Practical loft downtown","city":"New York","bedrooms":5,"bathrooms":1,"amenities":["patio","laundry room","furniture"],"img":"pic-blue.png","slug":{"$numberLong":"410778"}}
+{"title":"Luxurious apartment by the park","city":"Dallas","bedrooms":5,"bathrooms":2,"amenities":["elevator","parking","garden"],"img":"pic-orange.png","slug":{"$numberLong":"256127"}}
+{"title":"Modern apartment close to the metro station","city":"Dublin","bedrooms":4,"bathrooms":1,"amenities":["jacuzzi","balcony","no furniture"],"img":"pic-salmon.png","slug":{"$numberLong":"430519"}}
+{"title":"Bright apartment close to the park","city":"Milan","bedrooms":3,"bathrooms":1,"amenities":["gym","swimming pool","heating"],"img":"pic-orange.png","slug":{"$numberLong":"697773"}}
+{"title":"Wonderful chalet close to the train station","city":"Sao Paulo","bedrooms":2,"bathrooms":3,"amenities":["garden","laundry room","furniture"],"img":"pic-blue.png","slug":{"$numberLong":"216730"}}
+{"title":"Art-deco loft close to the metro station","city":"Mumbai","bedrooms":5,"bathrooms":1,"amenities":["garden","gym","air conditioning"],"img":"pic-salmon.png","slug":{"$numberLong":"759012"}}
+{"title":"Cozy apartment in the heart of the city","city":"Guangzhou","bedrooms":3,"bathrooms":2,"amenities":["balcony","heating","patio"],"img":"pic-pink.png","slug":{"$numberLong":"862027"}}
+{"title":"Wonderful house close to the mall","city":"Sao Paulo","bedrooms":3,"bathrooms":3,"amenities":["jacuzzi","fireplace","dishwasher"],"img":"pic-purple.png","slug":{"$numberLong":"553176"}}
+{"title":"Luxurious apartment by the park","city":"Tel Aviv","bedrooms":1,"bathrooms":3,"amenities":["wi-fi","jacuzzi","heating"],"img":"pic-pink.png","slug":{"$numberLong":"384951"}}
+{"title":"Luxurious apartment by the park","city":"Philiadeplhia","bedrooms":5,"bathrooms":2,"amenities":["elevator","gym","terrace"],"img":"pic-purple.png","slug":{"$numberLong":"710314"}}
+{"title":"Beautiful house in the countryside","city":"Tokyo","bedrooms":2,"bathrooms":2,"amenities":["air conditioning","fireplace","sauna"],"img":"pic-blue.png","slug":{"$numberLong":"720356"}}
+{"title":"Art-deco loft close to the metro station","city":"Johannesburg","bedrooms":1,"bathrooms":3,"amenities":["terrace","wi-fi","fireplace"],"img":"pic-salmon.png","slug":{"$numberLong":"758779"}}
+{"title":"Luxurious apartment by the park","city":"Houston","bedrooms":1,"bathrooms":2,"amenities":["dishwasher","furniture","air conditioning"],"img":"pic-salmon.png","slug":{"$numberLong":"961045"}}
+{"title":"Bright apartment close to the park","city":"Atlanta","bedrooms":2,"bathrooms":3,"amenities":["air conditioning","microwave","gym"],"img":"pic-salmon.png","slug":{"$numberLong":"733074"}}
+{"title":"Bright apartment close to the park","city":"Mumbai","bedrooms":5,"bathrooms":3,"amenities":["terrace","sauna","swimming pool"],"img":"pic-bluegreen.png","slug":{"$numberLong":"843330"}}
+{"title":"Luminous apartment in the heart of the city","city":"Los Angeles","bedrooms":5,"bathrooms":3,"amenities":["jacuzzi","wi-fi","no furniture"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"698038"}}
+{"title":"Spacious apartment for a young family","city":"Houston","bedrooms":3,"bathrooms":1,"amenities":["air conditioning","heating","swimming pool"],"img":"pic-blue.png","slug":{"$numberLong":"918896"}}
+{"title":"Beautiful house in the countryside","city":"Dallas","bedrooms":4,"bathrooms":3,"amenities":["laundry room","swimming pool","parking"],"img":"pic-bluegreen.png","slug":{"$numberLong":"376817"}}
+{"title":"Art-deco loft close to the metro station","city":"Sidney","bedrooms":4,"bathrooms":1,"amenities":["patio","parking","swimming pool"],"img":"pic-salmon.png","slug":{"$numberLong":"681709"}}
+{"title":"Wonderful chalet close to the train station","city":"Edinburgh","bedrooms":3,"bathrooms":1,"amenities":["fireplace","garden","dishwasher"],"img":"pic-green.png","slug":{"$numberLong":"616488"}}
+{"title":"Luminous apartment in the heart of the city","city":"New York","bedrooms":2,"bathrooms":2,"amenities":["terrace","swimming pool","jacuzzi"],"img":"pic-green.png","slug":{"$numberLong":"896431"}}
+{"title":"Luxurious apartment by the park","city":"New York","bedrooms":3,"bathrooms":2,"amenities":["balcony","microwave","jacuzzi"],"img":"pic-blue.png","slug":{"$numberLong":"305626"}}
+{"title":"Bright apartment close to the park","city":"Tel Aviv","bedrooms":4,"bathrooms":2,"amenities":["terrace","parking","microwave"],"img":"pic-salmon.png","slug":{"$numberLong":"502403"}}
+{"title":"Art-deco loft close to the metro station","city":"Dublin","bedrooms":3,"bathrooms":2,"amenities":["no furniture","gym","sauna"],"img":"pic-yellowgreen.png","slug":{"$numberLong":"190151"}}
