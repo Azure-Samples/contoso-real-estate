@@ -8,4 +8,5 @@ export interface CardType {
     bedrooms: number;
     bathrooms: number;
     img: string;
+    description: string;
 }
