@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "ms-azuretools.azure-dev"
+        "ms-azuretools.azure-dev",
+        "angular.ng-template"
     ]
 }

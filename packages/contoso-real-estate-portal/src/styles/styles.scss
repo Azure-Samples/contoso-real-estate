@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.main,
+.header,
+.main,
+.main .section,
+.footer {
+    // common styles
+    border: 1px solid red;
+}
+
+.inner-wrapper {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    border: 1px solid blue;
+}
+
+.header {
+    background-color: #000;
+    height: 50px;
+    display: flex;
+
+    @media (min-width: 1024px) {
+        height: 70px;
+    }
+}

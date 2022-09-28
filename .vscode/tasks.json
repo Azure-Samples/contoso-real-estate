@@ -76,7 +76,45 @@
                 "Start Web"
             ],
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "Generate Angular Bundles",
+            "type": "npm",
+            "script": "start",
+            "isBackground": true,
+            "problemMatcher": {
+              "owner": "typescript",
+              "pattern": "$tsc",
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": {
+                  "regexp": "(.*?)"
+                },
+                "endsPattern": {
+                  "regexp": "bundle generation complete"
+                }
+              }
+            }
+          },
+          {
+            "label": "Generate test Angular Bundle",
+            "type": "npm",
+            "script": "test",
+            "isBackground": true,
+            "problemMatcher": {
+              "owner": "typescript",
+              "pattern": "$tsc",
+              "background": {
+                "activeOnStart": true,
+                "beginsPattern": {
+                  "regexp": "(.*?)"
+                },
+                "endsPattern": {
+                  "regexp": "bundle generation complete"
+                }
+              }
+            }
+          }
     ],
     "inputs": [
         {
