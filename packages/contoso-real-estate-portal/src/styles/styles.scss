@@ -2,7 +2,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+li {
+    list-style: none;
+}
+ul {
+    padding: 0;
+}
 .main,
 .header,
 .main,
@@ -12,6 +17,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border: 1px solid red;
 }
 
+
+.grid {
+    display: grid;
+    column-gap: 20px;
+    row-gap: 20px;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 .inner-wrapper {
     width: 100%;
     max-width: 1024px;
@@ -23,8 +42,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #000;
     height: 50px;
     display: flex;
+    
+    @media (min-width: 960px) {
+        height: 50px;
+    }
 
     @media (min-width: 1024px) {
         height: 70px;
     }
 }
+
+.card-link,
+.card-link:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+// override title
+.mat-card-title {
+    @media (min-width: 1024px) {
+        height: 45px;
+    }
+}
+    

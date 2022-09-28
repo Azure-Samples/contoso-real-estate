@@ -14,12 +14,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { CardComponent } from './card/card.component';
-
+import { CardListComponent } from './card-list/card-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent
+    CardListComponent
   ],
   imports: [
     BrowserModule,
