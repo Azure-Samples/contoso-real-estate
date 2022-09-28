@@ -10,7 +10,7 @@
     "lint": "npm run format:check",
     "compile": "tsc -b tsconfig.build.json",
     "clean": "rimraf \"packages/**/*.tsbuildinfo\"",
-    "postinstall": "npm install --prefix packages/contoso-real-estate-portal"
+    "postinstall": "npm install --prefix packages/portal"
   },
   "keywords": [],
   "author": "Microsoft",
