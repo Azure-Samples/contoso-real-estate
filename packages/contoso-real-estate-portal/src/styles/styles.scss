@@ -8,7 +8,6 @@ li {
 ul {
     padding: 0;
 }
-
 .main,
 .header,
 .main,
@@ -17,6 +16,7 @@ ul {
     // common styles
     border: 1px solid red;
 }
+
 
 .grid {
     display: grid;
@@ -31,7 +31,6 @@ ul {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-
 .inner-wrapper {
     width: 100%;
     max-width: 1024px;
@@ -43,7 +42,7 @@ ul {
     background-color: #000;
     height: 50px;
     display: flex;
-
+    
     @media (min-width: 960px) {
         height: 50px;
     }

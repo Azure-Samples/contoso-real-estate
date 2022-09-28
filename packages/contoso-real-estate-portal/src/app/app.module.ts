@@ -15,7 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { CardListComponent } from './card-list/card-list.component';
-
 @NgModule({
   declarations: [
     AppComponent,
