@@ -6,7 +6,7 @@ export const configureMongoose = async (config: DatabaseConfig) => {
     mongoose.set("toJSON", {
         virtuals: true,
         versionKey: false,
-        transform: (_, converted) => {
+        transform: (_: any, converted: { id: any; _id: any; }) => {
             converted.id = converted._id;
             delete converted._id;
         }

@@ -6,7 +6,7 @@
     "env": "azd env get-values --no-prompt > .env",
     "build": "tsc && npm prune --production",
     "watch": "tsc --w",
-    "prestart": "npm run build && npm run env && func extensions install",
+    "prestart": "tsc && npm run env && func extensions install",
     "start:host": "func start",
     "start": "npm-run-all --parallel start:host watch"
   },
