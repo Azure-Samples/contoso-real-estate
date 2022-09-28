@@ -1,19 +1,11 @@
+
 <section class="results">
     <ul class="card-list grid" *ngIf="listings && listings.length !== 0">
-        <li class="card-list card" *ngFor="let listing of listings">
-          <a class="card-link" [routerLink]="['/listing/' + listing.slug.$numberLong ]">
-            <mat-card class="example-card">
-                <mat-card-header>
-                  <mat-card-title>{{listing.title}}</mat-card-title>
-                  <mat-card-subtitle>{{listing.city}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="/assets/images/{{listing.img}}" alt="{{listing.title}}">
-                <mat-card-content>
-                    <span>{{listing.bedrooms}} bedrooms</span>, <span>{{listing.bathrooms}} bathrooms</span>
-                </mat-card-content>
-              </mat-card>
-          </a> 
-        </li>
+      <li class="card-list card" *ngFor="let listing of listings">
+        <a class="card-link" [routerLink]="['/listing/' + listing.slug.$numberLong ]" [state]="{ rental: listing }">
+          <app-card class="card-list-item" [listing]="listing"></app-card>
+        </a> 
+      </li>
     </ul>
     <div *ngIf="listings.length === 0" class="notification error">
         <p>{{noresults}}</p>

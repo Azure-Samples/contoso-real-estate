@@ -6,7 +6,7 @@ import { CardType } from '../../typings/cardtype';
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.scss']
 })
-export class CardListComponent implements OnInit {
+export class CardListComponent {
   data  =  [
     {
       "title": "Bright apartment close to the park",
@@ -120,12 +120,4 @@ export class CardListComponent implements OnInit {
  
   listings: CardType[] = this.data || [];
   noresults: string = "There are no listings right now. Come back again soon!";
-  siteUrl = window.location;
-
-  constructor() { }
-
-  ngOnInit(): void {
-    console.log(this.siteUrl, "listings");
-  }
-
 }

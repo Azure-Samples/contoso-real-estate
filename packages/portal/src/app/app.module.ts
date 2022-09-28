@@ -15,10 +15,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { CardListComponent } from './card-list/card-list.component';
+import { ListingDetailComponent } from './listing-detail/listing-detail.component';
+import { CardComponent } from './card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CardListComponent
+    CardComponent,
+    CardListComponent,
+    ListingDetailComponent
   ],
   imports: [
     BrowserModule,
