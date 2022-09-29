@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, Navigation } from '@angular/router';
-import { CardType } from 'src/typings/cardtype';
+import { Router, Navigation } from '@angular/router';
 
 @Component({
   selector: 'app-listing-detail',
@@ -12,7 +11,6 @@ export class ListingDetailComponent implements OnInit {
   navigation: Navigation | undefined;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router
   ) {
     this.navigation = this.router.getCurrentNavigation() || undefined;

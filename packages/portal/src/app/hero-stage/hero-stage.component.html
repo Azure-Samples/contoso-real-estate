@@ -1,0 +1,13 @@
+<mat-card class="example-card stage-card">
+    <img mat-card-image src="{{stage.img}}" alt={{stage.title}} />
+    <div class="stage-card-overlay">
+        <mat-card-header>
+            <mat-card-title>{{stage.title}}</mat-card-title>
+            <mat-card-subtitle>{{stage.subtitle}}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-actions>
+            <a mat-raised-button href="{{stage.url}}" target="_blank">{{stage.label}}</a>
+        </mat-card-actions>
+    </div>
+</mat-card>
