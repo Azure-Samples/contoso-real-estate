@@ -1,26 +1,19 @@
 <header class="header">
-  <div class="inner-wrapper">Header</div>
+  <div class="inner-wrapper">
+    <div class="header__logo">
+      <a href="/"><img src="assets/images/logo.png" alt="Contoso Rentals" /></a>
+    </div>
+    <div class="header__nav">
+       <app-main-nav></app-main-nav>
+    </div>
+  </div>
 </header>
 <main class="main">
-  <section class="stage">
-    <div class="inner-wrapper">
-      <img src="assets/images/hero.jpg" alt="hero image">
-    </div>
-  </section>
-  <section class="section">
-    <div class="inner-wrapper">
-      <h2 class="subtitle">Top Pics</h2>
-      <router-outlet></router-outlet>
-    </div>
-  </section>
-  <section class="section">
-    <div class="inner-wrapper">Section2</div>
-  </section>
-  <section class="section">
-    <div class="inner-wrapper">Section3</div>
-  </section>
+  <!-- pages -->
+  <router-outlet></router-outlet>
 </main>
 <footer class="footer">
-  <div class="inner-wrapper">Footer</div>  
+  <div class="inner-wrapper">
+    <p class="footer-copy">©2022 - JavaScript @ Contoso HR Rentals App</p>
+  </div>  
 </footer>
-

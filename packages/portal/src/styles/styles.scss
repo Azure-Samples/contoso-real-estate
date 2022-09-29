@@ -14,9 +14,17 @@ ul {
 .main .section,
 .footer {
     // common styles
-    border: 1px solid red;
 }
 
+.section {
+    .inner-wrapper .subtitle {
+        padding-left: 20px;
+
+        @media (min-width: 768px) {
+            padding: 0;
+        }
+    }
+}
 
 .grid {
     display: grid;
@@ -35,21 +43,71 @@ ul {
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
-    border: 1px solid blue;
 }
 
 .header {
     background-color: #000;
     height: 50px;
     display: flex;
+    padding: 20px 5px 0;
+
+    // override menu button
+    .mat-icon-button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        color: #fff;
+    }
     
     @media (min-width: 960px) {
         height: 50px;
+
+        .inner-wrapper {
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 
     @media (min-width: 1024px) {
         height: 70px;
     }
+}
+
+.main-nav {
+    padding: 10px;
+    .main-nav-item {
+        border-bottom: 1px solid lightblue;
+    }
+    .main-nav-item a {
+        color: #000;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: 0.00938em;
+        text-transform: uppercase;
+    }
+    &.only-desktop {
+        @media (min-width: 960px) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 200px;
+            padding: 0;
+    
+            .main-nav-item a {
+                color: #fff;
+                border: 0;
+            }
+        }
+    }
+}
+
+.page-body {
+    min-height: 700px;
+    padding: 30px;
 }
 
 .card-link,
@@ -58,10 +116,64 @@ ul {
     color: #000;
 }
 
-// override title
+// override material title
 .mat-card-title {
     @media (min-width: 1024px) {
         height: 45px;
     }
 }
-    
+
+.stage {
+    .mat-card {
+        position: relative;
+        margin: 10px;
+        padding: 0;
+
+        &:not([class*=mat-elevation-z]) {
+            box-shadow: none;
+        }
+        
+        // override stage button
+        .mat-card-actions:not(.mat-card-actions-align-end) .mat-raised-button:first-child {
+            margin-left: 25px;
+        }
+        .stage-card-overlay {
+            width: 50%;
+            position: absolute;
+            top: 50px;
+        }
+    }
+}
+
+.footer {
+    width: 100%;
+    height: 200px;
+    background-color: #000;
+    color: #fff;
+
+    .inner-wrapper {
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+    }
+}
+
+// hide stuff in desktop
+.only-mobile {
+    display: block;
+
+    @media (min-width: 960px) {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+// hide stuff in mobile
+.only-desktop {
+    display: none;
+
+    @media (min-width: 960px) {
+        display: block;
+        visibility: visible;
+    }
+}
