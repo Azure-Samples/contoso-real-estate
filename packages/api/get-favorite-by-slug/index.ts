@@ -1,9 +1,9 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { getListingBySlugMock } from "../models/listing";
+import { getFavoriteBySlugMock } from "../models/favorite";
 
-const data = async ({ slug }: { slug: number }) => await getListingBySlugMock({ slug });
+const data = async ({ slug }: { slug: number }) => await getFavoriteBySlugMock({ slug });
 
-const getListingBySlug: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const getFavoriteBySlug: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const slug = Number(req.params.slug) || 0;
 
   const model = await data({ slug });
@@ -22,4 +22,4 @@ const getListingBySlug: AzureFunction = async function (context: Context, req: H
   }
 };
 
-export default getListingBySlug;
+export default getFavoriteBySlug;
