@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Navigation, Router } from '@angular/router';
 import { StageType } from 'src/typings/stagetype';
+import { HeroStageComponent } from '../hero-stage/hero-stage.component';
+import { ListingDetailComponent } from '../listing-detail/listing-detail.component';
 
 @Component({
   selector: 'app-rentalpage',
   templateUrl: './rentalpage.component.html',
-  styleUrls: ['./rentalpage.component.scss']
+  styleUrls: ['./rentalpage.component.scss'],
+  standalone: true,
+  imports: [ 
+    HeroStageComponent, 
+    ListingDetailComponent
+  ]
 })
 export class RentalpageComponent implements OnInit {
   listing: any;

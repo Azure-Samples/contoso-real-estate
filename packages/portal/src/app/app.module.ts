@@ -12,8 +12,6 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 @NgModule({
   declarations: [
     HomepageComponent,
-    RentalpageComponent,
-    TextpageComponent,
   ],
   imports: [
     MainNavComponent,
@@ -22,7 +20,8 @@ import { MainNavComponent } from './main-nav/main-nav.component';
     TextComponent,
     ListingDetailComponent,
     CardListComponent,
-    
+    RentalpageComponent,
+    TextpageComponent,
   ],
   providers: [],
   bootstrap: []
