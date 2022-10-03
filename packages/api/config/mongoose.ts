@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { DatabaseConfig } from "../config/appConfig";
-import { logger } from "../config/observability";
+import { logger } from "./observability";
 
 export const configureMongoose = async (config: DatabaseConfig) => {
     mongoose.set("toJSON", {

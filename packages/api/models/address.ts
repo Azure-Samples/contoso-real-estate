@@ -6,31 +6,28 @@ let CACHE: any[] = [];
 function model({ slug }: { slug?: number } = {}) {
   return {
     id: faker.database.mongodbObjectId(),
-    user: {
-      id: faker.database.mongodbObjectId(),
-    },
-    listing: {
-      id: faker.database.mongodbObjectId(),
-    },
-    from: faker.date.future(),
-    to: faker.date.future(),
-    status: faker.helpers.arrayElements(["active", "cancelled", "archived"], 1),
+    buildingNumber: faker.address.buildingNumber(),
+    street: faker.address.streetName(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zipCode: faker.address.zipCode(),
+    country: faker.address.country(),
     createdAt: faker.date.past(),
     slug: slug || faker.lorem.slug(),
   };
 }
 
-export async function getReservationsMock({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
+export async function getAddressMock({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
   if (CACHE.length === 0) {
     CACHE = Array.from({ length: MAX_ENTRIES }, () => model());
   }
 
   return CACHE.slice(offset, offset + limit).map(model => {
-    model.$self = `/api/reservations/${model.slug}`;
+    model.$self = `/api/addresses/${model.slug}`;
     return model;
   });
 }
 
-export async function getReservationBySlugMock({ slug }: { slug: number }): Promise<any> {
+export async function getAddressBySlugMock({ slug }: { slug: number }): Promise<any> {
   return Promise.resolve(CACHE.find(model => model.slug === slug));
 }

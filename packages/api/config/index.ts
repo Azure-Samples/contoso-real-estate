@@ -2,7 +2,7 @@ import { AppConfig } from "./appConfig";
 import * as dotenv from "dotenv";
 import { DefaultAzureCredential } from "@azure/identity";
 import { SecretClient } from "@azure/keyvault-secrets";
-import { configureMongoose } from "../models/mongoose";
+import { configureMongoose } from "./mongoose";
 import { logger } from "./observability";
 
 const getConfig: () => Promise<AppConfig> = async () => {

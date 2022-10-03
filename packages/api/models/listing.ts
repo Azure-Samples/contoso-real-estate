@@ -51,6 +51,7 @@ function model({ slug }: { slug?: number } = {}) {
       ],
       1,
     ),
+    createdAt: faker.date.past(),
     slug: slug || faker.lorem.slug(),
   };
 }
