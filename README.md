@@ -2,11 +2,12 @@
 
 ### Projects
 
-| Project | Location                                                                     | Branch | Build Status |
-| ------- | ---------------------------------------------------------------------------- | ------ | ------------ |
-| Portal  | [packages/contoso-real-estate-portal](./packages/contoso-real-estate-portal) | TODO   | TODO         |
-| Blog    | [packages/contoso-real-estate-blog](./packages/contoso-real-estate-blog)     | TODO   | TODO         |
-| Testing   | [packages/contoso-real-estate-testing](./packages/contoso-real-estate-testing)     | TODO   | TODO         |
+| Project | Location                               | Description | Branch | Build Status |
+| ------- | -------------------------------------- | ----------- | ------ | ------------ |
+| Portal  | [packages/portal](./packages/portal)   |             | TODO   | TODO         |
+| API     | [packages/api](./packages/api)         |             | TODO   | TODO         |
+| Blog    | [packages/blog](./packages/blog)       |             | TODO   | TODO         |
+| Testing | [packages/testing](./packages/testing) |             | TODO   | TODO         |
 
 ### Prerequisites
 
@@ -37,6 +38,7 @@ The fastest way for you to get this application up and running on Azure is to us
 ```bash
 azd up
 ```
+
 3. Install all necessary dependencies for all packages:
 
 ```bash
@@ -95,6 +97,7 @@ The repo is structured to follow the [npm workspaces](https://docs.npmjs.com/cli
 - **Source Code**: All projects source code is located in the `packages/*` folder.
 
 The repo is also structured to follow the [Azure Developer CLI](https://aka.ms/azure-dev) conventions including:
+
 - **Infrastructure as Code**: All application "infrastructure as code" files are located in the `infra` folder.
 - **Azure Developer Configuration**: An `azure.yaml` file located in the root that ties the application source code to the Azure services defined in your "infrastructure as code" files.
 - **GitHub Actions**: A sample GitHub action file is located in the `.github/workflows` folder.
@@ -189,7 +192,7 @@ The Azure Developer CLI includes many other commands to help with your Azure dev
 
 ## Troubleshooting/Known issues
 
-- Deploying an Azure Function App using `azd` triggers by default a remote build. And because each package is deployed independently, we can't share the same base tsconfig.base.json. As a temporary workaround, we need to duplicate the tsconfig.json configuration in each package.  
+- Deploying an Azure Function App using `azd` triggers by default a remote build. And because each package is deployed independently, we can't share the same base tsconfig.base.json. As a temporary workaround, we need to duplicate the tsconfig.json configuration in each package.
 
 ## Security
 
@@ -201,7 +204,7 @@ This template creates a [managed identity](https://docs.microsoft.com/azure/acti
 
 This template provides an optional [Azure Key Vault](https://docs.microsoft.com/azure/key-vault/general/overview) to securely store your Cosmos DB connection string for the provisioned Cosmos DB account. Key Vault is a cloud service for securely storing and accessing secrets (API keys, passwords, certificates, cryptographic keys) and makes it simple to give other Azure services access to them. As you continue developing your solution, you may add as many secrets to your Key Vault as you require.
 
-## Reporting Issues and Feedback 
+## Reporting Issues and Feedback
 
 ### The Azure Dev CLI
 

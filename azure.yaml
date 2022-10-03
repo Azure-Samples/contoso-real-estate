@@ -2,7 +2,13 @@
 
 name: contoso-real-estate
 services:
-  api:
-    project: packages/contoso-real-estate-portal
+  portal:
+    # The portal is a static web apps site with an API. 
+    # Here we only need to specify the location of the static app.
+    # Because azd uses the Azure Static Web Apps CLI under the hood (azd deploy),
+    # We configured the app to use the Azure Functions API
+    # at packages/api as a backend. The configuration lives
+    # in swa-cli.config.json.
+    project: packages/portal
     language: ts
-    host: function
+    host: staticwebapp
