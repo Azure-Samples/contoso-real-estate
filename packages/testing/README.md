@@ -1,6 +1,14 @@
-# Application Tests
+# Application Testing
 
-The included [Playwright](https://playwright.dev/) smoke test will test the Contoso web apps and APIs.
+The included [Playwright](https://playwright.dev/) tests should cover the following needs:
+ - UI Testing: Validate UI components behave as desired
+ - API Testing: Validate API request/responses for varying paths and conditions
+ - E2E Testing: Validate UX workflows related to user stories and scenarios
+ 
+## Data Fixtures
+
+Data fixtures will be set up for testing purposes once the UI and API specifications are finalized.
+When created, they should be located in the e2e-fixtures directory under testing.
 
 ## Run Tests
 
