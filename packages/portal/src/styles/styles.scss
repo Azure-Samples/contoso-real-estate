@@ -127,13 +127,21 @@ ul {
 }
 
 .stage {
-    .mat-card {
+    .hero-stage {
+        display: block;
+    }
+    .stage-card {
         position: relative;
+        display: block;
         margin: 10px;
         padding: 0;
 
         &:not([class*=mat-elevation-z]) {
             box-shadow: none;
+        }
+
+        img {
+            width: 100%;
         }
         
         // override stage button
