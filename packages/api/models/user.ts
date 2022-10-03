@@ -23,6 +23,7 @@ function model({ slug }: { slug?: number } = {}) {
         token: faker.random.alphaNumeric(128),
         lastLogin: faker.date.past(),
     },
+    createdAt: faker.date.past(),
     slug: slug || faker.lorem.slug(),
   };
 }

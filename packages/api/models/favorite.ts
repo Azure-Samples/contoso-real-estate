@@ -12,6 +12,7 @@ function model({ slug }: { slug?: number } = {}) {
     listing: {
       id: faker.database.mongodbObjectId(),
     },
+    reason: faker.lorem.sentence(),
     createdAt: faker.date.past(),
     slug: slug || faker.lorem.slug(),
   };
@@ -23,7 +24,7 @@ export async function getFavoriteMock({ offset, limit }: { offset: number; limit
   }
 
   return CACHE.slice(offset, offset + limit).map(model => {
-    model.$self = `/api/favorite/${model.slug}`;
+    model.$self = `/api/favorites/${model.slug}`;
     return model;
   });
 }
