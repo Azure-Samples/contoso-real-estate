@@ -9,7 +9,7 @@
 | Blog    | [packages/blog](./packages/blog)       |             | TODO   | TODO         |
 | Testing | [packages/testing](./packages/testing) |             | TODO   | TODO         |
 
-### Prerequisites
+### Prerequisites for local development
 
 The following prerequisites are required to use this application. Please ensure that you have them all installed locally.
 
@@ -28,7 +28,23 @@ The following prerequisites are required to use this application. Please ensure 
   - If you need to update npm, once Node.js is installed, run `npm install -g npm@latest`
 - [Git (2.36.1+)](https://git-scm.com/)
 
-### Quickstart
+### Quickstart (local development)
+
+Install all necessary dependencies for all packages:
+
+```bash
+npm install
+```
+
+Start the local development environment:
+
+```bash
+npm start
+```
+
+Access the application at [http://localhost:4280](http://localhost:4280).
+
+### Provisioning the Azure resources
 
 The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources - including access policies and roles for your account and service-to-service communication with Managed Identities.
 
@@ -37,12 +53,6 @@ The fastest way for you to get this application up and running on Azure is to us
 
 ```bash
 azd up
-```
-
-3. Install all necessary dependencies for all packages:
-
-```bash
-npm install
 ```
 
 Note that when running `azd up` you will be prompted for the following information:
