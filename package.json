@@ -10,7 +10,9 @@
     "lint": "npm run format:check",
     "compile": "tsc -b tsconfig.build.json",
     "clean": "rimraf \"packages/**/*.tsbuildinfo\"",
-    "postinstall": "npm install --prefix packages/portal"
+    "postinstall:portal": "npm install --prefix packages/portal",
+    "postinstall:api": "npm install --prefix packages/api",
+    "postinstall": "npm run postinstall:portal && npm run postinstall:api"
   },
   "keywords": [],
   "author": "Microsoft",
