@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CardType } from '../../typings/cardtype';
+import { RouterModule } from '@angular/router';
+import { CardComponent } from '../card/card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card-list',
   templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.scss']
+  styleUrls: ['./card-list.component.scss'],
+  standalone: true,
+  imports: [ RouterModule, CardComponent, CommonModule ]
 })
 export class CardListComponent {
   data  =  [
