@@ -1,12 +1,16 @@
 import { faker } from "@faker-js/faker";
 
-const MAX_LISTINGS = 3;
+const MAX_ENTRIES = 100;
 let CACHE: any[] = [];
 
 function model({ slug }: { slug?: number } = {}) {
   return {
+    id: faker.database.mongodbObjectId(),
     title: faker.lorem.lines(1),
     city: faker.address.city(),
+    isFeatured: faker.datatype.boolean(),
+    isFavorited: faker.datatype.boolean(),
+    isRecommended: faker.datatype.boolean(),
     bedrooms: +faker.random.numeric(),
     bathrooms: +faker.random.numeric(),
     amenities: faker.helpers.arrayElements(
@@ -34,7 +38,7 @@ function model({ slug }: { slug?: number } = {}) {
       3,
     ),
     description: faker.lorem.paragraphs(3),
-    img: faker.helpers.arrayElements(
+    photos: faker.helpers.arrayElements(
       [
         "pic-blue.png",
         "pic-bluegreen.png",
@@ -47,13 +51,13 @@ function model({ slug }: { slug?: number } = {}) {
       ],
       1,
     ),
-    slug: slug || faker.mersenne.rand(999999, 100000),
+    slug: slug || faker.lorem.slug(),
   };
 }
 
 export async function getListingsMock({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
   if (CACHE.length === 0) {
-    CACHE = Array.from({ length: MAX_LISTINGS }, (_, i) => model());
+    CACHE = Array.from({ length: MAX_ENTRIES }, () => model());
   }
 
   return CACHE.slice(offset, offset + limit).map(model => {
@@ -64,7 +68,5 @@ export async function getListingsMock({ offset, limit }: { offset: number; limit
 }
 
 export async function getListingBySlugMock({ slug }: { slug: number }): Promise<any> {
-  console.log("getListingBySlugMock", slug);
-  console.log(CACHE)
-  return Promise.resolve(CACHE.find(listing => listing.slug === slug));
+  return Promise.resolve(CACHE.find(model => model.slug === slug));
 }
