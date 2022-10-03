@@ -1,10 +1,536 @@
-openapi: 3.0.0
+openapi: 3.0.3
+
 info:
-  title: Contoso Real Estate API
-  description: |
+  title: Contoso Real Estate API - OpenAPI 3.0
+  description: |-
     This is a sample server for Contoso Real Estate company.
   version: 1.0.0
+  termsOfService : "/tos"
+  contact: {}
+
 servers:
+  - url: http://localhost:4000
+    description: Local dev server
   - url: /api
+    description: Hosted production endpoint
+
+tags:
+  - name: user
+    description: Related to Users
+  - name: listing
+    description: Related to Listings
+  - name: reservation
+    description: Related to Reservations and Payments
+
 paths:
-  todo: ...
+
+  /listings:
+    put: 
+      description: Update existing Listing in database - by id
+      operationId: updateListing
+      tags: 
+        - listing
+      requestBody:
+        description: Update existing Listing in database - by id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Listing'
+        required: true
+      responses:
+        '200':
+          description: Listing updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'    
+        '400':
+          description: Bad Request. Invalid Listing Id or Validation Failed.
+        '403':
+          description: Forbidden. Need admin access to update Listing. 
+        '404':
+          description: Not Found. Check your request details.
+    post:
+      description: Add a new Listing to the database 
+      operationId: addListing
+      tags:
+        - listing
+      requestBody:
+        description: Add new Listing to database - returns id
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Listing'
+        required: true
+      responses:
+        '200':
+          description: Listing added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'    
+        '405':
+          description: Not supported. Creation request failed. Check data.
+  
+  /listings/{listingId}:
+    get:
+      description: Get Listing details for specified Listing id
+      tags: 
+        - listing
+      operationId: findListingById
+      parameters:
+        - name: listingId
+          in: path
+          description: ID of listing to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success. Returning Listing object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'    
+        '400':
+          description: Bad Request. Check if listingId is valid.
+        '404':
+          description: Not Found. Check your request details.
+                    
+  /users:
+    get:
+      description: Returns a JSON array of User objects
+      operationId: findUsersForQuery
+      tags: 
+        - user
+      parameters:
+        - name: id
+          in: query
+          description: Unique User object matching {id}
+          schema:
+            type : string
+            minimum: 1
+        - name: limit
+          in: query
+          description: Number of records to return (default=20)
+          schema:
+            type : integer
+            additionalProperties:
+              $ref: '#/components/schemas/User'
+        - name: offset
+          in: query
+          description: Starting offset for returning records (pre-computed by UI)
+          schema:
+            type : integer
+            additionalProperties:
+              $ref: '#/components/schemas/User'
+        - name: role
+          in: query
+          description: Array of User objects matching role
+          schema:
+            type : string
+            additionalProperties:
+              $ref: '#/components/schemas/User'
+        - name: status
+          in: query
+          description: Array of User objects matching status
+          schema:
+            type : object
+            additionalProperties:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: A JSON array of Listing objects
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/User'
+        '403':
+          description: A JSON array of Listing objects
+        '401':
+          description: A JSON array of Listing objects
+        '404':
+          description: A JSON array of Listing objects
+        '500':
+          description: A JSON array of Listing objects
+
+  /users/{id}:
+    get:
+      summary: Returns a user by id.
+      operationId: findUserById
+      tags: 
+        - user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Return User record matching {id}
+          schema:
+            type : integer
+            format: string
+            minimum: 1
+      responses: 
+        '200':
+          description: OK
+
+  /favorites:
+    get:
+      description: Returns a JSON array of Favorites (User-Listing pairs)
+      operationId: listFavorites
+      tags: 
+        - user
+      responses:
+        '200':
+          description: A JSON array of Favorite
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Favorite'
+
+  /reservations:
+    get:
+      description: Returns a JSON array of Reservations (User-Listing pairs)
+      operationId: listReservations
+      tags: 
+        - user
+      responses:
+        '200':
+          description: A JSON array of Reservation objects
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Reservation'
+
+  /payments:
+    get:
+      description: Returns a JSON array of Payments (for Reservations made)
+      operationId: listPayments
+      tags: 
+        - user
+      responses:
+        '200':
+          description: A JSON array of Payment objects
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/Payment'
+
+components:
+  schemas:
+
+    Address: 
+      type: object
+      required: 
+        - city
+        - country
+      properties:
+        id: 
+          type: integer
+          format: int64
+          description: autogenerated unique ID
+          example: 123
+        buildingNumber: 
+          type: string
+          description: house or building number
+          example: "Apt 3B"
+        buildingName:
+          type: string
+          description: house or building name 
+          example: "Hampton Court"
+        street:
+          type: string
+          description: street that building is on
+          example: "Sojourner Drive"
+        city:
+          type: string
+          description: city that building is in
+          example: "Mountain View"
+        state:
+          type: string
+          description: region/state that city is in
+          example: "California"
+        zipcode:
+          type: string
+          description: postal code for disambiguation
+          example: "10001"
+        country:
+          type: string
+          description: country that city is in
+          example: "United States"
+
+    User:
+      type: object
+      required:  
+        - name
+        - role
+        - status
+        - email
+        - payment
+      properties:
+        id: 
+          type: integer
+          format: int64
+          description: autogenerated unique ID
+          example: 123
+        created: 
+          type: string
+          description: autogenerated timestamp
+          example: "10 October 2022"
+        name:
+          type: string
+          description: first and last name
+          example: Jane Doe
+        role:
+          type: string
+          description: user role defines path access
+          enum: [guest, renter, admin]
+          default: guest
+          example: guest 
+        status:
+          type: string
+          description: status set by admin role
+          enum: [active, suspended, inactive]
+          example: active 
+        photo:
+          type: string
+          description: link to user profile photo
+          example: https://unsplash.com/profiles/123.png
+          default: 'https://unsplash.com/placeholder.png'
+        address:  
+          type: object
+          description: primary user address 
+          $ref: '#/components/schemas/Address'
+        email: 
+          type: string
+          description: primary user email address 
+          example: jane@doe.home
+        payment:
+          type: object
+          description: primary user payment profile
+          additionalProperties: true
+          default: {}
+        auth:
+          type: object
+          description: primary user auth profile 
+          additionalProperties: true
+          default : {}
+    
+    Listing:
+      type: object       
+      required:  
+        - slug
+        - title
+        - description
+        - address
+        - photos
+        - bedrooms
+        - bathrooms
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: autogenerated unique ID
+          example: 366801
+        created: 
+          type: string
+          description: autogenerated timestamp
+          example: "10 October 2022"
+        slug:
+          type: string
+          description: user-friendly path identifier
+          example: "edinburgh-park-apt"
+        title:
+          type: string
+          description: for use in listing card title (short phrase)
+          example: "Bright apartment close to the park"
+        description:
+          type: string
+          description: for use in listing card body (1-2 sentences)
+          example: "A commute-friendly apartment with park views in old Edinburgh. Close to transit, schools and shops. Safe neighborhood."
+        address:
+          type: object
+          description: valid address for listing
+          $ref: '#/components/schemas/Address'
+          example: {city:"Edinburgh", country: "Scotland"}
+        bedrooms:
+          type: integer
+          description: count of bedrooms in listing
+          default: 1
+          example: 2
+        bathrooms:
+          type: integer
+          description: count of bathrooms in listing
+          default: 0
+          example: 1
+        amenities:
+          type: array
+          description: identifies amenities in listing
+          items: 
+            type: string
+            enum: [ "swimming pool", "gym", "wi-fi","parking","balcony","terrace","garden","patio", "sauna", "jacuzzi", "fireplace", "air conditioning", "heating", "elevator", "laundry room", "dishwasher", "microwave", "furniture", "no furniture"]
+            default: []
+            example: ["fireplace","garden"]
+        photos: 
+          type: array
+          items:
+            type: string
+            minimum: 1
+            default: []
+            example: ["https://unsplash.com/123.png" ]
+        isFeatured:
+          type: boolean 
+          description: listing is featured on home page
+          example: true 
+        isFavorited:
+          type: boolean
+          description: listing favorited by 1+ users
+          example: true 
+        isRecommended:
+          type: boolean
+          description: listing recommended to 1+ users
+          example: false   
+    
+    Favorite:
+      type: object
+      required:  
+        - userId
+        - listingId
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: autogenerated unique ID
+          example: 123
+        created: 
+          type: string
+          description: autogenerated timestamp
+          example: "10 October 2022"
+        userId: 
+          type: integer 
+          format: int64
+          description: foreign key -> Users
+          example: 123
+        listingId: 
+          type: integer 
+          format: int64
+          description: foreign key -> Listings
+          example: 456789
+
+    Reservation:
+      type: object
+      required:  
+        - userId
+        - listingId
+        - status
+        - from
+        - to
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: autogenerated unique ID
+          example: 123
+        created: 
+          type: string
+          description: autogenerated timestamp
+          example: "10 October 2022"
+        userId: 
+          type: integer 
+          format: int64
+          description: foreign key -> Users
+          example: 123
+        listingId: 
+          type: integer 
+          format: int64
+          description: foreign key -> Listings
+          example: 456789
+        from: 
+          type: string
+          description: reservation from - date
+          example: 10 Aug 2022
+        to: 
+          type: string
+          description: reservation to - date
+          example: 10 Nov 2022
+        status:
+          type: string
+          description: current status of reservation
+          enum: [active, cancelled, complete]
+          default: active
+          example: active 
+
+    Recommendation:
+      type: object
+      required:  
+        - userId
+        - listingId
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: autogenerated unique ID
+          example: 123
+        created: 
+          type: string
+          description: autogenerated timestamp
+          example: "10 October 2022"
+        userId: 
+          type: integer 
+          format: int64
+          description: foreign key -> Users
+          example: 123
+        listingId: 
+          type: integer 
+          format: int64
+          description: foreign key -> Listings
+          example: 456789
+        reason:
+          type: string
+          description: reason why this is recommended
+          default: ""
+          example: "Similar to other properties you favorited" 
+
+    Payment:
+      type: object
+      required:  
+        - reservationId
+        - invoice
+        - status
+      properties:
+        id:
+          type: integer
+          description: autogenerated unique ID
+          example: 123
+        reservationId: 
+          type: integer 
+          format: int64
+          description: foreign key -> Reservations
+          example: 456789
+        invoice:
+          type:  object
+          description: freeform object from provider
+          additionalProperties: true
+          default: {}
+        status:
+          type: string
+          enum: [pending, declined, completed, cancelled]
+          description: status of the payment transaction
+          default: pending
+          example: declined
