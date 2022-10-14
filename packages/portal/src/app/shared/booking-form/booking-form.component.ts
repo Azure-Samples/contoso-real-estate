@@ -29,9 +29,9 @@ import { Listing } from "src/typings";
 export class BookingFormComponent implements OnInit {
   @Input() listing: Listing | null = null;
 
-  pricePerNight = 500.0;
+  monthlyRentPrice = 1500.0;
   discount = 20.0;
-  pricePerNightWithDiscount = Math.max(0, this.pricePerNight * (1 - this.discount / 100));
+  monthlyRentPriceWithDiscount = Math.max(0, this.monthlyRentPrice * (1 - this.discount / 100));
 
   fees = {
     cleaning: 50.0,
@@ -39,33 +39,35 @@ export class BookingFormComponent implements OnInit {
     occupancy: 100.0,
   };
 
-  guests = {
-    adults: 1,
-    children: 0,
-  };
-
-  checkInCheckOut: FormGroup;
+  rentingPeriod: FormGroup;
+  guests: FormGroup;
   constructor() {
-    this.checkInCheckOut = new FormGroup({
+    this.rentingPeriod = new FormGroup({
       start: new FormControl<Date | null>(null),
       end: new FormControl<Date | null>(null),
     });
+    this.guests = new FormGroup({
+      adults: new FormControl<String>("0"),
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.guests.setValue({
+      adults: "0",
+    });
+  }
 
   total() {
-    const { start, end } = this.checkInCheckOut.value;
+    const { start, end } = this.rentingPeriod.value;
     if (!start || !end) {
       return 0;
     }
     const days = (end.getTime() - start.getTime()) / 1000 / 60 / 60 / 24;
-    return days * this.pricePerNightWithDiscount + this.fees.cleaning + this.fees.service + this.fees.occupancy;
+    return days * this.monthlyRentPriceWithDiscount + this.fees.cleaning + this.fees.service + this.fees.occupancy;
   }
 
-  nights() {
-    const { start, end } = this.checkInCheckOut.value;
+  months() {
+    const { start, end } = this.rentingPeriod.value;
     return (end - start) / (1000 * 60 * 60 * 24);
   }
-
 }

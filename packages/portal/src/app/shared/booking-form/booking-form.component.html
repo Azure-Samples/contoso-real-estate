@@ -1,12 +1,14 @@
 <section class="price-container">
-  <span
-    ><strong class="price">${{ pricePerNightWithDiscount }}</strong
-    >/night</span
-  >
-  <s *ngIf="discount > 0" class="price-old"
-    ><strong>${{ pricePerNight }}</strong
-    >/night</s
-  >
+  <div>
+    <span class="price"
+      ><strong>{{ monthlyRentPriceWithDiscount | currency }}</strong
+      >/month</span
+    >
+    <s *ngIf="discount > 0" class="price-old"
+      ><strong>{{ monthlyRentPrice | currency }}</strong
+      >/month</s
+    >
+  </div>
   <strong *ngIf="discount > 0" class="price-discount">{{ discount }}% OFF</strong>
 </section>
 
@@ -14,8 +16,8 @@
 
 <section class="guests-container">
   <mat-form-field appearance="outline">
-    <mat-label>Enter checking dates</mat-label>
-    <mat-date-range-input [formGroup]="checkInCheckOut" [rangePicker]="picker">
+    <mat-label>Enter renting period</mat-label>
+    <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker">
       <input matStartDate formControlName="start" placeholder="Start date" />
       <input matEndDate formControlName="end" placeholder="End date" />
     </mat-date-range-input>
@@ -24,61 +26,48 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Guests</mat-label>
-    <mat-select formControlName="guests">
+  <mat-form-field appearance="outline" [formGroup]="guests">
+    <mat-label>Additional Guests</mat-label>
+    <mat-select formControlName="adults" [value]="0">
+      <mat-option value="0"> No guests </mat-option>
       <mat-option value="1"> 1 Adult </mat-option>
       <mat-option value="2"> 2 Adults </mat-option>
-      <mat-option value="3"> 3 Adults </mat-option>
-      <mat-option value="4"> 4 Adults </mat-option>
     </mat-select>
-    <mat-hint>4 Adults maximum</mat-hint>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Children</mat-label>
-    <mat-select formControlName="children">
-      <mat-option value="0"> 0 Children </mat-option>
-      <mat-option value="1"> 1 Child </mat-option>
-      <mat-option value="2"> 2 Children </mat-option>
-      <mat-option value="3"> 3 Children </mat-option>
-      <mat-option value="4"> 4 Children </mat-option>
-    </mat-select>
-    <mat-hint>4 Children maximum</mat-hint>
+    <mat-hint>Only max. 2 guests are allowed</mat-hint>
   </mat-form-field>
 </section>
 
 <section class="price-details-container">
   <table>
     <tr>
-      <td>{{nights()}} night(s)</td>
-      <td>${{ pricePerNightWithDiscount * nights() }}</td>
+      <td>{{ months() }} month(s)</td>
+      <td>{{ monthlyRentPriceWithDiscount * months() | currency }}</td>
     </tr>
     <tr *ngIf="discount > 0">
       <td>Discount {{ discount }}%</td>
-      <td>-${{ pricePerNight - pricePerNightWithDiscount }}</td>
+      <td>-{{ monthlyRentPrice - monthlyRentPriceWithDiscount | currency }}</td>
     </tr>
     <tr>
       <td>Cleaning fee</td>
-      <td>${{ fees.cleaning }}</td>
+      <td>{{ fees.cleaning | currency }}</td>
     </tr>
     <tr>
       <td>Service fee</td>
-      <td>${{ fees.service }}</td>
+      <td>{{ fees.service | currency }}</td>
     </tr>
     <tr>
       <td>Occupancy taxes and fees</td>
-      <td>${{ fees.occupancy }}</td>
+      <td>{{ fees.occupancy | currency }}</td>
     </tr>
   </table>
 
   <div class="price-total">
     <span>Total payment</span>
-    <span>${{ total() }}</span>
+    <span>{{ total() | currency }}</span>
   </div>
 </section>
 
 <section class="footer-container">
   <button mat-flat-button color="primary">RENT NOW</button>
-  <mat-hint>You will not be charged yet.</mat-hint>
+  <mat-hint>Your credit card will be charged once the reservation is approved. <a href="#">Terms of service</a> </mat-hint>
 </section>
