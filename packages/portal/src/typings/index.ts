@@ -1,7 +1,6 @@
 export interface Listing {
   bathrooms: number;
   bedrooms: number;
-  city: string;
   createdAt: string;
   description: string;
   id: string;

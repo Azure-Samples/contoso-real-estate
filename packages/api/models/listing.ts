@@ -7,8 +7,7 @@ let CACHE: any[] = [];
 function model({ slug }: { slug?: number } = {}) {
   return {
     id: faker.database.mongodbObjectId(),
-    title: faker.lorem.lines(1),
-    city: faker.address.city(),
+    title: faker.lorem.sentence(),
     isFeatured: faker.datatype.boolean(),
     isFavorited: faker.datatype.boolean(),
     isRecommended: faker.datatype.boolean(),
