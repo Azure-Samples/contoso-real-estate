@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { StageType } from 'src/typings/stagetype';
+import { StageType } from 'src/typings/';
 
 @Component({
   selector: 'app-homepage',
