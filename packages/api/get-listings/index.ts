@@ -1,9 +1,9 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { getListingsMock } from "../models/listing";
+import { getListings } from "../models/listing";
 
-const data = async ({ offset, limit }: { offset: number; limit: number }) => await getListingsMock({ offset, limit });
+const data = async ({ offset, limit }: { offset: number; limit: number }) => await getListings({ offset, limit });
 
-const getListings: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+export default async function (context: Context, req: HttpRequest): Promise<void> {
   const offset = Number(req.query.offset) || 0;
   const limit = Number(req.query.limit) || 10;
 
@@ -39,5 +39,3 @@ const getListings: AzureFunction = async function (context: Context, req: HttpRe
     },
   };
 };
-
-export default getListings;

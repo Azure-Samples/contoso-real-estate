@@ -1,10 +1,10 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { getListingBySlugMock } from "../models/listing";
+import { getListingBySlug } from "../models/listing";
 
-const data = async ({ slug }: { slug: number }) => await getListingBySlugMock({ slug });
+const data = async ({ slug }: { slug?: string }) => await getListingBySlug({ slug });
 
-const getListingBySlug: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-  const slug = Number(req.params.slug) || 0;
+export default async function (context: Context, req: HttpRequest): Promise<void> {
+  const { slug } = req.params;
 
   const model = await data({ slug });
 
@@ -20,6 +20,4 @@ const getListingBySlug: AzureFunction = async function (context: Context, req: H
       },
     };
   }
-};
-
-export default getListingBySlug;
+}

@@ -3,7 +3,7 @@ import { faker } from "@faker-js/faker";
 const MAX_ENTRIES = 100;
 let CACHE: any[] = [];
 
-function model({ slug }: { slug?: number } = {}) {
+export function model({ slug }: { slug?: number } = {}) {
   return {
     id: faker.database.mongodbObjectId(),
     buildingNumber: faker.address.buildingNumber(),
