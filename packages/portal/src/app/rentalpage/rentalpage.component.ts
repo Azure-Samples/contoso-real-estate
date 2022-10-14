@@ -1,40 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { Navigation, Router } from '@angular/router';
-import { StageType } from 'src/typings/stagetype';
-import { HeroStageComponent } from '../hero-stage/hero-stage.component';
-import { ListingDetailComponent } from '../listing-detail/listing-detail.component';
+import { CommonModule } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Navigation, Router } from "@angular/router";
+import { Listing } from "src/typings/";
+import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
+import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
+import { ListingService } from "../shared/listing.service";
 
 @Component({
-  selector: 'app-rentalpage',
-  templateUrl: './rentalpage.component.html',
-  styleUrls: ['./rentalpage.component.scss'],
+  selector: "app-rentalpage",
+  templateUrl: "./rentalpage.component.html",
+  styleUrls: ["./rentalpage.component.scss"],
   standalone: true,
-  imports: [ 
-    HeroStageComponent, 
-    ListingDetailComponent
-  ]
+  imports: [
+    CommonModule,
+    ListingDetailComponent,
+    BookingFormComponent
+  ],
 })
 export class RentalpageComponent implements OnInit {
-  listing: any;
-  stage!: StageType;
-  navigation: Navigation | undefined;
+  listing!: Listing;
+  navigation: Navigation | null;
 
-  constructor(
-    private router: Router
-  ) {
-    this.navigation = this.router.getCurrentNavigation() || undefined;
-    this.listing = this.navigation?.extras.state?.['rental'];
-    this.stage = {
-      title: this.listing?.city,
-      subtitle: this.listing?.subtitle || '',
-      label: this.listing?.label || 'See more',
-      // this url could lead to a query for more rentals in the city where this listing is located
-      url: this.listing?.url || '#',
-      img: this.listing.img
-    };
+  constructor(private router: Router, private route: ActivatedRoute, private listingService: ListingService) {
+    this.navigation = this.router.getCurrentNavigation();
+    this.listing = this.navigation?.extras.state?.["listing"] || null;
   }
 
-  ngOnInit(): void {
-    console.log(this.listing, 'listing');
+  async ngOnInit() {
+    this.listing = await this.listingService.getListingBySlug(this.route.snapshot.params["slug"]);
   }
 }

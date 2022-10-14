@@ -1,0 +1,92 @@
+:host {
+  width: 300px;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 0 4px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  margin: 20px 0;
+
+  span {
+    display: inherit;
+  }
+
+  .price {
+    display: flex;
+    font-size: 1.5rem;
+  }
+
+  .price-old {
+    font-size: 0.8rem;
+    color: #999;
+    margin-left: 10px;
+  }
+
+  .price-discount {
+    font-size: 0.8rem;
+    background-color: rgb(249, 0, 141);
+    border-radius: 10px;
+    padding: 2px 6px;
+    color: #fff;
+  }
+}
+
+.guests-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 20px;
+
+  .mat-form-field {
+    flex: 1 1 auto;
+  }
+}
+
+.price-details-container {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  table {
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    font-weight: 300;
+  }
+
+  .price-total {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+}
+
+.footer-container {
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  display: flex;
+  align-items: stretch;
+  margin-top: 40px;
+
+  .mat-hint {
+    font-size: 0.8rem;
+    color: #999;
+    margin: 10px 0;
+  }
+}

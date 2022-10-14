@@ -1,0 +1,146 @@
+:host {
+  display: block;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 50px 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.listing-container {
+  width: 750px;
+  margin: 0 4px;
+
+  .listing-photos {
+    display: flex;
+    max-width: fit-content;
+    align-items: start;
+    aspect-ratio: auto;
+    margin-bottom: 20px;
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2px;
+
+      div {
+        width: 550px;
+        aspect-ratio: 16/9;
+        border-radius: 10px 0 0 10px;
+        overflow: hidden;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+
+    aside {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0 2px;
+      position: relative;
+
+      div {
+        height: 100px;
+        aspect-ratio: 16/9;
+        margin: 2px 0;
+        overflow: hidden;
+        background-size: contain;
+        cursor: pointer;
+
+        &:first-child {
+          border-radius: 0 10px 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 0 10px 0;
+          opacity: 0.5;
+          align-items: center;
+          place-content: center;
+          display: flex;
+          transition: opacity 0.2s ease-in-out;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .listing-review {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    span,
+    mat-icon {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+
+  .listing-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    padding: 10px 0;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin: 2px;
+    }
+
+    p {
+      color: #999;
+    }
+  }
+
+  .listing-amenities {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    padding: 10px 0;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: left;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        align-items: end;
+        margin-right: 4px;
+        padding: 2px 6px;
+        color: #999;
+
+        span {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,62 @@
-<section class="stage">
-    <div class="inner-wrapper">
-      <app-hero-stage [stage]="stage"></app-hero-stage>
-    </div>
+<section class="listing-container" *ngIf="listing">
+  <section class="listing-photos">
+    <main>
+      <div
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing.photos[0] + ')' }"
+        alt="Main listing photo"
+      ></div>
+    </main>
+    <aside>
+      <div
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing.photos[1] + ')' }"
+        alt="Listing photo #1"
+      ></div>
+      <div
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing.photos[2] + ')' }"
+        alt="Listing photo #2"
+      ></div>
+      <div [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing.photos[3] + ')' }" alt="Listing photo #3">
+        <span>+{{ listing.photos.length - 3 }} Photos</span>
+      </div>
+    </aside>
+  </section>
+
+  <section class="listing-review">
+    <main>
+      <span>5 Reviews</span>
+      <span>⭐⭐⭐⭐</span>
+    </main>
+    <aside>
+      <span aria-hidden="false" aria-label="Bookmark listing" class="material-symbols-outlined"> bookmark </span>
+      <span aria-hidden="false" aria-label="Share listing" class="material-symbols-outlined"> share </span>
+    </aside>
+  </section>
+
+  <section class="listing-details">
+    <h1>{{ listing.title }}</h1>
+    <p>
+      {{ listing.address.buildingNumber }}, {{ listing.address.street }}, {{ listing.address.city }},
+      {{ listing.address.country }}
+    </p>
+  </section>
+
+  <section class="listing-description">
+    <p>
+      {{ listing.description }}
+    </p>
+  </section>
+
+  <section class="listing-amenities">
+    <h3>Features</h3>
+    <ul>
+      <li *ngFor="let feature of listing.amenities">
+        <span aria-hidden="false" aria-label="Listing amenity" class="material-symbols-outlined">{{ feature.id }}</span>
+        {{ feature.label }}
+      </li>
+    </ul>
+  </section>
 </section>
-<section class="section">
-    <div class="inner-wrapper">
-        <app-listing-detail></app-listing-detail>
-    </div>
+
+<section class="booking-container">
+  <app-booking-form [listing]="listing"></app-booking-form>
 </section>
