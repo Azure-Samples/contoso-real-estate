@@ -1,190 +1,196 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 li {
-    list-style: none;
+  list-style: none;
 }
 ul {
-    padding: 0;
+  padding: 0;
 }
 .main,
 .header,
 .main,
 .main .section,
 .footer {
-    // common styles
+  // common styles
 }
 
 .section {
-    .inner-wrapper .subtitle {
-        padding-left: 20px;
+  .inner-wrapper .subtitle {
+    padding-left: 20px;
 
-        @media (min-width: 768px) {
-            padding: 0;
-        }
+    @media (min-width: 768px) {
+      padding: 0;
     }
+  }
 }
 
 .grid {
-    display: grid;
-    column-gap: 20px;
-    row-gap: 20px;
+  display: grid;
+  column-gap: 20px;
+  row-gap: 20px;
 
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    @media (min-width: 1024px) {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .inner-wrapper {
-    width: 100%;
-    max-width: 1024px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 .header {
-    background-color: #000;
+  background-color: #000;
+  height: 50px;
+  display: flex;
+  padding: 20px 5px 0;
+
+  // override menu button
+  .mat-icon-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #fff;
+  }
+
+  @media (min-width: 960px) {
     height: 50px;
-    display: flex;
-    padding: 20px 5px 0;
 
-    // override menu button
-    .mat-icon-button {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        color: #fff;
+    .inner-wrapper {
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    
-    @media (min-width: 960px) {
-        height: 50px;
+  }
 
-        .inner-wrapper {
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        height: 70px;
-    }
+  @media (min-width: 1024px) {
+    height: 70px;
+  }
 }
 
 .main-nav {
-    padding: 10px;
-    .main-nav-item {
-        border-bottom: 1px solid rgb(238, 238, 238);
+  padding: 10px;
+  .main-nav-item {
+    border-bottom: 1px solid rgb(238, 238, 238);
 
+    a {
+      color: #000;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 3;
+      letter-spacing: 0.00938em;
+      text-transform: uppercase;
+    }
+  }
+  &.only-desktop {
+    @media (min-width: 960px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-width: 200px;
+      padding: 0;
+
+      .main-nav-item {
+        border-bottom: 0;
         a {
-            color: #000;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 3;
-            letter-spacing: 0.00938em;
-            text-transform: uppercase;
+          color: #fff;
         }
+      }
     }
-    &.only-desktop {
-        @media (min-width: 960px) {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-width: 200px;
-            padding: 0;
-    
-            .main-nav-item {
-                border-bottom: 0;
-                a {
-                    color: #fff;
-                }
-            }
-        }
-    }
+  }
 }
 
 .page-body {
-    min-height: 700px;
-    padding: 30px;
+  min-height: 700px;
+  padding: 30px;
 }
 
 .card-link,
 .card-link:hover {
-    text-decoration: none;
-    color: #000;
+  text-decoration: none;
+  color: #000;
 }
 
 // override material title
 .mat-card-title {
-    @media (min-width: 1024px) {
-        height: 45px;
-    }
+  @media (min-width: 1024px) {
+    height: 45px;
+  }
 }
 
 .stage {
-    .hero-stage {
-        display: block;
-    }
-    .stage-card {
-        position: relative;
-        display: block;
-        margin: 10px;
-        padding: 0;
+  .hero-stage {
+    display: block;
+  }
+  .stage-card {
+    position: relative;
+    display: block;
+    margin: 10px;
+    padding: 0;
 
-        &:not([class*=mat-elevation-z]) {
-            box-shadow: none;
-        }
-
-        img {
-            width: 100%;
-        }
-        
-        // override stage button
-        .mat-card-actions:not(.mat-card-actions-align-end) .mat-raised-button:first-child {
-            margin-left: 25px;
-        }
-        .stage-card-overlay {
-            width: 50%;
-            position: absolute;
-            top: 50px;
-        }
+    &:not([class*="mat-elevation-z"]) {
+      box-shadow: none;
     }
+
+    img {
+      width: 100%;
+    }
+
+    // override stage button
+    .mat-card-actions:not(.mat-card-actions-align-end) .mat-raised-button:first-child {
+      margin-left: 25px;
+    }
+    .stage-card-overlay {
+      width: 50%;
+      position: absolute;
+      top: 50px;
+    }
+  }
 }
 
 .footer {
-    width: 100%;
-    height: 200px;
-    background-color: #000;
-    color: #fff;
+  width: 100%;
+  height: 200px;
+  background-color: #000;
+  color: #fff;
 
-    .inner-wrapper {
-        display: flex;
-        justify-content: center;
-        padding-top: 50px;
-    }
+  .inner-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+  }
 }
 
 // hide stuff in desktop
 .only-mobile {
-    display: block;
+  display: block;
 
-    @media (min-width: 960px) {
-        display: none;
-        visibility: hidden;
-    }
+  @media (min-width: 960px) {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 // hide stuff in mobile
 .only-desktop {
-    display: none;
+  display: none;
 
-    @media (min-width: 960px) {
-        display: block;
-        visibility: visible;
-    }
+  @media (min-width: 960px) {
+    display: block;
+    visibility: visible;
+  }
 }
