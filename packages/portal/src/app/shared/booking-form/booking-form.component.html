@@ -18,8 +18,8 @@
   <mat-form-field appearance="outline">
     <mat-label>Enter renting period</mat-label>
     <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker">
-      <input matStartDate formControlName="start" placeholder="Start date" />
-      <input matEndDate formControlName="end" placeholder="End date" />
+      <input required matStartDate formControlName="start" placeholder="Start date" />
+      <input required matEndDate formControlName="end" placeholder="End date" />
     </mat-date-range-input>
     <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -68,6 +68,6 @@
 </section>
 
 <section class="footer-container">
-  <button mat-flat-button color="primary">RENT NOW</button>
+  <button [disabled]="!rentingPeriod.valid" mat-flat-button color="primary">RENT NOW</button>
   <mat-hint>Your credit card will be charged once the reservation is approved. <a href="#">Terms of service</a> </mat-hint>
 </section>
