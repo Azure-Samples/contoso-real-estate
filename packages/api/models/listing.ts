@@ -14,6 +14,13 @@ function model({ slug }: { slug?: number } = {}) {
     isRecommended: faker.datatype.boolean(),
     bedrooms: +faker.random.numeric(),
     bathrooms: +faker.random.numeric(),
+    fees: {
+      cleaning: +faker.commerce.price(10, 100),
+      service: +faker.commerce.price(10, 100),
+      occupancy: +faker.commerce.price(10, 100),
+      rent: +faker.commerce.price(500, 3000),
+      discount: +faker.random.numeric(2),
+    },
     amenities: faker.helpers.arrayElements(
       // See https://fonts.google.com/icons
       [
