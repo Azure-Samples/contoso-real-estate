@@ -13,6 +13,13 @@ export interface Listing {
   title: string;
   address: Address;
   amenities: { id: string; label: string }[];
+  fees: {
+    discount: number;
+    cleaning: number;
+    service: number;
+    occupancy: number;
+    rent: number;
+  };
 }
 
 export interface StageType {

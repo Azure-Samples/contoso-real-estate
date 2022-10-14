@@ -29,14 +29,14 @@ import { Listing } from "src/typings";
 export class BookingFormComponent implements OnInit {
   @Input() listing: Listing | null = null;
 
-  monthlyRentPrice = 1500.0;
-  discount = 20.0;
-  monthlyRentPriceWithDiscount = Math.max(0, this.monthlyRentPrice * (1 - this.discount / 100));
+  monthlyRentPrice = 0;
+  monthlyRentPriceWithDiscount = 0;
 
   fees = {
-    cleaning: 50.0,
-    service: 30.0,
-    occupancy: 100.0,
+    cleaning: 0,
+    service: 0,
+    occupancy: 0,
+    discount: 0,
   };
 
   rentingPeriod: FormGroup;
@@ -57,17 +57,31 @@ export class BookingFormComponent implements OnInit {
     });
   }
 
+  ngOnChanges() {
+    console.log(this.listing);
+    this.fees = {
+      cleaning: this.listing?.fees.cleaning || 0,
+      service: this.listing?.fees.service || 0,
+      occupancy: this.listing?.fees.occupancy || 0,
+      discount: this.listing?.fees.discount || 0,
+    };
+
+    this.monthlyRentPrice = this.listing?.fees.rent || 0;
+    this.monthlyRentPriceWithDiscount = Math.max(0, this.monthlyRentPrice * (1 - this.fees.discount / 100));
+
+  }
+
   total() {
+    const months = this.months();
+    return months * this.monthlyRentPriceWithDiscount + this.fees.cleaning + this.fees.service + this.fees.occupancy;
+  }
+
+  months() {
     const { start, end } = this.rentingPeriod.value;
     if (!start || !end) {
       return 0;
     }
     const days = (end.getTime() - start.getTime()) / 1000 / 60 / 60 / 24;
-    return days * this.monthlyRentPriceWithDiscount + this.fees.cleaning + this.fees.service + this.fees.occupancy;
-  }
-
-  months() {
-    const { start, end } = this.rentingPeriod.value;
-    return (end - start) / (1000 * 60 * 60 * 24);
+    return +(days / 30).toFixed(2);
   }
 }

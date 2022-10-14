@@ -4,12 +4,12 @@
       ><strong>{{ monthlyRentPriceWithDiscount | currency }}</strong
       >/month</span
     >
-    <s *ngIf="discount > 0" class="price-old"
+    <s *ngIf="fees.discount > 0" class="price-old"
       ><strong>{{ monthlyRentPrice | currency }}</strong
       >/month</s
     >
   </div>
-  <strong *ngIf="discount > 0" class="price-discount">{{ discount }}% OFF</strong>
+  <strong *ngIf="fees.discount > 0" class="price-discount">{{ fees.discount }}% OFF</strong>
 </section>
 
 <mat-divider></mat-divider>
@@ -43,8 +43,8 @@
       <td>{{ months() }} month(s)</td>
       <td>{{ monthlyRentPriceWithDiscount * months() | currency }}</td>
     </tr>
-    <tr *ngIf="discount > 0">
-      <td>Discount {{ discount }}%</td>
+    <tr *ngIf="fees.discount > 0">
+      <td>Discount {{ fees.discount }}%</td>
       <td>-{{ monthlyRentPrice - monthlyRentPriceWithDiscount | currency }}</td>
     </tr>
     <tr>
