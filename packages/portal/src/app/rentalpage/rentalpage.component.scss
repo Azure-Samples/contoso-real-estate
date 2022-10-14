@@ -84,6 +84,14 @@
       display: inline-block;
       margin-right: 10px;
     }
+
+    aside {
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    }
   }
 
   .listing-details {
