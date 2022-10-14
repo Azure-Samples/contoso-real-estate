@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { StageType } from 'src/typings/stagetype';
+import { StageType } from 'src/typings/';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 

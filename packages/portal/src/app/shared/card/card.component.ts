@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CardType } from 'src/typings/cardtype';
+import { Listing } from 'src/typings/';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class CardComponent {
   @Input()
-  listing!: CardType;
+  listing!: Listing;
 
   constructor() { }
 

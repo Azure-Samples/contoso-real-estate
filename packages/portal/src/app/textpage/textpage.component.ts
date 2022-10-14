@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TextComponent
- } from '../text/text.component';
+ } from './text/text.component';
 @Component({
   selector: 'app-textpage',
   templateUrl: './textpage.component.html',

@@ -1,0 +1,29 @@
+<nav>
+  <ul class="main-nav only-desktop">
+    <li class="main-nav-item">
+      <a [routerLink]="['/']" routerLinkActive="active">Home</a>
+    </li>
+    <li class="main-nav-item">
+      <a [routerLink]="['/about']" routerLinkActive="active">About</a>
+    </li>
+    <li class="main-nav-item">
+      <a [routerLink]="['/tos']" routerLinkActive="active">TOS</a>
+    </li>
+  </ul>
+  <button mat-icon-button class="only-mobile" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <ul class="main-nav only-mobile">
+      <li class="main-nav-item">
+        <a [routerLink]="['/']" routerLinkActive="active">Home</a>
+      </li>
+      <li class="main-nav-item">
+        <a [routerLink]="['/about']" routerLinkActive="active">About</a>
+      </li>
+      <li class="main-nav-item">
+        <a [routerLink]="['/tos']" routerLinkActive="active">TOS</a>
+      </li>
+    </ul>
+  </mat-menu>
+</nav>
