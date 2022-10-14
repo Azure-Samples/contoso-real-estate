@@ -1,12 +1,21 @@
-<section class="stage">
-  <div class="inner-wrapper">
-    <app-hero-stage class="hero-stage" [stage]="stage"></app-hero-stage>
-  </div>
+<section class="stage inner-wrapper">
+  <p>
+    <img src="/assets/contoso-real-estate-logo.svg" alt="" width="200px" />
+  </p>
+
+  <p>
+    The Contoso Portal is a place where you can find all the information you need to rent your next apartment or home.
+    We offer a wide variety of listings across the glob, so you can find the perfect place to call home.
+  </p>
+  <p class="stage__button">
+    <a mat-flat-button color="primary" href="#">Browse listing</a>
+    <a mat-flat-button href="#">Visit our blog</a>
+  </p>
 </section>
 
-<section class="section">
-  <div class="inner-wrapper">
-    <h2 class="subtitle">Featured</h2>
-    <app-card-list></app-card-list>
-  </div>
+<mat-divider></mat-divider>
+
+<section class="featured-listings inner-wrapper">
+  <h2 class="subtitle">Featured Listings</h2>
+  <app-card-list [listings]="listings"></app-card-list>
 </section>

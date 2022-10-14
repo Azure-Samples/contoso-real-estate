@@ -1,6 +1,46 @@
+section {
+  position: relative;
+}
+
+.bookmark-listing {
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .mat-card-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 200px;
+  width: 300px;
+  margin: 0;
+}
+
+.mat-card-subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 300px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+
+  h2  {
+    margin: 0;
+  }
+
+  h5 {
+    color: #9e9e9e;
+  }
 }

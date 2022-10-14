@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { StageType } from 'src/typings/';
+import { Component, OnInit } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDividerModule } from "@angular/material/divider";
+import { Listing, StageType } from "src/typings/";
+import { CardListComponent } from "../shared/card-list/card-list.component";
+import { ListingService } from "../shared/listing.service";
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  selector: "app-homepage",
+  templateUrl: "./homepage.component.html",
+  styleUrls: ["./homepage.component.scss"],
+  standalone: true,
+  imports: [CardListComponent, MatButtonModule, MatDividerModule],
 })
 export class HomepageComponent implements OnInit {
-  stage: StageType = {
-    title: 'Welcome to the portal',
-    subtitle: '',
-    label: 'Visit our blog!',
-    url: 'https://www.google.com',
-    img: '/assets/images/pic-green.png'
-  };
-  constructor() { }
+  listings: Listing[] = [];
+  constructor(private listingService: ListingService) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.listings = (await this.listingService.getListings()).filter((listing: Listing) => listing.isFeatured);
   }
-
 }

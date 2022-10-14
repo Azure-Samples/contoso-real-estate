@@ -1,9 +1,8 @@
-import { Component } from "@angular/core";
-import { Listing } from "../../../typings";
-import { RouterModule } from "@angular/router";
-import { CardComponent } from "../card/card.component";
 import { CommonModule } from "@angular/common";
-import { ListingService } from "../listing.service";
+import { Component, Input, OnInit } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { Listing } from "../../../typings";
+import { CardComponent } from "../card/card.component";
 
 @Component({
   selector: "app-card-list",
@@ -12,13 +11,11 @@ import { ListingService } from "../listing.service";
   standalone: true,
   imports: [RouterModule, CardComponent, CommonModule],
 })
-export class CardListComponent {
-  listings: Listing[] = [];
+export class CardListComponent implements OnInit {
+  @Input() listings: Listing[] = [];
   noresults: string = "There are no listings right now. Come back again soon!";
 
-  constructor(private listingService: ListingService) {}
+  constructor() {}
 
-  async ngOnInit() {
-    this.listings = await this.listingService.getListings();
-  }
+  ngOnInit() {}
 }

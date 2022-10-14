@@ -10,7 +10,6 @@ import { MainNavComponent } from "./shared/main-nav/main-nav.component";
 import { TextComponent } from "./textpage/text/text.component";
 import { TextpageComponent } from "./textpage/textpage.component";
 @NgModule({
-  declarations: [HomepageComponent],
   imports: [
     // BrowserAnimationsModule,
     MainNavComponent,

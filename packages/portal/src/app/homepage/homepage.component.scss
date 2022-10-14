@@ -1,0 +1,19 @@
+.stage {
+  height: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+
+  .stage__button {
+    margin-top: 30px;
+  }
+}
+
+.featured-listings {
+  margin-top: 30px;
+}
+
