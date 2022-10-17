@@ -52,3 +52,5 @@ out
 *.tsbuildinfo
 *.DS_Store
 .azure
+
+*.orig
