@@ -35,7 +35,7 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "nvm install && npm i --workspaces && ./.devcontainer/post-setup.sh",
+  "postCreateCommand": "NVM_DIR=/usr/local/share/nvm && ./.devcontainer/post-setup.sh && . $NVM_DIR/nvm.sh && nvm install && npm i --workspaces",
 
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "node",
@@ -47,6 +47,9 @@
       "version": "latest"
     },
     "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
       "version": "latest"
     }
   }
