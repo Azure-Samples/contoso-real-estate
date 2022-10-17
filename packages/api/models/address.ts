@@ -7,7 +7,7 @@ export function model({ slug }: { slug?: number } = {}) {
   return {
     id: faker.database.mongodbObjectId(),
     buildingNumber: faker.address.buildingNumber(),
-    street: faker.address.streetName(),
+    street: faker.address.street(),
     city: faker.address.city(),
     state: faker.address.state(),
     zipCode: faker.address.zipCode(),
