@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
-import { Listing } from "src/typings/";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/listing.service";

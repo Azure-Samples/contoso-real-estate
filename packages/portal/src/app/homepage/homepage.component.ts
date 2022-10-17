@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
-import { Listing, StageType } from "src/typings/";
 import { CardListComponent } from "../shared/card-list/card-list.component";
 import { ListingService } from "../shared/listing.service";
 

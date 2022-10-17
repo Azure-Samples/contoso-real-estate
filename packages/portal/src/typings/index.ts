@@ -1,4 +1,4 @@
-export interface Listing {
+declare interface Listing {
   bathrooms: number;
   bedrooms: number;
   createdAt: string;
@@ -21,7 +21,7 @@ export interface Listing {
   };
 }
 
-export interface StageType {
+declare interface StageType {
   title: string;
   subtitle?: string;
   label?: string;
@@ -29,7 +29,7 @@ export interface StageType {
   img: string;
 }
 
-export interface Address {
+declare interface Address {
   buildingNumber: string;
   city: string;
   country: string;
@@ -39,4 +39,8 @@ export interface Address {
   state: string;
   street: string;
   zipCode: string;
+}
+
+declare interface Reservation {
+
 }

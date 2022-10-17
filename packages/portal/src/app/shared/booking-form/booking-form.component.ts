@@ -8,8 +8,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatSelectModule } from "@angular/material/select";
 
-import { Listing } from "src/typings";
-
 @Component({
   selector: "app-booking-form",
   templateUrl: "./booking-form.component.html",
