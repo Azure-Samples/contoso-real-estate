@@ -1,3 +1,43 @@
 .header__logo {
   width: 5rem;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  display: flex;
+}
+
+.footer {
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+
+  > .inner-wrapper {
+    font-size: 0.8rem;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    align-items: stretch;
+    align-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    bottom: 0;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: stretch;
+    justify-content: center;
+
+    a {
+      margin: 0 10px;
+    }
+  }
+}

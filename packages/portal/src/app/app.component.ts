@@ -1,13 +1,14 @@
 import { Component } from "@angular/core";
+import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterModule } from "@angular/router";
-import { MainNavComponent } from "./shared/main-nav/main-nav.component";
 import { AppModule } from "./app.module";
+import { MainNavComponent } from "./shared/main-nav/main-nav.component";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
   standalone: true,
-  imports: [RouterModule, MainNavComponent, AppModule],
+  imports: [RouterModule, MainNavComponent, AppModule, MatToolbarModule],
 })
 export class AppComponent {}

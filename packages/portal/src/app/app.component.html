@@ -1,19 +1,27 @@
-<header class="header">
-  <div class="inner-wrapper">
-    <div class="header__logo">
-      <a href="/"><img src="assets/contoso-real-estate-logo.svg" alt="Contoso Rentals" /></a>
-    </div>
-    <div class="header__nav">
-       <app-main-nav></app-main-nav>
-    </div>
+<mat-toolbar>
+  <div class="header__logo">
+    <a href="/"><img src="assets/contoso-real-estate-logo.svg" alt="Contoso Rentals" /></a>
   </div>
-</header>
+
+  <span class="spacer"></span>
+
+  <app-main-nav></app-main-nav>
+</mat-toolbar>
 <main class="main">
   <!-- pages -->
   <router-outlet></router-outlet>
 </main>
-<footer class="footer">
+<footer class="footer mat-toolbar">
   <div class="inner-wrapper">
-    <p class="footer-copy">©2022 - JavaScript @ Contoso HR Rentals App</p>
+    <p class="footer__copy">©2022 - JavaScript @ Contoso HR Rentals App</p>
+    <span class="spacer"></span>
+    <div class="footer__links">
+      <a href="/home">Home</a>
+      <a href="/about">About</a>
+      <a href="/tos">Terms of Service</a>
+    </div>
+  </div>
+  <div class="header__logo">
+    <a href="/"><img src="assets/contoso-real-estate-logo.svg" alt="Contoso Rentals" /></a>
   </div>
 </footer>

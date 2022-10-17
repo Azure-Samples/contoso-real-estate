@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 section {
   position: relative;
@@ -23,17 +23,16 @@ section {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 300px;
-  margin: 0;
+  margin: 6px 0;
+  font-size: 1rem;
 }
 
 .mat-card-subtitle {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 300px;
+  width: 250px;
   margin-bottom: 20px;
-  display: flex;
-  align-items: center
 }
 
 .mat-card-actions {
@@ -42,7 +41,7 @@ section {
   align-items: center;
   margin-top: 20px;
 
-  h2  {
+  h2 {
     margin: 0;
   }
 
