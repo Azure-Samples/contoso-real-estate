@@ -18,4 +18,8 @@ export class HomepageComponent implements OnInit {
   async ngOnInit() {
     this.listings = (await this.listingService.getListings()).filter((listing: Listing) => listing.isFeatured);
   }
+
+  async onBookmarkToggle(listing: Listing) {
+    await this.listingService.bookmark(listing);
+  }
 }

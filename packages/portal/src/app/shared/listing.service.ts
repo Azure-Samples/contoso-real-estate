@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Listing } from "src/typings";
 
 @Injectable({
   providedIn: "root",
@@ -16,5 +15,17 @@ export class ListingService {
   async getListingBySlug(slug: string): Promise<Listing> {
     const resource = await fetch(`/api/listings/${slug}`);
     return await resource.json();
+  }
+
+  async bookmark(listing: Listing) {
+    alert("Not implemented!");
+  }
+
+  async share(listing: Listing) {
+    alert("Not implemented!");
+  }
+
+  async reserve(reservationDetails: Reservation) {
+    alert("Not implemented!");
   }
 }

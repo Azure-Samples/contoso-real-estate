@@ -1,6 +1,9 @@
 <section>
-  <button title="Save this listing" class="bookmark-listing">
-    <span class="material-symbols-outlined"> bookmark </span>
+  <button *ngIf="listing.isFavorited" (click)="bookmark()" title="Remove this listing from favorites" class="bookmark-listing">
+    <span aria-hidden="false" aria-label="Remove this listing from favorites" class="material-symbols-outlined"> bookmark_added </span>
+  </button>
+  <button *ngIf="!listing.isFavorited" (click)="bookmark()" title="Save this listing" class="bookmark-listing">
+    <span aria-hidden="false" aria-label="Save this listing" class="material-symbols-outlined"> bookmark </span>
   </button>
 
   <mat-card>
@@ -21,7 +24,15 @@
           <s>{{ listing.fees.rent | currency }}/month</s>
         </h5>
       </div>
-      <a mat-flat-button color="primary" href="#">View listing</a>
+      <a
+        mat-flat-button
+        color="primary"
+        class="card-link"
+        [title]="listing.title"
+        [routerLink]="['/listing/' + listing.slug]"
+        [state]="{ listing }"
+        >View listing</a
+      >
     </mat-card-actions>
   </mat-card>
 </section>

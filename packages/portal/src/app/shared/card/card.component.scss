@@ -1,5 +1,11 @@
+@use '@angular/material' as mat;
+
 section {
   position: relative;
+}
+
+.mat-card:hover {
+  @include mat.elevation(8);
 }
 
 .bookmark-listing {
@@ -42,5 +48,9 @@ section {
 
   h5 {
     color: #9e9e9e;
+  }
+
+  a:hover {
+    color: #fff;
   }
 }

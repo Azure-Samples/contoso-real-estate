@@ -89,6 +89,10 @@
   align-items: stretch;
   margin-top: 40px;
 
+  button {
+    text-transform: uppercase;
+  }
+
   .mat-hint {
     font-size: 0.8rem;
     color: #999;

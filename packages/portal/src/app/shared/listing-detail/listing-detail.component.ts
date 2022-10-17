@@ -1,9 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
-import { Router, Navigation, ActivatedRoute } from "@angular/router";
-import { Listing } from "src/typings";
-import { CardComponent } from "../card/card.component";
-import { ListingService } from "../listing.service";
 
 @Component({
   selector: "app-listing-detail",
@@ -15,9 +11,7 @@ import { ListingService } from "../listing.service";
 export class ListingDetailComponent implements OnInit {
   @Input() listing!: Listing;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

@@ -1,9 +1,7 @@
 <section class="results">
   <ul class="card-list grid" *ngIf="listings && listings.length !== 0">
     <li class="card-list card" *ngFor="let listing of listings">
-      <a class="card-link" [title]="listing.title" [routerLink]="['/listing/' + listing.slug]" [state]="{ listing }">
-        <app-card class="card-list-item" [listing]="listing"></app-card>
-      </a>
+      <app-card class="card-list-item" [listing]="listing" (onBookmark)="onBookmark($event)"></app-card>
     </li>
   </ul>
 

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatNativeDateModule } from "@angular/material/core";
@@ -39,6 +39,9 @@ export class BookingFormComponent implements OnInit {
 
   rentingPeriod: FormGroup;
   guests: FormGroup;
+
+  @Output() onRent: EventEmitter<Reservation>;
+
   constructor() {
     this.rentingPeriod = new FormGroup({
       start: new FormControl<Date | null>(null),
@@ -47,6 +50,8 @@ export class BookingFormComponent implements OnInit {
     this.guests = new FormGroup({
       adults: new FormControl<String>("0"),
     });
+
+    this.onRent = new EventEmitter<Reservation>();
   }
 
   ngOnInit(): void {
@@ -56,7 +61,6 @@ export class BookingFormComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log(this.listing);
     this.fees = {
       cleaning: this.listing?.fees.cleaning || 0,
       service: this.listing?.fees.service || 0,
@@ -81,5 +85,14 @@ export class BookingFormComponent implements OnInit {
     }
     const days = (end.getTime() - start.getTime()) / 1000 / 60 / 60 / 24;
     return +(days / 30).toFixed(2);
+  }
+
+  rent() {
+    this.onRent.emit({
+      listing: this.listing,
+      guests: this.guests.value,
+      rentingPeriod: this.rentingPeriod.value,
+      total: this.total(),
+    } as Reservation);
   }
 }

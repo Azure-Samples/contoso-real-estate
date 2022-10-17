@@ -68,6 +68,6 @@
 </section>
 
 <section class="footer-container">
-  <button [disabled]="!rentingPeriod.valid" mat-flat-button color="primary">RENT NOW</button>
+  <button (click)="rent()" [disabled]="!rentingPeriod.valid" mat-flat-button color="primary">Reserve Now</button>
   <mat-hint>Your credit card will be charged once the reservation is approved. <a href="#">Terms of service</a> </mat-hint>
 </section>

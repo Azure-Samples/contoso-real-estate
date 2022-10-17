@@ -10,11 +10,7 @@ import { ListingService } from "../shared/listing.service";
   templateUrl: "./rentalpage.component.html",
   styleUrls: ["./rentalpage.component.scss"],
   standalone: true,
-  imports: [
-    CommonModule,
-    ListingDetailComponent,
-    BookingFormComponent
-  ],
+  imports: [CommonModule, ListingDetailComponent, BookingFormComponent],
 })
 export class RentalpageComponent implements OnInit {
   listing!: Listing;
@@ -27,5 +23,18 @@ export class RentalpageComponent implements OnInit {
 
   async ngOnInit() {
     this.listing = await this.listingService.getListingBySlug(this.route.snapshot.params["slug"]);
+  }
+
+  async bookmark() {
+    this.listing.isFavorited = !this.listing.isFavorited;
+    await this.listingService.bookmark(this.listing);
+  }
+
+  async share() {
+    await this.listingService.share(this.listing);
+  }
+
+  async onRent(reservationDetails: Reservation) {
+    await this.listingService.reserve(reservationDetails);
   }
 }
