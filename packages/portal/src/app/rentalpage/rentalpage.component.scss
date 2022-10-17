@@ -15,7 +15,7 @@
   .listing-photos {
     display: flex;
     max-width: fit-content;
-    align-items: start;
+    align-items: flex-start;
     aspect-ratio: auto;
     margin-bottom: 20px;
 
@@ -140,7 +140,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: left;
-        align-items: end;
+        align-items: flex-end;
         margin-right: 4px;
         padding: 2px 6px;
         color: #999;
