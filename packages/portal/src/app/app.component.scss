@@ -14,6 +14,10 @@ $primary-palette: mat.define-palette(mat.$indigo-palette);
   display: flex;
 }
 
+main {
+  min-height: calc(100% - 242px);
+}
+
 .footer {
   flex-direction: column;
   align-items: center;

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextpageComponent } from './textpage.component';
+import { TosComponent } from './tos.component';
 
-describe('TextpageComponent', () => {
-  let component: TextpageComponent;
-  let fixture: ComponentFixture<TextpageComponent>;
+describe('TosComponent', () => {
+  let component: TosComponent;
+  let fixture: ComponentFixture<TosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TextpageComponent ]
+      declarations: [ TosComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TextpageComponent);
+    fixture = TestBed.createComponent(TosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

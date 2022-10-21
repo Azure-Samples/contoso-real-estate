@@ -13,10 +13,10 @@ export const ROUTES: Routes = [
   },
   {
     path: "tos",
-    loadComponent: () => import("./textpage/textpage.component").then(m => m.TextpageComponent),
+    loadComponent: () => import("./tos/tos.component").then(m => m.TosComponent),
   },
   {
     path: "about",
-    loadComponent: () => import("./textpage/textpage.component").then(m => m.TextpageComponent),
+    loadComponent: () => import("./about/about.component").then(m => m.AboutComponent),
   },
 ];
