@@ -4,9 +4,10 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDividerModule } from "@angular/material/divider";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-booking-form",
@@ -15,6 +16,7 @@ import { MatSelectModule } from "@angular/material/select";
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     MatNativeDateModule,
     MatDividerModule,
     ReactiveFormsModule,
@@ -29,16 +31,16 @@ export class BookingFormComponent implements OnInit {
 
   monthlyRentPrice = 0;
   monthlyRentPriceWithDiscount = 0;
+  discount = 0;
 
-  fees = {
-    cleaning: 0,
-    service: 0,
-    occupancy: 0,
-    discount: 0,
-  };
+  capacity: number[] = [];
 
   rentingPeriod: FormGroup;
-  guests: FormGroup;
+  guests: FormControl;
+  currency = { code: "USD", symbol: "$" };
+
+  capacityMapping: { [k: string]: string } = { "=1": "One guest", other: "# guests" };
+  monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
 
   @Output() onRent: EventEmitter<Reservation>;
 
@@ -47,35 +49,45 @@ export class BookingFormComponent implements OnInit {
       start: new FormControl<Date | null>(null),
       end: new FormControl<Date | null>(null),
     });
-    this.guests = new FormGroup({
-      adults: new FormControl<String>("0"),
-    });
+
+    this.guests = new FormControl<number>(1);
 
     this.onRent = new EventEmitter<Reservation>();
   }
 
   ngOnInit(): void {
     this.guests.setValue({
-      adults: "0",
+      guests: 1,
     });
   }
 
   ngOnChanges() {
-    this.fees = {
-      cleaning: this.listing?.fees.cleaning || 0,
-      service: this.listing?.fees.service || 0,
-      occupancy: this.listing?.fees.occupancy || 0,
-      discount: this.listing?.fees.discount || 0,
-    };
+    if (!this.listing) {
+      return;
+    }
 
     this.monthlyRentPrice = this.listing?.fees.rent || 0;
-    this.monthlyRentPriceWithDiscount = Math.max(0, this.monthlyRentPrice * (1 - this.fees.discount / 100));
-
+    this.monthlyRentPriceWithDiscount = Math.max(
+      0,
+      this.monthlyRentPrice * (1 - (this.listing?.fees?.discount || 0) / 100),
+    );
+    this.currency = this.listing?.fees?.currency!;
+    this.discount = this.listing?.fees?.discount || 0;
+    this.capacity = Array(this.listing?.capacity)
+      .fill(0)
+      .map((x, i) => i + 1);
   }
+
+  #rangify() {}
 
   total() {
     const months = this.months();
-    return months * this.monthlyRentPriceWithDiscount + this.fees.cleaning + this.fees.service + this.fees.occupancy;
+    return (
+      months * this.monthlyRentPriceWithDiscount +
+      (this.listing?.fees?.cleaning || 0) +
+      (this.listing?.fees?.service || 0) +
+      (this.listing?.fees?.occupancy || 0)
+    );
   }
 
   months() {

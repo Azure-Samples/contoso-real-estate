@@ -23,12 +23,27 @@
 
   <section class="listing-review">
     <main>
-      <span>5 Reviews</span>
-      <span>⭐⭐⭐⭐</span>
+      <div>{{ listing.reviews.number | i18nPlural: reviewsMapping }}</div>
+      <div>
+        <span
+          *ngFor="let star of reviewStars"
+          class="material-symbols-outlined listing-review__stars"
+          [ngClass]="{ fill: star === 1 }"
+        >
+          star
+        </span>
+      </div>
     </main>
     <aside>
-      <button *ngIf="listing.isFavorited" (click)="bookmark()" title="Remove this listing from favorites" class="bookmark-listing">
-        <span aria-hidden="false" aria-label="Remove this listing from favorites" class="material-symbols-outlined"> bookmark_added </span>
+      <button
+        *ngIf="listing.isFavorited"
+        (click)="bookmark()"
+        title="Remove this listing from favorites"
+        class="bookmark-listing"
+      >
+        <span aria-hidden="false" aria-label="Remove this listing from favorites" class="material-symbols-outlined">
+          bookmark_added
+        </span>
       </button>
       <button *ngIf="!listing.isFavorited" (click)="bookmark()" title="Save this listing" class="bookmark-listing">
         <span aria-hidden="false" aria-label="Save this listing" class="material-symbols-outlined"> bookmark </span>
@@ -57,7 +72,9 @@
     <h3>Features</h3>
     <ul>
       <li *ngFor="let feature of listing.amenities">
-        <span aria-hidden="false" aria-label="Listing amenity" class="material-symbols-outlined">{{ feature.id }}</span>
+        <span aria-hidden="false" aria-label="Listing amenity" class="material-symbols-outlined">{{
+          feature.icon
+        }}</span>
         {{ feature.label }}
       </li>
     </ul>

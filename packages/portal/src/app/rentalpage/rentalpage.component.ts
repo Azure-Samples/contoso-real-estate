@@ -15,6 +15,9 @@ import { ListingService } from "../shared/listing.service";
 export class RentalpageComponent implements OnInit {
   listing!: Listing;
   navigation: Navigation | null;
+  reviewStars: number[] = [];
+
+  reviewsMapping: { [k: string]: string } = { "=0": "No reviews", "=1": "1 message", other: "# reviews" };
 
   constructor(private router: Router, private route: ActivatedRoute, private listingService: ListingService) {
     this.navigation = this.router.getCurrentNavigation();
@@ -23,6 +26,10 @@ export class RentalpageComponent implements OnInit {
 
   async ngOnInit() {
     this.listing = await this.listingService.getListingBySlug(this.route.snapshot.params["slug"]);
+
+    this.reviewStars = Array(5)
+      .fill(0)
+      .map((x, i) => (i < this.listing?.reviews.stars ? 1 : 0));
   }
 
   async bookmark() {

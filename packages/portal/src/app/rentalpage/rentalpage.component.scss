@@ -79,9 +79,20 @@
     justify-content: space-between;
     padding: 10px 0;
 
-    span,
-    mat-icon {
-      display: inline-block;
+    main {
+      display: flex;
+    }
+
+    .listing-review__stars {
+      color: #fcd53f;
+      font-size: 1.2rem;
+
+      &.fill {
+        font-variation-settings: "FILL" 1;
+      }
+    }
+
+    div {
       margin-right: 10px;
     }
 

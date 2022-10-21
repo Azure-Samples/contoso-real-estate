@@ -11,13 +11,19 @@ declare interface Listing {
   slug: string;
   title: string;
   address: Address;
-  amenities: { id: string; label: string }[];
+  capacity: number;
+  amenities: { icon: string; label: string }[];
+  reviews: {
+    stars: number;
+    number: number;
+  };
   fees: {
     discount: number;
     cleaning: number;
     service: number;
     occupancy: number;
     rent: number;
+    currency: { code: string; symbol: string };
   };
 }
 
@@ -41,6 +47,4 @@ declare interface Address {
   zipCode: string;
 }
 
-declare interface Reservation {
-
-}
+declare interface Reservation {}

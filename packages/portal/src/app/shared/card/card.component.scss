@@ -11,8 +11,8 @@ section {
 .bookmark-listing {
   position: absolute;
   z-index: 1;
-  right: 10px;
-  top: 10px;
+  right: -14px;
+  top: 0px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -22,7 +22,7 @@ section {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 300px;
+  width: 260px;
   margin: 6px 0;
   font-size: 1rem;
 }
@@ -33,6 +33,10 @@ section {
   white-space: nowrap;
   width: 250px;
   margin-bottom: 20px;
+}
+
+.mat-card-content {
+  position: relative;
 }
 
 .mat-card-actions {

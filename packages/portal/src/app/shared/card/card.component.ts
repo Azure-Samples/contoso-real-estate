@@ -20,6 +20,9 @@ export class CardComponent implements OnInit {
 
   isBookmarked = false;
 
+  bedroomsMapping: { [k: string]: string } = {"=1": "1 bedroom", other: "# bedrooms" };
+  bathroomsMapping: { [k: string]: string } = {"=1": "1 bathroom", other: "# bathrooms" };
+
   constructor() {
     this.onBookmark = new EventEmitter<Listing>();
   }

@@ -1,3 +1,7 @@
+@use "@angular/material" as mat;
+@include mat.core();
+$primary-palette: mat.define-palette(mat.$indigo-palette);
+
 .header__logo {
   width: 5rem;
 }
@@ -38,6 +42,7 @@
 
     a {
       margin: 0 10px;
+      color: mat.get-color-from-palette($primary-palette, 500);
     }
   }
 }

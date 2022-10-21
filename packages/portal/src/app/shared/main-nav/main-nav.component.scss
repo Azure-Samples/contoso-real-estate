@@ -1,0 +1,23 @@
+:host {
+  display: inline-block;
+  width: 150px;
+}
+
+.main-nav {
+  padding: 0;
+}
+
+.mat-menu-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.user__avatar {
+  display: inline-block;
+  width: 45px;
+  font-size: 45px;
+}

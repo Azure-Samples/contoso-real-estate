@@ -1,15 +1,15 @@
 <section class="price-container">
   <div>
     <span class="price"
-      ><strong>{{ monthlyRentPriceWithDiscount | currency }}</strong
+      ><strong>{{ monthlyRentPriceWithDiscount | currency: currency.symbol }}</strong
       >/month</span
     >
-    <s *ngIf="fees.discount > 0" class="price-old"
-      ><strong>{{ monthlyRentPrice | currency }}</strong
+    <s *ngIf="discount > 0" class="price-old"
+      ><strong>{{ monthlyRentPrice | currency: currency.symbol }}</strong
       >/month</s
     >
   </div>
-  <strong *ngIf="fees.discount > 0" class="price-discount">{{ fees.discount }}% OFF</strong>
+  <strong *ngIf="discount > 0" class="price-discount">{{ discount }}% OFF</strong>
 </section>
 
 <mat-divider></mat-divider>
@@ -26,48 +26,52 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" [formGroup]="guests">
-    <mat-label>Additional Guests</mat-label>
-    <mat-select formControlName="adults" [value]="0">
-      <mat-option value="0"> No guests </mat-option>
-      <mat-option value="1"> 1 Adult </mat-option>
-      <mat-option value="2"> 2 Adults </mat-option>
+  <mat-form-field appearance="outline">
+    <mat-label>Number of Guests</mat-label>
+    <mat-select formControlName="guests">
+      <mat-option *ngFor="let num of capacity" [value]="num">{{ num | i18nPlural: capacityMapping }}</mat-option>
     </mat-select>
-    <mat-hint>Only max. 2 guests are allowed</mat-hint>
+    <mat-hint>Max. {{ capacity.length }} guests are allowed</mat-hint>
   </mat-form-field>
 </section>
 
 <section class="price-details-container">
   <table>
     <tr>
-      <td>{{ months() }} month(s)</td>
-      <td>{{ monthlyRentPriceWithDiscount * months() | currency }}</td>
+      <td>{{ months() | i18nPlural: monthsMapping}}</td>
+      <td>{{ monthlyRentPriceWithDiscount * months() | currency: currency.symbol }}</td>
     </tr>
-    <tr *ngIf="fees.discount > 0">
-      <td>Discount {{ fees.discount }}%</td>
-      <td>-{{ monthlyRentPrice - monthlyRentPriceWithDiscount | currency }}</td>
+    <tr>
+      <td>Number of guests</td>
+      <td>{{ +guests.value.guests }}</td>
+    </tr>
+    <tr *ngIf="discount > 0">
+      <td>Discount {{ discount }}%</td>
+      <td>-{{ monthlyRentPrice - monthlyRentPriceWithDiscount | currency: currency.symbol }}</td>
     </tr>
     <tr>
       <td>Cleaning fee</td>
-      <td>{{ fees.cleaning | currency }}</td>
+      <td>{{ this.listing?.fees?.cleaning | currency: currency.symbol }}</td>
     </tr>
     <tr>
       <td>Service fee</td>
-      <td>{{ fees.service | currency }}</td>
+      <td>{{ this.listing?.fees?.service | currency: currency.symbol }}</td>
     </tr>
     <tr>
       <td>Occupancy taxes and fees</td>
-      <td>{{ fees.occupancy | currency }}</td>
+      <td>{{ this.listing?.fees?.occupancy | currency: currency.symbol }}</td>
     </tr>
   </table>
 
   <div class="price-total">
     <span>Total payment</span>
-    <span>{{ total() | currency }}</span>
+    <span>{{ total() | currency: currency.symbol }}</span>
   </div>
 </section>
 
 <section class="footer-container">
   <button (click)="rent()" [disabled]="!rentingPeriod.valid" mat-flat-button color="primary">Reserve Now</button>
-  <mat-hint>Your credit card will be charged once the reservation is approved. <a href="#">Terms of service</a> </mat-hint>
+  <mat-hint
+    >Your credit card will be charged once the reservation is approved. <a routerLink="/tos">Terms of service</a>
+  </mat-hint>
 </section>
