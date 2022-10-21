@@ -1,47 +1,25 @@
 ---
 sidebar_position: 1
+slug: /
+title: Contoso Rentals
+description: FIXME  - An E2E Serverless Architecture Template
+author: FIXME - add GitHub alias
+ms.author: FIXME - add MSFT alias or team
+ms.service: FIXME - add ACOM slug
+ms.topic: FIXME - add MSFT topic
+ms.date: FIXME - add MSFT date
 ---
 
-# Tutorial Intro
+# Contoso rentals
+ 
+Contoso Corporation is a fictional but representative global manufacturing conglomerate with its headquarters in Paris. The company deployed Microsoft 365 for enterprise and addressed major design decisions and implementation details for networking, identity, Windows 10 Enterprise, Microsoft 365 Apps for enterprise, mobile device management, information protection, and security. 
 
-Let's discover **Docusaurus in less than 5 minutes**.
+The company's overall goal for Microsoft 365 for enterprise is to accelerate its digital transformation by using cloud services to bring together its employees, partners, data, and processes to create customer value and maintain its competitive advantage in a digital-first world. 
 
-## Getting Started
+Contoso has 3 office tiers (Headquarters, Regional and Satellite) with a total of almost 30K employees.  
 
-Get started by **creating a new site**.
+![Geographical distribution of Contoso](./../../media/contoso-world-wide.png)
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Contoso is expanding its configuration, and rolling out to new regions and countries, which will result in massive hiring. They offer relocation and have designed an application, to help HR and new hires find the right housing. This web app is an internal tool used by Contoso HR and new hire or relocating employees.  
 
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+The Contoso HR App is part of the Contoso platform and designed to serve internal users. Both authenticated Talent Managers, and new hires can interact with the application features, while non-authenticated users can access some parts of it. 
