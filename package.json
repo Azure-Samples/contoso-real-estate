@@ -13,7 +13,8 @@
     "clean": "rimraf \"packages/**/*.tsbuildinfo\"",
     "postinstall:portal": "npm install --prefix packages/portal",
     "postinstall:api": "npm install --prefix packages/api",
-    "postinstall": "npm run postinstall:portal && npm run postinstall:api"
+    "postinstall:website": "npm install --prefix packages/website",
+    "postinstall": "npm run postinstall:portal && npm run postinstall:api && npm run postinstall:website"
   },
   "keywords": [],
   "author": "Microsoft",
