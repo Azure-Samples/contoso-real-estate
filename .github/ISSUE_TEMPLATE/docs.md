@@ -1,8 +1,8 @@
 ---
 name: "[Docs] "
 about: Tasks related to documentation section of site
-title: ''
-labels: ''
+title: "[Docs] "
+labels: e2e-docs
 assignees: nitya
 
 ---
