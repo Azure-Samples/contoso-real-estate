@@ -14,7 +14,7 @@ function model({ slug }: { slug?: number } = {}) {
     },
     from: faker.date.future(),
     to: faker.date.future(),
-    status: faker.helpers.arrayElements(["active", "cancelled", "archived"], 1),
+    status: faker.helpers.arrayElements(["pending", "active", "cancelled", "archived"], 1),
     createdAt: faker.date.past(),
     slug: slug || faker.lorem.slug(),
   };
