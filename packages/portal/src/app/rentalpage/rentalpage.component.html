@@ -36,7 +36,7 @@
     </main>
     <aside>
       <button
-        *ngIf="listing.isFavorited"
+        *ngIf="isFavorited"
         (click)="bookmark()"
         title="Remove this listing from favorites"
         class="bookmark-listing"
@@ -45,7 +45,7 @@
           bookmark_added
         </span>
       </button>
-      <button *ngIf="!listing.isFavorited" (click)="bookmark()" title="Save this listing" class="bookmark-listing">
+      <button *ngIf="!isFavorited" (click)="bookmark()" title="Save this listing" class="bookmark-listing">
         <span aria-hidden="false" aria-label="Save this listing" class="material-symbols-outlined"> bookmark </span>
       </button>
       <button (click)="share()" title="Share listing" class="bookmark-listing">

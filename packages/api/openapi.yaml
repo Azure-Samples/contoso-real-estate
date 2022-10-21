@@ -1246,11 +1246,7 @@ components:
         isFeatured:
           type: boolean
           description: listing is featured on home page
-          example: true
-        isFavorited:
-          type: boolean
-          description: listing favorited by 1+ users
-          example: true
+          example: true 
         isRecommended:
           type: boolean
           description: listing recommended to 1+ users

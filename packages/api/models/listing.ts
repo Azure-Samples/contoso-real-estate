@@ -9,7 +9,6 @@ function model({ slug }: { slug?: number } = {}) {
     id: faker.database.mongodbObjectId(),
     title: faker.lorem.sentence(),
     isFeatured: faker.datatype.boolean(),
-    isFavorited: faker.datatype.boolean(),
     isRecommended: faker.datatype.boolean(),
     bedrooms: +faker.random.numeric(),
     bathrooms: +faker.random.numeric(),
