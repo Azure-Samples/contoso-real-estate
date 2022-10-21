@@ -116,8 +116,8 @@ const config = {
         },
         style: 'primary',
         items: [
-          {to: '/', label: 'Specification', position: 'right'},
-          {to: '/', label: 'Scenarios', position: 'right'},
+          {to: '/specification', label: 'Specification', position: 'right'},
+          {to: '/scenarios', label: 'Scenarios', position: 'right'},
           { 
             href: 'https://github.com/nitya/contoso-real-estate',
             position: 'right',
