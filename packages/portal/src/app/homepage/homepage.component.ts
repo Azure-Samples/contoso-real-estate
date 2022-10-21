@@ -17,7 +17,7 @@ export class HomepageComponent implements OnInit {
   listings: Listing[] = [];
   constructor(
     private listingService: ListingService,
-    private favoriteSerice: FavoriteService,
+    private favoriteService: FavoriteService,
     private userService: UserService,
   ) {}
 
@@ -27,9 +27,9 @@ export class HomepageComponent implements OnInit {
 
   async onFavoritedToggle(listing: Listing) {
     if (listing.$$isFavorited) {
-      listing.$$isFavorited = await this.favoriteSerice.removeFavorite(listing, this.userService.currentUser());
+      listing.$$isFavorited = await this.favoriteService.removeFavorite(listing, this.userService.currentUser());
     } else {
-      listing.$$isFavorited = !!await this.favoriteSerice.addFavorite(listing, this.userService.currentUser());
+      listing.$$isFavorited = !!await this.favoriteService.addFavorite(listing, this.userService.currentUser());
     }
   }
 }

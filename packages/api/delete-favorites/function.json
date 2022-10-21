@@ -5,9 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "methods": [
-        "delete"
-      ],
+      "methods": ["delete"],
       "route": "favorites"
     },
     {

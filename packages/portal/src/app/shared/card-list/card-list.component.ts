@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { CardComponent } from "../card/card.component";
 import { FavoriteService } from "../favorite.service";
@@ -12,7 +12,7 @@ import { UserService } from "../user.service";
   standalone: true,
   imports: [RouterModule, CardComponent, CommonModule],
 })
-export class CardListComponent implements OnInit {
+export class CardListComponent implements OnInit, OnChanges {
   @Input() listings: Listing[] = [];
 
   @Output() onFavoritedToggle: EventEmitter<Listing>;
@@ -29,7 +29,6 @@ export class CardListComponent implements OnInit {
       listing.$$isFavorited = await this.favoriteService.getFavorite(listing, this.userService.currentUser());
       return listing;
     });
-
 
     console.log(this.listings);
   }
