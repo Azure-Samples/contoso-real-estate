@@ -20,4 +20,3 @@ This capability guarantees that new hires or relocated employees are at their ne
 ## Development
 
 This scenario could be completed by a full-stack engineer, or a backend and a frontend engineer, and a cloud solutionist.
-

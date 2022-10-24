@@ -32,6 +32,12 @@ and the following Azure services
 - [Cosmos DB for PostgreSQL API] (https://techcommunity.microsoft.com/t5/microsoft-mechanics-blog/azure-cosmos-db-for-postgresql-how-it-works/ba-p/3648760)
 - [Azure Key-Vault](https://azure.microsoft.com/en-us/pricing/details/key-vault/) to store our secrets - _this service's lowest tier is standard and implies a cost. You may use environment variables to test the application_
 
+## Pricing: current solution
+
+This scenario solution attempts at featuring Try and Free tiers, for experimentation and learning. The totals approaximate costs, come determined by the following table:
+
+TODO: Add pricing table
+
 Additionally we use
 
 - [GitHub](https://github.com/) to host and manage our code-base
