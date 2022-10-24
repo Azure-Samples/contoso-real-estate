@@ -12,6 +12,7 @@ External options were not effective at the time of meeting Contoso's quality gui
 ## Solution 
 
 ### Business driver
+
 From a business perspective, Contoso decided to extend their internal Human Resources Management platform, to provide that service and save costs on contract ammendments and derived administration fees.
 
 This capability guarantees that new hires or relocated employees are at their new location in time to perform their duties and meet deadlines with their teams.
