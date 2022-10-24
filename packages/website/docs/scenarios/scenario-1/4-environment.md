@@ -23,3 +23,11 @@ You generally interact with the environment with:
 
 If the person writing up the steps doesn't understand how to get from A to C because your B was not obvious - that is what I'm looking for here. 
 :::
+
+## Operating System
+
+This scenario was developed and tested in MacOS Monterey 12.6 with chip M1, and with the following supporting software
+- Node.js v16.16.0 (LTS)
+- npm 8.11.0
+
+TODO: Scenario specific installation and build instructions will be delivered together with scenario feature branches.

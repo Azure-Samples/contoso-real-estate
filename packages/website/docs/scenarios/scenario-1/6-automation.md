@@ -17,3 +17,13 @@ What automation is used to complete this scenario?
 
 All automation must include cleanup/teardown scripts
 :::
+
+## GitHub Actions
+
+When an application is deployed to Azure Static Web Apps, a workflow file is automatically generated and, if the repository is already hosted with GitHub, pushed to it. This file contains the necessary instructions to enable CI/CD integrations for build and deployment, and can be extended with additions actions, both custom or from the [GitHub Marketplace](https://github.com/marketplace?type=actions)
+
+If you would like to learn more about GitHub Actions, follow [this link](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)
+
+## SWA CLI
+
+Our application is deployed to Azure Static Web Apps, to facilitate the resource management, we are using the Azure Static Web Apps CLI tool. This command line tool has extensive documentation, that can be found [here](https://azure.github.io/static-web-apps-cli/)
