@@ -1,5 +1,5 @@
 {
-  "name": "contoso-real-estate-api",
+  "name": "api",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -8,7 +8,11 @@
     "watch": "tsc --w",
     "prestart": "tsc && func extensions install",
     "start:host": "func start",
-    "start": "npm-run-all --parallel start:host watch"
+    "start": "npm-run-all --parallel start:host watch",
+    "format": "npx prettier --config ../../.prettierrc.yml --write .",
+    "format:check": "npx prettier --config ../../.prettierrc.yml --check .",
+    "lint": "npx eslint --config ../../.eslintrc.js",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "@azure/identity": "^2.1.0",
@@ -27,8 +31,13 @@
     "@faker-js/faker": "^7.5.0",
     "@types/swagger-ui-dist": "^3.30.1",
     "@types/yamljs": "^0.2.31",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
     "azure-functions-core-tools": "^4.0.4736",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
     "npm-run-all": "^4.1.5",
-    "typescript": "^4.0.0"
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
   }
 }

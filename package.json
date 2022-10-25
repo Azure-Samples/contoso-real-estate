@@ -6,15 +6,8 @@
   "scripts": {
     "start": "swa start",
     "test": "npm run test -ws",
-    "format": "npm run prettier -- --write",
-    "format:check": "npm run prettier -- --check",
-    "lint": "npm run format:check",
     "compile": "tsc -b tsconfig.build.json",
-    "clean": "rimraf \"packages/**/*.tsbuildinfo\"",
-    "postinstall:portal": "npm install --prefix packages/portal",
-    "postinstall:api": "npm install --prefix packages/api",
-    "postinstall:website": "npm install --prefix packages/website",
-    "postinstall": "npm run postinstall:portal && npm run postinstall:api && npm run postinstall:website"
+    "clean": "rimraf \"packages/**/*.tsbuildinfo\""
   },
   "keywords": [],
   "author": "Microsoft",
