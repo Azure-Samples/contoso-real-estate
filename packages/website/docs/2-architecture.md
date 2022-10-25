@@ -18,4 +18,4 @@ To support this app functionality, the Contoso engineering team decided to build
         * Monitoring
         * Payments
 
-![](./../../media/block-architecture.png)
+![](../../../docs/media/block-architecture.png)
