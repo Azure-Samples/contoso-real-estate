@@ -6,4 +6,4 @@ sidebar_position: 3
 
 To build, deploy, manage, test, and monitor this web app, Contoso selected Azure. With the help of Azure architects, the following architecture was selected.
 
-![](./../../media/architecture-complete.png)
+![](../../../docs/media/architecture-complete.png)
