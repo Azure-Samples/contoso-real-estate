@@ -52,3 +52,7 @@ out
 *.tsbuildinfo
 *.DS_Store
 .azure
+
+__azurite*
+__blob*
+__queue*
