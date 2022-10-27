@@ -100,7 +100,7 @@ function model({ slug }: { slug?: number } = {}) {
   };
 }
 
-export async function getListings({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
+export async function getListingsMock({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
   if (CACHE.length === 0) {
     CACHE = Array.from({ length: MAX_ENTRIES }, () => model());
   }
@@ -111,7 +111,7 @@ export async function getListings({ offset, limit }: { offset: number; limit: nu
   });
 }
 
-export async function getListingBySlug({ slug }: { slug: string | undefined }): Promise<any> {
+export async function getListingBySlugMock({ slug }: { slug: string | undefined }): Promise<any> {
   if (!slug) {
     return Promise.resolve();
   }
