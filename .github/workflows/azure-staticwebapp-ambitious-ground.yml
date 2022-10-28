@@ -15,12 +15,12 @@ name: Deploy web app to Azure Static Web Apps
 on:
   push:
     branches: [ "main" ]
-    paths: ["package/website/**", ".github/workflows/azure-staticwebapp-ambitious-ground.yml"]
+    paths: ["packages/website/**", ".github/workflows/azure-staticwebapp-ambitious-ground.yml"]
     
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches: [ "main" ]
-    paths: ["package/website/**", ".github/workflows/azure-staticwebapp-ambitious-ground.yml"]
+    paths: ["packages/website/**", ".github/workflows/azure-staticwebapp-ambitious-ground.yml"]
 
 # Environment variables available to all jobs and steps in this workflow
 env:
