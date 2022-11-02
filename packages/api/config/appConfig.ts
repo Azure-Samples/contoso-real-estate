@@ -8,7 +8,13 @@ export interface DatabaseConfig {
   databaseName: string;
 }
 
+export interface StripeConfig {
+    publicKey: string
+    secretKey: string
+}
+
 export interface AppConfig {
-  observability: ObservabilityConfig;
-  database: DatabaseConfig;
+  observability: ObservabilityConfig
+  database: DatabaseConfig
+  stripe: StripeConfig
 }
