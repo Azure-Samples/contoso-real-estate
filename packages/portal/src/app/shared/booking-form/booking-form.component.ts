@@ -35,6 +35,7 @@ export class BookingFormComponent implements OnInit {
 
   capacity: number[] = [];
 
+  bookingForm: FormGroup;
   rentingPeriod: FormGroup;
   guests: FormControl;
   currency = { code: "USD", symbol: "$" };
@@ -52,13 +53,16 @@ export class BookingFormComponent implements OnInit {
 
     this.guests = new FormControl<number>(1);
 
+    this.bookingForm = new FormGroup({
+      rentingPeriod: this.rentingPeriod,
+      guests: this.guests
+    });
+
     this.onRent = new EventEmitter<Reservation>();
   }
 
   ngOnInit(): void {
-    this.guests.setValue({
-      guests: 1,
-    });
+    this.guests.setValue(1);
   }
 
   ngOnChanges() {

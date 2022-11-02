@@ -14,7 +14,7 @@
 
 <mat-divider></mat-divider>
 
-<section class="guests-container">
+<section class="guests-container" [formGroup]="bookingForm">
   <mat-form-field appearance="outline">
     <mat-label>Enter renting period</mat-label>
     <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker">
