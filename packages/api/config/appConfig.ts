@@ -11,6 +11,7 @@ export interface DatabaseConfig {
 export interface StripeConfig {
     publicKey: string
     secretKey: string
+    webhookSecret: string
 }
 
 export interface AppConfig {

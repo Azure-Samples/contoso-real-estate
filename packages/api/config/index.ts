@@ -30,6 +30,7 @@ export const getConfig: () => Promise<AppConfig> = async () => {
       stripe: {
         publicKey: process.env.STRIPE_PUBLIC_KEY,
         secretKey: process.env.STRIPE_SECRET_KEY,
+        webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
       },
       appDomain: process.env.APP_DOMAIN,
     } as AppConfig;
