@@ -12,9 +12,12 @@ export class ListingService {
     return listings;
   }
 
-  async getListingBySlug(slug: string): Promise<Listing> {
+  async getListingBySlug(slug: string): Promise<Listing | undefined> {
     const resource = await fetch(`/api/listings/${slug}`);
-    return await resource.json();
+    if (resource.status === 200) {
+      return await resource.json();
+    }
+    return undefined;
   }
 
   async bookmark(listing: Listing) {
@@ -25,7 +28,18 @@ export class ListingService {
     alert("Not implemented!");
   }
 
-  async reserve(reservationDetails: Reservation) {
-    alert("Not implemented!");
+  async reserve(reservationDetails: Reservation): Promise<CheckoutSession> {
+    const resource = await fetch(`/api/checkout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reservationDetails),
+    });
+    const checkoutSession = await resource.json();
+    if (resource.status !== 200) {
+      throw new Error(checkoutSession.error);
+    }
+    return checkoutSession;
   }
 }

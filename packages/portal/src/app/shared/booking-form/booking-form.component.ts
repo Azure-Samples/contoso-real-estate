@@ -43,7 +43,7 @@ export class BookingFormComponent implements OnInit {
   capacityMapping: { [k: string]: string } = { "=1": "One guest", other: "# guests" };
   monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
 
-  @Output() onRent: EventEmitter<Reservation>;
+  @Output() onRent: EventEmitter<ReservationRequest>;
 
   constructor() {
     this.rentingPeriod = new FormGroup({
@@ -58,7 +58,7 @@ export class BookingFormComponent implements OnInit {
       guests: this.guests
     });
 
-    this.onRent = new EventEmitter<Reservation>();
+    this.onRent = new EventEmitter<ReservationRequest>();
   }
 
   ngOnInit(): void {
@@ -105,10 +105,12 @@ export class BookingFormComponent implements OnInit {
 
   rent() {
     this.onRent.emit({
-      listing: this.listing,
+      // TODO: set userId properly
+      userId: "123",
+      listingId: this.listing?.id!,
       guests: this.guests.value,
-      rentingPeriod: this.rentingPeriod.value,
-      total: this.total(),
-    } as Reservation);
+      from: this.rentingPeriod.value.start,
+      to: this.rentingPeriod.value.end,
+    });
   }
 }
