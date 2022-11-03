@@ -2,9 +2,10 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import Stripe from "stripe";
 import { getConfig } from "../config";
 import { getListingById } from "../models/listing";
+import { createReservationMock } from "../models/reservation";
 import { ReservationRequest } from "../models/reservation-request";
 
-const postReservations: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const postCheckout: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
 
   const config = await getConfig();
   const stripe = new Stripe(config.stripe.secretKey, { apiVersion: '2022-08-01' });
@@ -13,6 +14,16 @@ const postReservations: AzureFunction = async function (context: Context, req: H
   const from = new Date(reservation.from);
   const to = new Date(reservation.to);
   const now = new Date();
+
+  if (!reservation.userId) {
+    context.res = {
+      status: 400,
+      body: {
+        error: "userId must be specified",
+      },
+    };
+    return;
+  }
   
   if (!reservation.listingId) {
     context.res = {
@@ -81,6 +92,7 @@ const postReservations: AzureFunction = async function (context: Context, req: H
             product_data: {
               name,
               metadata: {
+                userId: reservation.userId,
                 listingId: reservation.listingId,
                 from: reservation.from,
                 ro: reservation.to,
@@ -98,7 +110,20 @@ const postReservations: AzureFunction = async function (context: Context, req: H
       cancel_url: `${config.appDomain}/checkout?result=cancel`,
     });
 
-    // TODO: create pending reservation in DB
+    const pendingReservation = {
+      user: {
+        id: reservation.userId,
+      },
+      listing: {
+        id: reservation.listingId,
+      },
+      from,
+      to,
+      status: "pending",
+      createdAt: now,
+    };
+
+    await createReservationMock({ reservation: pendingReservation });
 
     context.res = {
       body: {
@@ -134,4 +159,4 @@ function calculateTotal(listing: any, guests: number, from: Date, to: Date): num
   return total;
 }
 
-export default postReservations;
+export default postCheckout;

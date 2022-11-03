@@ -34,3 +34,12 @@ export async function getReservationsMock({ offset, limit }: { offset: number; l
 export async function getReservationBySlugMock({ slug }: { slug: number }): Promise<any> {
   return Promise.resolve(CACHE.find(model => model.slug === slug));
 }
+
+export async function createReservationMock({ reservation }: { reservation: any }): Promise<any> {
+  CACHE.push({
+    ...reservation,
+    id: faker.database.mongodbObjectId(),
+    slug: faker.lorem.slug(),
+  });
+  return Promise.resolve(reservation);
+}
