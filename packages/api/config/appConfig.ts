@@ -17,4 +17,5 @@ export interface AppConfig {
   observability: ObservabilityConfig
   database: DatabaseConfig
   stripe: StripeConfig
+  appDomain: string
 }

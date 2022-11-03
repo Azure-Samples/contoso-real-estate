@@ -31,6 +31,7 @@ export const getConfig: () => Promise<AppConfig> = async () => {
         publicKey: process.env.STRIPE_PUBLIC_KEY,
         secretKey: process.env.STRIPE_SECRET_KEY,
       },
+      appDomain: process.env.APP_DOMAIN,
     } as AppConfig;
 
     return configCache;
