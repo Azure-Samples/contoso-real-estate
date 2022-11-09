@@ -11,7 +11,8 @@
     "format:check": "prettier --config .prettierrc.yml --ignore-path .prettierignore --check .",
     "lint": "npm run lint -ws --if-present",
     "lint:fix": "npm run lint:fix -ws --if-present",
-    "clean": "rimraf \"packages/**/*.tsbuildinfo\""
+    "clean": "rimraf \"packages/**/*.tsbuildinfo\"",
+    "clean:install": "rimraf \"packages/**/node_modules\" \"node_modules\" && npm install"
   },
   "keywords": [],
   "author": "Microsoft",
