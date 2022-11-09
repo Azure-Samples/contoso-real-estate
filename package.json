@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "swa start",
-    "test": "npm run test -ws",
+    "test": "npm run test -ws --if-present",
     "build": "npm run build -ws --if-present",
     "format": "prettier --config .prettierrc.yml --ignore-path .prettierignore --write .",
     "format:check": "prettier --config .prettierrc.yml --ignore-path .prettierignore --check .",
