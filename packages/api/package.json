@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "env": "azd env get-values --no-prompt > .env",
-    "build": "tsc && npm prune --production",
+    "build": "tsc",
     "watch": "tsc --w",
     "prestart": "tsc && func extensions install",
     "start:host": "func start",
