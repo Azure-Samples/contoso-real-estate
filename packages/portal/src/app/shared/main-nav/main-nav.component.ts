@@ -12,8 +12,6 @@ import { RouterModule } from "@angular/router";
   imports: [CommonModule, RouterModule, MatMenuModule, MatButtonModule],
 })
 export class MainNavComponent implements OnInit {
-
-
   navItems = [
     { name: "Profile", route: "/me", authenticated: true },
     { name: "Payments", route: "/me/payments", authenticated: true },

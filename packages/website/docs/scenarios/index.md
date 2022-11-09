@@ -4,4 +4,3 @@ slug: /scenarios
 ---
 
 # Introduction
-

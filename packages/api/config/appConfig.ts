@@ -1,14 +1,14 @@
 export interface ObservabilityConfig {
-    connectionString: string
-    roleName: string
+  connectionString: string;
+  roleName: string;
 }
 
 export interface DatabaseConfig {
-    connectionString: string
-    databaseName: string
+  connectionString: string;
+  databaseName: string;
 }
 
 export interface AppConfig {
-    observability: ObservabilityConfig
-    database: DatabaseConfig
+  observability: ObservabilityConfig;
+  database: DatabaseConfig;
 }

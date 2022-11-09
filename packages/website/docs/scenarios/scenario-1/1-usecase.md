@@ -4,12 +4,11 @@ title: Use Case
 
 ## Problem
 
-Contoso is a fictitious leading global company with headquarters in Paris, that is constantly expanding a hiring new employees, across the globe. Many of those employees decide to relocate, on-hire or over-time, so they need to find suitable housing at their new location. 
+Contoso is a fictitious leading global company with headquarters in Paris, that is constantly expanding a hiring new employees, across the globe. Many of those employees decide to relocate, on-hire or over-time, so they need to find suitable housing at their new location.
 
 External options were not effective at the time of meeting Contoso's quality guidelines or reliable enough for the volume of employees and the HR department had to rectify due dates, or resort to complex documentation and workflows to make sure the employees and their families, when appliccable, could move in time.
 
-
-## Solution 
+## Solution
 
 ### Business driver
 

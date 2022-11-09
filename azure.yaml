@@ -3,7 +3,7 @@
 name: contoso-real-estate
 services:
   portal:
-    # The portal is a static web apps site with an API. 
+    # The portal is a static web apps site with an API.
     # Here we only need to specify the location of the static app.
     # Because azd uses the Azure Static Web Apps CLI under the hood (azd deploy),
     # We configured the app to use the Azure Functions API

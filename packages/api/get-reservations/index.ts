@@ -1,7 +1,8 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { getReservationsMock } from "../models/reservation";
 
-const data = async ({ offset, limit }: { offset: number; limit: number }) => await getReservationsMock({ offset, limit });
+const data = async ({ offset, limit }: { offset: number; limit: number }) =>
+  await getReservationsMock({ offset, limit });
 
 const getReservations: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const offset = Number(req.query.offset) || 0;
