@@ -9,7 +9,7 @@
     "prestart": "tsc && func extensions install",
     "start:host": "func start",
     "start": "npm-run-all --parallel start:host watch",
-    "lint": "npx eslint --config ../../.eslintrc.js",
+    "lint": "eslint --config ../../.eslintrc.js",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {

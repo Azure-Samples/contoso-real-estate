@@ -1,7 +1,7 @@
 {
   "name": "testing",
   "scripts": {
-    "lint": "npx eslint --config ../../.eslintrc.js",
+    "lint": "eslint --config ../../.eslintrc.js",
     "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
