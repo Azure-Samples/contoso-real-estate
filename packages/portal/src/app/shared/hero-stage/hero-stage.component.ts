@@ -1,21 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit, Input } from "@angular/core";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
-  selector: 'app-hero-stage',
-  templateUrl: './hero-stage.component.html',
-  styleUrls: ['./hero-stage.component.scss'],
+  selector: "app-hero-stage",
+  templateUrl: "./hero-stage.component.html",
+  styleUrls: ["./hero-stage.component.scss"],
   standalone: true,
-  imports: [ MatCardModule, MatButtonModule ]
+  imports: [MatCardModule, MatButtonModule],
 })
 export class HeroStageComponent implements OnInit {
   @Input()
   stage!: StageType;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

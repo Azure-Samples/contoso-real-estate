@@ -1,142 +1,132 @@
 {
-    "title": {
-        "$choose": {
-            "from": [
-                "Luminous apartment in the heart of the city",
-                "Spacious apartment for a young family",
-                "Luxurious apartment by the park",
-                "Practical loft downtown",
-                "Charming apartment close to the mall",
-                "Wonderful chalet close to the train station",
-                "Beautiful house in the countryside",
-                "Cozy apartment in the heart of the city",
-                "Bright apartment close to the park",
-                "Modern apartment close to the metro station",
-                "Spacious house in the suburbs",
-                "Charming house close to the train station",
-                "Beautiful house in the countryside",
-                "Wonderful house close to the mall",
-                "Luxurious house in the suburbs",
-                "Art-deco loft close to the metro station",
-                "Charming apartment close to the train station",
-                "Bright apartment close to the park"
-            ]
-        }
-    },
-    "city": {
-        "$choose": {
-            "from": [
-                "Paris",
-                "London",
-                "Dublin",
-                "New York",
-                "Los Angeles",
-                "Boston",
-                "San Francisco",
-                "Chicago",
-                "Montral",
-                "Edinburgh",
-                "Cologne",
-                "Tel Aviv",
-                "Dubai",
-                "Milan",
-                "Philiadeplhia",
-                "Atlanta",
-                "Charlotte",
-                "Houston",
-                "Dallas",
-                "Irvine",
-                "Sao Paulo",
-                "Johannesburg",
-                "Bangalore",
-                "Mumbai",
-                "Singapore",
-                "Taipei",
-                "Guangzhou",
-                "Beijing",
-                "Tokyo",
-                "Sidney"
-            ]
-        }
-    },
-    "bedrooms": {
-        "$choose": {
-            "from": [
-                1,
-                2,
-                3,
-                4,
-                5
-            ]
-        }
-    },
-    "bathrooms": {
-        "$choose": {
-            "from": [
-                1,
-                2,
-                3
-            ]
-        }
-    },
-    "amenities": {
-        "$pickset": {
-            "array": [
-                "swimming pool",
-                "gym",
-                "wi-fi",
-                "parking",
-                "balcony",
-                "terrace",
-                "garden",
-                "patio",
-                "sauna",
-                "jacuzzi",
-                "fireplace",
-                "air conditioning",
-                "heating",
-                "elevator",
-                "laundry room",
-                "dishwasher",
-                "microwave",
-                "furniture",
-                "no furniture"
-            ],
-            "quantity": 3
-        }
-    },
-    "description": {
-        "$choose": {
-            "from": [
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-                "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
-                "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
-                "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
-                "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
-                "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
-                "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.",
-                "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
-            ]
-        }
-    },
-    "img": {
-        "$choose": {
-            "from": [
-                "pic-blue.png",
-                "pic-bluegreen.png",
-                "pic-green.png",
-                "pic-orange.png",
-                "pic-pink.png",
-                "pic-purple.png",
-                "pic-salmon.png",
-                "pic-yellowgreen.png"
-            ]
-        }
-    },
-    "slug": {
-        "$numberLong": {
-            "min": 100000,
-            "max": 999999
-        }
+  "title": {
+    "$choose": {
+      "from": [
+        "Luminous apartment in the heart of the city",
+        "Spacious apartment for a young family",
+        "Luxurious apartment by the park",
+        "Practical loft downtown",
+        "Charming apartment close to the mall",
+        "Wonderful chalet close to the train station",
+        "Beautiful house in the countryside",
+        "Cozy apartment in the heart of the city",
+        "Bright apartment close to the park",
+        "Modern apartment close to the metro station",
+        "Spacious house in the suburbs",
+        "Charming house close to the train station",
+        "Beautiful house in the countryside",
+        "Wonderful house close to the mall",
+        "Luxurious house in the suburbs",
+        "Art-deco loft close to the metro station",
+        "Charming apartment close to the train station",
+        "Bright apartment close to the park"
+      ]
     }
+  },
+  "city": {
+    "$choose": {
+      "from": [
+        "Paris",
+        "London",
+        "Dublin",
+        "New York",
+        "Los Angeles",
+        "Boston",
+        "San Francisco",
+        "Chicago",
+        "Montral",
+        "Edinburgh",
+        "Cologne",
+        "Tel Aviv",
+        "Dubai",
+        "Milan",
+        "Philiadeplhia",
+        "Atlanta",
+        "Charlotte",
+        "Houston",
+        "Dallas",
+        "Irvine",
+        "Sao Paulo",
+        "Johannesburg",
+        "Bangalore",
+        "Mumbai",
+        "Singapore",
+        "Taipei",
+        "Guangzhou",
+        "Beijing",
+        "Tokyo",
+        "Sidney"
+      ]
+    }
+  },
+  "bedrooms": {
+    "$choose": {
+      "from": [1, 2, 3, 4, 5]
+    }
+  },
+  "bathrooms": {
+    "$choose": {
+      "from": [1, 2, 3]
+    }
+  },
+  "amenities": {
+    "$pickset": {
+      "array": [
+        "swimming pool",
+        "gym",
+        "wi-fi",
+        "parking",
+        "balcony",
+        "terrace",
+        "garden",
+        "patio",
+        "sauna",
+        "jacuzzi",
+        "fireplace",
+        "air conditioning",
+        "heating",
+        "elevator",
+        "laundry room",
+        "dishwasher",
+        "microwave",
+        "furniture",
+        "no furniture"
+      ],
+      "quantity": 3
+    }
+  },
+  "description": {
+    "$choose": {
+      "from": [
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+        "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+        "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
+        "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
+        "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+        "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.",
+        "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus."
+      ]
+    }
+  },
+  "img": {
+    "$choose": {
+      "from": [
+        "pic-blue.png",
+        "pic-bluegreen.png",
+        "pic-green.png",
+        "pic-orange.png",
+        "pic-pink.png",
+        "pic-purple.png",
+        "pic-salmon.png",
+        "pic-yellowgreen.png"
+      ]
+    }
+  },
+  "slug": {
+    "$numberLong": {
+      "min": 100000,
+      "max": 999999
+    }
+  }
 }
