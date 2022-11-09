@@ -1,6 +1,11 @@
 name: build
 
-on: [pull_request, push]
+on: 
+  pull_request:
+    types: [opened, reopened]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -16,11 +21,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run lint
-          npm run build
-          npm test
-        env:
-          CI: true
+      - run: npm install
+      - run: npm run lint
+      - run: npm run build
+      - run: npm test
