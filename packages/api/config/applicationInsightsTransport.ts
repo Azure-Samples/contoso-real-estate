@@ -5,42 +5,42 @@ import { LogEntry } from "winston";
 import { LogLevel } from "./observability";
 
 export interface ApplicationInsightsTransportOptions extends TransportStreamOptions {
-    client: TelemetryClient
-    handleRejections?: boolean;
+  client: TelemetryClient;
+  handleRejections?: boolean;
 }
 
 export class ApplicationInsightsTransport extends Transport {
-    private client: TelemetryClient;
+  private client: TelemetryClient;
 
-    constructor(opts: ApplicationInsightsTransportOptions) {
-        super(opts);
-        this.client = opts.client;
-    }
+  constructor(opts: ApplicationInsightsTransportOptions) {
+    super(opts);
+    this.client = opts.client;
+  }
 
-    public log(info: LogEntry, callback: () => void) {
-        const telemetry: TraceTelemetry = {
-            severity: convertToSeverity(info.level),
-            message: info.message,
-        };
+  public log(info: LogEntry, callback: () => void) {
+    const telemetry: TraceTelemetry = {
+      severity: convertToSeverity(info.level),
+      message: info.message,
+    };
 
-        this.client.trackTrace(telemetry);
-        callback();
-    }
+    this.client.trackTrace(telemetry);
+    callback();
+  }
 }
 
 const convertToSeverity = (level: LogLevel | string): SeverityLevel => {
-    switch (level) {
+  switch (level) {
     case LogLevel.Debug:
-        return SeverityLevel.Verbose;
+      return SeverityLevel.Verbose;
     case LogLevel.Verbose:
-        return SeverityLevel.Verbose;
+      return SeverityLevel.Verbose;
     case LogLevel.Error:
-        return SeverityLevel.Error;
+      return SeverityLevel.Error;
     case LogLevel.Warning:
-        return SeverityLevel.Warning;
+      return SeverityLevel.Warning;
     case LogLevel.Information:
-        return SeverityLevel.Information;
+      return SeverityLevel.Information;
     default:
-        return SeverityLevel.Verbose;
-    }
+      return SeverityLevel.Verbose;
+  }
 };

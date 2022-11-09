@@ -1,1 +1,3 @@
 *.tsbuildinfo
+**/dist
+**/.angular

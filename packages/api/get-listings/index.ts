@@ -38,4 +38,4 @@ export default async function (context: Context, req: HttpRequest): Promise<void
       listings: await data({ offset, limit }),
     },
   };
-};
+}

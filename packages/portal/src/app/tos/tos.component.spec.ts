@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { TosComponent } from './tos.component';
+import { TosComponent } from "./tos.component";
 
-describe('TosComponent', () => {
+describe("TosComponent", () => {
   let component: TosComponent;
   let fixture: ComponentFixture<TosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TosComponent ]
-    })
-    .compileComponents();
+      declarations: [TosComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

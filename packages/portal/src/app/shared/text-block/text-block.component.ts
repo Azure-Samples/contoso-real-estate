@@ -1,20 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-text-block',
-  templateUrl: './text-block.component.html',
-  styleUrls: ['./text-block.component.scss'],
+  selector: "app-text-block",
+  templateUrl: "./text-block.component.html",
+  styleUrls: ["./text-block.component.scss"],
   standalone: true,
-  imports: [ CommonModule ]
+  imports: [CommonModule],
 })
 export class TextBlockComponent implements OnInit {
+  @Input() title: string = "";
 
-  @Input() title: string = '';
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

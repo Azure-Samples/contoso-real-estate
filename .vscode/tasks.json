@@ -1,126 +1,117 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Start Web",
-            "type": "dotenv",
-            "targetTasks": [
-                "Restore Web",
-                "Web npm start"
-            ],
-            "file": "${input:dotEnvFilePath}"
-        },
-        {
-            "label": "Restore Web",
-            "type": "shell",
-            "command": "azd restore --service web",
-            "presentation": {
-                "reveal": "silent"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Web npm start",
-            "detail": "Helper task--use 'Start Web' task to ensure environment is set up correctly",
-            "type": "shell",
-            "command": "npm run start",
-            "options": {
-                "cwd": "${workspaceFolder}/packages/contoso-real-estate-ui",
-                "env": {
-                    "BROWSER": "none"
-                }
-            },
-            "presentation": {
-                "panel": "dedicated",
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Start API",
-            "type": "dotenv",
-            "targetTasks": [
-                "Restore API",
-                "API npm start"
-            ],
-            "file": "${input:dotEnvFilePath}"
-        },
-        {
-            "label": "Restore API",
-            "type": "shell",
-            "command": "azd restore --service api",
-            "presentation": {
-                "reveal": "silent"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "API npm start",
-            "detail": "Helper task--use 'Start API' task to ensure environment is set up correctly",
-            "type": "shell",
-            "command": "func start --typescript",
-            "options": {
-                "cwd": "${workspaceFolder}/packages/contoso-real-estate-api",
-                "env": {
-                    "NODE_ENV": "development"
-                }
-            },
-            "presentation": {
-                "panel": "dedicated",
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Start API and Web",
-            "dependsOn": [
-                "Start API",
-                "Start Web"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "Generate Angular Bundles",
-            "type": "npm",
-            "script": "start",
-            "isBackground": true,
-            "problemMatcher": {
-              "owner": "typescript",
-              "pattern": "$tsc",
-              "background": {
-                "activeOnStart": true,
-                "beginsPattern": {
-                  "regexp": "(.*?)"
-                },
-                "endsPattern": {
-                  "regexp": "bundle generation complete"
-                }
-              }
-            }
-          },
-          {
-            "label": "Generate test Angular Bundle",
-            "type": "npm",
-            "script": "test",
-            "isBackground": true,
-            "problemMatcher": {
-              "owner": "typescript",
-              "pattern": "$tsc",
-              "background": {
-                "activeOnStart": true,
-                "beginsPattern": {
-                  "regexp": "(.*?)"
-                },
-                "endsPattern": {
-                  "regexp": "bundle generation complete"
-                }
-              }
-            }
-          }
-    ],
-    "inputs": [
-        {
-            "id": "dotEnvFilePath",
-            "type": "command",
-            "command": "azure-dev.commands.getDotEnvFilePath"
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Web",
+      "type": "dotenv",
+      "targetTasks": ["Restore Web", "Web npm start"],
+      "file": "${input:dotEnvFilePath}"
+    },
+    {
+      "label": "Restore Web",
+      "type": "shell",
+      "command": "azd restore --service web",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Web npm start",
+      "detail": "Helper task--use 'Start Web' task to ensure environment is set up correctly",
+      "type": "shell",
+      "command": "npm run start",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/contoso-real-estate-ui",
+        "env": {
+          "BROWSER": "none"
         }
-    ]
+      },
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start API",
+      "type": "dotenv",
+      "targetTasks": ["Restore API", "API npm start"],
+      "file": "${input:dotEnvFilePath}"
+    },
+    {
+      "label": "Restore API",
+      "type": "shell",
+      "command": "azd restore --service api",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "API npm start",
+      "detail": "Helper task--use 'Start API' task to ensure environment is set up correctly",
+      "type": "shell",
+      "command": "func start --typescript",
+      "options": {
+        "cwd": "${workspaceFolder}/packages/contoso-real-estate-api",
+        "env": {
+          "NODE_ENV": "development"
+        }
+      },
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start API and Web",
+      "dependsOn": ["Start API", "Start Web"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate Angular Bundles",
+      "type": "npm",
+      "script": "start",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "bundle generation complete"
+          }
+        }
+      }
+    },
+    {
+      "label": "Generate test Angular Bundle",
+      "type": "npm",
+      "script": "test",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "bundle generation complete"
+          }
+        }
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "dotEnvFilePath",
+      "type": "command",
+      "command": "azure-dev.commands.getDotEnvFilePath"
+    }
+  ]
 }

@@ -5,7 +5,7 @@ info:
   description: |-
     This is a sample server for Contoso Real Estate company.
   version: 1.0.0
-  termsOfService : "/tos"
+  termsOfService: "/tos"
   contact: {}
 
 servers:
@@ -24,8 +24,7 @@ tags:
   - name: favorite
     description: Related to Favorites
 
-paths:  
-
+paths:
   /listings:
     get:
       tags:
@@ -34,95 +33,95 @@ paths:
       description: Get all listings
       operationId: getListings
       responses:
-        '200':
+        "200":
           description: OK - Returns all listings
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Listing'
-        '400':
+                  $ref: "#/components/schemas/Listing"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: Unauthorized - User is not logged in 
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found - Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-    put: 
+                $ref: "#/components/schemas/Error"
+    put:
       description: Update existing Listing in database - by id
       operationId: updateListing
-      tags: 
+      tags:
         - listing
       requestBody:
         description: Update existing Listing in database - by id
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Listing'
+              $ref: "#/components/schemas/Listing"
         required: true
       responses:
-        '200':
+        "200":
           description: OK - Returns updated listing
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Listing'    
-        '400':
+                $ref: "#/components/schemas/Listing"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     post:
-      description: Add a new Listing to the database 
+      description: Add a new Listing to the database
       operationId: addListing
       tags:
         - listing
@@ -131,50 +130,50 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Listing'
+              $ref: "#/components/schemas/Listing"
         required: true
       responses:
-        '200':
+        "200":
           description: OK - Returns new listing
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Listing'    
-        '400':
+                $ref: "#/components/schemas/Listing"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found - Listing not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-  
+                $ref: "#/components/schemas/Error"
+
   /listings/{listingId}:
     get:
       description: Get Listing details for specified Listing id
-      tags: 
+      tags:
         - listing
       operationId: findListingById
       parameters:
@@ -186,130 +185,130 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: OK - Returns listing details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Listing'    
-        '400':
+                $ref: "#/components/schemas/Listing"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-                    
+                $ref: "#/components/schemas/Error"
+
   /users:
     get:
       summary: Get all users
       description: Returns a JSON array of User objects
       operationId: findUsersForQuery
-      tags: 
+      tags:
         - user
       parameters:
         - name: id
           in: query
           description: Unique User object matching {id}
           schema:
-            type : string
+            type: string
             minimum: 1
         - name: limit
           in: query
           description: Number of records to return (default=20)
           schema:
-            type : integer
+            type: integer
             additionalProperties:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
         - name: offset
           in: query
           description: Starting offset for returning records (pre-computed by UI)
           schema:
-            type : integer
+            type: integer
             additionalProperties:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
         - name: role
           in: query
           description: Array of User objects matching role
           schema:
-            type : string
+            type: string
             additionalProperties:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
         - name: status
           in: query
           description: Array of User objects matching status
           schema:
-            type : object
+            type: object
             additionalProperties:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
-        '200':
+        "200":
           description: OK - Returns array of User objects
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
-        '400':
+                  $ref: "#/components/schemas/User"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /users/{id}:
     get:
       summary: Get user by id
       operationId: findUserById
-      tags: 
+      tags:
         - user
       parameters:
         - name: id
@@ -317,50 +316,50 @@ paths:
           required: true
           description: Return User record matching {id}
           schema:
-            type : integer
+            type: integer
             format: string
             minimum: 1
-      responses: 
-        '200':
+      responses:
+        "200":
           description: OK - Returns User object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'    
-        '400':
+                $ref: "#/components/schemas/User"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     post:
       summary: Create a new user
       operationId: createUser
-      tags: 
+      tags:
         - user
       requestBody:
         description: User object to be created
@@ -368,49 +367,49 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
-        '201':
+        "201":
           description: Created - Returns User object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-        '400':
+                $ref: "#/components/schemas/User"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     patch:
       summary: Update user
       operationId: updateUser
-      tags: 
+      tags:
         - user
       parameters:
         - name: id
@@ -418,7 +417,7 @@ paths:
           required: true
           description: Return User record matching {id}
           schema:
-            type : integer
+            type: integer
             format: string
             minimum: 1
       requestBody:
@@ -427,49 +426,49 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
       responses:
-        '200':
+        "200":
           description: OK - Returns User object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-        '400':
+                $ref: "#/components/schemas/User"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     put:
       summary: Update user by id
       operationId: updateUserById
-      tags: 
+      tags:
         - user
       parameters:
         - name: id
@@ -477,7 +476,7 @@ paths:
           required: true
           description: Return User record matching {id}
           schema:
-            type : integer
+            type: integer
             format: string
             minimum: 1
       requestBody:
@@ -486,49 +485,49 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
-      responses: 
-        '200':
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
           description: OK - Returns User object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'    
-        '400':
+                $ref: "#/components/schemas/User"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     delete:
       summary: Delete user by id
       operationId: deleteUserById
-      tags: 
+      tags:
         - user
       parameters:
         - name: id
@@ -536,94 +535,94 @@ paths:
           required: true
           description: Return User record matching {id}
           schema:
-            type : integer
+            type: integer
             format: string
             minimum: 1
-      responses: 
-        '204':
+      responses:
+        "204":
           description: No Content - User deleted
-        '400':
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /favorites:
     get:
       summary: Get all favorites
       description: Returns a JSON array of Favorites (User-Listing pairs)
       operationId: listFavorites
-      tags: 
+      tags:
         - favorite
       responses:
-        '200':
+        "200":
           description: OK - Returns array of Favorites
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Favorite'
-        '400':
+                  $ref: "#/components/schemas/Favorite"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     post:
       summary: Add a favorite
       description: Adds a favorite to the database
       operationId: addFavorite
-      tags: 
+      tags:
         - favorite
       requestBody:
         description: Favorite object to be added
@@ -631,95 +630,95 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Favorite'
+              $ref: "#/components/schemas/Favorite"
       responses:
-        '200':
+        "200":
           description: OK - Returns Favorite object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Favorite'
-        '400':
+                $ref: "#/components/schemas/Favorite"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     delete:
       summary: Delete all favorites
       description: Deletes all favorites from the database
       operationId: deleteAllFavorites
-      tags: 
+      tags:
         - favorite
       responses:
-        '200':
+        "200":
           description: OK - Returns empty array
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Favorite'
-        '400':
+                  $ref: "#/components/schemas/Favorite"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /favorites/{id}:
     get:
       summary: Returns a favorite by id
       operationId: findFavoriteById
-      tags: 
+      tags:
         - favorite
       parameters:
         - name: id
@@ -727,99 +726,99 @@ paths:
           required: true
           description: Return Favorite record matching {id}
           schema:
-            type : integer
+            type: integer
             format: string
             minimum: 1
-      responses: 
-        '200':
+      responses:
+        "200":
           description: OK - Returns Favorite object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Favorite'    
-        '400':
+                $ref: "#/components/schemas/Favorite"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /reservations:
     get:
       summary: Get all reservations
       description: Returns a JSON array of Reservations (User-Listing pairs)
       operationId: listReservations
-      tags: 
+      tags:
         - reservation
       responses:
-        '200':
+        "200":
           description: OK - Returns array of Reservations
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Reservation'
-        '400':
+                  $ref: "#/components/schemas/Reservation"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     post:
       summary: Add a reservation
       description: Adds a reservation to the database
       operationId: addReservation
-      tags: 
+      tags:
         - reservation
       requestBody:
         description: Reservation object to be added
@@ -827,96 +826,96 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Reservation'
+              $ref: "#/components/schemas/Reservation"
       responses:
-        '200':
+        "200":
           description: OK - Returns Reservation object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Reservation'
-        '400':
+                $ref: "#/components/schemas/Reservation"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     delete:
       summary: Delete all reservations
       description: Deletes all reservations from the database
       operationId: deleteAllReservations
-      tags: 
+      tags:
         - reservation
       responses:
-        '200':
+        "200":
           description: OK - Returns empty array
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Reservation'
-        '400':
+                  $ref: "#/components/schemas/Reservation"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /reservations/{id}:
     get:
       summary: Get reservation by id
       operationId: findReservationById
-      tags: 
+      tags:
         - reservation
       parameters:
         - name: id
@@ -924,53 +923,52 @@ paths:
           required: true
           description: Return Reservation record matching {id}
           schema:
-            type : integer
+            type: integer
             format: string
             minimum: 1
-      responses: 
-        '200':
+      responses:
+        "200":
           description: OK - Returns Reservation object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Reservation'    
-        '400':
+                $ref: "#/components/schemas/Reservation"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
 components:
   schemas:
-
-    Address: 
+    Address:
       type: object
-      required: 
+      required:
         - buildingNumber
         - street
         - city
@@ -978,7 +976,7 @@ components:
         - country
 
       properties:
-        id: 
+        id:
           type: string
           format: uuid
           description: autogenerated unique ID
@@ -987,7 +985,7 @@ components:
           type: string
           description: user-friendly path identifier
           example: "edinburgh-park-apt"
-        buildingNumber: 
+        buildingNumber:
           type: string
           description: house or building number
           example: "Apt 3B"
@@ -1019,14 +1017,14 @@ components:
 
     User:
       type: object
-      required:  
+      required:
         - name
         - role
         - status
         - email
         - payment
       properties:
-        id: 
+        id:
           type: string
           format: uuid
           description: autogenerated unique ID
@@ -1044,43 +1042,43 @@ components:
           description: user role defines path access
           enum: [guest, renter, admin]
           default: guest
-          example: guest 
+          example: guest
         status:
           type: string
           description: status set by admin role
           enum: [active, suspended, inactive]
-          example: active 
+          example: active
         photo:
           type: string
           description: link to user profile photo
           example: https://unsplash.com/profiles/123.png
-          default: 'https://unsplash.com/placeholder.png'
-        address:  
+          default: "https://unsplash.com/placeholder.png"
+        address:
           type: object
-          description: primary user address 
-          $ref: '#/components/schemas/Address'
-        email: 
+          description: primary user address
+          $ref: "#/components/schemas/Address"
+        email:
           type: string
-          description: primary user email address 
+          description: primary user email address
           example: jane@doe.home
         payment:
           type: object
           description: primary user payment profile
-          $ref: '#/components/schemas/Payment'
+          $ref: "#/components/schemas/Payment"
         auth:
           type: object
-          description: primary user auth profile 
+          description: primary user auth profile
           additionalProperties: true
-          default : {}
+          default: {}
         createdAt:
           type: string
           format: date-time
           description: autogenerated timestamp
           example: "2020-01-01T00:00:00.000Z"
-    
+
     Listing:
-      type: object       
-      required:  
+      type: object
+      required:
         - slug
         - title
         - description
@@ -1089,7 +1087,7 @@ components:
         - bedrooms
         - bathrooms
       properties:
-        id: 
+        id:
           type: string
           format: uuid
           description: autogenerated unique ID
@@ -1109,8 +1107,15 @@ components:
         address:
           type: object
           description: valid address for listing
-          $ref: '#/components/schemas/Address'
-          example: { city:"Edinburgh", country: "Scotland", street: "Sojourner Drive", buildingNumber: "Apt 3B", zipCode: "10001" }
+          $ref: "#/components/schemas/Address"
+          example:
+            {
+              city:"Edinburgh",
+              country: "Scotland",
+              street: "Sojourner Drive",
+              buildingNumber: "Apt 3B",
+              zipCode: "10001",
+            }
         bedrooms:
           type: integer
           description: count of bedrooms in listing
@@ -1124,25 +1129,46 @@ components:
         amenities:
           type: array
           description: identifies amenities in listing
-          items: 
+          items:
             type: string
-            enum: [ "swimming pool", "gym", "wi-fi","parking","balcony","terrace","garden","patio", "sauna", "jacuzzi", "fireplace", "air conditioning", "heating", "elevator", "laundry room", "dishwasher", "microwave", "furniture", "no furniture"]
+            enum:
+              [
+                "swimming pool",
+                "gym",
+                "wi-fi",
+                "parking",
+                "balcony",
+                "terrace",
+                "garden",
+                "patio",
+                "sauna",
+                "jacuzzi",
+                "fireplace",
+                "air conditioning",
+                "heating",
+                "elevator",
+                "laundry room",
+                "dishwasher",
+                "microwave",
+                "furniture",
+                "no furniture",
+              ]
             default: []
-            example: ["fireplace","garden"]
-        photos: 
+            example: ["fireplace", "garden"]
+        photos:
           type: array
           items:
             type: string
             minimum: 4
-            example: ["https://unsplash.com/123.png" ]
+            example: ["https://unsplash.com/123.png"]
         isFeatured:
-          type: boolean 
+          type: boolean
           description: listing is featured on home page
-          example: true 
+          example: true
         isFavorited:
           type: boolean
           description: listing favorited by 1+ users
-          example: true 
+          example: true
         isRecommended:
           type: boolean
           description: listing recommended to 1+ users
@@ -1153,8 +1179,8 @@ components:
         reviews:
           type: array
           description: listing reviews
-          $ref: '#/components/schemas/Review'
-          example: [ { id: "1db1f3a89eb2dde64e827aea", rating: 4, comment: "Great place to stay!" } ]
+          $ref: "#/components/schemas/Review"
+          example: [{ id: "1db1f3a89eb2dde64e827aea", rating: 4, comment: "Great place to stay!" }]
         capacity:
           type: integer
           description: number of guests listing can accommodate
@@ -1168,11 +1194,11 @@ components:
 
     Favorite:
       type: object
-      required:  
+      required:
         - user
         - listing
       properties:
-        id: 
+        id:
           type: string
           format: uuid
           description: autogenerated unique ID
@@ -1181,14 +1207,14 @@ components:
           type: string
           description: user-friendly path identifier
           example: "edinburgh-park-apt"
-        user: 
+        user:
           type: object
           description: user that favorited listing
-          $ref: '#/components/schemas/User'
-        listing: 
+          $ref: "#/components/schemas/User"
+        listing:
           type: object
           description: listing that was favorited
-          $ref: '#/components/schemas/Listing'
+          $ref: "#/components/schemas/Listing"
         createdAt:
           type: string
           format: date-time
@@ -1197,14 +1223,14 @@ components:
 
     Reservation:
       type: object
-      required:  
+      required:
         - user
         - listing
         - status
         - from
         - to
       properties:
-        id: 
+        id:
           type: string
           format: uuid
           description: autogenerated unique ID
@@ -1213,20 +1239,20 @@ components:
           type: string
           description: user-friendly path identifier
           example: "edinburgh-park-apt"
-        user: 
+        user:
           type: object
           description: user who made reservation
-          $ref: '#/components/schemas/User'
-        listing: 
+          $ref: "#/components/schemas/User"
+        listing:
           type: object
           description: listing reserved
-          $ref: '#/components/schemas/Listing'
-        from: 
+          $ref: "#/components/schemas/Listing"
+        from:
           type: string
           format: date-time
           description: reservation from date
           example: "2020-01-01T00:00:00.000Z"
-        to: 
+        to:
           type: string
           format: date-time
           description: reservation to date
@@ -1236,7 +1262,7 @@ components:
           description: current status of reservation
           enum: [pending, active, cancelled, complete]
           default: active
-          example: active 
+          example: active
         createdAt:
           type: string
           format: date-time
@@ -1245,11 +1271,11 @@ components:
 
     Recommendation:
       type: object
-      required: 
+      required:
         - user
         - listing
       properties:
-        id: 
+        id:
           type: string
           format: uuid
           description: autogenerated unique ID
@@ -1258,19 +1284,19 @@ components:
           type: string
           description: user-friendly path identifier
           example: "edinburgh-park-apt"
-        user: 
+        user:
           type: object
           description: user who recommended listing
-          $ref: '#/components/schemas/User'
-        listing: 
+          $ref: "#/components/schemas/User"
+        listing:
           type: object
           description: listing recommended to user
-          $ref: '#/components/schemas/Listing'
+          $ref: "#/components/schemas/Listing"
         reason:
           type: string
           description: reason why this is recommended
           default: ""
-          example: "Similar to other properties you favorited" 
+          example: "Similar to other properties you favorited"
         createdAt:
           type: string
           format: date-time
@@ -1279,7 +1305,7 @@ components:
 
     Payment:
       type: object
-      required:  
+      required:
         - reservation
         - invoice
         - status
@@ -1293,12 +1319,12 @@ components:
           type: string
           description: user-friendly path identifier
           example: "edinburgh-park-apt"
-        reservation: 
+        reservation:
           type: object
           description: reservation associated with payment
-          $ref: '#/components/schemas/Reservation'
+          $ref: "#/components/schemas/Reservation"
         invoice:
-          type:  object
+          type: object
           description: freeform object from provider
           additionalProperties: true
           default: {}
@@ -1336,25 +1362,25 @@ components:
           description: service fee
           default: 0
           example: 12
-        occupancy: 
+        occupancy:
           type: integer
           description: occupancy fee
           default: 0
           example: 12
-        rent: 
+        rent:
           type: integer
           description: rent fee
           default: 0
           example: 12
-        discount: 
+        discount:
           type: integer
           description: discount
           default: 0
           example: 12
-        currency: 
+        currency:
           type: object
           description: valid address for listing
-          $ref: '#/components/schemas/Currency'
+          $ref: "#/components/schemas/Currency"
           example: { code: "USD", symbol: "$", name: "US Dollar" }
           default: { code: "USD", symbol: "$", name: "US Dollar" }
         createdAt:
@@ -1365,7 +1391,7 @@ components:
 
     Currency:
       type: object
-      required:  
+      required:
         - code
         - name
         - symbol
@@ -1385,7 +1411,7 @@ components:
 
     Review:
       type: object
-      required:  
+      required:
         - userId
         - listingId
         - rating
@@ -1400,12 +1426,12 @@ components:
           type: string
           description: user-friendly path identifier
           example: "edinburgh-park-apt"
-        userId: 
+        userId:
           type: string
           format: uuid
           description: autogenerated unique ID
           example: "1db1f3a89eb2dde64e827aea"
-        listingId: 
+        listingId:
           type: string
           format: uuid
           description: autogenerated unique ID
