@@ -1,11 +1,14 @@
 :host {
-  display: block;
+  display: grid;
   margin: 0 auto;
   max-width: 1100px;
-  padding: 50px 16px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
+  padding: 50px 16px;              
+  
+
+  @media all and (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1ff;
+  }
 }
 
 .listing-container {
@@ -162,4 +165,7 @@
       }
     }
   }
+}
+
+.booking-container {
 }
