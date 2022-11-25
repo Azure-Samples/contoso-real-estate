@@ -9,6 +9,7 @@ export class ListingService {
   async getListings() {
     const resource = await fetch("/api/listings");
     const { listings } = await resource.json();
+    console.log(listings, '##### Listings');
     return listings;
   }
 
