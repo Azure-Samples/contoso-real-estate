@@ -52,7 +52,7 @@ declare interface Reservation {
 
 declare interface ReservationRequest {
   userId: string;
-  listingId: string;
+  listingId: string | undefined;
   from: string;
   to: string;
   guests: number;

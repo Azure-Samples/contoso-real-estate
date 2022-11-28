@@ -75,14 +75,12 @@ export class BookingFormComponent implements OnInit {
       0,
       this.monthlyRentPrice * (1 - (this.listing?.fees?.discount || 0) / 100),
     );
-    this.currency = this.listing?.fees?.currency!;
+    this.currency = this.listing?.fees?.currency;
     this.discount = this.listing?.fees?.discount || 0;
     this.capacity = Array(this.listing?.capacity)
       .fill(0)
       .map((x, i) => i + 1);
   }
-
-  #rangify() {}
 
   total() {
     const months = this.months();
@@ -107,10 +105,20 @@ export class BookingFormComponent implements OnInit {
     this.onRent.emit({
       // TODO: set userId properly
       userId: "123",
-      listingId: this.listing?.id!,
+      listingId: this.listing?.id,
       guests: this.guests.value,
-      from: this.rentingPeriod.value.start,
-      to: this.rentingPeriod.value.end,
+      from: this.fixAngularDateRangerPicker(this.rentingPeriod.value.start),
+      to: this.fixAngularDateRangerPicker(this.rentingPeriod.value.end),
     });
+  }
+
+  private fixAngularDateRangerPicker(date: string) {
+    return new Date(new Date(date).getTime() + 60 * 60 * 1000).toISOString();
+  }
+
+  startFromTomorrow() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
   }
 }
