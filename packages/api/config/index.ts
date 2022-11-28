@@ -5,24 +5,37 @@ import { SecretClient } from "@azure/keyvault-secrets";
 import { configureMongoose } from "./mongoose";
 import { logger } from "./observability";
 
-const getConfig: () => Promise<AppConfig> = async () => {
+let configCache: AppConfig | undefined;
+
+export const getConfig: () => Promise<AppConfig> = async () => {
+  if (configCache) {
+      return configCache;
+  }
+
   // Load any ENV vars from local .env file
   if (process.env.NODE_ENV !== "production") {
-    dotenv.config();
+      dotenv.config();
   }
 
   await populateEnvironmentFromKeyVault();
+    configCache = {
+      observability: {
+        connectionString: process.env.REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING,
+        roleName: process.env.REACT_APP_APPLICATIONINSIGHTS_ROLE_NAME,
+      },
+      database: {
+        connectionString: process.env.DATABASE_CONNECTION_STRING,
+        databaseName: process.env.DATABASE_NAME,
+      },
+      stripe: {
+        publicKey: process.env.STRIPE_PUBLIC_KEY,
+        secretKey: process.env.STRIPE_SECRET_KEY,
+        webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+      },
+      appDomain: process.env.APP_DOMAIN,
+    } as AppConfig;
 
-  return {
-    observability: {
-      connectionString: process.env.REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING,
-      roleName: process.env.REACT_APP_APPLICATIONINSIGHTS_ROLE_NAME,
-    },
-    database: {
-      connectionString: process.env.DATABASE_CONNECTION_STRING,
-      databaseName: process.env.DATABASE_NAME,
-    },
-  } as AppConfig;
+    return configCache;
 };
 
 const populateEnvironmentFromKeyVault = async () => {
@@ -49,10 +62,9 @@ const populateEnvironmentFromKeyVault = async () => {
       const keyName = secret.name.replace(/-/g, "_");
       process.env[keyName] = secret.value;
     }
-  } catch (err: any) {
-    logger.error(
-      `Error authenticating with Azure KeyVault.  Ensure your managed identity or service principal has GET/LIST permissions. Error: ${err}`,
-    );
+  }
+  catch (err: any) {
+    logger.error(`Error authenticating with Azure KeyVault. Ensure your managed identity or service principal has GET/LIST permissions. Error: ${err}`);
     throw err;
   }
 };

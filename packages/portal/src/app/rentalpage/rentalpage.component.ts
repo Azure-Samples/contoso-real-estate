@@ -25,7 +25,14 @@ export class RentalpageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.listing = await this.listingService.getListingBySlug(this.route.snapshot.params["slug"]);
+    const listing = await this.listingService.getListingBySlug(this.route.snapshot.params["slug"]);
+
+    if (listing !== undefined) {
+      this.listing = listing;
+    } else {
+      // TODO: fallback to 404 page
+      this.router.navigate(["/"]);
+    }
 
     this.reviewStars = Array(5)
       .fill(0)
@@ -41,7 +48,15 @@ export class RentalpageComponent implements OnInit {
     await this.listingService.share(this.listing);
   }
 
-  async onRent(reservationDetails: Reservation) {
-    await this.listingService.reserve(reservationDetails);
+  async onRent(reservationDetails: ReservationRequest) {
+    try {
+      const checkoutSession = await this.listingService.reserve(reservationDetails);
+      window.location.href = checkoutSession.sessionUrl;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        // TODO: show error message in dialog
+        alert(error.message);
+      }
+    }
   }
 }

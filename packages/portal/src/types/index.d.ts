@@ -47,4 +47,17 @@ declare interface Address {
   zipCode: string;
 }
 
-declare interface Reservation {}
+declare interface Reservation {
+}
+
+declare interface ReservationRequest {
+  userId: string;
+  listingId: string | undefined;
+  from: string;
+  to: string;
+  guests: number;
+}
+
+declare interface CheckoutSession {
+  sessionUrl: string;
+}

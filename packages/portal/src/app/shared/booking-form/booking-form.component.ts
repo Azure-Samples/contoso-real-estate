@@ -35,6 +35,7 @@ export class BookingFormComponent implements OnInit {
 
   capacity: number[] = [];
 
+  bookingForm: FormGroup;
   rentingPeriod: FormGroup;
   guests: FormControl;
   currency = { code: "USD", symbol: "$" };
@@ -42,7 +43,7 @@ export class BookingFormComponent implements OnInit {
   capacityMapping: { [k: string]: string } = { "=1": "One guest", other: "# guests" };
   monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
 
-  @Output() onRent: EventEmitter<Reservation>;
+  @Output() onRent: EventEmitter<ReservationRequest>;
 
   constructor() {
     this.rentingPeriod = new FormGroup({
@@ -52,13 +53,16 @@ export class BookingFormComponent implements OnInit {
 
     this.guests = new FormControl<number>(1);
 
-    this.onRent = new EventEmitter<Reservation>();
+    this.bookingForm = new FormGroup({
+      rentingPeriod: this.rentingPeriod,
+      guests: this.guests
+    });
+
+    this.onRent = new EventEmitter<ReservationRequest>();
   }
 
   ngOnInit(): void {
-    this.guests.setValue({
-      guests: 1,
-    });
+    this.guests.setValue(1);
   }
 
   ngOnChanges() {
@@ -71,14 +75,12 @@ export class BookingFormComponent implements OnInit {
       0,
       this.monthlyRentPrice * (1 - (this.listing?.fees?.discount || 0) / 100),
     );
-    this.currency = this.listing?.fees?.currency!;
+    this.currency = this.listing?.fees?.currency;
     this.discount = this.listing?.fees?.discount || 0;
     this.capacity = Array(this.listing?.capacity)
       .fill(0)
       .map((x, i) => i + 1);
   }
-
-  #rangify() {}
 
   total() {
     const months = this.months();
@@ -101,10 +103,22 @@ export class BookingFormComponent implements OnInit {
 
   rent() {
     this.onRent.emit({
-      listing: this.listing,
+      // TODO: set userId properly
+      userId: "123",
+      listingId: this.listing?.id,
       guests: this.guests.value,
-      rentingPeriod: this.rentingPeriod.value,
-      total: this.total(),
-    } as Reservation);
+      from: this.fixAngularDateRangerPicker(this.rentingPeriod.value.start),
+      to: this.fixAngularDateRangerPicker(this.rentingPeriod.value.end),
+    });
+  }
+
+  private fixAngularDateRangerPicker(date: string) {
+    return new Date(new Date(date).getTime() + 60 * 60 * 1000).toISOString();
+  }
+
+  startFromTomorrow() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
   }
 }

@@ -28,7 +28,7 @@ function model({ slug }: { slug?: number } = {}) {
       }),
       currency: faker.helpers.arrayElement([
         {
-          code: "EURO",
+          code: "EUR",
           symbol: "€",
         },
         {
@@ -121,4 +121,16 @@ export async function getListingBySlug({ slug }: { slug: string | undefined }): 
   }
 
   return Promise.resolve(CACHE.find(model => model.slug === slug));
+}
+
+export async function getListingById({ id }: { id: string | undefined }): Promise<any> {
+  if (!id) {
+    return Promise.resolve();
+  }
+
+  if (CACHE.length === 0) {
+    CACHE = Array.from({ length: MAX_ENTRIES }, () => model());
+  }
+
+  return Promise.resolve(CACHE.find(model => model.id === id));
 }

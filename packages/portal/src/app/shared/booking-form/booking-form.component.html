@@ -14,10 +14,10 @@
 
 <mat-divider></mat-divider>
 
-<section class="guests-container">
+<section class="guests-container" [formGroup]="bookingForm">
   <mat-form-field appearance="outline">
     <mat-label>Enter renting period</mat-label>
-    <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker">
+    <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker" [min]="startFromTomorrow()">
       <input required matStartDate formControlName="start" placeholder="Start date" />
       <input required matEndDate formControlName="end" placeholder="End date" />
     </mat-date-range-input>
@@ -43,7 +43,7 @@
     </tr>
     <tr>
       <td>Number of guests</td>
-      <td>{{ +guests.value.guests }}</td>
+      <td>{{ +guests.value }}</td>
     </tr>
     <tr *ngIf="discount > 0">
       <td>Discount {{ discount }}%</td>
