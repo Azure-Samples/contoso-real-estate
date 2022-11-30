@@ -7,7 +7,7 @@ function model({ slug, user, listing }: { slug?: string; listing: any; user: any
   return {
     id: faker.database.mongodbObjectId(),
     user: {
-      id: user.id || faker.database.mongodbObjectId(),
+      id: user.id ?? faker.database.mongodbObjectId(),
     },
     listing: {
       id: listing.id || faker.database.mongodbObjectId(),
