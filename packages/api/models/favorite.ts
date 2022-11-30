@@ -50,7 +50,7 @@ export async function getFavoriteBySlugMock({ slug }: { slug: number }): Promise
 export async function postFavoriteMock({ listing, user }: { listing: any; user: any }): Promise<any> {
   const favorite = model({ listing, user });
   CACHE.push(favorite);
-  return favorite;
+  return Promise.resolve(false);
 }
 
 export async function deleteFavoriteMockBySlug({ listing, user }: { listing: string; user: string }): Promise<any> {

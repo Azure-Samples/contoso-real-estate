@@ -1,12 +1,24 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { postFavoriteMock } from "../models/favorite";
 
-const getFavorite: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const postFavorite: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const { listing, user } = req.body;
 
+  if (!listing || !user) {
+    context.res = {
+      status: 400,
+      body: {
+        error: "Missing query parameters",
+      },
+    };
+    return;
+  }
+
   context.res = {
-    body: await postFavoriteMock({ listing, user }),
+    body: {
+      success: await postFavoriteMock({ listing, user }),
+    },
   };
 };
 
-export default getFavorite;
+export default postFavorite;

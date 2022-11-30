@@ -20,7 +20,7 @@ export class RentalpageComponent implements OnInit {
   navigation: Navigation | null;
   reviewStars: number[] = [];
 
-  isFavorited: boolean = false;
+  isFavorited = false;
 
   reviewsMapping: { [k: string]: string } = { "=0": "No reviews", "=1": "1 message", other: "# reviews" };
 
@@ -28,9 +28,8 @@ export class RentalpageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private listingService: ListingService,
-    private reservationService: ReservationService,
     private favoriteService: FavoriteService,
-    private userService: UserService
+    private userService: UserService,
   ) {
     this.navigation = this.router.getCurrentNavigation();
     this.listing = this.navigation?.extras.state?.["listing"] || null;
@@ -53,8 +52,14 @@ export class RentalpageComponent implements OnInit {
   }
 
   async bookmark() {
-    await this.favoriteService.addFavorite(this.listing, this.userService.currentUser());
-    this.isFavorited = !this.isFavorited;
+    const status = await this.favoriteService.addFavorite(this.listing, this.userService.currentUser());
+    if (status === false) {
+      alert("An error occurred while adding the listing to your favorites. Please try again later.");
+      return;
+    }
+
+    this.isFavorited = status;
+
   }
 
   async share() {

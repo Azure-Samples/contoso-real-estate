@@ -27,9 +27,22 @@ export class HomepageComponent implements OnInit {
 
   async onFavoritedToggle(listing: Listing) {
     if (listing.$$isFavorited) {
-      listing.$$isFavorited = await this.favoriteService.removeFavorite(listing, this.userService.currentUser());
+      const status = await this.favoriteService.removeFavorite(listing, this.userService.currentUser());
+      if (status === false) {
+        alert("An error occurred while removing the listing from your favorites. Please try again later.");
+        return;
+      }
+
+      listing.$$isFavorited = false;
+
     } else {
-      listing.$$isFavorited = !!await this.favoriteService.addFavorite(listing, this.userService.currentUser());
+      const status = !await this.favoriteService.addFavorite(listing, this.userService.currentUser());
+      if (status === false) {
+        alert("An error occurred while adding the listing to your favorites. Please try again later.");
+        return;
+      }
+
+      listing.$$isFavorited = true;
     }
   }
 }

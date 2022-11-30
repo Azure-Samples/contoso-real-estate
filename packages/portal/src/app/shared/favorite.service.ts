@@ -4,8 +4,6 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class FavoriteService {
-  constructor() {}
-
   async addFavorite(listing: Listing, user: User) {
     const resource = await fetch("/api/favorites", {
       method: "POST",
@@ -14,26 +12,35 @@ export class FavoriteService {
         user,
       }),
     });
-    return await resource.json();
+
+    if (resource.status !== 200) {
+      return false;
+    }
+
+    const { success } = await resource.json();
+    return success;
   }
 
   async removeFavorite(listing: Listing, user: User) {
     const resource = await fetch(`/api/favorites?listing=${listing.id}&user=${user.id}`, {
       method: "DELETE",
     });
-    const { success } = await resource.json();
 
-    return !success;
+    if (resource.status !== 200) {
+      return false;
+    }
+
+    const { success } = await resource.json();
+    return success;
   }
 
   async getFavorite(listing: Listing, user: User) {
     const resource = await fetch(`/api/favorites?listing=${listing.id}&user=${user.id}`);
-    const response = await resource.json();
 
-    if (response.error) {
+    if (resource.status !== 200) {
       return null;
     }
 
-    return response;
+    return await resource.json();
   }
 }
