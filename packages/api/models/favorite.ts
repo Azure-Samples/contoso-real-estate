@@ -10,7 +10,7 @@ function model({ slug, user, listing }: { slug?: string; listing: any; user: any
       id: user.id ?? faker.database.mongodbObjectId(),
     },
     listing: {
-      id: listing.id || faker.database.mongodbObjectId(),
+      id: listing.id ?? faker.database.mongodbObjectId(),
     },
     reason: faker.lorem.sentence(),
     createdAt: faker.date.past(),
