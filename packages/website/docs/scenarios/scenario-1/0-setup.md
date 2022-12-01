@@ -52,7 +52,7 @@ swa start http://localhost:4200 --api-location ../api
 
 ## Deploying to Azure with the Azure Static Web Apps CLI
 
-If you want to deploy to Azure using this tool, you will need an active subscription to [Azure](), to to any of the available regions listed [here](https://azure.github.io/static-web-apps-cli/docs/cli/env-vars)
+If you want to deploy to Azure using this tool, you will need an active subscription to [Azure](https://azure.microsoft.com/en-us/free/), to to any of the available regions listed [here](https://azure.github.io/static-web-apps-cli/docs/cli/env-vars)
 
 Assuming you are in the folder `contoso-real-estate/packages/portal` go to the terminal and run
 
