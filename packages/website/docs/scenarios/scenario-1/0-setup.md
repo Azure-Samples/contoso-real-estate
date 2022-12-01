@@ -11,7 +11,7 @@ It will also instruct you how to deploy it to [Azure Static Web Apps](https://le
 In order to start the development server for local development or locally browsing the portal site, the following technologies must be installed in your computer:
 
 - [node.js](https://nodejs.org/en/) LTS, with the corresponding npm version
-- [Azure Core Tools](https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Clinux%2Cnode%2Cazurecli%2Cbash)
+- [Azure Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
 
 ## Steps to start the portal
 
