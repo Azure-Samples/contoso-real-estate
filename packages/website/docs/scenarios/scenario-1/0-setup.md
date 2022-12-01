@@ -52,17 +52,7 @@ swa start http://localhost:4200 --api-location ../api
 
 ## Deploying to Azure with the Azure Static Web Apps CLI
 
-If you want to deploy to Azure using this tool, you will need a subscription. 
-
-Find or create a file called `.env` at `contoso-real-estate/packages/portal`
-
-Set a variable called 
-
-```js
-AZURE_REGION_LOCATION=
-```
-
-to any of the available regions listed [here](https://azure.github.io/static-web-apps-cli/docs/cli/env-vars)
+If you want to deploy to Azure using this tool, you will need an active subscription to [Azure](), to to any of the available regions listed [here](https://azure.github.io/static-web-apps-cli/docs/cli/env-vars)
 
 Assuming you are in the folder `contoso-real-estate/packages/portal` go to the terminal and run
 
@@ -72,14 +62,23 @@ Follow prompt instructions.
 
 ## Troubleshooting the deployment
 
-If the deployment fails, make sure 
-- you have exceeded the maximum quota for free apps
+If the deployment fails
+
+- you may have exceeded the maximum quota for free apps. Check the limits and quotas for the free tier [here](https://learn.microsoft.com/en-us/azure/static-web-apps/quotas)
 - your subscription id and tenant id are correctly configured under `contoso-real-estate/packages/portal/.env` for variables
 
 ```js
 AZURE_SUBSCRIPTION_ID=
 AZURE_TENANT_ID=
 ```
+
+- redefine the region target, in case it's unavailable or saturated
+
+```js
+AZURE_REGION_LOCATION=
+```
+
+to an alternative region, from the ones listed [here](https://azure.github.io/static-web-apps-cli/docs/cli/env-vars)
 
 - there is a configuration file called `staticwebapp.config.json`, under `contoso-real-estate/packages/portal/. Make sure to add the following snippet
 
