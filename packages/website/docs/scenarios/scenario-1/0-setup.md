@@ -15,7 +15,7 @@ In order to start the development server for local development or locally browsi
 
 ## Steps to start the portal
 
-1) checkout the repository locally
+1) fork or clone the repository locally
 2) assumming you are in the folder containing your clone, go to the terminal and run 
 
 `cd contoso-real-estate && npm install`
