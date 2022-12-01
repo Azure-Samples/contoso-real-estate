@@ -90,6 +90,8 @@ to an alternative region, from the ones listed [here](https://azure.github.io/st
     } 
 }
 
+```
+
 If your deployment still fails, run
 
 ```bash
