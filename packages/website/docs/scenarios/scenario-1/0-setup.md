@@ -83,8 +83,10 @@ to an alternative region, from the ones listed [here](https://azure.github.io/st
 - There is a configuration file called `staticwebapp.config.json`, under `contoso-real-estate/packages/portal/src/assets/. Make sure to add the following snippet:
 
 ```json
-{
-    // other config},
+{ 
+    // other config: {
+    // ... config
+    // },
     "platform": {
         "apiRuntime": "node:16"
     } 
