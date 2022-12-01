@@ -32,7 +32,7 @@ npm start
 
 Follow the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/docs/cli/swa) prompts to complete the configuration.
 
-Your default browser should open a new window with the application running. If you did not pass a port option, it should be running on port 4200.
+Your default browser should open a new window with the application running. If you did not pass a port option, it should be running at [http://localhost:4280](http://localhost:4280)
 
 4) Assuming you are in the folder `contoso-real-estate/packages/portal` and that you have started the Angular application in the default port 4200, start the emulator by executing 
 
