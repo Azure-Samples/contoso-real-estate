@@ -7,7 +7,7 @@
       <p class="listing-description">{{ listing.description.substr(0, 100) }}...</p>
 
       <button
-        *ngIf="listing.isFavorited"
+        *ngIf="listing.$$isFavorited"
         (click)="bookmark()"
         title="Remove this listing from favorites"
         class="bookmark-listing"
@@ -16,7 +16,7 @@
           bookmark_added
         </span>
       </button>
-      <button *ngIf="!listing.isFavorited" (click)="bookmark()" title="Save this listing" class="bookmark-listing">
+      <button *ngIf="!listing.$$isFavorited" (click)="bookmark()" title="Save this listing" class="bookmark-listing">
         <span aria-hidden="false" aria-label="Save this listing" class="material-symbols-outlined"> bookmark </span>
       </button>
     </mat-card-content>

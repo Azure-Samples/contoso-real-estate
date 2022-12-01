@@ -1,7 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { CardComponent } from "../card/card.component";
+import { FavoriteService } from "../favorite.service";
+import { UserService } from "../user.service";
 
 @Component({
   selector: "app-card-list",
@@ -10,19 +12,28 @@ import { CardComponent } from "../card/card.component";
   standalone: true,
   imports: [RouterModule, CardComponent, CommonModule],
 })
-export class CardListComponent implements OnInit {
+export class CardListComponent implements OnInit, OnChanges {
   @Input() listings: Listing[] = [];
 
-  @Output() onBookmarkToggle: EventEmitter<Listing>;
+  @Output() onFavoritedToggle: EventEmitter<Listing>;
   noresults: string = "There are no listings right now. Come back again soon!";
 
-  constructor() {
-    this.onBookmarkToggle = new EventEmitter<Listing>();
+  constructor(private favoriteService: FavoriteService, private userService: UserService) {
+    this.onFavoritedToggle = new EventEmitter<Listing>();
   }
 
   ngOnInit() {}
 
-  onBookmark(listing: Listing) {
-    this.onBookmarkToggle.emit(listing);
+  ngOnChanges() {
+    this.listings.map(async listing => {
+      listing.$$isFavorited = await this.favoriteService.getFavorite(listing, this.userService.currentUser());
+      return listing;
+    });
+
+    console.log(this.listings);
+  }
+
+  onFavorited(listing: Listing) {
+    this.onFavoritedToggle.emit(listing);
   }
 }

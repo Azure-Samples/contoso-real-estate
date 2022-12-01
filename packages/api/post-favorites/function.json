@@ -5,8 +5,10 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "methods": ["get"],
-      "route": "favorites/{slug}"
+      "methods": [
+        "post"
+      ],
+      "route": "favorites"
     },
     {
       "type": "http",
@@ -14,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/get-favorite-by-slug/index.js"
+  "scriptFile": "../dist/post-favorites/index.js"
 }
