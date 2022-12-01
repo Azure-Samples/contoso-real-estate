@@ -1,10 +1,14 @@
+declare interface User {
+  id: string;
+  name: string;
+}
+
 declare interface Listing {
   bathrooms: number;
   bedrooms: number;
   createdAt: string;
   description: string;
   id: string;
-  isFavorited: boolean;
   isFeatured: boolean;
   isRecommended: boolean;
   photos: string[];
@@ -25,6 +29,7 @@ declare interface Listing {
     rent: number;
     currency: { code: string; symbol: string };
   };
+  $$isFavorited?: boolean;
 }
 
 declare interface StageType {
@@ -47,4 +52,17 @@ declare interface Address {
   zipCode: string;
 }
 
-declare interface Reservation {}
+declare interface Reservation {
+}
+
+declare interface ReservationRequest {
+  userId: string;
+  listingId: string | undefined;
+  from: string;
+  to: string;
+  guests: number;
+}
+
+declare interface CheckoutSession {
+  sessionUrl: string;
+}

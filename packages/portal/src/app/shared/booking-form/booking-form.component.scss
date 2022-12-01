@@ -1,6 +1,13 @@
 :host {
-  width: 300px;
-  height: 100%;
+  width: 100%;
+
+  @media screen and (min-width: 1024px) {
+    width: 300px;
+    height: 100%;
+    display: grid;
+  }
+
+  
   border: 1px solid #ddd;
   border-radius: 10px;
   margin: 0 4px;

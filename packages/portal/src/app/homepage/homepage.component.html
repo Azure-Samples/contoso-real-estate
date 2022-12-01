@@ -10,7 +10,7 @@
     We offer a wide variety of listings across the glob, so you can find the perfect place to call home.
   </p>
   <p class="stage__button">
-    <a mat-flat-button color="primary" href="#">Browse listing</a>
+    <a mat-flat-button color="primary" href="#">Browse listings</a>
     <a mat-flat-button href="#">Visit our blog</a>
   </p>
 </section>
@@ -19,5 +19,5 @@
 
 <section class="featured-listings inner-wrapper">
   <h2 class="subtitle">Featured Listings</h2>
-  <app-card-list [listings]="listings" (onBookmarkToggle)="onBookmarkToggle($event)"></app-card-list>
+  <app-card-list [listings]="listings" (onFavoritedToggle)="onFavoritedToggle($event)"></app-card-list>
 </section>

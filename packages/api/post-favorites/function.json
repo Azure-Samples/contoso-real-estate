@@ -6,9 +6,9 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get"
+        "post"
       ],
-      "route": "favorites/{slug}"
+      "route": "favorites"
     },
     {
       "type": "http",
@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/get-favorite-by-slug/index.js"
+  "scriptFile": "../dist/post-favorites/index.js"
 }

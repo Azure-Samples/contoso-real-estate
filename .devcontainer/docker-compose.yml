@@ -1,19 +1,19 @@
-version: '3'
+version: "3"
 
 services:
   app:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
       args:
-            USER_UID: 1000
-            USER_GID: 1000
-            VARIANT: 16
+        USER_UID: 1000
+        USER_GID: 1000
+        VARIANT: 16
 
     init: true
     volumes:
-        - /var/run/docker.sock:/var/run/docker-host.sock
-        - ..:/workspace:cached
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      - ..:/workspace:cached
 
     entrypoint: /usr/local/share/docker-init.sh
     command: sleep infinity
@@ -25,8 +25,8 @@ services:
     mem_limit: 3g
     cpu_count: 2
     environment:
-        AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 10
-        AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: "true"
+      AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 10
+      AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: "true"
     volumes:
-        # Forwards the local Docker socket to the container.
-        - /var/run/docker.sock:/var/run/docker-host.sock
+      # Forwards the local Docker socket to the container.
+      - /var/run/docker.sock:/var/run/docker-host.sock

@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { MatCardModule } from "@angular/material/card";
-import { MatButtonModule } from "@angular/material/button";
 import { CommonModule } from "@angular/common";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
 import { RouterModule } from "@angular/router";
 
 @Component({
@@ -11,20 +11,20 @@ import { RouterModule } from "@angular/router";
   standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule],
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnChanges {
   @Input() listing!: Listing;
 
   monthlyRentPriceWithDiscount = 0;
 
-  @Output() onBookmark: EventEmitter<Listing>;
+  @Output() onFavorited: EventEmitter<Listing>;
 
   isBookmarked = false;
 
-  bedroomsMapping: { [k: string]: string } = {"=1": "1 bedroom", other: "# bedrooms" };
-  bathroomsMapping: { [k: string]: string } = {"=1": "1 bathroom", other: "# bathrooms" };
+  bedroomsMapping: { [k: string]: string } = { "=1": "1 bedroom", other: "# bedrooms" };
+  bathroomsMapping: { [k: string]: string } = { "=1": "1 bathroom", other: "# bathrooms" };
 
   constructor() {
-    this.onBookmark = new EventEmitter<Listing>();
+    this.onFavorited = new EventEmitter<Listing>();
   }
 
   ngOnInit(): void {}
@@ -34,7 +34,6 @@ export class CardComponent implements OnInit {
   }
 
   bookmark() {
-    this.listing.isFavorited = !this.listing.isFavorited;
-    this.onBookmark.emit(this.listing);
+    this.onFavorited.emit(this.listing);
   }
 }

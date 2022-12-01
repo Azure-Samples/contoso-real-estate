@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-success,
+.checkout-cancel,
+.checkout-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.material-symbols-outlined {
+  font-size: 5rem;
+  padding: 10px;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.checkout-success > .material-symbols-outlined {
+  background-color: #2d7;
+}
+
+.checkout-cancel > .material-symbols-outlined {
+  background-color: #d27;
+}
+
+.checkout-error > .material-symbols-outlined {
+  background-color: #d27;
+}

@@ -1,11 +1,11 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { getFavoriteMock } from "../models/favorite";
-
-const data = async ({ offset, limit }: { offset: number; limit: number }) => await getFavoriteMock({ offset, limit });
+import { getFavoriteMock, getFavoriteByListingIdAndUserId } from "../models/favorite";
 
 const getFavorite: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const offset = Number(req.query.offset) || 0;
   const limit = Number(req.query.limit) || 10;
+  const userId = req.query.user;
+  const listingId = req.query.listing;
 
   if (offset < 0) {
     context.res = {
@@ -33,9 +33,28 @@ const getFavorite: AzureFunction = async function (context: Context, req: HttpRe
     return;
   }
 
+  if (userId && listingId) {
+    const favorite = await getFavoriteByListingIdAndUserId({ userId, listingId });
+
+    if (favorite) {
+      context.res = {
+        body: favorite,
+      };
+    } else {
+      context.res = {
+        status: 404,
+        body: {
+          error: "Favorite not found",
+        },
+      };
+    }
+
+    return;
+  }
+
   context.res = {
     body: {
-      listings: await data({ offset, limit }),
+      listings: await getFavoriteMock({ offset, limit }),
     },
   };
 };

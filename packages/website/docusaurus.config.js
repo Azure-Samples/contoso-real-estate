@@ -10,48 +10,45 @@ const darkCodeTheme = require("prism-react-renderer/themes/vsDark");
 //   See: https://docusaurus.io/docs/configuration#custom-configurations
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-
   // CONFIG: Add Custom Fields - globally reference them from siteConfig
   //    See: https://docusaurus.io/docs/deployment#using-environment-variables
   customFields: {
     description: "This specification defines a use case for a fictional rentals portals app.",
   },
-  
+
   // CONFIG: Landing Pages uses this (also globally via siteConfig)
   title: "Contoso HR Rentals Portal",
   tagline: "A JavaScript E2E Multi-Purpose Extensible App",
 
   // CONIFIG; GitHub Pages or SWA => TODO: Modify below when merging
-  url: 'https://contoso-real-estate.github.io/',  
-  baseUrl: '/',                  // FOR GH '/contoso-real-estate/'
-  deploymentBranch: 'gh-pages',  // FOR GH: Activate Pages in Settings
+  url: "https://contoso-real-estate.github.io/",
+  baseUrl: "/", // FOR GH '/contoso-real-estate/'
+  deploymentBranch: "gh-pages", // FOR GH: Activate Pages in Settings
   favicon: "img/favicon.ico",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "contoso-real-estate", 
-  projectName: "contoso-real-estate", 
+  organizationName: "contoso-real-estate",
+  projectName: "contoso-real-estate",
 
   // CONFIG: Early detection for site health
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
   presets: [
-
     [
       // -- START presets-classic options ----
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-
         // CONFIG: docs = collections of pages, tutorials, documentation
         //    See: https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs
         // Disable: set docs: false, then remove links from navbar
@@ -60,11 +57,11 @@ const config = {
         // Mermaid integration:
         //  https://github.com/sjwall/mdx-mermaid
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: '/',
+          sidebarPath: require.resolve("./sidebars.js"),
+          routeBasePath: "/",
         },
 
-        // CONFIG: blog = timestamped pages, tags, site feed 
+        // CONFIG: blog = timestamped pages, tags, site feed
         //    See: https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog
         // Disable: set blog: false, then remove links from navbar
         blog: false,
@@ -72,25 +69,21 @@ const config = {
         // CONFIG: theme = currently using `classic`
         //    See: https://docusaurus.io/docs/api/themes/@docusaurus/theme-classic
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       }),
       // -- END presets-classic options ----
-
     ],
-
   ],
-
 
   // CONFIG: theme = set properties for UI like navbar, footer, docs, copyright etc.
   //    See: https://docusaurus.io/docs/api/docusaurus-config#themeConfig
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-
       // CONFIG: sidebar
       //    See:
-      docs :{
+      docs: {
         sidebar: {
           hideable: false,
           autoCollapseCategories: false,
@@ -100,37 +93,37 @@ const config = {
       // CONFIG: default theme color mode
       //    See:
       colorMode: {
-        defaultMode: 'light',
+        defaultMode: "light",
         disableSwitch: false,
         respectPrefersColorScheme: true,
       },
 
       navbar: {
-        title: 'Contoso Rentals',
+        title: "Contoso Rentals",
         logo: {
-          alt: 'Contoso Rentals Logo',
-          src: '/img/logo.svg',
-          target: '_self',
+          alt: "Contoso Rentals Logo",
+          src: "/img/logo.svg",
+          target: "_self",
           width: 32,
           height: 32,
         },
-        style: 'primary',
+        style: "primary",
         items: [
-          {to: '/specification', label: 'Specification', position: 'right'},
-          {to: '/scenarios', label: 'Scenarios', position: 'right'},
-          { 
-            href: 'https://github.com/nitya/contoso-real-estate',
-            position: 'right',
-            className: 'header-github-link',
-            'aria-label': 'GitHub repository',
-          },  
+          { to: "/specification", label: "Specification", position: "right" },
+          { to: "/scenarios", label: "Scenarios", position: "right" },
+          {
+            href: "https://github.com/nitya/contoso-real-estate",
+            position: "right",
+            className: "header-github-link",
+            "aria-label": "GitHub repository",
+          },
         ],
       },
 
       footer: {
         style: "light",
         copyright: `Copyright © ${new Date().getFullYear()} Microsoft - Made with ♥️ by DevDiv & JS Advocacy`,
-        links: []
+        links: [],
       },
 
       prism: {
