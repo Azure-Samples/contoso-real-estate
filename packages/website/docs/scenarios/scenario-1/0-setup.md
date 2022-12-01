@@ -80,7 +80,7 @@ AZURE_REGION_LOCATION=
 
 to an alternative region, from the ones listed [here](https://azure.github.io/static-web-apps-cli/docs/cli/env-vars)
 
-- there is a configuration file called `staticwebapp.config.json`, under `contoso-real-estate/packages/portal/. Make sure to add the following snippet
+- There is a configuration file called `staticwebapp.config.json`, under `contoso-real-estate/packages/portal/src/assets/. Make sure to add the following snippet:
 
 ```json
 {
