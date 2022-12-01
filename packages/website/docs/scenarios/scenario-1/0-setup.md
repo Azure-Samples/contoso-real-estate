@@ -4,7 +4,7 @@ title: Setup
 
 This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer.
 
-It will also instruct you how to deploy it to [Azure Static Web Apps](https://learn.microsoft.com/en-us/azure/static-web-apps/overview), to publish it to the cloud!
+It will also instruct you how to deploy it to [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview), to publish it to the cloud!
 
 ## Prerequisites
 
