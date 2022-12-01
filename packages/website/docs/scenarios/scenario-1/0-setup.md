@@ -37,7 +37,7 @@ Your default browser should open a new window with the application running. If y
 4) Assuming you are in the folder `contoso-real-estate/packages/portal` and that you have started the Angular application in the default port 4200, start the emulator by executing 
 
 ```bash
-swa start http://localhost:4200 --api-location ./api
+swa start http://localhost:4200 --api-location ../api
 ```
 
 5) Go to `http://localhost:4280`. The application and the API should be running and functional. You should be able to see the homepage and the cards or teasers for the listings. You should be able to navigate to any of the listings detail page by clicking in any of the cards.
