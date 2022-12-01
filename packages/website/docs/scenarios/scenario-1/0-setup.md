@@ -27,7 +27,7 @@ This operation will also install the [Azure Static Web Apps CLI](https://azure.g
 3) assuming you are now in the `contoso-real-estate` or _root_ folder, go to the terminal and run
 
 ```bash
-cd packages/portal && ng serve && swa
+npm start
 ```
 
 Follow the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/docs/cli/swa) prompts to complete the configuration.
