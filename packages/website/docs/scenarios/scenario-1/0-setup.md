@@ -100,6 +100,6 @@ If your deployment still fails, run
 swa deploy verbose=silly
 ```
 
-Copy the log and open an issue in our open-source [repo](https://github.com/Azure/static-web-apps-cli). We will love to hear from you!
+Copy the log and open an issue in our open-source [Azure Static Web Apps CLI repository](https://github.com/Azure/static-web-apps-cli). We will love to hear from you!
 
 Happy coding! 🚀
