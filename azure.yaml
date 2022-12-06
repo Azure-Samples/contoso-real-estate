@@ -12,3 +12,12 @@ services:
     project: packages/portal
     language: ts
     host: staticwebapp
+
+  blog-cms:
+    project: packages/blog-cms
+    host: containerapp
+
+  blog:
+    project: packages/blog
+    language: ts
+    host: staticwebapp
