@@ -6,9 +6,8 @@ param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
 param serviceName string = 'blog-cms'
-param databaseServerHost string
-param databaseName string = 'citus'
-param databaseUsername string = 'citus'
+param databaseName string = 'blog-cms'
+param databaseUsername string = 'blog-cms'
 param appKeys string
 param apiTokenSalt string
 
@@ -20,6 +19,19 @@ param jwtSecret string
 
 @secure()
 param adminJwtSecret string
+
+param serverName string
+
+module db '../core/database/postgres.bicep' = {
+  name: '${serviceName}-blog-cms'
+  params: {
+    administratorLogin: databaseUsername
+    administratorLoginPassword: databasePassword
+    location: location
+    serverName: serverName
+    databaseName: databaseName
+  }
+}
 
 module app '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
@@ -36,7 +48,7 @@ module app '../core/host/container-app.bicep' = {
       }
       {
         name: 'DATABASE_HOST'
-        value: databaseServerHost
+        value: db.outputs.SERVER_HOST
       }
       {
         name: 'DATABASE_USER'
@@ -80,8 +92,6 @@ module app '../core/host/container-app.bicep' = {
   }
 }
 
-// todo: work out how to deploy the DB backend
-
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing = {
   name: applicationInsightsName
 }
@@ -90,3 +100,6 @@ output SERVICE_BLOG_CMS_IDENTITY_PRINCIPAL_ID string = app.outputs.identityPrinc
 output SERVICE_BLOG_CMS_NAME string = app.outputs.name
 output SERVICE_BLOG_CMS_URI string = app.outputs.uri
 output SERVICE_BLOG_CMS_IMAGE_NAME string = app.outputs.imageName
+output SERVICE_BLOG_CMS_SERVER_NAME string = db.name
+output SERVICE_BLOG_CMS_DATABASE_NAME string = db.outputs.DB_NAME
+output SERVICE_BLOG_CMS_SERVER_HOST string = db.outputs.SERVER_HOST

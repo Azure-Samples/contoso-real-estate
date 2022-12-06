@@ -10,6 +10,21 @@
     },
     "principalId": {
       "value": "${AZURE_PRINCIPAL_ID}"
+    },
+    "cmsDatabasePassword": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "jwtSecret": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "adminJwtSecret": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "apiTokenSalt": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "appKeys": {
+      "value": "$(secretOrRandomPassword)"
     }
   }
 }

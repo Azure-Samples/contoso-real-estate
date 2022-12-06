@@ -24,6 +24,8 @@ param jwtSecret string
 @secure()
 param adminJwtSecret string
 
+param cmsDatabaseServerName string = ''
+
 @secure()
 param cmsDatabasePassword string
 
@@ -107,7 +109,7 @@ module cms './app/blog-cms.bicep' = {
     appKeys: appKeys
     jwtSecret: jwtSecret
     databasePassword: cmsDatabasePassword
-    databaseServerHost: '' // todo - make a db resource
+    serverName: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
   }
 }
 
