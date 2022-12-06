@@ -18,14 +18,14 @@ services:
     entrypoint: /usr/local/share/docker-init.sh
     command: sleep infinity
 
-    network_mode: service:cosmos
     environment:
       DATABASE_HOST: pg
       DATABASE_USER: postgres
-      DATABASE_PASSWORD: $AzureR0cks!
+      DATABASE_PASSWORD: AzureR0cks!
       DATABASE_NAME: blog
     links:
       - pg
+      - cosmos
 
   cosmos:
     container_name: cosmos-contoso-real-estate
@@ -42,7 +42,7 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_PASSWORD: $AzureR0cks!
+      POSTGRES_PASSWORD: AzureR0cks!
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -50,3 +50,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+volumes:
+  pgdata:
