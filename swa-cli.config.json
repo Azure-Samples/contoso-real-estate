@@ -9,6 +9,17 @@
       "apiBuildCommand": "npm run build --if-present",
       "run": "npm start",
       "appDevserverUrl": "http://localhost:4200"
+    },
+    "blog": {
+      "appLocation": "packages/blog",
+      "outputLocation": "packages/blog/.next",
+      "appBuildCommand": "npm run build",
+      "run": "npm start",
+      "appDevserverUrl": "http://localhost:4201",
+      "apiLocation": "packages/blog-cms",
+      "apiBuildCommand": "npm run build --if-present",
+      "apiRunCommand": "npm start",
+      "apiDevserverUrl": "http://localhost:1337"
     }
   }
 }
