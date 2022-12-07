@@ -5,7 +5,7 @@ import { BookingFormComponent } from "../shared/booking-form/booking-form.compon
 import { FavoriteService } from "../shared/services/favorite-service/favorite.service";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/services/listing-service/listing.service";
-import { ReservationService } from "../shared/reservation.service";
+import { ReservationService } from "../shared/services/reservation-service/reservation.service";
 import { UserService } from "../shared/user.service";
 
 @Component({
