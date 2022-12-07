@@ -43,6 +43,7 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: AzureR0cks!
+      POSTGRES_DB: blog
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
