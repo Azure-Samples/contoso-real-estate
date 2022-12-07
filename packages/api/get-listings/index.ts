@@ -1,11 +1,12 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions";
+import { Context, HttpRequest } from "@azure/functions";
 import { getListings } from "../models/listing";
 
-const data = async ({ offset, limit }: { offset: number; limit: number }) => await getListings({ offset, limit });
+const data = async ({ offset, limit, featured }: { offset: number; limit: number, featured: boolean }) => await getListings({ offset, limit, featured });
 
 export default async function (context: Context, req: HttpRequest): Promise<void> {
   const offset = Number(req.query.offset) || 0;
   const limit = Number(req.query.limit) || 10;
+  const featured = Boolean(req.query.featured) || false;
 
   if (offset < 0) {
     context.res = {
@@ -35,7 +36,7 @@ export default async function (context: Context, req: HttpRequest): Promise<void
 
   context.res = {
     body: {
-      listings: await data({ offset, limit }),
+      listings: await data({ offset, limit, featured }),
     },
   };
 }

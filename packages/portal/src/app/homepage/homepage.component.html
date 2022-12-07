@@ -19,5 +19,6 @@
 
 <section class="featured-listings inner-wrapper">
   <h2 class="subtitle">Featured Listings</h2>
-  <app-card-list [listings]="listings" (onFavoritedToggle)="onFavoritedToggle($event)"></app-card-list>
+  <app-card-list [listings]="featuredListings" (onFavoritedToggle)="onFavoritedToggle($event)"></app-card-list>
+  <div class="featured-listings__loading" appInfiniteScroll (onLoadRequested)="loadNextFeaturedListings()"></div>
 </section>

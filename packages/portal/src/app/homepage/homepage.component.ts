@@ -3,6 +3,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { CardListComponent } from "../shared/card-list/card-list.component";
 import { FavoriteService } from "../shared/favorite.service";
+import { InfiniteScrollingDirective } from "../shared/infinite-scrolling.directive";
 import { ListingService } from "../shared/listing.service";
 import { UserService } from "../shared/user.service";
 
@@ -11,10 +12,10 @@ import { UserService } from "../shared/user.service";
   templateUrl: "./homepage.component.html",
   styleUrls: ["./homepage.component.scss"],
   standalone: true,
-  imports: [CardListComponent, MatButtonModule, MatDividerModule],
+  imports: [CardListComponent, MatButtonModule, MatDividerModule, InfiniteScrollingDirective],
 })
 export class HomepageComponent implements OnInit {
-  listings: Listing[] = [];
+  featuredListings: Listing[] = [];
   constructor(
     private listingService: ListingService,
     private favoriteService: FavoriteService,
@@ -22,7 +23,7 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.listings = (await this.listingService.getListings()).filter((listing: Listing) => listing.isFeatured);
+    this.featuredListings = await this.listingService.getFeaturedListings();
   }
 
   async onFavoritedToggle(listing: Listing) {
@@ -34,15 +35,25 @@ export class HomepageComponent implements OnInit {
       }
 
       listing.$$isFavorited = false;
-
     } else {
-      const status = !await this.favoriteService.addFavorite(listing, this.userService.currentUser());
+      const status = !(await this.favoriteService.addFavorite(listing, this.userService.currentUser()));
       if (status === false) {
         alert("An error occurred while adding the listing to your favorites. Please try again later.");
         return;
       }
 
       listing.$$isFavorited = true;
+    }
+  }
+
+  async loadNextFeaturedListings() {
+    const nextListings = await this.listingService.getFeaturedListings({ offset: this.featuredListings.length });
+
+    if (nextListings?.length) {
+      this.featuredListings = [
+        ...this.featuredListings,
+        ...nextListings,
+      ];
     }
   }
 }

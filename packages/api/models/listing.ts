@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { model as addressModel } from "./address";
 
-const MAX_ENTRIES = 100;
+const MAX_ENTRIES = 10000;
 let CACHE: any[] = [];
 
 function model({ slug }: { slug?: number } = {}) {
@@ -99,15 +99,21 @@ function model({ slug }: { slug?: number } = {}) {
   };
 }
 
-export async function getListings({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
+export async function getListings({ offset, limit, featured}: { offset: number; limit: number, featured: boolean }): Promise<any[]> {
   if (CACHE.length === 0) {
     CACHE = Array.from({ length: MAX_ENTRIES }, () => model());
   }
 
-  return CACHE.slice(offset, offset + limit).map(model => {
+  let listing = CACHE.slice(offset, offset + limit).map(model => {
     model.$self = `/api/listings/${model.slug}`;
     return model;
   });
+
+  if (featured) {
+    listing = listing.filter(listing => listing.isFeatured);
+  }
+
+  return listing;
 }
 
 export async function getListingBySlug({ slug }: { slug: string | undefined }): Promise<any> {
