@@ -6,7 +6,7 @@ import { FavoriteService } from "../shared/services/favorite-service/favorite.se
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/services/listing-service/listing.service";
 import { ReservationService } from "../shared/services/reservation-service/reservation.service";
-import { UserService } from "../shared/user.service";
+import { UserService } from "../shared/services/user-service/user.service";
 
 @Component({
   selector: "app-rentalpage",

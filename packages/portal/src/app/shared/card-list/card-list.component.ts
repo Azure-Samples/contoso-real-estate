@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angu
 import { RouterModule } from "@angular/router";
 import { CardComponent } from "../card/card.component";
 import { FavoriteService } from "../services/favorite-service/favorite.service";
-import { UserService } from "../user.service";
+import { UserService } from "../services/user-service/user.service";
 
 @Component({
   selector: "app-card-list",
@@ -16,7 +16,7 @@ export class CardListComponent implements OnInit, OnChanges {
   @Input() listings: Listing[] = [];
 
   @Output() onFavoritedToggle: EventEmitter<Listing>;
-  noresults: string = "There are no listings right now. Come back again soon!";
+  noresults = "There are no listings right now. Come back again soon!";
 
   constructor(private favoriteService: FavoriteService, private userService: UserService) {
     this.onFavoritedToggle = new EventEmitter<Listing>();

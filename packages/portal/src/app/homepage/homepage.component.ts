@@ -4,7 +4,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { CardListComponent } from "../shared/card-list/card-list.component";
 import { FavoriteService } from "../shared/services/favorite-service/favorite.service";
 import { ListingService } from "../shared/services/listing-service/listing.service";
-import { UserService } from "../shared/user.service";
+import { UserService } from "../shared/services/user-service/user.service";
 
 @Component({
   selector: "app-homepage",
