@@ -1,6 +1,5 @@
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
-import rehypeSanitize from "rehype-sanitize"
 import Moment from "react-moment"
 import NextImage from "../../components/image"
 import Layout from "../../components/layout"
