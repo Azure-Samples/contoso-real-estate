@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
-import { FavoriteService } from "../shared/favorite.service";
+import { FavoriteService } from "../shared/services/favorite-service/favorite.service";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/listing.service";
 import { ReservationService } from "../shared/reservation.service";

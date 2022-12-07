@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { CardListComponent } from "../shared/card-list/card-list.component";
-import { FavoriteService } from "../shared/favorite.service";
+import { FavoriteService } from "../shared/services/favorite-service/favorite.service";
 import { ListingService } from "../shared/listing.service";
 import { UserService } from "../shared/user.service";
 
@@ -19,7 +19,7 @@ export class HomepageComponent implements OnInit {
     private listingService: ListingService,
     private favoriteService: FavoriteService,
     private userService: UserService,
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.listings = (await this.listingService.getListings()).filter((listing: Listing) => listing.isFeatured);

@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { CardComponent } from "../card/card.component";
-import { FavoriteService } from "../favorite.service";
+import { FavoriteService } from "../services/favorite-service/favorite.service";
 import { UserService } from "../user.service";
 
 @Component({
@@ -22,7 +22,7 @@ export class CardListComponent implements OnInit, OnChanges {
     this.onFavoritedToggle = new EventEmitter<Listing>();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnChanges() {
     this.listings.map(async listing => {
