@@ -21,3 +21,4 @@ services:
     project: packages/blog
     language: ts
     host: staticwebapp
+    dist: .

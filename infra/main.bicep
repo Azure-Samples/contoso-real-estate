@@ -117,7 +117,7 @@ module blog 'app/blog.bicep' = {
   name: 'blog'
   scope: rg
   params: {
-    cmsAppName: cms.outputs.SERVICE_BLOG_CMS_NAME
+    cmsUrl: cms.outputs.SERVICE_BLOG_CMS_URI
     environmentName: environmentName
     location: location
   }

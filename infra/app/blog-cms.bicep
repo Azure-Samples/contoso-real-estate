@@ -7,7 +7,7 @@ param containerRegistryName string
 param imageName string = ''
 param serviceName string = 'blog-cms'
 param databaseName string = 'blog-cms'
-param databaseUsername string = 'blog-cms'
+param databaseUsername string = 'contoso'
 param appKeys string
 param apiTokenSalt string
 
@@ -23,7 +23,7 @@ param adminJwtSecret string
 param serverName string
 
 module db '../core/database/postgres.bicep' = {
-  name: '${serviceName}-blog-cms'
+  name: serviceName
   params: {
     administratorLogin: databaseUsername
     administratorLoginPassword: databasePassword
