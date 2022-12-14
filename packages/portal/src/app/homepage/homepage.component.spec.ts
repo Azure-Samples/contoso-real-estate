@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { HomepageComponent } from "./homepage.component";
@@ -7,13 +8,15 @@ describe("HomepageComponent", () => {
   let fixture: ComponentFixture<HomepageComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [HomepageComponent],
-    }).compileComponents();
-
+    TestBed.overrideComponent(HomepageComponent, {
+      set: {
+        imports: [],
+        schemas: [NO_ERRORS_SCHEMA],
+      },
+    });
     fixture = TestBed.createComponent(HomepageComponent);
+    fixture.autoDetectChanges();
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {
