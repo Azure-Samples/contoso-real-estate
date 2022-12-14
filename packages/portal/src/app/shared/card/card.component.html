@@ -1,13 +1,13 @@
 <section>
   <mat-card>
-    <img mat-card-image src="/assets/images/{{ listing.photos[0] }}" alt="{{ listing.title }}" />
+    <img mat-card-image src="/assets/images/{{ listing?.photos?.[0] }}" alt="{{ listing?.title }}" />
     <mat-card-content>
-      <mat-card-title>{{ listing.title }}</mat-card-title>
-      <mat-card-subtitle> {{ listing.address.city }}, {{ listing.address.country }}</mat-card-subtitle>
-      <p class="listing-description">{{ listing.description.substr(0, 100) }}...</p>
+      <mat-card-title>{{ listing?.title }}</mat-card-title>
+      <mat-card-subtitle> {{ listing?.address?.city }}, {{ listing?.address?.country }}</mat-card-subtitle>
+      <p class="listing-description">{{ listing?.description?.substr(0, 100) }}...</p>
 
       <button
-        *ngIf="listing.$$isFavorited"
+        *ngIf="listing?.$$isFavorited"
         (click)="bookmark()"
         title="Remove this listing from favorites"
         class="bookmark-listing"
@@ -16,23 +16,23 @@
           bookmark_added
         </span>
       </button>
-      <button *ngIf="!listing.$$isFavorited" (click)="bookmark()" title="Save this listing" class="bookmark-listing">
+      <button *ngIf="!listing?.$$isFavorited" (click)="bookmark()" title="Save this listing" class="bookmark-listing">
         <span aria-hidden="false" aria-label="Save this listing" class="material-symbols-outlined"> bookmark </span>
       </button>
     </mat-card-content>
     <mat-card-actions>
       <div>
-        <h2>{{ this.monthlyRentPriceWithDiscount | currency: listing.fees.currency.symbol }}/month</h2>
+        <h2>{{ this.monthlyRentPriceWithDiscount | currency: listing?.fees?.currency?.symbol }}/month</h2>
         <h5>
-          {{ listing.bedrooms | i18nPlural: bedroomsMapping }}, {{ listing.bathrooms | i18nPlural: bathroomsMapping }}
+          {{ listing?.bedrooms | i18nPlural: bedroomsMapping }}, {{ listing?.bathrooms | i18nPlural: bathroomsMapping }}
         </h5>
       </div>
       <a
         mat-flat-button
         color="primary"
         class="card-link"
-        [title]="listing.title"
-        [routerLink]="['/listing/' + listing.slug]"
+        [title]="listing?.title"
+        [routerLink]="['/listing/' + listing?.slug]"
         [state]="{ listing }"
         >View listing</a
       >

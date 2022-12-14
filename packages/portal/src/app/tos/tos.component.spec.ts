@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { TosComponent } from "./tos.component";
 
 describe("TosComponent", () => {
@@ -7,13 +6,9 @@ describe("TosComponent", () => {
   let fixture: ComponentFixture<TosComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TosComponent],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(TosComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
+    component = fixture.componentInstance;
   });
 
   it("should create", () => {

@@ -1,11 +1,10 @@
 import { Component, NgZone } from "@angular/core";
-import { By } from "@angular/platform-browser";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { InfiniteScrollingDirective } from "./infinite-scrolling.directive";
 
 @Component({
   standalone: true,
-  template: `<i appInfiniteScrolling></i>`,
+  template: `<span appInfiniteScrolling></span>`,
 })
 class TestComponent {}
 

@@ -15,12 +15,12 @@ import { UserService } from "../user.service";
 export class CardListComponent implements OnChanges {
   @Input() listings: Listing[] = [];
 
-  @Output() onFavoritedToggle: EventEmitter<Listing>;
+  @Output() onFavoritedToggle: EventEmitter<Listing | null>;
   @Output() scroll: EventEmitter<void> = new EventEmitter();
   noresults = "There are no listings right now. Come back again soon!";
 
   constructor(private favoriteService: FavoriteService, private userService: UserService) {
-    this.onFavoritedToggle = new EventEmitter<Listing>();
+    this.onFavoritedToggle = new EventEmitter<Listing | null>();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -32,7 +32,7 @@ export class CardListComponent implements OnChanges {
     }
   }
 
-  onFavorited(listing: Listing) {
+  onFavorited(listing: Listing | null) {
     this.onFavoritedToggle.emit(listing);
   }
 }

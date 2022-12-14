@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { TextBlockComponent } from "./text-block.component";
 
 describe("TextComponent", () => {
@@ -7,13 +6,9 @@ describe("TextComponent", () => {
   let fixture: ComponentFixture<TextBlockComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TextBlockComponent],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(TextBlockComponent);
+    fixture.autoDetectChanges();
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {
