@@ -16,7 +16,7 @@ export class InfiniteScrollingDirective implements OnDestroy {
       threshold: this.intersectionThreshold,
     };
 
-    this.intersectionObserver = new IntersectionObserver(this.onIntersectionCallback.bind(this), config);
+    this.intersectionObserver = new window.IntersectionObserver(this.onIntersectionCallback.bind(this), config);
     this.intersectionObserver.observe(this.element.nativeElement);
   }
 
@@ -25,7 +25,7 @@ export class InfiniteScrollingDirective implements OnDestroy {
   }
 
   private onIntersectionCallback(entries: IntersectionObserverEntry[]) {
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         this.zone.run(() => {
           this.onLoadRequested.emit();

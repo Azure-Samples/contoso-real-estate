@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { MatCardModule } from "@angular/material/card";
+import { Component, Input } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
 
 @Component({
   selector: "app-hero-stage",
@@ -9,11 +9,7 @@ import { MatButtonModule } from "@angular/material/button";
   standalone: true,
   imports: [MatCardModule, MatButtonModule],
 })
-export class HeroStageComponent implements OnInit {
+export class HeroStageComponent {
   @Input()
-  stage!: StageType;
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  stage!: StageType | null;
 }

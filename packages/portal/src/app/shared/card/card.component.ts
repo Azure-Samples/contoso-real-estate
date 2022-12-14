@@ -12,11 +12,11 @@ import { RouterModule } from "@angular/router";
   imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule],
 })
 export class CardComponent implements OnInit, OnChanges {
-  @Input() listing!: Listing;
+  @Input() listing!: Listing | null;
 
   monthlyRentPriceWithDiscount = 0;
 
-  @Output() onFavorited: EventEmitter<Listing>;
+  @Output() onFavorited: EventEmitter<Listing | null>;
 
   isBookmarked = false;
 
@@ -24,13 +24,15 @@ export class CardComponent implements OnInit, OnChanges {
   bathroomsMapping: { [k: string]: string } = { "=1": "1 bathroom", other: "# bathrooms" };
 
   constructor() {
-    this.onFavorited = new EventEmitter<Listing>();
+    this.onFavorited = new EventEmitter<Listing | null>();
   }
 
   ngOnInit(): void {}
 
   ngOnChanges() {
-    this.monthlyRentPriceWithDiscount = Math.max(0, this.listing.fees.rent * (1 - this.listing.fees.discount / 100));
+    if (this.listing) {
+      this.monthlyRentPriceWithDiscount = Math.max(0, this.listing.fees.rent * (1 - this.listing.fees.discount / 100));
+    }
   }
 
   bookmark() {
