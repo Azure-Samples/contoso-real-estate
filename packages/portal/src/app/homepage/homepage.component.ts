@@ -26,7 +26,11 @@ export class HomepageComponent implements OnInit {
     this.featuredListings = await this.listingService.getFeaturedListings();
   }
 
-  async onFavoritedToggle(listing: Listing) {
+  async onFavoritedToggle(listing: Listing | null) {
+    if (!listing) {
+      return;
+    }
+
     if (listing.$$isFavorited) {
       const status = await this.favoriteService.removeFavorite(listing, this.userService.currentUser());
       if (status === false) {
