@@ -15,12 +15,10 @@ import { UserService } from "../shared/user.service";
   imports: [CommonModule, ListingDetailComponent, BookingFormComponent],
 })
 export class RentalpageComponent implements OnInit {
-  listing!: Listing;
+  listing: Listing;
   navigation: Navigation | null;
   reviewStars: number[] = [];
-
   isFavorited = false;
-
   reviewsMapping: { [k: string]: string } = { "=0": "No reviews", "=1": "1 message", other: "# reviews" };
 
   constructor(
