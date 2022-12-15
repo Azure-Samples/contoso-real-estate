@@ -137,3 +137,4 @@ output WEB_BLOG_URI string = blog.outputs.WEB_BLOG_URI
 output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.containerAppsEnvironmentName
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.containerRegistryEndpoint
 output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.containerRegistryName
+output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_BLOG_CMS_URI
