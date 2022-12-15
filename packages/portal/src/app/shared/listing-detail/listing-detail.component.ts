@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-listing-detail",
@@ -8,10 +8,6 @@ import { Component, Input, OnInit } from "@angular/core";
   standalone: true,
   imports: [CommonModule],
 })
-export class ListingDetailComponent implements OnInit {
+export class ListingDetailComponent {
   @Input() listing!: Listing;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
