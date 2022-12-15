@@ -42,7 +42,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        node-version: [15.x, 16.x, 17.x, '>= 18.x']
+        node-version: [16.x, 17.x, '>= 18.x']
 
     steps:
       - uses: actions/checkout@v3
@@ -71,7 +71,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        node-version: [15.x, 16.x, 17.x, '>= 18.x']
+        node-version: [16.x, 17.x, '>= 18.x']
 
     steps:
       - uses: actions/checkout@v3
