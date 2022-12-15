@@ -23,7 +23,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
         with:
@@ -52,7 +52,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
         with:
@@ -81,7 +81,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
         with:
