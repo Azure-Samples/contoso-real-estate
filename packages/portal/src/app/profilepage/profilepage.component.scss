@@ -1,0 +1,41 @@
+
+// override the devider margin left
+.mat-divider.mat-divider-inset {
+  margin-left: 0;
+}
+
+.profile-body .example-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+}
+
+// this is a grid with grid layout (you can google)
+.profile-grid {
+  display: grid;
+  // mobile first, so we make it one column in default
+  grid-template-columns: 1fr;
+  column-gap: 25px;
+  padding: 20px;
+
+  // we override styles for larger viewports
+  @media screen and (min-width: 764px) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.tab-wrapper {
+  padding-top: 25px;
+
+  .mat-card-header {
+    display: block;
+  }
+}
+
+.profile-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  // I also leave this border so you see boundaries 
+  border: 3px solid #673ab7;
+}
+  
