@@ -19,6 +19,4 @@ services:
 
   blog:
     project: packages/blog
-    language: ts
-    host: staticwebapp
-    dist: .
+    host: containerapp

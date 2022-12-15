@@ -118,7 +118,10 @@ module blog 'app/blog.bicep' = {
   scope: rg
   params: {
     cmsUrl: cms.outputs.SERVICE_BLOG_CMS_URI
-    environmentName: environmentName
+    containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
+    containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
+    name: 'blog'
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
     location: location
   }
 }
@@ -131,3 +134,6 @@ output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
 output WEB_PORTAL_URI string = web.outputs.WEB_PORTAL_URI
 output WEB_BLOG_URI string = blog.outputs.WEB_BLOG_URI
+output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.containerAppsEnvironmentName
+output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.containerRegistryEndpoint
+output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.containerRegistryName
