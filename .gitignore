@@ -49,3 +49,6 @@ out
 *.tsbuildinfo
 *.DS_Store
 .azure
+/test-results/
+/playwright-report/
+/playwright/.cache/

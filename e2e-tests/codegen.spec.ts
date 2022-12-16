@@ -1,0 +1,50 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:4280/');
+  await page.goto('http://localhost:4280/home');
+  await page.getByRole('link', { name: 'Home' }).click();
+  await page.locator('mat-toolbar').getByRole('link', { name: 'Contoso Rentals' }).click();
+  await page.getByRole('link', { name: 'About' }).click();
+  await page.locator('mat-toolbar').getByRole('link', { name: 'Contoso Rentals' }).click();
+  await page.getByRole('link', { name: 'Terms of Service' }).click();
+  await page.getByRole('link', { name: 'Browse listings' }).click();
+  await page.getByRole('listitem').filter({ hasText: 'Voluptas qui officia voluptatum rerum aut blanditiis quo consectetur recusandae.' }).getByRole('link', { name: 'View listing' }).click();
+  await page.goto('http://localhost:4280/home');
+  await page.getByRole('img', { name: 'Quae dolor at exercitationem cupiditate.' }).click();
+  await page.getByRole('listitem').filter({ hasText: 'Quae dolor at exercitationem cupiditate. Zemlakboro, IraqCorporis facilis dolor ' }).getByRole('link', { name: 'View listing' }).click();
+  page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.dismiss().catch(() => {});
+  });
+  await page.getByRole('button', { name: 'Share listing' }).click();
+  page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.dismiss().catch(() => {});
+  });
+  await page.getByRole('button', { name: 'Save this listing' }).click();
+  await page.getByText('190 reviews').click();
+  await page.locator('div').filter({ hasText: 'star star star star star' }).locator('span').nth(1).click();
+  await page.locator('div').filter({ hasText: 'star star star star star' }).locator('span').nth(2).click();
+  await page.getByText('fireplace Fireplace').click();
+  await page.getByText('93% OFF').click();
+  await page.getByRole('button', { name: 'User profile menu' }).click();
+  await page.getByRole('menuitem', { name: 'Profile' }).click();
+  await page.getByRole('button', { name: 'User profile menu' }).click();
+  await page.getByRole('menuitem', { name: 'Payments' }).click();
+  await page.getByRole('button', { name: 'User profile menu' }).click();
+  await page.getByRole('menuitem', { name: 'Favorites' }).click();
+  await page.getByRole('button', { name: 'User profile menu' }).click();
+  await page.getByRole('menuitem', { name: 'Reservations' }).click();
+  await page.getByRole('button', { name: 'User profile menu' }).click();
+  await page.getByRole('menuitem', { name: 'Logout' }).click();
+  await page.getByRole('button', { name: 'User profile menu' }).click();
+  await page.getByRole('menuitem', { name: 'Login' }).click();
+  await page.getByRole('main').filter({ hasText: '+5 Photos190 reviews star star star star star bookmark share Quae dolor at exerc' }).click();
+  await page.getByRole('contentinfo').getByRole('link', { name: 'Contoso Rentals' }).click();
+  await page.getByRole('link', { name: 'Visit our blog' }).click();
+  await page.locator('mat-toolbar').getByRole('link', { name: 'Contoso Rentals' }).click();
+  await page.goto('http://localhost:4280/termsofservice');
+  await page.goto('http://localhost:4280/');
+  await page.goto('http://localhost:4280/home');
+});
