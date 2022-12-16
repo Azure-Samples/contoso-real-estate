@@ -2,11 +2,11 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
-import { FavoriteService } from "../shared/services/favorite-service/favorite.service";
+import { FavoriteService } from "../shared/favorite.service";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
-import { ListingService } from "../shared/services/listing-service/listing.service";
-import { ReservationService } from "../shared/services/reservation-service/reservation.service";
-import { UserService } from "../shared/services/user-service/user.service";
+import { ListingService } from "../shared/listing.service";
+import { ReservationService } from "../shared/reservation.service";
+import { UserService } from "../shared/user.service";
 
 @Component({
   selector: "app-rentalpage",

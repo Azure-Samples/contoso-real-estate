@@ -5,7 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 // you were not importing the button module
 import { MatButtonModule } from "@angular/material/button";
-import { UserService } from '../shared/services/user-service/user.service';
+import { UserService } from '../shared/user.service';
 // I am importing the tabs here
 import { MatTabsModule } from '@angular/material/tabs';
 
