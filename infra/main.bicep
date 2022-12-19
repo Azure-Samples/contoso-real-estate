@@ -101,7 +101,7 @@ module cms './app/blog-cms.bicep' = {
   params: {
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    name: 'blog-cms'
+    serviceName: '${abbrs.appContainerApps}-blog-cms-${resourceToken}'
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     location: location
     adminJwtSecret: adminJwtSecret
@@ -110,6 +110,7 @@ module cms './app/blog-cms.bicep' = {
     jwtSecret: jwtSecret
     databasePassword: cmsDatabasePassword
     serverName: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
+    environmentName: environmentName
   }
 }
 
@@ -120,13 +121,15 @@ module blog 'app/blog.bicep' = {
     cmsUrl: cms.outputs.SERVICE_BLOG_CMS_URI
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    name: 'blog'
+    serviceName: '${abbrs.appContainerApps}-blog-${resourceToken}'
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     location: location
+    environmentName: environmentName
   }
 }
 
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
+output APPLICATIONINSIGHTS_NAME string = monitoring.outputs.applicationInsightsName
 output AZURE_COSMOS_CONNECTION_STRING_KEY string = cosmos.outputs.cosmosConnectionStringKey
 output AZURE_COSMOS_DATABASE_NAME string = cosmos.outputs.cosmosDatabaseName
 output AZURE_KEY_VAULT_ENDPOINT string = keyVault.outputs.keyVaultEndpoint
@@ -134,7 +137,9 @@ output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
 output WEB_PORTAL_URI string = web.outputs.WEB_PORTAL_URI
 output WEB_BLOG_URI string = blog.outputs.WEB_BLOG_URI
+output WEB_BLOG_NAME string = blog.outputs.WEB_BLOG_NAME
 output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.containerAppsEnvironmentName
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.containerRegistryEndpoint
 output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.containerRegistryName
 output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_BLOG_CMS_URI
+output SERVICE_BLOG_CMS_NAME string = cms.outputs.SERVICE_BLOG_CMS_NAME
