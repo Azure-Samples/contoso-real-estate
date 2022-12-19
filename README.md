@@ -190,3 +190,8 @@ If you have any feature requests, issues, or areas for improvement, please [file
 ### The SWA CLI
 
 If you have any feature requests, issues, or areas for improvement, please [file an issue](https://github.com/Azure/static-web-apps-cli/issues). To keep up-to-date, ask questions, or share suggestions, join our [GitHub Discussions](https://github.com/Azure/static-web-apps/discussions).
+
+
+## Want to help?
+
+Want to file a bug, contribute some code, or improve the documentation? Excellent! Read up on our guidelines for [contributing](./CONTRIBUTING.md) and then check out one of our issues in the list: [community-help](https://github.com/contoso-real-estate/contoso-real-estate/issues).
