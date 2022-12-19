@@ -5,13 +5,16 @@ param cmsUrl string
 param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
-param name string
+param environmentName string
+
+var abbrs = loadJsonContent('../abbreviations.json')
+var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 
 module app '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
   params: {
-    environmentName: name
-    serviceName: serviceName
+    environmentName: environmentName
+    serviceName: !empty(serviceName) ? serviceName : '${abbrs.appContainerApps}${serviceName}-${resourceToken}'
     location: location
     containerAppsEnvironmentName: containerAppsEnvironmentName
     containerRegistryName: containerRegistryName

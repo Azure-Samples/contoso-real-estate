@@ -5,11 +5,14 @@
     "location": {
       "value": "${AZURE_LOCATION}"
     },
-    "name": {
-      "value": "${SERVICE_WEB_NAME}"
+    "environmentName": {
+      "value": "${AZURE_ENV_NAME}"
+    },
+    "serviceName": {
+      "value": "${WEB_BLOG_NAME}"
     },
     "imageName": {
-      "value": "${SERVICE_WEB_IMAGE_NAME}"
+      "value": "${WEB_BLOG_IMAGE_NAME}"
     },
     "applicationInsightsName": {
       "value": "${APPLICATIONINSIGHTS_NAME}"
