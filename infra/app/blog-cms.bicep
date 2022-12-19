@@ -1,4 +1,4 @@
-param name string
+param environmentName string
 param location string = resourceGroup().location
 
 param applicationInsightsName string
@@ -6,7 +6,7 @@ param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
 param serviceName string = 'blog-cms'
-param databaseName string = 'blog-cms'
+param databaseName string = 'strapi'
 param databaseUsername string = 'contoso'
 param appKeys string
 param apiTokenSalt string
@@ -23,7 +23,7 @@ param adminJwtSecret string
 param serverName string
 
 module db '../core/database/postgres.bicep' = {
-  name: serviceName
+  name: '${serviceName}-database-module'
   params: {
     administratorLogin: databaseUsername
     administratorLoginPassword: databasePassword
@@ -36,7 +36,7 @@ module db '../core/database/postgres.bicep' = {
 module app '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
   params: {
-    environmentName: name
+    environmentName: environmentName
     serviceName: serviceName
     location: location
     containerAppsEnvironmentName: containerAppsEnvironmentName
