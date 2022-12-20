@@ -46,57 +46,26 @@ Access the application at [http://localhost:4280](http://localhost:4280).
 
 ### Provisioning the Azure resources
 
-The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources - including access policies and roles for your account and service-to-service communication with Managed Identities.
-
-1. Open a terminal, change into to this project root folder.
-2. Run the following command to initialize the project, provision Azure resources, and deploy the application code.
-
-```bash
-azd up
-```
-
-Note that when running `azd up` you will be prompted for the following information:
-
-- `Environment Name`: This will be used as a prefix for the resource group that will be created to hold all Azure resources. This name should be unique within your Azure subscription.
-- `Azure Location`: The Azure location where your resources will be deployed.
-- `Azure Subscription`: The Azure Subscription where your resources will be deployed.
-
-> NOTE: This API may only be used used with following Azure locations:
->
-> - Central US
-> - East Asia
-> - East US 2
-> - West Europe
-> - West US 2
->
-> If you attempt to use the project with an unsupported region, the provision step will fail.
-
-> NOTE: This may take a while to complete as it executes three commands: `azd init` (initializes environment), `azd provision` (provisions Azure resources), and `azd deploy` (deploys application code). You will see a progress indicator as it provisions and deploys your application.
-
-When `azd up` is complete it will output the following URLs:
-
-- Azure Portal link to view resources
-- API link for Azure Functions
-
-> NOTE:
->
-> - The `azd up` command will create Azure resources that will incur costs to your Azure subscription. You can clean up those resources manually via the Azure portal or with the `azd down` command.
-> - You can call `azd up` as many times as you like to both provision and deploy your solution.
+<!-- TBD when templates are in place -->
 
 ### Application Architecture
 
 This application utilizes the following Azure resources:
 
+- [**Azure Static Web Apps**](https://azure.microsoft.com/products/app-service/static/) to host the static applications, like the portal and the blog.
+- [**Azure Container Apps**](https://azure.microsoft.com/products/container-apps/) to host the containerized Node.js apps that power the APIs
 - [**Azure Function Apps**](https://docs.microsoft.com/azure/azure-functions/) to host the Serverless API backend
-- [**Azure App Service**](https://docs.microsoft.com/azure/app-service/) needed to deploy Azure Functions
-- [**Azure Cosmos DB API for MongoDB**](https://docs.microsoft.com/azure/cosmos-db/mongodb/mongodb-introduction) for database
+- [**Azure Cosmos DB API for PostgreSQL**](https://learn.microsoft.com/azure/cosmos-db/postgresql) as a database for the rentals and blog posts content
+- [**Azure Cosmos DB API for MongoDB**](https://docs.microsoft.com/azure/cosmos-db/mongodb/mongodb-introduction) as a database for user events and information
+- [**Azure Event Grid**](https://azure.microsoft.com/products/event-grid/) to power the event-driven side of the architecture
 - [**Azure Monitor**](https://docs.microsoft.com/azure/azure-monitor/) for monitoring and logging
 - [**Azure Key Vault**](https://docs.microsoft.com/azure/key-vault/) for securing secrets
 - [**Azure Storage**](https://docs.microsoft.com/azure/storage/) for storing blobs (also needed by Azure Functions)
+- [**Azure Cache for Redis**](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-overview) to improve performance and scalability
 
 Here's a high level architecture diagram that illustrates these components. Notice that these are all contained within a single [resource group](https://docs.microsoft.com/azure/azure-resource-manager/management/manage-resource-groups-portal), that will be created for you when you create the resources.
 
-<img src="assets/resources.png" width="60%" alt="Application architecture diagram"/>
+<img src="assets/diagrams/e2e-full-horizontal.drawio.png" width="60%" alt="Application architecture diagram"/>
 
 > This project provisions resources to an Azure subscription that you will select upon provisioning them. Please refer to the [Pricing calculator for Microsoft Azure](https://azure.microsoft.com/pricing/calculator/) and, if needed, update the included Azure resource definitions found in `infra/main.bicep` to suit your needs.
 
@@ -206,9 +175,7 @@ The Azure Developer CLI includes many other commands to help with your Azure dev
 
 ## Security
 
-### Roles
-
-This template creates a [managed identity](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview) for your app inside your Azure Active Directory tenant, and it is used to authenticate your app with Azure and other services that support Azure AD authentication like Key Vault via access policies. You will see principalId referenced in the infrastructure as code files, that refers to the id of the currently logged in Azure CLI user, which will be granted access policies and permissions to run the application locally. To view your managed identity in the Azure Portal, follow these [steps](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/how-to-view-managed-identity-service-principal-portal).
+<!-- TBD -->
 
 ### Key Vault
 
