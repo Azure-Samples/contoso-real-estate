@@ -4,12 +4,18 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class ListingService {
-  constructor() {}
 
-  async getListings() {
-    const resource = await fetch("/api/listings");
+  async getListings({limit = 10, offset = 0} = {}): Promise<Listing[]> {
+    const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}`);
     const { listings } = await resource.json();
     return listings;
+  }
+
+  async getFeaturedListings({limit = 10, offset = 0} = {}): Promise<Listing[]> {
+    // TODO: prevent loading the same listings multiple times when we hit the end of the list
+    const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}&featured=true`);
+    const { listings } = await resource.json();
+    return listings || [];
   }
 
   async getListingBySlug(slug: string): Promise<Listing | undefined> {
@@ -20,10 +26,8 @@ export class ListingService {
     return undefined;
   }
 
-  async bookmark(listing: Listing) {
-    alert("Not implemented!");
-  }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async share(listing: Listing) {
     alert("Not implemented!");
   }

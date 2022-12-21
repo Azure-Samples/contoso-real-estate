@@ -106,7 +106,6 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: { article: articlesRes.data[0], categories: categoriesRes },
-    revalidate: 1,
   }
 }
 

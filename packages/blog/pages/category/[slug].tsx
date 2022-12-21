@@ -58,7 +58,6 @@ export async function getServerSideProps({ params }) {
       category: matchingCategories.data[0],
       categories: allCategories,
     },
-    revalidate: 1,
   }
 }
 

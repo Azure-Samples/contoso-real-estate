@@ -5,7 +5,6 @@ import { BookingFormComponent } from "../shared/booking-form/booking-form.compon
 import { FavoriteService } from "../shared/favorite.service";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/listing.service";
-import { ReservationService } from "../shared/reservation.service";
 import { UserService } from "../shared/user.service";
 
 @Component({
@@ -16,12 +15,10 @@ import { UserService } from "../shared/user.service";
   imports: [CommonModule, ListingDetailComponent, BookingFormComponent],
 })
 export class RentalpageComponent implements OnInit {
-  listing!: Listing;
+  listing: Listing;
   navigation: Navigation | null;
   reviewStars: number[] = [];
-
   isFavorited = false;
-
   reviewsMapping: { [k: string]: string } = { "=0": "No reviews", "=1": "1 message", other: "# reviews" };
 
   constructor(

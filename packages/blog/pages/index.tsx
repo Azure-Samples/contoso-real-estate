@@ -37,7 +37,6 @@ export async function getServerSideProps() {
       categories: categoriesRes.data,
       homepage: homepageRes.data,
     },
-    revalidate: 1,
   }
 }
 

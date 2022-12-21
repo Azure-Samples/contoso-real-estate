@@ -1,5 +1,6 @@
+import { CommonModule } from "@angular/common";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { CardComponent } from "./card.component";
 
 describe("CardComponent", () => {
@@ -7,13 +8,15 @@ describe("CardComponent", () => {
   let fixture: ComponentFixture<CardComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [CardComponent],
-    }).compileComponents();
-
+    TestBed.overrideComponent(CardComponent, {
+      set: {
+        imports: [CommonModule],
+        schemas: [NO_ERRORS_SCHEMA],
+      },
+    });
     fixture = TestBed.createComponent(CardComponent);
+    fixture.autoDetectChanges();
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {

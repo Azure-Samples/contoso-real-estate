@@ -7,13 +7,9 @@ describe("AboutComponent", () => {
   let fixture: ComponentFixture<AboutComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AboutComponent],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(AboutComponent);
+    fixture.autoDetectChanges();
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it("should create", () => {
