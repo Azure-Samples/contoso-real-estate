@@ -1,7 +1,7 @@
 param environmentName string
 param location string = resourceGroup().location
 param applicationInsightsName string = ''
-param serviceName string = 'web'
+param serviceName string = 'portal'
 
 var swaNames = [
   'portal'

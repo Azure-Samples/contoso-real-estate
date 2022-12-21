@@ -14,7 +14,7 @@ services:
     host: staticwebapp
     module: app/web
 
-  blog-cms:
+  cms:
     project: packages/blog-cms
     host: containerapp
     module: app/blog-cms

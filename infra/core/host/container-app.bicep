@@ -16,7 +16,7 @@ var resourceToken = toLower(uniqueString(subscription().id, environmentName, loc
 var tags = { 'azd-env-name': environmentName }
 
 resource app 'Microsoft.App/containerApps@2022-03-01' = {
-  name: serviceName
+  name: '${abbrs.appContainerApps}${serviceName}-${resourceToken}'
   location: location
   tags: union(tags, { 'azd-service-name': serviceName })
   identity: managedIdentity ? { type: 'SystemAssigned' } : null

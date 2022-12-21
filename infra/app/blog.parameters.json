@@ -8,11 +8,8 @@
     "environmentName": {
       "value": "${AZURE_ENV_NAME}"
     },
-    "serviceName": {
-      "value": "${WEB_BLOG_NAME}"
-    },
     "imageName": {
-      "value": "${WEB_BLOG_IMAGE_NAME}"
+      "value": "${SERVICE_BLOG_IMAGE_NAME}"
     },
     "applicationInsightsName": {
       "value": "${APPLICATIONINSIGHTS_NAME}"

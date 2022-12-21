@@ -5,7 +5,7 @@ param applicationInsightsName string
 param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
-param serviceName string = 'blog-cms'
+param serviceName string = 'cms'
 param databaseName string = 'strapi'
 param databaseUsername string = 'contoso'
 param appKeys string
@@ -21,6 +21,24 @@ param jwtSecret string
 param adminJwtSecret string
 
 param serverName string
+
+param storageAccountName string
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {
+  name: storageAccountName
+}
+
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' existing = {
+  name: '${storageAccount.name}/default'
+}
+
+resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-09-01' = {
+  name: 'strapi'
+  parent: blobService
+  properties: {
+    publicAccess: 'Blob'
+  }
+}
 
 module db '../core/database/postgres.bicep' = {
   name: '${serviceName}-database-module'
@@ -51,7 +69,7 @@ module app '../core/host/container-app.bicep' = {
         value: db.outputs.SERVER_HOST
       }
       {
-        name: 'DATABASE_USER'
+        name: 'DATABASE_USERNAME'
         value: databaseUsername
       }
       {
@@ -79,16 +97,28 @@ module app '../core/host/container-app.bicep' = {
         value: adminJwtSecret
       }
       {
-        name: 'PORT'
-        value: '80'
-      }
-      {
         name: 'NODE_ENV'
         value: 'production'
       }
+      {
+        name: 'STORAGE_ACCOUNT'
+        value: storageAccount.name
+      }
+      {
+        name: 'STORAGE_ACCOUNT_KEY'
+        value: storageAccount.listKeys().keys[0].value
+      }
+      {
+        name: 'STORAGE_CONTAINER_NAME'
+        value: storageContainer.name
+      }
+      {
+        name: 'STORAGE_URL'
+        value: storageAccount.properties.primaryEndpoints.blob
+      }
     ]
     imageName: !empty(imageName) ? imageName : 'nginx:latest'
-    targetPort: 80
+    targetPort: 1337
   }
 }
 

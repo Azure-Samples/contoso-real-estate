@@ -15,7 +15,9 @@ param principalId string = ''
 param containerAppsEnvironmentName string = ''
 param containerRegistryName string = ''
 
+@secure()
 param appKeys string
+@secure()
 param apiTokenSalt string
 
 @secure()
@@ -95,13 +97,22 @@ module containerApps './core/host/container-apps.bicep' = {
   }
 }
 
+module storageAccount 'core/storage/storage-account.bicep' = {
+  name: 'storage'
+  scope: rg
+  params: {
+    environmentName: 'storage'
+    allowBlobPublicAccess: true
+    location: location
+  }
+}
+
 module cms './app/blog-cms.bicep' = {
   name: 'cms'
   scope: rg
   params: {
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    serviceName: '${abbrs.appContainerApps}-blog-cms-${resourceToken}'
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     location: location
     adminJwtSecret: adminJwtSecret
@@ -111,6 +122,7 @@ module cms './app/blog-cms.bicep' = {
     databasePassword: cmsDatabasePassword
     serverName: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
     environmentName: environmentName
+    storageAccountName: storageAccount.outputs.name
   }
 }
 
@@ -121,7 +133,6 @@ module blog 'app/blog.bicep' = {
     cmsUrl: cms.outputs.SERVICE_BLOG_CMS_URI
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    serviceName: '${abbrs.appContainerApps}-blog-${resourceToken}'
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     location: location
     environmentName: environmentName
@@ -143,3 +154,5 @@ output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.containe
 output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.containerRegistryName
 output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_BLOG_CMS_URI
 output SERVICE_BLOG_CMS_NAME string = cms.outputs.SERVICE_BLOG_CMS_NAME
+output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
+output SERVICE_CMS_POSTGRESQL_SERVER_NAME string = cms.outputs.SERVICE_BLOG_CMS_DATABASE_NAME

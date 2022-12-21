@@ -8,11 +8,8 @@
     "environmentName": {
       "value": "${AZURE_ENV_NAME}"
     },
-    "serviceName": {
-      "value": "${SERVICE_BLOG_CMS_NAME}"
-    },
     "imageName": {
-      "value": "${SERVICE_BLOG_CMS_IMAGE_NAME}"
+      "value": "${SERVICE_CMS_IMAGE_NAME}"
     },
     "applicationInsightsName": {
       "value": "${APPLICATIONINSIGHTS_NAME}"
@@ -22,6 +19,27 @@
     },
     "containerRegistryName": {
       "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
+    },
+    "storageAccountName": {
+      "value": "${STORAGE_ACCOUNT_NAME}"
+    },
+    "serverName": {
+      "value": "${SERVICE_CMS_POSTGRESQL_SERVER_NAME}"
+    },
+    "databasePassword": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "jwtSecret": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "adminJwtSecret": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "apiTokenSalt": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "appKeys": {
+      "value": "$(secretOrRandomPassword)"
     }
   }
 }

@@ -29,7 +29,7 @@ module app '../core/host/container-app.bicep' = {
       }
     ]
     imageName: !empty(imageName) ? imageName : 'nginx:latest'
-    targetPort: 80
+    targetPort: 3000
   }
 }
 
