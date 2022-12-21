@@ -17,7 +17,8 @@
     "@strapi/plugin-users-permissions": "4.5.3",
     "@strapi/strapi": "4.5.3",
     "lodash.set": "^4.3.2",
-    "pg": "8.6.0"
+    "pg": "8.6.0",
+    "strapi-provider-upload-azure-storage": "^2.1.0"
   },
   "strapi": {
     "uuid": "42db7187-d121-4240-b174-3b2b3605f696"
