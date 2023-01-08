@@ -136,6 +136,7 @@ module blog 'app/blog.bicep' = {
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     location: location
     environmentName: environmentName
+    storageAccountName: storageAccount.outputs.name
   }
 }
 

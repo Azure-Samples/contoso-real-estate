@@ -6,6 +6,7 @@ param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
 param environmentName string
+param storageAccountName string
 
 var abbrs = loadJsonContent('../abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -26,6 +27,10 @@ module app '../core/host/container-app.bicep' = {
       {
         name: 'NEXT_PUBLIC_STRAPI_API_URL'
         value: cmsUrl
+      }
+      {
+        name: 'NEXT_STRAPI_IMAGE_HOST'
+        value: '${storageAccountName}.blob.${environment().suffixes.storage}'
       }
     ]
     imageName: !empty(imageName) ? imageName : 'nginx:latest'

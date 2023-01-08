@@ -22,6 +22,9 @@
     },
     "cmsUrl": {
       "value": "${SERVICE_BLOG_CMS_URI}"
+    },
+    "storageAccountName": {
+      "value": "${STORAGE_ACCOUNT_NAME}"
     }
   }
 }
