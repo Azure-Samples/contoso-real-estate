@@ -10,6 +10,8 @@ export class UserService {
     return {
       id: "guest",
       name: "Guest",
+      avatar: "",
+      role: "guest",
     };
   }
 }

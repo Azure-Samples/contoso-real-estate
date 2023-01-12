@@ -1,0 +1,28 @@
+.profile-body mat-card {
+  margin-bottom: 8px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 25px;
+  padding: 20px;
+
+  @media screen and (min-width: 764px) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.tab-wrapper {
+  padding-top: 25px;
+
+  .mat-card-header {
+    display: block;
+  }
+}
+
+.user__avatar {
+  display: inline-block;
+  width: 45px;
+  font-size: 45px;
+}

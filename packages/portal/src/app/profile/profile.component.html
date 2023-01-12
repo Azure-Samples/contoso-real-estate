@@ -1,0 +1,61 @@
+<section class="profile-page inner-wrapper">
+  <h2 class="subtitle">My Profile</h2>
+  <div class="profile-grid">
+    <aside class="aside-left">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ user.name }}</mat-card-title>
+          <div mat-card-avatar>
+            <!-- <img class="user__avatar" [src]="user.avatar" alt="User avatar"> -->
+            <span class="material-symbols-outlined user__avatar"> account_circle </span>
+          </div>
+          <mat-card-subtitle>{{ user.role }}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </aside>
+    <section class="profile-body">
+      <mat-tab-group>
+        <mat-tab label="Saved Listings">
+          <div class="tab-wrapper">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title-group>
+                  <mat-card-title>Consequatur quisquam eius enim sint</mat-card-title>
+                  <mat-card-subtitle>51771, Tara Well, Lottieworth, Portugal</mat-card-subtitle>
+                  <img mat-card-sm-image src="/assets/images/pic-blue.png">
+                </mat-card-title-group>
+              </mat-card-header>
+              <mat-card-content>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab pariatur odio accusantium ipsum vero eaque, at necessitatibus, voluptatem ad illum aperiam porro ipsa veniam quod corrupti. Aut ipsum saepe sint?
+              </mat-card-content>
+            </mat-card>
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title-group>
+                  <mat-card-title>Consequatur quisquam eius enim sint</mat-card-title>
+                  <mat-card-subtitle>51771, Tara Well, Lottieworth, Portugal</mat-card-subtitle>
+                  <img mat-card-sm-image src="/assets/images/pic-salmon.png">
+                </mat-card-title-group>
+              </mat-card-header>
+              <mat-card-content>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim optio a at accusamus repudiandae totam error nostrum ab maiores repellat. Numquam, voluptatem! Nisi tenetur qui at impedit, delectus dolor ut?
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </mat-tab>
+        <mat-tab label="Payment History">
+          <div class="tab-wrapper">
+            <mat-list>
+              <mat-list-item>Payment 1</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Payment 2</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Payment 3</mat-list-item>
+            </mat-list>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </section>
+  </div>
+
+</section>
