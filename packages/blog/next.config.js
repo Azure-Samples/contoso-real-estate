@@ -4,7 +4,14 @@
 const nextConfig = {
   images: {
     loader: "default",
-    domains: ["localhost", process.env.NEXT_STRAPI_IMAGE_HOST || ""],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.blob.core.windows.net",
+        port: "",
+        pathname: "/strapi/assets/**",
+      },
+    ],
   },
   output: "standalone",
 }
