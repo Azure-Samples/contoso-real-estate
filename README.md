@@ -2,12 +2,12 @@
 
 ### Projects
 
-| Project | Location                               | Description | Branch | Build Status |
-| ------- | -------------------------------------- | ----------- | ------ | ------------ |
-| Portal  | [packages/portal](./packages/portal)   |             | TODO   | TODO         |
-| API     | [packages/api](./packages/api)         |             | TODO   | TODO         |
-| Blog    | [packages/blog](./packages/blog)       |             | TODO   | TODO         |
-| Testing | [packages/testing](./packages/testing) |             | TODO   | TODO         |
+| Project | Location                               | Description                  | Branch | Build Status |
+| ------- | -------------------------------------- | ---------------------------- | ------ | ------------ |
+| Portal  | [packages/portal](./packages/portal)   |                              | TODO   | TODO         |
+| API     | [packages/api](./packages/api)         |                              | TODO   | TODO         |
+| Blog    | [packages/blog](./packages/blog)       | [Docs](README-scenario-3.md) | TODO   | TODO         |
+| Testing | [packages/testing](./packages/testing) |                              | TODO   | TODO         |
 
 ### Prerequisites for local development
 
@@ -190,7 +190,6 @@ If you have any feature requests, issues, or areas for improvement, please [file
 ### The SWA CLI
 
 If you have any feature requests, issues, or areas for improvement, please [file an issue](https://github.com/Azure/static-web-apps-cli/issues). To keep up-to-date, ask questions, or share suggestions, join our [GitHub Discussions](https://github.com/Azure/static-web-apps/discussions).
-
 
 ## Want to help?
 
