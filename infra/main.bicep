@@ -123,6 +123,7 @@ module cms './app/blog-cms.bicep' = {
     serverName: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
     environmentName: environmentName
     storageAccountName: storageAccount.outputs.name
+    databaseName: 'strapi-${resourceToken}'
   }
 }
 
@@ -156,4 +157,5 @@ output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.containerReg
 output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_BLOG_CMS_URI
 output SERVICE_BLOG_CMS_NAME string = cms.outputs.SERVICE_BLOG_CMS_NAME
 output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
-output SERVICE_CMS_POSTGRESQL_SERVER_NAME string = cms.outputs.SERVICE_BLOG_CMS_DATABASE_NAME
+output SERVICE_BLOG_CMS_SERVER_HOST string = cms.outputs.SERVICE_BLOG_CMS_SERVER_HOST
+output SERVICE_CMS_POSTGRESQL_DATABASE_NAME string = cms.outputs.SERVICE_BLOG_CMS_DATABASE_NAME

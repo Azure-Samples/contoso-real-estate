@@ -26,6 +26,9 @@
     "serverName": {
       "value": "${SERVICE_CMS_POSTGRESQL_SERVER_NAME}"
     },
+    "databaseName": {
+      "value": "${SERVICE_CMS_POSTGRESQL_DATABASE_NAME}"
+    },
     "databasePassword": {
       "value": "$(secretOrRandomPassword)"
     },
