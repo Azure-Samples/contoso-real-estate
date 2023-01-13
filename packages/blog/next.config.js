@@ -11,6 +11,12 @@ const nextConfig = {
         port: "",
         pathname: "/strapi/assets/**",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "1337",
+        pathname: "**",
+      },
     ],
   },
   output: "standalone",
