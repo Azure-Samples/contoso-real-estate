@@ -42,7 +42,7 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_PASSWORD: AzureR0cks!
+      POSTGRES_PASSWORD: AzureRocks
       POSTGRES_DB: blog
     volumes:
       - pgdata:/var/lib/postgresql/data
