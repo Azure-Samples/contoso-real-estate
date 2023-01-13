@@ -32,7 +32,11 @@ _Note: The devcontainer will automatically execute this command on creation, but
 
 ### Starting Strapi
 
-Strapi requires environment variables to provide the various JWT secrets. A sample of the `.env` file can be found at `packages/blog-cms/.env.example`. Copy this file to `packages/blog-cms/.env` and update the values to match your environment.
+Strapi requires environment variables to provide the various JWT secrets. A sample of the `.env` file can be found at `packages/blog-cms/.env.example` which contains default values for all the required environment variables. Copy this file to `packages/blog-cms/.env`:
+
+```bash
+cp packages/blog-cms/.env.example packages/blog-cms/.env
+```
 
 _Note: You don't need to set the PostgreSQL environment variables, as these are set in the dev container definition._
 
@@ -80,3 +84,11 @@ If you do not wish to use the use the devcontainer for local development there a
 
 - Install Node.js
   - It is encouraged that a Node.js version manager, such as [nvm](https://nvm.sh), is used as a `.nvmrc` file is provided to specify the version of Node.js that is required
+
+### Running in GitHub Codespaces
+
+An alternative way to run the environment is using [GitHub Codespaces](https://github.com/codespaces), which will use the devcontainer definition, but create a remote containerised environment, rather than running the environment locally.
+
+_Note: GitHub Codespaces is a paid component of GitHub. Review [the GitHub Codespaces billing](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces) before using it._
+
+To run in GitHub Codespaces, the machine will need at least 4 CPUs and 8GB of memory, which is defined in the [`devcontainer.json`](./.devcontainer/devcontainer.json) file, to ensure all the services are started.
