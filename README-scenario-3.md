@@ -18,6 +18,18 @@ Within the `packages` folder, you will find the two projects that make up this s
 
 _Note: This scenario has been optimised for use with [VS Code Remote Containers](https://code.visualstudio.com/docs/remote/containers), and contains definitions to setup the PostgreSQL database that Strapi uses, and this guide makes the assumption that you will use the dev container._
 
+### Install the required Node.js packages
+
+The repo is a monorepo, and thus contains all the components from all the scenarios. To support this [npm workspaces](https://docs.npmjs.com/cli/using-npm/workspaces) has been configured, and as a result, all scenarios packages will be installed.
+
+To install all packages required run the following command:
+
+```bash
+npm install --workspaces
+```
+
+_Note: The devcontainer will automatically execute this command on creation, but you can execute it manually if you wish to see the installation happen._
+
 ### Starting Strapi
 
 Strapi requires environment variables to provide the various JWT secrets. A sample of the `.env` file can be found at `packages/blog-cms/.env.example`. Copy this file to `packages/blog-cms/.env` and update the values to match your environment.
@@ -43,3 +55,28 @@ npm run dev --workspace blog
 ```
 
 The Next.js application will then be running at [`http://localhost:3000`](http://localhost:3000).
+
+### Local development without using the devcontainer
+
+If you do not wish to use the use the devcontainer for local development there are some additional steps that need to be undertaken:
+
+- Provision a PostgreSQL database
+
+  - A PostgreSQL database is required by Strapi, so one will need to be provisioned (either locally or remotely) and the following additional environment variables will need to be configured, either in the `.env` file or globally:
+
+  ```
+  DATABASE_HOST: <hostname or IP of your PostgreSQL server>
+  DATABASE_USERNAME: <username>
+  DATABASE_PASSWORD: <password>
+  DATABASE_NAME: <name of database on the server>
+  ```
+
+  - The database provided in `DATABASE_NAME` will need to exist on the server before starting Strapi
+
+- Install `azd`
+
+  - `azd` is use to provision, manage and deploy the applicaton to Azure. Follow the [install guide for your OS](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
+  - Note: `azd` is not required if you wish to only rely on GitHub Actions or Azure Pipelines to deploy using the provided CI/CD pipelines
+
+- Install Node.js
+  - It is encouraged that a Node.js version manager, such as [nvm](https://nvm.sh), is used as a `.nvmrc` file is provided to specify the version of Node.js that is required
