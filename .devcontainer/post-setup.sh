@@ -10,7 +10,7 @@ maxAttempts=10
 until (sudo curl -ksf "${ipAddress}/_explorer/emulator.pem" -o '/usr/local/share/ca-certificates/emulator.crt') || ($attempts -eq $maxAttempts); do
   echo "Downloading cert from $ipAddress"
   sleep 1
-  (($attempts++))
+  attempts=$((attempts+1))
 done
 
 if [ $attempts -eq $maxAttempts ]; then
