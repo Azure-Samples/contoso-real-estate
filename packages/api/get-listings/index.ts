@@ -1,42 +1,58 @@
-import { Context, HttpRequest } from "@azure/functions";
-import { getListings } from "../models/listing";
+import pg from 'pg';
 
-const data = async ({ offset, limit, featured }: { offset: number; limit: number, featured: boolean }) => await getListings({ offset, limit, featured });
+export async function main(context: any, req: any) {
+    try {
+        const client = new pg.Client({
+            user: process.env.POSTGRESQL_USER,
+            password: process.env.POSTGRESQL_PASSWORD,
+            host: process.env.POSTGRESQL_HOST,
+            port: Number(process.env.POSTGRESQL_PORT),
+            database: process.env.POSTGRESQL_DATABASE,
+            ssl: true
+        });
+        await client.connect();
 
-export default async function (context: Context, req: HttpRequest): Promise<void> {
-  const offset = Number(req.query.offset) || 0;
-  const limit = Number(req.query.limit) || 10;
-  const featured = Boolean(req.query.featured) || false;
+        const offset = Number(req.query.offset) || 0;
+        const limit = Number(req.query.limit) || 10;
+        const featured = Boolean(req.query.featured) || false;
 
-  if (offset < 0) {
-    context.res = {
-      status: 400,
-      body: {
-        error: "Offset must be greater than or equal to 0",
-      },
-    };
-    return;
-  } else if (limit < 0) {
-    context.res = {
-      status: 400,
-      body: {
-        error: "Limit must be greater than or equal to 0",
-      },
-    };
-    return;
-  } else if (offset > limit) {
-    context.res = {
-      status: 400,
-      body: {
-        error: "Offset must be less than or equal to limit",
-      },
-    };
-    return;
-  }
+        if (offset < 0) {
+          context.res = {
+            status: 400,
+            body: {
+              error: "Offset must be greater than or equal to 0",
+            },
+          };
+          return;
+        } else if (limit < 0) {
+          context.res = {
+            status: 400,
+            body: {
+              error: "Limit must be greater than or equal to 0",
+            },
+          };
+          return;
+        } else if (offset > limit) {
+          context.res = {
+            status: 400,
+            body: {
+              error: "Offset must be less than or equal to limit",
+            },
+          };
+          return;
+        }
 
-  context.res = {
-    body: {
-      listings: await data({ offset, limit, featured }),
-    },
-  };
+        const result = await client.query(`SELECT * FROM LISTING WHERE isFeatured = ${featured} LIMIT ${limit} OFFSET ${offset}`);
+        await client.end();
+        context.res = {
+            status: 200,
+            body: result.rows
+        };
+    } catch (err) {
+        context.log.error('Error:', err);
+        context.res = {
+            status: 500,
+            body: 'An error occurred while processing the request'
+        };
+    }
 }
