@@ -62,20 +62,38 @@ The Next.js application will then be running at [`http://localhost:3000`](http:/
 
 ### Local development without using the devcontainer
 
-If you do not wish to use the use the devcontainer for local development there are some additional steps that need to be undertaken:
+If you do not wish to use the use the devcontainer for local development there are some additional steps that need to be undertaken.
 
-- Provision a PostgreSQL database
+A PostgreSQL database is required by Strapi, so one will need to be provisioned. If you are provisioning a PostgreSQL database on WSL (using Ubuntu), please follow these steps:
 
-  - A PostgreSQL database is required by Strapi, so one will need to be provisioned (either locally or remotely) and the following additional environment variables will need to be configured, either in the `.env` file or globally:
+  - Update the package list: `sudo apt update`
+  - Install PostgreSQL: `sudo apt install postgresql`
+  - Confirm that PostgreSQL is active and running `sudo systemctl status postgresql`
+  - Confirm that PostgreSQL is accepting connections `sudo -u postgres psql`
+
+Next, create the database:
+  - Switch to the `postgres` system user account: `sudo su - postgres`
+  - Then access the PostgreSQL shell: `psql`
+  - Create a user for Strapi: `CREATE USER strapi WITH PASSWORD 'strapi';`
+  - Create a database for Strapi: `CREATE DATABASE strapi;`
+  - Grant privileges to the user: `GRANT ALL PRIVILEGES ON DATABASE strapi TO strapi;`
+  - Then quite the PostgreSQL shell: `\q`
+  - Restart the PostgreSQL service: `sudo systemctl restart postgresql`
+
+_Note: If you are using a different system, please follow the [PostgreSQL installation guide](https://www.postgresql.org/download/)._
+
+Once the PostgreSQL cluster is up and running and the database is created, the following additional environment variables will need to be provided, either in the `.env` file or globally:
 
   ```
-  DATABASE_HOST: <hostname or IP of your PostgreSQL server>
-  DATABASE_USERNAME: <username>
-  DATABASE_PASSWORD: <password>
-  DATABASE_NAME: <name of database on the server>
+  DATABASE_HOST= <localhost or IP of your PostgreSQL server>
+  DATABASE_USERNAME=strapi
+  DATABASE_PASSWORD=strapi
+  DATABASE_NAME=strapi
   ```
 
-  - The database provided in `DATABASE_NAME` will need to exist on the server before starting Strapi
+_Note: The database provided in `DATABASE_NAME` will need to exist on the server before starting Strapi_
+
+Also, please install the following dependencies:
 
 - Install `azd`
 
