@@ -39,6 +39,24 @@
       "request": "launch",
       "preLaunchTask": "npm: test",
       "url": "http://localhost:9876/debug.html"
+    },
+    {
+      "name": "blog: frontend",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "dev"],
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/packages/blog"
+    },
+    {
+      "name": "blog: backend",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "develop"],
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "cwd": "${workspaceFolder}/packages/blog-cms"
     }
   ],
   "inputs": [
@@ -46,6 +64,12 @@
       "id": "dotEnvFilePath",
       "type": "command",
       "command": "azure-dev.commands.getDotEnvFilePath"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "blog: all",
+      "configurations": ["blog: backend", "blog: frontend"]
     }
   ]
 }

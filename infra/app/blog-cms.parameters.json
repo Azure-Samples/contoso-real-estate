@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "${AZURE_LOCATION}"
+    },
+    "environmentName": {
+      "value": "${AZURE_ENV_NAME}"
+    },
+    "imageName": {
+      "value": "${SERVICE_CMS_IMAGE_NAME}"
+    },
+    "applicationInsightsName": {
+      "value": "${APPLICATIONINSIGHTS_NAME}"
+    },
+    "containerAppsEnvironmentName": {
+      "value": "${AZURE_CONTAINER_ENVIRONMENT_NAME}"
+    },
+    "containerRegistryName": {
+      "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
+    },
+    "storageAccountName": {
+      "value": "${STORAGE_ACCOUNT_NAME}"
+    },
+    "serverName": {
+      "value": "${SERVICE_CMS_POSTGRESQL_SERVER_NAME}"
+    },
+    "databaseName": {
+      "value": "${SERVICE_CMS_POSTGRESQL_DATABASE_NAME}"
+    },
+    "databasePassword": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "jwtSecret": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "adminJwtSecret": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "apiTokenSalt": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "appKeys": {
+      "value": "$(secretOrRandomPassword)"
+    }
+  }
+}

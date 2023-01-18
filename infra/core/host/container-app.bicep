@@ -75,5 +75,6 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2022-02-01-pr
 }
 
 output identityPrincipalId string = managedIdentity ? app.identity.principalId : ''
+output imageName string = imageName
 output name string = app.name
 output uri string = 'https://${app.properties.configuration.ingress.fqdn}'

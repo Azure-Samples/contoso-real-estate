@@ -54,5 +54,12 @@
     "ghcr.io/devcontainers/features/node:1": {
       "version": "latest"
     }
+  },
+
+  // at least 8gb of RAM is needed due to the CosmosDB container
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
   }
 }
