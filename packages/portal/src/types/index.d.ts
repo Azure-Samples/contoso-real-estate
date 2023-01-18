@@ -21,13 +21,18 @@ declare interface Listing {
     stars: number;
     number: number;
   };
+  position: {
+    lat: number;
+    lng: number;
+  },
   fees: {
     discount: number;
     cleaning: number;
     service: number;
     occupancy: number;
     rent: number;
-    currency: { code: string; symbol: string };
+    currency_code: string;
+    currency_symbol: string;
   };
   $$isFavorited?: boolean;
 }
