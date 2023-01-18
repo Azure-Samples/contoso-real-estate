@@ -9,6 +9,7 @@
 | Blog    | [packages/blog](./packages/blog)       | [Docs](README-scenario-3.md) | TODO   | TODO         |
 | Testing | [packages/testing](./packages/testing) |                              | TODO   | TODO         |
 
+
 ### Prerequisites for local development
 
 The following prerequisites are required to use this application. Please ensure that you have them all installed locally.
