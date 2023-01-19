@@ -1,0 +1,58 @@
+h1 {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+
+    button {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+  img {
+    width: 400px;
+    aspect-ratio: 1;
+  }
+}
+
+.btn__google {
+  background-color: #4285f4;
+  color: #fff;
+}
+
+.btn__facebook {
+  background-color: #3b5998;
+  color: #fff;
+}
+
+.btn__twitter {
+  background-color: #1da1f2;
+  color: #fff;
+}
+
+.btn__github {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn__linkedin {
+  background-color: #0077b5;
+  color: #fff;
+}
+
+.btn__microsoft {
+  background-color: #f65314;
+  color: #fff;
+}

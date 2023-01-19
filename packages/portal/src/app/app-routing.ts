@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { HomepageComponent } from "./homepage/homepage.component";
+import { AuthGuard } from "./shared/guards/auth-guard.service";
 
 export const ROUTES: Routes = [
   {
@@ -29,10 +30,19 @@ export const ROUTES: Routes = [
   },
   {
     path: "me",
+    canActivate:[AuthGuard],
     loadComponent: () => import("./profile/profile.component").then(m => m.ProfileComponent),
   },
   {
+    path: "auth/login",
+    loadComponent: () => import("./authentication/authentication.component").then(m => m.AuthenticationComponent),
+  },
+  {
+    path: "auth/logout",
+    loadComponent: () => import("./authentication/authentication.component").then(m => m.AuthenticationComponent),
+  },
+  {
     path: "**",
-    redirectTo: "/"
+    loadComponent: () => import("./shared/errors/not-found/not-found.component").then(m => m.NotFoundComponent),
   }
 ];
