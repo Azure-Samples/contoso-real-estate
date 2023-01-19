@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from "@angular/core";
   imports: [CommonModule],
 })
 export class TextBlockComponent implements OnInit {
-  @Input() title: string = "";
+  @Input() title = "";
 
   constructor() {}
 
