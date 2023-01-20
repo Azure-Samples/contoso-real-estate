@@ -38,7 +38,8 @@ export class BookingFormComponent implements OnInit {
   bookingForm: FormGroup;
   rentingPeriod: FormGroup;
   guests: FormControl;
-  currency = { code: "USD", symbol: "$" };
+  currency_code = "USD";
+  currency_symbol= "$";
 
   capacityMapping: { [k: string]: string } = { "=1": "One guest", other: "# guests" };
   monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
@@ -75,7 +76,8 @@ export class BookingFormComponent implements OnInit {
       0,
       this.monthlyRentPrice * (1 - (this.listing?.fees?.discount || 0) / 100),
     );
-    this.currency = this.listing?.fees?.currency;
+    this.currency_code = this.listing?.fees?.currency_code;
+    this.currency_symbol = this.listing?.fees?.currency_symbol;
     this.discount = this.listing?.fees?.discount || 0;
     this.capacity = Array(this.listing?.capacity)
       .fill(0)

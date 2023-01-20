@@ -1,11 +1,11 @@
 <section class="price-container">
   <div>
     <span class="price"
-      ><strong>{{ monthlyRentPriceWithDiscount | currency: currency.symbol }}</strong
+      ><strong>{{ monthlyRentPriceWithDiscount | currency: currency_symbol }}</strong
       >/month</span
     >
     <s *ngIf="discount > 0" class="price-old"
-      ><strong>{{ monthlyRentPrice | currency: currency.symbol }}</strong
+      ><strong>{{ monthlyRentPrice | currency: currency_symbol }}</strong
       >/month</s
     >
   </div>
@@ -39,7 +39,7 @@
   <table>
     <tr>
       <td>{{ months() | i18nPlural: monthsMapping }}</td>
-      <td>{{ monthlyRentPriceWithDiscount * months() | currency: currency.symbol }}</td>
+      <td>{{ monthlyRentPriceWithDiscount * months() | currency: currency_symbol }}</td>
     </tr>
     <tr>
       <td>Number of guests</td>
@@ -47,25 +47,25 @@
     </tr>
     <tr *ngIf="discount > 0">
       <td>Discount {{ discount }}%</td>
-      <td>-{{ monthlyRentPrice - monthlyRentPriceWithDiscount | currency: currency.symbol }}</td>
+      <td>-{{ monthlyRentPrice - monthlyRentPriceWithDiscount | currency: currency_symbol }}</td>
     </tr>
     <tr>
       <td>Cleaning fee</td>
-      <td>{{ this.listing?.fees?.cleaning | currency: currency.symbol }}</td>
+      <td>{{ this.listing?.fees?.cleaning | currency: currency_symbol }}</td>
     </tr>
     <tr>
       <td>Service fee</td>
-      <td>{{ this.listing?.fees?.service | currency: currency.symbol }}</td>
+      <td>{{ this.listing?.fees?.service | currency: currency_symbol }}</td>
     </tr>
     <tr>
       <td>Occupancy taxes and fees</td>
-      <td>{{ this.listing?.fees?.occupancy | currency: currency.symbol }}</td>
+      <td>{{ this.listing?.fees?.occupancy | currency: currency_symbol }}</td>
     </tr>
   </table>
 
   <div class="price-total">
     <span>Total payment</span>
-    <span>{{ total() | currency: currency.symbol }}</span>
+    <span>{{ total() | currency: currency_symbol }}</span>
   </div>
 </section>
 
