@@ -3,6 +3,8 @@ import { Component } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { RouterModule } from "@angular/router";
+import { AuthService } from "../authentication/auth.service";
+import { UserRole, UserService } from "../user/user.service";
 
 @Component({
   selector: "app-main-nav",
@@ -13,11 +15,21 @@ import { RouterModule } from "@angular/router";
 })
 export class MainNavComponent {
   navItems = [
-    { name: "Profile", route: "/me", authenticated: true },
-    { name: "Payments", route: "/me/payments", authenticated: true },
-    { name: "Favorites", route: "/me/favorites", authenticated: true },
-    { name: "Reservations", route: "/me/reservations", authenticated: true },
-    { name: "Login", route: "/auth/login", authenticated: false },
-    { name: "Logout", route: "/auth/logout", authenticated: true },
+    { name: "Profile", route: "/me" },
+    { name: "Payments", route: "/me/payments" },
+    { name: "Favorites", route: "/me/favorites" },
+    { name: "Reservations", route: "/me/reservations" },
   ];
+
+  userDetails: User | null = null;
+
+  constructor(private authService: AuthService, private userService: UserService) {}
+
+  async ngOnInit() {
+    this.userDetails = await this.userService.currentUser();
+  }
+
+  isAuthenticated() {
+    return this.userDetails?.role === UserRole.User || this.userDetails?.role === UserRole.Admin;
+  }
 }

@@ -1,7 +1,19 @@
 declare interface User {
   id: string;
   name: string;
+  avatar: string;
+  role: UserRole;
 }
+
+declare interface UserClientPrincipal {
+  userId: string;
+  userDetails: string;
+  userRoles: string[];
+  claims: { typ: string; val: string }[];
+  identityProvider: string;
+}
+
+declare type UserRole = "guest" | "user" | "admin";
 
 declare interface Listing {
   id: string;

@@ -5,7 +5,7 @@ import { CardListComponent } from "../shared/card-list/card-list.component";
 import { FavoriteService } from "../shared/favorite.service";
 import { InfiniteScrollingDirective } from "../shared/infinite-scrolling.directive";
 import { ListingService } from "../shared/listing.service";
-import { UserService } from "../shared/user.service";
+import { UserService } from "../shared/user/user.service";
 
 @Component({
   selector: "app-homepage",
@@ -16,6 +16,7 @@ import { UserService } from "../shared/user.service";
 })
 export class HomepageComponent implements OnInit {
   featuredListings: Listing[] = [];
+  user = {} as User;
   constructor(
     private listingService: ListingService,
     private favoriteService: FavoriteService,
@@ -24,6 +25,7 @@ export class HomepageComponent implements OnInit {
 
   async ngOnInit() {
     this.featuredListings = await this.listingService.getFeaturedListings();
+    this.user = await this.userService.currentUser();
   }
 
   async onFavoritedToggle(listing: Listing | null) {
@@ -31,8 +33,9 @@ export class HomepageComponent implements OnInit {
       return;
     }
 
+
     if (listing.$$isFavorited) {
-      const status = await this.favoriteService.removeFavorite(listing, this.userService.currentUser());
+      const status = await this.favoriteService.removeFavorite(listing, this.user);
       if (status === false) {
         alert("An error occurred while removing the listing from your favorites. Please try again later.");
         return;
@@ -40,7 +43,7 @@ export class HomepageComponent implements OnInit {
 
       listing.$$isFavorited = false;
     } else {
-      const status = !(await this.favoriteService.addFavorite(listing, this.userService.currentUser()));
+      const status = !(await this.favoriteService.addFavorite(listing, this.user));
       if (status === false) {
         alert("An error occurred while adding the listing to your favorites. Please try again later.");
         return;

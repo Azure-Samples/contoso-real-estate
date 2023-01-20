@@ -8,6 +8,9 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { RouterModule } from "@angular/router";
+import { AuthService } from "../authentication/auth.service";
+import { HasRoleDirective } from "../has-role/has-role.directive";
+import { UserRole } from "../user/user.service";
 
 @Component({
   selector: "app-booking-form",
@@ -24,10 +27,13 @@ import { RouterModule } from "@angular/router";
     MatDatepickerModule,
     MatFormFieldModule,
     MatSelectModule,
+    HasRoleDirective,
   ],
 })
 export class BookingFormComponent implements OnInit {
   @Input() listing: Listing | null = null;
+  @Output() onRent: EventEmitter<ReservationRequest>;
+  userRole: typeof UserRole = UserRole;
 
   monthlyRentPrice = 0;
   monthlyRentPriceWithDiscount = 0;
@@ -43,10 +49,12 @@ export class BookingFormComponent implements OnInit {
 
   capacityMapping: { [k: string]: string } = { "=1": "One guest", other: "# guests" };
   monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
+  isGuest = false;
 
-  @Output() onRent: EventEmitter<ReservationRequest>;
+  constructor(private authService: AuthService) {
 
-  constructor() {
+    this.isGuest = this.authService.hasRole([UserRole.Guest]);
+
     this.rentingPeriod = new FormGroup({
       start: new FormControl<Date | null>(null),
       end: new FormControl<Date | null>(null),
