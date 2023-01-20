@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
+import { WindowService } from "../core/window/window.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class ListingService {
+  constructor(private windowService: WindowService) {}
 
   async getListings({limit = 10, offset = 0} = {}): Promise<Listing[]> {
     const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}`)
@@ -16,7 +18,7 @@ export class ListingService {
     return resource;
   }
 
-  async getFeaturedListings({limit = 10, offset = 0} = {}): Promise<Listing[]> {
+  async getFeaturedListings({ limit = 10, offset = 0 } = {}): Promise<Listing[]> {
     // TODO: prevent loading the same listings multiple times when we hit the end of the list
     const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}&featured=true`)
     .then((response) => {
@@ -39,10 +41,16 @@ export class ListingService {
     return resource;
   }
 
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async share(listing: Listing) {
-    alert("Not implemented!");
+    const rent = listing.fees.at(0);
+    const currency = listing.fees.at(-1);
+    this.windowService
+      .nativeWindow()
+      .open(
+        `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(4)}+on+Contoso+Rental+at+${currency}${rent}/month` +
+          `&hashtags=#renting+#apartment`,
+      );
   }
 
   async reserve(reservationDetails: Reservation): Promise<CheckoutSession> {
@@ -50,8 +58,8 @@ export class ListingService {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reservationDetails),
+      },
+      body: JSON.stringify(reservationDetails),
     });
     const checkoutSession = await resource.json();
     if (resource.status !== 200) {
