@@ -2,6 +2,32 @@
   "navigationFallback": {
     "rewrite": "/index.html"
   },
+  "routes": [
+    {
+      "route": "/api/users/*",
+      "allowedRoles": [
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/api/reservations/*",
+      "allowedRoles": [
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/api/favorites/*",
+      "allowedRoles": [
+        "authenticated"
+      ]
+    },
+    {
+      "route": "/api/stripe/*",
+      "allowedRoles": [
+        "authenticated"
+      ]
+    }
+  ],
   "platform": {
     "apiRuntime": "node:16"
   }
