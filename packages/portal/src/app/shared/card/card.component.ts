@@ -14,7 +14,6 @@ import { RouterModule } from "@angular/router";
 export class CardComponent implements OnChanges {
   @Input() listing!: Listing | null;
   @Output() onFavorited: EventEmitter<Listing | null>;
-
   monthlyRentPriceWithDiscount = 0;
   isBookmarked = false;
   bedroomsMapping: { [k: string]: string } = { "=1": "1 bedroom", other: "# bedrooms" };
@@ -26,7 +25,7 @@ export class CardComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.listing) {
-      this.monthlyRentPriceWithDiscount = Math.max(0, this.listing.fees.rent * (1 - this.listing.fees.discount / 100));
+      this.monthlyRentPriceWithDiscount = Math.max(0, parseInt(this.listing.fees[3], 10) * (1 - parseInt(this.listing.fees[4], 10) / 100));
     }
   }
 

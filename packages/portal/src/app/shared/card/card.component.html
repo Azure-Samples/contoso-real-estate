@@ -3,7 +3,7 @@
     <img mat-card-image src="/assets/images/{{ listing?.photos?.[0] }}" alt="{{ listing?.title }}" />
     <mat-card-content>
       <mat-card-title>{{ listing?.title }}</mat-card-title>
-      <mat-card-subtitle> {{ listing?.address?.city }}, {{ listing?.address?.country }}</mat-card-subtitle>
+      <mat-card-subtitle> {{ listing?.address?.[1] }}, {{ listing?.address?.[2] }}</mat-card-subtitle>
       <p class="listing-description">{{ listing?.description?.substr(0, 100) }}...</p>
 
       <button
@@ -22,7 +22,7 @@
     </mat-card-content>
     <mat-card-actions>
       <div>
-        <h2>{{ this.monthlyRentPriceWithDiscount | currency: listing?.fees?.currency_symbol }}/month</h2>
+        <h2>{{ this.monthlyRentPriceWithDiscount | currency: listing?.fees?.[5] }}/month</h2>
         <h5>
           {{ listing?.bedrooms | i18nPlural: bedroomsMapping }}, {{ listing?.bathrooms | i18nPlural: bathroomsMapping }}
         </h5>
