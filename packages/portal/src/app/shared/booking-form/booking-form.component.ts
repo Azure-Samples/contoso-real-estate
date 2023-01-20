@@ -71,14 +71,14 @@ export class BookingFormComponent implements OnInit {
       return;
     }
 
-    this.monthlyRentPrice = this.listing?.fees.rent || 0;
+    this.monthlyRentPrice = Number(this.listing?.fees?.[4]) || 0;
     this.monthlyRentPriceWithDiscount = Math.max(
       0,
-      this.monthlyRentPrice * (1 - (this.listing?.fees?.discount || 0) / 100),
+      this.monthlyRentPrice * (1 - (parseInt(this.listing?.fees?.[4], 10) || 0) / 100),
     );
-    this.currency_code = this.listing?.fees?.currency_code;
-    this.currency_symbol = this.listing?.fees?.currency_symbol;
-    this.discount = this.listing?.fees?.discount || 0;
+    this.currency_code = this.listing?.fees?.[5].substring(0,3);
+    this.currency_symbol = this.listing?.fees?.[5].substring(4);
+    this.discount = Number(this.listing?.fees?.[4]) || 0;
     this.capacity = Array(this.listing?.capacity)
       .fill(0)
       .map((x, i) => i + 1);
@@ -88,9 +88,9 @@ export class BookingFormComponent implements OnInit {
     const months = this.months();
     return (
       months * this.monthlyRentPriceWithDiscount +
-      (this.listing?.fees?.cleaning || 0) +
-      (this.listing?.fees?.service || 0) +
-      (this.listing?.fees?.occupancy || 0)
+      (Number(this.listing?.fees?.[0]) || 0) +
+      (Number(this.listing?.fees?.[1]) || 0) +
+      (Number(this.listing?.fees?.[2]) || 0)
     );
   }
 
