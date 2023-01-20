@@ -3,6 +3,14 @@ h1 {
   padding-bottom: 20px;
 }
 
+a {
+  appearance: button;
+  text-decoration: none;
+  margin: 4px;
+  display: block;
+  width: 250px;
+}
+
 section {
   display: flex;
   justify-content: center;
