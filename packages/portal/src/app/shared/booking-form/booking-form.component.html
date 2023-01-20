@@ -51,15 +51,15 @@
     </tr>
     <tr>
       <td>Cleaning fee</td>
-      <td>{{ this.listing?.fees?.cleaning | currency: currency_symbol }}</td>
+      <td>{{ this.listing?.fees?.[0] | currency: currency_symbol }}</td>
     </tr>
     <tr>
       <td>Service fee</td>
-      <td>{{ this.listing?.fees?.service | currency: currency_symbol }}</td>
+      <td>{{ this.listing?.fees?.[1] | currency: currency_symbol }}</td>
     </tr>
     <tr>
       <td>Occupancy taxes and fees</td>
-      <td>{{ this.listing?.fees?.occupancy | currency: currency_symbol }}</td>
+      <td>{{ this.listing?.fees?.[2] | currency: currency_symbol }}</td>
     </tr>
   </table>
 

@@ -45,7 +45,7 @@ export class RentalpageComponent implements OnInit {
     this.isFavorited = await this.favoriteService.getFavorite(this.listing, this.userService.currentUser());
     this.reviewStars = Array(5)
       .fill(0)
-      .map((x, i) => (i < this.listing?.reviews.stars ? 1 : 0));
+      .map((x, i) => (i < this.listing?.reviews_stars ? 1 : 0));
   }
 
   async bookmark() {

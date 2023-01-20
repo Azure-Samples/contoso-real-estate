@@ -22,7 +22,7 @@
     </mat-card-content>
     <mat-card-actions>
       <div>
-        <h2>{{ this.monthlyRentPriceWithDiscount | currency: listing?.fees?.[5] }}/month</h2>
+        <h2>{{ this.monthlyRentPriceWithDiscount | currency: listing?.fees?.[5]?.substring(4) }}/month</h2>
         <h5>
           {{ listing?.bedrooms | i18nPlural: bedroomsMapping }}, {{ listing?.bathrooms | i18nPlural: bathroomsMapping }}
         </h5>

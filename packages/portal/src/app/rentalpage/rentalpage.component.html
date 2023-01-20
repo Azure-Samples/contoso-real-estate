@@ -23,7 +23,7 @@
 
   <section class="listing-review">
     <main>
-      <div>{{ listing.reviews.number | i18nPlural: reviewsMapping }}</div>
+      <div>{{ listing.reviews_number | i18nPlural: reviewsMapping }}</div>
       <div>
         <span
           *ngFor="let star of reviewStars"
@@ -57,8 +57,8 @@
   <section class="listing-details">
     <h1>{{ listing.title }}</h1>
     <p>
-      {{ listing.address.buildingNumber }}, {{ listing.address.street }}, {{ listing.address.city }},
-      {{ listing.address.country }}
+      {{ listing.address[0] }}, {{ listing.address[1] }}, {{ listing.address[2] }},
+      {{ listing.address[3] }}
     </p>
   </section>
 
@@ -71,11 +71,11 @@
   <section class="listing-amenities">
     <h3>Features</h3>
     <ul>
-      <li *ngFor="let feature of listing.amenities">
-        <span aria-hidden="false" aria-label="Listing amenity" class="material-symbols-outlined">{{
-          feature.icon
-        }}</span>
-        {{ feature.label }}
+      <li *ngFor="let feature of listing.ammenities">
+        <span aria-hidden="false" aria-label="Listing ammenity" class="material-symbols-outlined">
+          {{ feature.split('|')[1] }}
+        </span>
+        {{ feature.split('|')[0] }}
       </li>
     </ul>
   </section>
