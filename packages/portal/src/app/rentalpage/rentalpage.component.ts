@@ -33,7 +33,7 @@ export class RentalpageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    const listing = await this.listingService.getListingBySlug(this.route.snapshot.params["slug"]);
+    const listing = await this.listingService.getListingById(this.route.snapshot.params["id"]);
 
     if (listing !== undefined) {
       this.listing = listing;

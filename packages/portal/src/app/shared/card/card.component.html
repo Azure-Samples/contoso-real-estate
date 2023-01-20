@@ -32,7 +32,7 @@
         color="primary"
         class="card-link"
         [title]="listing?.title"
-        [routerLink]="['/listing/' + listing?.slug]"
+        [routerLink]="['/listing/' + listing?.id + '/' + listing?.slug]"
         [state]="{ listing }"
         >View listing</a
       >

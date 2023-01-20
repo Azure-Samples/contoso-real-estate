@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "listings/{slug}"
+      "route": "listing/{id}"
     },
     {
       "type": "http",
@@ -14,5 +14,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/get-listing-by-slug/index.js"
+  "scriptFile": "../dist/get-listing-by-id/index.js"
 }
