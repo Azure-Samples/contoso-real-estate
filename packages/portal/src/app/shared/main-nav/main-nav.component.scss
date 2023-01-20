@@ -21,3 +21,14 @@
   width: 45px;
   font-size: 45px;
 }
+
+button {
+  width: 160px;
+  .user__name {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    text-overflow: ellipsis;
+    width: 120px;
+  }
+}

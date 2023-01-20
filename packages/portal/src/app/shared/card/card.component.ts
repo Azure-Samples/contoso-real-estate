@@ -3,13 +3,15 @@ import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { RouterModule } from "@angular/router";
+import { HasRoleDirective } from "../has-role/has-role.directive";
+import { UserRole } from "../user/user.service";
 
 @Component({
   selector: "app-card",
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.scss"],
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule, HasRoleDirective],
 })
 export class CardComponent implements OnChanges {
   @Input() listing!: Listing | null;

@@ -3,18 +3,20 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteService } from "../shared/favorite.service";
+import { HasRoleDirective } from "../shared/has-role/has-role.directive";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/listing.service";
-import { UserService } from "../shared/user.service";
+import { UserRole, UserService } from "../shared/user/user.service";
 
 @Component({
   selector: "app-rentalpage",
   templateUrl: "./rentalpage.component.html",
   styleUrls: ["./rentalpage.component.scss"],
   standalone: true,
-  imports: [CommonModule, ListingDetailComponent, BookingFormComponent],
+  imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective],
 })
 export class RentalpageComponent implements OnInit {
+  userRole: typeof UserRole = UserRole;
   listing: Listing;
   navigation: Navigation | null;
   reviewStars: number[] = [];
@@ -42,14 +44,14 @@ export class RentalpageComponent implements OnInit {
       this.router.navigate(["/"]);
     }
 
-    this.isFavorited = await this.favoriteService.getFavorite(this.listing, this.userService.currentUser());
+    this.isFavorited = await this.favoriteService.getFavorite(this.listing, await this.userService.currentUser());
     this.reviewStars = Array(5)
       .fill(0)
       .map((x, i) => (i < this.listing?.reviews_stars ? 1 : 0));
   }
 
   async bookmark() {
-    const status = await this.favoriteService.addFavorite(this.listing, this.userService.currentUser());
+    const status = await this.favoriteService.addFavorite(this.listing, await this.userService.currentUser());
     if (status === false) {
       alert("An error occurred while adding the listing to your favorites. Please try again later.");
       return;

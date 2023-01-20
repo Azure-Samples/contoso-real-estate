@@ -14,7 +14,7 @@
 
 <mat-divider></mat-divider>
 
-<section class="guests-container" [formGroup]="bookingForm">
+<section class="guests-container" [formGroup]="bookingForm" [ngClass]="{ 'filter-blur': isGuest }">
   <mat-form-field appearance="outline">
     <mat-label>Enter renting period</mat-label>
     <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker" [min]="startFromTomorrow()">
@@ -29,13 +29,13 @@
   <mat-form-field appearance="outline">
     <mat-label>Number of Guests</mat-label>
     <mat-select formControlName="guests">
-      <mat-option *ngFor="let num of capacity" [value]="num">{{ num | i18nPlural: capacityMapping }}</mat-option>
+      <mat-option *ngFor="let num of capacity" [value]="num">{{ num | i18nPlural : capacityMapping }}</mat-option>
     </mat-select>
     <mat-hint>Max. {{ capacity.length }} guests are allowed</mat-hint>
   </mat-form-field>
 </section>
 
-<section class="price-details-container">
+<section class="price-details-container" [ngClass]="{ 'filter-blur': isGuest }">
   <table>
     <tr>
       <td>{{ months() | i18nPlural: monthsMapping }}</td>
@@ -69,9 +69,14 @@
   </div>
 </section>
 
-<section class="footer-container">
-  <button (click)="rent()" [disabled]="!rentingPeriod.valid" mat-flat-button color="primary">Reserve Now</button>
+<section class="footer-container" [ngClass]="{ 'filter-blur': isGuest }">
+  <button (click)="!isGuest && rent()" [disabled]="!rentingPeriod.valid" mat-flat-button color="primary">Reserve Now</button>
   <mat-hint
     >Your credit card will be charged once the reservation is approved. <a routerLink="/tos">Terms of service</a>
   </mat-hint>
+</section>
+
+<section class="login-container" *appHasRole="[userRole.Guest]">
+  Please login to book this listing.
+  <a routerLink="/auth/login" mat-flat-button color="primary">Login</a>
 </section>

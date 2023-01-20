@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { RouterModule } from "@angular/router";
 import { CardComponent } from "../card/card.component";
 import { FavoriteService } from "../favorite.service";
-import { UserService } from "../user.service";
+import { UserService } from "../user/user.service";
 
 @Component({
   selector: "app-card-list",
@@ -14,19 +14,20 @@ import { UserService } from "../user.service";
 })
 export class CardListComponent implements OnChanges {
   @Input() listings: Listing[] = [];
+  @Input() user: User = {} as User;
 
   @Output() onFavoritedToggle: EventEmitter<Listing | null>;
   @Output() scroll: EventEmitter<void> = new EventEmitter();
   noresults = "There are no listings right now. Come back again soon!";
 
-  constructor(private favoriteService: FavoriteService, private userService: UserService) {
+  constructor(private favoriteService: FavoriteService) {
     this.onFavoritedToggle = new EventEmitter<Listing | null>();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes["listings"].currentValue !== changes["listings"].previousValue) {
+  async ngOnChanges(changes: SimpleChanges) {
+    if (changes["listings"]?.currentValue !== changes["listings"]?.previousValue) {
       this.listings.map(async listing => {
-        listing.$$isFavorited = await this.favoriteService.getFavorite(listing, this.userService.currentUser());
+        listing.$$isFavorited = await this.favoriteService.getFavorite(listing, this.user);
         return listing;
       });
     }

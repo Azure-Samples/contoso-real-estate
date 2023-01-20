@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from "@angular/material/button";
-import { UserService } from '../shared/user.service';
+import { UserService } from '../shared/user/user.service';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
@@ -15,11 +15,11 @@ import { MatTabsModule } from '@angular/material/tabs';
   imports: [CommonModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule, MatTabsModule]
 })
 export class ProfileComponent implements OnInit {
-  user = {} as any;
+  user: User = {} as User;
   constructor(private userService: UserService) { }
 
-  ngOnInit(): void {
-    this.user = this.userService.currentUser();
+  async ngOnInit() {
+    this.user = await this.userService.currentUser();
     console.log("User: ", this.user);
   }
 
