@@ -42,7 +42,10 @@ export async function main(context: any, req: any) {
           return;
         }
 
-        const result = await client.query(`SELECT * FROM LISTING WHERE isFeatured = ${featured} LIMIT ${limit} OFFSET ${offset}`);
+        const result = await client.query(
+          `SELECT * FROM LISTING WHERE isFeatured = $1 LIMIT $2 OFFSET $3`,
+          [featured, limit, offset]
+        );
         const listing = result.rows.map((row) => {
           row.fees = row.fees.split('|');
           row.photos = row.photos.split('|');
