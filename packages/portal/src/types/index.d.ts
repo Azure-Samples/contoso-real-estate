@@ -16,8 +16,8 @@ declare interface Listing {
   isRecommended: boolean;
   photos: string[];
   capacity: number;
-  amenities: string[];
-  review_stars: number;
+  ammenities: string[];
+  reviews_stars: number;
   reviews_number: number;
   address: string[];
   fees: string[];

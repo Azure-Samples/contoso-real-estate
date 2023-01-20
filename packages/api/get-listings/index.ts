@@ -47,6 +47,7 @@ export async function main(context: any, req: any) {
           row.fees = row.fees.split('|');
           row.photos = row.photos.split('|');
           row.address = row.address.split('|');
+          row.ammenities = row.ammenities.split(',');
           return row;
         });
         await client.end();
