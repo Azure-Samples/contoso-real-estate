@@ -73,9 +73,9 @@
     <ul>
       <li *ngFor="let feature of listing.ammenities">
         <span aria-hidden="false" aria-label="Listing ammenity" class="material-symbols-outlined">
-          {{ feature.split('|')[1] }}
+          {{ feature.split('|')[0] }}
         </span>
-        {{ feature.split('|')[0] }}
+        {{ feature.split('|')[1] }}
       </li>
     </ul>
   </section>
