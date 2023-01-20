@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { UserRole, UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  user: User | null = null;
+
   isLoggedIn = false;
-  constructor(private router: Router) {}
+  constructor(private userService: UserService) {
+    this.userService.currentUser().then(user => {
+      this.user = user;
+      this.isLoggedIn = this.hasRole([UserRole.User, UserRole.Admin]);
+    });
+  }
+
   isAuthenticated() {
     return this.isLoggedIn;
   }
 
-  login() {
-    this.isLoggedIn = true;
-  }
+  hasRole(roles: UserRole[]) {
+    if (!this.user) {
+      return false;
+    }
 
-  logout() {
-    this.isLoggedIn = false;
+    return roles.includes(this.user.role as UserRole);
   }
 }
