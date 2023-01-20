@@ -43,10 +43,16 @@ export async function main(context: any, req: any) {
         }
 
         const result = await client.query(`SELECT * FROM LISTING WHERE isFeatured = ${featured} LIMIT ${limit} OFFSET ${offset}`);
+        const listing = result.rows.map((row) => {
+          row.fees = row.fees.split('|');
+          row.photos = row.photos.split('|');
+          row.address = row.address.split('|');
+          return row;
+        });
         await client.end();
         context.res = {
             status: 200,
-            body: result.rows
+            body: listing
         };
     } catch (err) {
         context.log.error('Error:', err);

@@ -16,10 +16,11 @@ declare interface Listing {
   isRecommended: boolean;
   photos: string[];
   capacity: number;
-  amenities: { icon: string; label: string }[];
-  reviews: { stars: number; number: number };
-  address: Address;
-  fees: Fees;
+  amenities: string[];
+  review_stars: number;
+  reviews_number: number;
+  address: string[];
+  fees: string[];
   $$isFavorited?: boolean;
 }
 
@@ -31,15 +32,6 @@ declare interface Reviews {
   user: User;
 }
 
-declare interface Fees {
-  discount: number;
-  cleaning: number;
-  service: number;
-  occupancy: number;
-  rent: number;
-  currency_code: string;
-  currency_symbol: string;
-}
 
 declare interface StageType {
   title: string;
