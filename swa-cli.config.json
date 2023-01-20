@@ -8,9 +8,10 @@
       "appBuildCommand": "npm run build",
       "apiBuildCommand": "npm run build",
       "run": "npm start",
-      "appDevserverUrl": "http://localhost:4200",
       "appName": "nv-contoso-portal",
-      "resourceGroup": "nv-contoso-deployments"
+      "resourceGroup": "nv-contoso-deployments",
+      "verbose": "silly",
+      "appDevserverUrl": "http://localhost:4200"
     }
   }
 }
