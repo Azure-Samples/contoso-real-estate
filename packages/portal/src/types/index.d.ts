@@ -4,37 +4,41 @@ declare interface User {
 }
 
 declare interface Listing {
+  id: string;
+  title: string;
+  slug: string;
+  createdAt: string;
   bathrooms: number;
   bedrooms: number;
-  createdAt: string;
   description: string;
-  id: string;
+  type: string;
   isFeatured: boolean;
   isRecommended: boolean;
   photos: string[];
-  slug: string;
-  title: string;
-  address: Address;
   capacity: number;
   amenities: { icon: string; label: string }[];
-  reviews: {
-    stars: number;
-    number: number;
-  };
-  position: {
-    lat: number;
-    lng: number;
-  },
-  fees: {
-    discount: number;
-    cleaning: number;
-    service: number;
-    occupancy: number;
-    rent: number;
-    currency_code: string;
-    currency_symbol: string;
-  };
+  reviews: { stars: number; number: number };
+  address: Address;
+  fees: Fees;
   $$isFavorited?: boolean;
+}
+
+declare interface Reviews {
+  id: string;
+  createdAt: string;
+  rating: number;
+  review: string;
+  user: User;
+}
+
+declare interface Fees {
+  discount: number;
+  cleaning: number;
+  service: number;
+  occupancy: number;
+  rent: number;
+  currency_code: string;
+  currency_symbol: string;
 }
 
 declare interface StageType {
@@ -49,15 +53,14 @@ declare interface Address {
   buildingNumber: string;
   city: string;
   country: string;
-  createdAt: string;
-  id: string;
-  slug: string;
   state: string;
   street: string;
   zipCode: string;
+  position: string;
 }
 
 declare interface Reservation {
+  id?: string;
 }
 
 declare interface ReservationRequest {
