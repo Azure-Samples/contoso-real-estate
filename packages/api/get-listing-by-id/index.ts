@@ -1,6 +1,6 @@
 import pg from 'pg';
 
-export async function main(context: any, req: any) {
+export async function getListingById(context: any, req: any) {
     try {
         const client = new pg.Client({
             user: process.env.POSTGRESQL_USER,
@@ -12,21 +12,21 @@ export async function main(context: any, req: any) {
         });
         await client.connect();
 
-        const slug = req.query.slug || '';
+        const id = req.query.id || '';
 
-        if (!slug || slug.length < 0) {
+        if (!id) {
           context.res = {
             status: 400,
             body: {
-              error: "You must query a valid slug",
+              error: "An id must be provided",
             },
           };
           return;
         }
 
         const result = await client.query(
-          `SELECT * FROM LISTING WHERE slug = $1`,
-          [slug]
+          `SELECT * FROM LISTING WHERE id = $1`,
+          [id]
         );
         const listing = result.rows.map((row) => {
           row.fees = row.fees.split('|');

@@ -12,7 +12,7 @@ export const ROUTES: Routes = [
     component: HomepageComponent,
   },
   {
-    path: "listing/:slug",
+    path: "listing/:id/:slug",
     loadComponent: () => import("./rentalpage/rentalpage.component").then(m => m.RentalpageComponent),
   },
   {

@@ -28,8 +28,8 @@ export class ListingService {
     return resource;
   }
 
-  async getListingBySlug(slug: string): Promise<Listing | undefined> {
-    const resource = await fetch(`/api/listings/${slug}`)
+  async getListingById(id: string): Promise<Listing | undefined> {
+    const resource = await fetch(`/api/listings?id=${id}`)
     .then((response) => {
       if (response.status === 200) {
         return response.json();
