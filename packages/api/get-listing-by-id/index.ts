@@ -3,12 +3,12 @@ import pg from 'pg';
 export async function getListingById(context: any, req: any) {
     try {
         const client = new pg.Client({
-            user: process.env.POSTGRESQL_USER,
-            password: process.env.POSTGRESQL_PASSWORD,
-            host: process.env.POSTGRESQL_HOST,
-            port: Number(process.env.POSTGRESQL_PORT),
-            database: process.env.POSTGRESQL_DATABASE,
-            ssl: true
+          user: process.env.DATABASE_USERNAME,
+          password: process.env.DATABASE_PASSWORD,
+          host: process.env.DATABASE_HOST,
+          port: Number(process.env.DATABASE_PORT),
+          database: process.env.DATABASE_NAME,
+          ssl: true
         });
         await client.connect();
 
