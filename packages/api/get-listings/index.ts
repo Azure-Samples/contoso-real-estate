@@ -1,13 +1,15 @@
 import pg from 'pg';
 
 export async function main(context: any, req: any) {
+  const connectionString = process.env['ConnectionStrings:cosmosdb'];
+  context.log(connectionString, '#####connection string');
     try {
         const client = new pg.Client({
-            user: process.env.POSTGRESQL_USER,
-            password: process.env.POSTGRESQL_PASSWORD,
-            host: process.env.POSTGRESQL_HOST,
-            port: Number(process.env.POSTGRESQL_PORT),
-            database: process.env.POSTGRESQL_DATABASE,
+            user: process.env.DATABASE_USERNAME,
+            password: process.env.DATABASE_PASSWORD,
+            host: process.env.DATABASE_HOST,
+            port: Number(process.env.DATABASE_PORT),
+            database: process.env.DATABASE_NAME,
             ssl: true
         });
         await client.connect();
@@ -43,10 +45,10 @@ export async function main(context: any, req: any) {
         }
 
         const result = await client.query(
-          `SELECT * FROM LISTING WHERE isFeatured = $1 LIMIT $2 OFFSET $3`,
+          `SELECT * FROM LISTING WHERE isfeatured = $1 LIMIT $2 OFFSET $3`,
           [featured, limit, offset]
         );
-        const listing = result.rows.map((row) => {
+        const listing = result.rows.map((row: any) => {
           row.fees = row.fees.split('|');
           row.photos = row.photos.split('|');
           row.address = row.address.split('|');

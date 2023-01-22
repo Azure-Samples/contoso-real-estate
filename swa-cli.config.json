@@ -10,7 +10,7 @@
       "run": "npm start",
       "appDevserverUrl": "http://localhost:4200",
       "appName": "nv-contoso-portal-app",
-      "resourceGroup": "nv-contoso-portal-app-rg"
+      "resourceGroup": "nv-contoso-deployments"
     }
   }
 }
