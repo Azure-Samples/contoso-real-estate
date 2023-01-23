@@ -3,7 +3,7 @@
 import fs from "fs";
 import mime from "mime-types";
 import set from "lodash.set";
-import { categories, homepage, writers, articles, global } from "../data/data.json";
+import { categories, homepage, writers, articles, global, listings } from "../data/data.json";
 
 async function isFirstRun() {
   const pluginStore = strapi.store({
@@ -66,7 +66,7 @@ function getFileData(fileName) {
 // Create an entry and attach files if there are any
 async function createEntry({ model, entry, files }: { model: string; entry: any; files?: any }) {
   try {
-    if (files) {
+    if (model !== "listing" && files) {
       for (const [key, file] of Object.entries(files)) {
         // Get file name without the extension
         const [fileName] = (file as any).name.split(".");
@@ -149,6 +149,23 @@ async function importArticles() {
   );
 }
 
+async function importListing() {
+  return Promise.all(
+    listings.map(listing => {
+
+      return createEntry({
+        model: "listing",
+        entry: {
+          ...listing,
+          // Make sure it's not a draft
+          // Need to check this new field won't break the API
+          publishedAt: Date.now(),
+        },
+      });
+    }),
+  );
+}
+
 async function importGlobal() {
   const files = {
     favicon: getFileData("favicon.png"),
@@ -165,6 +182,7 @@ async function importSeedData() {
     article: ["find", "findOne"],
     category: ["find", "findOne"],
     writer: ["find", "findOne"],
+    listing: ["find", "findOne"]
   });
 
   // Create all entries
@@ -173,6 +191,7 @@ async function importSeedData() {
   await importWriters();
   await importArticles();
   await importGlobal();
+  await importListing();
 }
 
 export default async () => {
