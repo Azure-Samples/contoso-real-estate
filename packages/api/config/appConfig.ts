@@ -5,18 +5,24 @@ export interface ObservabilityConfig {
 
 export interface DatabaseConfig {
   connectionString: string;
-  databaseName: string;
+  database: string;
+  user?: string;
+  password?: string;
+  host?: string;
+  port?: number;
+  ssl?: boolean;
 }
 
 export interface StripeConfig {
-    publicKey: string
-    secretKey: string
-    webhookSecret: string
+  publicKey: string;
+  secretKey: string;
+  webhookSecret: string;
 }
 
 export interface AppConfig {
-  observability: ObservabilityConfig
-  database: DatabaseConfig
-  stripe: StripeConfig
-  appDomain: string
+  observability: ObservabilityConfig;
+  database: DatabaseConfig;
+  stripe: StripeConfig;
+  strapi: DatabaseConfig;
+  appDomain: string;
 }
