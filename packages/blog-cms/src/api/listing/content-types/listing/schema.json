@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "listings",
+  "info": {
+    "singularName": "listing",
+    "pluralName": "listings",
+    "displayName": "Listing",
+    "name": "listing"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "createdAt": {
+      "type": "text",
+      "required": true
+    },
+    "bathrooms": {
+      "type": "text",
+      "required": true
+    },
+    "bedrooms": {
+      "type": "text",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "type": {
+      "type": "text",
+      "required": true
+    },
+    "isFeatured": {
+      "type": "text",
+      "required": true
+    },
+    "isRecommended": {
+      "type": "text",
+      "required": true
+    },
+    "photos": {
+      "type": "text",
+      "required": true
+    },
+    "capacity": {
+      "type": "text",
+      "required": true
+    },
+    "ammenities": {
+      "type": "text",
+      "required": true
+    },
+    "reviews_stars": {
+      "type": "text",
+      "required": true
+    },
+    "reviews_number": {
+      "type": "text",
+      "required": true
+    },
+    "isFavorited": {
+      "type": "text",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "fees": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
