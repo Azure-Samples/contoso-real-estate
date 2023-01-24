@@ -6,10 +6,10 @@
       "apiLocation": "packages/api",
       "outputLocation": "dist/contoso-app",
       "appBuildCommand": "npm run build",
-      "apiBuildCommand": "npm run build --if-present",
+      "apiBuildCommand": "npm run build",
       "run": "npm start",
       "appDevserverUrl": "http://localhost:4200",
-      "appName": "nv-contoso-portal-app",
+      "appName": "nv-contoso-portal",
       "resourceGroup": "nv-contoso-deployments"
     }
   }

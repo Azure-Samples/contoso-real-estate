@@ -20,7 +20,7 @@ export const configureMongoose = async (config: DatabaseConfig) => {
     db.on("disconnected", () => logger.info("Mongoose disconnected successfully!"));
     db.on("error", (err: Error) => logger.error("Mongoose database error:", err));
 
-    await mongoose.connect(config.connectionString, { dbName: config.databaseName });
+    await mongoose.connect(config.connectionString, { dbName: config.database });
   } catch (err) {
     logger.error(`Mongoose database error: ${err}`);
     throw err;
