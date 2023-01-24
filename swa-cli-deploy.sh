@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Deploying a SWA API from a monorepo isn't supported by StaticSiteClient
+# Deploying a SWA API from a monorepo isn't supported yet!
 # This script copies the API into a temporary folder, builds it and deploys it using the SWA CLI
 
 # Load environment variables from .env file
