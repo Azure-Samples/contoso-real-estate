@@ -7,6 +7,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "**.azurecontainerapps.io",
+        port: "",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
         hostname: "*.blob.core.windows.net",
         port: "",
         pathname: "/strapi/assets/**",
