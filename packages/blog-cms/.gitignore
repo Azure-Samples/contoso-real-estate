@@ -4,3 +4,6 @@ build
 public/uploads/*
 !public/uploads/.gitkeep
 .cache
+
+# env files
+*env
