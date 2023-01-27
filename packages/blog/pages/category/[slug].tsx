@@ -12,7 +12,6 @@ const Category = ({ category, categories, homepage }) => {
 
   return (
     <Layout categories={categories.data}>
-      <Stage homepage={homepage} categories={categories}></Stage>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
