@@ -4,7 +4,7 @@ import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 import Stage from "../../components/stage"
 
-const Category = ({ category, categories, homepage }) => {
+const Category = ({ category, categories }) => {
   const seo = {
     metaTitle: category.attributes.name,
     metaDescription: `All ${category.attributes.name} articles`,
