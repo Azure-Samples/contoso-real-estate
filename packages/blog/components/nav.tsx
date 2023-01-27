@@ -4,11 +4,11 @@ import Link from "next/link"
 const Nav = ({ categories }) => {
   return (
     <div>
-      <nav className="nav" data-uk-navbar>
+      <nav className="nav">
         <p className="text">
           Welcome to our Blog! Choose your favorite category.
         </p>
-        <ul className="uk-navbar-nav">
+        <ul className="nav-list">
           {categories.map((category) => {
             return (
               <li key={category.id}>

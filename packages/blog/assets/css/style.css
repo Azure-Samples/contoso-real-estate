@@ -56,9 +56,22 @@ h1 {
   padding: 10px 30px;
 }
 
-.text {
+.text,
+.uk-container.uk-container-small p {
   font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: normal;
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+}
+
+.nav-list li {
+  padding-right: 10px;
+}
+
+.stage .text {
   line-height: 3em;
 }
 
@@ -96,7 +109,6 @@ h1 {
 
 #banner {
   margin: 20px;
-  height: 800px;
 }
 
 #editor {
@@ -154,7 +166,7 @@ h1 {
   background: #fff !important;
   font-family: Staatliches;
 }
-
+ 
 img:hover {
   opacity: 1;
   transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
