@@ -2,8 +2,9 @@ import Articles from "../../components/articles"
 import { fetchAPI } from "../../lib/api"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
+import Stage from "../../components/stage"
 
-const Category = ({ category, categories }) => {
+const Category = ({ category, categories, homepage }) => {
   const seo = {
     metaTitle: category.attributes.name,
     metaDescription: `All ${category.attributes.name} articles`,
@@ -11,6 +12,7 @@ const Category = ({ category, categories }) => {
 
   return (
     <Layout categories={categories.data}>
+      <Stage homepage={homepage} categories={categories}></Stage>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">

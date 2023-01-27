@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Document, { Html, Head, Main, NextScript } from "next/document"
 
 class MyDocument extends Document {
@@ -28,7 +29,20 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
-          <Main />
+          <header className="header">
+            <a href="/" className="logo">
+              <img
+                src="/images/contoso-real-estate-logo.svg"
+                alt="logo contoso"
+                width="80"
+              />
+            </a>
+          </header>
+          <main className="main">
+            <section className="section homepage inner-wrapper">
+              <Main />
+            </section>
+          </main>
           <NextScript />
         </body>
       </Html>
