@@ -16,6 +16,7 @@ import { UserRole } from "../user/user.service";
 export class CardComponent implements OnChanges {
   @Input() listing!: Listing | null;
   @Output() onFavorited: EventEmitter<Listing | null>;
+  userRole: typeof UserRole = UserRole;
   monthlyRentPriceWithDiscount = 0;
   isBookmarked = false;
   bedroomsMapping: { [k: string]: string } = { "=1": "1 bedroom", other: "# bedrooms" };
