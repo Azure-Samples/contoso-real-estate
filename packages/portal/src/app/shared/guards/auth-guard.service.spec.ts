@@ -1,6 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthGuard } from './auth-guard.service';
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({})
+  })
+) as any;
 
 describe('AuthGuard', () => {
   let service: AuthGuard;
