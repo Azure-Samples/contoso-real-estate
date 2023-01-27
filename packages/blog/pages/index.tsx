@@ -1,18 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react"
 import Articles from "../components/articles"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { fetchAPI } from "../lib/api"
+import Stage from "../components/stage"
 
 const Home = ({ articles, categories, homepage }) => {
   return (
     <Layout categories={categories}>
       <Seo seo={homepage.attributes.seo} />
       <div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <h1>{homepage.attributes.hero.title}</h1>
+        <Stage homepage={homepage} categories={categories}></Stage>
+        <section className="section results">
           <Articles articles={articles} />
-        </div>
+        </section>
       </div>
     </Layout>
   )
