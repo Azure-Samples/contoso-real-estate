@@ -102,6 +102,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+      
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      
+      - run: npm ci
       - name: 'Deploy'
         shell: bash
         run: ./swa-cli-deploy.sh
