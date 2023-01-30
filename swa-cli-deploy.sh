@@ -41,4 +41,5 @@ npm prune --production
 # deploy the API using SWA CLI (load and override local swa config)
 echo "Deploying API..."
 cd -
+npm run build -w portal
 npm run swa -- deploy --api-location=$tmpdir/api --deployment-token=$SWA_CLI_DEPLOYMENT_TOKEN --env=$deploy_env --verbose=silly
