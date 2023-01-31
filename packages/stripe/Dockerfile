@@ -9,5 +9,5 @@ WORKDIR /app
 COPY ./package*.json ./
 COPY ./packages/stripe ./packages/stripe
 RUN npm ci --omit=dev --workspace=stripe --cache /tmp/empty-cache
-EXPOSE 4001
+EXPOSE 3000
 CMD [ "npm", "start", "--workspace=stripe" ]
