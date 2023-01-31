@@ -54,3 +54,4 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = if (!(empty(
 
 output name string = web.name
 output uri string = 'https://${web.properties.defaultHostname}'
+output apiUri string = 'https://${web.properties.defaultHostname}/api'

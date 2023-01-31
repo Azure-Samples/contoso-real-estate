@@ -31,6 +31,14 @@ param cmsDatabaseServerName string = ''
 @secure()
 param cmsDatabasePassword string
 
+param stripePublicKey string
+
+@secure()
+param stripeSecretKey string
+
+@secure()
+param stripeWebhookSecret string
+
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 var tags = { 'azd-env-name': environmentName }
@@ -137,7 +145,22 @@ module blog 'app/blog.bicep' = {
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     location: location
     environmentName: environmentName
-    storageAccountName: storageAccount.outputs.name
+  }
+}
+
+module stripe 'app/stripe.bicep' = {
+  name: 'stripe'
+  scope: rg
+  params: {
+    apiUrl: web.outputs.WEB_API_URI
+    stripePublicKey: stripePublicKey
+    stripeSecretKey: stripeSecretKey
+    stripeWebhookSecret: stripeWebhookSecret
+    containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
+    containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
+    location: location
+    environmentName: environmentName
   }
 }
 
@@ -149,6 +172,7 @@ output AZURE_KEY_VAULT_ENDPOINT string = keyVault.outputs.keyVaultEndpoint
 output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
 output WEB_PORTAL_URI string = web.outputs.WEB_PORTAL_URI
+output WEB_API_URI string = web.outputs.WEB_API_URI
 output WEB_BLOG_URI string = blog.outputs.WEB_BLOG_URI
 output WEB_BLOG_NAME string = blog.outputs.WEB_BLOG_NAME
 output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.containerAppsEnvironmentName
@@ -156,6 +180,8 @@ output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.containe
 output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.containerRegistryName
 output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_BLOG_CMS_URI
 output SERVICE_BLOG_CMS_NAME string = cms.outputs.SERVICE_BLOG_CMS_NAME
+output SERVICE_STRIPE_URL string = stripe.outputs.SERVICE_STRIPE_URI
+output SERVICE_STRIPE_NAME string = stripe.outputs.SERVICE_STRIPE_NAME
 output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
 output SERVICE_BLOG_CMS_SERVER_HOST string = cms.outputs.SERVICE_BLOG_CMS_SERVER_HOST
 output SERVICE_CMS_POSTGRESQL_DATABASE_NAME string = cms.outputs.SERVICE_BLOG_CMS_DATABASE_NAME
