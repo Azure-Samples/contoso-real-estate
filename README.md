@@ -173,6 +173,14 @@ The Azure Developer CLI includes many other commands to help with your Azure dev
 
 - Deploying an Azure Function App using `azd` triggers by default a remote build. And because each package is deployed independently, we can't share the same base tsconfig.base.json. As a temporary workaround, we need to duplicate the tsconfig.json configuration in each package.
 
+- If you encounter a `FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory` during `npm install`, try the following:
+
+  ```bash
+  rm -rf node_modules
+  npm i -g npm@8
+  npm install
+  ```
+
 ## Security
 
 <!-- TBD -->
