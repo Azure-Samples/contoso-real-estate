@@ -19,3 +19,4 @@ module web '../core/host/staticwebapps.bicep' = [for name in swaNames: {
 
 output WEB_PORTAL_NAME string = web[0].outputs.name
 output WEB_PORTAL_URI string = web[0].outputs.uri
+output WEB_API_URI string = web[0].outputs.apiUri

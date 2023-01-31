@@ -23,3 +23,8 @@ services:
     project: packages/blog
     host: containerapp
     module: app/blog
+
+  stripe:
+    project: packages/stripe
+    host: containerapp
+    module: app/stripe
