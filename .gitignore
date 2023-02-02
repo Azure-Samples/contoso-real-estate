@@ -41,6 +41,7 @@ jspm_packages/
 .env
 .env.*
 !.env.example
+.*env
 
 # Next.js build output
 .next
