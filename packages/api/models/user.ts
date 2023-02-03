@@ -1,44 +1,16 @@
-import { faker } from "@faker-js/faker";
+import UserModel, { User } from "../models/user.schema";
 
-const MAX_ENTRIES = 100;
-let CACHE: any[] = [];
-
-function model({ slug }: { slug?: number } = {}) {
-  return {
-    id: faker.database.mongodbObjectId(),
-    name: faker.helpers.fake("{{name.firstName}} {{name.lastName}}"),
-    role: faker.helpers.arrayElements(["guest", "renter", "admin"], 1),
-    status: faker.helpers.arrayElements(["active", "suspended", "inactive"], 1),
-    photo: faker.image.avatar(),
-    address: faker.address.streetAddress(),
-    payment: {
-      provider: faker.helpers.arrayElements(["stripe", "paypal"], 1),
-      id: faker.helpers.arrayElements(["cus_123", "cus_456"], 1),
-      address: faker.address.streetAddress(),
-    },
-    email: faker.internet.email(),
-    auth: {
-      provider: faker.helpers.arrayElements(["aad", "apple", "twitter", "google", "facebook"], 1),
-      id: faker.helpers.arrayElements(["123", "456"], 1),
-      token: faker.random.alphaNumeric(128),
-      lastLogin: faker.date.past(),
-    },
-    createdAt: faker.date.past(),
-    slug: slug || faker.lorem.slug(),
-  };
+export async function saveUserSession(user: User): Promise<User> {
+  const userModel = new UserModel(user);
+  await userModel.updateOne({ upsert: true });
+  return userModel;
 }
 
-export async function getUsersMock({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
-  if (CACHE.length === 0) {
-    CACHE = Array.from({ length: MAX_ENTRIES }, () => model());
-  }
 
-  return CACHE.slice(offset, offset + limit).map(model => {
-    model.$self = `/api/users/${model.slug}`;
-    return model;
-  });
+export async function findUserById(id: string): Promise<User | null> {
+  return await UserModel.findById(id);
 }
 
-export async function getUserBySlugMock({ slug }: { slug: number }): Promise<any> {
-  return Promise.resolve(CACHE.find(model => model.slug === slug));
+export async function findUsers({offset, limit}: {offset: number, limit: number}): Promise<User[]> {
+  return await UserModel.find().skip(offset).limit(limit);
 }

@@ -30,6 +30,6 @@ export class MainNavComponent {
   }
 
   isAuthenticated() {
-    return this.userDetails?.role === UserRole.User || this.userDetails?.role === UserRole.Admin;
+    return this.userDetails?.role === UserRole.Renter || this.userDetails?.role === UserRole.Admin;
   }
 }

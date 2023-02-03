@@ -5,8 +5,8 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "methods": ["get"],
-      "route": "listings/{id}"
+      "methods": ["post"],
+      "route": "users"
     },
     {
       "type": "http",
@@ -14,5 +14,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/get-listing-by-id/index.js"
+  "scriptFile": "../dist/post-users/index.js"
 }

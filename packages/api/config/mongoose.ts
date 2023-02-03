@@ -3,16 +3,8 @@ import { DatabaseConfig } from "../config/appConfig";
 import { logger } from "./observability";
 
 export const configureMongoose = async (config: DatabaseConfig) => {
-  mongoose.set("toJSON", {
-    virtuals: true,
-    versionKey: false,
-    transform: (_: any, converted: { id: any; _id: any }) => {
-      converted.id = converted._id;
-      delete converted._id;
-    },
-  });
-
   try {
+    mongoose.set('strictQuery', false);
     const db = mongoose.connection;
     db.on("connecting", () => logger.info("Mongoose connecting..."));
     db.on("connected", () => logger.info("Mongoose connected successfully!"));
@@ -21,8 +13,9 @@ export const configureMongoose = async (config: DatabaseConfig) => {
     db.on("error", (err: Error) => logger.error("Mongoose database error:", err));
 
     await mongoose.connect(config.connectionString, { dbName: config.database });
+    console.log("Mongoose connected successfully!");
+
   } catch (err) {
     logger.error(`Mongoose database error: ${err}`);
-    throw err;
   }
 };

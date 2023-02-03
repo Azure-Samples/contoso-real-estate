@@ -79,7 +79,7 @@ const populateEnvironmentFromKeyVault = async () => {
   }
 };
 
-export async function initializeConfiguration() {
+export async function initializeDatabaseConfiguration() {
   const config = await getConfig();
   await configureMongoose(config.database);
 }

@@ -1,7 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { getUsersMock } from "../models/user";
-
-const data = async ({ offset, limit }: { offset: number; limit: number }) => await getUsersMock({ offset, limit });
+import { findUsers } from "../models/user";
 
 const getUsers: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const offset = Number(req.query.offset) || 0;
@@ -33,11 +31,29 @@ const getUsers: AzureFunction = async function (context: Context, req: HttpReque
     return;
   }
 
-  context.res = {
-    body: {
-      listings: await data({ offset, limit }),
-    },
-  };
+  try {
+    const users = await findUsers({ offset, limit });
+
+    if (users) {
+      context.res = {
+        body: users,
+      };
+    } else {
+      context.res = {
+        status: 404,
+        body: {
+          error: "Users not found",
+        },
+      };
+    }
+  } catch (error) {
+    context.res = {
+      status: 500,
+      body: {
+        error: "Internal Server Error",
+      },
+    };
+  }
 };
 
 export default getUsers;

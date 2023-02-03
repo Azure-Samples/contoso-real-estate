@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private userService: UserService) {
     this.userService.currentUser().then(user => {
       this.user = user;
-      this.isLoggedIn = this.hasRole([UserRole.User, UserRole.Admin]);
+      this.isLoggedIn = this.hasRole([UserRole.Renter, UserRole.Admin]);
     });
   }
 
