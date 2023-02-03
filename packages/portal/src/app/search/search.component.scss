@@ -1,0 +1,34 @@
+:host {
+  display: block;
+  padding: 20px;
+  padding-bottom: 30px;
+}
+
+.search-box {
+  outline: none;
+}
+
+.search.inner-wrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+// override mat-field
+.mat-form-field {
+  width: calc(100% - 80px);
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+mat-raised-button {
+  height: 50px;
+}
+
+.searchform {
+  display: flex;
+}

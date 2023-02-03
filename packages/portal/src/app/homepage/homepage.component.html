@@ -16,7 +16,9 @@
 </section>
 
 <mat-divider></mat-divider>
-
+<section class="search inner-wrapper">
+  <app-search></app-search>
+</section>
 <section class="featured-listings inner-wrapper">
   <h2 class="subtitle">Featured Listings</h2>
   <app-card-list [user]="user" [listings]="featuredListings" (onFavoritedToggle)="onFavoritedToggle($event)"></app-card-list>

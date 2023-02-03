@@ -6,13 +6,14 @@ import { FavoriteService } from "../shared/favorite.service";
 import { InfiniteScrollingDirective } from "../shared/infinite-scrolling.directive";
 import { ListingService } from "../shared/listing.service";
 import { UserService } from "../shared/user/user.service";
+import { SearchComponent } from "../search/search.component";
 
 @Component({
   selector: "app-homepage",
   templateUrl: "./homepage.component.html",
   styleUrls: ["./homepage.component.scss"],
   standalone: true,
-  imports: [CardListComponent, MatButtonModule, MatDividerModule, InfiniteScrollingDirective],
+  imports: [CardListComponent, MatButtonModule, MatDividerModule, InfiniteScrollingDirective, SearchComponent],
 })
 export class HomepageComponent implements OnInit {
   featuredListings: Listing[] = [];
