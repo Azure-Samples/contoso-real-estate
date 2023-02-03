@@ -31,7 +31,7 @@ export class ListingService {
   }
 
   async getListingById(id: string): Promise<Listing | undefined> {
-    const resource = await fetch(`/api/listings?id=${id}`)
+    const resource = await fetch(`/api/listings/${id}`)
     .then((response) => {
       if (response.status === 200) {
         return response.json();

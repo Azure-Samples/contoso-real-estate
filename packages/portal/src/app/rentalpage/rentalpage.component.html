@@ -35,7 +35,7 @@
       </div>
     </main>
     <aside>
-      <div *appHasRole="[userRole.Admin, userRole.User]">
+      <div *appHasRole="[userRole.Admin, userRole.Renter]">
         <button
           *ngIf="isFavorited"
           (click)="bookmark()"

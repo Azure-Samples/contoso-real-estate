@@ -6,7 +6,7 @@
       <mat-card-subtitle> {{ listing?.address?.[1] }}, {{ listing?.address?.[2] }}</mat-card-subtitle>
       <p class="listing-description">{{ listing?.description?.substr(0, 100) }}...</p>
 
-      <div *appHasRole="[userRole.Admin, userRole.User]">
+      <div *appHasRole="[userRole.Admin, userRole.Renter]">
         <button
           *ngIf="listing?.$$isFavorited"
           (click)="bookmark()"

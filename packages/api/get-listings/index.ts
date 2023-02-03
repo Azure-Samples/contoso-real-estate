@@ -1,6 +1,8 @@
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { pgQuery } from "../config/pgclient";
 
-export async function main(context: any, req: any) {
+const getListings: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+
   try {
     const offset = Number(req.query.offset) || 0;
     const limit = Number(req.query.limit) || 10;
@@ -53,3 +55,5 @@ export async function main(context: any, req: any) {
     };
   }
 }
+
+export default getListings;

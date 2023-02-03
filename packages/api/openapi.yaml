@@ -1133,7 +1133,7 @@ components:
         photo:
           type: string
           description: link to user profile photo
-          example: https://unsplash.com/profiles/123.png
+          example: "https://unsplash.com/profiles/123.png"
           default: "https://unsplash.com/placeholder.png"
         address:
           type: object
@@ -1192,7 +1192,7 @@ components:
           $ref: "#/components/schemas/Address"
           example:
             {
-              city:"Edinburgh",
+              city: "Edinburgh",
               country: "Scotland",
               street: "Sojourner Drive",
               buildingNumber: "Apt 3B",

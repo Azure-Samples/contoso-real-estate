@@ -41,7 +41,7 @@ export class RentalpageComponent implements OnInit {
       this.listing = listing;
     } else {
       // TODO: fallback to 404 page
-      this.router.navigate(["/"]);
+      this.router.navigate(["/404"]);
     }
 
     this.isFavorited = await this.favoriteService.getFavorite(this.listing, await this.userService.currentUser());

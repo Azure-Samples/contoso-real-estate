@@ -24,12 +24,11 @@ export class AuthenticationComponent implements OnInit {
     { name: "Microsoft", id: "microsoft" },
     { name: "Twitter", id: "twitter" },
     { name: "Facebook", id: "facebook" },
-    { name: "LinkedIn", id: "linkedin" },
   ];
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const params = this.route.snapshot.queryParams;
     if (params["redirectURL"]) {
       this.redirectURL = params["redirectURL"];

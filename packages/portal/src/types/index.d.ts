@@ -1,8 +1,14 @@
 declare interface User {
   id: string;
   name: string;
-  avatar: string;
+  email?: string;
+  address?: string;
+  photo: string;
   role: UserRole;
+  auth?: {
+    provider: AuthProvider;
+    lastLogin: string;
+  };
 }
 
 declare interface UserClientPrincipal {
@@ -13,7 +19,8 @@ declare interface UserClientPrincipal {
   identityProvider: string;
 }
 
-declare type UserRole = "guest" | "user" | "admin";
+declare type AuthProvider = "aad" | "github" | "twitter" | "google" | "facebook";
+declare type UserRole = "guest" | "renter" | "admin";
 
 declare interface Listing {
   id: string;
@@ -43,7 +50,6 @@ declare interface Reviews {
   review: string;
   user: User;
 }
-
 
 declare interface StageType {
   title: string;
