@@ -2,8 +2,8 @@
   display: grid;
   margin: 0 auto;
   max-width: 1100px;
-  padding: 50px 16px;              
-  
+  padding: 50px 16px;
+  min-height: 800px;
 
   @media all and (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
@@ -17,7 +17,6 @@
 
   .listing-photos {
     display: flex;
-    max-width: fit-content;
     align-items: flex-start;
     aspect-ratio: auto;
     margin-bottom: 20px;
@@ -44,7 +43,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 0 2px;
+      padding: 0 10px;
       position: relative;
 
       div {
@@ -100,6 +99,9 @@
     }
 
     aside {
+      display: flex;
+      position: relative;
+
       button {
         background-color: transparent;
         border: none;
@@ -165,7 +167,4 @@
       }
     }
   }
-}
-
-.booking-container {
 }

@@ -24,3 +24,37 @@ ul {
 * {
   box-sizing: border-box;
 }
+
+@keyframes loadingBackgroundAnimation {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.loading-background {
+  position: relative;
+  overflow: hidden;
+  min-height: auto;
+  margin-bottom: 2px;
+
+  &::after {
+    content: " ";
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: loadingBackgroundAnimation;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 104px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    display: block;
+  }
+}
