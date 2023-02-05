@@ -1,23 +1,21 @@
-import { Injectable } from '@angular/core';
-import { UserRole, UserService } from '../user/user.service';
+import { Injectable } from "@angular/core";
+import { UserRole, UserService } from "../user/user.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
-
   user: User | null = null;
 
   isLoggedIn = false;
   constructor(private userService: UserService) {
-    this.userService.currentUser().then(user => {
+    this.userService.user$.subscribe(user => {
       this.user = user;
-      this.isLoggedIn = this.hasRole([UserRole.Renter, UserRole.Admin]);
     });
   }
 
   isAuthenticated() {
-    return this.isLoggedIn;
+    return this.user?._id === this.userService.currentUser()._id;
   }
 
   hasRole(roles: UserRole[]) {
