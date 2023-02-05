@@ -1,19 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { CommonModule } from "@angular/common";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { provideNoopAnimations } from "@angular/platform-browser/animations";
+import { ActivatedRoute } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
+import { of } from "rxjs";
 
-import { ProfileComponent } from './profile.component';
+import { ProfileComponent } from "./profile.component";
 
-describe('ProfileComponent', () => {
+describe("ProfileComponent", () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
+  const route = { data: of({ user: { name: "foo bar" } }) } as any as ActivatedRoute;
 
   beforeEach(async () => {
     TestBed.overrideComponent(ProfileComponent, {
       set: {
-        imports: [CommonModule],
-        providers: [provideNoopAnimations()],
+        imports: [CommonModule, RouterTestingModule],
+        providers: [provideNoopAnimations(), { provide: ActivatedRoute, useValue: route }],
         schemas: [NO_ERRORS_SCHEMA],
       },
     });
@@ -22,7 +26,7 @@ describe('ProfileComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

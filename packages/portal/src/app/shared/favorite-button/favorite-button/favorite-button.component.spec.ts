@@ -1,23 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommonModule } from "@angular/common";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { FavoriteButtonComponent } from './favorite-button.component';
+import { FavoriteButtonComponent } from "./favorite-button.component";
 
-describe('FavoriteButtonComponent', () => {
+describe("FavoriteButtonComponent", () => {
   let component: FavoriteButtonComponent;
   let fixture: ComponentFixture<FavoriteButtonComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ FavoriteButtonComponent ]
-    })
-    .compileComponents();
-
+    TestBed.overrideComponent(FavoriteButtonComponent, {
+      set: {
+        imports: [CommonModule],
+        schemas: [NO_ERRORS_SCHEMA],
+      },
+    });
     fixture = TestBed.createComponent(FavoriteButtonComponent);
+    fixture.autoDetectChanges();
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
