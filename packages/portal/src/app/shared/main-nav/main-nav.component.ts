@@ -15,21 +15,24 @@ import { UserRole, UserService } from "../user/user.service";
 })
 export class MainNavComponent {
   navItems = [
+    { name: "Home", route: "/home" },
     { name: "Profile", route: "/me" },
-    { name: "Payments", route: "/me/payments" },
     { name: "Favorites", route: "/me/favorites" },
+    { name: "Payments", route: "/me/payments" },
     { name: "Reservations", route: "/me/reservations" },
   ];
 
-  userDetails: User | null = null;
+  user: User | null = null;
 
   constructor(private authService: AuthService, private userService: UserService) {}
 
-  async ngOnInit() {
-    this.userDetails = await this.userService.currentUser();
+  ngOnInit() {
+    this.userService.user$.subscribe(user => {
+      this.user = user;
+    });
   }
 
   isAuthenticated() {
-    return this.userDetails?.role === UserRole.Renter || this.userDetails?.role === UserRole.Admin;
+    return this.user?.role === UserRole.Renter || this.user?.role === UserRole.Admin;
   }
 }

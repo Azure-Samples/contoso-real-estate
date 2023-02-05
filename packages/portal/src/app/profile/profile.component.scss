@@ -1,5 +1,20 @@
-.profile-body mat-card {
-  margin-bottom: 8px;
+@use "@angular/material" as mat;
+
+.profile-body {
+  .mat-card {
+    margin: 15px;
+    cursor: pointer;
+
+    .mat-card-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  .mat-card:hover {
+    @include mat.elevation(8);
+  }
 }
 
 .profile-grid {

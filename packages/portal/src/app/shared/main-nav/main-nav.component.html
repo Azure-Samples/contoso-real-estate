@@ -1,13 +1,18 @@
 <nav>
-  <button title="Welcome, {{ userDetails?.name }}" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User profile menu" disableRipple="true">
-    <span class="user__name">Welcome, {{ userDetails?.name }}</span>
+  <button
+    title="Welcome, {{ user?.name }}"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="User profile menu"
+    disableRipple="true"
+  >
+    <span class="user__name">Welcome, {{ user?.name }}</span>
     <span class="material-symbols-outlined user__avatar"> account_circle </span>
-    <!-- <img src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png" alt="" width="45px"> -->
   </button>
   <mat-menu #menu="matMenu">
     <ul class="main-nav" *ngIf="isAuthenticated(); else nonAuthenticatedTemplate">
       <li *ngFor="let item of navItems">
-        <a mat-menu-item [routerLink]="item.route" routerLinkActive="active">
+        <a mat-tab-nav-bar mat-menu-item [routerLink]="item.route">
           <span class="nav-text"> {{ item.name }} </span>
         </a>
       </li>
@@ -19,7 +24,7 @@
     <ng-template #nonAuthenticatedTemplate>
       <ul class="main-nav">
         <li>
-          <a mat-menu-item routerLink="/auth/login" routerLinkActive="active">
+          <a mat-menu-item routerLink="/auth/login">
             <span class="nav-text">Login</span>
           </a>
         </li>

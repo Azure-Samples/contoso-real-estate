@@ -1,5 +1,6 @@
 <section class="profile-page inner-wrapper">
   <h2 class="subtitle">My Profile</h2>
+
   <div class="profile-grid">
     <aside class="aside-left">
       <mat-card>
@@ -13,36 +14,49 @@
         </mat-card-header>
       </mat-card>
     </aside>
+
     <section class="profile-body">
-      <mat-tab-group>
+      <mat-tab-group [selectedIndex]="selectedTabIndex">
+
+        <!-- favorites -->
         <mat-tab label="Saved Listings">
           <div class="tab-wrapper">
-            <mat-card>
+            <p *ngIf="!listings || listings.length === 0">
+              You have no saved listings. <a routerLink="/home">Browse listings</a>
+            </p>
+
+            <mat-card
+              *ngFor="let listing of listings"
+              [ngClass]="{ 'loading-background': !listing.title }"
+              [title]="listing?.title"
+            >
               <mat-card-header>
                 <mat-card-title-group>
-                  <mat-card-title>Consequatur quisquam eius enim sint</mat-card-title>
-                  <mat-card-subtitle>51771, Tara Well, Lottieworth, Portugal</mat-card-subtitle>
-                  <img mat-card-sm-image src="/assets/images/pic-blue.png">
+                  <mat-card-title>{{ listing.title }}</mat-card-title>
+                  <mat-card-subtitle>
+                    {{ listing?.address?.[5] }}, {{ listing?.address?.[4] }},
+                    {{ listing?.address?.[1] }}</mat-card-subtitle
+                  >
+                  <img mat-card-sm-image src="/assets/images/{{ listing?.photos?.[0] }}" />
                 </mat-card-title-group>
               </mat-card-header>
-              <mat-card-content>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab pariatur odio accusantium ipsum vero eaque, at necessitatibus, voluptatem ad illum aperiam porro ipsa veniam quod corrupti. Aut ipsum saepe sint?
-              </mat-card-content>
-            </mat-card>
-            <mat-card>
-              <mat-card-header>
-                <mat-card-title-group>
-                  <mat-card-title>Consequatur quisquam eius enim sint</mat-card-title>
-                  <mat-card-subtitle>51771, Tara Well, Lottieworth, Portugal</mat-card-subtitle>
-                  <img mat-card-sm-image src="/assets/images/pic-salmon.png">
-                </mat-card-title-group>
-              </mat-card-header>
-              <mat-card-content>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim optio a at accusamus repudiandae totam error nostrum ab maiores repellat. Numquam, voluptatem! Nisi tenetur qui at impedit, delectus dolor ut?
-              </mat-card-content>
+              <mat-card-content> {{ listing?.description?.substr(0, 200) }}... </mat-card-content>
+              <mat-card-actions>
+                <button mat-button color="warn" (click)="removeFavorite(listing)">Remove from favorites</button>
+                <a
+                  mat-flat-button
+                  color="primary"
+                  [title]="listing?.title"
+                  [routerLink]="['/listing/' + listing?.id + '/' + listing?.slug]"
+                  [state]="{ listing }"
+                  >View listing</a
+                >
+              </mat-card-actions>
             </mat-card>
           </div>
         </mat-tab>
+
+        <!-- payments -->
         <mat-tab label="Payment History">
           <div class="tab-wrapper">
             <mat-list>
@@ -54,8 +68,20 @@
             </mat-list>
           </div>
         </mat-tab>
+
+        <!-- reservations -->
+        <mat-tab label="Reservations">
+          <div class="tab-wrapper">
+            <mat-list>
+              <mat-list-item>Reservation 1</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Reservation 2</mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item>Reservation 3</mat-list-item>
+            </mat-list>
+          </div>
+        </mat-tab>
       </mat-tab-group>
     </section>
   </div>
-
 </section>
