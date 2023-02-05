@@ -7,9 +7,8 @@ import { WindowService } from "../core/window/window.service";
 export class ListingService {
   constructor(private windowService: WindowService) {}
 
-  async getListings({limit = 10, offset = 0} = {}): Promise<Listing[]> {
-    const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}`)
-    .then((response) => {
+  async getListings({ limit = 10, offset = 0 } = {}): Promise<Listing[]> {
+    const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}`).then(response => {
       if (response.status === 200) {
         return response.json();
       }
@@ -20,8 +19,7 @@ export class ListingService {
 
   async getFeaturedListings({ limit = 10, offset = 0 } = {}): Promise<Listing[]> {
     // TODO: prevent loading the same listings multiple times when we hit the end of the list
-    const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}&featured=true`)
-    .then((response) => {
+    const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}&featured=true`).then(response => {
       if (response.status === 200) {
         return response.json();
       }
@@ -31,8 +29,7 @@ export class ListingService {
   }
 
   async getListingById(id: string): Promise<Listing | undefined> {
-    const resource = await fetch(`/api/listings/${id}`)
-    .then((response) => {
+    const resource = await fetch(`/api/listings/${id}`).then(response => {
       if (response.status === 200) {
         return response.json();
       }
@@ -48,8 +45,9 @@ export class ListingService {
     this.windowService
       .nativeWindow()
       .open(
-        `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(4)}+on+Contoso+Rental+at+${currency}${rent}/month` +
-          `&hashtags=#renting+#apartment`,
+        `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(
+          4,
+        )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=#renting+#apartment`,
       );
   }
 
