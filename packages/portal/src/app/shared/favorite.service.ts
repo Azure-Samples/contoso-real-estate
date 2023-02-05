@@ -13,34 +13,52 @@ export class FavoriteService {
       }),
     });
 
-    if (resource.status !== 200) {
-      return false;
-    }
-
-    const { success } = await resource.json();
-    return success;
+    return resource.status === 200;
   }
 
   async removeFavorite(listing: Listing, user: User) {
-    const resource = await fetch(`/api/favorites?listing=${listing.id}&user=${user.id}`, {
+    const resource = await fetch(`/api/favorites?listingId=${listing.id}&userId=${user._id}`, {
       method: "DELETE",
     });
 
-    if (resource.status !== 200) {
-      return false;
-    }
-
-    const { success } = await resource.json();
-    return success;
+    return resource.status === 204;
   }
 
   async getFavorite(listing: Listing, user: User) {
-    const resource = await fetch(`/api/favorites?listing=${listing.id}&user=${user.id}`);
+    if (!user._id) {
+      // Users that are not logged in cannot have favorites
+      return null;
+    }
+
+    const resource = await fetch(`/api/favorites?listingId=${listing.id}&userId=${user._id}`);
 
     if (resource.status !== 200) {
       return null;
     }
 
+    const favorites = await resource.json();
+    return favorites.at(0);
+  }
+
+  // Note: this API call is slow because we need to aggregate the favorites from the mongoDB and PostgresSQL databases
+  async getFavoritesByUser(user: User) {
+    const resource = await fetch(`/api/favorites?userId=${user._id}&aggregate=true`);
+
+    if (resource.status !== 200) {
+      return [];
+    }
+
     return await resource.json();
+  }
+
+  // Note: this API call is fast because we only need to count the favorites from the mongoDB database
+  async countFavoritesByUser(user: User) {
+    const resource = await fetch(`/api/favorites?userId=${user._id}`);
+
+    if (resource.status !== 200) {
+      return [];
+    }
+
+    return await resource.json()
   }
 }
