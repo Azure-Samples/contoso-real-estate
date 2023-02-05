@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { HomepageComponent } from "./homepage/homepage.component";
 import { AuthGuard } from "./shared/guards/auth-guard.service";
+import { UserService } from "./shared/user/user.service";
 
 export const ROUTES: Routes = [
   {
@@ -29,8 +30,22 @@ export const ROUTES: Routes = [
     loadComponent: () => import("./about/about.component").then(m => m.AboutComponent),
   },
   {
-    path: "me",
-    canActivate:[AuthGuard],
+    matcher: url => {
+      if (url.length === 1 && url[0].path === "me") {
+        return { consumed: url, posParams: { tab: url[0] } };
+      }
+
+      const tabs = ["favorites", "payments", "reservations"];
+      if (url.length === 2 && url[0].path === "me" && tabs.includes(url[1].path)) {
+        return { consumed: url, posParams: { tab: url[1] } };
+      }
+
+      return null;
+    },
+    canActivate: [AuthGuard],
+    resolve: {
+      user: UserService,
+    },
     loadComponent: () => import("./profile/profile.component").then(m => m.ProfileComponent),
   },
   {
@@ -44,5 +59,5 @@ export const ROUTES: Routes = [
   {
     path: "**",
     loadComponent: () => import("./shared/errors/not-found/not-found.component").then(m => m.NotFoundComponent),
-  }
+  },
 ];

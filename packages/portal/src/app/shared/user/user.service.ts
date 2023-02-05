@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import { Resolve } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
 import { LocalStorageService } from "../local-storage/local-storage.service";
 
 export enum UserRole {
@@ -10,11 +12,18 @@ export enum UserRole {
 @Injectable({
   providedIn: "root",
 })
-export class UserService {
+export class UserService implements Resolve<User> {
+  private readonly userSource = new BehaviorSubject<User>(this.guestUser());
+  readonly user$ = this.userSource.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {}
 
-  async currentUser() {
+  async resolve(): Promise<User> {
+    await this.loadUserSession();
+    return this.currentUser();
+  }
+
+  async loadUserSession() {
     const response = await fetch("/.auth/me");
     const payload = await response.json();
     const { clientPrincipal }: { clientPrincipal: UserClientPrincipal } = payload;
@@ -26,7 +35,12 @@ export class UserService {
     }
 
     this.localStorageService.save("user", user);
-    return user;
+
+    this.userSource.next(user);
+  }
+
+  currentUser() {
+    return this.userSource.getValue();
   }
 
   authenticatedUser(clientPrincipal: UserClientPrincipal): User {
@@ -51,13 +65,20 @@ export class UserService {
       id: "guest",
       name: "Guest",
       photo: "account_circle",
-      role: UserRole.Guest
+      role: UserRole.Guest,
     };
   }
 
   async saveUserSession(user: User) {
     const response = await fetch("/api/users", { method: "POST", body: JSON.stringify(user) });
     const payload = await response.json();
+
+    if (response.status !== 200) {
+      // report error but don't block navigation
+      console.error("User session not saved", payload.error);
+      return user;
+    }
+
     return payload;
   }
 }
