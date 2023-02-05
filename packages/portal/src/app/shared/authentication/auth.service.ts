@@ -11,11 +11,12 @@ export class AuthService {
   constructor(private userService: UserService) {
     this.userService.user$.subscribe(user => {
       this.user = user;
+      this.isLoggedIn = user.id !== 'guest';
     });
   }
 
   isAuthenticated() {
-    return this.user?._id === this.userService.currentUser()._id;
+    return this.isLoggedIn;
   }
 
   hasRole(roles: UserRole[]) {
