@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
-import { FavoriteService } from "../shared/favorite.service";
+import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
 import { HasRoleDirective } from "../shared/has-role/has-role.directive";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/listing.service";
@@ -13,52 +13,47 @@ import { UserRole, UserService } from "../shared/user/user.service";
   templateUrl: "./rentalpage.component.html",
   styleUrls: ["./rentalpage.component.scss"],
   standalone: true,
-  imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective],
+  imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective, FavoriteButtonComponent],
 })
 export class RentalpageComponent implements OnInit {
   userRole: typeof UserRole = UserRole;
   listing: Listing;
+  user: User;
   navigation: Navigation | null;
   reviewStars: number[] = [];
-  isFavorited = false;
+  isLoading = true;
   reviewsMapping: { [k: string]: string } = { "=0": "No reviews", "=1": "1 message", other: "# reviews" };
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private listingService: ListingService,
-    private favoriteService: FavoriteService,
     private userService: UserService,
   ) {
     this.navigation = this.router.getCurrentNavigation();
     this.listing = this.navigation?.extras.state?.["listing"] || null;
+    this.user = this.navigation?.extras.state?.["user"] || null;
   }
 
   async ngOnInit() {
+    this.user = this.userService.currentUser();
+    if (this.user === null) {
+      this.router.navigate(["/login"]);
+      return;
+    }
+
     const listing = await this.listingService.getListingById(this.route.snapshot.params["id"]);
 
     if (listing !== undefined) {
       this.listing = listing;
+      this.isLoading = false;
     } else {
-      // TODO: fallback to 404 page
       this.router.navigate(["/404"]);
     }
 
-    this.isFavorited = await this.favoriteService.getFavorite(this.listing, await this.userService.currentUser());
     this.reviewStars = Array(5)
       .fill(0)
       .map((x, i) => (i < this.listing?.reviews_stars ? 1 : 0));
-  }
-
-  async bookmark() {
-    const status = await this.favoriteService.addFavorite(this.listing, await this.userService.currentUser());
-    if (status === false) {
-      alert("An error occurred while adding the listing to your favorites. Please try again later.");
-      return;
-    }
-
-    this.isFavorited = status;
-
   }
 
   async share() {
