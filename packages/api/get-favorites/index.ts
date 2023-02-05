@@ -1,11 +1,21 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { getFavoriteMock, getFavoriteByListingIdAndUserId } from "../models/favorite";
+import { findFavorite, fetchFavoritesDataByUserId, getFavoritesByUserId } from "../models/favorite";
 
-const getFavorite: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+const getFavorites: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const offset = Number(req.query.offset) || 0;
   const limit = Number(req.query.limit) || 10;
-  const userId = req.query.user;
-  const listingId = req.query.listing;
+  const { userId, listingId, aggregate } = req.query;
+
+  // UserID is the only required parameter
+  if (!userId) {
+    context.res = {
+      status: 400,
+      body: {
+        error: "UserId is missing",
+      },
+    };
+    return;
+  }
 
   if (offset < 0) {
     context.res = {
@@ -15,7 +25,9 @@ const getFavorite: AzureFunction = async function (context: Context, req: HttpRe
       },
     };
     return;
-  } else if (limit < 0) {
+  }
+
+  if (limit < 0) {
     context.res = {
       status: 400,
       body: {
@@ -23,7 +35,9 @@ const getFavorite: AzureFunction = async function (context: Context, req: HttpRe
       },
     };
     return;
-  } else if (offset > limit) {
+  }
+
+  if (offset > limit) {
     context.res = {
       status: 400,
       body: {
@@ -33,30 +47,53 @@ const getFavorite: AzureFunction = async function (context: Context, req: HttpRe
     return;
   }
 
-  if (userId && listingId) {
-    const favorite = await getFavoriteByListingIdAndUserId({ userId, listingId });
+  try {
+    if (userId && !listingId) {
+      let favorites = [];
+      if (aggregate === "true") {
+        // get a list of favorites with listing data (from Strapi)
+        favorites = await fetchFavoritesDataByUserId({ userId });
+      } else {
+        // simply get a list of favorites IDs
+        favorites = await getFavoritesByUserId({ userId });
+      }
 
-    if (favorite) {
-      context.res = {
-        body: favorite,
-      };
-    } else {
-      context.res = {
-        status: 404,
-        body: {
-          error: "Favorite not found",
-        },
-      };
+      if (favorites.length > 0) {
+        context.res = {
+          body: favorites,
+        };
+      } else {
+        context.res = {
+          status: 404,
+          body: {
+            error: "Favorites not found",
+          },
+        };
+      }
+    } else if (userId && listingId) {
+      const favorite = await findFavorite({ userId, listingId });
+
+      if (favorite) {
+        context.res = {
+          body: [favorite],
+        };
+      } else {
+        context.res = {
+          status: 404,
+          body: {
+            error: "Favorite not found",
+          },
+        };
+      }
     }
-
-    return;
+  } catch (error: any) {
+    context.res = {
+      status: 500,
+      body: {
+        error: error?.message,
+      },
+    };
   }
-
-  context.res = {
-    body: {
-      listings: await getFavoriteMock({ offset, limit }),
-    },
-  };
 };
 
-export default getFavorite;
+export default getFavorites;
