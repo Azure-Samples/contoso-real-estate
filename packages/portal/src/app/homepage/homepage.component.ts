@@ -24,15 +24,14 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.user = this.userService.currentUser();
     this.featuredListings = await this.listingService.getFeaturedListings();
-    this.user = await this.userService.currentUser();
   }
 
   async onFavoritedToggle(listing: Listing | null) {
     if (!listing) {
       return;
     }
-
 
     if (listing.$$isFavorited) {
       const status = await this.favoriteService.removeFavorite(listing, this.user);
@@ -57,10 +56,7 @@ export class HomepageComponent implements OnInit {
     const nextListings = await this.listingService.getFeaturedListings({ offset: this.featuredListings.length });
 
     if (nextListings?.length) {
-      this.featuredListings = [
-        ...this.featuredListings,
-        ...nextListings,
-      ];
+      this.featuredListings = [...this.featuredListings, ...nextListings];
     }
   }
 }

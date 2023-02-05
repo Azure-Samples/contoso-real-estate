@@ -4,18 +4,12 @@ section {
   position: relative;
 }
 
-.mat-card:hover {
-  @include mat.elevation(8);
+img {
+  aspect-ratio: 16/9;
 }
 
-.bookmark-listing {
-  position: absolute;
-  z-index: 1;
-  right: -14px;
-  top: 0px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+.mat-card:hover {
+  @include mat.elevation(8);
 }
 
 .mat-card-title {
@@ -56,4 +50,15 @@ section {
   a:hover {
     color: #fff;
   }
+}
+
+.is-loading {
+  opacity: 0.2;
+}
+
+.listing-favorite__button {
+  z-index: 1;
+  right: -14px;
+  top: 0px;
+  position: absolute;
 }
