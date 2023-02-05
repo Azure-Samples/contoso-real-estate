@@ -34,7 +34,7 @@ const getListings: AzureFunction = async function (context: Context, req: HttpRe
       return;
     }
 
-    const result = await pgQuery(`SELECT * FROM LISTINGS WHERE is_featured = $3 LIMIT $1 OFFSET $2`, [limit, offset, featured]);
+    const result = await pgQuery(`SELECT * FROM listings WHERE is_featured = $3 LIMIT $1 OFFSET $2`, [limit, offset, featured]);
 
     const listing = result.rows.map((row: any) => {
       row.fees = row.fees.split("|");
