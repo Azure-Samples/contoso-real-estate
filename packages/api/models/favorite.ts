@@ -1,63 +1,43 @@
-import { faker } from "@faker-js/faker";
+import { pgQuery } from "../config/pgclient";
+import FavoriteModel, { Favorite } from "./favorite.schema";
+import { listingMapper } from "./listing";
 
-const MAX_ENTRIES = 100;
-let CACHE: any[] = [];
-
-function model({ slug, user, listing }: { slug?: string; listing: any; user: any }) {
-  return {
-    id: faker.database.mongodbObjectId(),
-    user: {
-      id: user.id ?? faker.database.mongodbObjectId(),
-    },
-    listing: {
-      id: listing.id ?? faker.database.mongodbObjectId(),
-    },
-    reason: faker.lorem.sentence(),
-    createdAt: faker.date.past(),
-    slug: slug || faker.lorem.slug(),
-  };
+export async function saveFavorite(fav: Favorite): Promise<Favorite | null> {
+  const record = await findFavorite(fav);
+  return record || (await FavoriteModel.create(fav));
 }
 
-export async function getFavoriteMock({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
-  if (CACHE.length === 0) {
-    CACHE = Array.from({ length: MAX_ENTRIES }, () => model({ listing: {}, user: {} }));
+export async function findFavorite(fav: Favorite): Promise<Favorite | null> {
+  return await FavoriteModel.findOne({ userId: fav.userId, listingId: fav.listingId });
+}
+
+export async function getFavoritesByUserId({ userId }: { userId: string }): Promise<Favorite[]> {
+  return await FavoriteModel.find({ userId });
+}
+
+export async function fetchFavoritesDataByUserId({ userId }: { userId: string }): Promise<Favorite[]> {
+  const favorites = await getFavoritesByUserId({ userId });
+
+  // create a list of listing ids
+  // use the listing ids to fetch the listing data from pgQuery using one single SQL query
+
+  if (favorites.length === 0) {
+    return [];
   }
 
-  return CACHE.slice(offset, offset + limit).map(model => {
-    model.$self = `/api/favorites/${model.slug}`;
-    return model;
-  });
+  const favoritesIds = favorites.map(favorite => favorite.listingId);
+  // See https://github.com/brianc/node-postgres/issues/129#issuecomment-48633017
+  const favoritesData = await pgQuery(`SELECT * FROM listings WHERE id IN (${favoritesIds})`);
+
+  return favoritesData.rows.map(listingMapper);
 }
 
-export async function getFavoriteByListingIdAndUserId({
-  listingId,
-  userId,
-}: {
-  listingId: string;
-  userId: string;
-}): Promise<any> {
-  if (CACHE.length === 0) {
-    CACHE = Array.from({ length: MAX_ENTRIES }, () => model({ listing: {}, user: {} }));
+export async function removeFavorite(fav: Favorite): Promise<boolean> {
+  const record = await findFavorite(fav);
+
+  if (!record) {
+    return false;
   }
 
-  return Promise.resolve(CACHE.find(model => model.listing.id === listingId && model.user.id === userId));
-}
-
-export async function getFavoriteBySlugMock({ slug }: { slug: number }): Promise<any> {
-  return Promise.resolve(CACHE.find(model => model.slug === slug));
-}
-
-export async function postFavoriteMock({ listing, user }: { listing: any; user: any }): Promise<any> {
-  const favorite = model({ listing, user });
-  CACHE.push(favorite);
-  return Promise.resolve(false);
-}
-
-export async function deleteFavoriteMockBySlug({ listing, user }: { listing: string; user: string }): Promise<any> {
-  const index = CACHE.findIndex(model => model.listing.id === listing && model.user.id === user);
-  if (index > -1) {
-    CACHE.splice(index, 1);
-    return Promise.resolve(true);
-  }
-  return Promise.resolve(false);
+  return await FavoriteModel.deleteOne({ userId: fav.userId, listingId: fav.listingId }).then(() => true);
 }

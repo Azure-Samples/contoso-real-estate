@@ -1,10 +1,10 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { deleteFavoriteMockBySlug } from "../models/favorite";
+import { removeFavorite } from "../models/favorite";
 
 const deleteFavorite: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-  const { listing, user } = req.query;
+  const { listingId, userId } = req.query;
 
-  if (!listing || !user) {
+  if (!listingId || !userId) {
     context.res = {
       status: 400,
       body: {
@@ -14,11 +14,19 @@ const deleteFavorite: AzureFunction = async function (context: Context, req: Htt
     return;
   }
 
-  context.res = {
-    body: {
-      success: await deleteFavoriteMockBySlug({ listing, user }),
-    },
-  };
+  try {
+    await removeFavorite({ listingId, userId });
+    context.res = {
+      status: 204,
+    };
+  } catch (error: any) {
+    context.res = {
+      status: 500,
+      body: {
+        error: error?.message,
+      },
+    };
+  }
 };
 
 export default deleteFavorite;
