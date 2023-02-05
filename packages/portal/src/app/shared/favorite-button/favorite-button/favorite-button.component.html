@@ -1,0 +1,18 @@
+<button
+  [disabled]="isOperationLoading"
+  *ngIf="this.listing?.$$isFavorited"
+  (click)="bookmark()"
+  title="Remove this listing from favorites"
+>
+  <span aria-hidden="false" aria-label="Remove this listing from favorites" class="material-symbols-outlined">
+    bookmark_added
+  </span>
+</button>
+<button
+  [disabled]="isOperationLoading"
+  *ngIf="!this.listing?.$$isFavorited"
+  (click)="bookmark()"
+  title="Save this listing"
+>
+  <span aria-hidden="false" aria-label="Save this listing" class="material-symbols-outlined"> bookmark </span>
+</button>
