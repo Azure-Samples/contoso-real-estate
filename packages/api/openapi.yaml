@@ -675,14 +675,8 @@ paths:
       tags:
         - favorite
       responses:
-        "200":
-          description: OK - Returns empty array
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Favorite"
+        "204":
+          description: No Content - Favorites deleted
         "400":
           description: Bad Request - Invalid request
           content:
@@ -1285,11 +1279,11 @@ components:
           type: string
           description: user-friendly path identifier
           example: "edinburgh-park-apt"
-        user:
+        userId:
           type: object
           description: user that favorited listing
           $ref: "#/components/schemas/User"
-        listing:
+        listingId:
           type: object
           description: listing that was favorited
           $ref: "#/components/schemas/Listing"
