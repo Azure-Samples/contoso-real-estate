@@ -99,7 +99,15 @@ function model({ slug }: { slug?: number } = {}) {
   };
 }
 
-export async function getListings({ offset, limit, featured}: { offset: number; limit: number, featured: boolean }): Promise<any[]> {
+export async function getListings({
+  offset,
+  limit,
+  featured,
+}: {
+  offset: number;
+  limit: number;
+  featured: boolean;
+}): Promise<any[]> {
   if (CACHE.length === 0) {
     CACHE = Array.from({ length: MAX_ENTRIES }, () => model());
   }
@@ -138,4 +146,12 @@ export async function getListingById({ id }: { id: string | undefined }): Promis
   }
 
   return Promise.resolve(CACHE.find(model => model.id === id));
+}
+
+export function listingMapper(row: any) {
+  row.fees = row.fees.split("|");
+  row.photos = row.photos.split("|");
+  row.address = row.address.split("|");
+  row.ammenities = row.ammenities.split(",");
+  return row;
 }
