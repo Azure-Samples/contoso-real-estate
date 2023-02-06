@@ -1,7 +1,10 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
+import { initializeDatabaseConfiguration } from "../config";
 import { saveFavorite } from "../models/favorite";
 
 const postFavorite: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+  await initializeDatabaseConfiguration();
+
   const { listing, user } = req.body;
 
   if (!listing || !user) {
@@ -25,7 +28,7 @@ const postFavorite: AzureFunction = async function (context: Context, req: HttpR
   }
 
   try {
-    const model = await saveFavorite({ listingId: listing.id, userId: user._id, createdAt: new Date().toISOString() });
+    const model = await saveFavorite({ listingId: listing.id, userId: user.id, createdAt: new Date().toISOString() });
     context.res = {
       status: 200,
       body: model,

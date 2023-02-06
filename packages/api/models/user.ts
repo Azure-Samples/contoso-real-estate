@@ -1,22 +1,26 @@
 import UserModel, { User } from "../models/user.schema";
 
 export async function saveUserSession(user: User): Promise<User> {
-  const { id: userId } = user;
+  const { id } = user;
 
-  if (userId) {
-    const existingModel = await UserModel.findOne({ id: userId });
+  if (id) {
+    const existingModel = await findUserById(id);
     if (existingModel) {
-      // Find by user ID not mongo ObjectId
-      await UserModel.updateOne({ id: userId }, user);
+      await UserModel.updateOne({ id }, {
+        $set: {
+          auth: user.auth,
+        },
+      });
       return existingModel;
     }
   }
-
+  
   return await UserModel.create(user);
 }
 
 export async function findUserById(id: string): Promise<User | null> {
-  return await UserModel.findById(id);
+  // Find by user ID not mongo ObjectId
+  return await UserModel.findOne({ id });
 }
 
 export async function findUsers({ offset, limit }: { offset: number; limit: number }): Promise<User[]> {
