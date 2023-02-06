@@ -36,7 +36,7 @@ export class RentalpageComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.user = this.userService.currentUser();
+    this.user = await this.userService.currentUser();
     if (this.user === null) {
       this.router.navigate(["/login"]);
       return;

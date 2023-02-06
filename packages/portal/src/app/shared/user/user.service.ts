@@ -19,8 +19,15 @@ export class UserService implements Resolve<User> {
   constructor(private localStorageService: LocalStorageService) {}
 
   async resolve(): Promise<User> {
-    await this.loadUserSession();
-    return this.currentUser();
+    return await this.currentUser();
+  }
+
+  async fetchAndStoreUserSession() {
+    let user = await this.loadUserSession();
+    if (user.role !== UserRole.Guest) {
+      user = await this.saveUserSession(user);
+    }
+    return user;
   }
 
   async loadUserSession() {
@@ -31,15 +38,18 @@ export class UserService implements Resolve<User> {
 
     if (clientPrincipal) {
       user = this.authenticatedUser(clientPrincipal);
-      user = await this.saveUserSession(user);
     }
 
     this.localStorageService.save("user", user);
 
     this.userSource.next(user);
+    return user;
   }
 
-  currentUser() {
+  async currentUser() {
+    const user = await this.loadUserSession();
+    this.userSource.next(user);
+
     return this.userSource.getValue();
   }
 

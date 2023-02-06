@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private userService: UserService) {
     this.userService.user$.subscribe(user => {
       this.user = user;
-      this.isLoggedIn = user.id !== 'guest';
+      this.isLoggedIn = user.id !== UserRole.Guest;
     });
   }
 

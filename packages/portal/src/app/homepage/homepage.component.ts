@@ -24,7 +24,7 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.user = this.userService.currentUser();
+    this.user = await this.userService.currentUser();
     this.featuredListings = await this.listingService.getFeaturedListings();
   }
 

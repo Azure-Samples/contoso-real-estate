@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { UserRole } from "./user/user.service";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,7 @@ export class FavoriteService {
   }
 
   async removeFavorite(listing: Listing, user: User) {
-    const resource = await fetch(`/api/favorites?listingId=${listing.id}&userId=${user._id}`, {
+    const resource = await fetch(`/api/favorites?listingId=${listing.id}&userId=${user.id}`, {
       method: "DELETE",
     });
 
@@ -25,12 +26,12 @@ export class FavoriteService {
   }
 
   async getFavorite(listing: Listing, user: User) {
-    if (!user._id) {
+    if (user.id === UserRole.Guest) {
       // Users that are not logged in cannot have favorites
       return null;
     }
 
-    const resource = await fetch(`/api/favorites?listingId=${listing.id}&userId=${user._id}`);
+    const resource = await fetch(`/api/favorites?listingId=${listing.id}&userId=${user.id}`);
 
     if (resource.status !== 200) {
       return null;
@@ -42,7 +43,7 @@ export class FavoriteService {
 
   // Note: this API call is slow because we need to aggregate the favorites from the mongoDB and PostgresSQL databases
   async getFavoritesByUser(user: User) {
-    const resource = await fetch(`/api/favorites?userId=${user._id}&aggregate=true`);
+    const resource = await fetch(`/api/favorites?userId=${user.id}&aggregate=true`);
 
     if (resource.status !== 200) {
       return [];
@@ -53,7 +54,7 @@ export class FavoriteService {
 
   // Note: this API call is fast because we only need to count the favorites from the mongoDB database
   async countFavoritesByUser(user: User) {
-    const resource = await fetch(`/api/favorites?userId=${user._id}`);
+    const resource = await fetch(`/api/favorites?userId=${user.id}`);
 
     if (resource.status !== 200) {
       return [];
