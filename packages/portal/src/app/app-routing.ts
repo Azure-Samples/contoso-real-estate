@@ -10,10 +10,16 @@ export const ROUTES: Routes = [
     pathMatch: "full",
   },
   {
+    resolve: {
+      user: UserService,
+    },
     path: "home",
     component: HomepageComponent,
   },
   {
+    resolve: {
+      user: UserService,
+    },
     path: "listing/:id/:slug",
     loadComponent: () => import("./rentalpage/rentalpage.component").then(m => m.RentalpageComponent),
   },

@@ -15,6 +15,6 @@ bootstrapApplication(AppComponent, {
   providers: [importProvidersFrom(RouterModule.forRoot(ROUTES)), provideAnimations()],
 }).then(async app => {
   const userService = app.injector.get(UserService);
-  await userService.loadUserSession();
+  await userService.fetchAndStoreUserSession();
   console.log("Application is ready!");
 });
