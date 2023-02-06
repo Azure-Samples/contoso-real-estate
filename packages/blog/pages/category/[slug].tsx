@@ -41,24 +41,4 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-// export async function getStaticProps({ params }) {
-//   const matchingCategories = await fetchAPI("/categories", {
-//     filters: { slug: params.slug },
-//     populate: {
-//       articles: {
-//         populate: "*",
-//       },
-//     },
-//   })
-//   const allCategories = await fetchAPI("/categories")
-
-//   return {
-//     props: {
-//       category: matchingCategories.data[0],
-//       categories: allCategories,
-//     },
-//     revalidate: 1,
-//   }
-// }
-
 export default Category
