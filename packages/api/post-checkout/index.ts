@@ -2,13 +2,13 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import Stripe from "stripe";
 import { getConfig } from "../config";
 import { getListingById } from "../models/listing";
+import { Listing } from "../models/listing.schema";
 import { createReservationMock } from "../models/reservation";
 import { ReservationRequest } from "../models/reservation-request";
 
 const postCheckout: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-
   const config = await getConfig();
-  const stripe = new Stripe(config.stripe.secretKey, { apiVersion: '2022-08-01' });
+  const stripe = new Stripe(config.stripe.secretKey, { apiVersion: "2022-08-01" });
   const reservation = req.body as ReservationRequest;
   const guests = Number(reservation.guests) || 0;
   const from = new Date(reservation.from);
@@ -24,7 +24,7 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     };
     return;
   }
-  
+
   if (!reservation.listingId) {
     context.res = {
       status: 400,
@@ -76,7 +76,7 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     };
     return;
   }
-  
+
   // TODO: check for availability/overlapping reservations
 
   const total = calculateTotal(listing, guests, from, to);
@@ -84,11 +84,16 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   const name = `Booking ${listing.title}`;
 
   try {
+    const currency = listing.fees[5].split(":")[0];
+
+    console.log("currency: ", listing.fees);
+
+
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
           price_data: {
-            currency: listing.fees?.currency.code.toLowerCase(),
+            currency: currency.toLowerCase(),
             product_data: {
               name,
               metadata: {
@@ -99,13 +104,13 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
                 guests: reservation.guests,
               },
             },
-            tax_behavior: 'inclusive',
+            tax_behavior: "inclusive",
             unit_amount: amount,
           },
           quantity: 1,
         },
       ],
-      mode: 'payment',
+      mode: "payment",
       success_url: `${config.appDomain}/checkout?result=success`,
       cancel_url: `${config.appDomain}/checkout?result=cancel`,
     });
@@ -150,12 +155,17 @@ function getMonths(from: Date, to: Date) {
   return +(days / 30).toFixed(2);
 }
 
-// TODO: add listing type
-function calculateTotal(listing: any, guests: number, from: Date, to: Date): number {
+function calculateTotal(listing: Listing, guests: number, from: Date, to: Date): number {
   const months = getMonths(from, to);
-  const monthlyRentPrice = listing.fees?.rent || 0;
-  const monthlyRentPriceWithDiscount = Math.max(0, monthlyRentPrice * (1 - (listing.fees?.discount || 0) / 100));
-  const total = months * monthlyRentPriceWithDiscount + (listing.fees?.cleaning || 0) + (listing.fees?.service || 0) + (listing.fees?.occupancy || 0);
+  const monthlyRentPrice = Number(listing.fees[4]) || 0;
+  const monthlyRentPriceWithDiscount = Math.max(
+    0,
+    monthlyRentPrice * (1 - (parseInt(listing?.fees?.[4], 10) || 0) / 100),
+  );
+  const cleaning = Number(listing.fees[0]) || 0;
+  const service = Number(listing.fees[1]) || 0;
+  const occupancy = (Number(listing.fees[2]) || 0) * guests;
+  const total = months * monthlyRentPriceWithDiscount + cleaning + service + occupancy;
   return total;
 }
 
