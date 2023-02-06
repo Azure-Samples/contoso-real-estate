@@ -71,7 +71,7 @@ const ListingSchema = new Schema<Listing>({
   },
 
   photos: {
-    type: [String],
+    type: String,
     required: true,
   },
 
@@ -81,7 +81,7 @@ const ListingSchema = new Schema<Listing>({
   },
 
   ammenities: {
-    type: [String],
+    type: String,
     required: true,
   },
 
@@ -94,13 +94,14 @@ const ListingSchema = new Schema<Listing>({
     type: Number,
     required: true,
   },
+
   address: {
-    type: [String],
+    type: String,
     required: true,
   },
 
   fees: {
-    type: [String],
+    type: String,
     required: true,
   },
 

@@ -1,6 +1,7 @@
 import { pgQuery } from "../config/pgclient";
 import FavoriteModel, { Favorite } from "./favorite.schema";
 import { listingMapper } from "./listing";
+import { Listing } from "./listing.schema";
 
 export async function saveFavorite(fav: Favorite): Promise<Favorite | null> {
   const record = await findFavorite(fav);
@@ -15,7 +16,7 @@ export async function getFavoritesByUserId({ userId }: { userId: string }): Prom
   return await FavoriteModel.find({ userId });
 }
 
-export async function fetchFavoritesDataByUserId({ userId }: { userId: string }): Promise<Favorite[]> {
+export async function fetchFavoritesDataByUserId({ userId }: { userId: string }): Promise<Listing[]> {
   const favorites = await getFavoritesByUserId({ userId });
 
   // create a list of listing ids
@@ -27,7 +28,6 @@ export async function fetchFavoritesDataByUserId({ userId }: { userId: string })
 
   const favoritesIds = favorites.map(favorite => favorite.listingId);
   const favoritesData = await pgQuery(`SELECT * FROM listings WHERE id IN (${favoritesIds})`);
-
   return favoritesData.rows.map(listingMapper);
 }
 
