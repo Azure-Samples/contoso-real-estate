@@ -86,9 +86,6 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   try {
     const currency = listing.fees[5].split(":")[0];
 
-    console.log("currency: ", listing.fees);
-
-
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
