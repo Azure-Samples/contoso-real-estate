@@ -1,7 +1,10 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
+import { initializeDatabaseConfiguration } from "../config";
 import { removeFavorite } from "../models/favorite";
 
 const deleteFavorite: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+  await initializeDatabaseConfiguration();
+
   const { listingId, userId } = req.query;
 
   if (!listingId || !userId) {

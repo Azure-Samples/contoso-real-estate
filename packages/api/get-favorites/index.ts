@@ -1,13 +1,16 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
+import { initializeDatabaseConfiguration } from "../config";
 import { findFavorite, fetchFavoritesDataByUserId, getFavoritesByUserId } from "../models/favorite";
 
 const getFavorites: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+  await initializeDatabaseConfiguration();
+
   const offset = Number(req.query.offset) || 0;
   const limit = Number(req.query.limit) || 10;
   const { userId, listingId, aggregate } = req.query;
 
   // UserID is the only required parameter
-  if (!userId) {
+  if (!userId || userId === "undefined") {
     context.res = {
       status: 400,
       body: {

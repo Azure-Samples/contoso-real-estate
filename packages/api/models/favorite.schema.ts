@@ -1,15 +1,14 @@
-import { ObjectId } from "mongodb";
 import { model, Schema } from "mongoose";
 
 export interface Favorite {
-  userId: ObjectId | string;
+  userId: string;
   listingId: string;
   createdAt?: string;
 }
 
 const FavoriteSchema = new Schema<Favorite>({
   userId: {
-    type: ObjectId,
+    type: String,
     required: true,
   },
   listingId: {

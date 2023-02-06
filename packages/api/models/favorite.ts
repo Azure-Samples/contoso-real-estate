@@ -26,7 +26,6 @@ export async function fetchFavoritesDataByUserId({ userId }: { userId: string })
   }
 
   const favoritesIds = favorites.map(favorite => favorite.listingId);
-  // See https://github.com/brianc/node-postgres/issues/129#issuecomment-48633017
   const favoritesData = await pgQuery(`SELECT * FROM listings WHERE id IN (${favoritesIds})`);
 
   return favoritesData.rows.map(listingMapper);
