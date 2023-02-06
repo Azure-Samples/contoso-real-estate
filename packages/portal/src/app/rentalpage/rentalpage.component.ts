@@ -62,11 +62,10 @@ export class RentalpageComponent implements OnInit {
 
   async onRent(reservationDetails: ReservationRequest) {
     try {
-      // const checkoutSession = await this.listingService.reserve(reservationDetails);
-      // window.location.href = checkoutSession.sessionUrl;
+      const checkoutSession = await this.listingService.reserve(reservationDetails);
+      window.location.href = checkoutSession.sessionUrl;
     } catch (error: unknown) {
       if (error instanceof Error) {
-        // TODO: show error message in dialog
         alert(error.message);
       }
     }

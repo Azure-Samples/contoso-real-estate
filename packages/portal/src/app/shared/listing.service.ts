@@ -51,7 +51,7 @@ export class ListingService {
       );
   }
 
-  async reserve(reservationDetails: Reservation): Promise<CheckoutSession> {
+  async reserve(reservationDetails: ReservationRequest): Promise<CheckoutSession> {
     const resource = await fetch(`/api/checkout`, {
       method: "POST",
       headers: {
