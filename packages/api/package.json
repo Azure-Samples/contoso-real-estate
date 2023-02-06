@@ -24,11 +24,11 @@
     "swagger-ui-dist": "^4.14.0",
     "winston": "^3.8.1",
     "winston-transport": "^4.5.0",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "@faker-js/faker": "^7.5.0"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.3",
-    "@faker-js/faker": "^7.5.0",
     "@types/pg": "^8.6.6",
     "@types/node": "^18.11.18",
     "@types/swagger-ui-dist": "^3.30.1",
