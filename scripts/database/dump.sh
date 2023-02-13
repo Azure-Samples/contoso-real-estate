@@ -7,7 +7,7 @@
 ##############################################################################
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
-source .env
+source ../infra/.env
 
 dumps_folder="./dumps"
 date=$(date +%Y%m%d)
