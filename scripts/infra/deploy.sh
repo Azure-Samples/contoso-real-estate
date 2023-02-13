@@ -2,6 +2,7 @@
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source .env
+source .stripe.env
 cd ../..
 
 # Allow silent installation of Azure CLI extensions
@@ -9,9 +10,10 @@ az config set extension.use_dynamic_install=yes_without_prompt
 
 # Deploy portal --------------------------------------------------------------
 echo "Deploying portal..."
-pushd packages/website
+pushd packages/portal
 npx -y @azure/static-web-apps-cli@1.0.6 deploy \
   --app-name "$SWA_PORTAL_NAME" \
+  --output-location "dist/contoso-app" \
   --deployment-token "$SWA_PORTAL_DEPLOYMENT_TOKEN" \
   --env "production" \
   --verbose
@@ -19,17 +21,39 @@ popd
 echo "Portal deployed to $SWA_PORTAL_URL"
 
 # Deploy api function --------------------------------------------------------
-# TODO
-# echo "Deploying api..."
-# pushd packages/api
-# npx -y azure-functions-core-tools@4 azure functionapp publish "$FUNCTION_APP_NAME" \
-#   --verbose
-# popd
+echo "Deploying api..."
+
+# Copy API to temporary folder as NPM workspaces are not supported by
+Azure Functions Core Tools CLI
+api_tmpdir=$(mktemp -d)
+cp -r packages/api "$api_tmpdir"
+pushd "$api_tmpdir/api"
+npm install --omit=dev
+npx -y azure-functions-core-tools@4 azure functionapp publish "$FUNCTION_API_NAME" \
+  --typescript \
+  --verbose
+rm -rf "$api_tmpdir"
+popd
+
+# Update settings
+az functionapp config appsettings set \
+  --name "$FUNCTION_API_NAME" \
+  --resource-group "$RESOURCE_GROUP_NAME" \
+  --settings \
+    "STRIPE_PUBLIC_KEY=$STRIPE_PUBLIC_KEY" \
+    "STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY" \
+    "STRIPE_WEBHOOK_SECRET=$STRIPE_WEBHOOK_SECRET" \
+    "STRAPI_DATABASE_HOST=$STRAPI_DATABASE_HOST" \
+    "STRAPI_DATABASE_NAME=$STRAPI_DATABASE_NAME" \
+    "STRAPI_DATABASE_USERNAME=$STRAPI_DATABASE_USERNAME" \
+    "STRAPI_DATABASE_PASSWORD=$STRAPI_DATABASE_PASSWORD" \
+    "STRAPI_DATABASE_PORT=$STRAPI_DATABASE_PORT" \
+    "STRAPI_DATABASE_SSL=$STRAPI_DATABASE_SSL"
 
 # Deploy cms container app ---------------------------------------------------
 echo "Deploying cms..."
 container_app_cms_host=$(
-  az containerapp up \
+  az containerapp create \
     --name "$CONTAINER_APP_CMS_NAME" \
     --resource-group "$RESOURCE_GROUP_NAME" \
     --environment "$CONTAINER_APP_ENV_NAME" \
@@ -60,7 +84,7 @@ echo "CMS deployed to $container_app_cms_url"
 # Deploy blog container app --------------------------------------------------
 echo "Deploying blog..."
 container_app_blog_host=$(
-  az containerapp up \
+  az containerapp create \
     --name "$CONTAINER_APP_BLOG_NAME" \
     --resource-group "$RESOURCE_GROUP_NAME" \
     --environment "$CONTAINER_APP_ENV_NAME" \
@@ -83,3 +107,5 @@ echo "Blog deployed to $container_app_blog_url"
 
 # Deploy stripe container app ------------------------------------------------
 # TODO
+
+echo "Deployment complete."
