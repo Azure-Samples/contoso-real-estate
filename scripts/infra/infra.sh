@@ -184,6 +184,7 @@ createInfrastructure() {
       --resource-group "$resource_group_name" \
       --location "$location" \
       --tags project="$project_name" environment="$environment" \
+      --sku Standard \
       --output tsv \
       --query defaultHostname
   )
@@ -219,6 +220,21 @@ createInfrastructure() {
   )
   echo "FUNCTION_API_NAME='$function_api_name'" >> "$env_file"
   echo "FUNCTION_API_URL='https://$function_api_uri'" >> "$env_file"
+
+  # Link portal backend
+  # TODO: replace with APIM
+  function_api_id=$(
+    az functionapp list \
+      --resource-group "$resource_group_name" \
+      --query "[0].id" \
+      --output tsv
+  )
+  az staticwebapp backends link \
+    --name "$swa_portal_name" \
+    --resource-group "$resource_group_name" \
+    --backend-resource-id "$function_api_id" \
+    --backend-region "$location" \
+    --output none
 
   # Create container app env -------------------------------------------------
   container_app_env_name=contoso-cae
