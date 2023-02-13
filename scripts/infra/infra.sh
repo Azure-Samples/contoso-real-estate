@@ -272,11 +272,15 @@ createInfrastructure() {
       --version 14 \
       --query host \
       --output tsv \
-    || az postgres flexible-server show \
+    || (az postgres flexible-server update \
+      --resource-group "$resource_group_name" \
+      --name "$postgres_db_name" \
+      --admin-password "$postgres_db_pwd" \
+      && az postgres flexible-server show \
         --name "$postgres_db_name" \
         --resource-group "$resource_group_name" \
         --query fullyQualifiedDomainName \
-        --output tsv
+        --output tsv)
   )
   echo "POSTGRES_ACCOUNT_NAME='$postgres_db_name'" >> "$env_file"
   echo "STRAPI_DATABASE_HOST='$postgres_db_host'" >> "$env_file"
