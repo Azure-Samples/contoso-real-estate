@@ -300,7 +300,7 @@ createInfrastructure() {
     --output none
   echo "MONGO_ACCOUNT_NAME='$mongo_account_name'" >> "$env_file"
 
-  mongo_database_name=contosoportal
+  mongo_database_name=rentals
   az cosmosdb mongodb database create \
     --resource-group "$resource_group_name" \
     --name "$mongo_database_name" \
