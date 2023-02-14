@@ -24,7 +24,7 @@ echo "Portal deployed to $SWA_PORTAL_URL"
 echo "Deploying api..."
 
 # Copy API to temporary folder as NPM workspaces are not supported by
-Azure Functions Core Tools CLI
+# Azure Functions Core Tools CLI
 api_tmpdir=$(mktemp -d)
 cp -r packages/api "$api_tmpdir"
 pushd "$api_tmpdir/api"
