@@ -6,6 +6,7 @@ export interface AppConfig {
   secretKey: string;
   webhookSecret: string;
   webAppHost: string;
+  apiUrl: string;
 }
 
 // The use of fastify-plugin is required to be able
@@ -15,7 +16,8 @@ export default fp(async (fastify, opts) => {
     publicKey: process.env.STRIPE_PUBLIC_KEY || '',
     secretKey: process.env.STRIPE_SECRET_KEY || '',
     webhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
-    webAppHost: process.env.WEB_APP_HOST || 'localhost:4280'
+    webAppHost: process.env.WEB_APP_HOST || 'localhost:4280',
+    apiUrl: process.env.API_URL || 'http://localhost:7071'
   };
 
   if (!config.publicKey || !config.secretKey || !config.webhookSecret) {
