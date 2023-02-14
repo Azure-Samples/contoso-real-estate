@@ -23,6 +23,7 @@
     "fastify": "^4.0.0",
     "fastify-cli": "^5.7.0",
     "fastify-plugin": "^4.0.0",
+    "node-fetch": "^3.3.0",
     "stripe": "^11.8.0"
   },
   "devDependencies": {
