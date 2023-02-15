@@ -26,3 +26,4 @@ Then you can trigger events such as:
 stripe trigger payment_intent.succeeded
 ```
 
+To test payments, you can use the [Stripe test cards](https://stripe.com/docs/testing#cards).
