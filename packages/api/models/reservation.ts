@@ -27,7 +27,7 @@ export async function findReservationsByUserId(userId: string, offset: number, l
 export async function findReservationsByListingIdAndDateRange(listingId: string, from: string, to: string): Promise<Reservation[]> {
   return await ReservationModel.find({
     listingId,
-    from: { $lte: new Date(to).toISOString() },
-    to: { $gte: new Date(from).toISOString() },
+    from: { $lt: new Date(to).toISOString() },
+    to: { $gt: new Date(from).toISOString() },
   });
 }
