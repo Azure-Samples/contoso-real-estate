@@ -24,7 +24,6 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     };
     return;
   }
-
   if (!reservation.listingId) {
     context.res = {
       status: 400,
@@ -76,7 +75,6 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     };
     return;
   }
-
   // TODO: check for availability/overlapping reservations
 
   const total = calculateTotal(listing, guests, from, to);

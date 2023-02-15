@@ -7,7 +7,9 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "docker:build": "docker build --tag cms .",
+    "docker:run": "docker run --rm --publish 1337:1337 cms"
   },
   "devDependencies": {
     "@types/lodash.set": "^4.3.7"
