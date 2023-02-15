@@ -23,16 +23,27 @@ const patchReservationById: AzureFunction = async function (context: Context, re
     return;
   }
 
-  const record = await updateReservationStatus(id, status);
-  if (record) {
+  try {
+    const record = await updateReservationStatus(id, status);
+    if (record) {
+      context.res = {
+        body: record,
+      };
+    } else {
+      context.res = {
+        status: 404,
+        body: {
+          error: "reservation not found for specified id",
+        },
+      };
+    }
+  } catch (error: unknown) {
+    const err = error as Error;
+    context.log.error(`Error updating reservation status: ${err.message}`);
     context.res = {
-      body: record,
-    };
-  } else {
-    context.res = {
-      status: 404,
+      status: 500,
       body: {
-        error: "reservation not found for specified id",
+        error: "Error updating reservation status",
       },
     };
   }
