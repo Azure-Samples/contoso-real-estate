@@ -12,9 +12,10 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   const stripe = new Stripe(config.stripe.secretKey, { apiVersion: "2022-08-01" });
   const reservation = req.body as ReservationRequest;
   const guests = Number(reservation.guests) || 0;
-  const from = new Date(reservation.from);
-  const to = new Date(reservation.to);
-  const now = new Date();
+
+  const from = localeDateToUTCDate(new Date(reservation.from));
+  const to = localeDateToUTCDate(new Date(reservation.to));
+  const now = localeDateToUTCDate(new Date());
 
   if (!reservation.userId) {
     context.res = {
@@ -48,6 +49,7 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   }
 
   if (guests <= 0 || guests > listing.capacity) {
+    context.log.error(`Invalid number of guests: ${guests} (listing capacity: ${listing.capacity})`);
     context.res = {
       status: 400,
       body: {
@@ -58,6 +60,7 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   }
 
   if (!reservation.from || from.getTime() < now.getTime()) {
+    context.log.error(`Invalid reservation start date: ${reservation.from} (resolved: ${from.toISOString()}, now: ${now.toISOString()}`);
     context.res = {
       status: 400,
       body: {
@@ -67,7 +70,8 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     return;
   }
 
-  if (!reservation.to || to.getTime() < from.getTime()) {
+  if (!reservation.to || to.getTime() <= from.getTime()) {
+    context.log.error(`Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`);
     context.res = {
       status: 400,
       body: {
@@ -79,10 +83,11 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
 
   const overlaps = await findReservationsByListingIdAndDateRange(listing.id, from.toISOString(), to.toISOString());
   if (overlaps.length > 0) {
+    context.log.error(`Reservation overlaps with existing reservation(s): ${overlaps.map((o) => o.id).join(", ")} (from: ${from.toISOString()}, to: ${to.toISOString()})`);
     context.res = {
       status: 400,
       body: {
-        error: "Reservation overlaps with existing reservation",
+        error: "Listing is not available for the specified dates",
       },
     };
     return;
@@ -105,8 +110,8 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
               metadata: {
                 userId: reservation.userId,
                 listingId: reservation.listingId,
-                from: reservation.from,
-                ro: reservation.to,
+                from: from.toISOString(),
+                to: to.toISOString(),
                 guests: reservation.guests,
               },
             },
@@ -124,6 +129,8 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     const pendingReservation = {
       userId: reservation.userId,
       listingId: reservation.listingId,
+      title: listing.title,
+      guests,
       from,
       to,
       status: "pending" as const,
@@ -141,7 +148,7 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     const err = error as Error;
     context.log.error(`Error creating checkout session: ${err.message}`);
     context.res = {
-      status: 400,
+      status: 500,
       body: {
         error: "Cannot create checkout session",
       },
@@ -169,6 +176,17 @@ function calculateTotal(listing: Listing, guests: number, from: Date, to: Date):
   const occupancy = (Number(listing.fees[2]) || 0) * guests;
   const total = months * monthlyRentPriceWithDiscount + cleaning + service + occupancy;
   return total;
+}
+
+// We're only interested in the date day relative to the user's timezone,
+// so we need to convert the date to UTC to avoid any timezone offset
+function localeDateToUTCDate(date: Date) {
+  const utc = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+  utc.setMilliseconds(0);
+  utc.setSeconds(0);
+  utc.setMinutes(0);
+  utc.setHours(0);
+  return utc;
 }
 
 export default postCheckout;
