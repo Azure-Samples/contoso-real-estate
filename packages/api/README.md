@@ -17,7 +17,7 @@ To test the webhook integration, you need to install the [Stripe CLI](https://st
 ```bash
 # Make sure the app is running first with `npm start`
 stripe login
-stripe listen --forward-to localhost:4280/api/checkout/complete
+stripe listen --forward-to localhost:7071/api/checkout/complete
 ```
 
 Then you can trigger events such as:
