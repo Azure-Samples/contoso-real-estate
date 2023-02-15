@@ -1,5 +1,9 @@
 @use "@angular/material" as mat;
 
+.profile-page .subtitle {
+  margin: 16px;
+}
+
 .profile-body {
   .mat-card {
     margin: 15px;

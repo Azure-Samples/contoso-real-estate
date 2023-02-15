@@ -70,7 +70,15 @@ declare interface Address {
 }
 
 declare interface Reservation {
-  id?: string;
+  id: string;
+  userId: string;
+  listingId: string;
+  title: string;
+  guests: number;
+  from: Date;
+  to: Date;
+  status: "pending" | "active" | "cancelled" | "archived";
+  createdAt: Date;
 }
 
 declare interface ReservationRequest {
