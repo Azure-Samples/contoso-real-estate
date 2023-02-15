@@ -325,13 +325,14 @@ createInfrastructure() {
   # Create api management ----------------------------------------------------
   api_management_name=contoso-apim-${uid}
   echo "Creating api management '$api_management_name'..."
+  echo "WARNING: This can take up to 40 minutes for the service to get activated."
   az apim create \
     --name "$api_management_name" \
     --resource-group "$resource_group_name" \
     --location "$location" \
     --publisher-email "contoso@email.com" \
     --publisher-name "Contoso" \
-    --sku-name Consumption \
+    --sku-name Developer \
     --enable-client-certificate \
     --output none
   echo "API_MANAGEMENT_NAME='$api_management_name'" >> "$env_file"
