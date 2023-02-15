@@ -73,11 +73,13 @@
         <mat-tab label="Reservations">
           <div class="tab-wrapper">
             <mat-list>
-              <mat-list-item>Reservation 1</mat-list-item>
-              <mat-divider></mat-divider>
-              <mat-list-item>Reservation 2</mat-list-item>
-              <mat-divider></mat-divider>
-              <mat-list-item>Reservation 3</mat-list-item>
+              <mat-list-item *ngIf="reservations.length === 0">No reservations found.</mat-list-item>
+              <mat-list-item *ngFor="let reservation of reservations; trackBy: trackByReservationId">
+                <div mat-line>{{ reservation.title }} ({{ reservation.guests }} guest{{ reservation.guests != 1 ? 's' : '' }})</div>
+                <div mat-line>{{ reservation.from | date: 'mediumDate' }} - {{ reservation.to | date: 'mediumDate' }}</div>
+                <button mat-flat-button color="primary" [title]="reservation?.title" (click)="viewListing(reservation.listingId)">View Listing</button>
+                <mat-divider></mat-divider>
+              </mat-list-item>
             </mat-list>
           </div>
         </mat-tab>

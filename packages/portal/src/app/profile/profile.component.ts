@@ -5,8 +5,10 @@ import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatTabsModule } from "@angular/material/tabs";
-import { ActivatedRoute, RouterModule } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { FavoriteService } from "../shared/favorite.service";
+import { ListingService } from "../shared/listing.service";
+import { ReservationService } from "../shared/reservation.service";
 import { UserService } from "../shared/user/user.service";
 
 @Component({
@@ -19,12 +21,16 @@ import { UserService } from "../shared/user/user.service";
 export class ProfileComponent implements OnInit {
   user: User = {} as User;
   listings: Listing[] = [];
+  reservations: Reservation[] = [];
   selectedTabIndex = 0;
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
     private favoriteService: FavoriteService,
+    private reservationService: ReservationService,
+    private listingService: ListingService,
+    private router: Router
   ) {
     this.userService.user$.subscribe(user => {
       this.user = user;
@@ -35,6 +41,7 @@ export class ProfileComponent implements OnInit {
     this.route.data.subscribe(async data => {
       this.user = data["user"];
       await this.listFavorites();
+      await this.listReservations();
     });
 
     const tabs = ["favorites", "payments", "reservations"];
@@ -60,4 +67,21 @@ export class ProfileComponent implements OnInit {
     // remove the favorite from the database
     await this.favoriteService.removeFavorite(listing, this.user);
   }
+
+  async listReservations() {
+    this.reservations = await this.reservationService.getReservationsByUser(this.user);
+  }
+
+  async viewListing(listingId: string) {
+    const listing = await this.listingService.getListingById(listingId);
+    if (!listing) {
+      return;
+    }
+    this.router.navigate([`/listing/${listing.id}/${listing.slug}`], { state: { listing } } );
+  }
+
+  trackByReservationId(_index: number, reservation: Reservation) {
+    return reservation.id;
+  }
+
 }
