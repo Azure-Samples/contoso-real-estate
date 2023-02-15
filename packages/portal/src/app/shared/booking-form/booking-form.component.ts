@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
@@ -56,9 +56,18 @@ export class BookingFormComponent implements OnInit {
 
     this.isGuest = this.authService.hasRole([UserRole.Guest]);
 
+    const differentThanStartDateValidator = (): ValidatorFn => {
+      return (control: AbstractControl): ValidationErrors | null => {
+        const startDate = new Date(this.rentingPeriod?.value.start).getTime();
+        const endDate = new Date(control.value).getTime();
+        const sameDate = startDate === endDate;
+        return sameDate ? { sameDate: { value: control.value } } : null;
+      };
+    }
+
     this.rentingPeriod = new FormGroup({
       start: new FormControl<Date | null>(null),
-      end: new FormControl<Date | null>(null),
+      end: new FormControl<Date | null>(null, [differentThanStartDateValidator()]),
     });
 
     this.guests = new FormControl<number>(1);
@@ -126,12 +135,10 @@ export class BookingFormComponent implements OnInit {
   }
 
   private fixAngularDateRangerPicker(date: string) {
-    return new Date(new Date(date).getTime() + 60 * 60 * 1000).toISOString();
+    return new Date(date).toISOString();
   }
 
-  startFromTomorrow() {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow;
+  startFromToday() {
+    return new Date();
   }
 }
