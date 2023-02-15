@@ -111,6 +111,27 @@ container_app_blog_url="https://$container_app_blog_host"
 echo "Blog deployed to $container_app_blog_url"
 
 # Deploy stripe container app ------------------------------------------------
-# TODO
+echo "Deploying stripe..."
+container_app_stripe_host=$(
+  az containerapp create \
+    --name "$CONTAINER_APP_BLOG_NAME" \
+    --resource-group "$RESOURCE_GROUP_NAME" \
+    --environment "$CONTAINER_APP_ENV_NAME" \
+    --registry-server "$REGISTRY_SERVER" \
+    --registry-username "$REGISTRY_USERNAME" \
+    --registry-password "$REGISTRY_PASSWORD" \
+    --image "$REGISTRY_SERVER/stripe:v1" \
+    --target-port 3000 \
+    --ingress external \
+    \ # --env-vars "NEXT_PUBLIC_STRAPI_API_URL=$container_app_cms_url" \
+    --scale-rule-name http-rule \
+    --scale-rule-type http \
+    --scale-rule-http-concurrency 1000 \
+    --min-replicas 1 \
+    --query "properties.configuration.ingress.fqdn" \
+    --output tsv
+)
+container_app_stripe_url="https://$container_app_stripe_host"
+echo "Blog deployed to $container_app_stripe_url"
 
 echo "Deployment complete."
