@@ -75,8 +75,13 @@
             <mat-list>
               <mat-list-item *ngIf="reservations.length === 0">No reservations found.</mat-list-item>
               <mat-list-item *ngFor="let reservation of reservations; trackBy: trackByReservationId">
-                <div mat-line>{{ reservation.title }} ({{ reservation.guests }} guest{{ reservation.guests != 1 ? 's' : '' }})</div>
-                <div mat-line>{{ reservation.from | date: 'mediumDate' }} - {{ reservation.to | date: 'mediumDate' }}</div>
+                <div mat-line class="reservation-title">
+                  {{ reservation.title }} ({{ reservation.guests }} guest{{ reservation.guests != 1 ? 's' : '' }})
+                  <span class="reservation-status" [ngClass]="reservation.status">{{ reservation.status }}</span>
+                </div>
+                <div mat-line class="reservation-subtitle">
+                  {{ reservation.from | date: 'mediumDate' }} - {{ reservation.to | date: 'mediumDate' }}
+                </div>
                 <button mat-flat-button color="primary" [title]="reservation?.title" (click)="viewListing(reservation.listingId)">View Listing</button>
                 <mat-divider></mat-divider>
               </mat-list-item>
