@@ -17,7 +17,7 @@
 <section class="guests-container" [formGroup]="bookingForm" [ngClass]="{ 'filter-blur': isGuest }">
   <mat-form-field appearance="outline">
     <mat-label>Enter renting period</mat-label>
-    <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker" [min]="startFromTomorrow()">
+    <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker" [min]="startFromToday()">
       <input required matStartDate formControlName="start" placeholder="Start date" />
       <input required matEndDate formControlName="end" placeholder="End date" />
     </mat-date-range-input>
