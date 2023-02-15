@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "reservations/{slug}"
+      "route": "reservations/{id}"
     },
     {
       "type": "http",
@@ -14,5 +14,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/get-reservation-by-slug/index.js"
+  "scriptFile": "../dist/get-reservation-by-id/index.js"
 }

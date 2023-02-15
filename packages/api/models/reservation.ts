@@ -1,45 +1,33 @@
-import { faker } from "@faker-js/faker";
+import ReservationModel, { Reservation } from "./reservation.schema";
 
-const MAX_ENTRIES = 100;
-let CACHE: any[] = [];
-
-function model({ slug }: { slug?: number } = {}) {
-  return {
-    id: faker.database.mongodbObjectId(),
-    user: {
-      id: faker.database.mongodbObjectId(),
-    },
-    listing: {
-      id: faker.database.mongodbObjectId(),
-    },
-    from: faker.date.future(),
-    to: faker.date.future(),
-    status: faker.helpers.arrayElements(["pending", "active", "cancelled", "archived"], 1),
-    createdAt: faker.date.past(),
-    slug: slug || faker.lorem.slug(),
-  };
+export async function saveReservation(reservation: Partial<Reservation>): Promise<Reservation> {
+  return ReservationModel.create(reservation);
 }
 
-export async function getReservationsMock({ offset, limit }: { offset: number; limit: number }): Promise<any[]> {
-  if (CACHE.length === 0) {
-    CACHE = Array.from({ length: MAX_ENTRIES }, () => model());
+export async function updateReservationStatus(id: string, status: "pending" | "active" | "cancelled" | "archived"): Promise<Reservation | null> {
+  const record = await ReservationModel.findOne({ id });
+  if (record) {
+    record.status = status;
+    return await record.save();
   }
-
-  return CACHE.slice(offset, offset + limit).map(model => {
-    model.$self = `/api/reservations/${model.slug}`;
-    return model;
-  });
+  return null;
 }
 
-export async function getReservationBySlugMock({ slug }: { slug: number }): Promise<any> {
-  return Promise.resolve(CACHE.find(model => model.slug === slug));
+export async function findReservationById(id: string): Promise<Reservation | null> {
+  return await ReservationModel.findOne({ id });
 }
 
-export async function createReservationMock({ reservation }: { reservation: any }): Promise<any> {
-  CACHE.push({
-    ...reservation,
-    id: faker.database.mongodbObjectId(),
-    slug: faker.lorem.slug(),
+export async function findReservationsByUserId(userId: string, offset: number, limit: number): Promise<Reservation[]> {
+  return await ReservationModel
+    .find({ userId })
+    .skip(offset)
+    .limit(limit);
+}
+
+export async function findReservationsByListingIdAndDateRange(listingId: string, from: string, to: string): Promise<Reservation[]> {
+  return await ReservationModel.find({
+    listingId,
+    from: { $lte: new Date(to).toISOString() },
+    to: { $gte: new Date(from).toISOString() },
   });
-  return Promise.resolve(reservation);
 }

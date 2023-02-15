@@ -1,12 +1,13 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import Stripe from "stripe";
-import { getConfig } from "../config";
+import { getConfig, initializeDatabaseConfiguration } from "../config";
 import { getListingById } from "../models/listing";
 import { Listing } from "../models/listing.schema";
-import { createReservationMock } from "../models/reservation";
+import { findReservationsByListingIdAndDateRange, saveReservation } from "../models/reservation";
 import { ReservationRequest } from "../models/reservation-request";
 
 const postCheckout: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+  await initializeDatabaseConfiguration();
   const config = await getConfig();
   const stripe = new Stripe(config.stripe.secretKey, { apiVersion: "2022-08-01" });
   const reservation = req.body as ReservationRequest;
@@ -75,7 +76,17 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     };
     return;
   }
-  // TODO: check for availability/overlapping reservations
+
+  const overlaps = await findReservationsByListingIdAndDateRange(listing.id, from.toISOString(), to.toISOString());
+  if (overlaps.length > 0) {
+    context.res = {
+      status: 400,
+      body: {
+        error: "Reservation overlaps with existing reservation",
+      },
+    };
+    return;
+  }
 
   const total = calculateTotal(listing, guests, from, to);
   const amount = Math.round(total * 100);
@@ -111,19 +122,15 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     });
 
     const pendingReservation = {
-      user: {
-        id: reservation.userId,
-      },
-      listing: {
-        id: reservation.listingId,
-      },
+      userId: reservation.userId,
+      listingId: reservation.listingId,
       from,
       to,
-      status: "pending",
+      status: "pending" as const,
       createdAt: now,
     };
 
-    await createReservationMock({ reservation: pendingReservation });
+    await saveReservation(pendingReservation);
 
     context.res = {
       body: {
