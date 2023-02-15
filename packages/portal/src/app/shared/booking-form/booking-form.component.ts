@@ -10,7 +10,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { RouterModule } from "@angular/router";
 import { AuthService } from "../authentication/auth.service";
 import { HasRoleDirective } from "../has-role/has-role.directive";
-import { UserRole } from "../user/user.service";
+import { UserRole, UserService } from "../user/user.service";
 
 @Component({
   selector: "app-booking-form",
@@ -35,6 +35,7 @@ export class BookingFormComponent implements OnInit {
   @Output() onRent: EventEmitter<ReservationRequest>;
   userRole: typeof UserRole = UserRole;
 
+
   monthlyRentPrice = 0;
   monthlyRentPriceWithDiscount = 0;
   discount = 0;
@@ -51,7 +52,7 @@ export class BookingFormComponent implements OnInit {
   monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
   isGuest = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private userService: UserService) {
 
     this.isGuest = this.authService.hasRole([UserRole.Guest]);
 
@@ -111,15 +112,17 @@ export class BookingFormComponent implements OnInit {
     return +(days / 30).toFixed(2);
   }
 
-  rent() {
-    this.onRent.emit({
-      // TODO: set userId properly
-      userId: "123",
-      listingId: this.listing?.id,
-      guests: this.guests.value,
-      from: this.fixAngularDateRangerPicker(this.rentingPeriod.value.start),
-      to: this.fixAngularDateRangerPicker(this.rentingPeriod.value.end),
-    });
+  async rent() {
+    if (!this.isGuest) {
+      const user = await this.userService.currentUser();
+      this.onRent.emit({
+        userId: user.id,
+        listingId: this.listing?.id,
+        guests: this.guests.value,
+        from: this.fixAngularDateRangerPicker(this.rentingPeriod.value.start),
+        to: this.fixAngularDateRangerPicker(this.rentingPeriod.value.end),
+      });
+    }
   }
 
   private fixAngularDateRangerPicker(date: string) {
