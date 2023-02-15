@@ -49,15 +49,15 @@ $green-palette:  mat.define-palette(mat.$green-palette);
 }
 
 .mat-list-base .mat-list-item {
-  .reservation-title {
+  .reservation-title, .payment-title {
     font-weight: bold;
   }
 
-  .reservation-subtitle {
+  .reservation-subtitle, .payment-subtitle {
     font-size: 0.8em;
   }
 
-  .reservation-status {
+  .reservation-status, .payment-status {
     font-size: 0.7em;
     padding: 2px 8px;
     border-radius: 8px;
@@ -65,7 +65,7 @@ $green-palette:  mat.define-palette(mat.$green-palette);
     background-color: mat.get-color-from-palette($accent-palette, 500);
     color: mat.get-color-from-palette($accent-palette, 500-contrast);
 
-    &.active {
+    &.active, &.completed {
       background-color: mat.get-color-from-palette($green-palette, A200);
       color: mat.get-color-from-palette($green-palette, A200-contrast);
     }

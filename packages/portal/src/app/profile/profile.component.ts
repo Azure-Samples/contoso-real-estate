@@ -8,6 +8,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { FavoriteService } from "../shared/favorite.service";
 import { ListingService } from "../shared/listing.service";
+import { PaymentService } from "../shared/payment.service";
 import { ReservationService } from "../shared/reservation.service";
 import { UserService } from "../shared/user/user.service";
 
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
   user: User = {} as User;
   listings: Listing[] = [];
   reservations: Reservation[] = [];
+  payments: Payment[] = [];
   selectedTabIndex = 0;
 
   constructor(
@@ -29,6 +31,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private favoriteService: FavoriteService,
     private reservationService: ReservationService,
+    private paymentService: PaymentService,
     private listingService: ListingService,
     private router: Router
   ) {
@@ -72,6 +75,10 @@ export class ProfileComponent implements OnInit {
     this.reservations = await this.reservationService.getReservationsByUser(this.user);
   }
 
+  async listPayments() {
+    this.payments = await this.paymentService.getPaymentsByUser(this.user);
+  }
+
   async viewListing(listingId: string) {
     const listing = await this.listingService.getListingById(listingId);
     if (!listing) {
@@ -84,4 +91,7 @@ export class ProfileComponent implements OnInit {
     return reservation.id;
   }
 
+  trackByPaymentId(_index: number, payment: Payment) {
+    return payment.id;
+  }
 }

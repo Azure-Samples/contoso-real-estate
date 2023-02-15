@@ -60,11 +60,17 @@
         <mat-tab label="Payment History">
           <div class="tab-wrapper">
             <mat-list>
-              <mat-list-item>Payment 1</mat-list-item>
-              <mat-divider></mat-divider>
-              <mat-list-item>Payment 2</mat-list-item>
-              <mat-divider></mat-divider>
-              <mat-list-item>Payment 3</mat-list-item>
+              <mat-list-item *ngIf="payments.length === 0">No payments found.</mat-list-item>
+              <mat-list-item *ngFor="let payment of payments; trackBy: trackByPaymentId">
+                <div mat-line class="payment-title">
+                  {{ payment.amount }} {{ payment.currency }} (via {{ payment.provider }})
+                  <span class="payment-status" [ngClass]="payment.status">{{ payment.status }}</span>
+                </div>
+                <div mat-line class="payment-subtitle">
+                  {{ payment.createdAt | date: 'mediumDate' }}
+                </div>
+                <mat-divider></mat-divider>
+              </mat-list-item>
             </mat-list>
           </div>
         </mat-tab>

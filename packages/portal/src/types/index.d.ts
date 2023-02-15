@@ -89,6 +89,17 @@ declare interface ReservationRequest {
   guests: number;
 }
 
+declare interface Payment {
+  id: string;
+  userId: string;
+  reservationId: string;
+  provider: 'stripe' | 'paypal';
+  status: 'pending' | 'declined' | 'completed' | 'cancelled';
+  amount: number;
+  currency: string;
+  createdAt: Date;
+}
+
 declare interface CheckoutSession {
   sessionUrl: string;
 }
