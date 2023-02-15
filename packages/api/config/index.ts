@@ -6,6 +6,7 @@ import { configureMongoose } from "./mongoose";
 import { logger } from "./observability";
 
 let configCache: AppConfig | undefined;
+let dbInitialized = false;
 
 export const getConfig: () => Promise<AppConfig> = async () => {
   if (configCache) {
@@ -80,6 +81,10 @@ const populateEnvironmentFromKeyVault = async () => {
 };
 
 export async function initializeDatabaseConfiguration() {
+  if (dbInitialized) {
+    return;
+  }
   const config = await getConfig();
   await configureMongoose(config.database);
+  dbInitialized = true;
 }
