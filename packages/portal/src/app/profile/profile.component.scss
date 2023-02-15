@@ -1,4 +1,6 @@
 @use "@angular/material" as mat;
+$accent-palette:  mat.define-palette(mat.$amber-palette);
+$green-palette:  mat.define-palette(mat.$green-palette);
 
 .profile-page .subtitle {
   margin: 16px;
@@ -44,4 +46,28 @@
   display: inline-block;
   width: 45px;
   font-size: 45px;
+}
+
+.mat-list-base .mat-list-item {
+  .reservation-title {
+    font-weight: bold;
+  }
+
+  .reservation-subtitle {
+    font-size: 0.8em;
+  }
+
+  .reservation-status {
+    font-size: 0.7em;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: normal;
+    background-color: mat.get-color-from-palette($accent-palette, 500);
+    color: mat.get-color-from-palette($accent-palette, 500-contrast);
+
+    &.active {
+      background-color: mat.get-color-from-palette($green-palette, A200);
+      color: mat.get-color-from-palette($green-palette, A200-contrast);
+    }
+  }
 }
