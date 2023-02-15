@@ -27,6 +27,7 @@ export async function fetchFavoritesDataByUserId({ userId }: { userId: string })
   }
 
   const favoritesIds = favorites.map(favorite => favorite.listingId);
+  // TODO: fix potential SQL injection here!
   const favoritesData = await pgQuery(`SELECT * FROM listings WHERE id IN (${favoritesIds})`);
   return favoritesData.rows.map(listingMapper);
 }

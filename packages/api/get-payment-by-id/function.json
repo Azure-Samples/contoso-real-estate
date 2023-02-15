@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "payment/{slug}"
+      "route": "payment/{id}"
     },
     {
       "type": "http",
@@ -14,5 +14,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/get-payment-by-slug/index.js"
+  "scriptFile": "../dist/get-payment-by-id/index.js"
 }
