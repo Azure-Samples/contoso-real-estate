@@ -3,7 +3,7 @@
     <div class="material-symbols-outlined" aria-hidden="true">done</div>
     <h1>Thank you for your booking!</h1>
     <p>You will receive a confirmation email with all the details of your reservation.</p>
-    <a mat-flat-button color="primary" routerLink="/me/payments">Go back to your payments</a>
+    <a mat-flat-button color="primary" routerLink="/me/reservations">Go to your reservations</a>
   </section>
 
   <section class="checkout-cancel" *ngSwitchCase="'cancel'">
@@ -17,6 +17,6 @@
     <div class="material-symbols-outlined" aria-hidden="true">sentiment_dissatisfied</div>
     <h1>Uh oh!</h1>
     <p>Something went wrong with your reservation. Please try again later.</p>
-    <a mat-flat-button color="primary" routerLink="/me/payments">Go back to listings</a>
+    <a mat-flat-button color="primary" routerLink="/home">Go back to listings</a>
   </section>
 </section>
