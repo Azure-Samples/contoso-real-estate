@@ -1,5 +1,6 @@
 import { FastifyPluginAsync } from "fastify"
 import Stripe from "stripe";
+import { Checkout, validateCheckout } from "../../models/checkout";
 import { Payment } from "../../models/payment";
 
 const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
@@ -9,7 +10,6 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.post('/webhook', async function (request, reply) {
     const payload = request.body as any;
     const signature = request.headers['stripe-signature'];
-  
     let event;
   
     try {
@@ -91,40 +91,58 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   });
 
   fastify.post('/checkout', async function (request, reply) {
-    // TODO: typing and validation
-    const { currencyCode, reservation, amount, paymentName } = request.body as any;
+    const checkout = request.body as Checkout;
+
+    try {
+      validateCheckout(checkout);
+    } catch (error: unknown) {
+      const err = error as Error;
+      const errorMessage = `Error validating checkout: ${err.message}`;
+      fastify.log.error(errorMessage);
+      reply.statusCode = 400;
+      return { error: errorMessage };
+    }
+
     try {
       const session = await stripe.checkout.sessions.create({
         line_items: [
           {
             price_data: {
-              currency: currencyCode,
+              currency: checkout.currency.toLowerCase(),
               product_data: {
-                name: paymentName,
-                metadata: {
-                  userId: reservation.userId,
-                  listingId: reservation.listingId,
-                  from: reservation.from,
-                  ro: reservation.to,
-                  guests: reservation.guests,
-                },
+                name: checkout.productName
               },
-              tax_behavior: 'inclusive',
-              unit_amount: amount,
+              tax_behavior: "inclusive",
+              unit_amount: checkout.amount,
             },
             quantity: 1,
           },
         ],
-        mode: 'payment',
-        success_url: `${config.webAppHost}/checkout?result=success`,
-        cancel_url: `${config.webAppHost}/checkout?result=cancel`,
+        mode: "payment",
+        success_url: `${config.appDomain}/checkout?result=success`,
+        cancel_url: `${config.appDomain}/checkout?result=cancel&reservationId=${checkout.reservationId}`,
+        client_reference_id: checkout.reservationId,
+        metadata: {
+          userId: checkout.userId,
+          listingId: checkout.listingId,
+          reservationId: checkout.reservationId,
+          from: checkout.from,
+          to: checkout.to,
+          guests: checkout.guests,
+          currency: checkout.currency,
+          amount: checkout.amount,
+          createdAt: checkout.createdAt,
+        },
+        expires_at: Math.round(Date.now() / 1000 + 31 * 60), // 31 minutes session expiration (epoch seconds)
       });
       return { sessionUrl: session.url };
+
     } catch (error: unknown) {
       const err = error as Error;
-      fastify.log.error(`Error creating checkout session: ${err.message}`);
-      reply.statusCode = 400;
-      return { error: "Cannot create checkout session" };
+      const errorMessage = `Error creating stripe checkout session: ${err.message}`;
+      fastify.log.error(errorMessage);
+      reply.statusCode = 500;
+      return { error: errorMessage };
     }
   });
 }
