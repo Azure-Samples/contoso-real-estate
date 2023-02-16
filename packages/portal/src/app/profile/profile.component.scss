@@ -25,7 +25,7 @@ $green-palette:  mat.define-palette(mat.$green-palette);
 
 .profile-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   column-gap: 25px;
   padding: 20px;
 
@@ -69,5 +69,14 @@ $green-palette:  mat.define-palette(mat.$green-palette);
       background-color: mat.get-color-from-palette($green-palette, A200);
       color: mat.get-color-from-palette($green-palette, A200-contrast);
     }
+  }
+
+  .mat-line {
+    white-space: initial;
+  }
+
+  .reservation-view {
+    flex-shrink: 0;
+    margin-left: 8px;
   }
 }
