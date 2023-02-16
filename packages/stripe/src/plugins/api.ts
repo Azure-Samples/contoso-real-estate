@@ -1,5 +1,6 @@
 import fp from 'fastify-plugin'
 import fetch, { Response, RequestInit } from 'node-fetch';
+import { Payment } from '../models/payment';
 import { AppConfig } from './config';
 
 // The use of fastify-plugin is required to be able
@@ -22,11 +23,28 @@ export class ApiService {
     this.baseUrl = `${config.apiUrl}/api`;
   }
 
-  
+  async createPayment(payment: Partial<Payment>) {
+    return this.fetch(`${this.baseUrl}/payments`, {
+      method: 'POST',
+      body: JSON.stringify(payment),
+    });
+  }
 
+  async updateReservationStatus(reservationId: string, status: string) {
+    return this.fetch(`${this.baseUrl}/reservations/${reservationId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ status }),
+    });
+  }
 
   private async fetch(url: string, options?: RequestInit) {
-    const response = await fetch(url, options);
+    const response = await fetch(url, {
+      ...options,
+      headers: {
+        ...options?.headers,
+        'Content-Type': 'application/json',
+      }
+    });
     if (!response.ok) {
       throw new HttpError(response, `Failed to fetch ${url}`);
     }

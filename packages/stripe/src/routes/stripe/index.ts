@@ -1,5 +1,6 @@
 import { FastifyPluginAsync } from "fastify"
 import Stripe from "stripe";
+import { Payment } from "../../models/payment";
 
 const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   const config = fastify.config;
@@ -21,31 +22,72 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   
     switch (event.type) {
       case 'checkout.session.completed':
-        const session = event.data.object as Stripe.Checkout.Session;
-        fastify.log.info(`Checkout session completed for ${session.id}`);
+        try {
+          const session = event.data.object as Stripe.Checkout.Session;
+          fastify.log.info(`Checkout session completed for ${session.id}`);
+    
+          const payment = {
+            userId: session.metadata?.userId,
+            reservationId: session.metadata?.reservationId,
+            provider: 'stripe' as const,
+            status: 'completed' as const,
+            amount: Number(session.metadata?.amount),
+            currency: session.metadata?.currency,
+            createdAt: new Date(),
+          };
+    
+          const paymentRecord = await fastify.api.createPayment(payment) as Payment;
+          const message = `Reservation ${session.metadata?.reservationId} completed with payment ${paymentRecord.id}`;
+          fastify.log.info(message);
+          return { message };
+
+        } catch (error: unknown) {
+          const err = error as Error;
+          const errorMessage = `Error processing completed checkout session: ${err.message}`;
+          fastify.log.error(errorMessage);
+          reply.statusCode = 500;
+          return { error: errorMessage };
+        }
   
-        // TODO: Update the reservation status in the database
-  
-        break;
       case 'checkout.session.expired':
-        const expiredSession = event.data.object as Stripe.Checkout.Session;
-        fastify.log.info(`Checkout session expired for ${expiredSession.id}`);
-  
-        // TODO: Update the reservation status in the database
-  
-        break;
-      case 'payment_intent.succeeded':
-        const paymentIntent = event.data.object as Stripe.PaymentIntent;
-        fastify.log.info(`Payment intent succeeded for ${paymentIntent.id}`);
-  
-        // TODO: Create payment in database
-  
-        break;
+        try {
+          const expiredSession = event.data.object as Stripe.Checkout.Session;
+          fastify.log.info(`Checkout session expired for ${expiredSession.id}`);
+    
+          const reservationId = expiredSession.metadata?.reservationId;
+          if (!reservationId) {
+            const errorMessage = `No reservationId found for session ${expiredSession.id}`;
+            fastify.log.error(errorMessage);
+            reply.statusCode = 400;
+            return { error: errorMessage };
+          }
+    
+          const reservationRecord = await fastify.api.updateReservationStatus(reservationId, 'cancelled');
+          if (!reservationRecord) {
+            const errorMessage = `No reservation found for id ${reservationId}`;
+            fastify.log.error(errorMessage);
+            reply.statusCode = 400;
+            return { error: errorMessage };
+          }
+
+          const message = `Reservation ${reservationId} cancelled`;
+          fastify.log.info(message);
+          return { message };
+
+        } catch (error: unknown) {
+          const err = error as Error;
+          const errorMessage = `Error processing expired checkout session: ${err.message}`;
+          fastify.log.error(errorMessage);
+          reply.statusCode = 500;
+          return { error: errorMessage };
+        }
+
       default:
-        fastify.log.info(`Unhandled event type ${event.type}`);
+        const errorMessage = `Unhandled event type ${event.type}`;
+        fastify.log.info(errorMessage);
+        reply.statusCode = 400;
+        return { error: errorMessage };
     }
-  
-    return reply.status(201);
   });
 
   fastify.post('/checkout', async function (request, reply) {
