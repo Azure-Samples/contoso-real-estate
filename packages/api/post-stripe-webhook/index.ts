@@ -110,6 +110,7 @@ const postStripeWebhook: AzureFunction = async function (context: Context, req: 
       context.log.info(`Unhandled event type ${event.type}`);
       context.res = {
         status: 400,
+        body: `Unhandled event type ${event.type}`,
       };
   }
 };
