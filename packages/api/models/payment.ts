@@ -5,7 +5,7 @@ export async function savePayment(payment: Partial<Payment>): Promise<Payment> {
 }
 
 export async function updatePaymentStatus(id: string, status: "pending" | "declined" | "completed" | "cancelled"): Promise<Payment | null> {
-  const record = await PaymentModel.findOne({ id });
+  const record = await PaymentModel.findOne({ _id: id });
   if (record) {
     record.status = status;
     return await record.save();
@@ -14,7 +14,7 @@ export async function updatePaymentStatus(id: string, status: "pending" | "decli
 }
 
 export async function findPaymentById(id: string): Promise<Payment | null> {
-  return await PaymentModel.findOne({ id });
+  return await PaymentModel.findOne({ _id: id });
 }
 
 export async function findPaymentsByUserId(userId: string, offset: number, limit: number): Promise<Payment[]> {

@@ -5,7 +5,7 @@ export async function saveReservation(reservation: Partial<Reservation>): Promis
 }
 
 export async function updateReservationStatus(id: string, status: "pending" | "active" | "cancelled" | "archived"): Promise<Reservation | null> {
-  const record = await ReservationModel.findOne({ id });
+  const record = await ReservationModel.findOne({ _id: id });
   if (record) {
     record.status = status;
     return await record.save();
@@ -14,7 +14,7 @@ export async function updateReservationStatus(id: string, status: "pending" | "a
 }
 
 export async function findReservationById(id: string): Promise<Reservation | null> {
-  return await ReservationModel.findOne({ id });
+  return await ReservationModel.findOne({ _id: id });
 }
 
 export async function findReservationsByUserId(userId: string, offset: number, limit: number): Promise<Reservation[]> {
@@ -27,6 +27,7 @@ export async function findReservationsByUserId(userId: string, offset: number, l
 export async function findReservationsByListingIdAndDateRange(listingId: string, from: string, to: string): Promise<Reservation[]> {
   return await ReservationModel.find({
     listingId,
+    status: { $in: ["pending", "active"] },
     from: { $lt: new Date(to).toISOString() },
     to: { $gt: new Date(from).toISOString() },
   });
