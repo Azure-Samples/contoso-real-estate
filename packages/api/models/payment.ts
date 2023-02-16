@@ -22,5 +22,5 @@ export async function findPaymentsByUserId(userId: string, offset: number, limit
     .find({ userId })
     .skip(offset)
     .limit(limit)
-    .sort({ createdAt: -1 });
+    .sort({ _id: -1 });
 }

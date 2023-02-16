@@ -27,7 +27,7 @@ export async function findReservationsByUserId(userId: string, offset: number, l
     .find({ userId })
     .skip(offset)
     .limit(limit)
-    .sort({ createdAt: -1 });
+    .sort({ _id: -1 });
 }
 
 export async function findReservationsByListingIdAndDateRange(listingId: string, from: string, to: string): Promise<Reservation[]> {
