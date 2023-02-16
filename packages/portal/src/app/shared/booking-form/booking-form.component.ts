@@ -128,14 +128,16 @@ export class BookingFormComponent implements OnInit {
         userId: user.id,
         listingId: this.listing?.id,
         guests: this.guests.value,
-        from: this.fixAngularDateRangerPicker(this.rentingPeriod.value.start),
-        to: this.fixAngularDateRangerPicker(this.rentingPeriod.value.end),
+        from: this.localeDateToUTCDateString(this.rentingPeriod.value.start),
+        to: this.localeDateToUTCDateString(this.rentingPeriod.value.end),
       });
     }
   }
 
-  private fixAngularDateRangerPicker(date: string) {
-    return new Date(date).toISOString();
+  private localeDateToUTCDateString(dateStr: string) {
+    const date = new Date(dateStr);
+    const utc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+    return new Date(utc).toISOString();
   }
 
   startFromToday() {
