@@ -21,5 +21,6 @@ export async function findPaymentsByUserId(userId: string, offset: number, limit
   return await PaymentModel
     .find({ userId })
     .skip(offset)
-    .limit(limit);
+    .limit(limit)
+    .sort({ createdAt: -1 });
 }
