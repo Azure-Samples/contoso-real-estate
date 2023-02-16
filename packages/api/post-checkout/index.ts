@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { getConfig, initializeDatabaseConfiguration } from "../config";
 import { getListingById } from "../models/listing";
 import { Listing } from "../models/listing.schema";
-import { findReservationsByListingIdAndDateRange, saveReservation } from "../models/reservation";
+import { findReservationsByListingIdAndDateRange, saveReservation, updateReservationStatus } from "../models/reservation";
 import { ReservationRequest } from "../models/reservation-request";
 
 const postCheckout: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
@@ -13,8 +13,8 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   const reservation = req.body as ReservationRequest;
   const guests = Number(reservation.guests) || 0;
 
-  const from = localeDateToUTCDate(new Date(reservation.from));
-  const to = localeDateToUTCDate(new Date(reservation.to));
+  const from = new Date(reservation.from);
+  const to = new Date(reservation.to);
   const now = localeDateToUTCDate(new Date());
 
   if (!reservation.userId) {
@@ -96,35 +96,10 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   const total = calculateTotal(listing, guests, from, to);
   const amount = Math.round(total * 100);
   const name = `Booking ${listing.title}`;
+  let reservationRecord;
 
   try {
     const currency = listing.fees[5].split(":")[0];
-
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: currency.toLowerCase(),
-            product_data: {
-              name,
-              metadata: {
-                userId: reservation.userId,
-                listingId: reservation.listingId,
-                from: from.toISOString(),
-                to: to.toISOString(),
-                guests: reservation.guests,
-              },
-            },
-            tax_behavior: "inclusive",
-            unit_amount: amount,
-          },
-          quantity: 1,
-        },
-      ],
-      mode: "payment",
-      success_url: `${config.appDomain}/checkout?result=success`,
-      cancel_url: `${config.appDomain}/checkout?result=cancel`,
-    });
 
     const pendingReservation = {
       userId: reservation.userId,
@@ -137,13 +112,54 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
       createdAt: now,
     };
 
-    await saveReservation(pendingReservation);
+    reservationRecord = await saveReservation(pendingReservation);
 
-    context.res = {
-      body: {
-        sessionUrl: session.url,
-      },
-    };
+    try {
+      const session = await stripe.checkout.sessions.create({
+        line_items: [
+          {
+            price_data: {
+              currency: currency.toLowerCase(),
+              product_data: {
+                name,
+              },
+              tax_behavior: "inclusive",
+              unit_amount: amount,
+            },
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        success_url: `${config.appDomain}/checkout?result=success`,
+        cancel_url: `${config.appDomain}/checkout?result=cancel&reservationId=${reservationRecord.id}`,
+        client_reference_id: reservationRecord.id,
+        metadata: {
+          userId: reservation.userId,
+          listingId: reservation.listingId,
+          reservationId: reservationRecord.id,
+          from: from.toISOString(),
+          to: to.toISOString(),
+          guests: reservation.guests,
+          currency,
+          amount,
+          createdAt: now.toISOString(),
+        },
+        expires_at: Math.round(Date.now() / 1000 + 31 * 60), // 31 minutes session expiration (epoch seconds)
+      });
+      
+      context.res = {
+        body: {
+          sessionUrl: session.url,
+        },
+      };
+
+    } catch (error: unknown) {
+      const err = error as Error;
+      context.log.error(`Error creating stripe checkout session: ${err.message}`);
+      await updateReservationStatus(reservationRecord.id, "cancelled");
+      throw error;
+    }
+
   } catch (error: unknown) {
     const err = error as Error;
     context.log.error(`Error creating checkout session: ${err.message}`);
@@ -178,15 +194,11 @@ function calculateTotal(listing: Listing, guests: number, from: Date, to: Date):
   return total;
 }
 
-// We're only interested in the date day relative to the user's timezone,
+// We're only interested in the date day relative to the current timezone,
 // so we need to convert the date to UTC to avoid any timezone offset
 function localeDateToUTCDate(date: Date) {
-  const utc = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-  utc.setMilliseconds(0);
-  utc.setSeconds(0);
-  utc.setMinutes(0);
-  utc.setHours(0);
-  return utc;
+  const utc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  return new Date(utc);
 }
 
 export default postCheckout;
