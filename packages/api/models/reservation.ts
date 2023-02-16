@@ -7,6 +7,11 @@ export async function saveReservation(reservation: Partial<Reservation>): Promis
 export async function updateReservationStatus(id: string, status: "pending" | "active" | "cancelled" | "archived"): Promise<Reservation | null> {
   const record = await ReservationModel.findOne({ _id: id });
   if (record) {
+    if (status === "active" && record.status !== "pending" ||
+      status === "cancelled" && record.status !== "pending") {
+      throw new Error(`Invalid reservation status transition: ${record.status} -> ${status}`);
+    }
+
     record.status = status;
     return await record.save();
   }
