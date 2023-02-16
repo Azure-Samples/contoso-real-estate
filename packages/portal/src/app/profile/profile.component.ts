@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit {
       this.user = data["user"];
       await this.listFavorites();
       await this.listReservations();
+      await this.listPayments();
     });
 
     const tabs = ["favorites", "payments", "reservations"];
@@ -93,5 +94,9 @@ export class ProfileComponent implements OnInit {
 
   trackByPaymentId(_index: number, payment: Payment) {
     return payment.id;
+  }
+
+  showAmount(amount: number) {
+    return (amount / 100).toFixed(2);
   }
 }

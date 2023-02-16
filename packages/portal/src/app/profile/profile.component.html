@@ -63,7 +63,7 @@
               <mat-list-item *ngIf="payments.length === 0">No payments found.</mat-list-item>
               <mat-list-item *ngFor="let payment of payments; trackBy: trackByPaymentId">
                 <div mat-line class="payment-title">
-                  {{ payment.amount }} {{ payment.currency }} (via {{ payment.provider }})
+                  {{ showAmount(payment.amount) }} {{ payment.currency }} (via {{ payment.provider }})
                   <span class="payment-status" [ngClass]="payment.status">{{ payment.status }}</span>
                 </div>
                 <div mat-line class="payment-subtitle">
@@ -88,7 +88,7 @@
                 <div mat-line class="reservation-subtitle">
                   {{ reservation.from | date: 'mediumDate' }} - {{ reservation.to | date: 'mediumDate' }}
                 </div>
-                <button mat-flat-button color="primary" [title]="reservation?.title" (click)="viewListing(reservation.listingId)">View Listing</button>
+                <button class="reservation-view" mat-flat-button color="primary" [title]="reservation?.title" (click)="viewListing(reservation.listingId)">View Listing</button>
                 <mat-divider></mat-divider>
               </mat-list-item>
             </mat-list>
