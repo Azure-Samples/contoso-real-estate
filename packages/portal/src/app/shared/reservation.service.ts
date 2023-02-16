@@ -11,4 +11,17 @@ export class ReservationService {
     }
     throw new Error("Error while fetching reservations");
   }
+
+  async cancelReservation(reservationId: string): Promise<void> {
+    const response = await fetch(`/api/reservations/${reservationId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ status: "cancelled" }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status !== 200) {
+      throw new Error("Error while cancelling reservation");
+    }
+  }
 }
