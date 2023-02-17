@@ -49,6 +49,11 @@ container_app_cms_host=$(
     --output tsv
 )
 container_app_cms_url="https://$container_app_cms_host"
+
+if ! grep CONTAINER_APP_CMS_URL .env; then
+  echo "CONTAINER_APP_CMS_URL=$container_app_cms_url" >> .env
+fi
+
 echo "CMS deployed to $container_app_cms_url"
 
 # Deploy blog container app --------------------------------------------------
@@ -73,6 +78,11 @@ container_app_blog_host=$(
     --output tsv
 )
 container_app_blog_url="https://$container_app_blog_host"
+
+if ! grep CONTAINER_APP_BLOG_URL .env; then
+  echo "CONTAINER_APP_BLOG_URL=$container_app_blog_url" >> .env
+fi
+
 echo "Blog deployed to $container_app_blog_url"
 
 # Deploy stripe container app ------------------------------------------------
@@ -101,6 +111,11 @@ container_app_stripe_host=$(
     --output tsv
 )
 container_app_stripe_url="https://$container_app_stripe_host"
+
+if ! grep CONTAINER_APP_STRIPE_URL .env; then
+  echo "CONTAINER_APP_STRIPE_URL=$container_app_stripe_url" >> .env
+fi
+
 echo "Stripe deployed to $container_app_stripe_url"
 
 # Deploy api function --------------------------------------------------------
@@ -123,7 +138,7 @@ az functionapp config appsettings set \
   --name "$FUNCTION_API_NAME" \
   --resource-group "$RESOURCE_GROUP_NAME" \
   --settings \
-    "STRIPE_SERVICE_URL=$container_app_stripe_url" \
+    "STRIPE_SERVICE_URL=$API_MANAGEMENT_URL/stripe-api" \
     "APPINSIGHTS_INSTRUMENTATIONKEY=$APP_INSIGHTS_KEY" \
     "APPLICATIONINSIGHTS_CONNECTION_STRING=$APP_INSIGHTS_CONNECTION_STRING" \
     "MONGO_CONNECTION_STRING=$MONGO_CONNECTION_STRING" \
@@ -134,5 +149,70 @@ az functionapp config appsettings set \
     "STRAPI_DATABASE_PASSWORD=$STRAPI_DATABASE_PASSWORD" \
     "STRAPI_DATABASE_PORT=$STRAPI_DATABASE_PORT" \
     "STRAPI_DATABASE_SSL=$STRAPI_DATABASE_SSL"
+
+# Setup API management -------------------------------------------------------
+echo "Setting up API management..."
+
+# Add functions API to API management
+echo "Importing Functions API..."
+az apim api delete \
+  --resource-group "$RESOURCE_GROUP_NAME" \
+  --service-name "$API_MANAGEMENT_NAME" \
+  --api-id "$FUNCTION_API_NAME" \
+  --yes
+
+az apim api import \
+  --resource-group "$RESOURCE_GROUP_NAME" \
+  --service-name "$API_MANAGEMENT_NAME" \
+  --specification-format "OpenApi" \
+  --specification-path "packages/api/openapi.yaml" \
+  --display-name "$FUNCTION_API_NAME" \
+  --api-id "$FUNCTION_API_NAME" \
+  --path "api" \
+  --protocols "https" \
+  --service-url "$FUNCTION_API_URL/api" \
+  --output none
+
+swa_apim_product_id=$(
+  az apim product list \
+    --resource-group "$RESOURCE_GROUP_NAME" \
+    --service-name "$API_MANAGEMENT_NAME" \
+    --query "[?contains(description,'Static Web Apps')].id" \
+    --output tsv
+)
+
+az apim product api add \
+  --resource-group "$RESOURCE_GROUP_NAME" \
+  --service-name "$API_MANAGEMENT_NAME" \
+  --product-id "$swa_apim_product_id" \
+  --api-id "$FUNCTION_API_NAME" \
+  --output none
+
+# Add Stripe API to API management
+echo "Importing Stripe API..."
+az apim api delete \
+  --resource-group "$RESOURCE_GROUP_NAME" \
+  --service-name "$API_MANAGEMENT_NAME" \
+  --api-id "$CONTAINER_APP_STRIPE_NAME" \
+  --yes
+
+az apim api import \
+  --resource-group "$RESOURCE_GROUP_NAME" \
+  --service-name "$API_MANAGEMENT_NAME" \
+  --specification-format "OpenApi" \
+  --specification-path "packages/stripe/openapi.yaml" \
+  --display-name "$CONTAINER_APP_STRIPE_NAME" \
+  --api-id "$CONTAINER_APP_STRIPE_NAME" \
+  --path "stripe-api" \
+  --protocols "https" \
+  --service-url "$container_app_stripe_url" \
+  --output none
+
+az apim product api add \
+  --resource-group "$RESOURCE_GROUP_NAME" \
+  --service-name "$API_MANAGEMENT_NAME" \
+  --product-id "$API_MANAGEMENT_PUBLIC_PRODUCT_ID" \
+  --api-id "$CONTAINER_APP_STRIPE_NAME" \
+  --output none
 
 echo "Deployment complete."
