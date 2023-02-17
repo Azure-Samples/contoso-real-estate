@@ -29,6 +29,6 @@
     }
   ],
   "platform": {
-    "apiRuntime": "node:16"
+    "apiRuntime": "node:18"
   }
 }
