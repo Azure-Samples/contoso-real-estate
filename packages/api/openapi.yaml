@@ -964,36 +964,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /stripe/webhook:
-    post:
-      summary: Stripe webhook endpoint
-      description: Webhook endpoint for Stripe events
-      operationId: stripe-webhook
-      tags: 
-        - stripe
-      requestBody:
-        description: Stripe event payload
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StripeEvent'
-      responses:
-        '201':
-          description: OK - Event processed successfully
-        '400':
-          description: Bad Request - Invalid request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
-          description: Internal Server Error - Something went wrong
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
 components:
   schemas:
     Address:
@@ -1558,6 +1528,3 @@ components:
           type: string
           description: error message
           example: "A detailed error message"
-
-    StripeEvent:
-      type: object
