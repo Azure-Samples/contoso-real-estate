@@ -8,7 +8,7 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   const stripe = fastify.stripe;
 
   fastify.post('/webhook', async function (request, reply) {
-    const payload = request.body as any;
+    const payload = request.rawBody as any;
     const signature = request.headers['stripe-signature'];
     let event;
   
