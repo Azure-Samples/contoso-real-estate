@@ -173,13 +173,14 @@ az apim api import \
   --service-url "$FUNCTION_API_URL/api" \
   --output none
 
-swa_apim_product_id=$(
+swa_apim_product_full_id=$(
   az apim product list \
     --resource-group "$RESOURCE_GROUP_NAME" \
     --service-name "$API_MANAGEMENT_NAME" \
     --query "[?contains(description,'Static Web Apps')].id" \
     --output tsv
 )
+swa_apim_product_id=$(echo "$swa_apim_product_full_id" | tr "/" "\n" | tail -n1)
 
 az apim product api add \
   --resource-group "$RESOURCE_GROUP_NAME" \
