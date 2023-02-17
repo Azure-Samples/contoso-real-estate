@@ -29,7 +29,7 @@ docker image tag cms "$REGISTRY_NAME.azurecr.io/blog:v1"
 docker image push "$REGISTRY_SERVER/blog:v1"
 
 # Tag and push stripe docker image -----------------------------------------
-docker image tag cms "$REGISTRY_NAME.azurecr.io/stripe:v1"
+docker image tag stripe "$REGISTRY_NAME.azurecr.io/stripe:v1"
 docker image push "$REGISTRY_SERVER/stripe:v1"
 
 echo "Build complete."
