@@ -1,4 +1,6 @@
+import path from 'path'
 import { join } from 'path';
+import { fileURLToPath } from 'url'
 import AutoLoad, {AutoloadPluginOptions} from '@fastify/autoload';
 import { FastifyPluginAsync } from 'fastify';
 
@@ -6,6 +8,8 @@ export type AppOptions = {
   // Place your custom options for app below here.
 } & Partial<AutoloadPluginOptions>;
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Pass --options via CLI arguments in command to enable these options.
 const options: AppOptions = {
