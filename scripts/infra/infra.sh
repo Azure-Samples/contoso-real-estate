@@ -221,21 +221,6 @@ createInfrastructure() {
   echo "FUNCTION_API_NAME='$function_api_name'" >> "$env_file"
   echo "FUNCTION_API_URL='https://$function_api_uri'" >> "$env_file"
 
-  # Link portal backend
-  # TODO: replace with APIM
-  function_api_id=$(
-    az functionapp list \
-      --resource-group "$resource_group_name" \
-      --query "[0].id" \
-      --output tsv
-  )
-  az staticwebapp backends link \
-    --name "$swa_portal_name" \
-    --resource-group "$resource_group_name" \
-    --backend-resource-id "$function_api_id" \
-    --backend-region "$location" \
-    --output none
-
   # Create container app env -------------------------------------------------
   container_app_env_name=contoso-cae
   echo "Creating container app env '$container_app_env_name'..."
@@ -337,7 +322,29 @@ createInfrastructure() {
     --output none
   echo "API_MANAGEMENT_NAME='$api_management_name'" >> "$env_file"
 
-  # TODO: vnet?
+  api_management_url=$(
+    az apim list \
+      --resource-group "$resource_group_name" \
+      --query "[0].gatewayUrl" \
+      --output tsv
+  )
+  echo "API_MANAGEMENT_URL='$api_management_url'" >> "$env_file"
+
+  # Link portal backend ------------------------------------------------------
+  api_management_api_id=$(
+    az apim list \
+      --resource-group "$resource_group_name" \
+      --query "[0].id" \
+      --output tsv
+  )
+  az staticwebapp backends link \
+    --name "$swa_portal_name" \
+    --resource-group "$resource_group_name" \
+    --backend-resource-id "$api_management_api_id" \
+    --backend-region "$location" \
+    --output none
+
+  # TODO: vnet for Functions, APIM and Container Apps
 
   echo "Environment '$environment' of project '$project_name' ready."
   echo "Settings for environment '$environment' saved to '$env_file'."
