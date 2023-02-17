@@ -50,8 +50,8 @@ container_app_cms_host=$(
 )
 container_app_cms_url="https://$container_app_cms_host"
 
-if ! grep CONTAINER_APP_CMS_URL .env; then
-  echo "CONTAINER_APP_CMS_URL=$container_app_cms_url" >> .env
+if ! grep CONTAINER_APP_CMS_URL "./scripts/infra/.env"; then
+  echo "CONTAINER_APP_CMS_URL=$container_app_cms_url" >> "./scripts/infra/.env"
 fi
 
 echo "CMS deployed to $container_app_cms_url"
@@ -79,8 +79,8 @@ container_app_blog_host=$(
 )
 container_app_blog_url="https://$container_app_blog_host"
 
-if ! grep CONTAINER_APP_BLOG_URL .env; then
-  echo "CONTAINER_APP_BLOG_URL=$container_app_blog_url" >> .env
+if ! grep CONTAINER_APP_BLOG_URL "./scripts/infra/.env"; then
+  echo "CONTAINER_APP_BLOG_URL=$container_app_blog_url" >> "./scripts/infra/.env"
 fi
 
 echo "Blog deployed to $container_app_blog_url"
@@ -112,8 +112,8 @@ container_app_stripe_host=$(
 )
 container_app_stripe_url="https://$container_app_stripe_host"
 
-if ! grep CONTAINER_APP_STRIPE_URL .env; then
-  echo "CONTAINER_APP_STRIPE_URL=$container_app_stripe_url" >> .env
+if ! grep CONTAINER_APP_STRIPE_URL "./scripts/infra/.env"; then
+  echo "CONTAINER_APP_STRIPE_URL=$container_app_stripe_url" >> "./scripts/infra/.env"
 fi
 
 echo "Stripe deployed to $container_app_stripe_url"
