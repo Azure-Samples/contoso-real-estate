@@ -9,7 +9,7 @@
     "build": "strapi build",
     "strapi": "strapi",
     "docker:build": "docker build --tag cms .",
-    "docker:run": "docker run --rm --publish 1337:1337 cms"
+    "docker:run": "docker run --rm --publish 1337:1337 --env-file ../../.env.docker cms"
   },
   "devDependencies": {
     "@types/lodash.set": "^4.3.7"
