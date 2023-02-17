@@ -339,12 +339,6 @@ createInfrastructure() {
     --state published \
     --subscription-required false \
     --output none
-
-  az apim product delete \
-      --resource-group "$RESOURCE_GROUP_NAME" \
-      --service-name "$API_MANAGEMENT_NAME" \
-      --product-id "contoso-public" \
-      --delete-subscriptions true
   echo "API_MANAGEMENT_PUBLIC_PRODUCT_ID='contoso-public'" >> "$env_file"
 
   # Link portal backend ------------------------------------------------------
