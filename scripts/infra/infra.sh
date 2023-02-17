@@ -330,6 +330,23 @@ createInfrastructure() {
   )
   echo "API_MANAGEMENT_URL='$api_management_url'" >> "$env_file"
 
+  az apim product create \
+    --resource-group "$resource_group_name" \
+    --service-name "$api_management_name" \
+    --product-id "contoso-public" \
+    --product-name "Contoso public APIs" \
+    --description "Contoso public APIs" \
+    --state published \
+    --subscription-required false \
+    --output none
+
+  az apim product delete \
+      --resource-group "$RESOURCE_GROUP_NAME" \
+      --service-name "$API_MANAGEMENT_NAME" \
+      --product-id "contoso-public" \
+      --delete-subscriptions true
+  echo "API_MANAGEMENT_PUBLIC_PRODUCT_ID='contoso-public'" >> "$env_file"
+
   # Link portal backend ------------------------------------------------------
   api_management_api_id=$(
     az apim list \
