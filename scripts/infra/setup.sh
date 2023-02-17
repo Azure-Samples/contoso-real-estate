@@ -98,7 +98,7 @@ fi
 echo "--- Step 1. Creating Azure resources... ---"
 ./infra.sh create "$environment"
 
-echo "--- Step 2. Restoring DB dump... ---"
+echo "--- Step 2. Preparing database... ---"
 ../database/restore.sh ../database/dumps/strapi_20230202.sql
 
 echo "--- Step 3. Building Contoso app... ---"
@@ -109,6 +109,13 @@ echo "--- Step 4. Deploying Contoso app... ---"
 
 echo "--- Step 5. Creating local development setup... ---"
 ./local.sh
+
+echo "--- Step 6. Updating Stripe webhook... ---"
+echo "Please go to https://dashboard.stripe.com/test/webhooks and update your webhook endpoint with the following settings:"
+echo "  - URL: $API_MANAGEMENT_URL/stripe-api/stripe/webhook"
+echo
+read -r -s -n 1 -p "Press any key to continue . . ."
+echo
 
 echo
 echo "Setup success!"
