@@ -1,6 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
-import getUserById from "../get-user-by-id";
+import { findUserById } from "../models/user";
 import { savePayment } from "../models/payment";
 import { updateReservationStatus } from "../models/reservation";
 
@@ -20,7 +20,7 @@ const postPayment: AzureFunction = async function (context: Context, req: HttpRe
   }
 
   try {
-    const user = await getUserById(payment.userId);
+    const user = await findUserById(payment.userId);
     if (!user) {
       context.log.error(`Error payment received for unknown user id: ${payment.userId}`);
       context.res = {
