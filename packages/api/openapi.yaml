@@ -9,10 +9,10 @@ info:
   contact: {}
 
 servers:
-  - url: http://localhost:4000
-    description: Local dev server
   - url: /api
     description: Hosted production endpoint
+  - url: http://localhost:7071/api
+    description: Local dev server
 
 tags:
   - name: user
@@ -612,6 +612,15 @@ paths:
       operationId: addReservation
       tags:
         - reservation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Updates Reservation record matching {id}
+          schema:
+            type: integer
+            format: string
+            minimum: 1
       requestBody:
         description: Reservation status to be updated
         required: true
