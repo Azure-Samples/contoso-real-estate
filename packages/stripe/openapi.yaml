@@ -152,12 +152,22 @@ components:
           description: The URL of the checkout session
           example: "https://pay.here.com"
 
-    Error:
+    Message:
       type: object
       required:
         - message
       properties:
         message:
+          type: string
+          description: The status message
+          example: "Operation successful"
+
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
           type: string
           description: error message
           example: "A detailed error message"
