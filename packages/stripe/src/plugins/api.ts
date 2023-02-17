@@ -1,13 +1,16 @@
 import fp from 'fastify-plugin'
 import fetch, { Response, RequestInit } from 'node-fetch';
-import { Payment } from '../models/payment';
-import { AppConfig } from './config';
+import { Payment } from '../models/payment.js';
+import { AppConfig } from './config.js';
 
 // The use of fastify-plugin is required to be able
 // to export the decorators to the outer scope
 export default fp(async (fastify, opts) => {
   const config = fastify.config;
   fastify.decorate('api', new ApiService(config));
+}, {
+  name: 'api',
+  dependencies: ['config'],
 });
 
 export class HttpError extends Error {

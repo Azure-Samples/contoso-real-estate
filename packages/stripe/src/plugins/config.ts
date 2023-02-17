@@ -5,9 +5,8 @@ export interface AppConfig {
   publicKey: string;
   secretKey: string;
   webhookSecret: string;
-  webAppHost: string;
+  webAppUrl: string;
   apiUrl: string;
-  appDomain: string;
 }
 
 // The use of fastify-plugin is required to be able
@@ -17,9 +16,8 @@ export default fp(async (fastify, opts) => {
     publicKey: process.env.STRIPE_PUBLIC_KEY || '',
     secretKey: process.env.STRIPE_SECRET_KEY || '',
     webhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
-    webAppHost: process.env.WEB_APP_HOST || 'localhost:4280',
-    apiUrl: process.env.API_URL || 'http://localhost:7071',
-    appDomain: process.env.APP_DOMAIN || 'http://localhost:4280'
+    webAppUrl: process.env.WEB_APP_URL || 'http://localhost:4280',
+    apiUrl: process.env.API_URL || 'http://localhost:7071'
   };
 
   if (!config.publicKey || !config.secretKey || !config.webhookSecret) {
@@ -27,6 +25,8 @@ export default fp(async (fastify, opts) => {
   }
 
   fastify.decorate('config', config);
+}, {
+  name: 'config',
 });
 
 // When using .decorate you have to specify added properties for Typescript

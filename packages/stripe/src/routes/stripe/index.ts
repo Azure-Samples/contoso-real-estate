@@ -1,7 +1,7 @@
 import { FastifyPluginAsync } from "fastify"
 import Stripe from "stripe";
-import { Checkout, validateCheckout } from "../../models/checkout";
-import { Payment } from "../../models/payment";
+import { Checkout, validateCheckout } from "../../models/checkout.js";
+import { Payment } from "../../models/payment.js";
 
 const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   const config = fastify.config;
@@ -92,6 +92,7 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
 
   fastify.post('/checkout', async function (request, reply) {
     const checkout = request.body as Checkout;
+    fastify.log.info(`Creating checkout session [reservationId: ${checkout?.reservationId}, redirect URL: ${config.webAppUrl}]`);
 
     try {
       validateCheckout(checkout);
@@ -119,8 +120,8 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
           },
         ],
         mode: "payment",
-        success_url: `${config.appDomain}/checkout?result=success`,
-        cancel_url: `${config.appDomain}/checkout?result=cancel&reservationId=${checkout.reservationId}`,
+        success_url: `${config.webAppUrl}/checkout?result=success`,
+        cancel_url: `${config.webAppUrl}/checkout?result=cancel&reservationId=${checkout.reservationId}`,
         client_reference_id: checkout.reservationId,
         metadata: {
           userId: checkout.userId,
