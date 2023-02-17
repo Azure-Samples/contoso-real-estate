@@ -23,8 +23,8 @@
     "packages/*"
   ],
   "engines": {
-    "node": ">=16",
-    "npm": ">=7"
+    "node": ">=18",
+    "npm": ">=8"
   },
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.0.6",
