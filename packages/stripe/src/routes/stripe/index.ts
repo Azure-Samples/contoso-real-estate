@@ -7,13 +7,15 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   const config = fastify.config;
   const stripe = fastify.stripe;
 
-  fastify.post('/webhook', async function (request, reply) {
-    const payload = request.rawBody as any;
-    const signature = request.headers['stripe-signature'];
+  fastify.post('/webhook', { config: { rawBody: true } }, async function (request, reply) {
+    const payload = request.rawBody?.toString() as string;
+    const signature = request.headers['stripe-signature'] as string;
     let event;
+
+    fastify.log.info(`Webhook received [payload: ${payload}, signature: ${signature}]`);
   
     try {
-      event = stripe.webhooks.constructEvent(payload, signature!, config.webhookSecret);
+      event = stripe.webhooks.constructEvent(payload, signature, config.webhookSecret);
     } catch (error: any) {
       fastify.log.error(`Webhook Error: ${error.message}`);
       reply.statusCode = 400;
