@@ -22,4 +22,4 @@ PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
   --host="$STRAPI_DATABASE_HOST" \
   --username="$STRAPI_DATABASE_USERNAME" \
   --dbname="$STRAPI_DATABASE_NAME" \
-  "$file"
+  "$file" || true
