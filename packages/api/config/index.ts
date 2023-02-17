@@ -26,8 +26,8 @@ export const getConfig: () => Promise<AppConfig> = async () => {
       roleName: process.env.REACT_APP_APPLICATIONINSIGHTS_ROLE_NAME,
     },
     database: {
-      connectionString: process.env.DATABASE_CONNECTION_STRING,
-      database: process.env.DATABASE_NAME,
+      connectionString: process.env.MONGO_CONNECTION_STRING,
+      database: process.env.MONGO_DATABASE_NAME,
     },
     strapi: {
       database: process.env.STRAPI_DATABASE_NAME,
@@ -37,12 +37,7 @@ export const getConfig: () => Promise<AppConfig> = async () => {
       port: Number(process.env.STRAPI_DATABASE_PORT),
       ssl: process.env.STRAPI_DATABASE_SSL === "false" ? false : true,
     },
-    stripe: {
-      publicKey: process.env.STRIPE_PUBLIC_KEY,
-      secretKey: process.env.STRIPE_SECRET_KEY,
-      webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
-    },
-    appDomain: process.env.APP_DOMAIN,
+    stripeServiceUrl: process.env.STRIPE_SERVICE_URL,
   } as AppConfig;
 
   return configCache;

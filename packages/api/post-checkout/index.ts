@@ -1,5 +1,4 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import Stripe from "stripe";
 import { getConfig, initializeDatabaseConfiguration } from "../config";
 import { getListingById } from "../models/listing";
 import { Listing } from "../models/listing.schema";
@@ -9,7 +8,6 @@ import { ReservationRequest } from "../models/reservation-request";
 const postCheckout: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();
   const config = await getConfig();
-  const stripe = new Stripe(config.stripe.secretKey, { apiVersion: "2022-08-01" });
   const reservation = req.body as ReservationRequest;
   const guests = Number(reservation.guests) || 0;
 
@@ -115,42 +113,34 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     reservationRecord = await saveReservation(pendingReservation);
 
     try {
-      const session = await stripe.checkout.sessions.create({
-        line_items: [
-          {
-            price_data: {
-              currency: currency.toLowerCase(),
-              product_data: {
-                name,
-              },
-              tax_behavior: "inclusive",
-              unit_amount: amount,
-            },
-            quantity: 1,
-          },
-        ],
-        mode: "payment",
-        success_url: `${config.appDomain}/checkout?result=success`,
-        cancel_url: `${config.appDomain}/checkout?result=cancel&reservationId=${reservationRecord.id}`,
-        client_reference_id: reservationRecord.id,
-        metadata: {
-          userId: reservation.userId,
-          listingId: reservation.listingId,
-          reservationId: reservationRecord.id,
-          from: from.toISOString(),
-          to: to.toISOString(),
-          guests: reservation.guests,
-          currency,
-          amount,
-          createdAt: now.toISOString(),
+      const checkout = {
+        productName: name,
+        reservationId: reservationRecord.id,
+        userId: reservation.userId,
+        listingId: reservation.listingId,
+        guests,
+        from: from.toISOString(),
+        to: to.toISOString(),
+        currency: currency.toLowerCase(),
+        amount,
+        createdAt: now.toISOString(),
+      };
+
+      const response = await fetch(config.stripeServiceUrl + '/stripe/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        expires_at: Math.round(Date.now() / 1000 + 31 * 60), // 31 minutes session expiration (epoch seconds)
+        body: JSON.stringify(checkout),
       });
+      if (!response.ok) {
+        const error = await response.text();
+        throw new Error(error);
+      }
+      const { sessionUrl } = await response.json() as any;
       
       context.res = {
-        body: {
-          sessionUrl: session.url,
-        },
+        body: { sessionUrl },
       };
 
     } catch (error: unknown) {
