@@ -11,7 +11,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "docker:build": "docker build --tag blog .",
-    "docker:run": "docker run --rm --publish 3000:3000 blog"
+    "docker:run": "docker run --rm --publish 3000:3000 --env-file ../../.env.docker blog"
   },
   "dependencies": {
     "moment": "^2.24.0",
