@@ -13,7 +13,7 @@ time=$(date +%s)
 subcommand="${1:-}"
 project_name="contoso-real-estate"
 location="westeurope"
-environment="${3:-prod}"
+environment="${2:-prod}"
 resource_group_name=rg-${project_name}-${environment}
 
 showUsage() {
@@ -211,7 +211,7 @@ createInfrastructure() {
       --plan "$function_api_plan_name" \
       --os-type Linux \
       --runtime node \
-      --runtime-version 16 \
+      --runtime-version 18 \
       --functions-version 4 \
       --storage-account "$storage_account_name" \
       --app-insights "$app_insights_name" \
