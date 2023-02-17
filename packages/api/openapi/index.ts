@@ -6,11 +6,24 @@ import * as swaggerUi from "swagger-ui-dist";
 
 const openApi: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   const filename = req.params.filename || "index.html";
+  const format = req.query.format;
   const swaggerUiDistPath = swaggerUi.getAbsoluteFSPath();
   const filepath = swaggerUiDistPath + "/" + filename;
   const swaggerDocument = yaml.load("openapi.yaml");
   let mimetype = "text/html";
   let fileContent = "";
+
+  context.log("format", format);
+
+  if (format === "json") {
+    context.res = {
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(swaggerDocument),
+    };
+    return;
+  }
 
   if (!existsSync(filepath)) {
     context.res = {
