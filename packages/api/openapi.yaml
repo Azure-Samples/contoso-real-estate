@@ -1081,8 +1081,9 @@ components:
         reviews:
           type: array
           description: listing reviews
-          $ref: "#/components/schemas/Review"
-          example: [{ id: "1db1f3a89eb2dde64e827aea", rating: 4, comment: "Great place to stay!" }]
+          items:
+            $ref: "#/components/schemas/Review"
+            example: [{ id: "1db1f3a89eb2dde64e827aea", rating: 4, comment: "Great place to stay!" }]
         capacity:
           type: integer
           description: number of guests listing can accommodate
