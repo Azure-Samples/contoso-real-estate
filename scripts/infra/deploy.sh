@@ -148,7 +148,8 @@ az functionapp config appsettings set \
     "STRAPI_DATABASE_USERNAME=$STRAPI_DATABASE_USERNAME" \
     "STRAPI_DATABASE_PASSWORD=$STRAPI_DATABASE_PASSWORD" \
     "STRAPI_DATABASE_PORT=$STRAPI_DATABASE_PORT" \
-    "STRAPI_DATABASE_SSL=$STRAPI_DATABASE_SSL"
+    "STRAPI_DATABASE_SSL=$STRAPI_DATABASE_SSL" \
+  --output none
 
 # Setup API management -------------------------------------------------------
 echo "Setting up API management..."
