@@ -11,7 +11,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 
 showUsage() {
   script_name="$(basename "$0")"
-  echo "Usage: ./$script_name <project_name>"
+  echo "Usage: ./$script_name [environment_name] [--skip-login]"
   echo "All-in-one script to setup a new deployed environment and a local"
   echo "development setup for the Contoso App."
   echo
@@ -95,6 +95,7 @@ if [[ ! -f "$stripe_env_file" ]]; then
   exit 1
 fi
 
+echo "Bootstraping new environment '$environment'..."
 echo "--- Step 1. Creating Azure resources... ---"
 ./infra.sh create "$environment"
 
@@ -111,6 +112,7 @@ echo "--- Step 5. Creating local development setup... ---"
 ./local.sh
 
 echo "--- Step 6. Updating Stripe webhook... ---"
+source .env
 echo "Please go to https://dashboard.stripe.com/test/webhooks and update your webhook endpoint with the following settings:"
 echo "  - URL: $API_MANAGEMENT_URL/stripe-api/stripe/webhook"
 echo
