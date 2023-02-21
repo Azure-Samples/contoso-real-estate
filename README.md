@@ -7,6 +7,7 @@
 | Portal  | [packages/portal](./packages/portal)   |                              | TODO   | TODO         |
 | API     | [packages/api](./packages/api)         |                              | TODO   | TODO         |
 | Blog    | [packages/blog](./packages/blog)       | [Docs](README-scenario-3.md) | TODO   | TODO         |
+| Stripe  | [packages/stripe](./packages/stripe)   | [Docs](README-scenario-5.md) | TODO   | TODO         |
 | Testing | [packages/testing](./packages/testing) |                              | TODO   | TODO         |
 
 ### Prerequisites for local development
@@ -24,7 +25,7 @@ The following prerequisites are required to use this application. Please ensure 
     ```
 - [Azure CLI (2.38.0+)](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - [Azure functions core tools (4+)](https://docs.microsoft.com/azure/azure-functions/functions-run-local#v4)
-- [Node.js 16+ with npm 8+](https://nodejs.org/) - for API backend and Web frontend
+- [Node.js 18+ with npm 8+](https://nodejs.org/) - for API backend and Web frontend
   - If you need to update npm, once Node.js is installed, run `npm install -g npm@latest`
 - [Git (2.36.1+)](https://git-scm.com/)
 
