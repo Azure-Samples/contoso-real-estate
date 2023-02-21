@@ -201,14 +201,12 @@ createInfrastructure() {
 
   # Create function api ------------------------------------------------------
   function_api_name=contoso-api-${uid}
-  function_api_plan_name=contoso-asp-${uid}
   echo "Creating function api '$function_api_name'..."
   function_api_uri=$(
     az functionapp create \
       --name "$function_api_name" \
       --resource-group "$resource_group_name" \
       --consumption-plan-location "$location" \
-      --plan "$function_api_plan_name" \
       --os-type Linux \
       --runtime node \
       --runtime-version 18 \
