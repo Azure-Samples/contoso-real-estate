@@ -8,6 +8,8 @@ cd ../..
 # Allow silent installation of Azure CLI extensions
 az config set extension.use_dynamic_install=yes_without_prompt
 
+revision=$(node -p "'r' + require('crypto').createHash('md5').update(String(Math.random())).digest('hex').substring(0, 7)")
+
 # Deploy portal --------------------------------------------------------------
 echo "Deploying portal..."
 pushd packages/portal
@@ -46,6 +48,7 @@ container_app_cms_host=$(
     --scale-rule-http-concurrency 1000 \
     --min-replicas 1 \
     --query "properties.configuration.ingress.fqdn" \
+    --revision-suffix "$revision" \
     --output tsv
 )
 container_app_cms_url="https://$container_app_cms_host"
@@ -75,6 +78,7 @@ container_app_blog_host=$(
     --scale-rule-http-concurrency 1000 \
     --min-replicas 1 \
     --query "properties.configuration.ingress.fqdn" \
+    --revision-suffix "$revision" \
     --output tsv
 )
 container_app_blog_url="https://$container_app_blog_host"
@@ -108,6 +112,7 @@ container_app_stripe_host=$(
     --scale-rule-http-concurrency 1000 \
     --min-replicas 1 \
     --query "properties.configuration.ingress.fqdn" \
+    --revision-suffix "$revision" \
     --output tsv
 )
 container_app_stripe_url="https://$container_app_stripe_host"
