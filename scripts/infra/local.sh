@@ -39,7 +39,7 @@ echo >> $local_env_file
 
 echo "# Stripe API environment variables" >> $local_env_file
 echo >> $local_env_file
-echo "WEB_APP_URL='$SWA_PORTAL_URL'" >> $local_env_file
+echo "WEB_APP_URL='https://localhost:4280'" >> $local_env_file
 echo "API_URL='https://localhost:7071'" >> $local_env_file
 echo >> $local_env_file
 
