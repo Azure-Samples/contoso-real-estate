@@ -1,3 +1,5 @@
+import process from "process";
+import path from "path";
 import { AppConfig } from "./appConfig";
 import * as dotenv from "dotenv";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -13,9 +15,10 @@ export const getConfig: () => Promise<AppConfig> = async () => {
     return configCache;
   }
 
-  // Load any ENV vars from local .env file
+  // Load any ENV vars from local .env.local file
   if (process.env.NODE_ENV !== "production") {
-    dotenv.config();
+    console.warn("Loading environment variables from root '.env.local' file. THIS SHOULD NOT BE USED IN PRODUCTION!");
+    dotenv.config({ path: path.resolve(process.cwd(), "../../.env.local") });
   }
 
   await populateEnvironmentFromKeyVault();
