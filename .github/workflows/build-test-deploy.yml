@@ -42,7 +42,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        node-version: [16.x, 17.x, '>= 18.x']
+        node-version: ['>= 18.x']
 
     steps:
       - uses: actions/checkout@v3
@@ -71,7 +71,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        node-version: [16.x, 17.x, '>= 18.x']
+        node-version: ['>= 18.x']
 
     steps:
       - uses: actions/checkout@v3
@@ -92,30 +92,3 @@ jobs:
       
       - run: npm ci
       - run: npm test
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-      
-      - name: Cache node modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-      
-      - run: npm ci
-      - name: 'Deploy'
-        shell: bash
-        run: ./swa-cli-deploy.sh
-        env:
-          SWA_CLI_DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
