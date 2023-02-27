@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "swa": "swa",
+    "prestart": "npm run build",
     "start": "swa start",
     "test": "npm run test -ws --if-present",
     "build": "npm run build -ws --if-present",
