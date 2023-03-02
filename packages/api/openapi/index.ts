@@ -13,8 +13,6 @@ const openApi: AzureFunction = async function (context: Context, req: HttpReques
   let mimetype = "text/html";
   let fileContent = "";
 
-  context.log("format", format);
-
   if (format === "json") {
     context.res = {
       headers: {
