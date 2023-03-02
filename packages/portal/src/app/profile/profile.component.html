@@ -82,7 +82,11 @@
               <mat-list-item *ngIf="reservations.length === 0">No reservations found.</mat-list-item>
               <mat-list-item *ngFor="let reservation of reservations; trackBy: trackByReservationId">
                 <div mat-line class="reservation-title">
-                  {{ reservation.title }} ({{ reservation.guests }} guest{{ reservation.guests != 1 ? 's' : '' }})
+                  {{ reservation.title }} ({{ reservation.guests }}
+                  <span [ngPlural]="reservation.guests">
+                    <ng-template ngPluralCase="=1">guest</ng-template>
+                    <ng-template ngPluralCase="other">guests</ng-template>
+                  </span>
                   <span class="reservation-status" [ngClass]="reservation.status">{{ reservation.status }}</span>
                 </div>
                 <div mat-line class="reservation-subtitle">
