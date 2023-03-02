@@ -40,7 +40,7 @@ export const getConfig: () => Promise<AppConfig> = async () => {
       port: Number(process.env.STRAPI_DATABASE_PORT),
       ssl: process.env.STRAPI_DATABASE_SSL === "false" ? false : true,
     },
-    stripeServiceUrl: process.env.STRIPE_SERVICE_URL,
+    stripeServiceUrl: process.env.STRIPE_SERVICE_URL || "http://localhost:4242",
   } as AppConfig;
 
   return configCache;
