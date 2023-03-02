@@ -12,7 +12,7 @@ const patchReservationById: AzureFunction = async function (context: Context, re
     context.res = {
       status: 400,
       body: {
-        error: "status is missing",
+        error: "Reservation status is missing",
       },
     };
     return;
@@ -20,7 +20,7 @@ const patchReservationById: AzureFunction = async function (context: Context, re
     context.res = {
       status: 400,
       body: {
-        error: "status must be active or cancelled",
+        error: "Reservation status must be either 'active' or 'canceled'",
       },
     };
     return;
@@ -36,7 +36,7 @@ const patchReservationById: AzureFunction = async function (context: Context, re
       context.res = {
         status: 404,
         body: {
-          error: "reservation not found for specified id",
+          error: "Reservation not found for specified id",
         },
       };
     }

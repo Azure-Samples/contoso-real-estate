@@ -16,7 +16,7 @@ const getReservationById: AzureFunction = async function (context: Context, req:
     context.res = {
       status: 404,
       body: {
-        error: "not found",
+        error: "Reservation not found",
       },
     };
   }
