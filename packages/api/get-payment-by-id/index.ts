@@ -16,7 +16,7 @@ const getPaymentById: AzureFunction = async function (context: Context, req: Htt
     context.res = {
       status: 404,
       body: {
-        error: "not found",
+        error: "Payment record not found",
       },
     };
   }

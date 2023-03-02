@@ -26,7 +26,7 @@ const postPayment: AzureFunction = async function (context: Context, req: HttpRe
       context.res = {
         status: 404,
         body: {
-          error: "user not found for specified id",
+          error: "User not found for specified id",
         },
       };
       return;
@@ -38,7 +38,7 @@ const postPayment: AzureFunction = async function (context: Context, req: HttpRe
       context.res = {
         status: 404,
         body: {
-          error: "reservation not found for specified id",
+          error: "Reservation not found for specified id",
         },
       };
       return;

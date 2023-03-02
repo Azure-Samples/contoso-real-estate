@@ -72,7 +72,7 @@ It will also create various `.env` files:
 To start the API, run the following command:
 
 ```bash
-npm run dev --workspace=api
+npm start --workspace=api
 ```
 
 > Note: if you're not using the devcontainer or Codespaces, you need to have the [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local?tabs=v4%2Cmacos%2Ccsharp%2Cportal%2Cbash#install-the-azure-functions-core-tools) installed.
