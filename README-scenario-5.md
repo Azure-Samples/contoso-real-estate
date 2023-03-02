@@ -84,8 +84,8 @@ The API will then be running at `http://localhost:7071`.
 To start the Stripe service, run the following commands:
 
 ```bash
-npm run build --workspace=stripe
-npm run start --workspace=stripe
+npm run docker:build --workspace=stripe
+npm run docker:run --workspace=stripe
 ```
 
 This will build the stripe container and run it locally, listening on port `http://localhost:4242`.
