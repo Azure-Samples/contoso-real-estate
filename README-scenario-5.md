@@ -35,6 +35,8 @@ _Note: The devcontainer will automatically execute this command on creation, but
 
 This scenario uses [Stripe](https://stripe.com) to handle payments. To use Stripe, you will need to create an account and obtain a set of API keys.
 
+> Note: it's possible to run the app without configuring Stripe at all: in that case, the payments will be mocked and accepted directly, so you can still test the flow.
+
 1. Create a free Stripe account here: https://dashboard.stripe.com/register
 2. Once you have created your account, you will be redirected to the Stripe dashboard. Click on the `Developers` menu item, and then click on the `API keys` tab on the left.
 3. Copy the `Public key` and `Secret key` and paste them into a new `.stripe.env` file in the `scripts/infra` folder, like this:
@@ -89,6 +91,13 @@ npm run docker:run --workspace=stripe
 ```
 
 This will build the stripe container and run it locally, listening on port `http://localhost:4242`.
+
+As an alternative if you do not want to use Docker, you can also run the Stripe service directly:
+
+```bash
+npm run build:ts --workspace=stripe
+npm run start --workspace=stripe
+```
 
 ### Starting the portal
 
