@@ -5,7 +5,11 @@ import Stripe from 'stripe';
 // to export the decorators to the outer scope
 export default fp(async (fastify, opts) => {
   const config = fastify.config;
-  fastify.decorate('stripe', new Stripe(config.secretKey, { apiVersion: '2022-11-15' }));
+  if (!config.secretKey || !config.publicKey || !config.webhookSecret) {
+    fastify.decorate('stripe', undefined);
+  } else {
+    fastify.decorate('stripe', new Stripe(config.secretKey, { apiVersion: '2022-11-15' }));
+  }
 }, {
   name: 'stripe',
   dependencies: ['config'],
@@ -14,6 +18,6 @@ export default fp(async (fastify, opts) => {
 // When using .decorate you have to specify added properties for Typescript
 declare module 'fastify' {
   export interface FastifyInstance {
-    stripe: Stripe;
+    stripe: Stripe | undefined;
   }
 }
