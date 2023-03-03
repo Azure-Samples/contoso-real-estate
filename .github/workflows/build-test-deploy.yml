@@ -1,4 +1,4 @@
-name: ci
+name: CI/CD
 
 on: 
   pull_request:
@@ -10,17 +10,12 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js >= 18
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '>= 18'
 
       - name: Cache node modules
         uses: actions/cache@v3
@@ -35,37 +30,8 @@ jobs:
       - run: npm ci
       - run: npm run lint
 
-  build:
-    needs: lint
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
-        node-version: ['>= 18.x']
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      
-      - name: Cache node modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-
-      - run: npm ci
-      - run: npm run build
-
   test:
-    needs: build
+    needs: lint
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -92,3 +58,65 @@ jobs:
       
       - run: npm ci
       - run: npm test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - run: npm ci
+      - run: npm run build
+
+  deploy:
+    # This job will only run when a PR is merged into main
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js >= 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '>= 18'
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Update infrastructure
+        run: scripts/infra/infra.sh create
+
+      - name: Build project
+        run: scripts/infra/build.sh
+
+      - name: Deploy project
+        run: scripts/infra/deploy.sh
