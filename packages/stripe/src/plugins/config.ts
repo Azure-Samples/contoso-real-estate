@@ -21,7 +21,9 @@ export default fp(async (fastify, opts) => {
   };
 
   if (!config.publicKey || !config.secretKey || !config.webhookSecret) {
-    throw new Error('Stripe keys are missing');
+    fastify.log.warn(`Stripe keys are missing!`);
+    fastify.log.warn(`Payment process will be mocked and all payments will be successful,`);
+    fastify.log.warn(`DO NOT USE FOR PRODUCTION!`);
   }
 
   fastify.decorate('config', config);

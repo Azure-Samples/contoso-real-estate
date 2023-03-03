@@ -13,6 +13,12 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     let event;
 
     fastify.log.info(`Webhook received [payload: ${payload}, signature: ${signature}]`);
+
+    if (!stripe) {
+      fastify.log.error(`Webhook Error: Stripe not configured`);
+      reply.statusCode = 500;
+      return { error: `Webhook Error: Stripe not configured` };
+    }
   
     try {
       event = stripe.webhooks.constructEvent(payload, signature, config.webhookSecret);
@@ -104,6 +110,25 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       fastify.log.error(errorMessage);
       reply.statusCode = 400;
       return { error: errorMessage };
+    }
+
+    if (!stripe) {
+      fastify.log.warn(`Stripe not configured! Accepting payment and creating reservation directly`);
+
+      const payment = {
+        userId: checkout.userId,
+        reservationId: checkout.reservationId,
+        provider: 'stripe' as const,
+        status: 'completed' as const,
+        amount: checkout.amount,
+        currency: checkout.currency,
+        createdAt: new Date(),
+      };
+      const paymentRecord = await fastify.api.createPayment(payment) as Payment;
+      const message = `Reservation ${checkout.reservationId} completed with payment ${paymentRecord.id}`;
+      fastify.log.info(message);
+
+      return { sessionUrl: `${config.webAppUrl}/checkout?result=success` };
     }
 
     try {

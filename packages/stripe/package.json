@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "npm run build:ts && tsc -p test/tsconfig.json && tap --ts \"test-dist/test/**/*.test.js\"",
-    "start": "fastify start -l info dist/app.js",
+    "start": "fastify start -l info dist/app.js -p 4242",
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
