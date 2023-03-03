@@ -1,8 +1,12 @@
 import path from 'path'
+import dns from "dns";
 import { join } from 'path';
 import { fileURLToPath } from 'url'
 import AutoLoad, {AutoloadPluginOptions} from '@fastify/autoload';
 import { FastifyPluginAsync } from 'fastify';
+
+// Workaround from https://stackoverflow.com/a/72416352/599991
+dns.setDefaultResultOrder('ipv4first');
 
 export type AppOptions = {
   // Place your custom options for app below here.
