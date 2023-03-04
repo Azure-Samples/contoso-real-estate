@@ -1,0 +1,8 @@
+// Playwright tsconfig.json recommendations
+// only baseUrl and paths options supported
+// https://playwright.dev/docs/test-typescript#tsconfigjson
+
+{
+    "compilerOptions": {
+    }
+}
