@@ -28,16 +28,30 @@ The following prerequisites are required to use this application. Please ensure 
 - [Node.js 18+ with npm 8+](https://nodejs.org/) - for API backend and Web frontend
   - If you need to update npm, once Node.js is installed, run `npm install -g npm@latest`
 - [Git (2.36.1+)](https://git-scm.com/)
+- [Docker (20.10.8+)](https://docs.docker.com/get-docker/)
 
 ### Quickstart (local development)
 
-Install all necessary dependencies for all packages:
+1. Install all necessary dependencies for all packages:
 
 ```bash
 npm install
 ```
 
-Start the local development environment:
+2. Create a `.env.local` file in the root of the repo with the following contents:
+
+```bash
+DATABASE_HOST=postgres
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=PostgresPass
+DATABASE_NAME=strapi
+DATABASE_PORT=5432
+DATABASE_SSL=false
+MONGO_DATABASE_NAME=contosoportal
+MONGO_CONNECTION_STRING=mongodb://mongo:MongoPass@mongodb:27017
+```
+
+3. Start the local development environment:
 
 ```bash
 npm start
