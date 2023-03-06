@@ -69,6 +69,24 @@ It will also create various `.env` files:
 - `.env.local`: contains all environment variables and secrets required for local development, with the services running locally but connected to the Azure database
 - `.env.docker`: same as `.env.local` but in a format without quotes that can be used for running Docker containers
 
+### Starting the Stripe service
+
+To start the Stripe service, run the following commands:
+
+```bash
+npm run docker:build --workspace=stripe-api
+npm run docker:run --workspace=stripe-api
+```
+
+This will build the stripe container and run it locally, listening on port `http://localhost:4242`.
+
+As an alternative if you do not want to use Docker, you can also run the Stripe service directly:
+
+```bash
+npm run build:ts --workspace=stripe-api
+npm run start --workspace=stripe-api
+```
+
 ### Starting the API
 
 To start the API, run the following command:
@@ -81,24 +99,6 @@ npm start --workspace=api
 
 The API will then be running at `http://localhost:7071`.
 
-### Starting the Stripe service
-
-To start the Stripe service, run the following commands:
-
-```bash
-npm run docker:build --workspace=stripe
-npm run docker:run --workspace=stripe
-```
-
-This will build the stripe container and run it locally, listening on port `http://localhost:4242`.
-
-As an alternative if you do not want to use Docker, you can also run the Stripe service directly:
-
-```bash
-npm run build:ts --workspace=stripe
-npm run start --workspace=stripe
-```
-
 ### Starting the portal
 
 To start the portal, run the following commands:
@@ -109,9 +109,6 @@ npm start
 
 This will run the Static Web Apps CLI emulator, listening on `http://localhost:4280`.
 You can then open this in your browser to test the application.
-
-**Note:** when starting the portal, the API will also start automatically so you don't need to start it separately.
-You'll need to start the Stripe service separately though to allow testing the payment flow.
 
 ### Running in GitHub Codespaces
 
