@@ -7,7 +7,9 @@
 ##############################################################################
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
-source ../infra/.env
+if [[ -e "../infra/.env" ]]; then
+  source ../infra/.env
+fi
 
 file="${1:-}"
 
@@ -23,3 +25,5 @@ PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
   --username="$STRAPI_DATABASE_USERNAME" \
   --dbname="$STRAPI_DATABASE_NAME" \
   "$file" || true
+
+echo "PostgreSQL Database restored successfully"

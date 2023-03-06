@@ -1,0 +1,79 @@
+version: "3"
+
+services:
+  stripe:
+    build:
+      context: .
+      dockerfile: ./packages/stripe/Dockerfile
+    ports:
+      - "4242:3000"
+
+  blog:
+    build:
+      context: ./packages/blog
+    environment:
+      NEXT_PUBLIC_STRAPI_API_URL: http://localhost:1337
+    ports:
+      - "3000:3000"
+    depends_on:
+      - blog-cms
+
+  blog-cms:
+    build:
+      context: ./packages/blog-cms
+    environment:
+      DATABASE_HOST: localhost
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: PostgresPass
+      DATABASE_NAME: strapi
+      DATABASE_PORT: 5432
+      DATABASE_SSL: false
+    ports:
+      - "1337:1337"
+    depends_on:
+      - postgres
+
+  mongodb:
+    image: mongo:5.0
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=MongoPass
+    ports:
+      - "27017:27017"
+    volumes: 
+      - mongodata:/data/db
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: PostgresPass
+      POSTGRES_DB: strapi
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  postgres_setup:
+    image: postgres:latest
+    working_dir: /scripts/
+    environment:
+      STRAPI_DATABASE_HOST: postgres
+      STRAPI_DATABASE_USERNAME: postgres
+      STRAPI_DATABASE_PASSWORD: PostgresPass
+      STRAPI_DATABASE_NAME: strapi
+    command: ["./restore.sh", "dumps/strapi_20230202.sql"]
+    volumes:
+      - ./scripts/database:/scripts
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
+  mongodata:
