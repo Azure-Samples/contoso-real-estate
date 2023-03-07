@@ -63,7 +63,14 @@ export class RentalpageComponent implements OnInit {
   async onRent(reservationDetails: ReservationRequest) {
     try {
       const checkoutSession = await this.listingService.reserve(reservationDetails);
-      window.location.href = checkoutSession.sessionUrl;
+      const sessionURL = new URL(checkoutSession.sessionUrl);
+      if (sessionURL.hostname === 'localhost' && window.location.hostname) {
+        // Fix for local testing on Codespaces
+        sessionURL.hostname = window.location.hostname;
+        sessionURL.port = '';
+      }
+      console.info('Redirecting to ' + sessionURL);
+      window.location.href = sessionURL.toString();
     } catch (error: unknown) {
       if (error instanceof Error) {
         alert(error.message);
