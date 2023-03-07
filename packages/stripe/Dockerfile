@@ -19,5 +19,5 @@ COPY ./package*.json ./
 COPY ./packages/stripe/package.json ./packages/stripe/
 RUN npm ci --omit=dev --workspace=stripe-api --cache /tmp/empty-cache
 COPY --from=build app/packages/stripe/dist packages/stripe/dist
-EXPOSE 3000
+EXPOSE 4242
 CMD [ "npm", "start", "--workspace=stripe-api" ]

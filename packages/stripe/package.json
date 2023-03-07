@@ -16,7 +16,7 @@
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
     "docker:build": "docker build --tag stripe --file ./Dockerfile ../..",
-    "docker:run": "docker run --rm --publish 4242:3000 --env-file ../../.env.docker stripe"
+    "docker:run": "docker run --rm --publish 4242:4242 --env-file ../../.env.docker stripe"
   },
   "dependencies": {
     "@fastify/autoload": "^5.0.0",
