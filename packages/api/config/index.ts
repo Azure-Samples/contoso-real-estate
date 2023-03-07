@@ -29,7 +29,7 @@ export const getConfig: () => Promise<AppConfig> = async () => {
       roleName: process.env.REACT_APP_APPLICATIONINSIGHTS_ROLE_NAME,
     },
     database: {
-      connectionString: process.env.MONGO_CONNECTION_STRING || "mongodb://mongo:MongoPass@localhost:27017",
+      connectionString: process.env.MONGO_CONNECTION_STRING || "mongodb://localhost:MongoPass@localhost:27017",
       database: process.env.MONGO_DATABASE_NAME || "contosoportal",
     },
     strapi: {
