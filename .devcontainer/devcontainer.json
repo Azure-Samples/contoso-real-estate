@@ -8,8 +8,8 @@
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"version": "latest",
+		"ghcr.io/devcontainers/features/docker-in-docker:1": {
+			"version": "20.10.23",
 			"moby": "false",
 			"dockerDashComposeVersion": "v2"
 		},
@@ -25,7 +25,7 @@
 	"forwardPorts": [4280],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm i -g npm@latest && npm install && curl -fsSL https://aka.ms/install-azd.sh | bash",
+	"postCreateCommand": "npm i -g npm@latest fuzz-run && npm install && curl -fsSL https://aka.ms/install-azd.sh | bash",
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -46,7 +46,8 @@
 				"GitHub.vscode-pull-request-github",
 				"ms-azuretools.vscode-bicep",
 				"angular.ng-template",
-				"42Crunch.vscode-openapi"
+				"42Crunch.vscode-openapi",
+        "EditorConfig.EditorConfig"
 			]
 		}
 	},
