@@ -72,7 +72,8 @@ services:
     volumes:
       - ./scripts/database:/scripts
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
 volumes:
   pgdata:
