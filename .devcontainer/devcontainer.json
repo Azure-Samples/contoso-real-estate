@@ -5,13 +5,9 @@
 
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
-	// "build": {
-	// 	"dockerfile": "Dockerfile"
-	// },
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-    "ghcr.io/devcontainers/features/git:1": {},
 		"ghcr.io/devcontainers/features/docker-in-docker:1": {
 			"moby": "false",
 			"dockerDashComposeVersion": "v2"
@@ -36,18 +32,25 @@
 				"ms-azuretools.vscode-azurecontainerapps",
 				"IronGeek.vscode-env",
 				"timonwong.shellcheck",
-        "ms-azuretools.vscode-docker",
-        "ms-azuretools.vscode-azurefunctions",
-        "ms-azuretools.vscode-azurestaticwebapps",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
-        "ms-azuretools.azure-dev",
-        "GitHub.vscode-pull-request-github",
-        "ms-azuretools.vscode-bicep",
-        "angular.ng-template",
-        "42Crunch.vscode-openapi"
+				"ms-azuretools.vscode-docker",
+				"ms-azuretools.vscode-azurefunctions",
+				"ms-azuretools.vscode-azurestaticwebapps",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ms-azuretools.azure-dev",
+				"GitHub.vscode-pull-request-github",
+				"ms-azuretools.vscode-bicep",
+				"angular.ng-template",
+				"42Crunch.vscode-openapi"
 			]
 		}
+	},
+
+	// At least 8gb of RAM is needed due containers
+	"hostRequirements": {
+		"cpus": 4,
+		"memory": "8gb",
+		"storage": "32gb"
 	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
