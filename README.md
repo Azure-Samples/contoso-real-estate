@@ -38,20 +38,7 @@ The following prerequisites are required to use this application. Please ensure 
 npm install
 ```
 
-2. Create a `.env.local` file in the root of the repo with the following contents:
-
-```bash
-DATABASE_HOST=postgres
-DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=PostgresPass
-DATABASE_NAME=strapi
-DATABASE_PORT=5432
-DATABASE_SSL=false
-MONGO_DATABASE_NAME=contosoportal
-MONGO_CONNECTION_STRING=mongodb://mongo:MongoPass@mongodb:27017
-```
-
-3. Start the local development environment:
+2. Start the local development environment:
 
 ```bash
 npm start
