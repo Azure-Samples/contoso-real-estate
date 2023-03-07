@@ -20,7 +20,6 @@ showUsage() {
   echo
 }
 
-stripe_env_file=".stripe.env"
 skip_login=false
 args=()
 
@@ -81,26 +80,6 @@ if [[ "$skip_login" == false ]]; then
   fi
 
   echo "Login successful."
-fi
-
-if [[ ! -f "$stripe_env_file" ]]; then
-  echo "STRIPE_PUBLIC_KEY=" > "$stripe_env_file"
-  echo "STRIPE_SECRET_KEY=" >> "$stripe_env_file"
-  echo "STRIPE_WEBHOOK_SECRET=" >> "$stripe_env_file"
-
-  echo "Stripe environment file not found!"
-  echo
-  echo "We initialized an empty one for you."
-  echo "Please edit ./scripts/infra/$stripe_env_file file with the following contents:"
-  echo
-  echo "STRIPE_PUBLIC_KEY=<your_stripe_public_key>"
-  echo "STRIPE_SECRET_KEY=<your_stripe_secret_key>"
-  echo "STRIPE_WEBHOOK_SECRET=<your_stripe_webhook_secret>"
-  echo
-  echo "You can find your Stripe keys at https://dashboard.stripe.com/apikeys"
-  echo "If you don't have a Stripe account, you can create one at https://dashboard.stripe.com/register"
-  echo
-  echo "The application can still work without Stripe, but the payment process will be mocked and bypassed."
 fi
 
 echo "Bootstraping new environment '$environment'..."
