@@ -38,9 +38,12 @@ createInfrastructure() {
 
   # Initial setup ------------------------------------------------------------
   az config set extension.use_dynamic_install=yes_without_prompt
-  az provider register --namespace Microsoft.App
-  az provider register --namespace Microsoft.OperationalInsights
-  az provider register --namespace Microsoft.Insights
+
+  if [[ -z "${CI-}" ]]; then
+    az provider register --namespace Microsoft.App
+    az provider register --namespace Microsoft.OperationalInsights
+    az provider register --namespace Microsoft.Insights
+  fi
 
   # Create resource group ----------------------------------------------------
   echo "Creating resource group '$resource_group_name'..."
