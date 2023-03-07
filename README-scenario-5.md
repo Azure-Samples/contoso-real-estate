@@ -115,5 +115,3 @@ You can then open this in your browser to test the application.
 An alternative way to run the environment is using [GitHub Codespaces](https://github.com/codespaces), which will use the devcontainer definition, but create a remote containerised environment, rather than running the environment locally.
 
 _Note: GitHub Codespaces is a paid component of GitHub. Review [the GitHub Codespaces billing](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces) before using it._
-
-To run in GitHub Codespaces, the machine will need at least 4 CPUs and 8GB of memory, which is defined in the [`devcontainer.json`](./.devcontainer/devcontainer.json) file, to ensure all the services are started.
