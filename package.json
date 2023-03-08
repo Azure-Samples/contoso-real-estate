@@ -11,8 +11,8 @@
     "start:website": "swa start",
     "test": "npm run test -ws --if-present",
     "build": "npm run build -ws --if-present",
-    "format": "prettier --config .prettierrc.yml --ignore-path .prettierignore --write .",
-    "format:check": "prettier --config .prettierrc.yml --ignore-path .prettierignore --check .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "npm run lint -ws --if-present",
     "lint:fix": "npm run lint:fix -ws --if-present",
     "clean": "rimraf \"packages/**/*.tsbuildinfo\"",
@@ -34,5 +34,14 @@
     "git-commit-msg-linter": "^4.2.1",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": false,
+    "printWidth": 120,
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
   }
 }
