@@ -10,13 +10,13 @@
   },
   "scripts": {
     "test": "npm run build:ts && tsc -p test/tsconfig.json && tap --ts \"test-dist/test/**/*.test.js\"",
-    "start": "fastify start -l info dist/app.js -p 4242",
+    "start": "fastify start -l info dist/app.js -a 0.0.0.0 -p 4242",
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
     "docker:build": "docker build --tag stripe --file ./Dockerfile ../..",
-    "docker:run": "docker run --rm --publish 4242:3000 --env-file ../../.env.docker stripe"
+    "docker:run": "docker run --rm --publish 4242:4242 --env-file ../../.env.docker stripe"
   },
   "dependencies": {
     "@fastify/autoload": "^5.0.0",
@@ -26,7 +26,7 @@
     "fastify-plugin": "^4.0.0",
     "fastify-raw-body": "^4.2.0",
     "node-fetch": "^3.3.0",
-    "stripe": "^11.8.0"
+    "stripe": "~11.8.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",

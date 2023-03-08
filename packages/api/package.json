@@ -33,7 +33,7 @@
     "@types/yamljs": "^0.2.31",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
-    "azure-functions-core-tools": "^4.0.4736",
+    "azure-functions-core-tools": "^4.0.5030",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "npm-run-all": "^4.1.5",

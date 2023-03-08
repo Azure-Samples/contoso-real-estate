@@ -1,65 +1,66 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/docker-from-docker-compose
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
 {
-  "name": "Contoso Real Estate",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
+  "name": "Node.js",
 
-  // Use this environment variable if you need to bind mount your local source code into a new container.
-  "remoteEnv": {
-    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
-    "NODE_EXTRA_CA_CERTS": "/usr/local/share/ca-certificates/emulator.crt"
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {
+      "version": "20.10.23",
+      "moby": "false",
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest",
+      "installBicep": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
   },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [4280, 4242, 3000, 1337],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "npm i -g npm@latest fuzz-run && npm install && curl -fsSL https://aka.ms/install-azd.sh | bash",
 
   // Configure tool-specific properties.
   "customizations": {
-    // Configure properties specific to VS Code.
     "vscode": {
-      // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
+        "humao.rest-client",
+        "ms-azuretools.vscode-bicep",
+        "ms-azuretools.vscode-cosmosdb",
+        "ms-azuretools.vscode-azurecontainerapps",
+        "IronGeek.vscode-env",
+        "timonwong.shellcheck",
         "ms-azuretools.vscode-docker",
         "ms-azuretools.vscode-azurefunctions",
         "ms-azuretools.vscode-azurestaticwebapps",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "ms-azuretools.vscode-cosmosdb",
         "ms-azuretools.azure-dev",
         "GitHub.vscode-pull-request-github",
         "ms-azuretools.vscode-bicep",
         "angular.ng-template",
-        "42Crunch.vscode-openapi"
+        "42Crunch.vscode-openapi",
+        "EditorConfig.EditorConfig",
+        "GitHub.copilot"
       ]
     }
   },
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
-
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "NVM_DIR=/usr/local/share/nvm && ./.devcontainer/post-setup.sh && . $NVM_DIR/nvm.sh && nvm install && npm i --workspaces",
-
-  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "node",
-  "features": {
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/github-cli:1": {
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/azure-cli:1": {
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "latest"
-    }
-  },
-
-  // at least 8gb of RAM is needed due to the CosmosDB container
+  // At least 8gb of RAM is needed due containers
   "hostRequirements": {
     "cpus": 4,
     "memory": "8gb",
     "storage": "32gb"
   }
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
 }
