@@ -56,6 +56,24 @@ echo "DATABASE_NAME='$STRAPI_DATABASE_NAME'" >> $local_env_file
 echo "DATABASE_SSL='$STRAPI_DATABASE_SSL'" >> $local_env_file
 echo "DATABASE_USERNAME='$STRAPI_DATABASE_USERNAME'" >> $local_env_file
 echo "DATABASE_PASSWORD='$STRAPI_DATABASE_PASSWORD'" >> $local_env_file
+echo "STORAGE_ACCOUNT='$STORAGE_ACCOUNT_NAME'" >> $local_env_file
+echo "STORAGE_CONTAINER_NAME='$STORAGE_CONTAINER_NAME'" >> $local_env_file
+echo "STORAGE_ACCOUNT_KEY='$STORAGE_SAS_KEY'" >> $local_env_file
+echo "STORAGE_URL='$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME'" >> $local_env_file
+echo "STORAGE_CDN_URL='$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME'" >> $local_env_file
+
+genKey() {
+  openssl rand -base64 32
+}
+app_keys="$(genKey),$(genKey)"
+jwt_secret="$(genKey)"
+admin_jwt_secret="$(genKey)"
+api_token_salt="$(genKey)"
+
+echo "APP_KEYS='$app_keys'" >> $local_env_file
+echo "JWT_SECRET=$jwt_secret" >> $local_env_file
+echo "ADMIN_JWT_SECRET=$admin_jwt_secret" >> $local_env_file
+echo "API_TOKEN_SALT=$api_token_salt" >> $local_env_file
 echo >> $local_env_file
 
 echo "Local .env file created."
