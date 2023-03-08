@@ -26,7 +26,7 @@ echo "Portal deployed to $SWA_PORTAL_URL"
 echo "Deploying cms..."
 
 genKey() {
-  node -p "require('crypto').createHash('md5').update(Math.random().toString()).digest('hex')"
+  openssl rand -base64 32
 }
 
 app_keys="$(genKey),$(genKey)"

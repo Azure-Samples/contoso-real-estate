@@ -63,7 +63,7 @@ echo "STORAGE_URL='$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME'" >> $local_en
 echo "STORAGE_CDN_URL='$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME'" >> $local_env_file
 
 genKey() {
-  node -p "require('crypto').createHash('md5').update(Math.random().toString()).digest('hex')"
+  openssl rand -base64 32
 }
 app_keys="$(genKey),$(genKey)"
 jwt_secret="$(genKey)"
