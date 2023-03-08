@@ -26,7 +26,7 @@ services:
     build:
       context: ./packages/blog-cms
     environment:
-      DATABASE_HOST: localhost
+      DATABASE_HOST: postgres
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: PostgresPass
       DATABASE_NAME: strapi
@@ -35,7 +35,8 @@ services:
     ports:
       - "1337:1337"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   mongodb:
     image: mongo:5.0
