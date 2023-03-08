@@ -56,6 +56,11 @@ echo "DATABASE_NAME='$STRAPI_DATABASE_NAME'" >> $local_env_file
 echo "DATABASE_SSL='$STRAPI_DATABASE_SSL'" >> $local_env_file
 echo "DATABASE_USERNAME='$STRAPI_DATABASE_USERNAME'" >> $local_env_file
 echo "DATABASE_PASSWORD='$STRAPI_DATABASE_PASSWORD'" >> $local_env_file
+echo "STORAGE_ACCOUNT='$STORAGE_ACCOUNT_NAME'" >> $local_env_file
+echo "STORAGE_CONTAINER_NAME='$STORAGE_CONTAINER_NAME'" >> $local_env_file
+echo "STORAGE_ACCOUNT_KEY='$STORAGE_SAS_KEY'" >> $local_env_file
+echo "STORAGE_URL='$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME'" >> $local_env_file
+echo "STORAGE_CDN_URL='$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME'" >> $local_env_file
 echo >> $local_env_file
 
 echo "Local .env file created."

@@ -43,6 +43,11 @@ container_app_cms_host=$(
               "DATABASE_SSL=$STRAPI_DATABASE_SSL" \
               "DATABASE_USERNAME=secretref:databaseusername" \
               "DATABASE_PASSWORD=secretref:databasepassword" \
+              "STORAGE_ACCOUNT=$STORAGE_ACCOUNT_NAME" \
+              "STORAGE_CONTAINER_NAME=$STORAGE_CONTAINER_NAME" \
+              "STORAGE_ACCOUNT_KEY=$STORAGE_SAS_KEY" \
+              "STORAGE_URL=$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME" \
+              "STORAGE_CDN_URL=$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME" \
     --scale-rule-name http-rule \
     --scale-rule-type http \
     --scale-rule-http-concurrency 1000 \
@@ -222,4 +227,10 @@ az apim product api add \
   --api-id "$CONTAINER_APP_STRIPE_NAME" \
   --output none
 
+echo
+echo "------------------------------------------------------------------------"
+echo "Stripe webhook URL: $API_MANAGEMENT_URL/stripe/webhook"
+echo "Please set this webhook URL in your Stripe dashboard."
+echo "------------------------------------------------------------------------"
+echo
 echo "Deployment complete."
