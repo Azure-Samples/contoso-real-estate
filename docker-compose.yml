@@ -26,6 +26,10 @@ services:
     build:
       context: ./packages/blog-cms
     environment:
+      APP_KEYS: 4ppK3y1,4ppK3y2
+      JWT_SECRET: Jw7s3cr3t
+      ADMIN_JWT_SECRET: 4dm1nJw7s3cr3t
+      API_TOKEN_SALT: pepper
       DATABASE_HOST: postgres
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: PostgresPass

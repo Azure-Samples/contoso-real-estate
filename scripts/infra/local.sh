@@ -61,6 +61,19 @@ echo "STORAGE_CONTAINER_NAME='$STORAGE_CONTAINER_NAME'" >> $local_env_file
 echo "STORAGE_ACCOUNT_KEY='$STORAGE_SAS_KEY'" >> $local_env_file
 echo "STORAGE_URL='$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME'" >> $local_env_file
 echo "STORAGE_CDN_URL='$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME'" >> $local_env_file
+
+genKey() {
+  node -p "require('crypto').createHash('md5').update(Math.random().toString()).digest('hex')"
+}
+app_keys="$(genKey),$(genKey)"
+jwt_secret="$(genKey)"
+admin_jwt_secret="$(genKey)"
+api_token_salt="$(genKey)"
+
+echo "APP_KEYS='$app_keys'" >> $local_env_file
+echo "JWT_SECRET=$jwt_secret" >> $local_env_file
+echo "ADMIN_JWT_SECRET=$admin_jwt_secret" >> $local_env_file
+echo "API_TOKEN_SALT=$api_token_salt" >> $local_env_file
 echo >> $local_env_file
 
 echo "Local .env file created."

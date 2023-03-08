@@ -24,6 +24,16 @@ echo "Portal deployed to $SWA_PORTAL_URL"
 
 # Deploy cms container app ---------------------------------------------------
 echo "Deploying cms..."
+
+genKey() {
+  node -p "require('crypto').createHash('md5').update(Math.random().toString()).digest('hex')"
+}
+
+app_keys="$(genKey),$(genKey)"
+jwt_secret="$(genKey)"
+admin_jwt_secret="$(genKey)"
+api_token_salt="$(genKey)"
+
 container_app_cms_host=$(
   az containerapp create \
     --name "$CONTAINER_APP_CMS_NAME" \
@@ -48,6 +58,10 @@ container_app_cms_host=$(
               "STORAGE_ACCOUNT_KEY=$STORAGE_SAS_KEY" \
               "STORAGE_URL=$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME" \
               "STORAGE_CDN_URL=$STORAGE_CONTAINER_URL/$STORAGE_CONTAINER_NAME" \
+              "APP_KEYS=$app_keys" \
+              "JWT_SECRET=$jwt_secret" \
+              "ADMIN_JWT_SECRET=$admin_jwt_secret" \
+              "API_TOKEN_SALT=$api_token_salt" \
     --scale-rule-name http-rule \
     --scale-rule-type http \
     --scale-rule-http-concurrency 1000 \
