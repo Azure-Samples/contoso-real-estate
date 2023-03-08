@@ -14,7 +14,8 @@
 			"dockerDashComposeVersion": "v2"
 		},
 		"ghcr.io/devcontainers/features/azure-cli:1": {
-			"version": "latest"
+			"version": "latest",
+			"installBicep": true
 		},
 		"ghcr.io/devcontainers/features/github-cli:1": {
 			"version": "latest"
@@ -22,7 +23,7 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [4280],
+	"forwardPorts": [4280, 4242, 3000, 1337],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "npm i -g npm@latest fuzz-run && npm install && curl -fsSL https://aka.ms/install-azd.sh | bash",
@@ -47,7 +48,8 @@
 				"ms-azuretools.vscode-bicep",
 				"angular.ng-template",
 				"42Crunch.vscode-openapi",
-        "EditorConfig.EditorConfig"
+        "EditorConfig.EditorConfig",
+        "GitHub.copilot"
 			]
 		}
 	},
