@@ -2,14 +2,12 @@
   "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
   "configurations": {
     "contoso-real-estate": {
-      "appLocation": "packages/portal",
-      "apiLocation": "packages/api",
+      "appLocation": ".",
+      "apiLocation": "../api",
       "outputLocation": "dist/contoso-app",
       "appBuildCommand": "npm run build",
       "apiBuildCommand": "npm run build",
       "run": "npm start",
-      "appName": "nv-contoso-portal",
-      "resourceGroup": "nv-contoso-deployments",
       "appDevserverUrl": "http://localhost:4200",
       "apiDevserverUrl": "http://127.0.01:7071"
     }

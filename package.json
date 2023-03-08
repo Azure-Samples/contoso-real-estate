@@ -4,11 +4,10 @@
   "description": "",
   "private": true,
   "scripts": {
-    "swa": "swa",
     "start": "concurrently npm:start:* --kill-others",
     "start:services": "docker compose up",
     "start:api": "npm run start --workspace=api",
-    "start:website": "swa start",
+    "start:website": "npm run start:swa --workspace=portal",
     "test": "npm run test -ws --if-present",
     "build": "npm run build -ws --if-present",
     "format": "prettier --write .",
@@ -29,7 +28,6 @@
     "npm": ">=8"
   },
   "devDependencies": {
-    "@azure/static-web-apps-cli": "^1.0.6",
     "concurrently": "^7.6.0",
     "git-commit-msg-linter": "^4.2.1",
     "prettier": "^2.7.1",
