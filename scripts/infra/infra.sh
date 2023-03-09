@@ -283,6 +283,7 @@ createInfrastructure() {
       --resource-group "$resource_group_name" \
       --name "$postgres_db_name" \
       --admin-password "$postgres_db_pwd" \
+      --output none \
       && az postgres flexible-server show \
         --name "$postgres_db_name" \
         --resource-group "$resource_group_name" \
