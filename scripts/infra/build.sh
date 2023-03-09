@@ -25,7 +25,7 @@ docker image tag cms "$REGISTRY_NAME.azurecr.io/cms:v1"
 docker image push "$REGISTRY_SERVER/cms:v1"
 
 # Tag and push blog docker image ---------------------------------------------
-docker image tag cms "$REGISTRY_NAME.azurecr.io/blog:v1"
+docker image tag blog "$REGISTRY_NAME.azurecr.io/blog:v1"
 docker image push "$REGISTRY_SERVER/blog:v1"
 
 # Tag and push stripe docker image -----------------------------------------
