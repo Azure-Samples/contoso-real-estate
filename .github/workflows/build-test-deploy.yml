@@ -114,13 +114,13 @@ jobs:
 
       - name: Update infrastructure
         run: scripts/infra/infra.sh create
-
-      - name: Build project
-        run: scripts/infra/build.sh
         env:
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+
+      - name: Build project
+        run: scripts/infra/build.sh
 
       - name: Deploy project
         run: scripts/infra/deploy.sh
