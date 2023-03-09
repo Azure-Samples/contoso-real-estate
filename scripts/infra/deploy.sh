@@ -119,7 +119,7 @@ container_app_stripe_host=$(
     --registry-username "$REGISTRY_USERNAME" \
     --registry-password "$REGISTRY_PASSWORD" \
     --image "$REGISTRY_SERVER/stripe:v1" \
-    --target-port 3000 \
+    --target-port 4242 \
     --ingress external \
     --env-vars "WEB_APP_URL=$SWA_PORTAL_URL" \
                "API_URL=$FUNCTION_API_URL" \
