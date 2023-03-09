@@ -64,7 +64,7 @@ export class RentalpageComponent implements OnInit {
     try {
       const checkoutSession = await this.listingService.reserve(reservationDetails);
       const sessionURL = new URL(checkoutSession.sessionUrl);
-      if (sessionURL.hostname === 'localhost' && window.location.hostname) {
+      if (sessionURL.hostname === 'localhost' && window.location.hostname !== 'localhost') {
         // Fix for local testing on Codespaces
         sessionURL.hostname = window.location.hostname;
         sessionURL.port = '';
