@@ -16,7 +16,7 @@ services:
     build:
       context: ./packages/blog
     environment:
-      NEXT_PUBLIC_STRAPI_API_URL: http://localhost:1337
+      NEXT_PUBLIC_STRAPI_API_URL: http://blog-cms:1337
     ports:
       - "3000:3000"
     depends_on:
