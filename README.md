@@ -148,13 +148,21 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 
 ## Project structure
 
-For more details about the project structure, please visit the [Project Structure](docs/project-structure.md) documentation.
+The project is using `npm` workspaces. The project structure is as follows:
+
+- `packages/` - contains all the packages
+  - [`api`](../packages/api/) - contains the serverless Azure Functions API.
+  - [`portal`](../packages/portal) - contains the Angular web portal.
+  - [`blog`](../packages/blog) - contains the Next.js blog.
+  - [`blog-cms`](../packages/blog-cms) - contains the Strapi CMS.
+  - [`stripe`](../packages/stripe) - contains the Stripe webhook.
+  - [`testing`](../packages/testing) - contains the Playwright tests.
 
 ## Deploy to Azure
 
 ### Prerequisites
 
-This project uses [GitHub Codespaces](https://github.com/features/codespaces) as the main development environment. The following steps assume you are using GitHub Codespaces. If you are not using GitHub Codespaces, you can still deploy the application to Azure by following the steps in the [Deploy to Azure](docs/deploy-to-azure.md) documentation.
+This project uses [GitHub Codespaces](https://github.com/features/codespaces) as the main development environment. The following steps assume you are using GitHub Codespaces. If you are not using GitHub Codespaces, you can open the project in a Dev Container locally following the instructions [here](docs/dev-container.md).
 
 ### Deploy to Azure
 
