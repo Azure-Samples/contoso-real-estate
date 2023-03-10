@@ -1,6 +1,6 @@
 # Entreprise-grade Reference Architecture for JavaScript
 
-This repository contains the reference architecture and components for building an entreprise-grade moderne microfrontends application. It is a collection of best practices, architure patterns, and components that can be used to build and deploy modern JavaScript microfrontends applications to Azure.
+This repository contains the reference architecture and components for building an entreprise-grade moderne modern composable frontends (or micro-frontends) and cloud-native applications. It is a collection of best practices, architure patterns, and components that can be used to build and deploy modern JavaScript applications to Azure.
 
 ## Table of Contents
 
@@ -22,26 +22,66 @@ You can navigate through the documentation using the table of contents below:
   <img src="assets/diagrams/e2e-full-horizontal.drawio.png" width="100%" alt="Application architecture diagram"/>
 </p>
 
-## Simplified Sequence Diagram
+## Simplified Flow Diagram
 
 ```mermaid
 flowchart TD
-    User1[https://portal.contoso] --> APIM{API Management} -- "portal.contoso" --> Angular[Azure Static Web Apps - Angular]
-    User2[https://blog.contoso] --> APIM{API Management} -- "blog.contoso" --> Next[Azure Container Apps - Next.js]
-    User3[https://cms.contoso] --> APIM{API Management} -- "cms.contoso" --> Strapi[Azure Container Apps - Strapi]
-    User4[https://api.contoso] --> APIM{API Management} -- "api.contoso" --> API[Azure Functions - Node.js]
+    %% 
 
-    Angular -. "HTTP" .-> API
+    subgraph Internet
+    Portal[https://portal.contoso.com]
+    Blog[https://blog.contoso.com]
+    CMS[https://cms.contoso.com]
+    Stripe[https://stripe.contoso.com]
+    API[https://api.contoso.com]
+    end
+    
+    subgraph Azure API Management
+    APIM(API Gateway)
+    end
+    
+    subgraph Azure Static Web Apps
+    SWA_Angular([Angular])
+    end 
 
-    API -- "read" ----> P
-    API -- "read/write" ----> M
+    subgraph Azure Functions
+    Functions([Node.js])
+    end 
 
-    Next -. "HTTP" .-> Strapi
-    Strapi -- "read/write" --> P
+    subgraph Azure Container Apps
+    ACA_Next([Next.js])
+    ACA_Strapi([Strapi])
+    ACA_Stripe([Stripe])
+    end 
 
+    subgraph Database/Storage Layer
+    DB_PostresSQL[(PostgreSQL - Strapi)]
+    DB_Mongo[(MongoDB - Portal)]
+    Storage([Azure Blob Storage - CMS])
+    end 
 
-    P[(PostgreSQL - Strapi)]
-    M[(MongoDB - Portal)]
+    Portal --> SWA_Angular
+    SWA_Angular -- "portal.contoso.com/api/**" --> APIM
+
+    Blog & CMS & API --> APIM -- "blog.contoso.com" ----> ACA_Next
+
+    APIM -- "cms.contoso.com" --> ACA_Strapi
+    APIM -- "api.contoso.com" --> Functions
+
+    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe
+    ACA_Stripe -. "POST /checkout" .-> Functions
+
+    DB_PostresSQL -- "read only" --> Functions 
+    Functions <-- "read/write" --> DB_Mongo
+
+    ACA_Next -. "Strapi API" .-> ACA_Strapi
+
+    ACA_Strapi -- "read/write" ----> DB_PostresSQL
+    ACA_Strapi -- "upload" --> Storage
+
+    linkStyle 0 stroke:pink
+    linkStyle 1 stroke:pink
+    linkStyle 7 stroke:pink
 ```
 
 ## Components
@@ -92,6 +132,7 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 | Blog           | https://YOUR-REPO-3000.preview.app.github.dev:3000       | 3000 |
 | Strapi CMS     | https://YOUR-REPO-1337.preview.app.github.dev:1337/admin | 1337 |
 | Serverless API | https://YOUR-REPO-7071.preview.app.github.dev:7071/api/  | 7071 |
+| Stripe API     | https://YOUR-REPO-4242.preview.app.github.dev:4242/api/  | 4242 |
 
 > _Note: The URLs above are just examples. The URLs will be different for your fork. The ports however will be the same._
 
