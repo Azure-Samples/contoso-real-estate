@@ -4,30 +4,28 @@ This project welcomes contributions and suggestions. Most contributions require 
 
 As a contributor, here are the guidelines we would like you to follow:
 
-- [Contributing to Azure Static Web Apps CLI (SWA CLI)](#contributing-to-contoso-real-estate)
-  - [Signing the CLA](#signing-the-cla)
-  - [Code of Conduct](#code-of-conduct)
-  - [Got a Question or Problem?](#got-a-question-or-problem)
-  - [Found a Bug?](#found-a-bug)
-  - [Missing a Feature?](#missing-a-feature)
-  - [Submission Guidelines](#submission-guidelines)
-    - [Submitting an Issue](#submitting-an-issue)
-    - [Build the project from source](#build-the-project-from-source)
-    - [Submitting a Pull Request (PR)](#submitting-a-pull-request-pr)
-    - [Reviewing a Pull Request](#reviewing-a-pull-request)
-      - [Addressing review feedback](#addressing-review-feedback)
-        - [Updating the commit message](#updating-the-commit-message)
-      - [After your pull request is merged](#after-your-pull-request-is-merged)
-  - [Coding Rules](#coding-rules)
-  - [Commit Message Guidelines](#commit-message-guidelines)
-    - [Commit Message Format](#commit-message-format)
-      - [Commit Message Header](#commit-message-header)
-        - [Type](#type)
-        - [Scope](#scope)
-        - [Summary](#summary)
-      - [Commit Message Body](#commit-message-body)
-      - [Commit Message Footer](#commit-message-footer)
-    - [Revert commits](#revert-commits)
+- [Signing the CLA](#signing-the-cla)
+- [Code of Conduct](#code-of-conduct)
+- [Found a Bug?](#found-a-bug)
+- [Missing a Feature?](#missing-a-feature)
+- [Submission Guidelines](#submission-guidelines)
+  - [Submitting an Issue](#submitting-an-issue)
+  - [Build the project from source](#build-the-project-from-source)
+  - [Submitting a Pull Request (PR)](#submitting-a-pull-request-pr)
+  - [Reviewing a Pull Request](#reviewing-a-pull-request)
+    - [Addressing review feedback](#addressing-review-feedback)
+      - [Updating the commit message](#updating-the-commit-message)
+    - [After your pull request is merged](#after-your-pull-request-is-merged)
+- [Coding Rules](#coding-rules)
+- [Commit Message Guidelines](#commit-message-guidelines)
+  - [Commit Message Format](#commit-message-format)
+    - [Commit Message Header](#commit-message-header)
+      - [Type](#type)
+      - [Scope](#scope)
+      - [Summary](#summary)
+    - [Commit Message Body](#commit-message-body)
+    - [Commit Message Footer](#commit-message-footer)
+  - [Revert commits](#revert-commits)
 
 ## Signing the CLA
 
@@ -265,7 +263,12 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 
 Must be one of the following:
 
-- **portal**: <provide description>
+- **portal**: the Portal application written in Angular
+- **api**: the serverless API written in Node.js
+- **blog**: the Blob application written in Next.js
+- **cms**: the CMS application using Strapi
+- **stripe**: the Stripe API using Node.js and Fastly
+- **testing**: the Playwright e2e testing
 
 ##### Scope
 
@@ -274,13 +277,11 @@ The scope should be the name of the npm package affected (as perceived by the pe
 The following is the list of supported scopes:
 
 - `portal`
-- ...
-
-There are currently a few exceptions to the "use package name" rule:
-
-- `packaging`: used for changes that change the npm package layout in all of our packages, e.g. public path changes, package.json changes done to all packages, d.ts file/format changes, changes to bundles, etc.
-
-- `changelog`: used for updating the release notes in CHANGELOG.mdring: useful for `style`, `test` and `refactor` changes that are done across all packages (e.g. `style: add missing semicolons`)
+- `api`
+- `blog`
+- `cms`
+- `stripe`
+- `testing`
 
 ##### Summary
 
@@ -340,8 +341,8 @@ The content of the commit message body should contain:
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc-faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc-email]: mailto:opencode@microsoft.com
-[coc-swa-cli]: https://github.com/contoso-real-estate/contoso-real-estate/blob/main/CODE_OF_CONDUCT.md
-[github]: https://github.com/contoso-real-estate/contoso-real-estate
-[github-issues]: https://github.com/contoso-real-estate/contoso-real-estate/issues/new/choose
-[github-pull-request]: https://github.com/contoso-real-estate/contoso-real-estate/pulls
-[dev-doc]: https://github.com/contoso-real-estate/contoso-real-estate/blob/main/docs/DEVELOPER.md
+[coc-swa-cli]: https://github.com/Azure-Samples/contoso-real-estate/blob/main/CODE_OF_CONDUCT.md
+[github]: https://github.com/Azure-Samples/contoso-real-estate
+[github-issues]: https://github.com/Azure-Samples/contoso-real-estate/issues/new/choose
+[github-pull-request]: https://github.com/Azure-Samples/contoso-real-estate/pulls
+[dev-doc]: https://github.com/Azure-Samples/contoso-real-estate/blob/main/docs/DEVELOPER.md
