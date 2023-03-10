@@ -66,6 +66,7 @@ flowchart TD
     Blog & CMS & API --> APIM -- "blog.contoso.com" ----> ACA_Next
 
     APIM -- "cms.contoso.com" --> ACA_Strapi
+    APIM -- "portal.contoso.com/api/**" --> Functions
     APIM -- "api.contoso.com" --> Functions
 
     Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe
@@ -82,6 +83,22 @@ flowchart TD
     linkStyle 0 stroke:pink
     linkStyle 1 stroke:pink
     linkStyle 7 stroke:pink
+
+    linkStyle 2 stroke:blue
+    linkStyle 5 stroke:blue
+    
+    linkStyle 13 stroke:cyan
+
+    linkStyle 3 stroke:green
+    linkStyle 6 stroke:green
+
+    linkStyle 4 stroke:red
+    linkStyle 8 stroke:red
+
+    linkStyle 9 stroke:orange
+    linkStyle 10 stroke:orange
+    linkStyle 11 stroke:orange
+    
 ```
 
 ## Components
@@ -124,6 +141,7 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 1. Fork this repository.
 1. Create a new GitHub Codespace from your fork. This will automatically provision a new Codespace with all the required dependencies preinstalled and configured.
 1. Open the terminal and run `npm start` to start the development servers.
+  *Note: Codespaces will show a series of windows on the right side of the screen while starting all servers. This is normal and expected.*
 1. Once all dev servers have started, the following URLs will be available:
 
 | Application    | URL                                                      | Port |
