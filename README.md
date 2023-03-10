@@ -54,51 +54,43 @@ flowchart TD
     ACA_Stripe([Stripe])
     end 
 
-    subgraph Database/Storage Layer
+    subgraph Database/Storage
     DB_PostresSQL[(PostgreSQL - Strapi)]
     DB_Mongo[(MongoDB - Portal)]
     Storage([Azure Blob Storage - CMS])
     end 
 
-    Portal --> SWA_Angular
-    SWA_Angular -- "portal.contoso.com/api/**" --> APIM
-
-    Blog & CMS & API --> APIM -- "blog.contoso.com" ----> ACA_Next
-
-    APIM -- "cms.contoso.com" --> ACA_Strapi
-    APIM -- "portal.contoso.com/api/**" --> Functions
-    APIM -- "api.contoso.com" --> Functions
-
-    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe
-    ACA_Stripe -. "POST /checkout" .-> Functions
-
-    DB_PostresSQL -- "read only" --> Functions 
-    Functions <-- "read/write" --> DB_Mongo
-
-    ACA_Next -. "Strapi API" .-> ACA_Strapi
-
-    ACA_Strapi -- "read/write" ----> DB_PostresSQL
+    Portal --> SWA_Angular -- "portal.contoso.com/api/**" --> APIM -- "portal.contoso.com/api/**" --> Functions
+    
+    Blog -- "blog.contoso.com" --> ACA_Next -. "Strapi API" .-> ACA_Strapi
+    
+    CMS -- "cms.contoso.com" --> ACA_Strapi
+    ACA_Strapi -- "read/write" ----> DB_PostresSQL -- "read only" --> Functions
     ACA_Strapi -- "upload" --> Storage
+    
+    API --> APIM -- "api.contoso.com" --> Functions <-- "read/write" --> DB_Mongo
 
+    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate paiement (through APIM)" .-> Functions
+    
+    %% Portal
     linkStyle 0 stroke:pink
     linkStyle 1 stroke:pink
-    linkStyle 7 stroke:pink
+    linkStyle 2 stroke:pink
 
-    linkStyle 2 stroke:blue
+    %% Blog
+    linkStyle 3 stroke:blue
+    linkStyle 4 stroke:blue
     linkStyle 5 stroke:blue
     
-    linkStyle 13 stroke:cyan
-
-    linkStyle 3 stroke:green
-    linkStyle 6 stroke:green
-
-    linkStyle 4 stroke:red
+    %% CMS
+    linkStyle 5 stroke:red
+    linkStyle 6 stroke:red
     linkStyle 8 stroke:red
-
-    linkStyle 9 stroke:orange
-    linkStyle 10 stroke:orange
-    linkStyle 11 stroke:orange
     
+    linkStyle 7 stroke:lime
+    linkStyle 9 stroke:lime
+    linkStyle 10 stroke:lime
+    linkStyle 11 stroke:lime
 ```
 
 ## Components
