@@ -142,7 +142,7 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 | Blog           | https://YOUR-REPO-3000.preview.app.github.dev:3000       | 3000 |
 | Strapi CMS     | https://YOUR-REPO-1337.preview.app.github.dev:1337/admin | 1337 |
 | Serverless API | https://YOUR-REPO-7071.preview.app.github.dev:7071/api/  | 7071 |
-| Stripe API     | https://YOUR-REPO-4242.preview.app.github.dev:4242/api/  | 4242 |
+| Stripe API     | https://YOUR-REPO-4242.preview.app.github.dev:4242       | 4242 |
 
 > _Note: The URLs above are just examples. The URLs will be different for your fork. The ports however will be the same._
 
@@ -179,3 +179,14 @@ _Note: if asked to login to Azure, please use the following command to login to 
 ```bash
 azd login
 ```
+### Clean up resources
+
+When you are done, you can delete all the Azure resources created with this template by running the following command:
+
+```bash
+azd down
+```
+
+## Want to help?
+
+Want to file a bug, contribute some code, or improve the documentation? Excellent! Read up on our guidelines for [contributing](./CONTRIBUTING.md) and then check out one of our issues in the list: [community-help](https://github.com/Azure-Samples/contoso-real-estate/issues).
