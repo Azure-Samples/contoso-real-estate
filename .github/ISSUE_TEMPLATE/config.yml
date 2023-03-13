@@ -21,3 +21,8 @@ contact_links:
     about: "Open issues about the Azure Developer CLI."
     name: Azure Developer CLI
     url: "https://github.com/Azure/azure-dev/issues/new/choose"  
+
+  - 
+    about: "Open issues related to Playwright."
+    name: Playwright
+    url: "https://github.com/microsoft/playwright/issues/new/choose"  
