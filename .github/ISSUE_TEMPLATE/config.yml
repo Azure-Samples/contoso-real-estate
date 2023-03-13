@@ -1,0 +1,28 @@
+--- 
+blank_issues_enabled: false
+contact_links: 
+
+  - 
+    about: "Open an issue about Azure Static Web Apps CLI."
+    name: "Azure Static Web Apps CLI"
+    url: "https://github.com/Azure/static-web-apps-cli/issues/new/choose"
+  
+  - 
+    about: "Open an issue about Azure Static Web Apps for Visual Studio Code."
+    name: "Azure Static Web Apps for Visual Studio Code"
+    url: "https://github.com/microsoft/vscode-azurestaticwebapps/issues/new"
+  
+  - 
+    about: "Open issues about the Azure Static Web Apps service."
+    name: Azure Static Web Apps service
+    url: "https://github.com/Azure/static-web-apps/issues/new/choose"  
+
+  - 
+    about: "Open issues about the Azure Developer CLI."
+    name: Azure Developer CLI
+    url: "https://github.com/Azure/azure-dev/issues/new/choose"  
+
+  - 
+    about: "Open issues related to Playwright."
+    name: Playwright
+    url: "https://github.com/microsoft/playwright/issues/new/choose"  
