@@ -15,6 +15,5 @@ export class CardListComponent {
   @Input() user: User = {} as User;
 
   @Output() scroll: EventEmitter<void> = new EventEmitter();
-  noresults = "There are no listings right now. Come back again soon!";
-
+  noresults = "Searching for featured listings. Please wait...";
 }

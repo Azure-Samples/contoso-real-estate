@@ -1,10 +1,11 @@
 <section>
-  <mat-card>
+  <mat-card class="loading-background">
     <img
       mat-card-image
       src="/assets/images/{{ listing?.photos?.[0] }}"
       alt="{{ listing?.title }}"
       class="listing-image"
+      (load)="onImageLoad($event)"
     />
     <mat-card-content>
       <mat-card-title>{{ listing?.title }}</mat-card-title>

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input, OnChanges, Renderer2, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { RouterModule } from "@angular/router";
@@ -19,14 +19,22 @@ export class CardComponent implements OnChanges {
   @Input() user!: User | null;
   userRole: typeof UserRole = UserRole;
   monthlyRentPriceWithDiscount = 0;
-  isOperationLoading = false;
+  isOperationLoading = true;
   bedroomsMapping: { [k: string]: string } = { "=1": "1 bedroom", other: "# bedrooms" };
   bathroomsMapping: { [k: string]: string } = { "=1": "1 bathroom", other: "# bathrooms" };
+
+  renderer= inject(Renderer2);
 
   async ngOnChanges() {
     if (this.listing) {
       const discount = parseInt(this.listing.fees[3], 10) * (1 - parseInt(this.listing.fees[4], 10) / 100);
       this.monthlyRentPriceWithDiscount = Math.max(0, discount);
     }
+  }
+
+  onImageLoad(event: Event) {
+    const target = (event.target as HTMLImageElement).closest(".loading-background") as HTMLDivElement;
+    this.renderer.removeClass(target, "loading-background");
+    this.isOperationLoading = false;
   }
 }
