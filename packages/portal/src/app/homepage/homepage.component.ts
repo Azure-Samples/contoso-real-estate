@@ -17,6 +17,8 @@ import { UserService } from "../shared/user/user.service";
 export class HomepageComponent implements OnInit {
   featuredListings: Listing[] = [];
   user = {} as User;
+  blogUrl = "https://aka.ms/contoso-real-estate/blog-prod";
+  
   constructor(
     private listingService: ListingService,
     private favoriteService: FavoriteService,
