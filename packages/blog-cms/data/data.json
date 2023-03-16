@@ -9,26 +9,26 @@
       "slug": "tech"
     },
     {
-      "name": "food",
-      "slug": "food"
+      "name": "gastronomy",
+      "slug": "gastronomy"
     },
     {
-      "name": "nature",
-      "slug": "nature"
+      "name": "releases",
+      "slug": "releases"
     },
     {
-      "name": "story",
-      "slug": "story"
+      "name": "locations",
+      "slug": "locations"
     }
   ],
   "homepage": {
     "seo": {
-      "metaTitle": "My personal Strapi blog",
-      "metaDescription": "Discover my SEO friendly blog built with Strapi.",
+      "metaTitle": "Our Contoso Rentals Blog",
+      "metaDescription": "Discover our latest news, releases and updates",
       "shareImage": null
     },
     "hero": {
-      "title": "My blog"
+      "title": "Contoso Rentals Blog"
     }
   },
   "writers": [
@@ -45,34 +45,34 @@
   ],
   "articles": [
     {
-      "title": "The internet's Own boy",
-      "content": "# The Story of Aaron Swartz\n\nAaron Hillel Swartz (November 8, 1986 – January 11, 2013) was an American computer programmer, entrepreneur, writer, political organizer, and Internet hacktivist. He was involved in the development of the web feed format RSS, the Markdown publishing format, the organization Creative Commons, and the website framework web.py, and was a co-founder of the social news site [Reddit](https://reddit.com). He was given the title of co-founder of Reddit by Y Combinator owner [Paul Graham](https://en.wikipedia.org/wiki/Paul_Graham_(programmer)) after the formation of Not a Bug, Inc. (a merger of Swartz's project Infogami and Redbrick Solutions, a company run by Alexis Ohanian and Steve Huffman).\n\nSwartz's work also focused on civic awareness and activism. He helped launch the Progressive Change Campaign Committee in 2009 to learn more about effective online activism. In 2010, he became a research fellow at Harvard University's Safra Research Lab on Institutional Corruption, directed by Lawrence Lessig. He founded the online group Demand Progress, known for its campaign against the Stop Online Piracy Act.\n\n\n<iframe width=560 height=315 src=https://www.youtube.com/embed/PFQGjEJ9PEc frameborder=0 allow=accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen></iframe>\n\n\nIn 2011, Swartz was arrested by Massachusetts Institute of Technology (MIT) police on state breaking-and-entering charges, after connecting a computer to the MIT network in an unmarked and unlocked closet, and setting it to download academic journal articles systematically from JSTOR using a guest user account issued to him by MIT. Federal prosecutors later charged him with two counts of wire fraud and eleven violations of the Computer Fraud and Abuse Act,[14] carrying a cumulative maximum penalty of $1 million in fines, 35 years in prison, asset forfeiture, restitution, and supervised release.\n\nSwartz declined a plea bargain under which he would have served six months in federal prison. Two days after the prosecution rejected a counter-offer by Swartz, he was found dead in his Brooklyn apartment, where he had hanged himself.\n\nIn 2013, Swartz was inducted posthumously into the [Internet Hall of Fame](https://www.internethalloffame.org//).",
-      "slug": "the-internet-s-own-boy",
+      "title": "Our new blog: be part of the platform!",
+      "content": "# Enjoy our new fictitious blog\n\nOur development team has been hard at work over the past several months, building this new blog capability for our platform. We're excited to announce that this feature is now live and available to all users!\n\nWith the new blog capability, users can create and publish their own blog content directly on our platform. This new feature makes it easier than ever for users to share their thoughts, ideas, and experiences with a wider audience, while also engaging with our community in new and exciting ways.\n\nIn addition to providing a space for users to create and publish their own blog posts, the new blog capability also includes a commenting system that allows readers to leave feedback and engage in discussions with the blog author and other readers.\n\nWe're thrilled to offer this new feature to our users and can't wait to see the amazing content that they create. Whether you're a seasoned blogger or just getting started, our platform now offers a powerful and user-friendly tool to help you share your voice with the world.",
+      "slug": "blogging-for-all",
+      "category": {
+        "id": 1
+      },
+      "author": {
+        "id": 1
+      },
+      "description": "Follow our releases",
+      "image": null
+    },
+    {
+      "title": "Feature requests: If you have ideas, talk to us!",
+      "content": "# Feature requests welcome!\n\nAt our company, we're always looking for ways to improve and enhance our products to better meet the needs of our users. That's why we want to hear from you! We invite all of our users to submit feature requests for our products, so that we can prioritize what matters most to you.\n\nDo you have an idea for a new feature that would make our product even more useful? Is there a specific pain point that you think we could address with a new feature? We want to hear from you!\n\nTo submit a feature request, simply visit our website and fill out the feature request form. Be as specific as possible in describing what you'd like to see, and how it would benefit you or your organization.\n\nWe value the feedback of our users and take your feature requests seriously. While we can't promise that every request will be implemented, we will carefully consider each and every suggestion and prioritize those that align with our product roadmap and strategy.\n\nSo if you have an idea for a new feature that you think would make our product even better, don't hesitate to let us know. We're excited to hear from you and work together to make our products the best they can be!",
+      "slug": "feature-requests",
       "category": {
         "id": 5
       },
       "author": {
-        "id": 1
-      },
-      "description": "Follow the story of Aaron Swartz, the boy who could change the world",
-      "image": null
-    },
-    {
-      "title": "What's inside a Black Hole",
-      "content": "Well, we don't know yet...",
-      "slug": "what-s-inside-a-black-hole",
-      "category": {
-        "id": 1
-      },
-      "author": {
         "id": 2
       },
-      "description": "Maybe the answer is in this article, or not...",
+      "description": "Feature requests are a great way to help us improve our platform",
       "image": null
     },
     {
       "title": "This shrimp is awesome",
-      "content": "# Badass\n\nMantis shrimps, or stomatopods, are marine crustaceans of the order Stomatopoda. Some species have specialised calcified *clubs* that can strike with **great power**, while others have sharp forelimbs used to capture prey. They branched from other members of the class Malacostraca around 340 million years ago. Mantis shrimps typically grow to around 10 cm (3.9 in) in length. A few can reach up to 38 cm (15 in). The largest mantis shrimp ever caught had a length of 46 cm (18 in); it was caught in the Indian River near Fort Pierce, Florida, in the United States. A mantis shrimp's carapace (the bony, thick shell that covers crustaceans and some other species) covers only the rear part of the head and the first four segments of the thorax. Varieties range in color from shades of brown to vivid colors, with more than 450 species of mantis shrimps being known. They are among the most important predators in many shallow, tropical and subtropical marine habitats. However, despite being common, they are poorly understood, as many species spend most of their lives tucked away in burrows and holes.\n\nCalled sea locusts by ancient Assyrians, prawn killers in Australia, and now sometimes referred to as thumb splitters—because of the animal's ability to inflict painful gashes if handled incautiously—mantis shrimps have powerful claws that are used to attack and kill prey by spearing, stunning, or dismembering.\n\n<iframe width=560 height=315 src=https://www.youtube.com/embed/CW8NUCPLE1c frameborder=0 allow=accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen></iframe>\n\nMantis shrimps have, like mantis, ravishing legs. But theirs are so resilient that they inspire the military to make the armor of the future. Above all, their speed and striking power are the responsibility of the superpowers. As the comic book The Oatmeal recounts, the squid's ravishing legs move at the speed of a bullet fired by a 22 caliber and can strike a prey in 1/3000 of a second, with a force of 1,500 Newtons. One tenth of that speed, deployed by a human arm, would be enough to send a baseball into orbit.\n\nA speed such as it boils water around ravishing legs and creates a shock wave capable of killing a prey missed by the strike.\n\nKept in an aquarium, crustaceans make carnage by dismembering and devouring crabs, shrimps, octopuses, snails and shells (whose shells they break). They would even be able to break the windows of overly fragile aquariums.",
+      "content": "# Shrimp is really the best\n\nMantis shrimps, or stomatopods, are marine crustaceans of the order Stomatopoda. Some species have specialised calcified *clubs* that can strike with **great power**, while others have sharp forelimbs used to capture prey. They branched from other members of the class Malacostraca around 340 million years ago. Mantis shrimps typically grow to around 10 cm (3.9 in) in length. A few can reach up to 38 cm (15 in). The largest mantis shrimp ever caught had a length of 46 cm (18 in); it was caught in the Indian River near Fort Pierce, Florida, in the United States. A mantis shrimp's carapace (the bony, thick shell that covers crustaceans and some other species) covers only the rear part of the head and the first four segments of the thorax. Varieties range in color from shades of brown to vivid colors, with more than 450 species of mantis shrimps being known. They are among the most important predators in many shallow, tropical and subtropical marine habitats. However, despite being common, they are poorly understood, as many species spend most of their lives tucked away in burrows and holes.\n\nCalled sea locusts by ancient Assyrians, prawn killers in Australia, and now sometimes referred to as thumb splitters—because of the animal's ability to inflict painful gashes if handled incautiously—mantis shrimps have powerful claws that are used to attack and kill prey by spearing, stunning, or dismembering.\n\n<iframe width=560 height=315 src=https://www.youtube.com/embed/CW8NUCPLE1c frameborder=0 allow=accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen></iframe>\n\nMantis shrimps have, like mantis, ravishing legs. But theirs are so resilient that they inspire the military to make the armor of the future. Above all, their speed and striking power are the responsibility of the superpowers. As the comic book The Oatmeal recounts, the squid's ravishing legs move at the speed of a bullet fired by a 22 caliber and can strike a prey in 1/3000 of a second, with a force of 1,500 Newtons. One tenth of that speed, deployed by a human arm, would be enough to send a baseball into orbit.\n\nA speed such as it boils water around ravishing legs and creates a shock wave capable of killing a prey missed by the strike.\n\nKept in an aquarium, crustaceans make carnage by dismembering and devouring crabs, shrimps, octopuses, snails and shells (whose shells they break). They would even be able to break the windows of overly fragile aquariums.",
       "slug": "this-shrimp-is-awesome",
       "category": {
         "id": 4
@@ -80,38 +80,38 @@
       "author": {
         "id": 1
       },
-      "description": "Mantis shrimps, or stomatopods, are marine crustaceans of the order Stomatopoda. Some species have specialised calcified clubs that can strike with great power, while others have sharp forelimbs used to capture prey.",
+      "description": "Mantis shrimps, or stomatopods, are marine crustaceans of the order Stomatopoda, available in our new locations!",
       "image": null
     },
     {
-      "title": "A bug is becoming a meme on the internet",
-      "content": "It's the story of a user named **Omer Barnir** who reported a bug in 2005 on the MySQL [bug report platform](https://bugs.mysql.com/)\n\nBut the thing is that Omer never got an answer. 15 years later, the bug has never been fix and people are starting to make fun out of it. We let you take a look at the conversation [here](https://bugs.mysql.com/bug.php?id=11472), it's pretty funny",
-      "slug": "a-bug-is-becoming-a-meme-on-the-internet",
+      "title": "We have new locations in our rentals portal!",
+      "content": "# New fictitious locations in our platform\n\n Exciting news! Our rentals portal has just added new locations to its database, making it easier than ever to find the perfect rental property in your desired area.\n\nWhether you're looking for a cozy apartment in the heart of the city or a spacious house in a quiet suburb, our new locations have got you covered. We've added hundreds of new neighborhoods and districts to our database, including some of the most popular and sought-after areas in the country.\n\nOur advanced search filters allow you to narrow down your search by location, so you can easily find properties that are within your desired proximity to work, school, or other important amenities. Plus, with our new locations, you can discover new areas that you may not have considered before.\n\nOur goal is to make the process of finding and renting a property as convenient and hassle-free as possible. With our new locations, you can easily find the perfect rental property in the area that suits your lifestyle and needs.\n\nSo what are you waiting for? Visit our rentals portal today and explore the new locations to find your dream rental property!",
+      "slug": "new-locations",
       "category": {
-        "id": 2
+        "id": 1
       },
       "author": {
         "id": 2
       },
-      "description": "How a bug on MySQL is becoming a meme on the internet",
+      "description": "New locations in our rentals portal.",
       "image": null
     },
     {
-      "title": "Beautiful picture",
-      "content": "This is an empty blog post with a beautiful picture",
-      "slug": "beautiful-picture",
+      "title": "A new release in our portal",
+      "content": "# Our rental's portal is fictitious but we love it\n\n We are thrilled to announce the release of our new rentals portal, which is designed to make the process of finding and renting a property easier and more convenient than ever before.\n\nOur new portal features a user-friendly interface that allows you to easily search for properties that meet your specific needs and preferences. Whether you're looking for a house, an apartment, or a room for rent, you can quickly and easily find what you're looking for using our advanced search filters.\n\nOne of the most exciting features of our new rentals portal is the ability to schedule viewings online. Rather than playing phone tag with landlords or property managers, you can now simply choose an available time slot that works for you and schedule a viewing directly through the portal.\n\nIn addition, our portal allows you to apply for properties online, saving you time and hassle. Once you find a property that you're interested in, you can submit your application and required documents with just a few clicks.\n\nWe understand that finding the right rental property can be a stressful and time-consuming process, which is why we've worked hard to create a portal that streamlines the entire process from start to finish. With our new rentals portal, you can easily find and apply for the perfect rental property without ever leaving your computer.\n\nSo whether you're a student looking for a room to rent or a family in search of a new home, we invite you to check out our new rentals portal and experience the convenience and ease of finding your next rental property online.",
+      "slug": "portal-is-released",
       "category": {
-        "id": 4
+        "id": 1
       },
       "author": {
         "id": 2
       },
-      "description": "Description of a beautiful picture",
+      "description": "New releases coming up!",
       "image": null
     },
     {
-      "title": "We love Pizza",
-      "content": "We love pizza at Strapi, what about you?",
+      "title": "Developer advocates love pizza. Do you?",
+      "content": "# Developer Advocacy loves pizza with avocado\n\nAt the Developer Advocacy team, we all have one thing in common: our love for pizza. There's just something about the crispy crust, tangy sauce, and melted cheese that makes our taste buds dance with joy.\n\nWhether it's a classic Margherita or a loaded meat-lovers pie, we can't get enough of this delicious dish. So if you're ever in the neighborhood, come grab a slice with us and experience the pure joy that is pizza!",
       "slug": "we-love-pizza",
       "category": {
         "id": 3
@@ -119,15 +119,15 @@
       "author": {
         "id": 1
       },
-      "description": "Pizza is so delicious, specially four cheese pizza",
+      "description": "Pizza is lovely for developers.",
       "image": null
     }
   ],
   "global": {
-    "siteName": "Strapi Blog",
+    "siteName": "Our Contoso Rentals Blog",
     "defaultSeo": {
-      "metaTitle": "Page",
-      "metaDescription": "A blog made with Strapi",
+      "metaTitle": "Contoso Rentals Blog Page",
+      "metaDescription": "A blog made with Strapi for our Contoso Rentals composable architecture",
       "shareImage": null
     },
     "favicon": null
