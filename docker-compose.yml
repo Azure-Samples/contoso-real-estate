@@ -77,7 +77,7 @@ services:
       STRAPI_DATABASE_USERNAME: postgres
       STRAPI_DATABASE_PASSWORD: PostgresPass
       STRAPI_DATABASE_NAME: strapi
-    command: ["./restore.sh", "dumps/strapi_20230202.sql"]
+    command: ["./restore.sh", "dumps/strapi_20230317.sql"]
     volumes:
       - ./scripts/database:/scripts
     depends_on:
