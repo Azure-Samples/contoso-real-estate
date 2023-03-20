@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  blogUrl: 'http://localhost:3000'
 };
 
 /*

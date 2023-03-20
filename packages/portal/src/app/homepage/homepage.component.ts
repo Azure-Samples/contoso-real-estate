@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
+import { environment } from "../../environments/environment";
 import { CardListComponent } from "../shared/card-list/card-list.component";
 import { FavoriteService } from "../shared/favorite.service";
 import { InfiniteScrollingDirective } from "../shared/infinite-scrolling.directive";
 import { ListingService } from "../shared/listing.service";
 import { UserService } from "../shared/user/user.service";
-import { IS_DEV_MODE } from "src/main";
 
 @Component({
   selector: "app-homepage",
@@ -18,8 +18,8 @@ import { IS_DEV_MODE } from "src/main";
 export class HomepageComponent implements OnInit {
   featuredListings: Listing[] = [];
   user = {} as User;
-  blogUrl = !IS_DEV_MODE ? "https://aka.ms/contoso-real-estate/blog-prod" : "http://localhost:3000";
-  
+  blogUrl = environment.blogUrl;
+
   constructor(
     private listingService: ListingService,
     private favoriteService: FavoriteService,

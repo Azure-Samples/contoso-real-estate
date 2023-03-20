@@ -11,8 +11,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-export const IS_DEV_MODE = !environment.production;
-
 bootstrapApplication(AppComponent, {
   providers: [importProvidersFrom(RouterModule.forRoot(ROUTES)), provideAnimations()],
 }).then(async app => {
