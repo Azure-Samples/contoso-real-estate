@@ -1,82 +1,107 @@
-import { PlaywrightTestConfig } from "@playwright/test";
-import devices from "@playwright/test";
-import fs from "fs";
-import { join } from "path";
-import dotenv from "dotenv";
+import { defineConfig, devices } from '@playwright/test';
+
+/**
+ * Read environment variables from file.
+ * https://github.com/motdotla/dotenv
+ * require('dotenv').config();
+ * require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
+ */
+ require('dotenv').config({ path: `.env.local` });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-const config: PlaywrightTestConfig = {
-  testDir: ".",
+export default defineConfig({
+
+  /* Root directory for tests. */
+  testDir: './e2e',
+
   /* Maximum time one test can run for. */
-  timeout: 240 * 1000,
+  /** Default is 30s, Increased it to 60s */
+  timeout: 60 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5000,
+    timeout: 5000
   },
+
+  /* Run tests in files in parallel */
+  fullyParallel: true,
+
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
+
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
+
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
+
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: "html",
+  reporter: 'html',
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
+
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: getBaseURL(),
+    baseURL: process.env.PROD_EP,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
+    trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium",
-      use: {
-        ...(devices as any)["Desktop Chrome"],
-      },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['Pixel 5'] },
+    },
+    /*
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+
+    /* Test against mobile viewports. */
+    // {
+    //   name: 'Mobile Chrome',
+    //   use: { ...devices['Pixel 5'] },
+    // },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 12'] },
+    // },
+
+    /* Test against branded browsers. */
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: { channel: 'msedge' },
+    // },
+    // {
+    //   name: 'Google Chrome',
+    //   use: { channel: 'chrome' },
+    // },
   ],
-};
 
-function getBaseURL() {
-  // If we don't have URL and aren't in CI, then try to load from environment
-  if (!process.env.REACT_APP_WEB_BASE_URL && !process.env.CI) {
-    // Try to get env in .azure folder
-    let environment = process.env.AZURE_ENV_NAME;
-    if (!environment) {
-      // Couldn't find env name in env var, let's try to load from .azure folder
-      try {
-        let configfilePath = join(__dirname, "..", ".azure", "config.json");
-        if (fs.existsSync(configfilePath)) {
-          let configFile = JSON.parse(fs.readFileSync(configfilePath, "utf-8"));
-          environment = configFile["defaultEnvironment"];
-        }
-      } catch (err) {
-        console.log("Unable to load default environment: " + err);
-      }
-    }
+  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
+  // outputDir: 'test-results/',
 
-    if (environment) {
-      let envPath = join(__dirname, "..", ".azure", environment, ".env");
-      console.log("Loading env from: " + envPath);
-      dotenv.config({ path: envPath });
-      return process.env.REACT_APP_WEB_BASE_URL;
-    }
-  }
-
-  let baseURL = process.env.REACT_APP_WEB_BASE_URL || "http://localhost:3000";
-  console.log("baseUrl: " + baseURL);
-  return baseURL;
-}
-
-export default config;
+  /* Run your local dev server before starting the tests */
+  // webServer: {
+  //   command: 'npm run start',
+  //   port: 3000,
+  // },
+});
