@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "value": "${SERVICE_CMS_NAME}"
+    },
+    "location": {
+      "value": "${AZURE_LOCATION}"
+    },
+    "adminJwtSecret": {
+      "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} adminJwtSecret)"
+    },
+    "apiTokenSalt": {
+      "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} apiTokenSalt)"
+    },
+    "appKeys": {
+      "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} appKeys)"
+    },
+    "applicationInsightsName": {
+      "value": "${APPLICATIONINSIGHTS_NAME}"
+    },
+    "containerAppsEnvironmentName": {
+      "value": "${AZURE_CONTAINER_ENVIRONMENT_NAME}"
+    },
+    "containerRegistryName": {
+      "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
+    },
+    "cmsDatabaseHost": {
+      "value": "${CMS_DATABASE_HOST}"
+    },
+    "cmsDatabaseName": {
+      "value": "strapi"
+    },
+    "cmsDatabasePassword": {
+      "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} cmsDatabasePassword)"
+    },
+    "cmsDatabaseUsername": {
+      "value": "contoso"
+    },
+    "imageName": {
+      "value": "${SERVICE_CMS_IMAGE_NAME}"
+    },
+    "jwtSecret": {
+      "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} jwtSecret)"
+    },
+    "keyVaultName": {
+      "value": "${AZURE_KEY_VAULT_NAME}"
+    },
+    "serviceName": {
+      "value": "cms"
+    },
+    "storageAccountName": {
+      "value": "${STORAGE_ACCOUNT_NAME}"
+    },
+    "storageContainerName": {
+      "value": "${STORAGE_CONTAINER_NAME}"
+    }
+  }
+}

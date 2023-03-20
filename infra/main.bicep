@@ -12,8 +12,20 @@ param location string
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
 
+param applicationInsightsDashboardName string = ''
+param applicationInsightsName string = ''
+param blogContainerAppName string = ''
+param cmsContainerAppName string = ''
 param containerAppsEnvironmentName string = ''
 param containerRegistryName string = ''
+param cosmosAccountName string = ''
+param cosmosDatabaseName string = ''
+param keyVaultName string = ''
+param logAnalyticsName string = ''
+param webServiceName string = ''
+param storageAccountName string
+param storageContainerName string
+param stripeContainerAppName string = ''
 
 @secure()
 param appKeys string
@@ -26,8 +38,9 @@ param jwtSecret string
 @secure()
 param adminJwtSecret string
 
+param cmsDatabaseName string = 'strapi'
+param cmsDatabaseUser string = 'strapi'
 param cmsDatabaseServerName string = ''
-
 @secure()
 param cmsDatabasePassword string
 
@@ -54,50 +67,79 @@ module web './app/web.bicep' = {
   name: 'web'
   scope: rg
   params: {
-    environmentName: environmentName
+    name: !empty(webServiceName) ? webServiceName : '${abbrs.webStaticSites}web-${resourceToken}'
     location: location
-    applicationInsightsName: monitoring.outputs.applicationInsightsName
+    tags: tags
   }
 }
 
 // The application database
-module cosmos './app/db.bicep' = {
+module cosmos 'app/db.bicep' = {
   name: 'cosmos'
   scope: rg
   params: {
-    environmentName: environmentName
+    accountName: !empty(cosmosAccountName) ? cosmosAccountName : '${abbrs.documentDBDatabaseAccounts}${resourceToken}'
+    databaseName: cosmosDatabaseName
     location: location
-    keyVaultName: keyVault.outputs.keyVaultName
+    tags: tags
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
+// The application database
+module blogDb 'core/database/postgresql/flexibleserver.bicep' = {
+  name: 'postgresql'
+  scope: rg
+  params: {
+    name: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
+    location: location
+    tags: tags
+    sku: {
+      name: 'Standard_B1ms'
+      tier: 'Burstable'
+    }
+    storage: {
+      storageSizeGB: 32
+    }
+    version: '13'
+    administratorLogin: cmsDatabaseUser
+    administratorLoginPassword: cmsDatabasePassword
+    databaseNames: [cmsDatabaseName]
+    allowAzureIPsFirewall: true
   }
 }
 
 // Store secrets in a keyvault
-module keyVault './core/security/keyvault.bicep' = {
+module keyVault 'core/security/keyvault.bicep' = {
   name: 'keyvault'
   scope: rg
   params: {
-    environmentName: environmentName
+    name: !empty(keyVaultName) ? keyVaultName : '${abbrs.keyVaultVaults}${resourceToken}'
     location: location
+    tags: tags
     principalId: principalId
   }
 }
 
 // Monitor application with Azure Monitor
-module monitoring './core/monitor/monitoring.bicep' = {
+module monitoring 'core/monitor/monitoring.bicep' = {
   name: 'monitoring'
   scope: rg
   params: {
-    environmentName: environmentName
     location: location
+    tags: tags
+    logAnalyticsName: !empty(logAnalyticsName) ? logAnalyticsName : '${abbrs.operationalInsightsWorkspaces}${resourceToken}'
+    applicationInsightsName: !empty(applicationInsightsName) ? applicationInsightsName : '${abbrs.insightsComponents}${resourceToken}'
+    applicationInsightsDashboardName: !empty(applicationInsightsDashboardName) ? applicationInsightsDashboardName : '${abbrs.portalDashboards}${resourceToken}'
   }
 }
 
 // Container apps host (including container registry)
-module containerApps './core/host/container-apps.bicep' = {
+module containerApps 'core/host/container-apps.bicep' = {
   name: 'container-apps'
   scope: rg
   params: {
-    environmentName: 'app'
+    name: 'app'
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
     location: location
@@ -109,29 +151,40 @@ module storageAccount 'core/storage/storage-account.bicep' = {
   name: 'storage'
   scope: rg
   params: {
-    environmentName: 'storage'
+    name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
     allowBlobPublicAccess: true
     location: location
+    containers: [
+      {
+        name: storageContainerName
+        publicAccess: 'Blob'
+      }
+    ]
   }
 }
 
-module cms './app/blog-cms.bicep' = {
+module cms './app/cms.bicep' = {
   name: 'cms'
   scope: rg
   params: {
+    name: !empty(cmsContainerAppName) ? cmsContainerAppName : '${abbrs.appContainerApps}cms-${resourceToken}'
+    location: location
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    applicationInsightsName: monitoring.outputs.applicationInsightsName
-    location: location
-    adminJwtSecret: adminJwtSecret
-    apiTokenSalt: apiTokenSalt
-    appKeys: appKeys
-    jwtSecret: jwtSecret
+    databaseHost: blogDb.outputs.POSTGRES_DOMAIN_NAME
+    databaseName: cmsDatabaseName
     databasePassword: cmsDatabasePassword
-    serverName: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
-    environmentName: environmentName
+    
+    appKeys: appKeys
+    apiTokenSalt: apiTokenSalt
+    jwtSecret: jwtSecret
+    adminJwtSecret: adminJwtSecret
+    
     storageAccountName: storageAccount.outputs.name
-    databaseName: 'strapi-${resourceToken}'
+    storageContainerName: storageContainerName
+    
+    keyVaultName: keyVault.outputs.name
   }
 }
 
@@ -139,12 +192,13 @@ module blog 'app/blog.bicep' = {
   name: 'blog'
   scope: rg
   params: {
-    cmsUrl: cms.outputs.SERVICE_BLOG_CMS_URI
+    name: !empty(blogContainerAppName) ? blogContainerAppName : '${abbrs.appContainerApps}blog-${resourceToken}'
+    location: location
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    applicationInsightsName: monitoring.outputs.applicationInsightsName
-    location: location
-    environmentName: environmentName
+    cmsUrl: cms.outputs.SERVICE_CMS_URI
+    keyVaultName: keyVault.outputs.name
   }
 }
 
@@ -152,36 +206,51 @@ module stripe 'app/stripe.bicep' = {
   name: 'stripe'
   scope: rg
   params: {
-    apiUrl: web.outputs.WEB_API_URI
-    stripePublicKey: stripePublicKey
-    stripeSecretKey: stripeSecretKey
-    stripeWebhookSecret: stripeWebhookSecret
+    name: !empty(stripeContainerAppName) ? stripeContainerAppName : '${abbrs.appContainerApps}stripe-${resourceToken}'
+    location: location
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    applicationInsightsName: monitoring.outputs.applicationInsightsName
-    location: location
-    environmentName: environmentName
+    apiUrl: ''
   }
 }
 
+
+// Data outputs
+output AZURE_COSMOS_CONNECTION_STRING_KEY string = cosmos.outputs.connectionStringKey
+output AZURE_COSMOS_DATABASE_NAME string = cosmos.outputs.databaseName
+
+// App outputs
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
 output APPLICATIONINSIGHTS_NAME string = monitoring.outputs.applicationInsightsName
-output AZURE_COSMOS_CONNECTION_STRING_KEY string = cosmos.outputs.cosmosConnectionStringKey
-output AZURE_COSMOS_DATABASE_NAME string = cosmos.outputs.cosmosDatabaseName
-output AZURE_KEY_VAULT_ENDPOINT string = keyVault.outputs.keyVaultEndpoint
+output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.environmentName
+output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.registryLoginServer
+output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.registryName
+output AZURE_KEY_VAULT_ENDPOINT string = keyVault.outputs.endpoint
+output AZURE_KEY_VAULT_NAME string = keyVault.outputs.name
 output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
+output REACT_APP_API_BASE_URL string = useAPIM ? apimApi.outputs.SERVICE_API_URI : api.outputs.SERVICE_API_URI
+output REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
+output REACT_APP_WEB_BASE_URL string = web.outputs.SERVICE_WEB_URI
+output SERVICE_API_NAME string = api.outputs.SERVICE_API_NAME
+output SERVICE_WEB_NAME string = web.outputs.SERVICE_WEB_NAME
+output USE_APIM bool = useAPIM
+output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI, api.outputs.SERVICE_API_URI ]: []
+
+
 output WEB_PORTAL_URI string = web.outputs.WEB_PORTAL_URI
 output WEB_API_URI string = web.outputs.WEB_API_URI
 output WEB_BLOG_URI string = blog.outputs.WEB_BLOG_URI
 output WEB_BLOG_NAME string = blog.outputs.WEB_BLOG_NAME
-output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.containerAppsEnvironmentName
-output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.containerRegistryEndpoint
-output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.containerRegistryName
+
 output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_BLOG_CMS_URI
 output SERVICE_BLOG_CMS_NAME string = cms.outputs.SERVICE_BLOG_CMS_NAME
 output SERVICE_STRIPE_URL string = stripe.outputs.SERVICE_STRIPE_URI
 output SERVICE_STRIPE_NAME string = stripe.outputs.SERVICE_STRIPE_NAME
+
 output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
+output STORAGE_CONTAINER_NAME string = storageContainerName
+
 output SERVICE_BLOG_CMS_SERVER_HOST string = cms.outputs.SERVICE_BLOG_CMS_SERVER_HOST
 output SERVICE_CMS_POSTGRESQL_DATABASE_NAME string = cms.outputs.SERVICE_BLOG_CMS_DATABASE_NAME

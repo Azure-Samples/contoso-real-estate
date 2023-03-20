@@ -2,14 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "name": {
+      "value": "${SERVICE_BLOG_NAME}"
+    },
     "location": {
       "value": "${AZURE_LOCATION}"
-    },
-    "environmentName": {
-      "value": "${AZURE_ENV_NAME}"
-    },
-    "imageName": {
-      "value": "${SERVICE_BLOG_IMAGE_NAME}"
     },
     "applicationInsightsName": {
       "value": "${APPLICATIONINSIGHTS_NAME}"
@@ -21,7 +18,16 @@
       "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
     },
     "cmsUrl": {
-      "value": "${SERVICE_BLOG_CMS_URI}"
+      "value": "${CMS_URL}"
+    },
+    "imageName": {
+      "value": "${SERVICE_BLOG_IMAGE_NAME}"
+    },
+    "keyVaultName": {
+      "value": "${AZURE_KEY_VAULT_NAME}"
+    },
+    "serviceName": {
+      "value": "blog"
     }
   }
 }

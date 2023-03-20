@@ -1,5 +1,6 @@
-param environmentName string
+param accountName string
 param location string = resourceGroup().location
+param tags object = {}
 
 param collections array = [
   {
@@ -15,20 +16,25 @@ param collections array = [
     indexKey: '_id'
   }
 ]
-param cosmosDatabaseName string = 'Todo'
+param databaseName string = ''
 param keyVaultName string
 
-module cosmos '../core/database/cosmos-mongo-db.bicep' = {
+// Because databaseName is optional in main.bicep, we make sure the database name is set here.
+var defaultDatabaseName = 'Todo'
+var actualDatabaseName = !empty(databaseName) ? databaseName : defaultDatabaseName
+
+module cosmos '../core/database/cosmos/mongo/cosmos-mongo-db.bicep' = {
   name: 'cosmos-mongo'
   params: {
-    environmentName: environmentName
+    accountName: accountName
+    databaseName: actualDatabaseName
     location: location
     collections: collections
-    cosmosDatabaseName: cosmosDatabaseName
     keyVaultName: keyVaultName
+    tags: tags
   }
 }
 
-output cosmosConnectionStringKey string = cosmos.outputs.cosmosConnectionStringKey
-output cosmosDatabaseName string = cosmosDatabaseName
-output cosmosEndpoint string = cosmos.outputs.cosmosEndpoint
+output connectionStringKey string = cosmos.outputs.connectionStringKey
+output databaseName string = cosmos.outputs.databaseName
+output endpoint string = cosmos.outputs.endpoint
