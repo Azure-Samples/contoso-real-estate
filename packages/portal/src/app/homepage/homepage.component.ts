@@ -18,7 +18,7 @@ import { IS_DEV_MODE } from "src/main";
 export class HomepageComponent implements OnInit {
   featuredListings: Listing[] = [];
   user = {} as User;
-  blogUrl = IS_DEV_MODE ? "https://aka.ms/contoso-real-estate/blog-prod" : "http://localhost:3000";
+  blogUrl = !IS_DEV_MODE ? "https://aka.ms/contoso-real-estate/blog-prod" : "http://localhost:3000";
   
   constructor(
     private listingService: ListingService,
