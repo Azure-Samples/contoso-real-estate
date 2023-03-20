@@ -6,6 +6,7 @@ import { FavoriteService } from "../shared/favorite.service";
 import { InfiniteScrollingDirective } from "../shared/infinite-scrolling.directive";
 import { ListingService } from "../shared/listing.service";
 import { UserService } from "../shared/user/user.service";
+import { IS_DEV_MODE } from "src/main";
 
 @Component({
   selector: "app-homepage",
@@ -17,6 +18,8 @@ import { UserService } from "../shared/user/user.service";
 export class HomepageComponent implements OnInit {
   featuredListings: Listing[] = [];
   user = {} as User;
+  blogUrl = !IS_DEV_MODE ? "https://aka.ms/contoso-real-estate/blog-prod" : "http://localhost:3000";
+  
   constructor(
     private listingService: ListingService,
     private favoriteService: FavoriteService,
