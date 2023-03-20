@@ -44,6 +44,26 @@ class MyDocument extends Document {
             </section>
           </main>
           <NextScript />
+          <footer className="footer">
+            <section className="inner-wrapper">
+              <p className="footer__copy">
+                ©2022 - JavaScript @ Contoso HR Rentals App
+              </p>
+              <span className="spacer"></span>
+              <div className="footer__links">
+                <a href="/">Portal</a>
+                <a href="/">About</a>
+                <a href="/">Terms of Service</a>
+              </div>
+            </section>
+            <a href="/" className="logo">
+              <img
+                src="/images/contoso-real-estate-logo.svg"
+                alt="logo contoso"
+                width="80"
+              />
+            </a>
+          </footer>
         </body>
       </Html>
     )

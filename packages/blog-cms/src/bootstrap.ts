@@ -48,7 +48,7 @@ function getFileSizeInBytes(filePath) {
 }
 
 function getFileData(fileName) {
-  const filePath = `./data/uploads/${fileName}`;
+  const filePath = `./data/uploads/images/${fileName}`;
 
   // Parse the file metadata
   const size = getFileSizeInBytes(filePath);
