@@ -19,11 +19,12 @@ export class AuthenticationComponent implements OnInit {
   redirectURL = "/home";
 
   providers = [
-    { name: "GitHub", id: "github" },
-    { name: "Google", id: "google" },
     { name: "Microsoft", id: "microsoft" },
-    { name: "Twitter", id: "twitter" },
     { name: "Facebook", id: "facebook" },
+    { name: "Google", id: "google" },
+    { name: "Twitter", id: "twitter" },
+    { name: "GitHub", id: "github" },
+    { name: "Apple", id: "apple" }
   ];
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
