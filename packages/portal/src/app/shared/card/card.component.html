@@ -12,7 +12,7 @@
       <mat-card-subtitle>{{ listing?.address?.[1] }}, {{ listing?.address?.[2] }}</mat-card-subtitle>
       <p class="listing-description">{{ listing?.description?.substr(0, 100) }}...</p>
 
-      <app-favorite-button class="listing-favorite__button" *appHasRole="[userRole.Admin, userRole.Renter]" [listing]="listing"></app-favorite-button>
+      <app-favorite-button class="listing-favorite__button" [class.hidden]="isOperationLoading" *appHasRole="[userRole.Admin, userRole.Renter]" [listing]="listing"></app-favorite-button>
     </mat-card-content>
     <mat-card-actions>
       <div>

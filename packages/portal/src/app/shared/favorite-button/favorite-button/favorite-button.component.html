@@ -1,6 +1,6 @@
 <button
   [disabled]="isOperationLoading"
-  *ngIf="this.listing?.$$isFavorited"
+  *ngIf="listing?.$$isFavorited"
   (click)="bookmark()"
   title="Remove this listing from favorites"
 >
@@ -10,7 +10,7 @@
 </button>
 <button
   [disabled]="isOperationLoading"
-  *ngIf="!this.listing?.$$isFavorited"
+  *ngIf="!listing?.$$isFavorited"
   (click)="bookmark()"
   title="Save this listing"
 >

@@ -52,13 +52,13 @@ img {
   }
 }
 
-.is-loading {
-  opacity: 0.2;
-}
-
 .listing-favorite__button {
   z-index: 1;
   right: -14px;
   top: 0px;
   position: absolute;
+}
+
+.listing-favorite__button.hidden {
+  display: none;
 }
