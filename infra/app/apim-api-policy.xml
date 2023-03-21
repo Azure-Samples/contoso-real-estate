@@ -1,0 +1,92 @@
+<!-- Policy configuration for the API. Explore other sample policies at https://learn.microsoft.com/en-us/azure/api-management/policies/ -->
+<policies>
+    <inbound>
+        <base />
+        <!-- This policy is needed to handle preflight requests using the OPTIONS method. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-cross-domain-policies  -->
+        <cors allow-credentials="false">
+            <allowed-origins>
+                <origin>{origin}</origin>
+            </allowed-origins>
+            <allowed-methods>
+                <method>PUT</method>
+                <method>GET</method>
+                <method>POST</method>
+                <method>DELETE</method>
+                <method>PATCH</method>
+            </allowed-methods>
+            <allowed-headers>
+                <header>*</header>
+            </allowed-headers>
+            <expose-headers>
+                <header>*</header>
+            </expose-headers>
+        </cors>
+        <!-- Optional policy to validate the request content. Learn more at https://learn.microsoft.com/en-us/azure/api-management/validation-policies#validate-content -->
+        <validate-content unspecified-content-type-action="ignore" max-size="1024" size-exceeded-action="detect" errors-variable-name="requestBodyValidation">
+            <content type="application/json" validate-as="json" action="detect" />
+        </validate-content>
+        <!-- Optional policy to send custom trace telemetry to Application Insights. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace -->
+        <trace source="@(context.Api.Name)" severity="verbose">
+            <message>Call to the @(context.Api.Name)</message>
+            <metadata name="User-Agent" value="@(context.Request.Headers.GetValueOrDefault("User-Agent",""))" />
+            <metadata name="Operation Method" value="@(context.Request.Method)" />
+            <metadata name="Host" value="@(context.Request.Url.Host)" />
+            <metadata name="Path" value="@(context.Request.Url.Path)" />
+        </trace>
+    </inbound>
+    <backend>
+        <limit-concurrency key="@(context.Request.IpAddress)" max-count="3">
+            <forward-request timeout="120" />
+        </limit-concurrency>
+    </backend>
+    <outbound>
+        <base />
+        <!-- Optional policy to validate the response headers. Learn more at https://learn.microsoft.com/en-us/azure/api-management/validation-policies#validate-headers -->
+        <validate-headers specified-header-action="ignore" unspecified-header-action="ignore" errors-variable-name="responseHeadersValidation" />
+        <!-- Optional policy to to send custom metrics to Application Insights. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#emit-metrics -->
+        <choose>
+            <when condition="@(context.Response.StatusCode >= 200 && context.Response.StatusCode < 300)">
+                <emit-metric name="Successful requests" value="1" namespace="apim-metrics">
+                    <dimension name="API" value="@(context.Api.Name)" />
+                    <dimension name="Client IP" value="@(context.Request.IpAddress)" />
+                    <dimension name="Status Code" value="@((String)context.Response.StatusCode.ToString())" />
+                    <dimension name="Status Reason" value="@(context.Response.StatusReason)" />
+                </emit-metric>
+            </when>
+            <when condition="@(context.Response.StatusCode >= 400 && context.Response.StatusCode < 600)">
+                <emit-metric name="Failed requests" value="1" namespace="apim-metrics">
+                    <dimension name="API" value="@(context.Api.Name)" />
+                    <dimension name="Client IP" value="@(context.Request.IpAddress)" />
+                    <dimension name="Status Code" value="@(context.Response.StatusCode.ToString())" />
+                    <dimension name="Status Reason" value="@(context.Response.StatusReason)" />
+                    <dimension name="Error Source" value="backend" />
+                </emit-metric>
+            </when>
+        </choose>
+    </outbound>
+    <on-error>
+        <base />
+        <!-- Optional policy to handle errors. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-error-handling-policies -->
+        <trace source="@(context.Api.Name)" severity="error">
+            <message>Failed to process the @(context.Api.Name)</message>
+            <metadata name="User-Agent" value="@(context.Request.Headers.GetValueOrDefault("User-Agent",""))" />
+            <metadata name="Operation Method" value="@(context.Request.Method)" />
+            <metadata name="Host" value="@(context.Request.Url.Host)" />
+            <metadata name="Path" value="@(context.Request.Url.Path)" />
+            <metadata name="Error Reason" value="@(context.LastError.Reason)" />
+            <metadata name="Error Message" value="@(context.LastError.Message)" />
+        </trace>
+        <emit-metric name="Failed requests" value="1" namespace="apim-metrics">
+            <dimension name="API" value="@(context.Api.Name)" />
+            <dimension name="Client IP" value="@(context.Request.IpAddress)" />
+            <dimension name="Status Code" value="500" />
+            <dimension name="Status Reason" value="@(context.LastError.Reason)" />
+            <dimension name="Error Source" value="gateway" />
+        </emit-metric>
+        <!-- Optional policy to hide error details and provide a custom generic message. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ReturnResponse -->
+        <return-response>
+            <set-status code="500" reason="Internal Server Error" />
+            <set-body>An unexpected error has occurred.</set-body>
+        </return-response>
+    </on-error>
+</policies>

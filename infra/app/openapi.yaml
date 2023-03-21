@@ -1,0 +1,173 @@
+openapi: 3.0.3
+
+info:
+  title: Contoso Real Estate Stripe API - OpenAPI 3.0
+  description: |-
+    This is the Stripe integration server for Contoso Real Estate company.
+  version: 1.0.0
+  contact: {}
+
+servers:
+  - url: /
+    description: Hosted production endpoint
+  - url: http://localhost:4242
+    description: Local dev server
+
+tags:
+  - name: stripe
+    description: Related to Stripe integrations
+
+paths:
+  /stripe/checkout:
+    post:
+      tags:
+        - stripe
+      summary: Create Stripe checkout session
+      description: Create Stripe checkout session
+      operationId: createCheckoutSession
+      requestBody:
+        description: Checkout session object to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CheckoutRequest"
+      responses:
+        "200":
+          description: OK - Returns the session URL
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CheckoutSession"
+        "400":
+          description: Bad Request - Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "5XX":
+          description: Internal Server Error - Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /stripe/webhook:
+    post:
+      summary: Stripe webhook endpoint
+      description: Stripe webhook endpoint
+      tags:
+        - stripe
+      operationId: webhook
+      responses:
+        "200":
+          description: OK - Webhook event processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+        "400":
+          description: Bad Request - Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "5XX":
+          description: Internal Server Error - Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    CheckoutRequest:
+      type: object
+      required:
+        - productName
+        - userId
+        - reservationId
+        - listingId
+        - guests
+        - from
+        - to
+        - amount
+        - currency
+        - createdAt
+      properties:
+        productName:
+          type: string
+          description: Product name
+          example: "Big house in the city"
+        userId:
+          type: string
+          format: uuid
+          description: ID of the user who made reservation
+          example: "3bc1f3a89eb2dde64e827aea"
+        reservationId:
+          type: string
+          description: ID of the reservation associated
+          example: "62b1f3a89eb2dde64e827aea"
+        listingId:
+          type: string
+          description: ID of the listing associated
+          example: "22b1f3a89eb2dde64e827aea"
+        guests:
+          type: integer
+          description: number of guests in reservation
+          example: 2
+        from:
+          type: string
+          format: date-time
+          description: reservation from date
+          example: "2020-01-01T00:00:00.000Z"
+        to:
+          type: string
+          format: date-time
+          description: reservation to date
+          example: "2020-01-01T00:00:00.000Z"
+        amount:
+          type: integer
+          description: Amount of the payment, in cents
+          example: 100
+        currency:
+          type: string
+          description: Currency of the payment
+          example: usd
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the reservation was created
+          example: "2020-01-01T00:00:00.000Z"
+
+    CheckoutSession:
+      type: object
+      required:
+        - sessionUrl
+      properties:
+        sessionUrl:
+          type: string
+          description: The URL of the checkout session
+          example: "https://pay.here.com"
+
+    Message:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: The status message
+          example: "Operation successful"
+
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: error message
+          example: "A detailed error message"

@@ -12,6 +12,7 @@ param location string
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
 
+param apimServiceName string = ''
 param applicationInsightsDashboardName string = ''
 param applicationInsightsName string = ''
 param blogContainerAppName string = ''
@@ -51,6 +52,9 @@ param stripeSecretKey string
 
 @secure()
 param stripeWebhookSecret string
+
+@description('Flag to use Azure API Management to mediate the calls between the Web frontend and the backend API')
+param useAPIM bool = false
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -163,6 +167,33 @@ module storageAccount 'core/storage/storage-account.bicep' = {
   }
 }
 
+// Creates Azure API Management (APIM) service to mediate the requests between the frontend and the backend API
+module apim 'core/gateway/apim.bicep' = if (useAPIM) {
+  name: 'apim-deployment'
+  scope: rg
+  params: {
+    name: !empty(apimServiceName) ? apimServiceName : '${abbrs.apiManagementService}${resourceToken}'
+    location: location
+    tags: tags
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
+  }
+}
+
+// Configures the API in the Azure API Management (APIM) service
+module apimApi '../../../../../common/infra/bicep/app/apim-api.bicep' = if (useAPIM) {
+  name: 'apim-api-deployment'
+  scope: rg
+  params: {
+    name: useAPIM ? apim.outputs.apimServiceName : ''
+    apiName: 'todo-api'
+    apiDisplayName: 'Simple Todo API'
+    apiDescription: 'This is a simple Todo API'
+    apiPath: 'todo'
+    webFrontendUrl: web.outputs.SERVICE_WEB_URI
+    apiBackendUrl: api.outputs.SERVICE_API_URI
+  }
+}
+
 module cms './app/cms.bicep' = {
   name: 'cms'
   scope: rg
@@ -212,6 +243,9 @@ module stripe 'app/stripe.bicep' = {
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
     apiUrl: ''
+    stripeSecretKey: stripeSecretKey
+    stripePublicKey: stripePublicKey
+    stripeWebhookSecret: stripeWebhookSecret
   }
 }
 
