@@ -1,17 +1,15 @@
-param environmentName string
+param name string
 param location string = resourceGroup().location
+param tags object = {}
 
-param cosmosConnectionStringKey string = 'AZURE-COSMOS-CONNECTION-STRING'
+param connectionStringKey string = 'AZURE-COSMOS-CONNECTION-STRING'
 param keyVaultName string
+
 @allowed([ 'GlobalDocumentDB', 'MongoDB', 'Parse' ])
 param kind string
 
-var abbrs = loadJsonContent('../../abbreviations.json')
-var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
-var tags = { 'azd-env-name': environmentName }
-
-resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2022-05-15' = {
-  name: '${abbrs.documentDBDatabaseAccounts}${resourceToken}'
+resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2022-08-15' = {
+  name: name
   kind: kind
   location: location
   tags: tags
@@ -34,7 +32,7 @@ resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2022-05-15' = {
 
 resource cosmosConnectionString 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   parent: keyVault
-  name: cosmosConnectionStringKey
+  name: connectionStringKey
   properties: {
     value: cosmos.listConnectionStrings().connectionStrings[0].connectionString
   }
@@ -44,6 +42,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
   name: keyVaultName
 }
 
-output cosmosEndpoint string = cosmos.properties.documentEndpoint
-output cosmosConnectionStringKey string = cosmosConnectionStringKey
-output cosmosResourceId string = cosmos.id
+output connectionStringKey string = connectionStringKey
+output endpoint string = cosmos.properties.documentEndpoint
+output id string = cosmos.id
+output name string = cosmos.name

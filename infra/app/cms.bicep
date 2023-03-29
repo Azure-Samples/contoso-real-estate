@@ -1,64 +1,39 @@
-param environmentName string
+param name string
 param location string = resourceGroup().location
-
-param applicationInsightsName string
-param containerAppsEnvironmentName string
-param containerRegistryName string
-param imageName string = ''
-param serviceName string = 'cms'
-param databaseName string = 'strapi'
-param databaseUsername string = 'contoso'
-param appKeys string
-param apiTokenSalt string
-
-@secure()
-param databasePassword string
-
-@secure()
-param jwtSecret string
+param tags object = {}
 
 @secure()
 param adminJwtSecret string
-
-param serverName string
-
+@secure()
+param apiTokenSalt string
+@secure()
+param appKeys string
+param applicationInsightsName string
+param containerAppsEnvironmentName string
+param containerRegistryName string
+param databaseHost string
+param databaseName string = 'strapi'
+@secure()
+param databasePassword string
+param databaseUsername string = 'contoso'
+param imageName string = ''
+@secure()
+param jwtSecret string
+param keyVaultName string
+param serviceName string = 'cms'
 param storageAccountName string
+param storageContainerName string
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {
-  name: storageAccountName
-}
-
-resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2021-06-01' existing = {
-  name: '${storageAccount.name}/default'
-}
-
-resource storageContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-09-01' = {
-  name: 'strapi'
-  parent: blobService
-  properties: {
-    publicAccess: 'Blob'
-  }
-}
-
-module db '../core/database/postgres.bicep' = {
-  name: '${serviceName}-database-module'
-  params: {
-    administratorLogin: databaseUsername
-    administratorLoginPassword: databasePassword
-    location: location
-    serverName: serverName
-    databaseName: databaseName
-  }
-}
-
-module app '../core/host/container-app.bicep' = {
+module cms '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
   params: {
-    environmentName: environmentName
-    serviceName: serviceName
+    name: name
     location: location
+    tags: union(tags, { 'azd-service-name': serviceName })
     containerAppsEnvironmentName: containerAppsEnvironmentName
     containerRegistryName: containerRegistryName
+    containerCpuCoreCount: '1.0'
+    containerMemory: '2.0Gi'
     env: [
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
@@ -66,7 +41,7 @@ module app '../core/host/container-app.bicep' = {
       }
       {
         name: 'DATABASE_HOST'
-        value: db.outputs.SERVER_HOST
+        value: databaseHost
       }
       {
         name: 'DATABASE_USERNAME'
@@ -89,7 +64,7 @@ module app '../core/host/container-app.bicep' = {
         value: appKeys
       }
       {
-        name: 'API_TOKEN_SALT'
+        name: 'CMS_TOKEN_SALT'
         value: apiTokenSalt
       }
       {
@@ -110,14 +85,19 @@ module app '../core/host/container-app.bicep' = {
       }
       {
         name: 'STORAGE_CONTAINER_NAME'
-        value: storageContainer.name
+        value: storageContainerName
       }
       {
         name: 'STORAGE_URL'
         value: storageAccount.properties.primaryEndpoints.blob
       }
+      {
+        name: 'AZURE_KEY_VAULT_ENDPOINT'
+        value: keyVault.properties.vaultUri
+      }
     ]
     imageName: !empty(imageName) ? imageName : 'nginx:latest'
+    keyVaultName: keyVault.name
     targetPort: 1337
   }
 }
@@ -126,10 +106,15 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing
   name: applicationInsightsName
 }
 
-output SERVICE_BLOG_CMS_IDENTITY_PRINCIPAL_ID string = app.outputs.identityPrincipalId
-output SERVICE_BLOG_CMS_NAME string = app.outputs.name
-output SERVICE_BLOG_CMS_URI string = app.outputs.uri
-output SERVICE_BLOG_CMS_IMAGE_NAME string = app.outputs.imageName
-output SERVICE_BLOG_CMS_SERVER_NAME string = db.name
-output SERVICE_BLOG_CMS_DATABASE_NAME string = db.outputs.DB_NAME
-output SERVICE_BLOG_CMS_SERVER_HOST string = db.outputs.SERVER_HOST
+resource keyVault 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
+  name: keyVaultName
+}
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {
+  name: storageAccountName
+}
+
+output SERVICE_CMS_IDENTITY_PRINCIPAL_ID string = cms.outputs.identityPrincipalId
+output SERVICE_CMS_NAME string = cms.outputs.name
+output SERVICE_CMS_URI string = cms.outputs.uri
+output SERVICE_CMS_IMAGE_NAME string = cms.outputs.imageName

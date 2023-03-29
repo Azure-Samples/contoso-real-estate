@@ -1,22 +1,17 @@
-param environmentName string
+param name string
 param location string = resourceGroup().location
-param applicationInsightsName string = ''
+param tags object = {}
+
 param serviceName string = 'portal'
 
-var swaNames = [
-  'portal'
-]
-
-module web '../core/host/staticwebapps.bicep' = [for name in swaNames: {
-  name: 'static-sites-resources-${name}'
+module web '../core/host/staticwebapp.bicep' = {
+  name: '${serviceName}-staticwebapp-module'
   params: {
-    environmentName: environmentName
+    name: name
     location: location
-    serviceName: serviceName
-    applicationInsightsName: applicationInsightsName
+    tags: union(tags, { 'azd-service-name': serviceName })
   }
-}]
+}
 
-output WEB_PORTAL_NAME string = web[0].outputs.name
-output WEB_PORTAL_URI string = web[0].outputs.uri
-output WEB_API_URI string = web[0].outputs.apiUri
+output SERVICE_WEB_NAME string = web.outputs.name
+output SERVICE_WEB_URI string = web.outputs.uri
