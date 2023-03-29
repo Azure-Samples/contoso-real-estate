@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: contoso-real-estate
+services:
+  portal:
+    project: packages/portal
+    language: ts
+    host: staticwebapp
+    module: app/web
+
+  api:
+    project: packages/api
+    language: ts
+    host: function
+    module: app/api
+
+  cms:
+    project: packages/blog-cms
+    host: containerapp
+    module: app/cms
+
+  blog:
+    project: packages/blog
+    host: containerapp
+    module: app/blog
+
+  stripe:
+    project: packages/stripe
+    host: containerapp
+    module: app/stripe
