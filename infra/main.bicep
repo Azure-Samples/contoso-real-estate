@@ -27,6 +27,8 @@ param webServiceName string = ''
 param storageAccountName string
 param storageContainerName string
 param stripeContainerAppName string = ''
+param apiServiceName string = ''
+param appServicePlanName string = ''
 
 @secure()
 param appKeys string
@@ -54,7 +56,7 @@ param stripeSecretKey string
 param stripeWebhookSecret string
 
 @description('Flag to use Azure API Management to mediate the calls between the Web frontend and the backend API')
-param useAPIM bool = false
+param useAPIM bool = true
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -66,52 +68,8 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   tags: tags
 }
 
-// The application frontend
-module web './app/web.bicep' = {
-  name: 'web'
-  scope: rg
-  params: {
-    name: !empty(webServiceName) ? webServiceName : '${abbrs.webStaticSites}web-${resourceToken}'
-    location: location
-    tags: tags
-  }
-}
 
-// The application database
-module cosmos 'app/db.bicep' = {
-  name: 'cosmos'
-  scope: rg
-  params: {
-    accountName: !empty(cosmosAccountName) ? cosmosAccountName : '${abbrs.documentDBDatabaseAccounts}${resourceToken}'
-    databaseName: cosmosDatabaseName
-    location: location
-    tags: tags
-    keyVaultName: keyVault.outputs.name
-  }
-}
-
-// The application database
-module blogDb 'core/database/postgresql/flexibleserver.bicep' = {
-  name: 'postgresql'
-  scope: rg
-  params: {
-    name: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
-    location: location
-    tags: tags
-    sku: {
-      name: 'Standard_B1ms'
-      tier: 'Burstable'
-    }
-    storage: {
-      storageSizeGB: 32
-    }
-    version: '13'
-    administratorLogin: cmsDatabaseUser
-    administratorLoginPassword: cmsDatabasePassword
-    databaseNames: [cmsDatabaseName]
-    allowAzureIPsFirewall: true
-  }
-}
+/////////// Common ///////////
 
 // Store secrets in a keyvault
 module keyVault 'core/security/keyvault.bicep' = {
@@ -180,7 +138,7 @@ module apim 'core/gateway/apim.bicep' = if (useAPIM) {
 }
 
 // Configures the API in the Azure API Management (APIM) service
-module apimApi '../../../../../common/infra/bicep/app/apim-api.bicep' = if (useAPIM) {
+module apimApi 'app/apim-api.bicep' = if (useAPIM) {
   name: 'apim-api-deployment'
   scope: rg
   params: {
@@ -193,6 +151,69 @@ module apimApi '../../../../../common/infra/bicep/app/apim-api.bicep' = if (useA
     apiBackendUrl: api.outputs.SERVICE_API_URI
   }
 }
+
+/////////// Portal ///////////
+
+// The application frontend
+module web './app/web.bicep' = {
+  name: 'web'
+  scope: rg
+  params: {
+    name: !empty(webServiceName) ? webServiceName : '${abbrs.webStaticSites}web-${resourceToken}'
+    location: location
+    tags: tags
+  }
+}
+
+// The application database
+module cosmos 'app/db.bicep' = {
+  name: 'cosmos'
+  scope: rg
+  params: {
+    accountName: !empty(cosmosAccountName) ? cosmosAccountName : '${abbrs.documentDBDatabaseAccounts}${resourceToken}'
+    databaseName: cosmosDatabaseName
+    location: location
+    tags: tags
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
+/////////// Portal API ///////////
+
+module appServicePlan './core/host/appserviceplan.bicep' = {
+  name: 'appserviceplan'
+  scope: rg
+  params: {
+    name: !empty(appServicePlanName) ? appServicePlanName : '${abbrs.webServerFarms}${resourceToken}'
+    location: location
+    tags: tags
+    sku: {
+      name: 'Y1'
+      tier: 'Dynamic'
+    }
+  }
+}
+
+module api './app/api.bicep' = {
+  name: 'api'
+  scope: rg
+  params: {
+    name: !empty(apiServiceName) ? apiServiceName : '${abbrs.webSitesFunctions}api-${resourceToken}'
+    location: location
+    tags: tags
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
+    appServicePlanId: appServicePlan.outputs.id
+    keyVaultName: keyVault.outputs.name
+    storageAccountName: storageAccount.outputs.name
+    allowedOrigins: [ web.outputs.SERVICE_WEB_URI ]
+    appSettings: {
+      AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionStringKey
+      AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
+      AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint }
+  }
+}
+
+/////////// CMS ///////////
 
 module cms './app/cms.bicep' = {
   name: 'cms'
@@ -219,6 +240,31 @@ module cms './app/cms.bicep' = {
   }
 }
 
+// The cms database
+module blogDb 'core/database/postgresql/flexibleserver.bicep' = {
+  name: 'postgresql'
+  scope: rg
+  params: {
+    name: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
+    location: location
+    tags: tags
+    sku: {
+      name: 'Standard_B1ms'
+      tier: 'Burstable'
+    }
+    storage: {
+      storageSizeGB: 32
+    }
+    version: '13'
+    administratorLogin: cmsDatabaseUser
+    administratorLoginPassword: cmsDatabasePassword
+    databaseNames: [cmsDatabaseName]
+    allowAzureIPsFirewall: true
+  }
+}
+
+/////////// Blog ///////////
+
 module blog 'app/blog.bicep' = {
   name: 'blog'
   scope: rg
@@ -232,6 +278,8 @@ module blog 'app/blog.bicep' = {
     keyVaultName: keyVault.outputs.name
   }
 }
+
+/////////// Payment API ///////////
 
 module stripe 'app/stripe.bicep' = {
   name: 'stripe'
@@ -273,18 +321,17 @@ output USE_APIM bool = useAPIM
 output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI, api.outputs.SERVICE_API_URI ]: []
 
 
-output WEB_PORTAL_URI string = web.outputs.WEB_PORTAL_URI
-output WEB_API_URI string = web.outputs.WEB_API_URI
-output WEB_BLOG_URI string = blog.outputs.WEB_BLOG_URI
-output WEB_BLOG_NAME string = blog.outputs.WEB_BLOG_NAME
+output WEB_PORTAL_URI string = web.outputs.SERVICE_WEB_URI
+output WEB_BLOG_URI string = blog.outputs.SERVICE_BLOG_URI
+output WEB_BLOG_NAME string = blog.outputs.SERVICE_BLOG_NAME
 
-output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_BLOG_CMS_URI
-output SERVICE_BLOG_CMS_NAME string = cms.outputs.SERVICE_BLOG_CMS_NAME
+output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_CMS_URI
+output SERVICE_BLOG_CMS_NAME string = cms.outputs.SERVICE_CMS_NAME
 output SERVICE_STRIPE_URL string = stripe.outputs.SERVICE_STRIPE_URI
 output SERVICE_STRIPE_NAME string = stripe.outputs.SERVICE_STRIPE_NAME
 
 output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
 output STORAGE_CONTAINER_NAME string = storageContainerName
 
-output SERVICE_BLOG_CMS_SERVER_HOST string = cms.outputs.SERVICE_BLOG_CMS_SERVER_HOST
-output SERVICE_CMS_POSTGRESQL_DATABASE_NAME string = cms.outputs.SERVICE_BLOG_CMS_DATABASE_NAME
+output SERVICE_BLOG_CMS_SERVER_HOST string = blogDb.outputs.POSTGRES_DOMAIN_NAME
+// output SERVICE_CMS_POSTGRESQL_DATABASE_NAME string = cms.outputs.SERVICE_BLOG_CMS_DATABASE_NAME
