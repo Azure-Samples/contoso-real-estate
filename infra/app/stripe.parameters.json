@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "value": "${SERVICE_STRIPE_NAME}"
+    },
+    "location": {
+      "value": "${AZURE_LOCATION}"
+    },
+    "applicationInsightsName": {
+      "value": "${APPLICATIONINSIGHTS_NAME}"
+    },
+    "containerAppsEnvironmentName": {
+      "value": "${AZURE_CONTAINER_ENVIRONMENT_NAME}"
+    },
+    "containerRegistryName": {
+      "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
+    },
+    "apiUrl": {
+      "value": "${SERVICE_API_URI}"
+    },
+    "imageName": {
+      "value": "${SERVICE_STRIPE_IMAGE_NAME}"
+    },
+    "serviceName": {
+      "value": "stripe"
+    },
+    "stripePublicKey": {
+      "value": "${STRIPE_PUBLIC_KEY}"
+    },
+    "stripeSecretKey": {
+      "value": "${STRIPE_SECRET_KEY}"
+    },
+    "stripeWebhookSecret": {
+      "value": "${STRIPE_WEBHOOK_SECRET}"
+    }
+  }
+}
