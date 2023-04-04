@@ -5,11 +5,7 @@ import Nav from "./nav"
 const Stage = ({ homepage, categories }) => {
   return (
     <div className="stage">
-      <img
-        src="/images/contoso-real-estate-logo.svg"
-        alt="logo contoso"
-        width="200"
-      />
+      <span>Logo goes here</span>
       <h1>{homepage.attributes.hero.title}</h1>
       <a href="/" className="button">
         Visit the portal
