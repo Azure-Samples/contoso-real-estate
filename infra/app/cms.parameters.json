@@ -27,7 +27,7 @@
       "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
     },
     "cmsDatabaseHost": {
-      "value": "${CMS_DATABASE_HOST}"
+      "value": "${SERVICE_CMS_SERVER_HOST}"
     },
     "cmsDatabaseName": {
       "value": "strapi"

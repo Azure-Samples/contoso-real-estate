@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.15.31.15270",
-      "templateHash": "6259125280062255798"
+      "templateHash": "9560286699339839346"
     }
   },
   "parameters": {
@@ -80,10 +80,12 @@
       "defaultValue": ""
     },
     "storageAccountName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": ""
     },
     "storageContainerName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": ""
     },
     "stripeContainerAppName": {
       "type": "string",
@@ -2203,7 +2205,7 @@
           "containers": {
             "value": [
               {
-                "name": "[parameters('storageContainerName')]",
+                "name": "[if(not(empty(parameters('storageAccountName'))), parameters('storageAccountName'), format('{0}{1}', variables('abbrs').storageStorageAccounts, variables('resourceToken')))]",
                 "publicAccess": "Blob"
               }
             ]
@@ -2318,7 +2320,7 @@
       "condition": "[parameters('useAPIM')]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
-      "name": "apim-deployment",
+      "name": "apim",
       "resourceGroup": "[format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -2335,6 +2337,9 @@
           },
           "applicationInsightsName": {
             "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'monitoring'), '2020-10-01').outputs.applicationInsightsName.value]"
+          },
+          "sku": {
+            "value": "Developer"
           }
         },
         "template": {
@@ -2460,7 +2465,7 @@
       "condition": "[parameters('useAPIM')]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
-      "name": "apim-api-deployment",
+      "name": "apim-api",
       "resourceGroup": "[format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -2468,7 +2473,7 @@
         },
         "mode": "Incremental",
         "parameters": {
-          "name": "[if(parameters('useAPIM'), createObject('value', reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim-deployment'), '2020-10-01').outputs.apimServiceName.value), createObject('value', ''))]",
+          "name": "[if(parameters('useAPIM'), createObject('value', reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim'), '2020-10-01').outputs.apimServiceName.value), createObject('value', ''))]",
           "apiName": {
             "value": "todo-api"
           },
@@ -2482,7 +2487,7 @@
             "value": "todo"
           },
           "webFrontendUrl": {
-            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'web'), '2020-10-01').outputs.SERVICE_WEB_URI.value]"
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal'), '2020-10-01').outputs.SERVICE_WEB_URI.value]"
           },
           "apiBackendUrl": {
             "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'api'), '2020-10-01').outputs.SERVICE_API_URI.value]"
@@ -2495,7 +2500,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.15.31.15270",
-              "templateHash": "11676158822926004889"
+              "templateHash": "520669213587853752"
             }
           },
           "parameters": {
@@ -2542,20 +2547,12 @@
               "metadata": {
                 "description": "Absolute URL of the backend service implementing this API."
               }
-            },
-            "apiAppName": {
-              "type": "string",
-              "defaultValue": "",
-              "metadata": {
-                "description": "Resource name for backend Web App or Function App"
-              }
             }
           },
           "variables": {
             "$fxv#0": "<!-- Policy configuration for the API. Explore other sample policies at https://learn.microsoft.com/en-us/azure/api-management/policies/ -->\n<policies>\n    <inbound>\n        <base />\n        <!-- This policy is needed to handle preflight requests using the OPTIONS method. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-cross-domain-policies  -->\n        <cors allow-credentials=\"false\">\n            <allowed-origins>\n                <origin>{origin}</origin>\n            </allowed-origins>\n            <allowed-methods>\n                <method>PUT</method>\n                <method>GET</method>\n                <method>POST</method>\n                <method>DELETE</method>\n                <method>PATCH</method>\n            </allowed-methods>\n            <allowed-headers>\n                <header>*</header>\n            </allowed-headers>\n            <expose-headers>\n                <header>*</header>\n            </expose-headers>\n        </cors>\n        <!-- Optional policy to validate the request content. Learn more at https://learn.microsoft.com/en-us/azure/api-management/validation-policies#validate-content -->\n        <validate-content unspecified-content-type-action=\"ignore\" max-size=\"1024\" size-exceeded-action=\"detect\" errors-variable-name=\"requestBodyValidation\">\n            <content type=\"application/json\" validate-as=\"json\" action=\"detect\" />\n        </validate-content>\n        <!-- Optional policy to send custom trace telemetry to Application Insights. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace -->\n        <trace source=\"@(context.Api.Name)\" severity=\"verbose\">\n            <message>Call to the @(context.Api.Name)</message>\n            <metadata name=\"User-Agent\" value=\"@(context.Request.Headers.GetValueOrDefault(\"User-Agent\",\"\"))\" />\n            <metadata name=\"Operation Method\" value=\"@(context.Request.Method)\" />\n            <metadata name=\"Host\" value=\"@(context.Request.Url.Host)\" />\n            <metadata name=\"Path\" value=\"@(context.Request.Url.Path)\" />\n        </trace>\n    </inbound>\n    <backend>\n        <limit-concurrency key=\"@(context.Request.IpAddress)\" max-count=\"3\">\n            <forward-request timeout=\"120\" />\n        </limit-concurrency>\n    </backend>\n    <outbound>\n        <base />\n        <!-- Optional policy to validate the response headers. Learn more at https://learn.microsoft.com/en-us/azure/api-management/validation-policies#validate-headers -->\n        <validate-headers specified-header-action=\"ignore\" unspecified-header-action=\"ignore\" errors-variable-name=\"responseHeadersValidation\" />\n        <!-- Optional policy to to send custom metrics to Application Insights. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#emit-metrics -->\n        <choose>\n            <when condition=\"@(context.Response.StatusCode >= 200 && context.Response.StatusCode < 300)\">\n                <emit-metric name=\"Successful requests\" value=\"1\" namespace=\"apim-metrics\">\n                    <dimension name=\"API\" value=\"@(context.Api.Name)\" />\n                    <dimension name=\"Client IP\" value=\"@(context.Request.IpAddress)\" />\n                    <dimension name=\"Status Code\" value=\"@((String)context.Response.StatusCode.ToString())\" />\n                    <dimension name=\"Status Reason\" value=\"@(context.Response.StatusReason)\" />\n                </emit-metric>\n            </when>\n            <when condition=\"@(context.Response.StatusCode >= 400 && context.Response.StatusCode < 600)\">\n                <emit-metric name=\"Failed requests\" value=\"1\" namespace=\"apim-metrics\">\n                    <dimension name=\"API\" value=\"@(context.Api.Name)\" />\n                    <dimension name=\"Client IP\" value=\"@(context.Request.IpAddress)\" />\n                    <dimension name=\"Status Code\" value=\"@(context.Response.StatusCode.ToString())\" />\n                    <dimension name=\"Status Reason\" value=\"@(context.Response.StatusReason)\" />\n                    <dimension name=\"Error Source\" value=\"backend\" />\n                </emit-metric>\n            </when>\n        </choose>\n    </outbound>\n    <on-error>\n        <base />\n        <!-- Optional policy to handle errors. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-error-handling-policies -->\n        <trace source=\"@(context.Api.Name)\" severity=\"error\">\n            <message>Failed to process the @(context.Api.Name)</message>\n            <metadata name=\"User-Agent\" value=\"@(context.Request.Headers.GetValueOrDefault(\"User-Agent\",\"\"))\" />\n            <metadata name=\"Operation Method\" value=\"@(context.Request.Method)\" />\n            <metadata name=\"Host\" value=\"@(context.Request.Url.Host)\" />\n            <metadata name=\"Path\" value=\"@(context.Request.Url.Path)\" />\n            <metadata name=\"Error Reason\" value=\"@(context.LastError.Reason)\" />\n            <metadata name=\"Error Message\" value=\"@(context.LastError.Message)\" />\n        </trace>\n        <emit-metric name=\"Failed requests\" value=\"1\" namespace=\"apim-metrics\">\n            <dimension name=\"API\" value=\"@(context.Api.Name)\" />\n            <dimension name=\"Client IP\" value=\"@(context.Request.IpAddress)\" />\n            <dimension name=\"Status Code\" value=\"500\" />\n            <dimension name=\"Status Reason\" value=\"@(context.LastError.Reason)\" />\n            <dimension name=\"Error Source\" value=\"gateway\" />\n        </emit-metric>\n        <!-- Optional policy to hide error details and provide a custom generic message. Learn more at https://learn.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ReturnResponse -->\n        <return-response>\n            <set-status code=\"500\" reason=\"Internal Server Error\" />\n            <set-body>An unexpected error has occurred.</set-body>\n        </return-response>\n    </on-error>\n</policies>\n",
             "$fxv#1": "openapi: 3.0.3\n\ninfo:\n  title: Contoso Real Estate Stripe API - OpenAPI 3.0\n  description: |-\n    This is the Stripe integration server for Contoso Real Estate company.\n  version: 1.0.0\n  contact: {}\n\nservers:\n  - url: /\n    description: Hosted production endpoint\n  - url: http://localhost:4242\n    description: Local dev server\n\ntags:\n  - name: stripe\n    description: Related to Stripe integrations\n\npaths:\n  /stripe/checkout:\n    post:\n      tags:\n        - stripe\n      summary: Create Stripe checkout session\n      description: Create Stripe checkout session\n      operationId: createCheckoutSession\n      requestBody:\n        description: Checkout session object to be created\n        required: true\n        content:\n          application/json:\n            schema:\n              $ref: \"#/components/schemas/CheckoutRequest\"\n      responses:\n        \"200\":\n          description: OK - Returns the session URL\n          content:\n            application/json:\n              schema:\n                type: array\n                items:\n                  $ref: \"#/components/schemas/CheckoutSession\"\n        \"400\":\n          description: Bad Request - Invalid request\n          content:\n            application/json:\n              schema:\n                $ref: \"#/components/schemas/Error\"\n        \"5XX\":\n          description: Internal Server Error - Something went wrong\n          content:\n            application/json:\n              schema:\n                $ref: \"#/components/schemas/Error\"\n\n  /stripe/webhook:\n    post:\n      summary: Stripe webhook endpoint\n      description: Stripe webhook endpoint\n      tags:\n        - stripe\n      operationId: webhook\n      responses:\n        \"200\":\n          description: OK - Webhook event processed successfully\n          content:\n            application/json:\n              schema:\n                $ref: \"#/components/schemas/Message\"\n        \"400\":\n          description: Bad Request - Invalid request\n          content:\n            application/json:\n              schema:\n                $ref: \"#/components/schemas/Error\"\n        \"5XX\":\n          description: Internal Server Error - Something went wrong\n          content:\n            application/json:\n              schema:\n                $ref: \"#/components/schemas/Error\"\n\ncomponents:\n  schemas:\n    CheckoutRequest:\n      type: object\n      required:\n        - productName\n        - userId\n        - reservationId\n        - listingId\n        - guests\n        - from\n        - to\n        - amount\n        - currency\n        - createdAt\n      properties:\n        productName:\n          type: string\n          description: Product name\n          example: \"Big house in the city\"\n        userId:\n          type: string\n          format: uuid\n          description: ID of the user who made reservation\n          example: \"3bc1f3a89eb2dde64e827aea\"\n        reservationId:\n          type: string\n          description: ID of the reservation associated\n          example: \"62b1f3a89eb2dde64e827aea\"\n        listingId:\n          type: string\n          description: ID of the listing associated\n          example: \"22b1f3a89eb2dde64e827aea\"\n        guests:\n          type: integer\n          description: number of guests in reservation\n          example: 2\n        from:\n          type: string\n          format: date-time\n          description: reservation from date\n          example: \"2020-01-01T00:00:00.000Z\"\n        to:\n          type: string\n          format: date-time\n          description: reservation to date\n          example: \"2020-01-01T00:00:00.000Z\"\n        amount:\n          type: integer\n          description: Amount of the payment, in cents\n          example: 100\n        currency:\n          type: string\n          description: Currency of the payment\n          example: usd\n        createdAt:\n          type: string\n          format: date-time\n          description: Timestamp of when the reservation was created\n          example: \"2020-01-01T00:00:00.000Z\"\n\n    CheckoutSession:\n      type: object\n      required:\n        - sessionUrl\n      properties:\n        sessionUrl:\n          type: string\n          description: The URL of the checkout session\n          example: \"https://pay.here.com\"\n\n    Message:\n      type: object\n      required:\n        - message\n      properties:\n        message:\n          type: string\n          description: The status message\n          example: \"Operation successful\"\n\n    Error:\n      type: object\n      required:\n        - error\n      properties:\n        error:\n          type: string\n          description: error message\n          example: \"A detailed error message\"\n",
-            "apiPolicyContent": "[replace(variables('$fxv#0'), '{origin}', parameters('webFrontendUrl'))]",
-            "appNameForBicep": "[if(not(empty(parameters('apiAppName'))), parameters('apiAppName'), 'placeholderName')]"
+            "apiPolicyContent": "[replace(variables('$fxv#0'), '{origin}', parameters('webFrontendUrl'))]"
           },
           "resources": [
             {
@@ -2631,39 +2628,31 @@
               "dependsOn": [
                 "[resourceId('Microsoft.ApiManagement/service/apis', parameters('name'), parameters('apiName'))]"
               ]
-            },
-            {
-              "condition": "[not(empty(parameters('apiAppName')))]",
-              "type": "Microsoft.Web/sites/config",
-              "apiVersion": "2022-03-01",
-              "name": "[format('{0}/web', variables('appNameForBicep'))]",
-              "kind": "string",
-              "properties": {
-                "apiManagementConfig": {
-                  "id": "[format('{0}/apis/{1}', resourceId('Microsoft.ApiManagement/service', parameters('name')), parameters('apiName'))]"
-                }
-              }
             }
           ],
           "outputs": {
             "SERVICE_API_URI": {
               "type": "string",
               "value": "[format('{0}/{1}', reference(resourceId('Microsoft.ApiManagement/service', parameters('name')), '2021-08-01').gatewayUrl, parameters('apiPath'))]"
+            },
+            "SERVICE_API_ID": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.ApiManagement/service', parameters('name'))]"
             }
           }
         }
       },
       "dependsOn": [
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'api')]",
-        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim-deployment')]",
-        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName')))]",
-        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'web')]"
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal')]",
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName')))]"
       ]
     },
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
-      "name": "web",
+      "name": "portal",
       "resourceGroup": "[format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -2686,7 +2675,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.15.31.15270",
-              "templateHash": "11264259933851615995"
+              "templateHash": "10025739935774068369"
             }
           },
           "parameters": {
@@ -2725,6 +2714,12 @@
                   },
                   "tags": {
                     "value": "[union(parameters('tags'), createObject('azd-service-name', parameters('serviceName')))]"
+                  },
+                  "sku": {
+                    "value": {
+                      "name": "Standard",
+                      "tier": "Standard"
+                    }
                   }
                 },
                 "template": {
@@ -2734,7 +2729,7 @@
                     "_generator": {
                       "name": "bicep",
                       "version": "0.15.31.15270",
-                      "templateHash": "1017832834019341477"
+                      "templateHash": "11562025600321405194"
                     }
                   },
                   "parameters": {
@@ -2766,7 +2761,7 @@
                       "tags": "[parameters('tags')]",
                       "sku": "[parameters('sku')]",
                       "properties": {
-                        "provider": "Custom"
+                        "provider": "SwaCli"
                       }
                     }
                   ],
@@ -2797,6 +2792,91 @@
         }
       },
       "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName')))]"
+      ]
+    },
+    {
+      "condition": "[parameters('useAPIM')]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "portal-apim",
+      "resourceGroup": "[format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "name": "[if(parameters('useAPIM'), createObject('value', reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim'), '2020-10-01').outputs.apimServiceName.value), createObject('value', ''))]",
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "tags": {
+            "value": "[variables('tags')]"
+          },
+          "useAPIM": {
+            "value": "[parameters('useAPIM')]"
+          },
+          "portalName": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal'), '2020-10-01').outputs.SERVICE_WEB_NAME.value]"
+          },
+          "apimId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim-api'), '2020-10-01').outputs.SERVICE_API_ID.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.15.31.15270",
+              "templateHash": "16172405734469243244"
+            }
+          },
+          "parameters": {
+            "name": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]"
+            },
+            "tags": {
+              "type": "object",
+              "defaultValue": {}
+            },
+            "useAPIM": {
+              "type": "bool"
+            },
+            "portalName": {
+              "type": "string"
+            },
+            "apimId": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "condition": "[parameters('useAPIM')]",
+              "type": "Microsoft.Web/staticSites/linkedBackends",
+              "apiVersion": "2022-03-01",
+              "name": "[format('{0}/{1}', parameters('portalName'), parameters('name'))]",
+              "location": "[parameters('location')]",
+              "tags": "[parameters('tags')]",
+              "properties": {
+                "backendResourceId": {
+                  "id": "[parameters('apimId')]"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim-api')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal')]",
         "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName')))]"
       ]
     },
@@ -3349,7 +3429,7 @@
           },
           "allowedOrigins": {
             "value": [
-              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'web'), '2020-10-01').outputs.SERVICE_WEB_URI.value]"
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal'), '2020-10-01').outputs.SERVICE_WEB_URI.value]"
             ]
           },
           "appSettings": {
@@ -3906,9 +3986,9 @@
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'cosmos')]",
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'keyvault')]",
         "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'monitoring')]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal')]",
         "[subscriptionResourceId('Microsoft.Resources/resourceGroups', format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName')))]",
-        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'storage')]",
-        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'web')]"
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'storage')]"
       ]
     },
     {
@@ -4532,7 +4612,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.15.31.15270",
-              "templateHash": "9189368325195437767"
+              "templateHash": "13943220151296430559"
             }
           },
           "parameters": {
@@ -4610,7 +4690,7 @@
                         "value": "[reference(resourceId('Microsoft.Insights/components', parameters('applicationInsightsName')), '2020-02-02').ConnectionString]"
                       },
                       {
-                        "name": "NEXT_PUBLIC_STRBLOG_URL",
+                        "name": "NEXT_PUBLIC_BLOG_URL",
                         "value": "[parameters('cmsUrl')]"
                       }
                     ]
@@ -4833,7 +4913,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.15.31.15270",
-              "templateHash": "16596080835609823842"
+              "templateHash": "8472928663245224094"
             }
           },
           "parameters": {
@@ -4866,7 +4946,7 @@
             },
             "serviceName": {
               "type": "string",
-              "defaultValue": "cms"
+              "defaultValue": "stripe"
             },
             "stripePublicKey": {
               "type": "string"
@@ -5151,7 +5231,7 @@
     },
     "REACT_APP_API_BASE_URL": {
       "type": "string",
-      "value": "[if(parameters('useAPIM'), reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim-api-deployment'), '2020-10-01').outputs.SERVICE_API_URI.value, reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'api'), '2020-10-01').outputs.SERVICE_API_URI.value)]"
+      "value": "[if(parameters('useAPIM'), reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim-api'), '2020-10-01').outputs.SERVICE_API_URI.value, reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'api'), '2020-10-01').outputs.SERVICE_API_URI.value)]"
     },
     "REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING": {
       "type": "string",
@@ -5159,7 +5239,7 @@
     },
     "REACT_APP_WEB_BASE_URL": {
       "type": "string",
-      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'web'), '2020-10-01').outputs.SERVICE_WEB_URI.value]"
+      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal'), '2020-10-01').outputs.SERVICE_WEB_URI.value]"
     },
     "SERVICE_API_NAME": {
       "type": "string",
@@ -5167,7 +5247,7 @@
     },
     "SERVICE_WEB_NAME": {
       "type": "string",
-      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'web'), '2020-10-01').outputs.SERVICE_WEB_NAME.value]"
+      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal'), '2020-10-01').outputs.SERVICE_WEB_NAME.value]"
     },
     "USE_APIM": {
       "type": "bool",
@@ -5175,29 +5255,29 @@
     },
     "SERVICE_API_ENDPOINTS": {
       "type": "array",
-      "value": "[if(parameters('useAPIM'), createArray(reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim-api-deployment'), '2020-10-01').outputs.SERVICE_API_URI.value, reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'api'), '2020-10-01').outputs.SERVICE_API_URI.value), createArray())]"
+      "value": "[if(parameters('useAPIM'), createArray(reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'apim-api'), '2020-10-01').outputs.SERVICE_API_URI.value, reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'api'), '2020-10-01').outputs.SERVICE_API_URI.value), createArray())]"
     },
-    "WEB_PORTAL_URI": {
+    "SERVICE_WEB_URI": {
       "type": "string",
-      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'web'), '2020-10-01').outputs.SERVICE_WEB_URI.value]"
+      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'portal'), '2020-10-01').outputs.SERVICE_WEB_URI.value]"
     },
-    "WEB_BLOG_URI": {
+    "SERVICE_BLOG_URI": {
       "type": "string",
       "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'blog'), '2020-10-01').outputs.SERVICE_BLOG_URI.value]"
     },
-    "WEB_BLOG_NAME": {
+    "SERVICE_BLOG_NAME": {
       "type": "string",
       "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'blog'), '2020-10-01').outputs.SERVICE_BLOG_NAME.value]"
     },
-    "SERVICE_BLOG_CMS_URL": {
+    "SERVICE_CMS_URI": {
       "type": "string",
       "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'cms'), '2020-10-01').outputs.SERVICE_CMS_URI.value]"
     },
-    "SERVICE_BLOG_CMS_NAME": {
+    "SERVICE_CMS_NAME": {
       "type": "string",
       "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'cms'), '2020-10-01').outputs.SERVICE_CMS_NAME.value]"
     },
-    "SERVICE_STRIPE_URL": {
+    "SERVICE_STRIPE_URI": {
       "type": "string",
       "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'stripe'), '2020-10-01').outputs.SERVICE_STRIPE_URI.value]"
     },
@@ -5213,7 +5293,7 @@
       "type": "string",
       "value": "[parameters('storageContainerName')]"
     },
-    "SERVICE_BLOG_CMS_SERVER_HOST": {
+    "SERVICE_CMS_SERVER_HOST": {
       "type": "string",
       "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName'))), 'Microsoft.Resources/deployments', 'postgresql'), '2020-10-01').outputs.POSTGRES_DOMAIN_NAME.value]"
     }

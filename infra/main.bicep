@@ -24,8 +24,8 @@ param cosmosDatabaseName string = ''
 param keyVaultName string = ''
 param logAnalyticsName string = ''
 param webServiceName string = ''
-param storageAccountName string
-param storageContainerName string
+param storageAccountName string = ''
+param storageContainerName string = ''
 param stripeContainerAppName string = ''
 param apiServiceName string = ''
 param appServicePlanName string = ''
@@ -72,7 +72,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 /////////// Common ///////////
 
 // Store secrets in a keyvault
-module keyVault 'core/security/keyvault.bicep' = {
+module keyVault './core/security/keyvault.bicep' = {
   name: 'keyvault'
   scope: rg
   params: {
@@ -84,7 +84,7 @@ module keyVault 'core/security/keyvault.bicep' = {
 }
 
 // Monitor application with Azure Monitor
-module monitoring 'core/monitor/monitoring.bicep' = {
+module monitoring './core/monitor/monitoring.bicep' = {
   name: 'monitoring'
   scope: rg
   params: {
@@ -97,7 +97,7 @@ module monitoring 'core/monitor/monitoring.bicep' = {
 }
 
 // Container apps host (including container registry)
-module containerApps 'core/host/container-apps.bicep' = {
+module containerApps './core/host/container-apps.bicep' = {
   name: 'container-apps'
   scope: rg
   params: {
@@ -109,7 +109,7 @@ module containerApps 'core/host/container-apps.bicep' = {
   }
 }
 
-module storageAccount 'core/storage/storage-account.bicep' = {
+module storageAccount './core/storage/storage-account.bicep' = {
   name: 'storage'
   scope: rg
   params: {
@@ -118,7 +118,7 @@ module storageAccount 'core/storage/storage-account.bicep' = {
     location: location
     containers: [
       {
-        name: storageContainerName
+        name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
         publicAccess: 'Blob'
       }
     ]
@@ -126,20 +126,21 @@ module storageAccount 'core/storage/storage-account.bicep' = {
 }
 
 // Creates Azure API Management (APIM) service to mediate the requests between the frontend and the backend API
-module apim 'core/gateway/apim.bicep' = if (useAPIM) {
-  name: 'apim-deployment'
+module apim './core/gateway/apim.bicep' = if (useAPIM) {
+  name: 'apim'
   scope: rg
   params: {
     name: !empty(apimServiceName) ? apimServiceName : '${abbrs.apiManagementService}${resourceToken}'
     location: location
     tags: tags
     applicationInsightsName: monitoring.outputs.applicationInsightsName
+    sku: 'Developer'
   }
 }
 
 // Configures the API in the Azure API Management (APIM) service
-module apimApi 'app/apim-api.bicep' = if (useAPIM) {
-  name: 'apim-api-deployment'
+module apimApi './app/apim-api.bicep' = if (useAPIM) {
+  name: 'apim-api'
   scope: rg
   params: {
     name: useAPIM ? apim.outputs.apimServiceName : ''
@@ -180,7 +181,7 @@ module portalApim './app/portal-apim.bicep' = if (useAPIM) {
 }
 
 // The application database
-module cosmos 'app/db.bicep' = {
+module cosmos './app/db.bicep' = {
   name: 'cosmos'
   scope: rg
   params: {
@@ -238,7 +239,7 @@ module cms './app/cms.bicep' = {
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    databaseHost: blogDb.outputs.POSTGRES_DOMAIN_NAME
+    databaseHost: cmsDB.outputs.POSTGRES_DOMAIN_NAME
     databaseName: cmsDatabaseName
     databasePassword: cmsDatabasePassword
 
@@ -255,7 +256,7 @@ module cms './app/cms.bicep' = {
 }
 
 // The cms database
-module blogDb 'core/database/postgresql/flexibleserver.bicep' = {
+module cmsDB './core/database/postgresql/flexibleserver.bicep' = {
   name: 'postgresql'
   scope: rg
   params: {
@@ -279,7 +280,7 @@ module blogDb 'core/database/postgresql/flexibleserver.bicep' = {
 
 /////////// Blog ///////////
 
-module blog 'app/blog.bicep' = {
+module blog './app/blog.bicep' = {
   name: 'blog'
   scope: rg
   params: {
@@ -295,7 +296,7 @@ module blog 'app/blog.bicep' = {
 
 /////////// Payment API ///////////
 
-module stripe 'app/stripe.bicep' = {
+module stripe './app/stripe.bicep' = {
   name: 'stripe'
   scope: rg
   params: {
@@ -336,16 +337,15 @@ output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI
 
 
 output SERVICE_WEB_URI string = portal.outputs.SERVICE_WEB_URI
-output WEB_BLOG_URI string = blog.outputs.SERVICE_BLOG_URI
-output WEB_BLOG_NAME string = blog.outputs.SERVICE_BLOG_NAME
+output SERVICE_BLOG_URI string = blog.outputs.SERVICE_BLOG_URI
+output SERVICE_BLOG_NAME string = blog.outputs.SERVICE_BLOG_NAME
 
-output SERVICE_BLOG_CMS_URL string = cms.outputs.SERVICE_CMS_URI
-output SERVICE_BLOG_CMS_NAME string = cms.outputs.SERVICE_CMS_NAME
-output SERVICE_STRIPE_URL string = stripe.outputs.SERVICE_STRIPE_URI
+output SERVICE_CMS_URI string = cms.outputs.SERVICE_CMS_URI
+output SERVICE_CMS_NAME string = cms.outputs.SERVICE_CMS_NAME
+output SERVICE_STRIPE_URI string = stripe.outputs.SERVICE_STRIPE_URI
 output SERVICE_STRIPE_NAME string = stripe.outputs.SERVICE_STRIPE_NAME
 
 output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
 output STORAGE_CONTAINER_NAME string = storageContainerName
 
-output SERVICE_BLOG_CMS_SERVER_HOST string = blogDb.outputs.POSTGRES_DOMAIN_NAME
-// output SERVICE_CMS_POSTGRESQL_DATABASE_NAME string = cms.outputs.SERVICE_BLOG_CMS_DATABASE_NAME
+output SERVICE_CMS_SERVER_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME

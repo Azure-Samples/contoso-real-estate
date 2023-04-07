@@ -18,7 +18,7 @@
       "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
     },
     "cmsUrl": {
-      "value": "${CMS_URL}"
+      "value": "${SERVICE_CMS_URI}"
     },
     "imageName": {
       "value": "${SERVICE_BLOG_IMAGE_NAME}"

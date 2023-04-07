@@ -13,7 +13,7 @@ resource web 'Microsoft.Web/staticSites@2022-03-01' = {
   tags: tags
   sku: sku
   properties: {
-    provider: 'Custom'
+    provider: 'SwaCli'
   }
 }
 
