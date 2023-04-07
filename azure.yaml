@@ -4,9 +4,10 @@ name: contoso-real-estate
 services:
   portal:
     project: packages/portal
+    dist: dist/contoso-app
     language: ts
     host: staticwebapp
-    module: app/web
+    module: app/portal
 
   api:
     project: packages/api
@@ -28,3 +29,5 @@ services:
     project: packages/stripe
     host: containerapp
     module: app/stripe
+    docker:
+      context: ../..
