@@ -34,6 +34,9 @@
     },
     "stripeWebhookSecret": {
       "value": "${STRIPE_WEBHOOK_SECRET}"
+    },
+    "cmsDatabaseHost": {
+      "value": "${SERVICE_CMS_SERVER_HOST}"
     }
   }
 }

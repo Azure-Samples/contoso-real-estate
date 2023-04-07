@@ -8,7 +8,7 @@ param applicationInsightsName string
 param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
-param serviceName string = 'cms'
+param serviceName string = 'stripe'
 param stripePublicKey string
 @secure()
 param stripeSecretKey string
