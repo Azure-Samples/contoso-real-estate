@@ -147,7 +147,7 @@ module apimApi 'app/apim-api.bicep' = if (useAPIM) {
     apiDisplayName: 'Simple Todo API'
     apiDescription: 'This is a simple Todo API'
     apiPath: 'todo'
-    webFrontendUrl: web.outputs.SERVICE_WEB_URI
+    webFrontendUrl: portal.outputs.SERVICE_WEB_URI
     apiBackendUrl: api.outputs.SERVICE_API_URI
   }
 }
@@ -155,13 +155,27 @@ module apimApi 'app/apim-api.bicep' = if (useAPIM) {
 /////////// Portal ///////////
 
 // The application frontend
-module web './app/web.bicep' = {
-  name: 'web'
+module portal './app/portal.bicep' = {
+  name: 'portal'
   scope: rg
   params: {
     name: !empty(webServiceName) ? webServiceName : '${abbrs.webStaticSites}web-${resourceToken}'
     location: location
     tags: tags
+  }
+}
+
+
+// the linked APIM
+module portalApim './app/portal-apim.bicep' = if (useAPIM) {
+  name: 'portal-apim'
+  scope: rg
+  params: {
+    name: useAPIM ? apim.outputs.apimServiceName : ''
+    location: location
+    tags: tags
+    useAPIM: useAPIM
+    portalName: portal.outputs.SERVICE_WEB_NAME
   }
 }
 
@@ -205,7 +219,7 @@ module api './app/api.bicep' = {
     appServicePlanId: appServicePlan.outputs.id
     keyVaultName: keyVault.outputs.name
     storageAccountName: storageAccount.outputs.name
-    allowedOrigins: [ web.outputs.SERVICE_WEB_URI ]
+    allowedOrigins: [ portal.outputs.SERVICE_WEB_URI ]
     appSettings: {
       AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionStringKey
       AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
@@ -314,14 +328,14 @@ output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
 output REACT_APP_API_BASE_URL string = useAPIM ? apimApi.outputs.SERVICE_API_URI : api.outputs.SERVICE_API_URI
 output REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
-output REACT_APP_WEB_BASE_URL string = web.outputs.SERVICE_WEB_URI
+output REACT_APP_WEB_BASE_URL string = portal.outputs.SERVICE_WEB_URI
 output SERVICE_API_NAME string = api.outputs.SERVICE_API_NAME
-output SERVICE_WEB_NAME string = web.outputs.SERVICE_WEB_NAME
+output SERVICE_WEB_NAME string = portal.outputs.SERVICE_WEB_NAME
 output USE_APIM bool = useAPIM
 output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI, api.outputs.SERVICE_API_URI ]: []
 
 
-output WEB_PORTAL_URI string = web.outputs.SERVICE_WEB_URI
+output SERVICE_WEB_URI string = portal.outputs.SERVICE_WEB_URI
 output WEB_BLOG_URI string = blog.outputs.SERVICE_BLOG_URI
 output WEB_BLOG_NAME string = blog.outputs.SERVICE_BLOG_NAME
 
