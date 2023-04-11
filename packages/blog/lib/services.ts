@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { fetchAPI } from "../lib/api"
+import { fetchAPI } from "./api"
 
 export const loadHomePage = async () => {
   const response = await fetchAPI("/homepage", {

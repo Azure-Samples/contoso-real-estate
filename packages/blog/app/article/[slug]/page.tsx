@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import CustomImage from "../../../components/image"
 import { getStrapiMedia } from "../../../lib/media"
-import { loadArticle } from "../../services"
+import { loadArticle } from "../../../lib/services"
 
 export async function generateMetadata({ params }) {
   const article = await loadArticle(params.slug)

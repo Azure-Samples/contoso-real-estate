@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { loadCategories } from "../app/services"
+import { loadCategories } from "../lib/services"
 
 const Nav = async () => {
   const categories = await loadCategories()

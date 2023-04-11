@@ -4,7 +4,7 @@ import Script from "next/script"
 import "../assets/css/style.css"
 import Layout from "../components/layout"
 import { getStrapiMedia } from "../lib/media"
-import { loadGlobal, loadHomePage } from "./services"
+import { loadGlobal, loadHomePage } from "../lib/services"
 
 export async function generateMetadata() {
   const global = await loadGlobal()

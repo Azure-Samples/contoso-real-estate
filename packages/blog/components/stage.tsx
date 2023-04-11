@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { loadHomePage } from "../app/services"
+import { loadHomePage } from "../lib/services"
 import Nav from "./nav"
 
 const Stage = async () => {
