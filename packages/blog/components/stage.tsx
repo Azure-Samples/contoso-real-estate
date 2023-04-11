@@ -1,8 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-import React from "react"
+import Link from "next/link"
+import { loadHomePage } from "../app/services"
 import Nav from "./nav"
 
-const Stage = ({ homepage, categories }) => {
+const Stage = async () => {
+  const homepage = await loadHomePage()
   return (
     <div className="stage">
       <img
@@ -11,10 +12,12 @@ const Stage = ({ homepage, categories }) => {
         width="200"
       />
       <h1>{homepage.attributes.hero.title}</h1>
-      <a href="/" className="button">
+
+      <Link href="/" className="button">
         Visit the portal
-      </a>
-      <Nav categories={categories} />
+      </Link>
+      {/* @ts-expect-error Async Server Component */}
+      <Nav />
     </div>
   )
 }

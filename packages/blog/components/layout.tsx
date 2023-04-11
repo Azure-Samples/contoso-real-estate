@@ -1,3 +1,3 @@
-const Layout = ({ children, categories }) => <>{children}</>
+const Layout = ({ children }) => <>{children}</>
 
 export default Layout
