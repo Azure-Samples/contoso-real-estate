@@ -1,5 +1,7 @@
+import moment from "moment"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
+import CustomImage from "../../../components/image"
 import { getStrapiMedia } from "../../../lib/media"
 import { loadArticle } from "../../services"
 
@@ -32,22 +34,18 @@ export default async function CategoryPage({ params }) {
           <hr className="uk-divider-small" />
           <div className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <div>
-              {/* 
-              TODO
               {article.attributes.author.picture && (
-                <NextImage
+                <CustomImage
                   image={article.attributes.author.data.attributes.picture}
                 />
-              )} */}
+              )}
             </div>
             <div className="uk-width-expand">
               <p className="uk-margin-remove-bottom">
                 By {article.attributes.author.data.attributes.name}
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
-                {/* TODO <Moment format="MMM Do YYYY">
-                  {article.attributes.published_at}
-                </Moment> */}
+                {moment(article.attributes.publishedAt).format("MMM Do YYYY")}
               </p>
             </div>
           </div>

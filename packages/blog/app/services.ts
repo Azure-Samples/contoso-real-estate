@@ -21,7 +21,6 @@ export const loadArticle = async (slug: string) => {
   if (response.data.length === 0) {
     notFound()
   }
-  console.log(response.data)
 
   return response.data[0]
 }
