@@ -6,6 +6,8 @@ import Layout from "../components/layout"
 import { getStrapiMedia } from "../lib/media"
 import { loadGlobal, loadHomePage } from "../lib/services"
 
+export const revalidate = 0
+
 export async function generateMetadata() {
   const global = await loadGlobal()
   const homepage = await loadHomePage()
@@ -22,7 +24,7 @@ export async function generateMetadata() {
   return metadata
 }
 
-const inter = Staatliches({
+const font = Staatliches({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -41,7 +43,7 @@ export default async function RootLayout({
           href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css"
         />
       </head>
-      <body className={inter.className}>
+      <body className={font.className}>
         <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"
           strategy="afterInteractive"
