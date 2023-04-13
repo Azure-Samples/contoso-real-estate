@@ -1,4 +1,3 @@
-import moment from "moment"
 import ReactMarkdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import CustomImage from "../../../components/image"
@@ -45,7 +44,7 @@ export default async function CategoryPage({ params }) {
                 By {article.attributes.author.data.attributes.name}
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
-                {moment(article.attributes.publishedAt).format("MMM Do YYYY")}
+                {formatDate(article.attributes.publishedAt)}
               </p>
             </div>
           </div>
@@ -53,4 +52,16 @@ export default async function CategoryPage({ params }) {
       </div>
     </>
   )
+}
+
+const formatDate = (inputDate: string) => {
+  const date = new Date(inputDate)
+
+  const dateFormat = new Intl.DateTimeFormat("en-US", {
+    month: "short", // Use abbreviated month name
+    day: "numeric", // Use ordinal day of the month
+    year: "numeric", // Use full year
+  })
+
+  return dateFormat.format(date)
 }
