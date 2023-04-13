@@ -22,7 +22,8 @@
     "react-markdown": "^8.0.4",
     "react-moment": "^1.1.2",
     "rehype-raw": "^6.1.1",
-    "rehype-sanitize": "^5.0.1"
+    "rehype-sanitize": "^5.0.1",
+    "uikit": "^3.16.14"
   },
   "license": "MIT",
   "devDependencies": {

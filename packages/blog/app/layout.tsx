@@ -1,6 +1,9 @@
 import { Metadata } from "next"
 import { Staatliches } from "next/font/google"
-import Script from "next/script"
+import "uikit/dist/css/uikit.min.css"
+import "uikit/dist/js/uikit-icons.min.js"
+import "uikit/dist/js/uikit.min.js"
+
 import "../assets/css/style.css"
 import Layout from "../components/layout"
 import { getStrapiMedia } from "../lib/media"
@@ -37,26 +40,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css"
-        />
-      </head>
       <body className={font.className}>
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js"
-          strategy="afterInteractive"
-        />
-
         <Layout>
           <header className="header">
             <span>Logo goes here</span>
