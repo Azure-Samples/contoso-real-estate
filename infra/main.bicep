@@ -312,6 +312,17 @@ module stripe './app/stripe.bicep' = {
   }
 }
 
+module events './core/pubsub/event-hub.bicep' = {
+  name: 'events'
+  scope: rg
+  params: {
+    name: '${abbrs.eventHubNamespacesEventHubs}${resourceToken}'
+    location: location
+    tags: tags
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
 
 // Data outputs
 output AZURE_COSMOS_CONNECTION_STRING_KEY string = cosmos.outputs.connectionStringKey
@@ -349,3 +360,6 @@ output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
 output STORAGE_CONTAINER_NAME string = storageContainerName
 
 output SERVICE_CMS_SERVER_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
+
+output SERVICE_EVENT_HUB_ENDPOINT string = events.outputs.SERVICE_EVENT_HUB_ENDPOINT
+output SERVICE_EVENT_HUB_CONNECTION_STRING_KEY string = events.outputs.SERVICE_EVENT_HUB_CONNECTION_STRING_KEY
