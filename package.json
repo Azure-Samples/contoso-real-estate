@@ -41,5 +41,8 @@
     "printWidth": 120,
     "bracketSpacing": true,
     "arrowParens": "avoid"
+  },
+  "dependencies": {
+    "@strapi/plugin-graphql": "^4.9.1"
   }
 }
