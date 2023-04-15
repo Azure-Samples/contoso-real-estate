@@ -8,5 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchpageComponent implements OnInit {
 
-
+  async ngOnInit() {
+    console.log('searchpage');
+  }
 }
