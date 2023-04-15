@@ -10,6 +10,11 @@ export const ROUTES: Routes = [
     pathMatch: "full",
   },
   {
+    path: "search",
+    pathMatch: "full",
+    loadComponent: () => import("./searchpage/searchpage.component").then(m => m.SearchpageComponent),
+  },
+  {
     resolve: {
       user: UserService,
     },
