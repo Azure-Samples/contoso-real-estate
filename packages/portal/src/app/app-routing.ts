@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { HomepageComponent } from "./homepage/homepage.component";
 import { AuthGuard } from "./shared/guards/auth-guard.service";
 import { UserService } from "./shared/user/user.service";
+import { SearchpageComponent } from "./searchpage/searchpage.component";
 
 export const ROUTES: Routes = [
   {
@@ -12,7 +13,7 @@ export const ROUTES: Routes = [
   {
     path: "search",
     pathMatch: "full",
-    loadComponent: () => import("./searchpage/searchpage.component").then(m => m.SearchpageComponent),
+    component: SearchpageComponent,
   },
   {
     resolve: {

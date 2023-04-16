@@ -6,13 +6,20 @@ import { ROUTES } from "./app/app-routing";
 import { AppComponent } from "./app/app.component";
 import { UserService } from "./app/shared/user/user.service";
 import { environment } from "./environments/environment";
+import { Apollo } from "apollo-angular";
 
 if (environment.production) {
   enableProdMode();
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [importProvidersFrom(RouterModule.forRoot(ROUTES)), provideAnimations()],
+  providers: [
+    importProvidersFrom(
+      RouterModule.forRoot(ROUTES),
+    ),
+    provideAnimations(),
+    Apollo
+  ],
 }).then(async app => {
   const userService = app.injector.get(UserService);
   await userService.fetchAndStoreUserSession();
