@@ -1,6 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { Observable } from 'rxjs';
 
 export interface SearchResult {
   result: Listing
@@ -22,12 +21,11 @@ query getResults($term: String!) {
 @Injectable({
   providedIn: 'root'
 })
-
 export class SearchService {
 
   constructor(
-    @Inject(Apollo) private apollo: Apollo
-  ) { }
+    private apollo: Apollo
+  ) {}
 
   getResults = (term: string) => {
     return this.apollo.watchQuery<SearchResult>({
