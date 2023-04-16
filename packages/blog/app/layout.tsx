@@ -1,5 +1,4 @@
 import { Metadata } from "next"
-import { Staatliches } from "next/font/google"
 import "uikit/dist/css/uikit.min.css"
 import "uikit/dist/js/uikit-icons.min.js"
 import "uikit/dist/js/uikit.min.js"
@@ -27,12 +26,6 @@ export async function generateMetadata() {
   return metadata
 }
 
-const font = Staatliches({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-})
-
 export default async function RootLayout({
   children,
 }: {
@@ -40,7 +33,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body>
         <Layout>
           <header className="header">
             <span>Logo goes here</span>

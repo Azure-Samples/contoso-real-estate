@@ -1,4 +1,4 @@
-export interface IImageResponse {
+export interface ImageResponse {
   id: number
   attributes: {
     name: string
@@ -25,7 +25,7 @@ export interface IImageResponse {
   }
 }
 
-export interface IHomepageResponse {
+export interface HomepageResponse {
   id: number
   attributes: {
     createdAt: string
@@ -39,7 +39,7 @@ export interface IHomepageResponse {
       metaTitle: string
       metaDescription: string
       shareImage: {
-        data: IImageResponse
+        data: ImageResponse
       }
     }
   }
