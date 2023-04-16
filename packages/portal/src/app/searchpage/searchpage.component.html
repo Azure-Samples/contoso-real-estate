@@ -1,3 +1,14 @@
 <section class=" inner-wrapper">
   <h2 class="subtitle">Browse Listings</h2>
+  <div class="container">
+    <form class="searchform" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+        <mat-label>Search for tattoo artists</mat-label>
+        <input matInput [formControl]="searchTerm" formControlName="term" placeholder="Search a Rental">
+        <mat-hint>Search an Artist by name</mat-hint>
+        </mat-form-field>
+        <button mat-stroked-button color="primary">Search
+        </button>
+    </form>
+    </div>
 </section>
