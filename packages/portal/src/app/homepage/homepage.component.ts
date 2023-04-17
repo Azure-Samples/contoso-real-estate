@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { environment } from "../../environments/environment";
@@ -13,12 +14,13 @@ import { UserService } from "../shared/user/user.service";
   templateUrl: "./homepage.component.html",
   styleUrls: ["./homepage.component.scss"],
   standalone: true,
-  imports: [CardListComponent, MatButtonModule, MatDividerModule, InfiniteScrollingDirective],
+  imports: [CommonModule, CardListComponent, MatButtonModule, MatDividerModule, InfiniteScrollingDirective],
 })
 export class HomepageComponent implements OnInit {
   featuredListings: Listing[] = [];
   user = {} as User;
   blogUrl = environment.blogUrl;
+  noresults = "Searching for featured listings. Please wait...";
 
   constructor(
     private listingService: ListingService,
