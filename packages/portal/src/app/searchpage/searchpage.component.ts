@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { CardListComponent } from '../shared/card-list/card-list.component';
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -13,12 +15,12 @@ import { SearchService } from '../shared/search/search.service';
   templateUrl: './searchpage.component.html',
   styleUrls: ['./searchpage.component.scss'],
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIconModule],
+  imports: [CardListComponent, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIconModule],
 })
 export class SearchpageComponent implements OnInit {
   searchForm!: FormGroup;
   isLoading = false;
-  listings: ListingsResult[] = [];
+  listings: Listing[] = [];
 
   constructor(
     private searchService: SearchService,

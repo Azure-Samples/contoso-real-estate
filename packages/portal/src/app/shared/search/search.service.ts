@@ -10,6 +10,13 @@ query getResults($term: String!) {
       attributes {
         title
         description
+        photos
+        address
+        bedrooms
+        bathrooms
+        ammenities
+        slug
+        fees
       }
     }
   }
