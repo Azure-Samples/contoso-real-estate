@@ -28,11 +28,13 @@ export class SearchService {
   ) {}
 
   getResults = (term: string) => {
-    return this.apollo.watchQuery<SearchResult>({
+    // eslint-disable-next-line no-debugger
+    debugger;
+    return this.apollo.query<SearchResult>({
       query: GetResults,
       variables: {
-        term: term
+        term
       }
-    }).valueChanges;
+    });
   }
 }
