@@ -103,3 +103,18 @@ declare interface Payment {
 declare interface CheckoutSession {
   sessionUrl: string;
 }
+
+declare interface SearchResult {
+  listings: CleanResults;
+}
+
+declare interface CleanResults {
+  data: ListingsResult[];
+}
+
+declare interface ListingsResult {
+  attributes: {
+    title: string;
+    description: string;
+  }
+}
