@@ -4,7 +4,7 @@
     <form class="searchform" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
           <mat-label>Search for a rental</mat-label>
-          <input matInput [formControl]="searchTerm" formControlName="term" placeholder="Search a Rental">
+          <input matInput formControlName="term" placeholder="Search a Rental">
           <mat-hint>Search a rental property by any keyword</mat-hint>
           </mat-form-field>
           <button mat-flat-button color="primary">Search
