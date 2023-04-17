@@ -30,7 +30,13 @@ class MyDocument extends Document {
         </Head>
         <body>
           <header className="header">
-            <span>Logo goes here</span>
+            <a href="/" className="logo">
+              <img
+                src="/images/contoso-real-estate-logo.svg"
+                alt="Contoso Real Estate Fictional Company Logo"
+                width="80"
+              />
+            </a>
           </header>
           <main className="main">
             <section className="section homepage inner-wrapper">
@@ -51,7 +57,11 @@ class MyDocument extends Document {
               </div>
             </section>
             <a href="/" className="logo">
-              <span>Logo goes here</span>
+              <img
+                src="/images/contoso-real-estate-logo.svg"
+                alt="Contoso Real Estate Fictional Company Logo"
+                width="80"
+              />
             </a>
           </footer>
         </body>
