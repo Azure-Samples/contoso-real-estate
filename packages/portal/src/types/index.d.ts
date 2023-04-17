@@ -23,6 +23,8 @@ declare type AuthProvider = "aad" | "github" | "twitter" | "google" | "facebook"
 declare type UserRole = "guest" | "renter" | "admin";
 
 declare interface Listing {
+  // we will add attributes so we don't have to write a new component for search
+  attributes?: ListingAttributes;
   id: string;
   title: string;
   slug: string;
@@ -40,6 +42,28 @@ declare interface Listing {
   reviews_number: number;
   address: string[];
   fees: string[];
+  $$isFavorited?: boolean;
+}
+
+declare interface ListingAttributes {
+  // we will add attributes so we don't have to write a new component for search
+  id: string;
+  title: string;
+  slug: string;
+  createdAt: string;
+  bathrooms: number;
+  bedrooms: number;
+  description: string;
+  type: string;
+  isFeatured: boolean;
+  isRecommended: boolean;
+  photos: string;
+  capacity: number;
+  ammenities: string;
+  reviews_stars: number;
+  reviews_number: number;
+  address: string;
+  fees: string;
   $$isFavorited?: boolean;
 }
 
@@ -109,12 +133,9 @@ declare interface SearchResult {
 }
 
 declare interface CleanResults {
-  data: ListingsResult[];
+  data: Listing[];
 }
 
 declare interface ListingsResult {
-  attributes: {
-    title: string;
-    description: string;
-  }
+  attributes: Listing
 }

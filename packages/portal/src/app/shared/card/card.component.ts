@@ -26,7 +26,22 @@ export class CardComponent implements OnChanges {
   renderer= inject(Renderer2);
 
   async ngOnChanges() {
-    if (this.listing) {
+    if (this.listing && this.listing.attributes) {
+      // this is necessary to reuse the card and card-list components
+      const tmp = {
+        fees: this.listing.attributes.fees.split("|"),
+        photos: this.listing.attributes.photos.split("|"),
+        address: this.listing.attributes.address.split("|"),
+        ammenities: this.listing.attributes.ammenities.split("|")
+      }
+      const castedListing = {...this.listing.attributes} as unknown as Listing;
+      castedListing.fees = tmp.fees;
+      castedListing.photos = tmp.photos;
+      castedListing.address = tmp.address;
+      castedListing.ammenities = tmp.ammenities;
+      this.listing = castedListing;
+    }
+    if (this.listing && this.listing.fees && this.listing.fees.length != 0) {
       const discount = parseInt(this.listing.fees[3], 10) * (1 - parseInt(this.listing.fees[4], 10) / 100);
       this.monthlyRentPriceWithDiscount = Math.max(0, discount);
     }
