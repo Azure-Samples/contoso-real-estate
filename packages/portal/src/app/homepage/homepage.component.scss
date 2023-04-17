@@ -22,3 +22,10 @@
 .featured-listings {
   margin-top: 30px;
 }
+
+@media screen and (max-width: 600px) {
+  .footer > .inner-wrapper {
+    display: block;
+    text-align: center;
+  }
+}
