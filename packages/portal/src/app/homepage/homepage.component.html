@@ -19,6 +19,9 @@
 
 <section class="featured-listings inner-wrapper">
   <h2 class="subtitle">Featured Listings</h2>
+  <div *ngIf="featuredListings.length === 0" class="notification info">
+    <p>{{ noresults }}</p>
+  </div>
   <app-card-list [user]="user" [listings]="featuredListings"></app-card-list>
   <div class="featured-listings__loading" appInfiniteScroll (onLoadRequested)="loadNextFeaturedListings()"></div>
 </section>
