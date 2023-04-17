@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SearchService } from '../shared/search/search.service';
 
+
 @Component({
   selector: 'app-searchpage',
   templateUrl: './searchpage.component.html',
@@ -17,24 +18,29 @@ import { SearchService } from '../shared/search/search.service';
 export class SearchpageComponent implements OnInit {
   searchForm!: FormGroup;
   isLoading = false;
+  listings: ListingsResult[] = [];
 
   constructor(
     private searchService: SearchService,
   ) {}
 
   async ngOnInit(): Promise<void> {
-
-    console.log('searchpage');
-
     this.searchForm = new FormGroup({
       term: new FormControl('', Validators.minLength(4))
     });
   }
 
   onSubmit(): void {
-    console.log('term', this.searchForm.value.term);
-    this.searchService.getResults(this.searchForm.value.term).subscribe((data) => {
-      console.log('data', data);
+    this.searchService.getResults(this.searchForm.value.term)
+      .subscribe((data) => {
+        const results: SearchResult = data.data;
+        const listingsResults: CleanResults = results.listings;
+        this.listings = listingsResults.data;
+        this.searchForm.reset();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.searchForm.reset();
   }
 }
