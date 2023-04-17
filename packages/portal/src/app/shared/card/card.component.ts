@@ -32,13 +32,17 @@ export class CardComponent implements OnChanges {
         fees: this.listing.attributes.fees.split("|"),
         photos: this.listing.attributes.photos.split("|"),
         address: this.listing.attributes.address.split("|"),
-        ammenities: this.listing.attributes.ammenities.split("|")
+        ammenities: this.listing.attributes.ammenities.split("|"),
+        slug: this.listing.attributes.slug,
+        id: this.listing.id
       }
       const castedListing = {...this.listing.attributes} as unknown as Listing;
       castedListing.fees = tmp.fees;
       castedListing.photos = tmp.photos;
       castedListing.address = tmp.address;
       castedListing.ammenities = tmp.ammenities;
+      castedListing.slug = tmp.slug;
+      castedListing.id = tmp.id;
       this.listing = castedListing;
     }
     if (this.listing && this.listing.fees && this.listing.fees.length != 0) {
