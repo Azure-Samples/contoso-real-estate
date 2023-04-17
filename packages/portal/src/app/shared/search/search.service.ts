@@ -7,6 +7,7 @@ const GetResults = gql`
 query getResults($term: String!) {
   listings(filters: {or: [{title: {contains: $term}}, {description: {contains: $term}}]}) {
     data {
+      id
       attributes {
         title
         description
