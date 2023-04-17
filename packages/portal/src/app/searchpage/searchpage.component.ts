@@ -43,7 +43,6 @@ export class SearchpageComponent implements OnInit {
   onSubmit(): void {
     this.noresults = false;
     this.seatrchTermInvalid = false;
-    console.log(this.searchForm.value, 'this.searchForm.value');
     if (this.searchForm.value.term === "" || this.searchForm.invalid) {
       this.seatrchTermInvalid = true;
       return;
