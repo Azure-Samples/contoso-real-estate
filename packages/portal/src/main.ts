@@ -7,7 +7,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app/app.component";
 import { UserService } from "./app/shared/user/user.service";
 import { environment } from "./environments/environment";
-import { APOLLO_OPTIONS, Apollo, ApolloModule } from 'apollo-angular';
+import { APOLLO_OPTIONS, Apollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 
