@@ -11,7 +11,7 @@ import { APOLLO_OPTIONS, Apollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 
-const uri = 'http://localhost:1337/graphql'; // <-- GraphQL Strapi endpoint
+const uri = environment.strapiGraphQlUri;
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({

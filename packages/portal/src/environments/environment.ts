@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  blogUrl: 'http://localhost:3000'
+  blogUrl: 'http://localhost:3000',
+
+  // Note: use 127.0.0.1 instead of localhost to avoid Codespaces issues
+  strapiGraphQlUri: 'http://127.0.0.1:1337/graphql'
 };
 
 /*
