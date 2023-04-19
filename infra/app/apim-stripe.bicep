@@ -37,7 +37,7 @@ resource restApi 'Microsoft.ApiManagement/service/apis@2021-12-01-preview' = {
     type: 'http'
     format: 'openapi'
     serviceUrl: apiBackendUrl
-    value: loadTextContent('../../packages/api/openapi.yaml')
+    value: loadTextContent('../../packages/stripe/openapi.yaml')
   }
 }
 
@@ -92,15 +92,13 @@ resource apiDiagnostics 'Microsoft.ApiManagement/service/apis/diagnostics@2021-1
 }
 
 resource apimProduct 'Microsoft.ApiManagement/service/products@2022-08-01' = {
-  name: 'apim-api-product'
+  name: 'apim-product'
   parent: apimService
   properties: {
     description: 'Contoso public APIs'
     displayName: 'Contoso public APIs'
     state: 'published'
     subscriptionRequired: false
-    approvalRequired: false
-    subscriptionsLimit: 1
   }
 }
 
@@ -112,5 +110,3 @@ resource apimLogger 'Microsoft.ApiManagement/service/loggers@2021-12-01-preview'
   name: 'app-insights-logger'
   parent: apimService
 }
-
-output SERVICE_API_URI string = '${apimService.properties.gatewayUrl}/${apiPath}'

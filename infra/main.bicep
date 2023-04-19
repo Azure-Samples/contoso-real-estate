@@ -1,3 +1,4 @@
+
 targetScope = 'subscription'
 
 @minLength(1)
@@ -29,6 +30,7 @@ param storageContainerName string = ''
 param stripeContainerAppName string = ''
 param apiServiceName string = ''
 param appServicePlanName string = ''
+param eventGridName string = ''
 
 @secure()
 param appKeys string
@@ -55,8 +57,9 @@ param stripeSecretKey string
 @secure()
 param stripeWebhookSecret string
 
+// TODO: fix APIM
 @description('Flag to use Azure API Management to mediate the calls between the Web frontend and the backend API')
-param useAPIM bool = true
+param useAPIM bool = false
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -144,14 +147,30 @@ module apimApi './app/apim-api.bicep' = if (useAPIM) {
   scope: rg
   params: {
     name: useAPIM ? apim.outputs.apimServiceName : ''
-    apiName: 'todo-api'
-    apiDisplayName: 'Simple Todo API'
-    apiDescription: 'This is a simple Todo API'
-    apiPath: 'todo'
+    apiName: 'contoso-api'
+    apiDisplayName: 'contoso-api'
+    apiDescription: 'This is the API integration server for Contoso Real Estate company.'
+    apiPath: 'api'
     webFrontendUrl: portal.outputs.SERVICE_WEB_URI
     apiBackendUrl: api.outputs.SERVICE_API_URI
   }
 }
+
+// Configures the API in the Azure API Management (APIM) service
+module apimStripe './app/apim-stripe.bicep' = if (useAPIM) {
+  name: 'apim-stripe'
+  scope: rg
+  params: {
+    name: useAPIM ? apim.outputs.apimServiceName : ''
+    apiName: 'contoso-stripe'
+    apiDisplayName: 'contoso-stripe'
+    apiDescription: 'This is the Stripe integration server for Contoso Real Estate company.'
+    apiPath: 'stripe'
+    webFrontendUrl: portal.outputs.SERVICE_WEB_URI
+    apiBackendUrl: api.outputs.SERVICE_API_URI
+  }
+}
+
 
 /////////// Portal ///////////
 
@@ -219,14 +238,17 @@ module api './app/api.bicep' = {
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     appServicePlanId: appServicePlan.outputs.id
     keyVaultName: keyVault.outputs.name
+    eventGridName: eventGrid.name
     storageAccountName: storageAccount.outputs.name
     allowedOrigins: [ portal.outputs.SERVICE_WEB_URI ]
     appSettings: {
       AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionStringKey
       AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
-      AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint }
+      AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint
+    }
   }
 }
+
 
 /////////// CMS ///////////
 
@@ -312,14 +334,14 @@ module stripe './app/stripe.bicep' = {
   }
 }
 
-module events './core/pubsub/event-hub.bicep' = {
+module eventGrid './app/events.bicep' = {
   name: 'events'
   scope: rg
   params: {
-    name: '${abbrs.eventHubNamespacesEventHubs}${resourceToken}'
+    name: !empty(eventGridName) ? eventGridName :  '${abbrs.eventGridDomainsTopics}${resourceToken}'
     location: location
     tags: tags
-    keyVaultName: keyVault.outputs.name
+    storageAccountName: storageAccount.name
   }
 }
 
@@ -358,8 +380,4 @@ output SERVICE_STRIPE_NAME string = stripe.outputs.SERVICE_STRIPE_NAME
 
 output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
 output STORAGE_CONTAINER_NAME string = storageContainerName
-
 output SERVICE_CMS_SERVER_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
-
-output SERVICE_EVENT_HUB_ENDPOINT string = events.outputs.SERVICE_EVENT_HUB_ENDPOINT
-output SERVICE_EVENT_HUB_CONNECTION_STRING_KEY string = events.outputs.SERVICE_EVENT_HUB_CONNECTION_STRING_KEY

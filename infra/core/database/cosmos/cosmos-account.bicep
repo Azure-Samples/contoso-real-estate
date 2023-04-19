@@ -2,7 +2,7 @@ param name string
 param location string = resourceGroup().location
 param tags object = {}
 
-param connectionStringKey string = 'AZURE-COSMOS-CONNECTION-STRING'
+param connectionStringKey string
 param keyVaultName string
 
 @allowed([ 'GlobalDocumentDB', 'MongoDB', 'Parse' ])
