@@ -14,11 +14,7 @@ resource portalApimProperties 'Microsoft.Web/staticSites/linkedBackends@2022-03-
   #disable-next-line BCP187
   tags: tags
   properties: {
-
-    #disable-next-line BCP036
-    backendResourceId: {
-      id: apimService.id
-    }
+    backendResourceId: apimService.id
   }
 }
 

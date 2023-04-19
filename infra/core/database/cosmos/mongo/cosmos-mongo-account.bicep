@@ -3,7 +3,7 @@ param location string = resourceGroup().location
 param tags object = {}
 
 param keyVaultName string
-param connectionStringKey string = 'AZURE-COSMOS-CONNECTION-STRING'
+param connectionStringKey string = 'AZURE-COSMOS-CONNECTION-STRING-KV'
 
 module cosmos '../../cosmos/cosmos-account.bicep' = {
   name: 'cosmos-account'
