@@ -20,6 +20,7 @@ fi
 
 # Restore strapi database ----------------------------------------------------
 PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
+  --clean \
   --no-owner \
   --host="$STRAPI_DATABASE_HOST" \
   --username="$STRAPI_DATABASE_USERNAME" \
