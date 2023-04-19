@@ -6,15 +6,21 @@ This repository contains the reference architecture and components for building 
 
 You can navigate through the documentation using the table of contents below:
 
-- [Architecture Diagram](#architecture-diagram)
-- [Components](#components)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-  - [DevOps](#devops)
-  - [Developer tools](#developer-tools)
-- [Development environment](#development-environment)
-- [Deploy to Azure](#deploy-to-azure)
-- [Project structure](#project-structure)
+- [Entreprise-grade Reference Architecture for JavaScript](#entreprise-grade-reference-architecture-for-javascript)
+  - [Table of Contents](#table-of-contents)
+  - [Architecture Diagram](#architecture-diagram)
+  - [Simplified Flow Diagram](#simplified-flow-diagram)
+  - [Components](#components)
+    - [Frontend](#frontend)
+    - [Backend](#backend)
+    - [DevOps](#devops)
+    - [Developer tools](#developer-tools)
+  - [Development environment](#development-environment)
+  - [Project structure](#project-structure)
+  - [Deploy to Azure](#deploy-to-azure)
+    - [Prerequisites](#prerequisites)
+    - [Deploy to Azure](#deploy-to-azure-1)
+  - [Want to help?](#want-to-help)
 
 ## Architecture Diagram
 
@@ -117,7 +123,6 @@ flowchart TD
 ### DevOps
 
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) - Provisioning, managing and deploying the application to Azure.
-- [Azure Dev CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd) - Accelerating the process of building cloud apps on Azure.
 - [GitHub Actions](https://github.com/features/actions) - The CI/CD pipelines.
 
 ### Developer tools
@@ -166,26 +171,7 @@ This project uses [GitHub Codespaces](https://github.com/features/codespaces) as
 
 ### Deploy to Azure
 
-This project uses Azure Dev CLI to provision, manage and deploy the application to Azure. Runing the following command will get you started with the deployment. This command will create an `azd` developement environment, provision the Azure resources, and deploy the application to Azure.
-
-Here is how to deploy the application to Azure:
-
-```bash
-azd up
-```
-
-_Note: if asked to login to Azure, please use the following command to login to Azure:_
-
-```bash
-azd login
-```
-### Clean up resources
-
-When you are done, you can delete all the Azure resources created with this template by running the following command:
-
-```bash
-azd down
-```
+In order to provision and deploy this infrastructure, read [this section](./scripts/README.md).
 
 ## Want to help?
 
