@@ -1,6 +1,13 @@
 # Scripts
 
-Internal scripts used for development and testing.
+This folder contains scripts used for the infrastructure setup, building, and deployment.
+ **_IMPORTANT: Please keep in mind that provisioning and deploying this infrastructure will incur costs in your Azure subscription. Please make sure to delete the resources once you are done with this project-_**
+
+## Region
+
+This infrastructure has been tested to be deployable in the following region: _westeurope_
+
+These are internal scripts used for development and testing. We recommend to use Azure Developer CLI instead. You can find more information about it [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
 
 ## Usage
 
