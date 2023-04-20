@@ -173,6 +173,8 @@ This project uses [GitHub Codespaces](https://github.com/features/codespaces) as
 
 In order to provision and deploy this infrastructure, read [this section](./scripts/README.md).
 
+**_IMPORTANT: Please keep in mind that provisioning and deploying this infrastructure will incur costs in your Azure subscription. Please make sure to delete the resources once you are done with this project-_**
+
 ## Want to help?
 
 Want to file a bug, contribute some code, or improve the documentation? Excellent! Read up on our guidelines for [contributing](./CONTRIBUTING.md) and then check out one of our issues in the list: [community-help](https://github.com/Azure-Samples/contoso-real-estate/issues).
