@@ -7,9 +7,10 @@
 ##############################################################################
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
-if [[ -e "../infra/.env" ]]; then
-  source ../infra/.env
-fi
+
+azd env get-values > .env
+source .env
+rm .env
 
 file="${1:-}"
 
