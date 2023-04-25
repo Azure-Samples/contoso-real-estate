@@ -1,4 +1,3 @@
-
 targetScope = 'subscription'
 
 @minLength(1)
@@ -70,7 +69,6 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   location: location
   tags: tags
 }
-
 
 /////////// Common ///////////
 
@@ -171,7 +169,6 @@ module apimStripe './app/apim-stripe.bicep' = if (useAPIM) {
   }
 }
 
-
 /////////// Portal ///////////
 
 // The application frontend
@@ -184,7 +181,6 @@ module portal './app/portal.bicep' = {
     tags: tags
   }
 }
-
 
 // the linked APIM
 module portalApim './app/portal-apim.bicep' = if (useAPIM) {
@@ -245,10 +241,14 @@ module api './app/api.bicep' = {
       AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionStringKey
       AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
       AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint
+      STRAPI_DATABASE_NAME: cmsDatabaseName
+      STRAPI_DATABASE_USERNAME: cmsDatabaseUser
+      STRAPI_DATABASE_PASSWORD: cmsDatabasePassword
+      STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
+      STRAPI_DATABASE_PORT: '5432'
     }
   }
 }
-
 
 /////////// CMS ///////////
 
@@ -295,7 +295,7 @@ module cmsDB './core/database/postgresql/flexibleserver.bicep' = {
     version: '13'
     administratorLogin: cmsDatabaseUser
     administratorLoginPassword: cmsDatabasePassword
-    databaseNames: [cmsDatabaseName]
+    databaseNames: [ cmsDatabaseName ]
     allowAzureIPsFirewall: true
   }
 }
@@ -338,13 +338,12 @@ module eventGrid './app/events.bicep' = {
   name: 'events'
   scope: rg
   params: {
-    name: !empty(eventGridName) ? eventGridName :  '${abbrs.eventGridDomainsTopics}${resourceToken}'
+    name: !empty(eventGridName) ? eventGridName : '${abbrs.eventGridDomainsTopics}${resourceToken}'
     location: location
     tags: tags
-    storageAccountName: storageAccount.name
+    storageAccountName: storageAccount.outputs.name
   }
 }
-
 
 // Data outputs
 output AZURE_COSMOS_CONNECTION_STRING_KEY string = cosmos.outputs.connectionStringKey
@@ -366,8 +365,7 @@ output REACT_APP_WEB_BASE_URL string = portal.outputs.SERVICE_WEB_URI
 output SERVICE_API_NAME string = api.outputs.SERVICE_API_NAME
 output SERVICE_WEB_NAME string = portal.outputs.SERVICE_WEB_NAME
 output USE_APIM bool = useAPIM
-output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI, api.outputs.SERVICE_API_URI ]: []
-
+output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI, api.outputs.SERVICE_API_URI ] : []
 
 output SERVICE_WEB_URI string = portal.outputs.SERVICE_WEB_URI
 output SERVICE_BLOG_URI string = blog.outputs.SERVICE_BLOG_URI
@@ -381,3 +379,10 @@ output SERVICE_STRIPE_NAME string = stripe.outputs.SERVICE_STRIPE_NAME
 output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
 output STORAGE_CONTAINER_NAME string = storageContainerName
 output SERVICE_CMS_SERVER_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
+
+output STRAPI_DATABASE_NAME string = cmsDatabaseName
+output STRAPI_DATABASE_USERNAME string = cmsDatabaseUser
+output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
+output STRAPI_DATABASE_PORT string = '5432'
+// We need this to manually restore the database
+output STRAPI_DATABASE_PASSWORD string = cmsDatabasePassword
