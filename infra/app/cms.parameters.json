@@ -26,16 +26,16 @@
     "containerRegistryName": {
       "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
     },
-    "cmsDatabaseHost": {
+    "databaseHost": {
       "value": "${SERVICE_CMS_SERVER_HOST}"
     },
-    "cmsDatabaseName": {
+    "databaseName": {
       "value": "strapi"
     },
-    "cmsDatabasePassword": {
+    "databasePassword": {
       "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} cmsDatabasePassword)"
     },
-    "cmsDatabaseUsername": {
+    "databaseUsername": {
       "value": "contoso"
     },
     "imageName": {
