@@ -73,6 +73,15 @@ module functions 'appservice.bicep' = {
   }
 }
 
+// Give the Function access to KeyVault
+module apiKeyVaultAccess '../security/keyvault-access.bicep' = {
+  name: 'api-keyvault-access'
+  params: {
+    keyVaultName: keyVaultName
+    principalId: functions.outputs.identityPrincipalId
+  }
+}
+
 resource storage 'Microsoft.Storage/storageAccounts@2021-09-01' existing = {
   name: storageAccountName
 }
