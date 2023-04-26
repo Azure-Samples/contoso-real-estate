@@ -20,8 +20,8 @@ module api '../core/host/functions.bicep' = {
     allowedOrigins: allowedOrigins
     alwaysOn: false
     appSettings: union(appSettings, {
-      EVENT_GRID_ENDPOINT: eventGrid.properties.endpoint
-      EVENT_GRID_TOPIC_KEY: eventGrid.listKeys().key1
+      // EVENT_GRID_ENDPOINT: eventGrid.properties.endpoint
+      // EVENT_GRID_TOPIC_KEY: eventGrid.listKeys().key1
     })
     applicationInsightsName: applicationInsightsName
     appServicePlanId: appServicePlanId
@@ -32,7 +32,7 @@ module api '../core/host/functions.bicep' = {
   }
 }
 
-resource eventGrid 'Microsoft.EventGrid/topics@2020-10-15-preview' existing = {
+resource eventGrid 'Microsoft.EventGrid/systemTopics@2020-10-15-preview' existing = {
   name: eventGridName
 }
 
