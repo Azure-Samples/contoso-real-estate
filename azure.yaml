@@ -1,36 +1,37 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
 name: contoso-real-estate
+
+hooks:
+  postprovision:
+    shell: 'sh'
+    run: ./scripts/database/restore.sh ./scripts/database/dumps/strapi_20230202.sql
+
 services:
   portal:
     project: packages/portal
     dist: dist/contoso-app
     language: ts
     host: staticwebapp
-    module: app/portal
 
   api:
     project: packages/api
     language: ts
     host: function
-    module: app/api
 
   cms:
     project: packages/blog-cms
     host: containerapp
-    module: app/cms
     language: js
 
   blog:
     project: packages/blog
     host: containerapp
-    module: app/blog
     language: js
 
   stripe:
     project: packages/stripe
     host: containerapp
-    module: app/stripe
     language: js
     docker:
       context: ../..
