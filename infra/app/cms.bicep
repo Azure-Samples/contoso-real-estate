@@ -64,7 +64,7 @@ module cms '../core/host/container-app.bicep' = {
         value: appKeys
       }
       {
-        name: 'CMS_TOKEN_SALT'
+        name: 'API_TOKEN_SALT'
         value: apiTokenSalt
       }
       {

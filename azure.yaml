@@ -13,21 +13,25 @@ services:
     dist: dist/contoso-app
     language: ts
     host: staticwebapp
+    module: app/portal
 
   api:
     project: packages/api
     language: ts
     host: function
+    module: app/api
 
   cms:
     project: packages/blog-cms
     host: containerapp
     language: js
+    module: app/cms
 
   blog:
     project: packages/blog
     host: containerapp
     language: js
+    module: app/blog
 
   stripe:
     project: packages/stripe
@@ -35,3 +39,4 @@ services:
     language: js
     docker:
       context: ../..
+    module: app/stripe

@@ -30,6 +30,9 @@ param stripeContainerAppName string = ''
 param apiServiceName string = ''
 param appServicePlanName string = ''
 param eventGridName string = ''
+param cmsImageName string = ''
+param blogImageName string = ''
+param stripeImageName string = ''
 
 @secure()
 param appKeys string
@@ -259,11 +262,13 @@ module cms './app/cms.bicep' = {
   params: {
     name: !empty(cmsContainerAppName) ? cmsContainerAppName : '${abbrs.appContainerApps}cms-${resourceToken}'
     location: location
+    cmsImageName: cmsImageName
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
     databaseHost: cmsDB.outputs.POSTGRES_DOMAIN_NAME
     databaseName: cmsDatabaseName
+    databaseUsername: cmsDatabaseUser
     databasePassword: cmsDatabasePassword
 
     appKeys: appKeys
@@ -298,6 +303,7 @@ module cmsDB './core/database/postgresql/flexibleserver.bicep' = {
     administratorLoginPassword: cmsDatabasePassword
     databaseNames: [ cmsDatabaseName ]
     allowAzureIPsFirewall: true
+    keyVaultName: keyVault.outputs.name
   }
 }
 
@@ -308,6 +314,7 @@ module blog './app/blog.bicep' = {
   scope: rg
   params: {
     name: !empty(blogContainerAppName) ? blogContainerAppName : '${abbrs.appContainerApps}blog-${resourceToken}'
+    blogImageName: blogImageName
     location: location
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
@@ -325,6 +332,7 @@ module stripe './app/stripe.bicep' = {
   params: {
     name: !empty(stripeContainerAppName) ? stripeContainerAppName : '${abbrs.appContainerApps}stripe-${resourceToken}'
     location: location
+    stripeImageName: stripeImageName
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
