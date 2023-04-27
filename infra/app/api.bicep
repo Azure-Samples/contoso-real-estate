@@ -9,6 +9,8 @@ param appSettings object = {}
 param keyVaultName string
 param serviceName string = 'api'
 param storageAccountName string
+
+// TODO: enable Event Grid when endpoints are available
 param eventGridName string
 
 module api '../core/host/functions.bicep' = {
@@ -32,9 +34,9 @@ module api '../core/host/functions.bicep' = {
   }
 }
 
-resource eventGrid 'Microsoft.EventGrid/systemTopics@2020-10-15-preview' existing = {
-  name: eventGridName
-}
+// resource eventGrid 'Microsoft.EventGrid/systemTopics@2020-10-15-preview' existing = {
+//   name: eventGridName
+// }
 
 output SERVICE_API_IDENTITY_PRINCIPAL_ID string = api.outputs.identityPrincipalId
 output SERVICE_API_NAME string = api.outputs.name
