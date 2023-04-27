@@ -182,16 +182,17 @@ module portal './app/portal.bicep' = {
   }
 }
 
-// the linked APIM
-module portalApim './app/portal-apim.bicep' = if (useAPIM) {
+// the linked APIM or Function API
+module portalBackend './app/portal-backend.bicep' = {
   name: 'portal-apim'
   scope: rg
   params: {
-    name: useAPIM ? apim.outputs.apimServiceName : ''
+    name: useAPIM ? apim.outputs.apimServiceName : api.outputs.SERVICE_API_NAME
     location: location
     tags: tags
     useAPIM: useAPIM
     portalName: portal.outputs.SERVICE_WEB_NAME
+    apiServiceName: api.outputs.SERVICE_API_NAME
   }
 }
 
@@ -384,5 +385,6 @@ output STRAPI_DATABASE_NAME string = cmsDatabaseName
 output STRAPI_DATABASE_USERNAME string = cmsDatabaseUser
 output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 output STRAPI_DATABASE_PORT string = '5432'
+
 // We need this to manually restore the database
 output STRAPI_DATABASE_PASSWORD string = cmsDatabasePassword
