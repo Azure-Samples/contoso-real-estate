@@ -7,7 +7,7 @@ param apiUrl string
 param applicationInsightsName string
 param containerAppsEnvironmentName string
 param containerRegistryName string
-param imageName string = ''
+param stripeImageName string = ''
 param serviceName string = 'stripe'
 param stripePublicKey string
 @secure()
@@ -47,7 +47,7 @@ module stripe '../core/host/container-app.bicep' = {
         value: stripeWebhookSecret
       }
     ]
-    imageName: !empty(imageName) ? imageName : 'nginx:latest'
+    imageName: !empty(stripeImageName) ? stripeImageName : 'nginx:latest'
     targetPort: 3000
   }
 }

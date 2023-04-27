@@ -16,7 +16,7 @@ param databaseName string = 'strapi'
 @secure()
 param databasePassword string
 param databaseUsername string = 'contoso'
-param imageName string = ''
+param cmsImageName string = ''
 @secure()
 param jwtSecret string
 param keyVaultName string
@@ -96,7 +96,7 @@ module cms '../core/host/container-app.bicep' = {
         value: keyVault.properties.vaultUri
       }
     ]
-    imageName: !empty(imageName) ? imageName : 'nginx:latest'
+    imageName: !empty(cmsImageName) ? cmsImageName : 'nginx:latest'
     keyVaultName: keyVault.name
     targetPort: 1337
   }
