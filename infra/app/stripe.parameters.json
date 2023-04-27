@@ -20,7 +20,7 @@
     "apiUrl": {
       "value": "${SERVICE_API_URI}"
     },
-    "imageName": {
+    "stripeImageName": {
       "value": "${SERVICE_STRIPE_IMAGE_NAME}"
     },
     "serviceName": {

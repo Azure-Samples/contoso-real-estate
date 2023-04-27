@@ -38,7 +38,7 @@
     "databaseUsername": {
       "value": "contoso"
     },
-    "imageName": {
+    "cmsImageName": {
       "value": "${SERVICE_CMS_IMAGE_NAME}"
     },
     "jwtSecret": {
