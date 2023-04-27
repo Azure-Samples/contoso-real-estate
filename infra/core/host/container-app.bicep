@@ -60,6 +60,9 @@ resource app 'Microsoft.App/containerApps@2022-03-01' = {
       ]
     }
   }
+  dependsOn: [
+    containerRegistry
+  ]
 }
 
 resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2022-03-01' existing = {
