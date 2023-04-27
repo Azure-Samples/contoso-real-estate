@@ -48,7 +48,7 @@ module stripe '../core/host/container-app.bicep' = {
       }
     ]
     imageName: !empty(stripeImageName) ? stripeImageName : 'nginx:latest'
-    targetPort: 3000
+    targetPort: 4242
   }
 }
 

@@ -37,6 +37,15 @@
     },
     "cmsDatabaseHost": {
       "value": "${SERVICE_CMS_SERVER_HOST}"
+    },
+    "cmsImageName": {
+      "value": "${SERVICE_CMS_IMAGE_NAME}"
+    },
+    "blogImageName": {
+      "value": "${SERVICE_BLOG_IMAGE_NAME}"
+    },
+    "stripeImageName": {
+      "value": "${SERVICE_STRIPE_IMAGE_NAME}"
     }
   }
 }
