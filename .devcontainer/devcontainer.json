@@ -26,7 +26,7 @@
   "forwardPorts": [4280, 4242, 3000, 1337],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "npm i -g npm@latest fuzz-run && npm install && curl -fsSL https://aka.ms/install-azd.sh | bash",
+  "postCreateCommand": "./post-create-command.sh",
 
   // Configure tool-specific properties.
   "customizations": {
