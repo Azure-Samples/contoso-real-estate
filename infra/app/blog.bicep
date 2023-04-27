@@ -27,7 +27,7 @@ module app '../core/host/container-app.bicep' = {
         value: applicationInsights.properties.ConnectionString
       }
       {
-        name: 'NEXT_PUBLIC_BLOG_URL'
+        name: 'NEXT_PUBLIC_STRAPI_API_URL'
         value: cmsUrl
       }
     ]
