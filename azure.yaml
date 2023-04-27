@@ -5,7 +5,7 @@ name: contoso-real-estate
 hooks:
   postprovision:
     shell: 'sh'
-    run: ./scripts/database/restore.sh ./scripts/database/dumps/strapi_20230202.sql
+    run: ./scripts/database/restore.sh strapi_20230202
 
 services:
   portal:
