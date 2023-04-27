@@ -6,7 +6,7 @@ param applicationInsightsName string
 param cmsUrl string
 param containerAppsEnvironmentName string
 param containerRegistryName string
-param imageName string = ''
+param blogImageName string = ''
 param keyVaultName string
 param serviceName string = 'blog'
 
@@ -31,7 +31,7 @@ module app '../core/host/container-app.bicep' = {
         value: cmsUrl
       }
     ]
-    imageName: !empty(imageName) ? imageName : 'nginx:latest'
+    imageName: !empty(blogImageName) ? blogImageName : 'nginx:latest'
     keyVaultName: keyVault.name
     targetPort: 3000
   }

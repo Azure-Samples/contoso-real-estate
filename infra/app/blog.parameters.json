@@ -20,7 +20,7 @@
     "cmsUrl": {
       "value": "${SERVICE_CMS_URI}"
     },
-    "imageName": {
+    "blogImageName": {
       "value": "${SERVICE_BLOG_IMAGE_NAME}"
     },
     "keyVaultName": {
