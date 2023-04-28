@@ -19,7 +19,7 @@ import { UserService } from "../shared/user/user.service";
 export class HomepageComponent implements OnInit {
   featuredListings: Listing[] = [];
   user = {} as User;
-  blogUrl = environment.blogUrl;
+  blogUrl = environment.blogUrl || "/";
   noresults = "Searching for featured listings. Please wait...";
 
   constructor(

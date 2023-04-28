@@ -174,17 +174,28 @@ The project is using `npm` workspaces. The project structure is as follows:
   - [`stripe`](../packages/stripe) - contains the Stripe webhook.
   - [`testing`](../packages/testing) - contains the Playwright tests.
 
+
 ## Deploy to Azure
 
 ### Prerequisites
 
 This project uses [GitHub Codespaces](https://github.com/features/codespaces) as the main development environment. The following steps assume you are using GitHub Codespaces. If you are not using GitHub Codespaces, you can open the project in a Dev Container locally following the instructions [here](docs/dev-container.md).
 
-### Deploy to Azure
+### Provisioning and deploying the infrastructure
 
 In order to provision and deploy this infrastructure, read [this section](./scripts/README.md).
 
 **_IMPORTANT: Please keep in mind that provisioning and deploying this infrastructure will incur costs in your Azure subscription. Please make sure to delete the resources once you are done with this project-_**
+
+### Post-deployment configuration
+
+This project illustrates a full end-to-end solution for micro-frontends vertical splits. As described above, the portal and blog are two independently deployed applications.
+
+For the portal and blog to link to each other from their respective UIs, you will need to manually set the values for the folliwing environment variables:
+
+- `blogUrl` - The URL of the blog application, to be set in the portal app, in the [production environment configuration](./packages/portal/src/environments/environment.prod.ts).
+
+- `NEXT_PUBLIC_PORTAL_URL` - The URL of the portal application, to be set in the blog app, in the [.env file](.packages/blog/.env.example). 
 
 ## Want to help?
 
