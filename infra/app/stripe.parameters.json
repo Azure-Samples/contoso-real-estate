@@ -49,6 +49,9 @@
     },
     "stripeImageName": {
       "value": "${SERVICE_STRIPE_IMAGE_NAME}"
+    },
+    "stripeServiceUrl": {
+      "value": "${SERVICE_STRIPE_URI}"
     }
   }
 }
