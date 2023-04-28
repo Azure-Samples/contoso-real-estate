@@ -243,7 +243,8 @@ module api './app/api.bicep' = {
     storageAccountName: storageAccount.outputs.name
     allowedOrigins: [ portal.outputs.SERVICE_WEB_URI ]
     appSettings: {
-      AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionStringKey
+      AZURE_COSMOS_CONNECTION_STRING_KV: cosmos.outputs.connectionStringKey
+      AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionString
       AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
       AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint
       STRAPI_DATABASE_NAME: cmsDatabaseName
