@@ -5,7 +5,12 @@ name: contoso-real-estate
 hooks:
   postprovision:
     shell: 'sh'
+    continueOnError: false
+    interactive: false
     run: ./scripts/database/restore.sh strapi_20230202
+  predeploy:
+    shell: sh
+    run: node ./infra/hooks/predeploy.js
 
 services:
   portal:
