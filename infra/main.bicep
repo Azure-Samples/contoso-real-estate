@@ -33,6 +33,7 @@ param eventGridName string = ''
 param cmsImageName string = ''
 param blogImageName string = ''
 param stripeImageName string = ''
+param stripeServiceUrl string = ''
 
 @secure()
 param appKeys string
@@ -251,6 +252,9 @@ module api './app/api.bicep' = {
       STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
       STRAPI_DATABASE_PORT: '5432'
     }
+
+    // Note:  this property is passed as params to avoid circular dependency (see api.bicep)
+    stripeServiceUrl: stripeServiceUrl
   }
 }
 
