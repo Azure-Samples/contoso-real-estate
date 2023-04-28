@@ -8,9 +8,6 @@ hooks:
     continueOnError: false
     interactive: false
     run: ./scripts/database/restore.sh strapi_20230202
-  predeploy:
-    shell: sh
-    run: node ./infra/hooks/predeploy.js
 
 services:
   portal:
@@ -19,6 +16,12 @@ services:
     language: ts
     host: staticwebapp
     module: app/portal
+
+    # TODO: figure out why this hook is not triggering
+    hooks:
+      prepackage:
+        shell: sh
+        run: node ./infra/hooks/portal/predeploy.js
 
   api:
     project: packages/api
