@@ -25,7 +25,7 @@ param keyVaultName string = ''
 param logAnalyticsName string = ''
 param webServiceName string = ''
 param storageAccountName string = ''
-param storageContainerName string = 'contosostorage-uploads'
+param storageContainerName string = ''
 param stripeContainerAppName string = ''
 param apiServiceName string = ''
 param appServicePlanName string = ''
@@ -124,7 +124,7 @@ module storageAccount './core/storage/storage-account.bicep' = {
     location: location
     containers: [
       {
-        name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
+        name: !empty(storageContainerName) ? storageContainerName : 'stc${resourceToken}'
         publicAccess: 'Blob'
       }
     ]
