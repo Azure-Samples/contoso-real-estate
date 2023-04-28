@@ -345,6 +345,7 @@ module stripe './app/stripe.bicep' = {
     stripeSecretKey: stripeSecretKey
     stripePublicKey: stripePublicKey
     stripeWebhookSecret: stripeWebhookSecret
+    apiUrl: api.outputs.SERVICE_API_URI
   }
 }
 

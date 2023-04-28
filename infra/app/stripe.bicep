@@ -4,11 +4,13 @@ param location string = resourceGroup().location
 param tags object = {}
 
 param apiUrl string
+param portalUrl string
 param applicationInsightsName string
 param containerAppsEnvironmentName string
 param containerRegistryName string
 param stripeImageName string = ''
 param serviceName string = 'stripe'
+
 param stripePublicKey string
 @secure()
 param stripeSecretKey string
@@ -33,6 +35,10 @@ module stripe '../core/host/container-app.bicep' = {
       {
         name: 'API_URL'
         value: apiUrl
+      }
+      {
+        name: 'WEB_APP_URL'
+        value: portalUrl
       }
       {
         name: 'STRIPE_PUBLIC_KEY'
