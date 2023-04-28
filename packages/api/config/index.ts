@@ -25,12 +25,12 @@ export const getConfig: () => Promise<AppConfig> = async () => {
 
   configCache = {
     observability: {
-      connectionString: process.env.REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING,
-      roleName: process.env.REACT_APP_APPLICATIONINSIGHTS_ROLE_NAME,
+      connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING,
+      roleName: process.env.APPLICATIONINSIGHTS_NAME,
     },
     database: {
-      connectionString: process.env.MONGO_CONNECTION_STRING || "mongodb://mongo:MongoPass@localhost:27017",
-      database: process.env.MONGO_DATABASE_NAME || "contosoportal",
+      connectionString: process.env.AZURE_COSMOS_CONNECTION_STRING_KEY || "mongodb://mongo:MongoPass@localhost:27017",
+      database: process.env.AZURE_COSMOS_DATABASE_NAME || "contosoportal",
     },
     strapi: {
       database: process.env.STRAPI_DATABASE_NAME || "strapi",

@@ -25,7 +25,7 @@ param keyVaultName string = ''
 param logAnalyticsName string = ''
 param webServiceName string = ''
 param storageAccountName string = ''
-param storageContainerName string = ''
+param storageContainerName string = 'contosostorage-uploads'
 param stripeContainerAppName string = ''
 param apiServiceName string = ''
 param appServicePlanName string = ''
@@ -49,6 +49,7 @@ param adminJwtSecret string
 param cmsDatabaseName string = 'strapi'
 param cmsDatabaseUser string = 'strapi'
 param cmsDatabaseServerName string = ''
+param cmsDatabasePort string = '5432'
 @secure()
 param cmsDatabasePassword string
 
@@ -251,7 +252,8 @@ module api './app/api.bicep' = {
       STRAPI_DATABASE_USERNAME: cmsDatabaseUser
       STRAPI_DATABASE_PASSWORD: cmsDatabasePassword
       STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
-      STRAPI_DATABASE_PORT: '5432'
+      STRAPI_DATABASE_PORT: cmsDatabasePort
+      STRAPI_DATABASE_SSL: 'true'
     }
 
     // Note:  this property is passed as params to avoid circular dependency (see api.bicep)
@@ -341,11 +343,11 @@ module stripe './app/stripe.bicep' = {
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    apiUrl: ''
     stripeSecretKey: stripeSecretKey
     stripePublicKey: stripePublicKey
     stripeWebhookSecret: stripeWebhookSecret
     apiUrl: api.outputs.SERVICE_API_URI
+    portalUrl: portal.outputs.SERVICE_WEB_URI
   }
 }
 
@@ -367,6 +369,7 @@ output AZURE_COSMOS_DATABASE_NAME string = cosmos.outputs.databaseName
 // App outputs
 output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
 output APPLICATIONINSIGHTS_NAME string = monitoring.outputs.applicationInsightsName
+
 output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.environmentName
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.registryLoginServer
 output AZURE_CONTAINER_REGISTRY_NAME string = containerApps.outputs.registryName
@@ -374,12 +377,12 @@ output AZURE_KEY_VAULT_ENDPOINT string = keyVault.outputs.endpoint
 output AZURE_KEY_VAULT_NAME string = keyVault.outputs.name
 output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
-output REACT_APP_API_BASE_URL string = useAPIM ? apimApi.outputs.SERVICE_API_URI : api.outputs.SERVICE_API_URI
-output REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
-output REACT_APP_WEB_BASE_URL string = portal.outputs.SERVICE_WEB_URI
+
 output SERVICE_API_NAME string = api.outputs.SERVICE_API_NAME
 output SERVICE_WEB_NAME string = portal.outputs.SERVICE_WEB_NAME
+
 output USE_APIM bool = useAPIM
+
 output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI, api.outputs.SERVICE_API_URI ] : []
 
 output SERVICE_WEB_URI string = portal.outputs.SERVICE_WEB_URI
@@ -398,7 +401,7 @@ output SERVICE_CMS_SERVER_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 output STRAPI_DATABASE_NAME string = cmsDatabaseName
 output STRAPI_DATABASE_USERNAME string = cmsDatabaseUser
 output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
-output STRAPI_DATABASE_PORT string = '5432'
+output STRAPI_DATABASE_PORT string = cmsDatabasePort
 
 // We need this to manually restore the database
 output STRAPI_DATABASE_PASSWORD string = cmsDatabasePassword

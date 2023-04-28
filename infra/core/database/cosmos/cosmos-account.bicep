@@ -34,7 +34,7 @@ resource cosmosConnectionString 'Microsoft.KeyVault/vaults/secrets@2022-07-01' =
   parent: keyVault
   name: connectionStringKey
   properties: {
-    value: cosmos.listConnectionStrings().connectionStrings[0].connectionString
+    value: connectionString
   }
 }
 
@@ -42,6 +42,9 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
   name: keyVaultName
 }
 
+var connectionString = cosmos.listConnectionStrings().connectionStrings[0].connectionString
+
+output connectionString string = connectionString
 output connectionStringKey string = connectionStringKey
 output endpoint string = cosmos.properties.documentEndpoint
 output id string = cosmos.id
