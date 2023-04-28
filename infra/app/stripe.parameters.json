@@ -20,6 +20,9 @@
     "apiUrl": {
       "value": "${SERVICE_API_URI}"
     },
+    "portalUrl": {
+      "value": "${SERVICE_WEB_URI}"
+    },
     "stripeImageName": {
       "value": "${SERVICE_STRIPE_IMAGE_NAME}"
     },
