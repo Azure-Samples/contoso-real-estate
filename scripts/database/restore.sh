@@ -8,9 +8,17 @@
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
+STRAPI_DATABASE_MIGRATED="${STRAPI_DATABASE_MIGRATED:-false}"
+
 azd env get-values > .env
 source .env
 rm .env
+
+# if database has already been migrated, exit
+if [[ "$STRAPI_DATABASE_MIGRATED" == "true" ]]; then
+  echo "Strapi database has already been migrated"
+  exit 0
+fi
 
 filename="${1:-}"
 file="$(pwd)/dumps/$filename.sql"
@@ -37,3 +45,4 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "PostgreSQL Database restored successfully"
+azd env set STRAPI_DATABASE_MIGRATED true
