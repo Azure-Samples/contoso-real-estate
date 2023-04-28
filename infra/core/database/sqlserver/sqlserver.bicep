@@ -125,5 +125,6 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
 }
 
 var connectionString = 'Server=${sqlServer.properties.fullyQualifiedDomainName}; Database=${sqlServer::database.name}; User=${appUser}'
+output connectionString string = connectionString
 output connectionStringKey string = connectionStringKey
 output databaseName string = sqlServer::database.name
