@@ -1,12 +1,12 @@
-# Entreprise-grade Reference Architecture for JavaScript
+# Enterprise-grade Reference Architecture for JavaScript
 
-This repository contains the reference architecture and components for building an entreprise-grade moderne modern composable frontends (or micro-frontends) and cloud-native applications. It is a collection of best practices, architure patterns, and components that can be used to build and deploy modern JavaScript applications to Azure.
+This repository contains the reference architecture and components for building enterprise-grade modern composable frontends (or micro-frontends) and cloud-native applications. It is a collection of best practices, architecture patterns, and functional components that can be used to build and deploy modern JavaScript applications to Azure.
 
 ## Table of Contents
 
 You can navigate through the documentation using the table of contents below:
 
-- [Entreprise-grade Reference Architecture for JavaScript](#entreprise-grade-reference-architecture-for-javascript)
+- [Enterprise-grade Reference Architecture for JavaScript](#enterprise-grade-reference-architecture-for-javascript)
   - [Table of Contents](#table-of-contents)
   - [Architecture Diagram](#architecture-diagram)
   - [Simplified Flow Diagram](#simplified-flow-diagram)
@@ -21,6 +21,9 @@ You can navigate through the documentation using the table of contents below:
     - [Prerequisites](#prerequisites)
     - [Deploy to Azure](#deploy-to-azure-1)
   - [Want to help?](#want-to-help)
+
+---
+
 
 ## Architecture Diagram
 
@@ -133,7 +136,7 @@ flowchart TD
 
 ## Development environment
 
-This project is optimized for use with [GitHub Codespaces](https://github.com/features/codespaces). Here is how to get started:
+This project is optimized for use with [GitHub Codespaces](https://github.com/features/codespaces), a development environment hosted in the GitHub cloud. Here is how to get started:
 
 1. Fork this repository.
 1. Create a new GitHub Codespace from your fork. This will automatically provision a new Codespace with all the required dependencies preinstalled and configured.
@@ -150,6 +153,14 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 | Stripe API     | https://YOUR-REPO-4242.preview.app.github.dev:4242       | 4242 |
 
 > _Note: The URLs above are just examples. The URLs will be different for your fork. The ports however will be the same._
+
+
+## Usage costs
+
+Github Codespaces usage is [billed](https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces) either to an organization or to the user creating it. There are limits to the number of concurrent codespaces you can create or run, so here are a few things to keep in mind:
+ - Personal accounts get a [free monthly usage quota](https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts) of 120 hours and 15GB storage - enough to explore this project!
+ - You can [lookup current usage](https://github.com/settings/billing) or [set spending limits](https://github.com/settings/billing/spending_limit) on your profile - to ensure you don't accidentally exceed your quota or budget.
+ - We recommend you [delete codespaces](https://docs.github.com/codespaces/developing-in-codespaces/deleting-a-codespace) you are not actively using, and [configure default retention periods](https://docs.github.com/en/codespaces/customizing-your-codespace/configuring-automatic-deletion-of-your-codespaces?tool=webui) to maximize usage of your free quota and minimize costs for paid usage.
 
 ## Project structure
 
