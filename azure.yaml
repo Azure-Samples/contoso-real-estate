@@ -6,7 +6,9 @@ hooks:
   postprovision:
     shell: 'sh'
     continueOnError: false
-    interactive: false
+    interactive: true
+
+    # TODO: provide a cross platform way to run this script
     run: ./scripts/database/restore.sh strapi_20230202
 
 services:
@@ -16,12 +18,12 @@ services:
     language: ts
     host: staticwebapp
     module: app/portal
-
-    # TODO: figure out why this hook is not triggering
     hooks:
-      prepackage:
+      postpackage:
         shell: sh
-        run: node ./infra/hooks/portal/predeploy.js
+        interactive: true
+        # Note: the current working directory is ./packages/portal
+        run: ../../infra/hooks/portal/predeploy.js
 
   api:
     project: packages/api
