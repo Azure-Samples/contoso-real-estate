@@ -4,6 +4,7 @@ param tags object = {}
 
 param applicationInsightsName string
 param cmsUrl string
+param portalUrl string
 param containerAppsEnvironmentName string
 param containerRegistryName string
 param blogImageName string = ''
@@ -29,6 +30,10 @@ module app '../core/host/container-app.bicep' = {
       {
         name: 'NEXT_PUBLIC_STRAPI_API_URL'
         value: cmsUrl
+      }
+      {
+        name: 'NEXT_PUBLIC_PORTAL_URL'
+        value: portalUrl
       }
     ]
     imageName: !empty(blogImageName) ? blogImageName : 'nginx:latest'
