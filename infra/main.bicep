@@ -327,6 +327,7 @@ module blog './app/blog.bicep' = {
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
     cmsUrl: cms.outputs.SERVICE_CMS_URI
+    portalUrl: portal.outputs.SERVICE_WEB_URI
     keyVaultName: keyVault.outputs.name
   }
 }

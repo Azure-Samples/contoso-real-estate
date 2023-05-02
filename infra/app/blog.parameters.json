@@ -20,6 +20,9 @@
     "cmsUrl": {
       "value": "${SERVICE_CMS_URI}"
     },
+    "portalUrl": {
+      "value": "${SERVICE_WEB_URI}"
+    },
     "blogImageName": {
       "value": "${SERVICE_BLOG_IMAGE_NAME}"
     },

@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react"
 import Nav from "./nav"
 
 const Stage = ({ homepage, categories }) => {
+  const portalUrl = process.env.NEXT_PUBLIC_PORTAL_URL || "/"
   return (
     <div className="stage">
       <img
@@ -11,7 +11,7 @@ const Stage = ({ homepage, categories }) => {
         width="200"
       />
       <h1>{homepage.attributes.hero.title}</h1>
-      <a href="/" className="button">
+      <a href={portalUrl} className="button">
         Visit the portal
       </a>
       <Nav categories={categories} />
