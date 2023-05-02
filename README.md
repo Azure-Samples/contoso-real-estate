@@ -32,7 +32,7 @@ This repo contains the reference implementation for the Contoso Real Estate appl
 The solution illustrates the value of a _composable web architecture_ with _micro-frontends_ for building modern web applications for scalable serverless deployments. The underlying user scenarios and dataflow are as follows:
 
  1. The user visits the Contoso Real Estate application portal.
- 2. They can click on the "Blog" feature to visit a blog curated by HR
+ 2. They can click on the "Blog" feature to visit a blog curated by the Engineering teams
  3. They can click a featured rental to get a "Listing" view with more details
  4. They can login using approved providers, to unlock additional capabilities:
     - They can save a rental to their "Favorites" collection
