@@ -8,6 +8,7 @@ You can navigate through the documentation using the table of contents below:
 
 - [Enterprise-grade Reference Architecture for JavaScript](#enterprise-grade-reference-architecture-for-javascript)
   - [Table of Contents](#table-of-contents)
+  - [Real Estate Rentals Portal](#real-estate-rentals-portal)
   - [Architecture Diagram](#architecture-diagram)
   - [Simplified Flow Diagram](#simplified-flow-diagram)
   - [Components](#components)
@@ -23,6 +24,25 @@ You can navigate through the documentation using the table of contents below:
   - [Want to help?](#want-to-help)
 
 ---
+
+## Real Estate Rentals Portal
+
+This repo contains the reference implementation for the Contoso Real Estate application solution. This is a line-of-business application that provides a mechanism for enabling new hires in an enterprise to discover, reserve, and pay for, rental housing that has been approved by HR. The solution is ideal for the travel and hospitality industries, and can be easily adapted for e-commerce applications.
+
+The solution illustrates the value of a _composable web architecture_ with _micro-frontends_ for building modern web applications for scalable serverless deployments. The underlying user scenarios and dataflow are as follows:
+
+ 1. The user visits the Contoso Real Estate application portal.
+ 2. They can click on the "Blog" feature to visit a blog curated by the Engineering teams
+ 3. They can click a featured rental to get a "Listing" view with more details
+ 4. They can login using approved providers, to unlock additional capabilities:
+    - They can save a rental to their "Favorites" collection
+    - They can "Reserve" a rental by filling in relevant criteria for booking
+    - They can make a "Payment" to complete the reservation.
+    - They can visit their "Profile" to see Favorites and Reservations history.
+ 5. They can logout to return to guest mode.
+
+The architecture diagram shows how these scenarios are implemented, highlighting the tools and services used.
+
 
 
 ## Architecture Diagram
