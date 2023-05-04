@@ -138,7 +138,7 @@ flowchart TD
 This project is optimized for use with [GitHub Codespaces](https://github.com/features/codespaces), a development environment hosted in the GitHub cloud. Here is how to get started:
 
 1. Fork this repository.
-1. Create a new GitHub Codespace from your fork. This will automatically provision a new Codespace with all the required dependencies preinstalled and configured.
+1. Create a new GitHub Codespaces from your fork. This will automatically provision a new Codespaces with all the required dependencies preinstalled and configured.
 1. Open the terminal and run `npm install && npm start` to start the development servers.
   *Note: Codespaces will show a series of windows on the right side of the screen while starting all servers. This is normal and expected.*
 1. Once all dev servers have started, the following URLs will be available:
