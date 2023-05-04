@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "${AZURE_ENV_NAME}"
+    },
+    "location": {
+      "value": "${AZURE_LOCATION}"
+    },
+    "principalId": {
+      "value": "${AZURE_PRINCIPAL_ID}"
+    },
+    "cmsDatabasePassword": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "jwtSecret": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "adminJwtSecret": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "apiTokenSalt": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "appKeys": {
+      "value": "$(secretOrRandomPassword)"
+    },
+    "stripePublicKey": {
+      "value": "${STRIPE_PUBLIC_KEY}"
+    },
+    "stripeSecretKey": {
+      "value": "${STRIPE_SECRET_KEY}"
+    },
+    "stripeWebhookSecret": {
+      "value": "${STRIPE_WEBHOOK_SECRET}"
+    },
+    "cmsDatabaseHost": {
+      "value": "${SERVICE_CMS_SERVER_HOST}"
+    },
+    "cmsImageName": {
+      "value": "${SERVICE_CMS_IMAGE_NAME}"
+    },
+    "blogImageName": {
+      "value": "${SERVICE_BLOG_IMAGE_NAME}"
+    },
+    "stripeImageName": {
+      "value": "${SERVICE_STRIPE_IMAGE_NAME}"
+    },
+    "stripeServiceUrl": {
+      "value": "${SERVICE_STRIPE_URI}"
+    },
+    "storageContainerName": {
+      "value": "${STORAGE_CONTAINER_NAME}"
+    }
+  }
+}
