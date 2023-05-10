@@ -1,7 +1,8 @@
-import React from "react"
 import Link from "next/link"
+import { loadCategories } from "../lib/services"
 
-const Nav = ({ categories }) => {
+const Nav = async () => {
+  const categories = await loadCategories()
   return (
     <div>
       <nav className="nav" data-uk-navbar>
@@ -9,6 +10,7 @@ const Nav = ({ categories }) => {
           Welcome to our Blog! Choose your favorite category.
         </p>
         <ul className="uk-navbar-nav">
+          {/* TODO Highlight the current nav item */}
           {categories.map((category) => {
             return (
               <li key={category.id}>

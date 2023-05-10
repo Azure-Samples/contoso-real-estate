@@ -1,7 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
+import Link from "next/link"
+import { loadHomePage } from "../lib/services"
 import Nav from "./nav"
 
-const Stage = ({ homepage, categories }) => {
+const Stage = () => {
+  const homepage = await loadHomePage()
   const portalUrl = process.env.NEXT_PUBLIC_PORTAL_URL || "/"
   return (
     <div className="stage">
@@ -11,10 +13,11 @@ const Stage = ({ homepage, categories }) => {
         width="200"
       />
       <h1>{homepage.attributes.hero.title}</h1>
-      <a href={portalUrl} className="button">
+      <Link href={portalUrl} className="button">
         Visit the portal
-      </a>
-      <Nav categories={categories} />
+      </Link>
+      {/* @ts-expect-error Async Server Component */}
+      <Nav />
     </div>
   )
 }

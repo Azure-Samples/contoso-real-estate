@@ -1,13 +1,14 @@
-import React from "react"
+"use client"
+
 import Link from "next/link"
-import NextImage from "./image"
+import CustomImage from "./image"
 
 const Card = ({ article }) => {
   return (
     <Link href={`/article/${article.attributes.slug}`} className="card">
       <div className="card-header">
         <div className="card-media">
-          <NextImage image={article.attributes.image} />
+          <CustomImage image={article.attributes.image} />
         </div>
         <div className="card-body">
           <p id="category" className="card-text">

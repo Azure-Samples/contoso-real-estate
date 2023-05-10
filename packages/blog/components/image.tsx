@@ -1,24 +1,16 @@
+import Image from "next/image"
 import { getStrapiMedia } from "../lib/media"
-import NextImage from "next/legacy/image"
 
-const Image = ({ image }) => {
+const CustomImage = ({ image }) => {
   const { alternativeText, width, height } = image.data.attributes
-
-  const loader = () => {
-    return getStrapiMedia(image)
-  }
-
   return (
-    <NextImage
-      loader={loader}
-      layout="responsive"
+    <Image
       width={width || "100%"}
       height={height || "100%"}
-      objectFit="contain"
       src={getStrapiMedia(image)}
       alt={alternativeText || ""}
     />
   )
 }
 
-export default Image
+export default CustomImage

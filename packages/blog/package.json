@@ -14,15 +14,14 @@
     "docker:run": "docker run --rm --publish 3000:3000 --env-file ../../.env.docker blog"
   },
   "dependencies": {
-    "moment": "^2.24.0",
-    "next": "^13.1.2",
+    "next": "^13.3.0",
     "qs": "^6.10.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-markdown": "^8.0.4",
-    "react-moment": "^1.1.2",
     "rehype-raw": "^6.1.1",
-    "rehype-sanitize": "^5.0.1"
+    "rehype-sanitize": "^5.0.1",
+    "uikit": "^3.16.14"
   },
   "license": "MIT",
   "devDependencies": {
@@ -30,7 +29,7 @@
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
     "eslint": "^8.31.0",
-    "eslint-config-next": "^13.1.2",
+    "eslint-config-next": "^13.3.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.2",

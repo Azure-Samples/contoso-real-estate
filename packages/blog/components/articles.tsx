@@ -1,7 +1,20 @@
-import React from "react"
+import { notFound } from "next/navigation"
+import { loadArticles, loadArticlesByCategory } from "../lib/services"
 import Card from "./card"
 
-const Articles = ({ articles }) => {
+interface IProp {
+  slug?: string
+}
+
+async function Articles(props: IProp) {
+  const articles = props.slug
+    ? await loadArticlesByCategory(props.slug)
+    : await loadArticles()
+
+  if (!articles) {
+    notFound()
+  }
+
   return (
     <div>
       <div className="grid">

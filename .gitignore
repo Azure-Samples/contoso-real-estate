@@ -51,3 +51,4 @@ out
 *.tsbuildinfo
 *.DS_Store
 .azure
+packages/blog/.vscode/settings.json
