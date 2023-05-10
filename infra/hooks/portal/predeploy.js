@@ -29,15 +29,16 @@ function replaceEnvURIs(filePath) {
 
     writeFileSync(filePath, newFileContent);
 
-    console.log(`Replaced ${blogPlaceholderValue} with ${blogValue} in ${filePath}`);
-    console.log(`Replaced ${cmsPlaceholderValue} with ${cmsValue} in ${filePath}`);
+    process.exit(0);
   }
   else {
     if (!matchBlog) {
       console.log(`No match found for ${blogPlaceholderValue}. Skipping replacement.`);
+      process.exit(1);
     }
     if (!matchCms) {
       console.log(`No match found for ${cmsPlaceholderValue}. Skipping replacement.`);
+      process.exit(1);
     }
   }
 }
