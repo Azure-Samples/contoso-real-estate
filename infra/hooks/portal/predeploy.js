@@ -8,23 +8,37 @@ const { resolve, join } = require("node:path");
 
 const shellCommand = `azd env get-values`;
 const envVars = execSync(shellCommand).toString().trim();
-const regex = /SERVICE_BLOG_URI="([^"]+)"/;
-const oldValue = "SERVICE_BLOG_URI_PLACEHOLDER";
+const blogRegex = /SERVICE_BLOG_URI="([^"]+)"/;
+const blogPlaceholderValue = "{{SERVICE_BLOG_URI_PLACEHOLDER}}";
+const cmsRegex = /SERVICE_CMS_URI="([^"]+)"/;
+const cmsPlaceholderValue = "{{SERVICE_CMS_URI_PLACEHOLDER}}";
+
 // Note: this script is run by azd from the root of ./packages/portal
 const distPath = resolve(__dirname, "../../../packages/portal/dist/contoso-app");
 
-function replaceBlogUrl(filePath) {
-  const match = envVars.match(regex);
+function replaceEnvURIs(filePath) {
+  const matchBlog = envVars.match(blogRegex);
+  const matchCms = envVars.match(cmsRegex);
 
-  if (match) {
-    const value = match[1];
+  if (matchBlog && matchCms) {
+    const blogValue = matchBlog[1];
+    const cmsValue = matchCms[1];
     const fileContents = readFileSync(filePath, "utf-8");
-    const newFileContents = fileContents.replace(oldValue, value);
-    writeFileSync(filePath, newFileContents);
-    console.log(`Replaced ${oldValue} with ${value} in ${filePath}`);
+    const newFileContent = fileContents.replace(blogPlaceholderValue, blogValue)
+                                        .replace(cmsPlaceholderValue, cmsValue);
+
+    writeFileSync(filePath, newFileContent);
+
+    console.log(`Replaced ${blogPlaceholderValue} with ${blogValue} in ${filePath}`);
+    console.log(`Replaced ${cmsPlaceholderValue} with ${cmsValue} in ${filePath}`);
   }
   else {
-    console.log(`No match found for ${regex}. Skipping replacement.`);
+    if (!matchBlog) {
+      console.log(`No match found for ${blogPlaceholderValue}. Skipping replacement.`);
+    }
+    if (!matchCms) {
+      console.log(`No match found for ${cmsPlaceholderValue}. Skipping replacement.`);
+    }
   }
 }
 
@@ -33,7 +47,7 @@ function findMainFile(directoryPath) {
     const files = readdirSync(directoryPath);
     for (const file of files) {
       if (file.startsWith("main.")) {
-        replaceBlogUrl(join(distPath, file));
+        replaceEnvURIs(join(distPath, file));
         break;
       }
     }
