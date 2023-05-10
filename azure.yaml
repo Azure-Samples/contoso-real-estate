@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: contoso-real-estate
+
+hooks:
+  postprovision:
+    shell: 'sh'
+    continueOnError: false
+    interactive: true
+
+    # TODO: provide a cross platform way to run this script
+    run: ./scripts/database/restore.sh strapi_20230202
+
+services:
+  portal:
+    project: packages/portal
+    dist: dist/contoso-app
+    language: ts
+    host: staticwebapp
+    module: app/portal
+    hooks:
+      postpackage:
+        shell: sh
+        interactive: true
+        # Note: the current working directory is ./packages/portal
+        run: ../../infra/hooks/portal/predeploy.js
+
+  api:
+    project: packages/api
+    language: ts
+    host: function
+    module: app/api
+
+  cms:
+    project: packages/blog-cms
+    host: containerapp
+    language: js
+    module: app/cms
+
+  blog:
+    project: packages/blog
+    host: containerapp
+    language: js
+    module: app/blog
+
+  stripe:
+    project: packages/stripe
+    host: containerapp
+    language: js
+    docker:
+      context: ../..
+    module: app/stripe

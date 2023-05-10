@@ -8,6 +8,11 @@
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      // NOTE: See https://github.com/Azure-Samples/contoso-real-estate/pull/191
+      "version": "18.15.0"
+    },
+    "ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
       "version": "20.10.23",
       "moby": "false",
@@ -26,7 +31,7 @@
   "forwardPorts": [4280, 4242, 3000, 1337],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "npm i -g npm@latest fuzz-run && npm install && curl -fsSL https://aka.ms/install-azd.sh | bash",
+  "postCreateCommand": "./post-create-command.sh",
 
   // Configure tool-specific properties.
   "customizations": {

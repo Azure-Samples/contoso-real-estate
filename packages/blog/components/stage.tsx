@@ -2,8 +2,9 @@ import Link from "next/link"
 import { loadHomePage } from "../lib/services"
 import Nav from "./nav"
 
-const Stage = async () => {
+const Stage = () => {
   const homepage = await loadHomePage()
+  const portalUrl = process.env.NEXT_PUBLIC_PORTAL_URL || "/"
   return (
     <div className="stage">
       <img
@@ -12,8 +13,7 @@ const Stage = async () => {
         width="200"
       />
       <h1>{homepage.attributes.hero.title}</h1>
-
-      <Link href="/" className="button">
+      <Link href={portalUrl} className="button">
         Visit the portal
       </Link>
       {/* @ts-expect-error Async Server Component */}

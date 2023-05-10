@@ -1,7 +1,9 @@
 export const environment = {
   production: true,
-  blogUrl: 'https://aka.ms/contoso-real-estate/blog-prod',
 
-  // Note: use 127.0.0.1 instead of localhost to avoid Codespaces issues
-  strapiGraphQlUri: 'http://127.0.0.1:1337/graphql'
+  // Note: this placeholder will be replaced by the actual URL during the build process.
+  // If you hard-code the URL here, it will be used instead of the placeholder and
+  // no replacement will be made.
+  blogUrl: '{{SERVICE_BLOG_URI_PLACEHOLDER}}',
+  strapiGraphQlUri: '{{SERVICE_CMS_URI_PLACEHOLDER}}/graphql'
 };

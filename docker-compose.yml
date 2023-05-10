@@ -50,7 +50,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=MongoPass
     ports:
       - "27017:27017"
-    volumes: 
+    volumes:
       - mongodata:/data/db
 
   postgres:
@@ -77,7 +77,7 @@ services:
       STRAPI_DATABASE_USERNAME: postgres
       STRAPI_DATABASE_PASSWORD: PostgresPass
       STRAPI_DATABASE_NAME: strapi
-    command: ["./restore.sh", "dumps/strapi_20230202.sql"]
+    command: ["./restore.sh", "strapi_20230202"]
     volumes:
       - ./scripts/database:/scripts
     depends_on:

@@ -7,16 +7,28 @@
 ##############################################################################
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
-if [[ -e "../infra/.env" ]]; then
-  source ../infra/.env
+
+STRAPI_DATABASE_MIGRATED="${STRAPI_DATABASE_MIGRATED:-false}"
+
+azd env get-values > .env
+source .env
+rm .env
+
+# if database has already been migrated, exit
+if [[ "$STRAPI_DATABASE_MIGRATED" == "true" ]]; then
+  echo "Strapi database has already been migrated"
+  exit 0
 fi
 
-file="${1:-}"
+filename="${1:-}"
+file="$(pwd)/dumps/$filename.sql"
 
 if [[ -z "$file" ]]; then
   echo "Usage: ./restore.sh <dump_file>"
   exit 1
 fi
+
+echo "Restoring PostgreSQL Database from $file"
 
 # Restore strapi database ----------------------------------------------------
 PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
@@ -27,4 +39,10 @@ PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
   --dbname="$STRAPI_DATABASE_NAME" \
   "$file" || true
 
+if [[ $? -ne 0 ]]; then
+  echo "!!Failed to restore PostgreSQL Database"
+  exit 1
+fi
+
 echo "PostgreSQL Database restored successfully"
+azd env set STRAPI_DATABASE_MIGRATED true
