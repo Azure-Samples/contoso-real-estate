@@ -8,6 +8,11 @@
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      // NOTE: See https://github.com/Azure-Samples/contoso-real-estate/pull/191
+      "version": "18.15.0"
+    },
+    "ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
       "version": "20.10.23",
       "moby": "false",
