@@ -4,15 +4,32 @@
 # Restore database from a dump file.
 ##############################################################################
 # v1.0.0 | dependencies: pg_restore
+# v2.0.0 | dependencies: azd
 ##############################################################################
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 STRAPI_DATABASE_MIGRATED="${STRAPI_DATABASE_MIGRATED:-false}"
+AZD_INSTALLED=false
 
-azd env get-values > .env
-source .env
-rm .env
+# check if azd is installed. We use azd to get values from the azd current env
+# If azd is not installed, we get values from current user's session
+if [[ -x "$(command -v azd)" ]]; then
+  AZD_INSTALLED=true
+else
+  AZD_INSTALLED=false
+fi
+
+# if azd is installed, get values from azd, otherwise get values from .env
+if [[ "$AZD_INSTALLED" == "true" ]]; then
+  echo "Getting values from azd"
+  azd env get-values > .env
+  source .env
+  rm .env
+else
+  echo "Getting values from .env"
+fi
+
 
 # if database has already been migrated, exit
 if [[ "$STRAPI_DATABASE_MIGRATED" == "true" ]]; then
@@ -45,4 +62,8 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "PostgreSQL Database restored successfully"
-azd env set STRAPI_DATABASE_MIGRATED true
+
+if [[ "$AZD_INSTALLED" == "true" ]]; then
+  echo "Setting STRAPI_DATABASE_MIGRATED to true in azd"
+  azd env set STRAPI_DATABASE_MIGRATED true
+fi
