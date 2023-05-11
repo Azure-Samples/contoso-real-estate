@@ -18,7 +18,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.blob.core.windows.net",
         port: "",
-        pathname: "/strapi/assets/**",
+        pathname: "**",
       },
       {
         protocol: "http",

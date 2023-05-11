@@ -36,7 +36,13 @@ export default async function RootLayout({
       <body>
         <Layout>
           <header className="header">
-            <span>Logo goes here</span>
+            <a href="/" className="logo">
+              <img
+                src="/images/contoso-real-estate-logo.svg"
+                alt="Contoso Real Estate Fictional Company Logo"
+                width="80"
+              />
+            </a>
           </header>
           <main className="main">
             <section className="section homepage inner-wrapper">
@@ -56,7 +62,12 @@ export default async function RootLayout({
               </div>
             </section>
             <a href="/" className="logo">
-              <span>Logo goes here</span>
+              <img
+                src="/images/contoso-real-estate-logo.svg"
+                alt="Contoso Real Estate Fictional Company Logo"
+                width="100px"
+                height="50px"
+              />
             </a>
           </footer>
         </Layout>
