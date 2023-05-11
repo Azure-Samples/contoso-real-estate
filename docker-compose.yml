@@ -35,7 +35,7 @@ services:
       DATABASE_PASSWORD: PostgresPass
       DATABASE_NAME: strapi
       DATABASE_PORT: 5432
-      DATABASE_SSL: false
+      DATABASE_SSL: "false"
     ports:
       - "1337:1337"
     depends_on:
@@ -77,7 +77,7 @@ services:
       STRAPI_DATABASE_USERNAME: postgres
       STRAPI_DATABASE_PASSWORD: PostgresPass
       STRAPI_DATABASE_NAME: strapi
-    command: ["./restore.sh", "strapi_20230202"]
+    command: ["./restore.sh", "strapi_20230419"]
     volumes:
       - ./scripts/database:/scripts
     depends_on:
