@@ -65,7 +65,8 @@ export default async function RootLayout({
               <img
                 src="/images/contoso-real-estate-logo.svg"
                 alt="Contoso Real Estate Fictional Company Logo"
-                width="100px" height="50px"
+                width="100px"
+                height="50px"
               />
             </a>
           </footer>
