@@ -1,7 +1,7 @@
 html {
   font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: normal;
-  margin: 0 0 16px;
+  margin: 0;
   color: #000000;
 }
 
@@ -198,4 +198,49 @@ img:hover {
   font-size: 16px;
   line-height: 1.2;
   font-weight: normal;
+}
+
+.footer {
+  background: #f5f5f5;
+}
+
+.footer .logo {
+  padding: 20px;
+  text-align: center;
+  display: block;
+}
+
+.footer .inner-wrapper {
+  font-size: .8rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  align-items: stretch;
+  align-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  bottom: 0;
+}
+
+.footer .spacer {
+  flex: 1 1 auto;
+}
+
+.footer__copy, .footer__links {
+  font-size: .64rem;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.footer__links a {
+  margin: 0 10px;
+  color: #3f51b5;
+  text-decoration: underline;
 }
