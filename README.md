@@ -126,12 +126,13 @@ flowchart TD
 
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) - Provisioning, managing and deploying the application to Azure.
 - [GitHub Actions](https://github.com/features/actions) - The CI/CD pipelines.
+- [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview) - The CI/CD pipelines.
 
 ### Developer tools
 
 - [Visual Studio Code](https://code.visualstudio.com/) - The local IDE experience.
 - [GitHub Codespaces](https://github.com/features/codespaces) - The cloud IDE experience.
-- [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/) - The local development experience.
+- [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/) - Accelerates the process of building cloud apps on Azure.
 
 ## Development environment
 
@@ -166,12 +167,12 @@ Github Codespaces usage is [billed](https://docs.github.com/billing/managing-bil
 The project is using `npm` workspaces. The project structure is as follows:
 
 - `packages/` - contains all the packages
-  - [`api`](../packages/api/) - contains the serverless Azure Functions API.
-  - [`portal`](../packages/portal) - contains the Angular web portal.
-  - [`blog`](../packages/blog) - contains the Next.js blog.
-  - [`blog-cms`](../packages/blog-cms) - contains the Strapi CMS.
-  - [`stripe`](../packages/stripe) - contains the Stripe webhook.
-  - [`testing`](../packages/testing) - contains the Playwright tests.
+  - [`api`](packages/api) - contains the serverless Azure Functions API.
+  - [`portal`](packages/portal) - contains the Angular web portal.
+  - [`blog`](packages/blog) - contains the Next.js blog.
+  - [`blog-cms`](packages/blog-cms) - contains the Strapi CMS.
+  - [`stripe`](packages/stripe) - contains the Stripe webhook.
+  - [`testing`](packages/testing) - contains the Playwright tests.
 
 ## Deploy to Azure
 
