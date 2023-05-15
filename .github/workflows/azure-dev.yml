@@ -22,9 +22,9 @@ jobs:
     container:
       image: mcr.microsoft.com/azure-dev-cli-apps:latest
     env:
-      AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
-      AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
-      AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
     steps:
       - name: Checkout
@@ -56,9 +56,9 @@ jobs:
       - name: Provision Infrastructure
         run: azd provision --no-prompt
         env:
-          AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
-          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
-          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+          AZURE_ENV_NAME: ${{ secrets.AZURE_ENV_NAME }}
+          AZURE_LOCATION: ${{ secrets.AZURE_LOCATION }}
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
@@ -66,9 +66,9 @@ jobs:
       - name: Deploy Application
         run: azd deploy --no-prompt
         env:
-          AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
-          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
-          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+          AZURE_ENV_NAME: ${{ secrets.AZURE_ENV_NAME }}
+          AZURE_LOCATION: ${{ secrets.AZURE_LOCATION }}
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
