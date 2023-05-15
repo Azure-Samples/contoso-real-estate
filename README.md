@@ -21,6 +21,7 @@ You can navigate through the documentation using the table of contents below:
   - [Deploy to Azure](#deploy-to-azure)
     - [Prerequisites](#prerequisites)
     - [Deploy to Azure](#deploy-to-azure-1)
+    - [Configure CICD](#configure-cicd)
     - [Clean up resources](#clean-up-resources)
   - [Want to help?](#want-to-help)
 
@@ -193,6 +194,14 @@ azd deploy
 ```
 
 **Important:** It is mandatory to run these `azd` commands in this order. Provisioning first will create the `azd` development environment and outputs the `.env` file with the required environment variables. Packaging will package the application using some of the environment variables from the `.env` file.
+
+### Configure CICD
+
+Use the following command to configure the CICD pipelines:
+
+```bash
+azd pipeline config --auth-type client-credentials
+```
 
 ### Clean up resources
 
