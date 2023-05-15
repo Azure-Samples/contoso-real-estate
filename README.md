@@ -21,7 +21,7 @@ You can navigate through the documentation using the table of contents below:
   - [Deploy to Azure](#deploy-to-azure)
     - [Prerequisites](#prerequisites)
     - [Deploy to Azure](#deploy-to-azure-1)
-    - [Configure CICD](#configure-cicd)
+    - [Configure CI-CD](#configure-ci-cd)
     - [Clean up resources](#clean-up-resources)
   - [Want to help?](#want-to-help)
 
@@ -185,6 +185,8 @@ This project uses [GitHub Codespaces](https://github.com/features/codespaces) as
 
 This project uses Azure Dev CLI to provision, manage and deploy the application to Azure. Running the following command will get you started with the deployment. This command will create an `azd` development environment, provision the Azure resources, and deploy the application to Azure.
 
+Please also note that the Azure Dev CLI is still in preview, if you run into any issues, please open an issue [here](https://github.com/Azure/azure-dev/issues/new/choose).
+
 Here is how to deploy the application to Azure:
 
 ```bash
@@ -195,9 +197,9 @@ azd deploy
 
 **Important:** It is mandatory to run these `azd` commands in this order. Provisioning first will create the `azd` development environment and outputs the `.env` file with the required environment variables. Packaging will package the application using some of the environment variables from the `.env` file.
 
-### Configure CICD
+### Configure CI-CD
 
-Use the following command to configure the CICD pipelines:
+Use the following command to configure the CI-CD pipelines:
 
 ```bash
 azd pipeline config --auth-type client-credentials
