@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI
 
 on: 
   pull_request:
@@ -82,45 +82,3 @@ jobs:
 
       - run: npm ci
       - run: npm run build
-
-  deploy:
-    # This job will only run when a PR is merged into main
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    concurrency:
-      group: deploy
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.15'
-
-      - name: Cache node modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules-${{ matrix.os }}-${{ matrix.node-version }}
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Update infrastructure
-        run: scripts/infra/infra.sh create
-        env:
-          STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-
-      - name: Build project
-        run: scripts/infra/build.sh
-
-      - name: Deploy project
-        run: scripts/infra/deploy.sh
