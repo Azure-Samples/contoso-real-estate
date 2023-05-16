@@ -183,9 +183,9 @@ This project uses [GitHub Codespaces](https://github.com/features/codespaces) as
 
 ### Deploy to Azure
 
-This project uses Azure Dev CLI to provision, manage and deploy the application to Azure. Running the following command will get you started with the deployment. This command will create an `azd` development environment, provision the Azure resources, and deploy the application to Azure.
+This project uses Azure Developer CLI to provision, manage and deploy the application to Azure. Running the following command will get you started with the deployment. This command will create an `azd` development environment, provision the Azure resources, and deploy the application to Azure.
 
-Please also note that the Azure Dev CLI is still in preview, if you run into any issues, please open an issue [here](https://github.com/Azure/azure-dev/issues/new/choose).
+Please also note that the Azure Developer CLI is still in preview, if you run into any issues, please open an issue [here](https://github.com/Azure/azure-dev/issues/new/choose).
 
 Here is how to deploy the application to Azure:
 
