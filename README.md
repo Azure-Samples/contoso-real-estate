@@ -197,6 +197,8 @@ azd deploy
 
 **Important:** It is mandatory to run these `azd` commands in this order. Provisioning first will create the `azd` development environment and outputs the `.env` file with the required environment variables. Packaging will package the application using some of the environment variables from the `.env` file.
 
+**Deployment region:** This infrastructure deployment has been tested to work in `westeurope`. Please choose this region when deploying it.
+
 ### Configure CI-CD
 
 Use the following command to configure the CI-CD pipelines:
