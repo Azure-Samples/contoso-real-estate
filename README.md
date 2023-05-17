@@ -207,7 +207,7 @@ azd deploy
 Use the following command to configure the CI-CD pipelines:
 
 ```bash
-azd pipeline config
+azd pipeline config --auth-type client-credentials
 ```
 
 ### Clean up resources
