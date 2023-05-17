@@ -11,10 +11,7 @@ import { APOLLO_OPTIONS, Apollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 
-// eslint-disable-next-line no-debugger
-debugger;
 const codeSpacesUrl = process.env["CODESPACES_NAME"];
-console.log("codeSpacesUrl", process, codeSpacesUrl);
 const uri = () => {
   if (!environment.production && codeSpacesUrl) {
     return `https://${codeSpacesUrl}-1337.preview.app.github.dev/graphql`;
