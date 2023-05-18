@@ -25,6 +25,6 @@ describe("AppComponent", () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector(".footer__copy")?.textContent).toContain("©2022 - JavaScript @ Contoso HR Rentals App");
+    expect(compiled.querySelector(".footer__copy")?.textContent).toContain("©2023 - JavaScript @ Contoso HR Rentals App");
   });
 });
