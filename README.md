@@ -183,17 +183,20 @@ This project uses [GitHub Codespaces](https://github.com/features/codespaces) as
 
 ### Deploy to Azure
 
-This project uses Azure Dev CLI to provision, manage and deploy the application to Azure. Running the following command will get you started with the deployment. This command will create an `azd` development environment, provision the Azure resources, and deploy the application to Azure.
-
-Please also note that the Azure Dev CLI is still in preview, if you run into any issues, please open an issue [here](https://github.com/Azure/azure-dev/issues/new/choose).
-
-Here is how to deploy the application to Azure:
+This project uses [Azure Developer CLI (`azd`)](https://aka.ms/azd) to provision infrastructure, package, and deploy the application to Azure. Running the following commands will get you started with deployment.
 
 ```bash
+# Login to azd. Only required once per install.
+azd auth login
+
+# Provision infrastructure and the azd development environment
 azd provision
-azd package
+
+# Package the app using the environment variables in .azure/env + deploy the code on Azure
 azd deploy
 ```
+
+> If you encounter issues with the Azure Developer CLI, please open an issue [here](https://github.com/Azure/azure-dev/issues/new/choose).
 
 **Important:** It is mandatory to run these `azd` commands in this order. Provisioning first will create the `azd` development environment and outputs the `.env` file with the required environment variables. Packaging will package the application using some of the environment variables from the `.env` file.
 
