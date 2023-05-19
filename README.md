@@ -99,7 +99,7 @@ flowchart TD
     
     API --> APIM -- "api.contoso.com" --> Functions <-- "read/write" --> DB_Mongo
 
-    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate paiement (through APIM)" .-> Functions
+    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate payment (through APIM)" .-> Functions
     
     %% Portal
     linkStyle 0 stroke:pink
