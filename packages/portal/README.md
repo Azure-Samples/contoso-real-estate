@@ -1,5 +1,7 @@
 # Contoso Real Estate App: Portal Package
 
+**IMPORTANT: THIS REPOSITORY IS OPTIMIZED FOR CODESPACES AND TO WORK AS A SET OF COMPOSABLE APPS AND APIS. STANDALONE PACKAGE FUNCTIONALITY IS LIMITED AND MAY REQUIRE ADDITIONAL CONFIGURATION OR DEVELOPMENT**
+
 This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer. This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer. 
 
 It will also instruct you how to deploy it to [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview), to publish it to the cloud, independenty, using the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/).
