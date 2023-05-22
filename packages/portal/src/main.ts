@@ -11,13 +11,14 @@ import { APOLLO_OPTIONS, Apollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 
-const codeSpacesUrl = process.env["CODESPACES_NAME"];
+const graphQlUrl = process.env["NG_APP_STRAPI_GRAPHQL_URL"];
 const uri = () => {
-  if (!environment.production && codeSpacesUrl) {
-    return `https://${codeSpacesUrl}-1337.preview.app.github.dev/graphql`;
+  if (!environment.production && graphQlUrl) {
+    return graphQlUrl;
   }
   return environment.strapiGraphQlUri;
 };
+
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({

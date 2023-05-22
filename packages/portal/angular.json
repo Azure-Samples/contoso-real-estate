@@ -32,10 +32,7 @@
               "../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles/styles.scss"
             ],
-            "scripts": [],
-            "ngxEnv": {
-              "prefix": "CODESPACES_"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
