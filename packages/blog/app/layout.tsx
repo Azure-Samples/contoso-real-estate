@@ -52,7 +52,7 @@ export default async function RootLayout({
           <footer className="footer">
             <section className="inner-wrapper">
               <p className="footer__copy">
-                ©2022 - JavaScript @ Contoso HR Rentals App
+                ©2023 - JavaScript @ Contoso HR Rentals App
               </p>
               <span className="spacer"></span>
               <div className="footer__links">

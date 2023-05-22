@@ -199,7 +199,7 @@ export class HomePage {
     this.footerHomeLink = page.getByRole("link", { name: "Home" });
     this.footerTOSLink = page.getByRole("link", { name: "Terms of Service" });
     this.footerCopyright = page.getByText(
-      "©2022 - JavaScript @ Contoso HR Rentals App"
+      "©2023 - JavaScript @ Contoso HR Rentals App"
     );
 
     // ------------- featured listings section
