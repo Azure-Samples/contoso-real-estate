@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "swa": "swa",
-    "start": "ng serve",
+    "start": "ng serve --disable-host-check",
     "start:swa": "swa start",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
@@ -36,6 +36,7 @@
     "@angular/cli": "~14.2.3",
     "@angular/compiler-cli": "^14.2.0",
     "@azure/static-web-apps-cli": "^1.0.6",
+    "@ngx-env/builder": "^16.0.0",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.48.1",

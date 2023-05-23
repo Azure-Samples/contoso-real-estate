@@ -11,11 +11,17 @@ import { APOLLO_OPTIONS, Apollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 
-const uri = environment.strapiGraphQlUri;
+const uri = () => {
+  if (!environment.production && environment.isCodespaces) {
+    return environment.strapiGraphQlUriInCodespace;
+  }
+  return environment.strapiGraphQlUriFallback;
+};
+
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({
-      uri
+      uri: uri(),
     }),
     cache: new InMemoryCache(),
   };

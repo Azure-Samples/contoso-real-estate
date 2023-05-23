@@ -6,8 +6,9 @@ export const environment = {
   production: false,
   blogUrl: 'http://localhost:3000',
 
-  // Note: use 127.0.0.1 instead of localhost to avoid Codespaces issues
-  strapiGraphQlUri: 'http://127.0.0.1:1337/graphql'
+  isCodespaces: process.env["CODESPACE_NAME"] ? true : false,
+  strapiGraphQlUriInCodespace: `https://${process.env["CODESPACE_NAME"]}-1337.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}/graphql`,
+  strapiGraphQlUriFallback: 'http://localhost:1337/graphql'
 };
 
 /*
