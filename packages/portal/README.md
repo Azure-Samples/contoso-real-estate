@@ -34,7 +34,7 @@ at the root level of the respository. This will install all dependencies for all
 This operation will also install the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/docs/intro). This tool includes a local dev server and emulator, to test the application and the corresponding API together, locally.
 
 
-3. assuming you are now in the `contoso-real-estate` or _root_ folder, go to the terminal and run
+3. assuming you are now in the `contoso-real-estate`, go to the terminal and run
 
 ```bash
 npm start
@@ -44,11 +44,6 @@ Follow the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-c
     
 Your default browser should open a new window with the application running. If you did not pass a port option, it should be running at [http://localhost:4280](http://localhost:4280)
 
-4. Assuming you are in the folder `contoso-real-estate/packages/portal` and that you have started the Angular application in the default port 4200, start the emulator by executing 
-
-```bash
-swa start http://localhost:4200 --api-location ../api
-```
 
 5. Go to `http://localhost:4280`. The application and the API should be running and functional. You should be able to see the homepage and the cards or teasers for the listings. You should be able to navigate to any of the listings detail page by clicking in any of the cards.
 
@@ -59,6 +54,9 @@ swa start http://localhost:4200 --api-location ../api
 
 - Q: The application server starts up but I can't navigate to any of the listings detail pages
 - A: Go to `http://localhost:7071/api/listings` and make sure you see a JSON printed in the browser
+
+- Q: The application server starts up but I can't navigate to any of the listings detail pages
+- A: Make sure you are accessing the portal served by the SWA CLI `http://localhost:4280` (and not the Angular CLI).
 
 ## Deploying to Azure with the Azure Static Web Apps CLI
 
