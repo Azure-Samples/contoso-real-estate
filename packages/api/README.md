@@ -1,6 +1,35 @@
-# API
+# Contoso Real Estate App: API Package
 
-## Stripe integration
+**IMPORTANT: THIS REPOSITORY IS OPTIMIZED FOR CODESPACES AND TO WORK AS A SET OF COMPOSABLE APPS AND APIS. STANDALONE PACKAGE FUNCTIONALITY IS LIMITED AND MAY REQUIRE ADDITIONAL CONFIGURATION OR DEVELOPMENT**
+
+
+This package deploys an Azure Functions API that is used by the Contoso Real Estate App, with multiple endpoints, and serving multiple applications, that are part of the scenarios.
+
+## Pre-requisites
+
+**IMPORTANT: THIS SCENARIO IS TIGHTLY COUPLED WITH SCENARIO 3. SOME PARTS OF THIS FUNCTION APP MAY NOT WORK AS EXPECTED IF YOU DON'T FOLLOW THE INSTRUCTIONS IN SCENARIO 3. THIS FUNCTION APP QUERIES TWO DATABASES. THEY MAY NEED TO BE IN PLACE IN ORDER FOR THE ENDPOINTS TO WORK**
+
+If you want to run the API independently and locally, the following technologies must be in place:
+
+- [node.js](https://nodejs.org) LTS, with the corresponding npm version
+- [Azure Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
+- [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/)
+
+## Steps to start the API
+
+1. fork or clone the repository locally
+2. assumming you are in the folder containing your clone, go to the terminal and run
+
+```bash
+cd packages/api && npm install
+```
+Now you have all the dependencies installed for the API and can run
+
+```bash
+npm start
+```
+
+## Stripe API integration
 
 To test Stripe integration, you need to create a Stripe account and get the API keys.
 
