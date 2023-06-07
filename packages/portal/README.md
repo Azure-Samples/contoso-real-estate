@@ -33,11 +33,6 @@ at the root level of the respository. This will install all dependencies for all
 
 This operation will also install the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/docs/intro). This tool includes a local dev server and emulator, to test the application and the corresponding API together, locally.
 
-**NOTE:** _If you want to work with this web app only, you can follow instructions to start an Angular application locally, by going to the folder `contoso-real-estate/packages/portal` and running_
-
-```bash
-npm install && npm start
-```
 
 3. assuming you are now in the `contoso-real-estate` or _root_ folder, go to the terminal and run
 
