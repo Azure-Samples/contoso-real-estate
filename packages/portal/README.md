@@ -23,7 +23,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Steps to start the portal
 
 1. fork or clone the repository locally
-2. assumming you are in the folder containing your clone, go to the terminal and run 
+2. assumming you are in the folder containing `contoso-real-estate/packages/portal`, go to the terminal and run 
 
 ```bash
 npm run clean:install
