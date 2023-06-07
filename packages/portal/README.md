@@ -26,7 +26,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. assumming you are in the folder containing your clone, go to the terminal and run 
 
 ```bash
-contoso-real-estate && npm run clean:install
+npm run clean:install
 ```
     
 at the root level of the respository. This will install all dependencies for all scenarios. 
