@@ -12,7 +12,7 @@ export enum UserRole {
 @Injectable({
   providedIn: "root",
 })
-export class UserService  {
+export class UserService {
   private readonly userSource = new BehaviorSubject<User>(this.guestUser());
   readonly user$ = this.userSource.asObservable();
 
