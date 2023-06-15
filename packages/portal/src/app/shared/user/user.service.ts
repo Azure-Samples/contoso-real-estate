@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-
+import { Resolve } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { LocalStorageService } from "../local-storage/local-storage.service";
 
@@ -12,11 +12,13 @@ export enum UserRole {
 @Injectable({
   providedIn: "root",
 })
-export class UserService {
+export class UserService implements Resolve<User> {
   private readonly userSource = new BehaviorSubject<User>(this.guestUser());
   readonly user$ = this.userSource.asObservable();
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(
+    private localStorageService: LocalStorageService
+  ) {}
 
   async resolve(): Promise<User> {
     return await this.currentUser();
