@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
@@ -24,12 +24,12 @@ export class RentalpageComponent implements OnInit {
   isLoading = true;
   reviewsMapping: { [k: string]: string } = { "=0": "No reviews", "=1": "1 message", other: "# reviews" };
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private listingService: ListingService,
-    private userService: UserService,
-  ) {
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private listingService = inject(ListingService);
+  private userService = inject(UserService);
+
+  constructor() {
     this.navigation = this.router.getCurrentNavigation();
     this.listing = this.navigation?.extras.state?.["listing"] || null;
     this.user = this.navigation?.extras.state?.["user"] || null;

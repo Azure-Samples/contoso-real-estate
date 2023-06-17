@@ -7,8 +7,8 @@
 //  If you don't need the default component typographies but still want the hierarchy styles,
 //  you can delete this line and instead use:
 //    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
+// @include mat.all-legacy-component-typographies();
+// @include mat.legacy-core();
 $primary-palette: mat.define-palette(mat.$indigo-palette);
 
 .header__logo {

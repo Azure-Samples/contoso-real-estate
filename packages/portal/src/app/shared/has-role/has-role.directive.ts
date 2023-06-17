@@ -1,4 +1,4 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from "@angular/core";
+import { Directive, Input, TemplateRef, ViewContainerRef, inject } from "@angular/core";
 import { AuthService } from "../authentication/auth.service";
 import { UserRole } from "../user/user.service";
 
@@ -15,10 +15,11 @@ export class HasRoleDirective {
     }
   }
 
+  private authService = inject(AuthService);
+
   constructor(
     private templateRef: TemplateRef<unknown>,
-    private viewContainerRef: ViewContainerRef,
-    private authService: AuthService,
+    private viewContainerRef: ViewContainerRef
   ) {}
 
   hide() {
