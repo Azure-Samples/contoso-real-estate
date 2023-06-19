@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCardModule } from "@angular/material/card";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
+import { Component, OnInit, inject } from "@angular/core";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
+import { MatLegacyCardModule as MatCardModule } from "@angular/material/legacy-card";
+import { MatLegacyFormFieldModule as MatFormFieldModule } from "@angular/material/legacy-form-field";
+import { MatLegacyInputModule as MatInputModule } from "@angular/material/legacy-input";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "../shared/authentication/auth.service";
 import { TextBlockComponent } from "../shared/text-block/text-block.component";
@@ -27,7 +27,9 @@ export class AuthenticationComponent implements OnInit {
     { name: "Apple", id: "apple" }
   ];
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private authService = inject(AuthService);
 
   async ngOnInit() {
     const params = this.route.snapshot.queryParams;

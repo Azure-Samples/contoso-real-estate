@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { MatButtonModule } from "@angular/material/button";
+import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
 import { MatDividerModule } from "@angular/material/divider";
 import { environment } from "../../environments/environment";
 import { CardListComponent } from "../shared/card-list/card-list.component";
@@ -22,11 +22,9 @@ export class HomepageComponent implements OnInit {
   blogUrl = environment.blogUrl;
   noresults = "Searching for featured listings. Please wait...";
 
-  constructor(
-    private listingService: ListingService,
-    private favoriteService: FavoriteService,
-    private userService: UserService,
-  ) {}
+  private listingService = inject(ListingService);
+  private favoriteService = inject(FavoriteService);
+  private userService = inject(UserService);
 
   async ngOnInit() {
     this.user = await this.userService.currentUser();

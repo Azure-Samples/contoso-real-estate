@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 
 // this is the most basic query to search for listings
@@ -28,10 +28,7 @@ query getResults($term: String!) {
   providedIn: 'root'
 })
 export class SearchService {
-
-  constructor(
-    private apollo: Apollo
-  ) {}
+  private apollo = inject(Apollo);
 
   getResults = (term: string) => {
     return this.apollo.query<SearchResult>({
