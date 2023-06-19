@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnChanges, Renderer2, inject } from "@angular/core";
-import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
-import { MatLegacyCardModule as MatCardModule } from "@angular/material/legacy-card";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
 import { RouterModule } from "@angular/router";
 import { FavoriteButtonComponent } from "../favorite-button/favorite-button/favorite-button.component";
 import { HasRoleDirective } from "../has-role/has-role.directive";
