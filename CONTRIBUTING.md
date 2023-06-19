@@ -263,12 +263,14 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 
 Must be one of the following:
 
-- **portal**: the Portal application written in Angular
-- **api**: the serverless API written in Node.js
-- **blog**: the Blob application written in Next.js
-- **cms**: the CMS application using Strapi
-- **stripe**: the Stripe API using Node.js and Fastly
-- **testing**: the Playwright e2e testing
+- `build`
+- `ci`
+- `docs`
+- `feat`
+- `fix`
+- `perf`
+- `refactor`
+- `test`
 
 ##### Scope
 
@@ -276,12 +278,12 @@ The scope should be the name of the npm package affected (as perceived by the pe
 
 The following is the list of supported scopes:
 
-- `portal`
-- `api`
-- `blog`
-- `cms`
-- `stripe`
-- `testing`
+- **portal**: the Portal application written in Angular
+- **api**: the serverless API written in Node.js
+- **blog**: the Blob application written in Next.js
+- **cms**: the CMS application using Strapi
+- **stripe**: the Stripe API using Node.js and Fastly
+- **testing**: the Playwright e2e testing
 
 ##### Summary
 
