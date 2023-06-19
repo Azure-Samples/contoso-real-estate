@@ -2,10 +2,13 @@
   <mat-card class="loading-background">
     <img
       mat-card-image
-      src="/assets/images/{{ listing?.photos?.[0] }}"
+      ngSrc="/assets/images/{{ listing?.photos?.[0] }}"
       alt="{{ listing?.title }}"
       class="listing-image"
       (load)="onImageLoad($event)"
+      width="177"
+      height="100"
+      priority
     />
     <mat-card-content>
       <mat-card-title>{{ listing?.title }}</mat-card-title>

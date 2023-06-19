@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { Component, Input, OnChanges, Renderer2, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -12,7 +12,7 @@ import { UserRole } from "../user/user.service";
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.scss"],
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, RouterModule, HasRoleDirective, FavoriteButtonComponent],
+  imports: [CommonModule, MatButtonModule, MatCardModule, NgOptimizedImage, RouterModule, HasRoleDirective, FavoriteButtonComponent],
 })
 export class CardComponent implements OnChanges {
   @Input() listing!: Listing | null;
