@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { HomepageComponent } from "./homepage/homepage.component";
-import { AuthGuard } from "./shared/guards/auth-guard.service";
+import { canActiveAuthGuard } from "./shared/guards/auth-guard.service";
 import { UserService } from "./shared/user/user.service";
 import { SearchpageComponent } from "./searchpage/searchpage.component";
 
@@ -54,7 +54,7 @@ export const ROUTES: Routes = [
 
       return null;
     },
-    canActivate: [AuthGuard],
+    canActivate: [canActiveAuthGuard],
     resolve: {
       user: UserService,
     },

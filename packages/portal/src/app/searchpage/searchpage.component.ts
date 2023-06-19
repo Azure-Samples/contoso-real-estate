@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardListComponent } from '../shared/card-list/card-list.component';
 import { MatButtonModule } from "@angular/material/button";
@@ -26,9 +26,7 @@ export class SearchpageComponent implements OnInit {
   seatrchTermInvalid = false;
   searchTermInvalidMessage = "The search term must be at least 4 characters long. Please, try again...";
 
-  constructor(
-    private searchService: SearchService,
-  ) {}
+  private searchService = inject(SearchService);
 
   async ngOnInit(): Promise<void> {
     this.searchForm = new FormGroup({

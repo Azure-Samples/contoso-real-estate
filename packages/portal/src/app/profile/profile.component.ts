@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
@@ -26,15 +26,15 @@ export class ProfileComponent implements OnInit {
   payments: Payment[] = [];
   selectedTabIndex = 0;
 
-  constructor(
-    private route: ActivatedRoute,
-    private userService: UserService,
-    private favoriteService: FavoriteService,
-    private reservationService: ReservationService,
-    private paymentService: PaymentService,
-    private listingService: ListingService,
-    private router: Router
-  ) {
+  private route = inject(ActivatedRoute);
+  private userService = inject(UserService);
+  private favoriteService = inject(FavoriteService);
+  private reservationService = inject(ReservationService);
+  private paymentService = inject(PaymentService);
+  private listingService = inject(ListingService);
+  private router = inject(Router);
+
+  constructor() {
     this.userService.user$.subscribe(user => {
       this.user = user;
     });

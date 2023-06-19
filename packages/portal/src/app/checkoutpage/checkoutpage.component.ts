@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ReservationService } from '../shared/reservation.service';
@@ -14,7 +14,8 @@ import { ReservationService } from '../shared/reservation.service';
 export class CheckoutpageComponent implements OnInit {
   result = 'error';
 
-  constructor(private route: ActivatedRoute, private reservationService: ReservationService) { }
+  private route = inject(ActivatedRoute);
+  private reservationService = inject(ReservationService);
 
   ngOnInit(): void {
     this.result = this.route.snapshot.queryParams['result'];

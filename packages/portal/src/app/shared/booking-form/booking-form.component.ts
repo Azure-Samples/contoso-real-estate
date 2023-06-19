@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, inject } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatNativeDateModule } from "@angular/material/core";
@@ -52,7 +52,10 @@ export class BookingFormComponent implements OnInit {
   monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
   isGuest = false;
 
-  constructor(private authService: AuthService, private userService: UserService) {
+  private authService = inject(AuthService);
+  private userService = inject(UserService);
+
+  constructor() {
 
     this.isGuest = this.authService.hasRole([UserRole.Guest]);
 

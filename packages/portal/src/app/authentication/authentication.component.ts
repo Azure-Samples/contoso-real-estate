@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -27,7 +27,9 @@ export class AuthenticationComponent implements OnInit {
     { name: "Apple", id: "apple" }
   ];
 
-  constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {}
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private authService = inject(AuthService);
 
   async ngOnInit() {
     const params = this.route.snapshot.queryParams;

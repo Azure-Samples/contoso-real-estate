@@ -1,9 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatMenuModule } from "@angular/material/menu";
 import { RouterModule } from "@angular/router";
-import { AuthService } from "../authentication/auth.service";
 import { UserRole, UserService } from "../user/user.service";
 
 @Component({
@@ -24,7 +23,7 @@ export class MainNavComponent {
 
   user: User | null = null;
 
-  constructor(private authService: AuthService, private userService: UserService) {}
+  private userService = inject(UserService);
 
   ngOnInit() {
     this.userService.user$.subscribe(user => {

@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { WindowService } from "../core/window/window.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class ListingService {
-  constructor(private windowService: WindowService) {}
-
+  private windowService = inject(WindowService);
+  
   async getListings({ limit = 10, offset = 0 } = {}): Promise<Listing[]> {
     const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}`).then(response => {
       if (response.status === 200) {

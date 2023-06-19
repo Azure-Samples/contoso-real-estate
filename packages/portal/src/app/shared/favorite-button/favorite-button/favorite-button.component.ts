@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, Input, OnChanges, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { FavoriteService } from "../../favorite.service";
 import { UserService } from "../../user/user.service";
@@ -16,7 +16,10 @@ export class FavoriteButtonComponent implements OnChanges {
   isOperationLoading = false;
   user: User | null = null;
 
-  constructor(private favoriteService: FavoriteService, private userService: UserService) {
+  private favoriteService = inject(FavoriteService);
+  private userService = inject(UserService);
+
+  constructor() {
     this.userService.user$.subscribe(user => {
       this.user = user;
     });

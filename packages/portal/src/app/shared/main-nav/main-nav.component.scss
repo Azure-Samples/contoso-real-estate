@@ -24,11 +24,15 @@
 
 button {
   width: 160px;
-  .user__name {
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
-    text-overflow: ellipsis;
-    width: 120px;
-  }
+}
+
+button.user__name {
+  white-space: nowrap;
+  display: inline-block;
+  text-overflow: ellipsis;
+  width: 120px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
