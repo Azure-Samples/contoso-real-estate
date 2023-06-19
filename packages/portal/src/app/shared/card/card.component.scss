@@ -5,6 +5,9 @@ section {
 }
 
 img {
+  // global constraint: DO NOT REMOVE
+  width: 100%;
+  height: auto;
   aspect-ratio: 16/9;
 }
 
