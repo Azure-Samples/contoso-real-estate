@@ -128,6 +128,8 @@ declare interface CheckoutSession {
   sessionUrl: string;
 }
 
+declare type CheckoutResult = 'error' | 'success' | 'cancel'; 
+
 declare interface SearchResult {
   listings: CleanResults;
 }

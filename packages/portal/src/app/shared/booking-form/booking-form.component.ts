@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, OnInit, Output, inject } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, inject, signal } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatNativeDateModule } from "@angular/material/core";
@@ -35,29 +35,27 @@ export class BookingFormComponent implements OnInit {
   @Output() onRent: EventEmitter<ReservationRequest>;
   userRole: typeof UserRole = UserRole;
 
-
-  monthlyRentPrice = 0;
-  monthlyRentPriceWithDiscount = 0;
-  discount = 0;
-
-  capacity: number[] = [];
-
   bookingForm: FormGroup;
   rentingPeriod: FormGroup;
   guests: FormControl;
   currency_code = "USD";
-  currency_symbol= "$";
 
   capacityMapping: { [k: string]: string } = { "=1": "One guest", other: "# guests" };
   monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
-  isGuest = false;
+  
+  isGuest = signal(false);
+  monthlyRentPrice = signal(0);
+  monthlyRentPriceWithDiscount = signal(0);
+  discount = signal(0);
+  capacity = signal<number[]>([]);
+  currency_symbol = signal("$");
 
   private authService = inject(AuthService);
   private userService = inject(UserService);
 
   constructor() {
 
-    this.isGuest = this.authService.hasRole([UserRole.Guest]);
+    this.isGuest.set(this.authService.hasRole([UserRole.Guest]));
 
     const differentThanStartDateValidator = (): ValidatorFn => {
       return (control: AbstractControl): ValidationErrors | null => {
@@ -92,23 +90,21 @@ export class BookingFormComponent implements OnInit {
       return;
     }
 
-    this.monthlyRentPrice = Number(this.listing?.fees?.[4]) || 0;
-    this.monthlyRentPriceWithDiscount = Math.max(
-      0,
-      this.monthlyRentPrice * (1 - (parseInt(this.listing?.fees?.[4], 10) || 0) / 100),
-    );
-    this.currency_code = this.listing?.fees?.[5].substring(0,3);
-    this.currency_symbol = this.listing?.fees?.[5].substring(4);
-    this.discount = Number(this.listing?.fees?.[4]) || 0;
-    this.capacity = Array(this.listing?.capacity)
+    const rentPriceWithDiscount = this.monthlyRentPrice() * (1 - (parseInt(this.listing?.fees?.[4], 10) || 0) / 100);
+    this.monthlyRentPrice.set(Number(this.listing?.fees?.[4]) || 0);
+    this.monthlyRentPriceWithDiscount.set(Math.max(0, rentPriceWithDiscount));
+    this.currency_code = this.listing?.fees?.[5].substring(0, 3);
+    this.currency_symbol.set(this.listing?.fees?.[5].substring(4));
+    this.discount.set(Number(this.listing?.fees?.[4]) || 0);
+    this.capacity.set(Array(this.listing?.capacity)
       .fill(0)
-      .map((x, i) => i + 1);
+      .map((x, i) => i + 1));
   }
 
   total() {
     const months = this.months();
     return (
-      months * this.monthlyRentPriceWithDiscount +
+      months * this.monthlyRentPriceWithDiscount() +
       (Number(this.listing?.fees?.[0]) || 0) +
       (Number(this.listing?.fees?.[1]) || 0) +
       (Number(this.listing?.fees?.[2]) || 0)
@@ -125,7 +121,7 @@ export class BookingFormComponent implements OnInit {
   }
 
   async rent() {
-    if (!this.isGuest) {
+    if (!this.isGuest()) {
       const user = await this.userService.currentUser();
       this.onRent.emit({
         userId: user.id,

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
@@ -20,11 +20,11 @@ import { UserService } from "../shared/user/user.service";
   imports: [CommonModule, RouterModule, MatCardModule, MatListModule, MatIconModule, MatButtonModule, MatTabsModule],
 })
 export class ProfileComponent implements OnInit {
-  user: User = {} as User;
-  listings: Listing[] = [];
-  reservations: Reservation[] = [];
-  payments: Payment[] = [];
-  selectedTabIndex = 0;
+  user = signal<User>({} as User);
+  listings = signal<Listing[]>([]);
+  reservations = signal<Reservation[]>([]);
+  payments = signal<Payment[]>([]);
+  selectedTabIndex = signal<number>(0);
 
   private route = inject(ActivatedRoute);
   private userService = inject(UserService);
@@ -36,13 +36,13 @@ export class ProfileComponent implements OnInit {
 
   constructor() {
     this.userService.user$.subscribe(user => {
-      this.user = user;
+      this.user.set(user);
     });
   }
 
   async ngOnInit() {
     this.route.data.subscribe(async data => {
-      this.user = data["user"];
+      this.user.set(data["user"]);
       await this.listFavorites();
       await this.listReservations();
       await this.listPayments();
@@ -52,32 +52,32 @@ export class ProfileComponent implements OnInit {
 
     this.route.paramMap.subscribe(async params => {
       const tab = params.get("tab");
-      this.selectedTabIndex = tabs.indexOf(tab || "favorites");
+      this.selectedTabIndex.set(tabs.indexOf(tab || "favorites"));
     });
   }
 
   async listFavorites() {
     // this call allows us to get the count of favorites
-    this.listings = await this.favoriteService.countFavoritesByUser(this.user);
+    this.listings.set(await this.favoriteService.countFavoritesByUser(this.user()));
 
     // this call allows us to get the actual listings
-    this.listings = await this.favoriteService.getFavoritesByUser(this.user);
+    this.listings.set(await this.favoriteService.getFavoritesByUser(this.user()));
   }
 
   async removeFavorite(listing: Listing) {
     // remove the listing from the UI
-    this.listings = this.listings.filter(l => l.id !== listing.id);
+    this.listings.update(listings => listings.filter(l => l.id !== listing.id));
 
     // remove the favorite from the database
-    await this.favoriteService.removeFavorite(listing, this.user);
+    await this.favoriteService.removeFavorite(listing, this.user());
   }
 
   async listReservations() {
-    this.reservations = await this.reservationService.getReservationsByUser(this.user);
+    this.reservations.set(await this.reservationService.getReservationsByUser(this.user()));
   }
 
   async listPayments() {
-    this.payments = await this.paymentService.getPaymentsByUser(this.user);
+    this.payments.set(await this.paymentService.getPaymentsByUser(this.user()));
   }
 
   async viewListing(listingId: string) {
