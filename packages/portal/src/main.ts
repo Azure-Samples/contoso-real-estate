@@ -3,7 +3,7 @@ import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
 import { ROUTES } from "./app/app-routing";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient } from "@angular/common/http";
 import { AppComponent } from "./app/app.component";
 import { UserService } from "./app/shared/user/user.service";
 import { environment } from "./environments/environment";
@@ -35,9 +35,8 @@ bootstrapApplication(AppComponent, {
   providers: [
     Apollo,
     provideRouter(ROUTES),
-    importProvidersFrom(
-      HttpClientModule,
-    ),
+    provideHttpClient(),
+    importProvidersFrom(),
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
