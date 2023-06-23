@@ -1,4 +1,4 @@
-import { enableProdMode, importProvidersFrom } from "@angular/core";
+import { enableProdMode } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideRouter } from "@angular/router";
@@ -36,7 +36,6 @@ bootstrapApplication(AppComponent, {
     Apollo,
     provideRouter(ROUTES),
     provideHttpClient(),
-    importProvidersFrom(),
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
