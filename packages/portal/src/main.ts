@@ -1,7 +1,7 @@
 import { enableProdMode, importProvidersFrom } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { RouterModule } from "@angular/router";
+import { provideRouter } from "@angular/router";
 import { ROUTES } from "./app/app-routing";
 import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app/app.component";
@@ -34,8 +34,8 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     Apollo,
+    provideRouter(ROUTES),
     importProvidersFrom(
-      RouterModule.forRoot(ROUTES),
       HttpClientModule,
     ),
     {
