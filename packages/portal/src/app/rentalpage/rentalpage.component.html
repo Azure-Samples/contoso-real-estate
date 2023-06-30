@@ -2,38 +2,38 @@
   <section class="listing-photos">
     <main>
       <div
-        [ngClass]="{ 'loading-background': isLoading }"
-        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing.photos[0] + ')' }"
+        [ngClass]="{ 'loading-background': isLoading() }"
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[0] + ')' }"
         alt="Main listing photo"
       ></div>
     </main>
     <aside>
       <div
-        [ngClass]="{ 'loading-background': isLoading }"
-        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing.photos[1] + ')' }"
+        [ngClass]="{ 'loading-background': isLoading() }"
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[1] + ')' }"
         alt="Listing photo #1"
       ></div>
       <div
-        [ngClass]="{ 'loading-background': isLoading }"
-        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing.photos[2] + ')' }"
+        [ngClass]="{ 'loading-background': isLoading() }"
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[2] + ')' }"
         alt="Listing photo #2"
       ></div>
       <div
-        [ngClass]="{ 'loading-background': isLoading }"
-        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing.photos[3] + ')' }"
+        [ngClass]="{ 'loading-background': isLoading() }"
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[3] + ')' }"
         alt="Listing photo #3"
       >
-        <span>+{{ (listing.photos.length || 3) - 3 }} Photos</span>
+        <span>+{{ (listing().photos.length || 3) - 3 }} Photos</span>
       </div>
     </aside>
   </section>
 
-  <section class="listing-review" [ngClass]="{ 'loading-background': isLoading }">
+  <section class="listing-review" [ngClass]="{ 'loading-background': isLoading() }">
     <main>
-      <div>{{ listing.reviews_number | i18nPlural : reviewsMapping }}</div>
+      <div>{{ listing().reviews_number | i18nPlural : reviewsMapping }}</div>
       <div>
         <span
-          *ngFor="let star of reviewStars"
+          *ngFor="let star of reviewStars()"
           class="material-symbols-outlined listing-review__stars"
           [ngClass]="{ fill: star === 1 }"
         >
@@ -42,7 +42,7 @@
       </div>
     </main>
     <aside>
-      <app-favorite-button *appHasRole="[userRole.Admin, userRole.Renter]" [listing]="listing"></app-favorite-button>
+      <app-favorite-button *appHasRole="[userRole.Admin, userRole.Renter]" [listing]="listing()"></app-favorite-button>
 
       <button (click)="share()" title="Share listing" class="bookmark-listing">
         <span aria-hidden="false" aria-label="Share listing" class="material-symbols-outlined"> share </span>
@@ -50,24 +50,24 @@
     </aside>
   </section>
 
-  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading }">
-    <h1>{{ listing.title }}</h1>
+  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading() }">
+    <h1>{{ listing().title }}</h1>
     <p>
-      {{ listing.address[0] }}, {{ listing.address[1] }}, {{ listing.address[2] }},
-      {{ listing.address[3] }}
+      {{ listing().address[0] }}, {{ listing().address[1] }}, {{ listing().address[2] }},
+      {{ listing().address[3] }}
     </p>
   </section>
 
-  <section class="listing-description" [ngClass]="{ 'loading-background': isLoading }">
+  <section class="listing-description" [ngClass]="{ 'loading-background': isLoading() }">
     <p>
-      {{ listing.description }}
+      {{ listing().description }}
     </p>
   </section>
 
-  <section class="listing-amenities" [ngClass]="{ 'loading-background': isLoading }">
+  <section class="listing-amenities" [ngClass]="{ 'loading-background': isLoading() }">
     <h3>Features</h3>
     <ul>
-      <li *ngFor="let feature of listing.ammenities">
+      <li *ngFor="let feature of listing().ammenities">
         <span aria-hidden="false" aria-label="Listing ammenity" class="material-symbols-outlined">
           {{ feature.split("|")[0] }}
         </span>
@@ -77,6 +77,6 @@
   </section>
 </section>
 
-<section class="booking-container" [ngClass]="{ 'loading-background': isLoading }">
-  <app-booking-form [listing]="listing" (onRent)="onRent($event)"></app-booking-form>
+<section class="booking-container" [ngClass]="{ 'loading-background': isLoading() }">
+  <app-booking-form [listing]="listing()" (onRent)="onRent($event)"></app-booking-form>
 </section>

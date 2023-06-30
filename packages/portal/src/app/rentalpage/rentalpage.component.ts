@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject, signal } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
@@ -17,12 +17,13 @@ import { UserRole, UserService } from "../shared/user/user.service";
 })
 export class RentalpageComponent implements OnInit {
   userRole: typeof UserRole = UserRole;
-  listing: Listing;
   user: User;
   navigation: Navigation | null;
-  reviewStars: number[] = [];
-  isLoading = true;
   reviewsMapping: { [k: string]: string } = { "=0": "No reviews", "=1": "1 message", other: "# reviews" };
+
+  listing = signal<Listing>({} as Listing);
+  reviewStars = signal<number[]>([]);
+  isLoading = signal(true);
 
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -31,7 +32,7 @@ export class RentalpageComponent implements OnInit {
 
   constructor() {
     this.navigation = this.router.getCurrentNavigation();
-    this.listing = this.navigation?.extras.state?.["listing"] || null;
+    this.listing.set(this.navigation?.extras.state?.["listing"] || {});
     this.user = this.navigation?.extras.state?.["user"] || null;
   }
 
@@ -45,19 +46,19 @@ export class RentalpageComponent implements OnInit {
     const listing = await this.listingService.getListingById(this.route.snapshot.params["id"]);
 
     if (listing !== undefined) {
-      this.listing = listing;
-      this.isLoading = false;
+      this.listing.set(listing);
+      this.isLoading.set(false);
     } else {
       this.router.navigate(["/404"]);
     }
 
-    this.reviewStars = Array(5)
+    this.reviewStars.set(Array(5)
       .fill(0)
-      .map((x, i) => (i < this.listing?.reviews_stars ? 1 : 0));
+      .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
   }
 
   async share() {
-    await this.listingService.share(this.listing);
+    await this.listingService.share(this.listing());
   }
 
   async onRent(reservationDetails: ReservationRequest) {

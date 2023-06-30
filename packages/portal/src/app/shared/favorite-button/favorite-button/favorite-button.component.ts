@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnChanges, inject } from "@angular/core";
+import { Component, Input, OnChanges, inject, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { FavoriteService } from "../../favorite.service";
 import { UserService } from "../../user/user.service";
@@ -13,7 +13,7 @@ import { UserService } from "../../user/user.service";
 })
 export class FavoriteButtonComponent implements OnChanges {
   @Input() listing!: Listing | null;
-  isOperationLoading = false;
+  isOperationLoading = signal(false);
   user: User | null = null;
 
   private favoriteService = inject(FavoriteService);
@@ -33,7 +33,7 @@ export class FavoriteButtonComponent implements OnChanges {
 
   async bookmark() {
     if (this.listing && this.user) {
-      this.isOperationLoading = true;
+      this.isOperationLoading.set(true);
 
       if (this.listing.$$isFavorited) {
         const isOperationSucceeded = await this.favoriteService.removeFavorite(this.listing, this.user);
@@ -47,7 +47,7 @@ export class FavoriteButtonComponent implements OnChanges {
         }
       }
 
-      this.isOperationLoading = false;
+      this.isOperationLoading.set(false);
     }
   }
 }
