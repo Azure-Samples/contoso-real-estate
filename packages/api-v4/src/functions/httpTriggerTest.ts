@@ -5,13 +5,9 @@ export async function httpTriggerTest(request: HttpRequest, context: InvocationC
 
   const name = request.query.get('name') || await request.text() || 'I will be right back!';
 
-  console.log("Console...", name);
-
   return { body: `Hello, Developers! ${name}!` };
 
 };
-
-
 
 app.http('httpTriggerTest', {
   methods: ['GET', 'POST'],
