@@ -5,7 +5,8 @@
  * author: Glaucia Lemos
  */
 
-import UserModel, { User } from '../models/user.schema';
+import UserModel from "../models/user.schema";
+import User from "../interfaces/IUser";
 
 export async function saveUserSession(user: User): Promise<User> {
   const { id } = user;
@@ -18,7 +19,6 @@ export async function saveUserSession(user: User): Promise<User> {
           auth: user.auth,
         },
       });
-
       return existingModel;
     }
   }
@@ -30,6 +30,8 @@ export async function findUserById(id: string): Promise<User | null> {
   return await UserModel.findOne({ id });
 }
 
-export async function findUsers({ offset, limit }: { offset: number, limit: number }): Promise<User[]> {
+export async function findUsers({ offset, limit }: { offset: number; limit: number }): Promise<User[]> {
+  //return await UserModel.find().skip(offset).limit(limit);
   return await UserModel.find().skip(offset).limit(limit);
 }
+
