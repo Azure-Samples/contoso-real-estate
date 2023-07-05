@@ -1,5 +1,5 @@
 /**
- * file: packages/api-v4/src/types/IUser.ts
+ * file: packages/api-v4/src/interfaces/IUser.ts
  * description: file responsible for the 'User' interface
  * data: 07/04/2023
  * author: Glaucia Lemos
@@ -7,7 +7,7 @@
 
 import { ObjectId } from 'mongodb';
 
-export default interface IUser {
+export default interface User {
   _id?: ObjectId;
   id: string;
   name: string;
@@ -26,3 +26,4 @@ export default interface IUser {
   };
   createdAt: string;
 };
+

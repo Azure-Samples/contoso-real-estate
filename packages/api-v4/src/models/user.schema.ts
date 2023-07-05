@@ -9,9 +9,9 @@
 import { ObjectId } from 'mongodb';
 import { model, Schema } from 'mongoose'
 
-import IUser from '../interfaces/IUser';
+import User from '../interfaces/IUser';
 
-const UserSchema = new Schema<IUser>({
+const UserSchema = new Schema<User>({
   id: {
     type: String,
     required: true,
@@ -65,7 +65,7 @@ const UserSchema = new Schema<IUser>({
   }
 });
 
-export default model<IUser>('User', UserSchema);
+export default model<User>('User', UserSchema);
 
 
 
