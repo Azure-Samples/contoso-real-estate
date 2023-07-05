@@ -5,7 +5,7 @@
  * author: Glaucia Lemos
  */
 
-import UserModel from "../models/user.schema";
+git import UserModel from "../models/user.schema";
 import User from "../interfaces/IUser";
 
 export async function saveUserSession(user: User): Promise<User> {
