@@ -31,7 +31,6 @@ export async function findUserById(id: string): Promise<User | null> {
 }
 
 export async function findUsers({ offset, limit }: { offset: number; limit: number }): Promise<User[]> {
-  //return await UserModel.find().skip(offset).limit(limit);
   return await UserModel.find().skip(offset).limit(limit);
 }
 
