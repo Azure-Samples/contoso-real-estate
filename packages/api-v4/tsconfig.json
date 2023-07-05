@@ -1,10 +1,17 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
+    "target": "ES2019",
+    "incremental": true,
+    "declaration": true,
+    "composite": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
-    "strict": false
+    "strict": true,
+    "esModuleInterop": true,
   }
 }
