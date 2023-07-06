@@ -1,37 +1,34 @@
 /**
  * file: packages/api-v4/src/models/user.schema.ts
  * description: file responsible for the 'User' mongoose schema
- * data: 07/04/2023
+ * data: 07/06/2023
  * author: Glaucia Lemos
  * documentation reference: https://mongoosejs.com/docs/typescript.html
  */
 
-import { ObjectId } from 'mongodb';
-import { model, Schema } from 'mongoose'
+import { model, Schema, InferSchemaType } from "mongoose";
 
-import User from '../interfaces/IUser';
-
-const UserSchema = new Schema<User>({
+const UserSchema = new Schema({
   id: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
     required: true,
-    enum: ['guest', 'rent', 'admin'],
-    default: 'guest',
+    enum: ["guest", "renter", "admin"],
+    default: "guest",
   },
   status: {
     type: String,
     required: true,
-    enum: ['active', 'inactive', 'suspended'],
-    default: 'active',
+    enum: ["active", "suspended", "inactive"],
+    default: "active",
   },
   photo: {
     type: String,
@@ -41,7 +38,7 @@ const UserSchema = new Schema<User>({
     type: String,
   },
   payment: {
-    _id: ObjectId,
+    _id: Schema.Types.ObjectId,
   },
   email: {
     type: String,
@@ -51,21 +48,31 @@ const UserSchema = new Schema<User>({
     provider: {
       type: String,
       required: true,
-      enum: ['aad', 'apple', 'github', 'facebook', 'google', 'twitter'],
+      enum: ["aad", "github", "twitter", "google", "facebook"],
     },
     token: {
       type: String,
     },
     lastLogin: {
-      type: Number,
+      type: Date,
+      required: true,
     },
   },
   createdAt: {
     type: String,
-  }
+    required: true,
+  },
 });
 
-export default model<User>('User', UserSchema);
+type User = InferSchemaType<typeof UserSchema>;
+
+const UserModel = model('User', UserSchema)
+
+export {
+  User,
+  UserModel
+}
+
 
 
 
