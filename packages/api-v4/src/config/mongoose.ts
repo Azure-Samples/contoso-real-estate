@@ -1,7 +1,7 @@
 /**
  * file: packages/api-v4/src/config/mongoose.ts
  * description: file responsible for the mongoose configuration.
- * data: 07/05/2023
+ * data: 07/06/2023
  * author: Glaucia Lemos
  */
 
@@ -16,7 +16,9 @@ export const configureMongoose = async(config: DatabaseConfig) => {
     database.on('connecting', () => {
       console.log('Mongoose connecting...');
     });
-    // TODO: add telemetry
+
+    // STOP HERE - TODO: add database logs
+
   } catch (err) {
     // TODO
     console.log(`Error: ${err}`);
