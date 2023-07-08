@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { AuthService } from "../shared/authentication/auth.service";
 import { TextBlockComponent } from "../shared/text-block/text-block.component";
 
@@ -16,7 +16,7 @@ import { TextBlockComponent } from "../shared/text-block/text-block.component";
   standalone: true,
 })
 export class AuthenticationComponent implements OnInit {
-  redirectURL = "/home";
+  @Input() redirectURL = "/home";
 
   providers = [
     { name: "Microsoft", id: "microsoft" },
@@ -28,15 +28,10 @@ export class AuthenticationComponent implements OnInit {
   ];
 
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
 
-  async ngOnInit() {
-    const params = this.route.snapshot.queryParams;
-    if (params["redirectURL"]) {
-      this.redirectURL = params["redirectURL"];
-    }
 
+  async ngOnInit() {
     if (this.isAuthenticated()) {
       this.router.navigate([this.redirectURL]);
     }
