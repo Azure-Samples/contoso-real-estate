@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterModule } from "@angular/router";
-import { AppModule } from "./app.module";
 import { MainNavComponent } from "./shared/main-nav/main-nav.component";
 
 @Component({
@@ -9,6 +8,6 @@ import { MainNavComponent } from "./shared/main-nav/main-nav.component";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
   standalone: true,
-  imports: [RouterModule, MainNavComponent, AppModule, MatToolbarModule],
+  imports: [RouterModule, MainNavComponent, MatToolbarModule],
 })
 export class AppComponent {}
