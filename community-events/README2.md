@@ -17,9 +17,9 @@ Join the **Hack Together** initiative by organizing a virtual, hybrid, or in-per
 
 | Resource      | Description |
 | ----------- | ----------- |
-| Event Checklist      | A quick guide for community leaders, with tips on speaker sourcing, event promotion, and more. |
+| [Event Checklist](event-checklist.md)      | A quick guide for community leaders, with tips on speakers, promotion, and more. |
 | Code of Conduct   | A CoC is important to ensure that all participants feel safe and comfortable during the event. Be inspired by the [Reactor Code of Conduct](https://developer.microsoft.com/en-us/reactor/CodeOfConduct/).       |
-| Creative   | Assets for promotion on social media, YouTube and Meetup      |
+| [Creative](#)   | Assets for promotion on social media, YouTube and Meetup      |
 
 
 ## 📝 Presentation and workshop content
