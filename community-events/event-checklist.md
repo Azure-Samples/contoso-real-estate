@@ -2,37 +2,38 @@
 
 A quick guide for community leaders, with tips on speaker sourcing, event promotion, and more.
 
-## Inicie a organização do seu evento
+## Start organizing your event
 
 ### Definições básicas:
-- Tipo de conteúdo: apresentações ou workshop
-- Formato ideal para sua comunidade: online, híbrido ou presencial
-- Data e horário: xxx
-- Duração: 1-2 horas
-    - Se você optar por um evento online, considere dividir o evento em sessões de 30-45 minutos.
-    - Para eventos presenciais, considere um intervalo de 15 minutos para que os participantes possam fazer networking.
-- Tema: irá focar focar em um ou mais temas do pacote de conteúdos do projeto **Enterprise-grade Reference Architecture for JavaScript?**
+- Type of content: presentations or workshop
+- Ideal format for your community: online, hybrid or in-person
+- Date and time
+- Duration: 1-2 hours
+     - If you opt for an online event, consider breaking the event into 30-45 minute sessions.
+     - For in-person event, consider a 15-minute break for participants to network.
+- Theme: will focus on one or more themes from the project's content pack **Enterprise-grade Reference Architecture for JavaScript?**
+- Prerequisites: If you have activities related with accounts or services (e.g. create a GitHub), include this information on the registration page and send the reminder for your attendees. It will be very useful and you will save time.
 
-### Promoção do evento
-- Utilize nossos templates para promover seu evento nas redes sociais, YouTube e Meetup. Na pasta [Creative](/Creative), você encontrará os templates para download:
-    - Capa de evento
-    - Card para palestrantes
-    - Backgrounds para YouTube
-    - Background de vídeo para Instagram e TikTok
-    - Template de Power Point
-- Crie o link de registro para o seu evento, utilizando o [Meetup](https://www.meetup.com/pt-BR/), Microsoft Forms ou outra plataforma de sua escolha.
-- Lembre-se de incluir um código de conduta em seu evento. Você pode usar o [Código de Conduta do Reactor](https://developer.microsoft.com/en-us/reactor/CodeOfConduct/) como referência.
-- Busque parceria com comunidades locais, universidades, escolas, para promover as inscrições para seu evento.
-- Entre 5 e 2 dias antes do evento, envie um e-mail de lembrete para os participantes inscritos e incentive que compartilhem com seus amigos e colegas de trabalho.
-- No dia do evento, envie um e-mail de boas-vindas para os participantes inscritos, com o link de acesso ao evento ou lembrete de localização (se presencial ou híbrido).
+### Promotion
+- Use our templates to create assets and promote your event. In the [Creative](/Creative) folder, you will find the downloadable templates:
+     - Event cover for Meetup
+     - Card for speakers
+     - Background and thumbnail for YouTube
+     - Video background for Instagram and TikTok
+     - Power Point template
+- Create the registration link for your event, using [Meetup](https://www.meetup.com/pt-BR/), Microsoft Forms or another platform of your choice.
+- Remember to include a code of conduct in your event. A CoC is important to ensure that all participants feel safe and comfortable during the event. Be inspired by the [Reactor Code of Conduct](https://developer.microsoft.com/en-us/reactor/CodeOfConduct/).
+- Connect with local communities, universities, schools, to promote registration for your event.
+- 5 and 2 days prior to the event, send a reminder email to your attendees list and encourage them to share the event with their friends and co-workers.
+- On the day of the event, send a final reminder with link to access the online event or tips to find the location (if in-person).
 
-### Procurando palestrantes
-Se você deseja encontrar palestrantes para o seu evento, você pode buscar membros dos programas de comunidade da Microsoft:
+### Finding speakers
+If you want to find speakers for your event, you can search for members of Microsoft's community programs:
 
 - [Find an MVP (Most Valuable Professional)](https://mvp.microsoft.com/pt-br/MvpSearch)
 - [Find an MSLA (Microsoft Learn Student Ambassador)](https://studentambassadors.microsoft.com/pt-BR/search?target=Profile)
 
-Dica: indique o seu evento como uma oportunidade de falar sobre o projeto **Enterprise-grade Reference Architecture for JavaScript** e compartilhe o contéudo que deseja que o speaker apresente.
+Tip: in your invite, talk about the **Enterprise-grade Reference Architecture for JavaScript** project and share the content you want the speaker to present.
 
 ## Content and Speakers
 Neste repositório, você encontrará apresentações e workshops que você pode usar em seu evento:
