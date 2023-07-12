@@ -12,15 +12,19 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0-alpha.7",
+    "@azure/identity": "^3.2.3",
+    "@azure/keyvault-secrets": "^4.7.0",
     "applicationinsights": "^2.7.0",
     "dotenv": "^16.3.1",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.1",
+    "pg": "^8.11.1",
     "winston": "^3.9.0",
     "winston-transport": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "^18.16.19",
+    "@types/pg": "^8.10.2",
     "azure-functions-core-tools": "^4.0.5198",
     "rimraf": "^5.0.0",
     "typescript": "4.7"
