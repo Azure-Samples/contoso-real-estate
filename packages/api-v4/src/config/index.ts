@@ -84,7 +84,7 @@ export const populateEnvironmentFromKeyVault = async () => {
   }
 };
 
-export async function initializeConfiguration() {
+export async function initializeDatabaseConfiguration() {
   if (dbInitialized) {
     return;
   }
