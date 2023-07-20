@@ -8,7 +8,7 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { findUserById } from '../models/user';
 
-export async function getUser(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+export async function getUserById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   const id = request.params.id;
 
   if (!id) {
@@ -48,5 +48,5 @@ export async function getUser(request: HttpRequest, context: InvocationContext):
 app.get('getUser', {
   route: 'users/{id}',
   authLevel: 'anonymous',
-  handler: getUser,
+  handler: getUserById,
 })
