@@ -6,6 +6,7 @@ import { findPaymentById } from "../models/payment";
 export async function getPaymentById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getPaymentById processed request for url "${request.url}"`);
 
+  //TODO: uncomment when testing the application in production (using database)
   //await initializeDatabaseConfiguration();
 
   const id = request.params.id ?? '';
