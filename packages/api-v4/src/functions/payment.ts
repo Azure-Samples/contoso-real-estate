@@ -9,7 +9,7 @@ import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/fu
 import { initializeDatabaseConfiguration } from '../config';
 import { findPaymentById } from '../models/payment';
 
-export async function getPayment(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+export async function getPaymentById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   await initializeDatabaseConfiguration();
 
   const id = request.params.id ?? '';
@@ -39,8 +39,8 @@ export async function getPayment(request: HttpRequest, context: InvocationContex
   }
 };
 
-app.get('getPayment', {
+app.get('getPaymentById', {
     route: 'payments/{id}',
     authLevel: 'anonymous',
-    handler: getPayment
+    handler: getPaymentById
 });
