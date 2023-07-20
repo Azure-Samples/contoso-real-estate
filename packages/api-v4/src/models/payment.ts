@@ -20,11 +20,11 @@ export async function updatePaymentStatus(id: string, status: 'pending' | 'decli
   }
 
   return null;
-}
+};
 
 export async function findPaymentById(id: string): Promise<Payment | null> {
   return await PaymentModel.findOne({ _id: id });
-}
+};
 
 export async function findPaymentsByUserId(userId: string, offset: number, limit: number): Promise<Payment[]> {
   return await PaymentModel
@@ -32,6 +32,6 @@ export async function findPaymentsByUserId(userId: string, offset: number, limit
     .skip(offset)
     .limit(limit)
     .sort({ _id: -1 });
-}
+};
 
 

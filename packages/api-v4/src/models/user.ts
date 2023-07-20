@@ -23,16 +23,16 @@ export async function saveUserSession(user: User): Promise<User> {
   }
 
   return await UserModel.create(user);
-}
+};
 
 export async function findUserById(id: string): Promise<User | null> {
   return await UserModel.findOne({ id });
-}
+};
 
 export async function findUsers({ offset, limit }: { offset: number; limit: number }): Promise<User[]> {
   return await UserModel
     .find()
     .skip(offset)
     .limit(limit);
-}
+};
 

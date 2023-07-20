@@ -8,7 +8,7 @@
 import { app } from "@azure/functions";
 import { httpTriggerTest } from './functions/httpTriggerTest';
 import { getUsers, getUserById } from './functions/users';
-//import { getPaymentById } from './functions/payments';
+import { getPaymentById } from './functions/payments';
 
 app.get('httpTriggerTest', {
   authLevel: 'anonymous',
@@ -27,11 +27,9 @@ app.get('get-users-by-id', {
   handler: getUserById,
 });
 
-/*app.get('get-payment-by-id', {
-  route: 'payments/{id}',
+app.get('get-payment-by-id', {
+  route: 'payments',
   authLevel: 'anonymous',
   handler: getPaymentById
-});*/
-
-
+});
 
