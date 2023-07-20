@@ -5,6 +5,7 @@
  * author: Glaucia Lemos
  */
 
+import mongoose from "mongoose";
 import { PaymentModel, Payment } from "./payment.schema";
 
 export async function savePayment(payment: Partial<Payment>): Promise<Payment> {
@@ -23,7 +24,12 @@ export async function updatePaymentStatus(id: string, status: 'pending' | 'decli
 };
 
 export async function findPaymentById(id: string): Promise<Payment | null> {
-  return await PaymentModel.findOne({ _id: id });
+  try {
+    const paymentId = new mongoose.Types.ObjectId(id);
+    return await PaymentModel.findOne({ _id: paymentId });
+  } catch (error) {
+    return null;
+  }
 };
 
 export async function findPaymentsByUserId(userId: string, offset: number, limit: number): Promise<Payment[]> {
