@@ -1,15 +1,37 @@
-import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
+import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
+import { initializeDatabaseConfiguration } from '../config';
+import { findPaymentById } from '../models/payment';
 
-export async function payments(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
-    context.log(`Http function processed request for url "${request.url}"`);
+// GET: Get Payment by Id
+export async function getPaymentById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+  context.log(`Http function getPaymentById processed request for url "${request.url}"`);
 
-    const name = request.query.get('name') || await request.text() || 'world';
+  await initializeDatabaseConfiguration();
 
-    return { body: `Hello, ${name}!` };
+  const id = request.params.id ?? '';
+
+  try {
+    const payment = await findPaymentById(id);
+
+  if (payment) {
+    return {
+      jsonBody: payment,
+    }
+  } else {
+    return {
+      status: 404,
+      jsonBody: {
+        error: 'Payment record not found',
+      },
+    };
+  }
+  } catch (error) {
+    return {
+      status: 500,
+      jsonBody: {
+        error: 'Internal Server Error',
+      },
+    };
+  }
 };
 
-app.http('payments', {
-    methods: ['GET', 'POST'],
-    authLevel: 'anonymous',
-    handler: payments
-});

@@ -29,5 +29,5 @@
     "rimraf": "^5.0.0",
     "typescript": "4.7"
   },
-  "main": "dist/src/functions/*.js"
+  "main": "dist/src/index.js"
 }

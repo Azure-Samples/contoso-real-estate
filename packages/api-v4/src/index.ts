@@ -5,5 +5,33 @@
  * author: Glaucia Lemos
  */
 
+import { app } from "@azure/functions";
+import { httpTriggerTest } from './functions/httpTriggerTest';
+import { getUsers, getUserById } from './functions/users';
+//import { getPaymentById } from './functions/payments';
+
+app.get('httpTriggerTest', {
+  authLevel: 'anonymous',
+  handler: httpTriggerTest
+});
+
+app.get('get-users', {
+  route: 'users',
+  authLevel: 'anonymous',
+  handler: getUsers,
+});
+
+app.get('get-users-by-id', {
+  route: 'users/{id}',
+  authLevel: 'anonymous',
+  handler: getUserById,
+});
+
+/*app.get('get-payment-by-id', {
+  route: 'payments/{id}',
+  authLevel: 'anonymous',
+  handler: getPaymentById
+});*/
+
 
 
