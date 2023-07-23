@@ -12,7 +12,7 @@ This document will guide you through the prerequisites and commands necessary to
 Within the `packages` folder, you will find the three projects that make up this scenario:
 
 - `portal` - The web app portal
-- `api` - The web app backend
+- `api` - The web app backend (functions)
 - `stripe` - The Stripe backend
 
 ## Local Development

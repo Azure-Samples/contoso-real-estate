@@ -36,7 +36,7 @@ If you want to find speakers for your event, you can search for members of Micro
 Tip: in your invite, talk about the **Enterprise-grade Reference Architecture for JavaScript** project and share the content you want the speaker to present.
 
 ## Content and Speakers
-Neste repositório, você encontrará apresentações e workshops que você pode usar em seu evento:
+In this repository you will find presentations and workshops that you can use in your event:
 - [Azure Static Web Apps](/ASWA)
 - [Azure Functions](/AzureFunctions)
 - [Azure CosmosDB](/AzureCosmosDB)

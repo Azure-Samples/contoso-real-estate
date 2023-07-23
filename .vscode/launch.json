@@ -14,9 +14,14 @@
     {
       "name": "Debug API",
       "request": "launch",
-      "runtimeArgs": ["start", "--typescript"],
+      "runtimeArgs": [
+        "start",
+        "--typescript"
+      ],
       "runtimeExecutable": "func",
-      "skipFiles": ["<node_internals>/**"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "type": "node",
       "cwd": "${workspaceFolder}/packages/contoso-real-estate-api",
       "envFile": "${input:dotEnvFilePath}",
@@ -43,20 +48,37 @@
     {
       "name": "blog: frontend",
       "request": "launch",
-      "runtimeArgs": ["run-script", "dev"],
+      "runtimeArgs": [
+        "run-script",
+        "dev"
+      ],
       "runtimeExecutable": "npm",
-      "skipFiles": ["<node_internals>/**"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "type": "node",
       "cwd": "${workspaceFolder}/packages/blog"
     },
     {
       "name": "blog: backend",
       "request": "launch",
-      "runtimeArgs": ["run-script", "develop"],
+      "runtimeArgs": [
+        "run-script",
+        "develop"
+      ],
       "runtimeExecutable": "npm",
-      "skipFiles": ["<node_internals>/**"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "type": "node",
       "cwd": "${workspaceFolder}/packages/blog-cms"
+    },
+    {
+      "name": "Attach to Node Functions",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "preLaunchTask": "func: host start"
     }
   ],
   "inputs": [
