@@ -21,7 +21,11 @@ Para este projeto, usaremos a versão 4 do modelo de programação do Node.js (P
 1. Dentro da pasta `packages` crie uma pasta chamada `api-v4`
 > Para desenvolver a API, usaremos a extensão do Azure Functions para o Visual Studio Code, já instalada no Codespaces.
 
-2. Pressione `F1` para abrir a paleta de comandos. Na paleta de comandos, pesquise e selecione `Azure Functions: Add New Setting....`. Se você não estiver logado no Azure, clique na opção `Sign in to Azure...` e siga as instruções para fazer o login.
+2. Pressione `F1` para abrir a paleta de comandos. Na paleta de comandos, pesquise e selecione `Azure Functions: Create new project....`.
 
-3. 
+> Se você não estiver logado no Azure, clique na opção `Sign in to Azure...` e siga as instruções para fazer o login. link para o azure for students
 
+3. na caixa de diálogo `Select the folder that will contain your function project`, clique em `Browse` e navegue até a pasta criada, que será `/workspaces/contoso-real-estate/packages/api-v4/` e dê OK > selecione typescript > Model V4 (Preview) > HTTP Trigger > nome "users" > enter (cancela o overwrite box)
+
+<!-- incluir imagem da api v4 -->
+<!-- explicar como testar se a function foi criada -->
