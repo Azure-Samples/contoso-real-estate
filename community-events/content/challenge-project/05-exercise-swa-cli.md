@@ -35,7 +35,7 @@ Essa comunicação acontece através de um arquivo chamado `swa-cli.config.json`
 
 Observe as propriedades `appDevserverUrl` e `apiDevserverUrl`, onde contém o caminho para o frontend e backend respectivamente. Já a propriedade `apiLocation` contém o caminho para o projeto `API`, que será abordado na parte 2 deste tutorial.
 
-## Como executar o projeto Portal?
+## Como executar o projeto `portal`?
 
 Não recomendamos executar este projeto localmente, pois ele requer uma série de configurações para funcionar. Para otimizar o seu aprendizado, recomendamos a utilização do [Codespaces](https://github.com/features/codespaces), que irá criar um container de desenvolvimento para você. E o melho de tudo: sem você precisar instalar nada na sua máquina.
 
