@@ -4,7 +4,7 @@ A quick guide for community leaders, with tips on speaker sourcing, event promot
 
 ## Start organizing your event
 
-### Definições básicas:
+### Basic definition:
 - Type of content: presentations or workshop
 - Ideal format for your community: online, hybrid or in-person
 - Date and time
