@@ -102,6 +102,7 @@ const config = {
         style: "primary", // "dark" or "primary"
 
         items: [
+          { href: "/api", position: "right", label: "API"},
 
           /* === START: Comment out to remove from navbar === *
           { to: "/define", label: "Define", position: "left" },
@@ -110,7 +111,6 @@ const config = {
           { to: "/monitor", label: "Monitor", position: "left" },
           { to: "/optimize", label: "Optimize", position: "left" },
 
-          { href: "/api", position: "right", label: "API"},
           { href: "/azure", position: "right", label: "Azure" },
           { href: "/pricing", position: "right", label: "Pricing"},
           {

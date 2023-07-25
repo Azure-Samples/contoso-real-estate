@@ -54,13 +54,14 @@ In addition to this, we have two other files that see a lot of configuration cha
 
 
 <details>
-<summary> 3. Install Plugins & Themes </summary>
+<summary> 3. Install Plugins, Themes, Dependencies </summary>
 
 We'll document any non-preset plugins we install in this section for reference.
 
-1. [plugin-sitemap](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap)
-2. [plugin-ideal-image](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-ideal-image)
-3. [theme-mermaid](https://docusaurus.io/docs/markdown-features/diagrams#configuration)
+1. [plugin-sitemap](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap) - for sitemap.xml in deploy
+2. [plugin-ideal-image](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-ideal-image) - for efficient image loads
+3. [theme-mermaid](https://docusaurus.io/docs/markdown-features/diagrams#configuration) - for rendering mermaid diagrams
+4. [swagger-ui-react](https://www.npmjs.com/package/swagger-ui-react) - for rendering OpenAPI docs
 
 </details>
 
@@ -72,6 +73,41 @@ Docusaurus has the following [core concepts](https://docusaurus.io/docs/category
 This can be a useful way to _template_ a specific element or section of a page in a way that allows us to "stamp out" instances with different data bindings. It also enables us to make these elements interactive and style them differently for enhanced effect. _However components will add cost and complexity so use with care. Remember that Markdown can also embed HTML directly with less overheads_.
 
 We'll use this section to document any custom components created. From a code perspective, these can typically be found under `src/components`. Note that if we choose to test with Playwright, there is [experimental support for component testing](https://playwright.dev/docs/test-components#step-1-install-playwright-test-for-components-for-your-respective-framework) that we may be able to use for validation.
+
+</details>
+
+<details>
+<summary> 5. Other Enhancements </summary>
+
+### 5.1 Swagger API Docs
+
+The app uses an OpenAPI (Swagger) specification for the core APIs that abstract backend functionality from the front-end UI. Automate docs creation from the YAML as follows:
+
+```bash
+# Create yml folder for YAML files under static/
+$ cd website/static
+$ mkdir yml
+
+# Soft link packages/api/openapi.yaml file
+# to openapi.yml here
+$ ln -s ../../../../api/openapi.yaml .
+
+# Install the swagger-ui-react package
+$ cd website
+$ npm i --save swagger-ui-react
+
+# Add api.js file in /src/pages (maps to /api)
+$ cd website
+$ touch pages/api.js
+
+# Update it to show a <SwaggerUI> element
+# sourced from the yaml (see updated file)
+
+# Update navbar in docusaurus.config.js
+# to add an API item linked to /api
+```
+
+Since the YAML is soft-linked to the original source, the docs should reflect the latest chamges to the code. You can now see the API docs at /api on website. 
 
 </details>
 
