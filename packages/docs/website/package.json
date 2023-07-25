@@ -28,7 +28,8 @@
     "swagger-ui-react": "^5.2.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.4.1"
+    "@docusaurus/module-type-aliases": "2.4.1",
+    "@playwright/test": "^1.36.2"
   },
   "browserslist": {
     "production": [
