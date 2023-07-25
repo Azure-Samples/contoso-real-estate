@@ -18,8 +18,7 @@ A quick guide for community leaders, with tips on speaker sourcing, event promot
 - Use our templates to create assets and promote your event. In the [Creative](/Creative) folder, you will find the downloadable templates:
      - Event cover for Meetup
      - Card for speakers
-     - Background and thumbnail for YouTube
-     - Video background for Instagram and TikTok
+     - Thumbnail for YouTube
      - Power Point template
 - Create the registration link for your event, using [Meetup](https://www.meetup.com/pt-BR/), Microsoft Forms or another platform of your choice.
 - Remember to include a code of conduct in your event. A CoC is important to ensure that all participants feel safe and comfortable during the event. Be inspired by the [Reactor Code of Conduct](https://developer.microsoft.com/en-us/reactor/CodeOfConduct/).
