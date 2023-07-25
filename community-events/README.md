@@ -28,4 +28,4 @@ Stay connected to your developer communities through the upcoming **Hack Togethe
 
 | Date      | Event | Language | Link |
 | ----------- | ----------- | ----------- | ----------- |
-| 2021-08-01 | Hack Together: JavaScript on Azure | English | [Register](https://aka.ms/HackTogether) |
+| August 16-31 | Hack Together: JavaScript on Azure | English | [Register](#) |

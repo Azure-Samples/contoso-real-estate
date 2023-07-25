@@ -1,6 +1,6 @@
 # Exercise 3: Working with Azure Static Web App CLI
 
-<!-- brief explanation of intro -->
+In this exercise, you will learn how to run the `portal` project in Codespaces and how to manage the communication between the frontend and backend using the Azure Static Web Apps CLI. 
 
 ## What is Azure Static Web App CLI?
 
@@ -70,9 +70,14 @@ To run the project, follow the steps below:
 
 6. To view the project, go to the `Ports` tab of the terminal and click on the portal link, which will be port `4280` (the default port of the ASWA), to see the portal home page.
 
-<!-- imagem: portas do terminal -->
+![Terminal Ports](./images/terminal-ports.png)
 
-<!-- mencionar a possibilidade de acesso a URL para testar -->
+If you want to see the portal, go to the `Ports` tab of the terminal and click on the portal link, which will be port `4280`, to see the portal home page. The page will be blank, as you need to integrate the API with the portal.
+
+The example below shows the portal home page with the sample data.
+
+![Portal Home Page](./images/contoso-portal.jpg)
+
 
 ### Understanding the execution
 
@@ -137,8 +142,6 @@ This is the heart of the SWA CLI. It intercepts and forwards HTTP requests to th
 - `/**` => all other requests forwarded to the static assets content server.
 
 ![Azure Static Web Apps CLI - Reserve Proxy](./images/swa-cli-ports.png)
-
-<!-- explicação da proxy no projeto -->
 
 You can learn more about the Azure Static Web Apps CLI at [https://azure.github.io/static-web-apps-cli/docs/intro/](https://azure.github.io/static-web-apps-cli/docs/intro/).
 
