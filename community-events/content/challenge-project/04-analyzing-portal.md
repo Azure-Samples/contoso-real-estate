@@ -1,47 +1,51 @@
-# Exercício: Analizando o projeto `portal`
+# Exercise 2: Analyzing the `portal` project
 
-O `portal` do projeto Contoso Real Estate é uma simulação de uma imobiliária onde é possível visualizar os imóveis disponíveis para venda, alugar ou comprar. A arquitetura do projeto foi desenhada em componsable architecture.
+The `portal` of the Contoso Real Estate project is a simulation of a real estate agency where you can view the properties available for sale, rent, or buy. The architecture of the project was designed in a composable architecture.
 
-Composable architecture é uma arquitetura de frontend que permite que você crie componentes reutilizáveis e componha-os para criar aplicativos maiores. Cada componente é responsável por uma funcionalidade específica e pode ser usado em qualquer lugar do aplicativo.
+**Advantages of using composable architecture:**
 
-<!-- imagem: exemplo de composable architecture -->
+- **Reusability**: components can be reused in different parts of the application.
+- **Scalability**: the application can be scaled horizontally, that is, it can be divided into smaller parts, and each part can be developed by a different team.
+- **Maintainability**: the application can be maintained more easily as each component is responsible for a specific functionality.
 
-## Arquitetura do projeto
+![Composable Architecture Diagram](./images/composable-architecture-example.png)
 
-O projeto Contoso Real Estate é composto por 3 partes principais:
+## Project architecture
 
-- `portal`: é o projeto principal, onde contém a página inicial e os componentes que serão utilizados em todas as páginas.
-- `blog`: é o projeto que contém o blog da imobiliária. Neste projeto, é utilizado o `Strapi` como CMS para gerenciar os posts do blog.
-- `api`: é o projeto que contém as APIs que serão utilizadas no projeto `portal`.
+The Contoso Real Estate project is composed of three main parts:
+
+- `portal`: is the main project, where it contains the home page and the components that will be used on all pages.
+- `blog`: is the project that contains the real estate blog. In this project, `Strapi` is used as a CMS to manage blog posts.
+- `api`: is the project that contains the APIs that will be used in the `portal` project.
 
 <!-- gif contoso real state -->
 
-### Componentes do `portal`
+### The `portal` components
 
-Este projeto foi desenvolvido utilizando Angular e você aprenderá da execução ao deploy utilizando o Azure Static Web Apps CLI no Codespaces.
+This project was developed using Angular, and you will learn from execution to deployment using the Azure Static Web Apps CLI in Codespaces.
 
-Acessando a pasta `packages/portal/src/app` você verá os componentes que compõem o `portal`:
+Accessing the `packages/portal/src/app` folder, you will see the components that make up the `portal`:
 
-- `app`: componente principal da aplicação, responsável por renderizar os demais componentes.
-  - `about`: página sobre
-  - `authentication`: página de login (autenticação)
-  - `checkoutpage`: página de checkout
-  - `core`: componente responsável por gravar dados no browser (local storage)
-  - `homepage`: página inicial
-  - `profile`: página de perfil do usuário
-  - `rentalpage`: página de aluguel
-  - `searchpage`: página de busca
-  - `shared`: pasta que contém os componentes de uso universal na aplicação, como por exemplo, botões, inputs, etc.
-  - `tos`: responsável por padronizar todos os `TextBlockComponent`
+- `app`: main component of the application, responsible for rendering the other components.
+  - `about`: about page
+  - `authentication`: login page (authentication)
+  - `checkoutpage`: checkout page
+  - `core`: component responsible for writing data to the browser (local storage)
+  - `homepage`: home page
+  - `profile`: user profile page
+  - `rentalpage`: rental page
+  - `searchpage`: search page
+  - `shared`: folder that contains the components of universal use in the application, such as buttons, inputs, etc.
+  - `tos`: responsible for standardizing all `TextBlockComponent`
 
 <!-- imagem: print do vscode -->
 <!-- por que falar sobre a configuração das variáveis de ambiente? -->
 
-### Variáveis de ambiente
+### Environment variables
 
-Dentro do projeto `portal`, podemos ver uma pasta chamada environments, onde contém os segredos de variáveis de ambiente para executar o projeto localmente ou em produção.
+Within the `portal` project, we can see a folder called environments, which contains the secrets of environment variables to run the project locally or in production.
 
-Por exemplo, observe o trecho abaixo:
+For example, observe the excerpt below:
 
 <details><summary><b>environments/environmet.ts</b></summary>
 <br/>
@@ -55,9 +59,10 @@ Por exemplo, observe o trecho abaixo:
       strapiGraphQlUriFallback: 'http://localhost:1337/graphql'
     };
   ```
+
 </details>
 <br/>
 
-Como você pode perceber, o `portal` esta relacionado a outro cenário, que é o `Blog-CMS`. Neste cenário, é utilizado o `Strapi` como CMS para gerenciar os posts do blog, porém neste tutorial, focaremos apenas no `portal`.
+As you can see, the `portal` is related to another scenario, which is the `Blog-CMS`. In this scenario, `Strapi` is used as a CMS to manage blog posts, but in this tutorial, we will focus only on the `portal`.
 
-No próximo exercício, você aprenderá como executar o projeto `portal` utilizando o Azure Static Web Apps CLI.
+In the next exercise, you will learn how to run the `portal` project using the Azure Static Web Apps CLI.

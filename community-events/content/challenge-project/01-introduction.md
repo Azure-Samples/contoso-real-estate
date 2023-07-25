@@ -1,30 +1,34 @@
-# Understanding the Portal Project in Contoso Real Estate
+# Understanding the Contoso Real Estate project
 
-Neste tutorial, você conhecerá os projetos `portal` e `api` do Contoso Real Estate, que é um projeto open source, desenvolvido pela Microsoft, que simula uma imobiliária.
+In this tutorial, you will learn about the `portal` and `api` projects of Contoso Real Estate, which is an open source project developed by Microsoft that simulates a real estate agency.
 
-## Objetivos de aprendizado:
-- Conhecer a arquitetura componsable architecture que é utilizada no projeto Contoso Real Estate.
-- Experimentar o GitHub Codespaces como ambiente de desenvolvimento.
-- Entender como construir uma API Serverless utilizando Azure Functions e Azure Cosmos DB.
-- Experimentar o Azure Static Web Apps CLI para executar e fazer o deploy do projeto Contoso Real Estate.
-- Usar o GitHub Copilot como assistente.
+## Learning objectives:
 
-## Pré-requisitos
-Para seguir com este tutorial será necessário alguns conhecimentos básicos em programação e acesso a algumas ferramentas:
+- Understand the composable architecture that is used in the Contoso Real Estate project.
+- Experience GitHub Codespaces as a development environment.
+- Understand how to build a Serverless API using Azure Functions and Azure Cosmos DB.
+- Experience the Azure Static Web Apps CLI to run and deploy the Contoso Real Estate project.
+- Use GitHub Copilot as an assistant.
+
+## Prerequisites
+
+To follow this tutorial, you will need some basic programming knowledge and access to some tools:
+
 - [JavaScript](https://learn.microsoft.com/shows/beginners-series-to-javascript/)
 - [Node](https://learn.microsoft.com/shows/beginners-series-to-nodejs/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Angular](https://angular.io/)
-- [Conta no Azure](https://azure.microsoft.com/pt-br/free/)
-- [Conta no GitHub](https://github.com)
+- [Azure account](https://azure.microsoft.com/free/)
+- [GitHub account](https://github.com)
 
-Você precisará de uma conta no Azure para utilizar os serviços Azure Static Web Apps, Azure Functions e Azure Cosmos DB. Se você não tiver uma conta, crie uma gratuitamente em [azure.com](https://azure.microsoft.com/pt-br/free/).
+You will need an Azure account to use the Azure Static Web Apps, Azure Functions, and Azure Cosmos DB services. If you don't have an account, create one for free at [azure.com](https://azure.microsoft.com/free/).
 
-> Estudantes podem reivindicar o GitHub Student Developer Pack em [GitHub Student Developer Pack - GitHub Education](https://education.github.com/pack). Esta oferta inclui acesso ao Codespaces, GitHub Copilot e Azure for Students e outros benefícios. Se você não for estudante, você poderá o [GitHub Codespaces](https://docs.github.com/en/codespaces) por 60 horas gratuitas por mês.
+> Students can claim the GitHub Student Developer Pack at [GitHub Student Developer Pack — GitHub Education](https://education.github.com/pack). This offer includes access to Codespaces, GitHub Copilot, Azure for Students, and other benefits. If you are not a student, you can use [GitHub Codespaces](https://docs.github.com/en/codespaces) for 60 free hours per month.
 
 
-## Aprenda antes de codificar
-Essa é a sua primeira vez usando as plataformas do Azure e GitHub? Sem problemas! Temos alguns recursos para ajudá-lo a começar:
+## Learn before you code
+
+Is this your first time using the Azure and GitHub platforms? No problem! We have some resources to help you get started:
 
 - [GitHub](https://learn.microsoft.com/training/github/)
 - [Introduction to GitHub Copilot](https://learn.microsoft.com/training/modules/introduction-to-github-copilot/)

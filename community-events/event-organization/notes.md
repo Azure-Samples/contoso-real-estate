@@ -1,1 +1,0 @@
-Criar o banco de dados usando o Banco de Dados do Azure para PostgreSQL

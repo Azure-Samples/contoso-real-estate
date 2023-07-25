@@ -8,11 +8,11 @@ A quick guide for community leaders, with tips on speaker sourcing, event promot
 - Type of content: presentations or workshop
 - Ideal format for your community: online, hybrid or in-person
 - Date and time
-- Duration: 1-2 hours
+- Duration: 2-3 hours
      - If you opt for an online event, consider breaking the event into 30-45 minute sessions.
      - For in-person event, consider a 15-minute break for participants to network.
-- Theme: will focus on one or more themes from the project's content pack **Enterprise-grade Reference Architecture for JavaScript?**
-- Prerequisites: If you have activities related with accounts or services (e.g. create a GitHub), include this information on the registration page and send the reminder for your attendees. It will be very useful and you will save time.
+- Theme: all events should be related to the **Contoso Real Estate** project and its content packs. You can choose to focus on one or more themes from the project's content pack.
+- Prerequisites: If you decide host an event with a workshop, consider the prerequisites for your attendees. For example, if you are going to host a workshop on Azure Functions, you can ask your attendees to create an Azure account before the event.
 
 ### Promotion
 - Use our templates to create assets and promote your event. In the [Creative](/Creative) folder, you will find the downloadable templates:
@@ -35,8 +35,5 @@ If you want to find speakers for your event, you can search for members of Micro
 
 Tip: in your invite, talk about the **Enterprise-grade Reference Architecture for JavaScript** project and share the content you want the speaker to present.
 
-## Content and Speakers
-In this repository you will find presentations and workshops that you can use in your event:
-- [Azure Static Web Apps](/ASWA)
-- [Azure Functions](/AzureFunctions)
-- [Azure CosmosDB](/AzureCosmosDB)
+## Content
+In this repository you will find presentations and workshops that you can use in your event. Navigate to the [content](/content) folder to find the content packs for each project.
