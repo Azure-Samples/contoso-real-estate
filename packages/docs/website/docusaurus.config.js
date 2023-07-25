@@ -1,139 +1,212 @@
 // @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  // ------- Required Fields -------
+  title: 'Contoso Real Estate: Developer Guide',
+  url: 'https://azure-samples.github.io',
+  baseUrl: '/',  // set this to '/contoso-real-estate/' for GitHub pages deployment
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  // ------- Optional: deploy related -------
+  organizationName: 'Azure-Samples',  // needed only for GitHub Pages deployment
+  projectName: 'contoso-real-estate', // -- ditto --
+  deploymentBranch: "gh-pages",
 
+  //------- Optional: build checks -----
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
+  //------ Optional: Other fields -----
+  tagline: 'Build enterprise-grade composable web apps on Azure',
+  favicon: 'img/favicon.ico',
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
 
+  //------- Optional: Configure theme (presets = plugin bundles) ----
   presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          sidebarPath: require.resolve("./sidebars.js"),
+          routeBasePath: "/",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+
+        blog: false,
+
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+        },
+
       }),
     ],
   ],
 
+  //------- Optional: Configure theme (UI elements))----
+  // See:  https://docusaurus.io/docs/api/themes/configuration
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
+
+      // Theme mode (light/dark or system default)
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+      },
+
+      // Meta image (og:image and twitter:image default)
       image: 'img/docusaurus-social-card.jpg',
-      navbar: {
-        title: 'My Site',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+
+      // Other Metadata (use to override existing <meta> tags)
+      metadata: [
+        // { name: 'twitter:card', content: 'summary'}
+      ],
+
+      // Sidebar: https://docusaurus.io/docs/sidebar#theme-configuration
+      docs: {
+        sidebar: {
+          hideable: false,
+          autoCollapseCategories: false,
         },
+      },
+
+      // Navbar: https://docusaurus.io/docs/api/themes/configuration#navbar
+      navbar: {
+
+        title: 'Contoso Real Estate',
+
+        logo: {
+          alt: 'Contoso Real Estate Application Logo',
+          src: 'img/logo.svg',
+          target: "_self",
+          width: 32,
+          height: 32,
+        },
+
+        style: "primary", // "dark" or "primary"
+
         items: [
+
+          /* === START: Comment out to remove from navbar === *
+          { to: "/define", label: "Define", position: "left" },
+          { to: "/scenarios", label: "Develop", position: "left" },
+          { to: "/test", label: "Test", position: "left" },
+          { to: "/monitor", label: "Monitor", position: "left" },
+          { to: "/optimize", label: "Optimize", position: "left" },
+
+          { href: "/api", position: "right", label: "API"},
+          { href: "/azure", position: "right", label: "Azure" },
+          { href: "/pricing", position: "right", label: "Pricing"},
+          {
+            position: "right",
+            label: "Reporting",
+            items: [
+              {
+                href: "/reports/index.html",
+                label: "Playwright",
+                target: "_blank",
+              },
+              {
+                href: "/lighthouse",
+                label: "Lighthouse",
+                target: "_blank",
+              },
+            ],
+          },
+          /* === END: Comment out to remove from navbar */
+
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'guideSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Guide',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            type: 'docSidebar',
+            sidebarId: 'dataSidebar',
             position: 'right',
+            label: 'Data',
+          },
+          {
+            href: "https://github.com/Azure-Samples/contoso-real-estate",
+            position: "right",
+            className: "header-github-link",
+            "aria-label": "GitHub repository",
           },
         ],
       },
+
+      // Footer: https://docusaurus.io/docs/api/themes/configuration#footer-1
       footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+
+        style: 'dark', // "dark" or "light"
+
+        logo: {
+          alt: 'Contoso Real Estate Application Logo',
+          src: 'img/logo.svg',
+          href: 'https://opensource.fb.com',
+          width: 160,
+          height: 51,
+        },
+        copyright: `Copyright © ${new Date().getFullYear()} Microsoft - Made with ♥️ by DevDiv & JS Advocacy`,
+        links: [],
       },
+
+      // Mermaid: https://docusaurus.io/docs/markdown-features/diagrams#configuration
+      // Theming: https://mermaid.js.org/config/theming.html
+      mermaid: {
+        theme: {
+          light: 'neutral',
+          dark: 'forest'
+        },
+        options: {
+          maxTextSize: 50,
+        },
+      },
+
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+
     }),
+
+  //------- Optional: Configure plugins ----
+  plugins: [
+    [
+      "@docusaurus/plugin-ideal-image",
+      {
+        quality: 70,
+        max: 1030, // max resized image's size.
+        min: 640, // min resized image's size.
+        steps: 2, // #images b/w min and max (inclusive)
+        disableInDev: false,
+      },
+    ],
+  ],
+
+  //------- Optional: Configure Mermaid ----
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
+
 };
 
 module.exports = config;

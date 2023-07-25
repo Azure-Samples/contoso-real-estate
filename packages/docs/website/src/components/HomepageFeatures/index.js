@@ -2,45 +2,98 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
+// GitHub Octicons
+// See: https://github.com/primer/octicons/tree/main/lib/octicons_react
+import {
+  CopilotIcon, MarkGithubIcon, CloudIcon, PeopleIcon, WorkflowIcon, RocketIcon, CodespacesIcon
+} from "@primer/octicons-react";
+
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: "Open Source",
+    icon: (
+      <a href="https://github.com/Azure-Samples/contoso-real-estate/fork">
+        <MarkGithubIcon size="large" aria-label="GitHub" />
+      </a>
+    ),
+    description: (
+      <> Fork the reference implementation. Then use the guide to explore it. </>
+    ),
+  },
+  {
+    title: "AI Assistance",
+    icon: (
+      <a href="https://github.com/features/copilot">
+        <CopilotIcon size="large" aria-label="GitHub Copilot" />
+      </a>
+    ),
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Activate GitHub Copilot. Use it to author, explain and explore, application code.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: "Dev Environments",
+    icon: (
+      <a href="npm install --save @docusaurus/plugin-sitemap">
+        <CodespacesIcon size="large" aria-label="Seamless local & remote development with Codespaces" />
+      </a>
+    ),
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Activate GitHub Codespaces. Get a consistent dev environment everywhere.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: "Extensible Scenarios",
+    icon: (
+      <a href="/define/scenarios">
+        <PeopleIcon size="large" aria-label="User Stories as Design Specification" />
+      </a>
+    ),
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Define and prioritize scenarios to drive iterative development & extensibility.
+      </>
+    ),
+  },
+  {
+    title: "Composable Architecture",
+    icon: (
+      <a href="/define/architecture">
+        <WorkflowIcon size="large" aria-label="Composable Architecture with building blocks" />
+      </a>
+    ),
+    description: (
+      <>
+        Drive API-first design with a composable architecture for optimal flexibility.
+      </>
+    ),
+  },
+  {
+    title: "Cloud-native Deployment",
+    icon: (
+      <a href="https://azure.microsoft.com/en-us/solutions/cloud-native-apps">
+        <CloudIcon size="large" aria-label="Cloud-native apps with Azure" />
+      </a>
+    ),
+    description: (
+      <>
+        Build on managed Azure services and enterprise-grade tools for scalablility.
       </>
     ),
   },
 ];
 
-function Feature({Svg, title, description}) {
+
+
+
+function Feature({ title, description, icon }) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
+    <div className={clsx("col col--4")}>
+      <div className="text--center">{icon}</div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
         <p>{description}</p>
@@ -51,14 +104,23 @@ function Feature({Svg, title, description}) {
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+    <div>
+      <section className={styles.features}>
+        <div className="container">
+          <div className="row">
+            {FeatureList.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </div>
+          {/*
+          <div className="row">
+            {ServicesList.map((props, idx) => (
+              <Feature key={idx} {...props} />
+            ))}
+          </div>
+            */}
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
