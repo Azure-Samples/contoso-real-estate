@@ -2,6 +2,8 @@
 
 The `portal` of the Contoso Real Estate project is a simulation of a real estate agency where you can view the properties available for sale, rent, or buy. The architecture of the project was designed in a composable architecture.
 
+Composable architecture is a software architecture that divides the application into smaller parts, where each part is responsible for a specific functionality. This architecture is also known as micro frontends.
+
 **Advantages of using composable architecture:**
 
 - **Reusability**: components can be reused in different parts of the application.
@@ -9,6 +11,7 @@ The `portal` of the Contoso Real Estate project is a simulation of a real estate
 - **Maintainability**: the application can be maintained more easily as each component is responsible for a specific functionality.
 
 ![Composable Architecture Diagram](./images/composable-architecture-example.png)
+
 
 ## Project architecture
 
@@ -18,7 +21,7 @@ The Contoso Real Estate project is composed of three main parts:
 - `blog`: is the project that contains the real estate blog. In this project, `Strapi` is used as a CMS to manage blog posts.
 - `api`: is the project that contains the APIs that will be used in the `portal` project.
 
-<!-- gif contoso real state -->
+![Contoso Real Estate Diagram](./images/e2e-full-horizontal.drawio.png)
 
 ### The `portal` components
 
@@ -38,12 +41,11 @@ Accessing the `packages/portal/src/app` folder, you will see the components that
   - `shared`: folder that contains the components of universal use in the application, such as buttons, inputs, etc.
   - `tos`: responsible for standardizing all `TextBlockComponent`
 
-<!-- imagem: print do vscode -->
-<!-- por que falar sobre a configuração das variáveis de ambiente? -->
+![Componentes](./images/gif-arquitetura-portal.gif)
 
 ### Environment variables
 
-Within the `portal` project, we can see a folder called environments, which contains the secrets of environment variables to run the project locally or in production.
+Within the `portal` project, we can see a folder called environments, which contains the secrets of environment variables to run the project locally (Codespace in this case) or in production. This is a good practice to avoid exposing sensitive data.
 
 For example, observe the excerpt below:
 

@@ -6,7 +6,7 @@ You will use GitHub Codespaces to work on the Contoso Real Estate `portal` proje
 
 GitHub Codespaces is a cloud-hosted development environment. When you work in a codespace, the environment you're working in is created using a development container, or dev container, hosted on a virtual machine.
 
-Development containers, or dev containers, are Docker containers that are specifically configured to provide a complete development environment. Whenever you work in a codespace, you're using a dev container on a virtual machine.
+Development containers, or dev containers, are Docker containers that are specifically configured to provide a complete development environment.
 
 You can configure the dev container for a repository so that codespaces created for that repository provide a custom development environment, complete with all the tools and runtimes you need to work on a specific project.
 
@@ -15,6 +15,7 @@ The diagram below, taken directly from the official [Visual Studio Code](https:/
 ![Dev Container Diagram](./images/dev-container.png)
 
 The Contoso Real Estate project is optimized for use with GitHub Codespaces, a cloud-hosted development environment from GitHub.
+
 
 ## Getting started
 

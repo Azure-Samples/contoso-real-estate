@@ -76,7 +76,7 @@ If you want to see the portal, go to the `Ports` tab of the terminal and click o
 
 The example below shows the portal home page with the sample data.
 
-![Portal Home Page](./images/contoso-portal.jpg)
+![Portal Home Page](./images/gif-portal-contoso.gif)
 
 
 ### Understanding the execution
