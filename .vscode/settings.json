@@ -4,10 +4,12 @@
     "Contoso",
     "Quickstart"
   ],
-  "azureFunctions.deploySubpath": "packages\\api",
+  "azureFunctions.deploySubpath": "packages/api-v4",
   "azureFunctions.postDeployTask": "npm install (functions)",
   "azureFunctions.projectLanguage": "TypeScript",
   "azureFunctions.projectRuntime": "~4",
   "debug.internalConsoleOptions": "neverOpen",
-  "azureFunctions.preDeployTask": "npm prune (functions)"
+  "azureFunctions.preDeployTask": "npm prune (functions)",
+  "azureFunctions.projectSubpath": "packages/api-v4",
+  "azureFunctions.projectLanguageModel": 4
 }
