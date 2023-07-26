@@ -40,4 +40,18 @@ Se tiverem dúvidas como executar, podem acompanhar o passo a passo no gif abaix
 
 ![Hello World V4](./images/hello-world-v4.gif)
 
+## Configurando a Base Dados da API com Azure Cosmos DB (MongoDB API)
+
+Nesse tutorial estaremos usando o Azure Cosmos DB. O Azure Cosmos DB é um serviço de banco de dados multimodelo distribuído globalmente, que oferece suporte a vários modelos de dados, como documentos, gráficos, chave/valor e colunas, fornecendo APIs e recursos de gerenciamento de dados abrangentes. Também é um serviço de banco de dados NoSQL totalmente gerenciado, que oferece suporte a consultas e transações distribuídas, com latência e escalabilidade garantidas.
+
+Além disso, o Azure Cosmos DB possui suporte para vários modelos de programação, incluindo SQL, MongoDB, Cassandra, Gremlin e Tabela. Isso permite que você crie aplicativos usando uma variedade de APIs e modelos de dados. Nessa aplicação, usaremos o modelo de programação do MongoDB.
+
+Para isso, vamos instalar alguns pacotes que serão fundamentais para isso. Abre o terminal e instale os seguintes pacotes: (under `packages/api-v4`)
+
+```bash
+
+```bash
+npm install mongoose dotenv dotenv mongodb
+```
+
 
