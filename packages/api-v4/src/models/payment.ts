@@ -12,15 +12,15 @@ export async function savePayment(payment: Partial<Payment>): Promise<Payment> {
   return PaymentModel.create(payment);
 };
 
-export async function updatePaymentStatus(id: string, status: 'pending' | 'declined' | 'completed' |'cancelled'): Promise<Payment | null> {
-  const record = await PaymentModel.findOne({ _id: id });
+export async function updatePaymentStatus(id: string, status: 'pending' | 'declined' | 'completed' | 'cancelled'): Promise<Payment | null> {
+  const payment = await PaymentModel.findOne({ _id: id });
 
-  if (record) {
-    record.status = status;
-    return await record.save();
+  if (!payment) {
+    return null;
   }
 
-  return null;
+  payment.status = status;
+  return await payment.save();
 };
 
 export async function findPaymentById(id: string): Promise<Payment | null> {
