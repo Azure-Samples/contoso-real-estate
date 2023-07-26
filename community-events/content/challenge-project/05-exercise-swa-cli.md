@@ -8,7 +8,7 @@ The [Azure Static Web Apps (SWA) CLI](https://github.com/Azure/static-web-apps-c
 
 ## How does the communication between frontend and backend work?
 
-The standard communication structure between frontend and backend in an Angular project is through a `services.ts`. In the `portal` project of the Contoso Real Estate project, communication is managed through the Azure Static Web App CLI.
+The standard communication structure between frontend and backend in an Angular project is through a `services.ts`. In the `portal` project of Contoso Real Estate, the communication between frontend and backend and the deployment are managed through the Azure Static Web App CLI.
 
 The settings for this communication are done through a file called `swa-cli.config.json`, which will be executed when the route is called.
 
