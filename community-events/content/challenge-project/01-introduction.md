@@ -1,14 +1,12 @@
 # Understanding the Contoso Real Estate project
 
-In this tutorial, you will learn about the `portal` and `api` projects of Contoso Real Estate, which is an open source project developed by Microsoft that simulates a real estate agency.
+In this tutorial, you will learn about the `portal` project of Contoso Real Estate, which is an open source project developed by Microsoft that simulates a real estate agency.
 
 ## Learning objectives:
 
-- Understand the composable architecture that is used in the Contoso Real Estate project.
-- Experience GitHub Codespaces as a development environment.
-- Understand how to build a Serverless API using Azure Functions and Azure Cosmos DB.
-- Experience the Azure Static Web Apps CLI to run and deploy the Contoso Real Estate project.
-- Use GitHub Copilot as an assistant.
+- Understand the composable architecture that is used in the Contoso Real Estate project
+- Experience GitHub Codespaces as a development environment
+- Understand how to use Azure Static Web Apps CLI to run the Contoso Real Estate project
 
 ## Prerequisites
 
@@ -34,5 +32,3 @@ Is this your first time using the Azure and GitHub platforms? No problem! We hav
 - [Introduction to GitHub Copilot](https://learn.microsoft.com/training/modules/introduction-to-github-copilot/)
 - [Introduction To Codespaces](https://aka.ms/CodespacesVideoTutorial)
 - [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview)
-- [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview)
-- [Azure Cosmos DB](https://learn.microsoft.com/azure/azure-cosmos-db/introduction)

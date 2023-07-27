@@ -1,1 +1,0 @@
-# Exercício: Deploy no Azure Static Web Apps
