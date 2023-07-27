@@ -22,10 +22,16 @@ module app '../core/host/container-app.bicep' = {
     containerRegistryName: containerRegistryName
     containerCpuCoreCount: '1.0'
     containerMemory: '2.0Gi'
+    secrets: [
+      {
+        name: 'APPINSIGHTS_CS'
+        value: applicationInsights.properties.ConnectionString
+      }
+    ]
     env: [
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: applicationInsights.properties.ConnectionString
+        value: 'secretref:APPINSIGHTS_CS'
       }
       {
         name: 'NEXT_PUBLIC_STRAPI_API_URL'
