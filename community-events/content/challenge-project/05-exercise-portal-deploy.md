@@ -1,24 +1,20 @@
-# Exercise 3: Deploy on Azure Static Web App
+# ☁️ Exercise 3: Deploy on Azure Static Web App
 
-In this exercise, you will learn how to deploy the **Portal** project on Azure using the Azure Static Web Apps CLI and GitHub Actions.
-
-You'll need to use your Azure account for this exercise. If you don't have an account, create a free [Azure Free Trial](https://azure.microsoft.com/free/) or use the [GitHub Student Developer Pack — GitHub Education](https://education.github.com/pack) program.
+In this exercise, you will learn how to deploy the `portal` project on Azure using the Azure Static Web Apps CLI and GitHub Actions. You'll need to use your Azure account for this exercise. If you don't have an account, create a free [Azure Free Trial](https://azure.microsoft.com/free/?WT.mc_id=academic-101248-cyzanon) or use the [GitHub Student Developer Pack — GitHub Education](https://aka.ms/Copilot4Students) program.
 
 ## Preparing the scenario
 
-To deploy the `portal`, you will need to create a new branch in your GitHub repository and follow some configuration steps.
+### Create a new branch
 
-To do this, run the following commands in the Visual Studio Code terminal in Codespaces:
-
-**Creating a new branch**
+First, you will need to create a new branch in your GitHub repository and follow some configuration steps. To do this, run the following commands in the Visual Studio Code terminal in Codespaces:
 
 ```bash
   git checkout -b portal-deploy
 ```
 
-Make a copy of the `portal` folder and rename it to `portal-deploy`. Duplicating the folder is necessary so that we can deploy the `portal` in isolation, without having to deploy the `blog` and `api`.
+### Create a copy and rename
 
-**Creating a copy via terminal**
+Create a copy of the `portal` folder and rename it to `portal-deploy` This duplication is necessary so that we can deploy the portal scenario separately from other parts of the project, such as the `blog` and `api`.
 
 ```bash
   cp -r packages/portal packages/portal-deploy
@@ -28,37 +24,37 @@ With the `portal-deploy` folder created, access the file `packages/portal-deploy
 
 ![Package.json](./images/new-portal-package-json.jpg)
 
-Now, go back to the terminal, as we will run some routines with basic linux commands and configure the project deploy with the Azure Static Web Apps CLI.
+## Navigate and delete existing files
 
-**Navigating to the portal-deploy folder**
+Now, go back to the terminal, as we will run some routines with basic Linux commands and configure the project deployment with the Azure Static Web Apps CLI.
 
 ```bash
   cd packages/portal-deploy
 ```
 
-**Delete existing files**
-
 We need to delete the `packages/portal/node_modules` folder and the `swa-cli.config.json` file. To do this, we will use the linux command `rm -rf`. The -r is used to delete folders and the -f is used to force deletion.
 
-Removing the node_modules folder:
+**Remove the node_modules folder:**
 
 ```bash
   rm -rf node_modules
 ```
 
-Removing the swa-cli.config.json file:
+**Remove the swa-cli.config.json file:**
 
 ```bash
   rm -rf swa-cli.config.json
 ```
 
-**Installing dependencies**
+### Installing dependencies
+
+**All depedencies**
 
 ```bash
   npm install
 ```
 
-**Installing Azure Static Web Apps CLI as a development dependency**
+**Azure Static Web Apps CLI as a development dependency**
 
 ```bash
   npm install -D @azure/static-web-apps-cli
@@ -136,27 +132,25 @@ To do this, access the Azure portal and create a new Azure Static Web Apps follo
 2. In the search bar, type `Static Web Apps` and click on the first result.
 3. Click the `Create` button.
 4. On the "Create Static Web App" page, fill in the following information:
-    - *Subscription*: Select your Azure subscription.
-    - *Resource Group*: Click the `Create new` button and type the name `contoso-real-estate`.
-    - *Name*: Type the name `contoso-real-estate-portal-deploy`.
-    - *Plan type*: Select the `Free` option.
-    - *Region*: Select the region closest to you.
-    - *Source*: Select the `GitHub` option. You will need to log in with your GitHub account so that Azure can access your repositories.
-    - *Organization*: Select your GitHub organization.
-    - *Repository*: Select the `contoso-real-estate` repository.
-    - *Branch*: Select the `portal-deploy` branch.
-    - *Build Presets*: Select the `Angular` option.
-    - *App location*: Type the path `packages/portal-deploy`.
-    - *Api location*: Type the path `packages/api`.
-    - *Output location*: Type the path `dist/contoso-app`.
+    - ***Subscription***: Select your Azure subscription.
+    - ***Resource Group***: Click the `Create new` button and type the name `contoso-real-estate`.
+    - ***Name***: Type the name `contoso-real-estate-portal-deploy`.
+    - ***Plan type***: Select the `Free` option.
+    - ***Region***: Select the region closest to you.
+    - ***Source***: Select the `GitHub` option. You will need to log in with your GitHub account so that Azure can access your repositories.
+    - ***Organization***: Select your GitHub organization.
+    - ***Repository***: Select the `contoso-real-estate` repository.
+    - ***Branch***: Select the `portal-deploy` branch.
+    - ***Build Presets***: Select the `Angular` option.
+    - ***App location***: Type the path `packages/portal-deploy`.
+    - ***Api location***: Type the path `packages/api`.
+    - ***Output location***: Type the path `dist/contoso-app`.
 5. Click the `Review + create` button.
 6. Click the `Create` button.
 
-Access your repository on Github and click on the `Actions` tab. You will see that GitHub Actions has already created a workflow called `Azure Static Web Apps CI/CD` and it will be running.
+Access your repository on GitHub and click on the `Actions` tab. You will see that GitHub Actions has already created a workflow called `Azure Static Web Apps CI/CD`, and it will be in progress.
 
-The steps we performed in the Azure portal, during the creation of Azure Static Web Apps, generated a new file in the `.github/workflows` folder. This file is responsible for deploying the `portal-deploy` on Azure Static Web Apps.
-
-You can follow the progress of the deploy in GitHub Actions or in Azure Static Web Apps.
+The steps performed on the Azure portal during the creation of Azure Static Web Apps have created a new file in the `.github/workflows` folder. This file is responsible for deploying the `portal-deploy` to Azure Static Web Apps. You can follow the progress of the deploy in GitHub Actions or in Azure Static Web Apps.
 
 ![GitHub Actions Workflow](./images/github-actions-workflow.jpg)
 
@@ -164,4 +158,5 @@ With the execution completed, access the link generated by Azure Static Web Apps
 
 ![Azure Portal](./images/azure-portal-swa-portal.png)
 
-Congratulations! You have successfully deployed the `portal` on Azure Static Web Apps.
+## Congratulations
+You have successfully deployed the `portal` on Azure Static Web Apps. 🎉
