@@ -1,10 +1,10 @@
-# Exercise 2: Working with Azure Static Web App CLI
+# 💻 Exercise 2: Working with Azure Static Web App CLI
 
 In this exercise, you'll learn how to run the **Portal** project in Codespaces and how to use the Azure Static Web Apps CLI to handle communication between the frontend and backend.
 
 ## What is Azure Static Web App CLI?
 
-The **[Azure Static Web Apps (SWA) CLI](https://github.com/Azure/static-web-apps-cli)** is an open-source command-line tool that simplifies local development and deployment to Azure Static Web Apps. It allows you to run your app locally or in a dev container, which in this case is GitHub Codespace, and then deploy your app to a production environment with just one command.
+The **[Azure Static Web Apps (SWA) CLI](https://github.com/Azure/static-web-apps-cli/?WT.mc_id=academic-101248-cyzanon)** is an open-source command-line tool that simplifies local development and deployment to Azure Static Web Apps. It allows you to run your app locally or in a dev container, which in this case is GitHub Codespace, and then deploy your app to a production environment with just one command.
 
 ## How does the communication between frontend and backend work?
 
@@ -151,8 +151,10 @@ This is the heart of the SWA CLI. It intercepts and forwards HTTP requests to th
 
 ![Azure Static Web Apps CLI - Reserve Proxy](./images/swa-cli-ports.png)
 
-That's why we can connect the portal to the API without having to configure anything. The SWA CLI does this for us.
-
-You can learn more about the Azure Static Web Apps CLI at [https://azure.github.io/static-web-apps-cli/docs/intro/](https://azure.github.io/static-web-apps-cli/docs/intro/).
+That's why we can connect the portal to the API without having to configure anything. The SWA CLI does this for us. You can learn more about the Azure Static Web Apps CLI at [https://azure.github.io/static-web-apps-cli/docs/intro/](https://azure.github.io/static-web-apps-cli/docs/intro/?WT.mc_id=academic-101248-cyzanon).
 
 In the next exercise, you will learn how to deploy the `portal` project on Azure Static Web Apps.
+
+---
+
+[**➡️ Exercise 3: Deploy on Azure Static Web App**](./05-exercise-portal-deploy.md)
