@@ -1,6 +1,8 @@
-# Exercise 1: Analyzing the `portal` project
+# 🔎 Exercise 1: Analyzing the `portal` project
 
 The `portal` of the Contoso Real Estate project is a simulation of a real estate agency where you can view the properties available for sale, rent, or buy. The architecture of the project was designed in a composable architecture.
+
+<img src="./images/composable-architecture-example.png" title="Composable Architecture Diagram" height="450" />
 
 Composable architecture is a software architecture that divides the application into smaller parts, where each part is responsible for a specific functionality. This architecture is also known as micro frontends.
 
@@ -9,9 +11,6 @@ Composable architecture is a software architecture that divides the application 
 - **Reusability**: components can be reused in different parts of the application.
 - **Scalability**: the application can be scaled horizontally, that is, it can be divided into smaller parts, and each part can be developed by a different team.
 - **Maintainability**: the application can be maintained more easily as each component is responsible for a specific functionality.
-
-![Composable Architecture Diagram](./images/composable-architecture-example.png)
-
 
 ## Project architecture
 
@@ -68,3 +67,7 @@ For example, observe the excerpt below:
 As you can see, the `portal` is related to another scenario, which is the `Blog-CMS`. In this scenario, `Strapi` is used as a CMS to manage blog posts, but in this tutorial, we will focus only on the `portal`.
 
 In the next exercise, you will learn how to run the `portal` project using the Azure Static Web Apps CLI.
+
+---
+
+[**➡️ Exercise 2: Working with Azure Static Web App CLI**](./04-exercise-swa-cli.md)
