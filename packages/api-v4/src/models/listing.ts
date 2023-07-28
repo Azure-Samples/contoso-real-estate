@@ -5,6 +5,7 @@
  * author: Glaucia Lemos
  */
 
+import mongoose from "mongoose";
 import { pgQuery } from "../config/pgclient";
 import { Listing } from "./listing.schema";
 
@@ -17,9 +18,14 @@ export async function getListings({ offset, limit, featured }: { offset: number;
 };
 
 export async function getListingById({ id }: { id: string | undefined }): Promise<Listing> {
-  const listing = await pgQuery(`SELECT * FROM listings WHERE id = $1 LIMIT 1`, [id]);
+  try {
+    const listingId = new mongoose.Types.ObjectId(id);
+    const listing = await pgQuery(`SELECT * FROM listings WHERE id = $1 LIMIT 1`, [listingId]);
 
-  return listing.rows.map(listingMapper)[0];
+    return listing.rows.map(listingMapper)[0];
+  } catch (error) {
+    throw new Error('Error fetching listing by ID.')
+  }
 }
 
 export function listingMapper(row: Listing) {
