@@ -53,20 +53,14 @@ We do not recommend running this project locally, as it requires a number of con
 
 > Codespaces offers 60 free hours of usage per month. After this period, you will be charged an hourly rate. To learn more, visit [Codespaces](https://github.com/features/codespaces).
 
-To run the project, follow the steps below:
+To run the project in your Visual Studio Code in Codespaces, follow the steps below:
 
-1. You will need to make a copy of the template repository in your GitHub account. To do this, you will need to access the **[repository](https://github.com/Azure-Samples/contoso-real-estate)** and **Fork**. At the end of the fork of the repository, you will have a copy of the project in your GitHub account.
-
-2. On the repository page that was created, click the **Code** button and, in the Codespaces tab, click **Create codespace on main**. In a few moments, Codespaces will create a development environment for you.
-
-3. When Codespaces finishes creating the development environment, you will see a Visual Studio Code window in the browser. You can use Visual Studio Code in the browser to develop the application.
-
-4. As all the scenarios of the project are coupled, so that we can visualize what was created in the portal, it will be necessary to perform the following steps:
-  - Open the Visual Studio Code terminal and, at the root of the Contoso project, run the commands `npm install && npm start` to install the project dependencies.
+1. As all the scenarios of the project are coupled, so that we can visualize what was created in the portal, it will be necessary to perform the following steps:
+  - Open the Visual Studio Code terminal and, at the root of the Contoso project, run the commands `npm install && npm start` to install the project dependencies and start the servers.
 
   > _Note: Codespaces will show a number of windows on the right side of the screen as it starts up all the servers. This is expected and normal._
 
-5. Once all the development servers have started, the following URLs will be available:
+2. Once all the development servers have started, the following URLs will be available:
 
 | Application    | URL                                                      | Port |
 | -------------- | -------------------------------------------------------- | ---- |
@@ -78,7 +72,7 @@ To run the project, follow the steps below:
 
 > _Note: The URLs above are just examples. The URLs will be different for your fork. The ports, however, will be the same._
 
-6. To view the project, go to the `Ports` tab of the terminal and click on the portal link, which will be port `4280` (the default port of the ASWA), to see the portal home page.
+3. To view the project, go to the `Ports` tab of the terminal and click on the portal link, which will be port `4280` (the default port of the ASWA), to see the portal home page.
 
 ![Terminal Ports](./images/terminal-ports.png)
 
@@ -146,7 +140,7 @@ Responsible for running the `portal` project.
 This is the heart of the SWA CLI. It intercepts and forwards HTTP requests to the right components based on purpose:
 
 - `/.auth/**` requests => forwarded to the Auth emulator server.
-- `/api/**` requests => forwarded to localhost functions (if present).
+- `/api/**` requests => forwarded to the API backend (if configured).
 - `/**` => all other requests forwarded to the static assets content server.
 
 ![Azure Static Web Apps CLI - Reserve Proxy](./images/swa-cli-ports.png)
