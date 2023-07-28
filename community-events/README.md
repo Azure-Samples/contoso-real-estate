@@ -28,4 +28,9 @@ Stay connected to your developer communities through the upcoming **Hack Togethe
 
 | Date      | Event | Language | Link |
 | ----------- | ----------- | ----------- | ----------- |
-| August 16-31 | Hack Together: JavaScript on Azure | English | [Register](#) |
+| August 16 | Hack Together Launch | English | [Register](https://developer.microsoft.com/pt-br/reactor/events/20275/?WT.mc_id=academic-101248-cyzanon) |
+| August 17 | Introduction to GitHub Copilot Learn Live | English | [Register](https://developer.microsoft.com/pt-br/reactor/events/20321/?WT.mc_id=academic-101248-cyzanon) |
+| August 21 | Build your Frontend with Azure Static Web Apps | English | [Register](https://developer.microsoft.com/pt-br/reactor/events/20276/?WT.mc_id=academic-101248-cyzanon) |
+| August 24 | Build a Serverless Backend with Azure Functions | English | [Register](https://developer.microsoft.com/pt-br/reactor/events/20277/?WT.mc_id=academic-101248-cyzanon) |
+| August 28 | Build and connect to a Database using Azure Cosmos DB | English | [Register](https://developer.microsoft.com/pt-br/reactor/events/20278/?WT.mc_id=academic-101248-cyzanon) |
+| August 31 | Introduction toAzure OpenAI Service Learn Live | English | [Register](https://developer.microsoft.com/pt-br/reactor/events/20322/?WT.mc_id=academic-101248-cyzanon) |
