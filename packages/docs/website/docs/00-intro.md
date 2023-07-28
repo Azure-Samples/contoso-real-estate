@@ -1,50 +1,29 @@
 ---
-sidebar_position: 1
 slug: /intro
 title: Introduction
-description: Welcome to the Contoso Real Estate Developer Guide. Learn to build an enterprise-grade application one scenario at a time.
-author: FIXME - add GitHub alias
-ms.author: FIXME - add MSFT alias or team
-ms.service: FIXME - add ACOM slug
-ms.topic: FIXME - add MSFT topic
-ms.date: FIXME - add MSFT date
+description: Welcome to the Contoso Real Estate Developer Guide. Explore the site for detailed documentation on the open-source sample, from design to deployment.
 ---
 
-Welcome to the Contoso Real Estate Application Developer Guide. We created this developer guide with three objectives in mind:
- 1. **Specification** | Explain the user scenarios driving this solution.
- 2. **Implementation** | Explore the architecture and codebase in context.
- 3. **Contribution** | Encourage you to contribute with code & discussions.
+**Welcome to the Developer Guide for the [Contoso Real Estate Reference Sample](https://github.com/Azure-Samples/contoso-real-estate).**
 
-## Workflow
+The repository contains the reference architecture and implementation for a complex multi-scenario enterprise-grade application built on Microsoft Azure, with best-in-class developer tooling and technologies. 
 
-The documentation is organized in a manner that reflects the end-to-end developer journey that typically consists of the following phases:
+It provides a JavaScript/Web developer with a comprehensive collection of architecture patterns, functional components, developer tools and best practices to streamline and enhance their productivity in building scalable solutions in cloud-native environments.
 
-- **Define** - customer requirements, architecture decisions.
-- **Develop** - prioritized scenarios, core services, developer tools.
-- **Deploy** - resource provisioning, production environment, pricing.
-- **DevOps** - end-to-end testing, CI/CD (workflow automation).
-- **Data** - application insights, cost & performance optimization.
+## Reference Application
 
-## Admonitions
+The reference architecture is for an enterprise application (_Contoso Real Estate_) and designed specifically to **showcase popular feature requirements** - including web-based portals, user authentication, content management, serverless APIs, containerized services, integrated search, third-party payments, and end-to-end testing.
 
-Admonitions are color-coded boxes (like those shown below) that will show up in specific parts of the developer guide. Colors are used to draw attention to specific contexts or interaction opportunities.
+It also **showcases best-in-class developer tooling** for a consistent and productive end-to-end developer experience - from _GitHub Copilot_ (AI pair programmer), _GitHub Codespaces_ (consistent development enviroment) and _GitHub Actions_ (CI/CD) to _Visual Studio Code_ (authoring), _Playwright_ (testing) and _Azure Developer CLI_ (deployment).
 
-:::tip PROMPT YOUR COPILOT
-Green boxes indicate opportunities to engage with your AI Copilot to explore the code, or potentially extend it, for improved understanding.
-:::
+Here's a sneak peek at what the application experience looks like:
 
-:::info DID YOU KNOW
-Blue boxes highlight useful information that can help provide context, or reinforce key learnings, related to the associated section.
-:::
+<iframe width="640" height="400" src="https://www.youtube.com/embed/GxeENsvwZrI" title="Contoso Real Estate Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-:::danger HERE BE DRAGONS
-Red boxes draw attention to actions or challenges that may lead to undesirable outcomes or gotchas for the application developer.
-:::
+## Developer Guide
 
-:::caution HELP NEEDED
-Yellow boxes identify stubs for documentation that is yet to be written, or that requires clarifications. These are great places to contribute!
-:::
-
-## Feedback
-
-Have questions or comments that can help us improve the developer guide? [**File an issue**](https://github.com/Azure-Samples/contoso-real-estate/issues/new/choose) to get the conversation started. We welcome your contributions and discussions on this topic.
+In the following sections, we'll dive into the details behind this reference architecture and sample implementation, exploring it in four dimensions, reflecting the end-to-end developer workflow:
+ - **Define** - Understand requirements, define architecture, setup environment.
+ - **Develop** - Prioritize scenarios, implement with API-first, composabability in mind
+ - **Deploy** -  Provision resources, validate deploy, activate monitoring & insights
+ - **DevOps** -  Integrate end-to-end testing, automate CI/CD, optimize costs

@@ -6,6 +6,9 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  
+  --ifm-link-color: #f77f00;
+
   --ifm-color-primary: #303846;
   --ifm-color-primary-dark: #2b323f;
   --ifm-color-primary-darker: #29303c;
@@ -27,6 +30,12 @@
     --ifm-color-primary-lighter: #ffb067;
     --ifm-color-primary-lightest: #ffc895;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.alert a {
+  color: #f77f00;
+  text-decoration-color:  #f77f00;
+  font-weight: bold;
 }
 
 .header-github-link:hover {

@@ -103,6 +103,7 @@ const config = {
 
         items: [
           { href: "/api", position: "right", label: "API"},
+          { href: "/training", position: "right", label: "Training"},
 
           /* === START: Comment out to remove from navbar === *
           { to: "/define", label: "Define", position: "left" },
@@ -129,6 +130,13 @@ const config = {
               },
             ],
           },
+
+          {
+            type: 'docSidebar',
+            sidebarId: 'dataSidebar',
+            position: 'right',
+            label: 'Data',
+          },
           /* === END: Comment out to remove from navbar */
 
           {
@@ -136,12 +144,6 @@ const config = {
             sidebarId: 'guideSidebar',
             position: 'left',
             label: 'Guide',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'dataSidebar',
-            position: 'right',
-            label: 'Data',
           },
           {
             href: "https://github.com/Azure-Samples/contoso-real-estate",
