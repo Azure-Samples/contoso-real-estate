@@ -1,6 +1,6 @@
 # Understanding the Contoso Real Estate project
 
-In this tutorial, you will learn about the `portal` project of Contoso Real Estate, which is an open source project developed by Microsoft that simulates a real estate agency.
+In this tutorial, you will learn about the `portal` project of Contoso Real Estate, which is an open source project developed by Microsoft that simulates a real estate agency website.
 
 ## ⭐️ Learning objectives:
 
