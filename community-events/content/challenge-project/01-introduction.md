@@ -6,7 +6,7 @@ In this tutorial, you will learn about the `portal` project of Contoso Real Esta
 
 - Understand the composable architecture that is used in the Contoso Real Estate project
 - Experience GitHub Codespaces as a development environment
-- Understand how to use Azure Static Web Apps CLI to run the Contoso Real Estate project
+- Experience the Azure Static Web Apps CLI to run and deploy the Contoso Real Estate project
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ You will need an Azure account to use the Azure Static Web Apps, Azure Functions
 > Students can claim the GitHub Student Developer Pack at [GitHub Student Developer Pack — GitHub Education](https://education.github.com/pack). This offer includes access to Codespaces, GitHub Copilot, Azure for Students, and other benefits. If you are not a student, you can use [GitHub Codespaces](https://docs.github.com/en/codespaces) for 60 free hours per month.
 
 
-## Learn before you code
+## Learn before you go
 
 Is this your first time using the Azure and GitHub platforms? No problem! We have some resources to help you get started:
 
