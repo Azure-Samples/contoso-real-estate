@@ -1,6 +1,6 @@
 # 🔎 Exercise 1: Analyzing the `portal` project
 
-The `portal` of the Contoso Real Estate project is a simulation of a real estate agency where you can view the properties available for sale, rent, or buy. The architecture of the project was designed in a composable architecture.
+The `portal` of the Contoso Real Estate project is a simulation of a real estate agency website where you can view the properties available for sale, rent, or buy. The architecture of the project was designed in a composable architecture.
 
 <img src="./images/composable-architecture-example.png" title="Composable Architecture Diagram" height="450" />
 
@@ -24,7 +24,7 @@ The Contoso Real Estate project is composed of three main parts:
 
 ### The `portal` components
 
-This project was developed using Angular, and you will learn from execution to deployment using the Azure Static Web Apps CLI in Codespaces.
+This project was developed using Angular, and you will learn how it works, and how to run and deploy it using the Azure Static Web Apps CLI in Codespaces.
 
 Accessing the `packages/portal/src/app` folder, you will see the components that make up the `portal`:
 
@@ -32,19 +32,17 @@ Accessing the `packages/portal/src/app` folder, you will see the components that
   - `about`: about page
   - `authentication`: login page (authentication)
   - `checkoutpage`: checkout page
-  - `core`: component responsible for writing data to the browser (local storage)
   - `homepage`: home page
   - `profile`: user profile page
   - `rentalpage`: rental page
   - `searchpage`: search page
   - `shared`: folder that contains the components of universal use in the application, such as buttons, inputs, etc.
-  - `tos`: responsible for standardizing all `TextBlockComponent`
 
 ![Componentes](./images/gif-arquitetura-portal.gif)
 
 ### Environment variables
 
-Within the `portal` project, we can see a folder called environments, which contains the secrets of environment variables to run the project locally (Codespace in this case) or in production. This is a good practice to avoid exposing sensitive data.
+Within the `portal` project, we can see a folder called environments, which contains the configuration needed to run the project locally (or in Codespaces in this case), or in production. This is a good practice to avoid exposing sensitive data here, as these values are packaged within the application and can be retrieved easily.
 
 For example, observe the excerpt below:
 
