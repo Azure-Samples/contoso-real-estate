@@ -18,7 +18,7 @@ Join the **Hack Together** initiative by organizing a virtual, hybrid, or in-per
 | Resource      | Description |
 | ----------- | ----------- |
 | [Event Checklist](event-checklist.md)      | A quick guide for community leaders, with tips on speakers, promotion, and more. |
-| Code of Conduct   | A CoC is important to ensure that all participants feel safe and comfortable during the event. Be inspired by the [Reactor Code of Conduct](https://developer.microsoft.com/en-us/reactor/CodeOfConduct/).       |
+| Code of Conduct   | A CoC is important to ensure that all participants feel safe and comfortable during the event. Be inspired by the [Reactor Code of Conduct](https://developer.microsoft.com/reactor/CodeOfConduct/).       |
 | [Creative](#)   | Assets for promotion on social media, YouTube and Meetup      |
 | [Content](#)   | Presentations and workshops to build an API with Azure Functions and Deploy the `portal` project using Azure Static Web App CLI      |
 
