@@ -34,14 +34,10 @@ module cms '../core/host/container-app.bicep' = {
     containerRegistryName: containerRegistryName
     containerCpuCoreCount: '1.0'
     containerMemory: '2.0Gi'
-    env: [
+    secrets: [
       {
-        name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+        name: 'APPINSIGHTS_CS'
         value: applicationInsights.properties.ConnectionString
-      }
-      {
-        name: 'DATABASE_HOST'
-        value: databaseHost
       }
       {
         name: 'DATABASE_USERNAME'
@@ -50,10 +46,6 @@ module cms '../core/host/container-app.bicep' = {
       {
         name: 'DATABASE_PASSWORD'
         value: databasePassword
-      }
-      {
-        name: 'DATABASE_NAME'
-        value: databaseName
       }
       {
         name: 'JWT_SECRET'
@@ -72,6 +64,48 @@ module cms '../core/host/container-app.bicep' = {
         value: adminJwtSecret
       }
       {
+        name: 'STORAGE_ACCOUNT_KEY'
+        value: storageAccount.listKeys().keys[0].value
+      }
+    ]
+    env: [
+      {
+        name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+        value: 'secretref:APPINSIGHTS_CS'
+      }
+      {
+        name: 'DATABASE_HOST'
+        value: databaseHost
+      }
+      {
+        name: 'DATABASE_USERNAME'
+        value: 'secretref:DATABASE_USERNAME'
+      }
+      {
+        name: 'DATABASE_PASSWORD'
+        value: 'secretref:DATABASE_PASSWORD'
+      }
+      {
+        name: 'DATABASE_NAME'
+        value: databaseName
+      }
+      {
+        name: 'JWT_SECRET'
+        value: 'secretref:JWT_SECRET'
+      }
+      {
+        name: 'APP_KEYS'
+        value: 'secretref:APP_KEYS'
+      }
+      {
+        name: 'API_TOKEN_SALT'
+        value: 'secretref:API_TOKEN_SALT'
+      }
+      {
+        name: 'ADMIN_JWT_SECRET'
+        value: 'secretref:ADMIN_JWT_SECRET'
+      }
+      {
         name: 'NODE_ENV'
         value: 'production'
       }
@@ -81,7 +115,7 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'STORAGE_ACCOUNT_KEY'
-        value: storageAccount.listKeys().keys[0].value
+        value: 'secretref:STORAGE_ACCOUNT_KEY'
       }
       {
         name: 'STORAGE_CONTAINER_NAME'
