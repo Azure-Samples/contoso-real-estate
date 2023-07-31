@@ -1,7 +1,7 @@
 /**
  * file: packages/api-v4/src/index.ts
  * description: file responsible for the main entry point of the api functions (v4)
- * data: 07/19/2023
+ * data: 07/31/2023
  * author: Glaucia Lemos
  */
 
@@ -9,7 +9,7 @@ import { app } from "@azure/functions";
 import { httpTriggerTest } from './functions/httpTriggerTest';
 import { getUsers, getUserById } from './functions/users';
 import { getPaymentById, getPayments } from './functions/payments';
-import { getReservationById } from './functions/reservations';
+import { getReservationById, getReservations } from './functions/reservations';
 
 //#region Test Trigger Function
 app.get('httpTriggerTest', {
@@ -52,6 +52,12 @@ app.get('get-reservation-by-id', {
   route: 'reservations/{id}',
   authLevel: 'anonymous',
   handler: getReservationById
+});
+
+app.get('get-reservations', {
+  route: 'reservations',
+  authLevel: 'anonymous',
+  handler: getReservations
 });
 //#endregion
 
