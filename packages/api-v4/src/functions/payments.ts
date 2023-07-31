@@ -2,7 +2,7 @@ import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functio
 import { initializeDatabaseConfiguration } from "../config";
 import { findPaymentById, findPaymentsByUserId } from "../models/payment";
 
-// GET: Get Paymentt by Id
+// GET: Get Payment by Id
 export async function getPaymentById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getPaymentById processed request for url "${request.url}"`);
 
