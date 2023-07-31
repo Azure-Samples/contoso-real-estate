@@ -11,7 +11,6 @@ This is the "documentation" package for the Contoso Real Estate reference sample
  
  - **`training/`** | this point to _interactive workshops_ that help you explore the sample in a hands-on, step-by-step manner ex: _Learn Live_ events. For more details, read the [training/README](website/README.md).
  
- 
 
 ## About: Website
 
@@ -76,7 +75,7 @@ This is an interactive _developer guide_ for the Contoso Real Estate application
 
 Content is built using theplatform, a popular static site generation platform that supports content in both Markdown and MDX (JSX-flavored Markdown). To learn more about how this was setup, read [website/README.md](website/README.md).
 
-The website also has built-in  that are **independent of** the test suite for the Contoso Real Estate app in `packages/testing` package. They are meant for validating website accessibility and functionality - and are not part of the end-to-end testing strategy for the reference sample itself. To learn more about the website testing focus and setup, read [website/TESTING.md](website/TESTING.md).
+The website also has built-in  that are **independent of** the test suite for the Contoso Real Estate app in `packages/testing` package. They are meant for validating website accessibility and functionality - and are not part of the end-to-end testing strategy for the reference sample itself. To learn more about the website testing focus and setup, read [website/README.TESTING.md](website/README.TESTING.md).
 
 ### Preview The Website
 

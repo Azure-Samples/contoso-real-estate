@@ -1,7 +1,7 @@
 ---
-slug: /devex
+slug: /develop/environment
 title: The Dev Environment
-description: Let's talk about Contoso Real Estate Application requirements.
+description: Let's talk about Contoso Real Estate Application developer experience.
 ---
 
 ## Development Environment

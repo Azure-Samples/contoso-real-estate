@@ -1,7 +1,7 @@
 ---
 slug: /scenarios
 title: The Scenarios
-description: Let's talk about Contoso Real Estate Application requirements.
+description: Let's talk about Contoso Real Estate Application scenarios.
 ---
 
 ## App Specification

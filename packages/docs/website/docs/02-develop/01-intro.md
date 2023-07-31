@@ -1,7 +1,7 @@
 ---
-slug: /develop
+slug: /develop/scenario-8
 title: Introduction
-description: Let's talk about Contoso Real Estate Application workspace
+description: Let's talk about how the Contoso Real Estate Application was developed.
 ---
 
 # Overview

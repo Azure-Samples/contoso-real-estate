@@ -1,7 +1,7 @@
 ---
 slug: /architecture
 title: The Architecture
-description: Let's talk about Contoso Real Estate Application requirements.
+description: Let's talk about Contoso Real Estate Application architecture style
 ---
 
 ## Design Challenges
@@ -13,38 +13,37 @@ Designing a muti-scenario application is complex enough. Making it enterprise-gr
  - **Extensibility** - are scenarios likely to be extended or modified later?
  - **Quality** - is architecture reliable, cost-effective and performant?
 
-We use these questions to determine how we _structure_ our project (repo)_, _implement_ our scenarios (order), and _design_ our architecture (choices) for our Contoso Real Estate application.
+We use these questions to determine how we _structure_ our project (repo), _implement_ our scenarios (sequence), and _design_ our architecture (choices) in the Contoso Real Estate app.
 
 ## Architecture Fundamentals
 
-A good starting point for the journey is the [Azure Architecture Center](https://learn.microsoft.com/azure/architecture/). It has extensive resources in design patterns and enterprise scenarios, with guidance on technology choices and workload optimization. It advocates a simple 4-step approach to developing modern apps:
+A good starting point for learners is the [Azure Architecture Center](https://learn.microsoft.com/azure/architecture/). It has extensive resources in design patterns and enterprise scenarios, with guidance on technology choices and workload optimization. It advocates a simple 4-step approach to developing modern apps:
 
 1. **Architecture Style** - identify the right architecture pattern for your scenario.
 1. **Technology Choices** - decide your core Compute, Storage & Messaging resources.
 1. **Architecture Design** - explore reference arch., design patterns & best practices.
 1. **Assess Quality** - review for 5 pillars for software quality: _reliability, security, cost optimization, operational excellence and performance efficiency._
 
-Two key architecture resources worth bookmarking and revisiting frequently  are:
+For self-guided exploration of relevant architecture concepts and design patterns, *bookmark and revisit* these two resources from the Architecture Center.
 
  - [Azure Architectures Browser](https://learn.microsoft.com/azure/architecture/browse/) - find real-world examples of cloud architectures with solution ideas for common workloads and insights for **technology choices.**
  -  [Azure Well-Architectured Framework](https://learn.microsoft.com/azure/well-architected/) - find guiding tenets for **assessing the quality** of your workloads, and tools for reviewing and remediating identified issues.
 
-For now, we'll start with step 1 and focus on identifying the right architecture approach to use for our Contoso Real Estate application scenarios.
+For now, let's dive in with step 1 - identify the right architecture pattern - for the Contoso Real Estate application scenarios.
 
 ## Composable Architecture
 
 We want to build a reference architecture and implementation for a enterprise-grade application with _extensible scenarios_, that can be repurposed and evolved rapidly to suit changing needs. A [2020 Gartner keynote](https://www.gartner.com/smarterwithgartner/gartner-keynote-the-future-of-business-is-composable) identified **composable architectures** as the growing trend for enterprise applications that were built for resilience and agility.
 
-Broadly speaking, composable architectures focus on design patterns and principles where more complex solutions are **assembled** (in build-deploy pipelines) from simpler components that can be developed by independent teams, using best-in-class tools and technologies.
+Generally speaking, composable architectures focus on design patterns and principles where more complex solutions are **assembled** (in build-deploy pipelines) from simpler components that can be developed by independent teams, using best-in-class tools and technologies. _This addresses our design challenges in ownership, prioritization, extensibility and quality, making it a good architecture style for the Contoso Real Estate app_
 
-More concretely, the trend has led to industry initiatives like the [MACH Architecture](https://macharchitecture.com/) which advocates for these four technology pillars supporting the composable enterprise:
+More concretely, we have industry initiatives like the [MACH Architecture](https://macharchitecture.com/) which promotes a composable architecture design based on four technology pillars:
  - **Microservices** - where the backend is built as loosely-coupled distributed services.
  - **API-first** - where service functionality is exposed as API (contracts) defined up front.
  - **Cloud-native** - where apps & services are pre-designed to take advantage of cloud scale.
  - **Headless** - where frontend choices are decoupled from backends to support flexible UI/UX.
 
-Our Contoso Real Estate reference architecture is the first Azure sample to demonstrate a composable architecture pattern for the JavaScript developer audience. In the rest of this section, we'll dive into what these pillars mean, and how they influence our application design.
-
+In the rest of this section, we'll explore what these pillars mean in the context of our reference implementation. _The Contoso Real Estate reference implementation is the first JavaScript on Azure sample that demonstrates a composable enterprise architecture pattern_.
 
 ## Cloud-native Technology
 

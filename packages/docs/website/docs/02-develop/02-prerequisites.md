@@ -1,4 +1,5 @@
 ---
+slug: /develop/prerequisites
 title: Pre-Requisites
 ---
 
