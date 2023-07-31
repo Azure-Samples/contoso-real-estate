@@ -12,9 +12,9 @@
     </div>
     <div class="search-results">
       <section class="featured-listings inner-wrapper">
-        <app-card-list [listings]="listings"></app-card-list>
+        <app-card-list [listings]="listings()"></app-card-list>
         <div class="featured-listings__loading"></div>
-        <div *ngIf="seatrchTermInvalid" class="notification error">
+        <div *ngIf="seatrchTermInvalid()" class="notification error">
           <p>{{ searchTermInvalidMessage }}</p>
         </div>
         <div *ngIf="noresults" class="notification info">
