@@ -6,9 +6,15 @@
  * documentation reference: https://mongoosejs.com/docs/typescript.html
  */
 
-import { model, Schema, InferSchemaType } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
-const FavoriteSchema = new Schema({
+export interface Favorite {
+  userId: string;
+  listingId: string;
+  createdAt?: string;
+}
+
+const FavoriteSchema = new Schema<Favorite>({
   userId: {
     type: String,
     required: true,
@@ -23,11 +29,4 @@ const FavoriteSchema = new Schema({
   },
 });
 
-type Favorite = InferSchemaType<typeof FavoriteSchema>;
-
-const FavoriteModel = model('Favorite', FavoriteSchema);
-
-export {
-  Favorite,
-  FavoriteModel
-};
+export default model<Favorite>('Favorite', FavoriteSchema);
