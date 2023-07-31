@@ -3,15 +3,15 @@
     "module": "commonjs",
     "target": "ES2019",
     "incremental": true,
-    "declaration": true,
     "composite": true,
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
     "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
   }
 }
