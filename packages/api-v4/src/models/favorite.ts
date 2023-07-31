@@ -6,7 +6,7 @@
  */
 
 import { pgQuery } from "../config/pgclient";
-import { Favorite, FavoriteModel } from "./favorite.schema";
+import FavoriteModel, { Favorite } from "./favorite.schema";
 import { listingMapper } from "./listing";
 import { Listing } from "./listing.schema";
 

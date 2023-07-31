@@ -10,6 +10,7 @@ import { httpTriggerTest } from './functions/httpTriggerTest';
 import { getUsers, getUserById } from './functions/users';
 import { getPaymentById, getPayments } from './functions/payments';
 import { getReservationById, getReservations } from './functions/reservations';
+import { getFavorites } from './functions/favorites';
 
 //#region Test Trigger Function
 app.get('httpTriggerTest', {
@@ -61,3 +62,10 @@ app.get('get-reservations', {
 });
 //#endregion
 
+//#region Favorite Function
+app.get('get-favorites', {
+  route: 'favorites',
+  authLevel: 'anonymous',
+  handler: getFavorites
+});
+//#endregion
