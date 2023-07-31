@@ -1,0 +1,49 @@
+{
+  "name": "website",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
+  },
+  "dependencies": {
+    "@docusaurus/core": "2.4.1",
+    "@docusaurus/plugin-ideal-image": "^2.4.1",
+    "@docusaurus/plugin-sitemap": "^2.4.1",
+    "@docusaurus/preset-classic": "2.4.1",
+    "@docusaurus/theme-mermaid": "^2.4.1",
+    "@mdx-js/react": "^1.6.22",
+    "@primer/octicons-react": "^19.4.0",
+    "clsx": "^1.2.1",
+    "prism-react-renderer": "^1.3.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "swagger-ui-react": "^5.2.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "2.4.1",
+    "@playwright/test": "^1.36.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=16.14"
+  }
+}
