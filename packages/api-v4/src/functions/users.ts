@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/functions/users.ts
- * description: file responsible for the 'Users' function
- * data: 07/06/2023
- * author: Glaucia Lemos
- */
-
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { findUsers, findUserById } from '../models/user';
 
