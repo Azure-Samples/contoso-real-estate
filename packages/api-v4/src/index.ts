@@ -12,6 +12,7 @@ import { getPaymentById, getPayments } from './functions/payments';
 import { getReservationById, getReservations } from './functions/reservations';
 import { getFavorites } from './functions/favorites';
 import { getListingById, getListings } from './functions/listings';
+import { openApi } from "./functions/openapi";
 
 //#region Test Trigger Function
 app.get('httpTriggerTest', {
@@ -81,5 +82,13 @@ app.get('get-listings', {
   route: 'listings',
   authLevel: 'anonymous',
   handler: getListings
+});
+//#endregion
+
+//#region OpenApi Function
+app.get('openapi', {
+  route: '{filename?}',
+  authLevel: 'anonymous',
+  handler: openApi
 });
 //#endregion
