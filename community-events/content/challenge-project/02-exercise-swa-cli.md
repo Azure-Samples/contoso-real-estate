@@ -151,4 +151,4 @@ In the next exercise, you will learn how to deploy the `portal` project on Azure
 
 ---
 
-[**➡️ Exercise 3: Deploy on Azure Static Web App**](./05-exercise-portal-deploy.md)
+[**➡️ Exercise 3: Deploy on Azure Static Web App**](./03-exercise-portal-deploy.md)
