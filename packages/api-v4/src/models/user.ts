@@ -1,11 +1,11 @@
 /**
  * file: packages/api-v4/src/models/user.ts
  * description: file responsible for the 'User' model
- * data: 07/04/2023
+ * data: 08/01/2023
  * author: Glaucia Lemos
  */
 
-import { UserModel, User } from "../models/user.schema";
+import UserModel, { User } from "../models/user.schema";
 
 export async function saveUserSession(user: User): Promise<User> {
   const { id } = user;

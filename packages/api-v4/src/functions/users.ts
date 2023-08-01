@@ -1,5 +1,6 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
-import { findUsers, findUserById } from '../models/user';
+import { initializeDatabaseConfiguration } from "../config";
+import { findUsers, findUserById, saveUserSession } from '../models/user';
 
 // GET: Get all users
 export async function getUsers(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -85,6 +86,42 @@ export async function getUserById(request: HttpRequest, context: InvocationConte
         },
       };
     }
+  } catch (error) {
+    return {
+      status: 500,
+      jsonBody: {
+        error: 'Internal Server Error',
+      },
+    };
+  }
+};
+
+// POST: Create User
+export async function postUsers(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+  context.log(`Http function postUsers processed request for url "${request.url}"`);
+
+  await initializeDatabaseConfiguration();
+
+  const user = request.body;
+
+  if (!user) {
+    return {
+      status: 400,
+      jsonBody: {
+        error: "User is required",
+      },
+    };
+  }
+
+  user.createdAt = new Date();
+
+  try {
+    const storedUser = await saveUserSession(user);
+
+    return {
+      status: 201,
+      jsonBody: storedUser,
+    };
   } catch (error) {
     return {
       status: 500,
