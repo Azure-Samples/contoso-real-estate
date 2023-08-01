@@ -11,7 +11,7 @@ import { getUsers, getUserById } from './functions/users';
 import { getPaymentById, getPayments } from './functions/payments';
 import { getReservationById, getReservations } from './functions/reservations';
 import { getFavorites } from './functions/favorites';
-import { getListingById } from './functions/listings';
+import { getListingById, getListings } from './functions/listings';
 
 //#region Test Trigger Function
 app.get('httpTriggerTest', {
@@ -40,7 +40,6 @@ app.get('get-payment-by-id', {
   authLevel: 'anonymous',
   handler: getPaymentById
 });
-
 
 app.get('get-payments', {
   route: 'payments',
@@ -76,5 +75,11 @@ app.get('get-listing-by-id', {
   route: 'listings/{id}',
   authLevel: 'anonymous',
   handler: getListingById
+});
+
+app.get('get-listings', {
+  route: 'listings',
+  authLevel: 'anonymous',
+  handler: getListings
 });
 //#endregion
