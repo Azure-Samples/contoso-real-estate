@@ -27,6 +27,26 @@
     }
   },
 
+  // add labels to ports
+  "portsAttributes": {
+    "4280": {
+      "label": "Portal App",
+      "onAutoForward":"notify"
+    },
+    "3000": {
+      "label": "Blog",
+      "onAutoForward":"notify"
+    },
+    "1337": {
+      "label": "Strapi CMS",
+      "onAutoForward":"notify"
+    },
+    "4242": {
+      "label": "Stripe API",
+      "onAutoForward":"notify"
+    }
+  },
+
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [4280, 4242, 3000, 1337],
 
