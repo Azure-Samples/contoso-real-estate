@@ -1,14 +1,35 @@
 /**
  * file: packages/api-v4/src/models/user.schema.ts
  * description: file responsible for the 'User' mongoose schema
- * data: 07/06/2023
+ * data: 08/01/2023
  * author: Glaucia Lemos
  * documentation reference: https://mongoosejs.com/docs/typescript.html
  */
 
-import { model, Schema, InferSchemaType } from "mongoose";
+import { ObjectId } from "mongodb";
+import { model, Schema } from "mongoose";
 
-const UserSchema = new Schema({
+export interface User {
+  _id: ObjectId;
+  id: string;
+  name: string;
+  role: "guest" | "renter" | "admin";
+  status: "active" | "suspended" | "inactive";
+  photo: string;
+  address: string;
+  payment: {
+    _id: ObjectId;
+  };
+  email: string;
+  auth: {
+    provider: "aad" | "apple" | "twitter" | "google" | "facebook";
+    token: string;
+    lastLogin: number;
+  };
+  createdAt: Date;
+}
+
+const UserSchema = new Schema<User>({
   id: {
     type: String,
     required: true,
@@ -59,19 +80,13 @@ const UserSchema = new Schema({
     },
   },
   createdAt: {
-    type: String,
+    type: Date,
     required: true,
+    default: Date.now,
   },
 });
 
-type User = InferSchemaType<typeof UserSchema>;
-
-const UserModel = model('User', UserSchema)
-
-export {
-  User,
-  UserModel
-}
+export default model<User>('User', UserSchema);
 
 
 
