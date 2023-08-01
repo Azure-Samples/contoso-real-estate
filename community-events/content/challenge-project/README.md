@@ -34,7 +34,7 @@ Is this your first time using the Azure and GitHub platforms? No problem! We hav
 - [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview/?WT.mc_id=academic-101248-cyzanon)
 
 ## 🚀 Next steps
-- [Prepare for the challenge](./02-prepare.md)
-- [Exercise 1: Analyzing the portal project](./03-analyzing-portal.md)
-- [Exercise 2: Working with Azure Static Web App CLI](./04-exercise-swa-cli.md)
-- [Exercise 3: Deploy on Azure Static Web App](./05-exercise-portal-deploy.md)
+- [Prepare for the challenge](./00-prepare.md)
+- [Exercise 1: Analyzing the portal project](./01-analyzing-portal.md)
+- [Exercise 2: Working with Azure Static Web App CLI](./02-exercise-swa-cli.md)
+- [Exercise 3: Deploy on Azure Static Web App](./03-exercise-portal-deploy.md)
