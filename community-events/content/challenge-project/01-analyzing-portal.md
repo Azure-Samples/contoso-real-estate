@@ -68,4 +68,4 @@ In the next exercise, you will learn how to run the `portal` project using the A
 
 ---
 
-[**➡️ Exercise 2: Working with Azure Static Web App CLI**](./04-exercise-swa-cli.md)
+[**➡️ Exercise 2: Working with Azure Static Web App CLI**](./02-exercise-swa-cli.md)
