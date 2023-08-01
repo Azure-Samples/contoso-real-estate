@@ -1,6 +1,7 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
 import { findUsers, findUserById, saveUserSession } from '../models/user';
+import { User } from "../models/user.schema";
 
 // GET: Get all users
 export async function getUsers(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -102,7 +103,7 @@ export async function postUsers(request: HttpRequest, context: InvocationContext
 
   await initializeDatabaseConfiguration();
 
-  const user = request.body;
+  const user = await request.json() as User;
 
   if (!user) {
     return {
@@ -112,8 +113,6 @@ export async function postUsers(request: HttpRequest, context: InvocationContext
       },
     };
   }
-
-  user.createdAt = new Date();
 
   try {
     const storedUser = await saveUserSession(user);

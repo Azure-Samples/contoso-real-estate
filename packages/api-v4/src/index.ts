@@ -7,7 +7,7 @@
 
 import { app } from "@azure/functions";
 import { httpTriggerTest } from './functions/httpTriggerTest';
-import { getUsers, getUserById } from './functions/users';
+import { getUsers, getUserById, postUsers } from './functions/users';
 import { getPaymentById, getPayments } from './functions/payments';
 import { getReservationById, getReservations } from './functions/reservations';
 import { getFavorites } from './functions/favorites';
@@ -32,6 +32,12 @@ app.get('get-users-by-id', {
   route: 'users/{id}',
   authLevel: 'anonymous',
   handler: getUserById,
+});
+
+app.post('post-users', {
+  route: 'users',
+  authLevel: 'anonymous',
+  handler: postUsers,
 });
 //#endregion
 
