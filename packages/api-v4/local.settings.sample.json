@@ -4,6 +4,7 @@
     "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "node",
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "WEBSITE_RUN_FROM_PACKAGE": "1",
     "MONGODB_URI": "mongodb://"
   }
 }
