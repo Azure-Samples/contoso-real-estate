@@ -81,7 +81,7 @@ A `swa-cli.config.json` file will be generated and will have the following infor
   }
 ```
 
-Note that the `appLocation` property is pointing to the `portal-deploy` folder, which is the project we will deploy.
+In the previous exercise, we explained how the communication between the backend and the frontend works and how the `swa-cli.config.json` file is generated. In this exercise, the values of the properties are different because we are deploying the `portal` project separately from the other parts of the project and we are poining to the `portal-deploy` folder.
 
 **Execution test**
 

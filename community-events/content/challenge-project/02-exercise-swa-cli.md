@@ -45,7 +45,9 @@ Once the file is generated according to the project settings, please observe in 
 </details>
 <br/>
 
-Note the `appDevserverUrl` and `apiDevserverUrl` properties, which contain the paths to the frontend and backend, respectively. The `apiLocation` property contains the path to the `API` project. Onde se encontra o lado do Back-End da aplicação desenvolvido com: Azure Functions e Azure Cosmos DB (MongoDB API).
+The backend is located in the `packages/api` folder and it is defined in the `apiLocation` property. The frontend is located in the `packages/portal` folder and it is defined in the `appLocation` property. In both cases, the `appdevserverUrl` and `apiDevserverUrl` properties point to the URLs of the development servers.
+
+The Contoso Real Estate project API was developed in Azure Functions and Azure Cosmos DB (MongoDB API). The Azure Static Web Apps CLI automatically runs the Azure Functions emulator when it detects that an Azure Functions API is used in the project.
 
 ## How to run the `portal` project?
 
