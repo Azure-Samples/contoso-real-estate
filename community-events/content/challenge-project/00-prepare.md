@@ -31,4 +31,4 @@ The Contoso Real Estate project is optimized for use with GitHub Codespaces, a c
 
 ---
 
-[**➡️ Exercise 1: Analyzing the portal project**](./03-analyzing-portal.md)
+[**➡️ Exercise 1: Analyzing the portal project**](./01-analyzing-portal.md)
