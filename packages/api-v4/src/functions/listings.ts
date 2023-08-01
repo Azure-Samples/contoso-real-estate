@@ -1,6 +1,7 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { pgQuery } from "../config/pgclient";
 
+// GET Listings By ID
 export async function getListingById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getListingById processed request for url "${request.url}"`);
 
@@ -48,4 +49,60 @@ export async function getListingById(request: HttpRequest, context: InvocationCo
   }
 };
 
+// GET Listings
+export async function getListings(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+  context.log(`Http function getListings processed request for url "${request.url}"`);
+
+  try {
+    const offset = Number(request.query.get('offset')) || 0;
+    const limit = Number(request.query.get('limit')) || 10;
+    const featured = Boolean(request.query.get('featured')) === true ? '1' : '0';
+
+    if (offset < 0) {
+      return {
+        status: 400,
+        jsonBody: {
+          error: 'Offset must be greater than or equal to 0',
+        },
+      };
+    } else if (limit < 0) {
+      return {
+        status: 400,
+        jsonBody: {
+          error: 'Limit must be greater than or equal to 0',
+        },
+      };
+    } else if (offset > limit) {
+      return {
+        status: 400,
+        jsonBody: {
+          error: 'Offset must be less than or equal to limit',
+        },
+      };
+    }
+
+    const listingResult = await pgQuery(`SELECT * FROM listings WHERE is_featured = $3 LIMIT $1 OFFSET $2`, [limit, offset, featured]);
+
+    const listing = listingResult.rows.map((row: any) => {
+      row.fees = row.fees.split("|");
+      row.photos = row.photos.split("|");
+      row.address = row.address.split("|");
+      row.ammenities = row.ammenities.split(",");
+
+      return row;
+    });
+
+    return {
+      status: 200,
+      jsonBody: listing,
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      jsonBody: {
+        error: 'Internal Server Error',
+      },
+    };
+  }
+};
 
