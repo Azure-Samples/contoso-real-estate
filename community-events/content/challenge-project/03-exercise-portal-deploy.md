@@ -32,32 +32,12 @@ Now, go back to the terminal, as we will run some routines with basic Linux comm
   cd packages/portal-deploy
 ```
 
-We need to delete the `packages/portal/node_modules` folder and the `swa-cli.config.json` file. To do this, we will use the linux command `rm -rf`. The -r is used to delete folders and the -f is used to force deletion.
-
-**Remove the node_modules folder:**
-
-```bash
-  rm -rf node_modules
-```
+We need to delete the `swa-cli.config.json` file. To do this, we will use the linux command `rm -rf`. The -r is used to delete folders and the -f is used to force deletion.
 
 **Remove the swa-cli.config.json file:**
 
 ```bash
   rm -rf swa-cli.config.json
-```
-
-### Installing dependencies
-
-**All depedencies**
-
-```bash
-  npm install
-```
-
-**Azure Static Web Apps CLI as a development dependency**
-
-```bash
-  npm install -D @azure/static-web-apps-cli
 ```
 
 ## Azure Static Web Apps (SWA) CLI
