@@ -40,4 +40,36 @@ export async function findPaymentsByUserId(userId: string, offset: number, limit
     .sort({ _id: -1 });
 };
 
+export function isValidPayment(payment: Payment): boolean {
+  // Check if properties are not undefined
+  if (
+    payment.userId === undefined ||
+    payment.reservationId === undefined ||
+    payment.provider === undefined ||
+    payment.status === undefined ||
+    payment.amount === undefined ||
+    payment.currency === undefined
+  ) {
+    return false;
+  }
+
+  // Check if the userId and reservationId are non-empty strings
+  if (
+    typeof payment.userId !== 'string' ||
+    payment.userId.trim() === '' ||
+    typeof payment.reservationId !== 'string' ||
+    payment.reservationId.trim() === ''
+  ) {
+    return false;
+  }
+
+  // Check if the amount is a positive number
+  if (typeof payment.amount !== 'number' || payment.amount <= 0) {
+    return false;
+  }
+
+  // If all checks pass, return true
+  return true;
+};
+
 
