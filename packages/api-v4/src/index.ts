@@ -1,14 +1,14 @@
 /**
  * file: packages/api-v4/src/index.ts
  * description: file responsible for the main entry point of the api functions (v4)
- * data: 07/31/2023
+ * data: 08/01/2023
  * author: Glaucia Lemos
  */
 
 import { app } from "@azure/functions";
 import { httpTriggerTest } from './functions/httpTriggerTest';
 import { getUsers, getUserById, postUsers } from './functions/users';
-import { getPaymentById, getPayments } from './functions/payments';
+import { getPaymentById, getPayments, postPayment } from './functions/payments';
 import { getReservationById, getReservations } from './functions/reservations';
 import { getFavorites } from './functions/favorites';
 import { getListingById, getListings } from './functions/listings';
@@ -52,6 +52,12 @@ app.get('get-payments', {
   route: 'payments',
   authLevel: 'anonymous',
   handler: getPayments
+});
+
+app.post('post-payment', {
+  route: 'payments',
+  authLevel: 'anonymous',
+  handler: postPayment
 });
 //#endregion
 

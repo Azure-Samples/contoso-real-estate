@@ -1,13 +1,16 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
-import { findPaymentById, findPaymentsByUserId } from "../models/payment";
+import { findPaymentById, findPaymentsByUserId, savePayment, isValidPayment } from "../models/payment";
+import { findUserById } from '../models/user';
+import { updateReservationStatus } from '../models/reservation';
+import { Payment } from '../models/payment.schema';
 
 // GET: Get Payment by Id
 export async function getPaymentById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getPaymentById processed request for url "${request.url}"`);
 
-  //TODO: uncomment when testing the application in production (using database)
-  //await initializeDatabaseConfiguration();
+  // uncomment if you decide to test the api in production (using database)
+  await initializeDatabaseConfiguration();
 
   const id = request.params.id ?? '';
 
@@ -91,3 +94,61 @@ export async function getPayments(request: HttpRequest, context: InvocationConte
     };
   }
 };
+
+// POST: Create Payment
+export async function postPayment(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+  context.log(`Http function createPayment processed request for url "${request.url}"`);
+
+  await initializeDatabaseConfiguration();
+
+  const payment = await request.json() as Payment;
+
+  const isValid = isValidPayment(payment);
+
+  if (!isValid) {
+    return {
+      status: 400,
+      jsonBody: {
+        error: 'Invalid payment data. Make sure userId, reservationId, provider, status, amount, and currency are specified correctly.',
+      },
+    };
+  }
+
+  try {
+    const user = await findUserById(payment.userId);
+    if (!user) {
+      return {
+        status: 404,
+        jsonBody: {
+          error: `Error payment received for unknown user id: ${payment.userId}`,
+        },
+      };
+    }
+
+    const reservationRecord = await updateReservationStatus(payment.reservationId, 'active');
+    if (!reservationRecord) {
+      return {
+        status: 404,
+        jsonBody: {
+          error: `Error payment received for unknown reservation id: ${payment.reservationId}`,
+        },
+      };
+    }
+
+    const paymentRecord = await savePayment(payment);
+
+    return {
+      status: 201,
+      jsonBody: paymentRecord,
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      jsonBody: {
+        error: 'Internal Server Error',
+      },
+    };
+  }
+};
+
+
