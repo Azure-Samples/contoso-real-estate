@@ -9,7 +9,7 @@ import { app } from "@azure/functions";
 import { httpTriggerTest } from './functions/httpTriggerTest';
 import { getUsers, getUserById, postUsers } from './functions/users';
 import { getPaymentById, getPayments, postPayment } from './functions/payments';
-import { getReservationById, getReservations } from './functions/reservations';
+import { getReservationById, getReservations, patchReservationById } from './functions/reservations';
 import { getFavorites, postFavorites, deleteFavorite } from './functions/favorites';
 import { getListingById, getListings } from './functions/listings';
 import { openApi } from "./functions/openapi";
@@ -73,6 +73,12 @@ app.get('get-reservations', {
   route: 'reservations',
   authLevel: 'anonymous',
   handler: getReservations
+});
+
+app.patch('get-reservations', {
+  route: 'reservations/{id}',
+  authLevel: 'anonymous',
+  handler: patchReservationById
 });
 //#endregion
 
