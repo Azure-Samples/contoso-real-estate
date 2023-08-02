@@ -86,7 +86,9 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
         };
       }
     }
-  } catch (error) {
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error('Error...', err.message);
     return {
       status: 500,
       jsonBody: {
