@@ -6,9 +6,20 @@
  * documentation reference: https://mongoosejs.com/docs/typescript.html
  */
 
-import { model, Schema, InferSchemaType } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
-const PaymentSchema = new Schema({
+export interface Payment {
+  id: string;
+  userId: string;
+  reservationId: string;
+  provider: 'stripe' | 'paypal';
+  status: 'pending' | 'declined' | 'completed' | 'cancelled';
+  amount: number;
+  currency: string;
+  createdAt: Date;
+}
+
+const PaymentSchema = new Schema<Payment>({
   userId: {
     type: String,
     required: true,
@@ -46,11 +57,5 @@ PaymentSchema.set('toJSON', {
   virtuals: true,
 });
 
-type Payment = InferSchemaType<typeof PaymentSchema>;
+export default model<Payment>('Payment', PaymentSchema);
 
-const PaymentModel = model('Payment', PaymentSchema);
-
-export {
-  Payment,
-  PaymentModel
-};
