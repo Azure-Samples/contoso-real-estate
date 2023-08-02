@@ -39,7 +39,9 @@ export async function getListingById(request: HttpRequest, context: InvocationCo
       status: 200,
       jsonBody: listing,
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    const err = error as Error
+    console.error(`Error...: ${err.message}`);
     return {
       status: 500,
       jsonBody: {
@@ -96,7 +98,9 @@ export async function getListings(request: HttpRequest, context: InvocationConte
       status: 200,
       jsonBody: listing,
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    const err = error as Error
+    console.error(`Error...: ${err.message}`);
     return {
       status: 500,
       jsonBody: {

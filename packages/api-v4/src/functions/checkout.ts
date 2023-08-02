@@ -49,19 +49,31 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
   }
 
   if (guests <= 0 || guests > listing.capacity) {
+    console.error(`Invalid number of guests: ${guests} (listing capacity: ${listing.capacity})`);
     return {
       status: 400,
       jsonBody: {
-        error: `Invalid number of guests: ${guests} (listing capacity: ${listing.capacity})`,
+        error: 'Invalid number of guests',
+      },
+    };
+  }
+
+  if (!reservation.from || from.getTime() < now.getTime()) {
+    console.error(`Invalid reservation start date: ${reservation.from} (resolved: ${from.toISOString()}, now: ${now.toISOString()}`);
+    return {
+      status: 400,
+      jsonBody: {
+        error: "Invalid reservation start date",
       },
     };
   }
 
   if (!reservation.to || to.getTime() <= from.getTime()) {
+    console.error(`Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`);
     return {
       status: 400,
       jsonBody: {
-        error: `Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`,
+        error: "Invalid reservation end date",
       },
     };
   }

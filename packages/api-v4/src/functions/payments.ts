@@ -117,20 +117,22 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
   try {
     const user = await findUserById(payment.userId);
     if (!user) {
+      console.error(`Error payment received for unknown user id: ${payment.userId}`)
       return {
         status: 404,
         jsonBody: {
-          error: `Error payment received for unknown user id: ${payment.userId}`,
+          error: 'User not found for specified id',
         },
       };
     }
 
     const reservationRecord = await updateReservationStatus(payment.reservationId, 'active');
     if (!reservationRecord) {
+      console.error(`Error payment received for unknown reservation id: ${payment.reservationId}`);
       return {
         status: 404,
         jsonBody: {
-          error: `Error payment received for unknown reservation id: ${payment.reservationId}`,
+          error: 'Reservation not found for specified id',
         },
       };
     }
@@ -141,11 +143,13 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
       status: 201,
       jsonBody: paymentRecord,
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error(`Error creating payment: ${err.message}`);
     return {
       status: 500,
       jsonBody: {
-        error: 'Internal Server Error',
+        error: 'Error creating payment',
       },
     };
   }
