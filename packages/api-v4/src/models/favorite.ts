@@ -37,7 +37,7 @@ export async function fetchFavoritesDataByUserId({ userId }: { userId: string })
   return favoritesData.rows.map(listingMapper);
 };
 
-export async function removeFavorites(fav: Favorite): Promise<boolean> {
+export async function removeFavorite(fav: Favorite): Promise<boolean> {
   const recordFavorite = await findFavorite(fav);
 
   if (!recordFavorite) {

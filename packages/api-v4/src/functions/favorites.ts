@@ -1,8 +1,9 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
-import { fetchFavoritesDataByUserId, findFavorite, getFavoritesByUserId, saveFavorite } from '../models/favorite';
+import { fetchFavoritesDataByUserId, findFavorite, getFavoritesByUserId, saveFavorite, removeFavorite } from '../models/favorite';
 import { User } from "../models/user.schema";
 import { Listing } from "../models/listing.schema";
+import { Favorite } from "../models/favorite.schema";
 
 // GET: Favorites
 export async function getFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -149,5 +150,40 @@ export async function postFavorites(request: HttpRequest, context: InvocationCon
     };
   }
 
+};
+
+// DELETE: Favorite
+export async function deleteFavorite(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+  context.log(`Http function deleteFavorite processed request for url "${request.url}"`);
+
+  await initializeDatabaseConfiguration();
+
+  const jsonData = await request.json();
+  const { listingId, userId } = jsonData as { listingId: Favorite['listingId'], userId: Favorite['userId'] };
+
+  if (!listingId || !userId) {
+    return {
+      status: 400,
+      jsonBody: {
+        error: 'Missing query parameters'
+      },
+    };
+  }
+
+  try {
+    await removeFavorite({ listingId, userId });
+    return {
+      status: 204,
+    };
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error('Error...', err.message);
+    return {
+      status: 500,
+      jsonBody: {
+        error: 'Internal server error',
+      },
+    };
+  }
 };
 
