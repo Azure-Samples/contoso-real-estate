@@ -6,9 +6,21 @@
  * documentation reference: https://mongoosejs.com/docs/typescript.html
  */
 
-import { model, Schema, InferSchemaType } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
-const ReservationSchema = new Schema({
+export interface Reservation {
+  id: string;
+  userId: string;
+  listingId: string;
+  title: string;
+  guests: number;
+  from: Date;
+  to: Date;
+  status: "pending" | "active" | "cancelled" | "archived";
+  createdAt: Date;
+}
+
+const ReservationSchema = new Schema<Reservation>({
   userId: {
     type: String,
     required: true,
@@ -52,12 +64,5 @@ ReservationSchema.set('toJSON', {
   virtuals: true,
 });
 
-type Reservation = InferSchemaType<typeof ReservationSchema>;
-
-const ReservationModel = model('Reservation', ReservationSchema);
-
-export {
-  Reservation,
-  ReservationModel
-};
+export default model<Reservation>('Reservation', ReservationSchema);
 

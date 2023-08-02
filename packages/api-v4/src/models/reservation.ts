@@ -6,7 +6,7 @@
  */
 
 import mongoose from "mongoose";
-import { ReservationModel, Reservation } from "./reservation.schema";
+import ReservationModel, { Reservation } from "./reservation.schema";
 
 export async function saveReservation(reservation: Partial<Reservation>): Promise<Reservation> {
   return ReservationModel.create(reservation);
