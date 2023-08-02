@@ -1,11 +1,10 @@
 /**
  * file: packages/api-v4/src/models/listing.ts
  * description: file responsible for the 'Listing' model
- * data: 07/27/2023
+ * data: 02/08/2023
  * author: Glaucia Lemos
  */
 
-import mongoose from "mongoose";
 import { pgQuery } from "../config/pgclient";
 import { Listing } from "./listing.schema";
 
@@ -19,8 +18,7 @@ export async function getListings({ offset, limit, featured }: { offset: number;
 
 export async function getListingById({ id }: { id: string | undefined }): Promise<Listing> {
   try {
-    const listingId = new mongoose.Types.ObjectId(id);
-    const listing = await pgQuery(`SELECT * FROM listings WHERE id = $1 LIMIT 1`, [listingId]);
+    const listing = await pgQuery(`SELECT * FROM listings WHERE id = $1 LIMIT 1`, [id]);
 
     return listing.rows.map(listingMapper)[0];
   } catch (error) {
