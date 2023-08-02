@@ -1,5 +1,8 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
-import { fetchFavoritesDataByUserId, findFavorite, getFavoritesByUserId } from '../models/favorite';
+import { initializeDatabaseConfiguration } from "../config";
+import { fetchFavoritesDataByUserId, findFavorite, getFavoritesByUserId, saveFavorite } from '../models/favorite';
+import { User } from "../models/user.schema";
+import { Listing } from "../models/listing.schema";
 
 // GET: Favorites
 export async function getFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -99,4 +102,52 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
   };
 };
 
+// POST: Favorites
+export async function postFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+  context.log(`Http function postFavorite processed request for url "${request.url}"`);
+
+  await initializeDatabaseConfiguration();
+
+  const jsonData = await request.json();
+
+  const { listing, user } = jsonData as { listing: Listing, user: User };
+
+  if (!listing || !user) {
+    return {
+      status: 400,
+      jsonBody: {
+        error: 'Missing query parameters',
+      },
+    };
+  };
+
+  if (listing.id === undefined) {
+    return {
+      status: 400,
+      jsonBody: {
+        error: 'Listing id is not valid',
+      },
+    };
+  }
+
+  try {
+    const favoriteModel = await saveFavorite({
+      listingId: listing.id,
+      userId: user.id,
+      createdAt: new Date().toISOString(),
+    });
+    return {
+      status: 200,
+      jsonBody: favoriteModel,
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      jsonBody: {
+        error: 'Internal server error',
+      },
+    };
+  }
+
+};
 
