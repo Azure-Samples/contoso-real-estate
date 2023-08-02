@@ -13,6 +13,7 @@ import { getReservationById, getReservations } from './functions/reservations';
 import { getFavorites, postFavorites } from './functions/favorites';
 import { getListingById, getListings } from './functions/listings';
 import { openApi } from "./functions/openapi";
+import { postCheckout } from './functions/checkout';
 
 //#region Test Trigger Function
 app.get('httpTriggerTest', {
@@ -108,5 +109,13 @@ app.get('openapi', {
   route: '{filename?}',
   authLevel: 'anonymous',
   handler: openApi
+});
+//#endregion
+
+//#region Checkout Function
+app.post('checkout', {
+  route: 'checkout',
+  authLevel: 'anonymous',
+  handler: postCheckout
 });
 //#endregion
