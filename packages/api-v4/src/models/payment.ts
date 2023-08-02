@@ -6,7 +6,7 @@
  */
 
 import mongoose from "mongoose";
-import { PaymentModel, Payment } from "./payment.schema";
+import PaymentModel, { Payment } from "./payment.schema";
 
 export async function savePayment(payment: Partial<Payment>): Promise<Payment> {
   return PaymentModel.create(payment);
