@@ -6,7 +6,6 @@
  */
 
 import { app } from "@azure/functions";
-import { httpTriggerTest } from './functions/httpTriggerTest';
 import { getUsers, getUserById, postUsers } from './functions/users';
 import { getPaymentById, getPayments, postPayment } from './functions/payments';
 import { getReservationById, getReservations, patchReservationById } from './functions/reservations';
@@ -14,13 +13,6 @@ import { getFavorites, postFavorites, deleteFavorite } from './functions/favorit
 import { getListingById, getListings } from './functions/listings';
 import { openApi } from "./functions/openapi";
 import { postCheckout } from './functions/checkout';
-
-//#region Test Trigger Function
-app.get('httpTriggerTest', {
-  authLevel: 'anonymous',
-  handler: httpTriggerTest
-});
-//#endregion
 
 //#region User Function
 app.get('get-users', {
