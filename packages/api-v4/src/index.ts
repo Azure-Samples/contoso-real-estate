@@ -10,7 +10,7 @@ import { httpTriggerTest } from './functions/httpTriggerTest';
 import { getUsers, getUserById, postUsers } from './functions/users';
 import { getPaymentById, getPayments, postPayment } from './functions/payments';
 import { getReservationById, getReservations } from './functions/reservations';
-import { getFavorites, postFavorites } from './functions/favorites';
+import { getFavorites, postFavorites, deleteFavorite } from './functions/favorites';
 import { getListingById, getListings } from './functions/listings';
 import { openApi } from "./functions/openapi";
 import { postCheckout } from './functions/checkout';
@@ -87,6 +87,12 @@ app.post('post-favorites', {
   route: 'favorites',
   authLevel: 'anonymous',
   handler: postFavorites
+});
+
+app.deleteRequest('delete-favorites', {
+  route: 'favorites',
+  authLevel: 'anonymous',
+  handler: deleteFavorite
 });
 //#endregion
 
