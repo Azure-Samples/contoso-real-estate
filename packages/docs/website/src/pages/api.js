@@ -14,7 +14,7 @@ export default function App() {
         title={`OpenAPI Specification for Contoso Real Estate`}
         description="Documentation auto-generated for the OpenAPI YAML using swagger-ui-react">
         <main>
-            <SwaggerUI url="/yml/openapi.yaml" />
+            <SwaggerUI url="yml/openapi.yaml" />
         </main>
       </Layout>
     );

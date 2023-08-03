@@ -25,4 +25,4 @@ To prevent CORS issues, start the project locally with the [Azure Static Web App
 
 ## Authentication
 
-To enable user authentication, this project implements [Azure Static Web Apps Easy Auth](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization). You can find detailed guidelines visiting [scenario 4](/scenarios/scenario-4/intro).
+To enable user authentication, this project implements [Azure Static Web Apps Easy Auth](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization). You can find detailed guidelines visiting [scenario 4](/develop/scenario-4).
