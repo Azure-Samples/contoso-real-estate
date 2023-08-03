@@ -134,7 +134,7 @@ export async function patchReservationById(request: HttpRequest, context: Invoca
     }
   } catch (error) {
     const err = error as Error;
-    console.error(`Error updating reservation status: ${err.message}`);
+    context.error(`Error updating reservation status: ${err.message}`);
     return {
       status: 500,
       jsonBody: {
