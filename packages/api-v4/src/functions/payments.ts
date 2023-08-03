@@ -117,7 +117,7 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
   try {
     const user = await findUserById(payment.userId);
     if (!user) {
-      console.error(`Error payment received for unknown user id: ${payment.userId}`)
+      context.error(`Error payment received for unknown user id: ${payment.userId}`)
       return {
         status: 404,
         jsonBody: {
@@ -128,7 +128,7 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
 
     const reservationRecord = await updateReservationStatus(payment.reservationId, 'active');
     if (!reservationRecord) {
-      console.error(`Error payment received for unknown reservation id: ${payment.reservationId}`);
+      context.error(`Error payment received for unknown reservation id: ${payment.reservationId}`);
       return {
         status: 404,
         jsonBody: {
@@ -145,7 +145,7 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
     };
   } catch (error: unknown) {
     const err = error as Error;
-    console.error(`Error creating payment: ${err.message}`);
+    context.error(`Error creating payment: ${err.message}`);
     return {
       status: 500,
       jsonBody: {

@@ -49,7 +49,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
   }
 
   if (guests <= 0 || guests > listing.capacity) {
-    console.error(`Invalid number of guests: ${guests} (listing capacity: ${listing.capacity})`);
+    context.error(`Invalid number of guests: ${guests} (listing capacity: ${listing.capacity})`);
     return {
       status: 400,
       jsonBody: {
@@ -59,7 +59,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
   }
 
   if (!reservation.from || from.getTime() < now.getTime()) {
-    console.error(`Invalid reservation start date: ${reservation.from} (resolved: ${from.toISOString()}, now: ${now.toISOString()}`);
+    context.error(`Invalid reservation start date: ${reservation.from} (resolved: ${from.toISOString()}, now: ${now.toISOString()}`);
     return {
       status: 400,
       jsonBody: {
@@ -69,7 +69,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
   }
 
   if (!reservation.to || to.getTime() <= from.getTime()) {
-    console.error(`Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`);
+    context.error(`Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`);
     return {
       status: 400,
       jsonBody: {
@@ -146,13 +146,13 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
       };
     } catch (error: unknown) {
       const err = error as Error;
-      console.error(`Error creating checkout session: ${err.message}`)
+      context.error(`Error creating checkout session: ${err.message}`)
       await updateReservationStatus(reservationRecord.id, "cancelled");
       throw error;
     }
   } catch (error: unknown) {
     const err = error as Error;
-    console.error(`Error creating checkout session: ${err.message}`);
+    context.error(`Error creating checkout session: ${err.message}`);
     return {
       status: 500,
       jsonBody: {

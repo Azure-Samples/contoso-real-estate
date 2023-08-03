@@ -88,7 +88,7 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
     }
   } catch (error: unknown) {
     const err = error as Error;
-    console.error('Error...', err.message);
+    context.error('Error...', err.message);
     return {
       status: 500,
       jsonBody: {
@@ -179,7 +179,7 @@ export async function deleteFavorite(request: HttpRequest, context: InvocationCo
     };
   } catch (error: unknown) {
     const err = error as Error;
-    console.error('Error...', err.message);
+    context.error('Error...', err.message);
     return {
       status: 500,
       jsonBody: {
