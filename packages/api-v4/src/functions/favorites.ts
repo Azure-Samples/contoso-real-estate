@@ -5,6 +5,11 @@ import { User } from "../models/user.schema";
 import { Listing } from "../models/listing.schema";
 import { Favorite } from "../models/favorite.schema";
 
+type DeleteFavoriteRequestBody = {
+  listingId: Favorite['listingId'];
+  userId: Favorite['userId'];
+};
+
 // GET: Favorites
 export async function getFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getFavorites processed request for url "${request.url}"`);
@@ -160,8 +165,8 @@ export async function deleteFavorite(request: HttpRequest, context: InvocationCo
 
   await initializeDatabaseConfiguration();
 
-  const jsonData = await request.json();
-  const { listingId, userId } = jsonData as { listingId: Favorite['listingId'], userId: Favorite['userId'] };
+  const jsonData = await request.json() as DeleteFavoriteRequestBody;
+  const { listingId, userId } = jsonData;
 
   if (!listingId || !userId) {
     return {
