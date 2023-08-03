@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/index.ts
- * description: file responsible for the main entry point of the api functions (v4)
- * data: 08/01/2023
- * author: Glaucia Lemos
- */
-
 import { app } from "@azure/functions";
 import { getUsers, getUserById, postUsers } from './functions/users';
 import { getPaymentById, getPayments, postPayment } from './functions/payments';

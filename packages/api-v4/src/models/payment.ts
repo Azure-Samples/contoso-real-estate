@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/models/payment.ts
- * description: file responsible for the 'Payment' model
- * data: 07/18/2023
- * author: Glaucia Lemos
- */
-
 import mongoose from "mongoose";
 import PaymentModel, { Payment } from "./payment.schema";
 

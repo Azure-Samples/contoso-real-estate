@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/config/appConfig.ts
- * description: file responsible for the
- * data: 07/05/2023
- * author: Glaucia Lemos
- */
-
 export interface ObservabilityConfig {
   connectionString: string;
   roleName: string;

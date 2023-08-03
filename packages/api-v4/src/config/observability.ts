@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/config/observability.ts
- * description: file responsible for the observability configuration.
- * data: 07/07/2023
- * author: Glaucia Lemos
- */
-
 import * as applicationInsights from 'applicationinsights';
 import winston from 'winston';
 import { ObservabilityConfig } from '../config/appConfig';

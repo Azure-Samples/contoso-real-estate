@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/models/reservation.ts
- * description: file responsible for the 'Reservation' model
- * data: 07/26/2023
- * author: Glaucia Lemos
- */
-
 import mongoose from "mongoose";
 import ReservationModel, { Reservation } from "./reservation.schema";
 

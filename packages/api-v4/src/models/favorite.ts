@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/models/favorite.ts
- * description: file responsible for the 'Favorite' model
- * data: 07/27/2023
- * author: Glaucia Lemos
- */
-
 import { pgQuery } from "../config/pgclient";
 import FavoriteModel, { Favorite } from "./favorite.schema";
 import { listingMapper } from "./listing";

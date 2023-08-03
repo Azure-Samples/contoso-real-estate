@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/config/index.ts
- * description: file responsible for the api configuration.
- * data: 07/17/2023
- * author: Glaucia Lemos
- */
-
 import process from 'process';
 import path from 'path';
 import { AppConfig } from "./appConfig";

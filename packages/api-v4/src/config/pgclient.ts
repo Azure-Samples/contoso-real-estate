@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/config/pgclient.ts
- * description: file responsible for the Postgres Client configuration
- * data: 07/12/2023
- * author: Glaucia Lemos
- */
-
 import pg from 'pg';
 import { logger } from './observability';
 import { getConfig } from './index';
