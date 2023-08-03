@@ -21,7 +21,7 @@ A function application with multiple endpoints, as application API. This service
 
 ### 2.3 Backend Databases
 
-The first database, which will be used to store the data for the application, in this case [Azure Database for PostgreSQL](https://azure.microsoft.com/services/postgresql/). Please notice that this database is populated from a headless CMS implementation, described in [scenario 3](/scenarios/scenario-3/intro).
+The first database, which will be used to store the data for the application, in this case [Azure Database for PostgreSQL](https://azure.microsoft.com/services/postgresql/). Please notice that this database is populated from a headless CMS implementation, described in [scenario 3](/develop/scenario-3).
 
 A second database, which will be used to store user events and user profiles. This service is deployed to [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/), which is a fully managed NoSQL database service that offers multiple APIs, including the Mongodb API.
 

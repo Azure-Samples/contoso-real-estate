@@ -1,164 +1,159 @@
-## Website Testing with Playwright
+# Website Testing with Playwright
 
-This website is tested using [Playwright](https://playwright.dev/), a modern framework for reliable end-to-end testing and automation of modern web apps.
-
-
-## 1. Playwright Setup
-
-Expand sections below for more details on initial setup.
+## 1. Quickstart
 
 <details>
-<summary> 1. Install Playwright </summary>
+<summary> 👉🏽 | Want the quickest start to testing? Try this! </summary>
 
-To get started with Playwright, you can pick one of two options:
- - Use the [commandline](https://playwright.dev/docs/test-components#step-1-install-playwright-test-for-components-for-your-respective-framework)
+Make sure that you don't have anything running already on port `3000` (default dev server port for Docusaurus) first before you follow the script below.
+
+```bash
+# Change to website directory
+$ cd bash
+
+# Make sure you have Node.js v18+ and install dependencies
+$ npm install
+
+# Run the Playwright test
+$ npm run tests
+
+# View the Playwright generated HTML test report
+$ npm run report
+  Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.
+
+🎭 And you're done!!!
+```
+
+What the Playwright command just did for you:
+ 1. Built the website for dev preview
+ 2. Start the dev server for Docusaurus (on port 3000)
+ 3. Launch the test runner to test against the dev server preview
+ 4. Print the summary of test results to console
+ 5. Generate an HTML report with more details on tests
+ 6. Launch the browser to preview the _last-generated_ report.
+
+ </details>
+
+## 2. Reporting
+
+<details>
+<summary> 👉🏽 | Want to view the test results? Check the reports </summary>
+
+Before we look under the hood, let's take a quick look at what the report looks like and correlate it to what you will see in the [basic test specification](./tests/01-basic.spec.ts) used at this time. 
+
+The landing page of the report gives you the summary:
+ - The number of tests run altogether (12) - with #passed, failed or skipped
+ - The numner of browsers tested on (3 color tags) - giving 4 tests per browser.
+ - The execution time for each test (likely different per browser, test case)
+
+![HTML Reporting Dashboard for Playwright](./static/docs/png/playwright-report-sample.png) 
+
+Clicking on any test row takes you to these details:
+ - Time taken in setup ("Before") and teardown ("After") - by fixture!
+ - Time taken to execute test step - with code details for step
+
+![Details on a single Playwright test](./static/docs/png/playwright-report-sample-details.png)
+
+</details>
+
+## 3. Trace Viewing
+
+<details>
+<summary> 👉🏽 | Want to view more detailed traces? Try this option! </summary>
+
+The Playwright test runner is configured to capture deeper traces only `on-first-retry`. This is because running traces adds non-trivial costs, even though it provides more fine grained trace data for debug.
+
+But what if you want to debug this on the fly? Override it using CLI options:
+
+```bash
+# Run the tests with trace on
+$ npx playwright test --trace on
+
+# Launch browser to show this report
+$ npx run report
+```
+
+What does _this_ do to the generated reports? Now the details view gets a "Traces" section with richer visualizations. Also note how the time taken for tests is now significantly higher (see before/after steps). The data (zipfile) also adds storage requirements - both of which can add up quickly if run across all test cases and specifications, on a regular cadence (CI/CD). 
+
+![Details on a single Playwright test with trace on](./static/docs/png/playwright-report-trace.png) 
+
+Clicking on the trace gets you to a rich _interactive_ viewer that shows you details on the time taken for each test step, along with a waterfall diagram (showing snapshots of the page at each interval of load time) - and tabs to explore the source, network conditions, call state and more.
+
+![Details on a single Playwright test with trace detail](./static/docs/png/playwright-report-trace-details.png)
+
+For convenience, a copy of this has been cached in this repo under the website assets. If you run the dev server (e.g., with `npm run start`) and visit [the /playwright-trace endpoint](http://localhost:3000/playwright-trace)] you should be able to explore this exact report interactively.
+
+</details>
+
+
+## 4. Under The Hood
+
+<details>
+<summary> 👉🏽 | Want to understand Playwright setup and configuration? </summary>
+
+<br/>
+First, let's install Playwright. There are two options available:
+
+ - Use the [commandline (CLI)](https://playwright.dev/docs/test-components#step-1-install-playwright-test-for-components-for-your-respective-framework)
  - Use the [VS Code extension](https://playwright.dev/docs/getting-started-vscode).
 
- We'll use the first option here for completeness, but will rely primarily on the second for all authoring, running, and debugging actions. Please [install the Playwright extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright) if you have not already done so.
+The guidelines are self-explanatory. The CLI option is faster for initial setup but we recommend installng the VS Code Extension for _a better developer experience_ end-to-end. Once installed, you can use `npx playwright --help` to get details on usage commands and options.
 
-Here's how we installed Playwright:
-```bash
-# Use valid Node.js environment
-$ nvm use --lts
-Now using node v18.17.0 (npm v9.6.7)
-
-# Check current Playwright stable release
-$ npx playwright --version
-Version 1.36.2
-
-# Initialize Playwright setup in website/
-# Use defaults for all questions asked during install
-$ cd packages/docs/website
-$ npm init playwright@latest
-Need to install the following packages:
-  create-playwright@1.17.128
-Ok to proceed? (y) 
-
-Getting started with writing end-to-end tests with Playwright:
-Initializing project in '.'
-✔ Do you want to use TypeScript or JavaScript? · TypeScript
-✔ Where to put your end-to-end tests? · tests
-✔ Add a GitHub Actions workflow? (y/N) · false
-✔ Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · true
-..
-..
-
-Happy hacking! 🎭
-```
-</details>
-
-<details>
-<summary> 2. Explore Scaffold </summary>
-
-_What did this do? Here are the main file changes:_
-
-1. Updated website/.gitignore to ignore the following if present
-    - test-results/, playwright-report/, playwright/.cache 
-2. Updated website/package.json and website/package-lock.json
-    - Added @playwright/test dependencies and version ^1.36.2
-3. Added the playwright configuration file
-    - See `playwright.config.ts`
-4. Added  playwright test specification starter & demo files
-    - Starter: `tests/example.spec.ts`
-    - Demo: `tests-examples\demo-todo-app.spec.ts`
-
-We'll primarily focus on the configuration file and test specifications in the `tests/` folder. 
- - Add `/tests-examples` to `website/.gitignore`. This lets us explore and use it for understanding initially, but not commit it to repo for long term.
- -  Rename `example.spec.ts` to `website.spec.ts`. This is our core test spec.
-
-Let's validate that Playwright was setup correctly. We can walk through the commands recommended in the setup output:
+Next, let's understand the core files and structure of the project from the Playwright perspective. _Note that this reflects our current structure, and not the initial scaffold from Playwright_.
 
 ```bash
-# -- set current working directory as website/
-$ cd website/
-
-# Run end-to-end tests
-$ npx playwright test
-Running 6 tests using 6 workers
-...
-
-# Open last report
-$ npx playwright show-report
-Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.
-
-# Starts the interactive UI mode.
-# This launches a Trace Viewer like window for live test results
-$ npx playwright test --ui   
-
-# Runs the tests only on Desktop Chrome.
-$ npx playwright test --project=chromium
-Running 2 tests using 2 workers
-...
-    
-# Runs the tests in a specific file.
-# File must be in the subtree of `testDir` folder specified in config
-# Ex: the command below looks for tests/*/website.spec.ts 
-$ npx playwright test website
-Running 6 tests using 6 workers
-...
-    
-# Runs the tests in debug mode.
-# This launches headless browser with a Playwright Inspector window beside it
-$ npx playwright test --debug    
-Running 6 tests using 1 worker
-...
+website/
+    .env                   # Local .env file used for config
+    .env.example           # Example .env file to copy & customize
+    playwright.config.ts   # Main Config File
+    playwright-report/     # Temporary: artifacts from reporter   
+    test-results/          # Temporary: artificats from test runner
+    tests/                 # Configured: as 'testDir' in config file
+        01-basic.spec.ts   # Specification: actual tests spec
 ```
 
-Note that running tests will create two directories that are .gitignored.
- -  `test-results/` = contain artifacts generated by tests
- -  `playwright-report/` = contains artifacts generated by html-reporter
+Of these, only the `playwright.config.ts` and `tests/*.spec.ts` files are mandatory at start. The "Temporary" folders are generated during the test run. And the `.env` files are used only if you want to override defaults.
 
-Later, we'll switch to doing these actions using VS Code extensions. And we can configure the folder locations and other parameters via the CLI or config file.
+To understand how these work, check out the Developer Guide under the "/testing" path. While we will describe Playwright there in the context of the _Contoso Real Estate app_ test suite, you can easily apply those insights to the test suite here.
 
 </details>
 
 
-## 2. Test Runner Configuration
-
-Expand sections for overview of test configuration options and current setup.
+## 5. The Test Specification
 
 <details>
-<summary> 1. Configure Test Runner </summary>
+<summary> 👉🏽 | Want to understand the structure of a test specification? </summary>
+
+🚧 TODO: Explain what `test spec` format is, why locators matter, what fixtures are, and why we may need to configure or observe timeouts.
+
 </details>
 
-## 3. Test Specification
-
-Expand sections for overview of test specification structure and setup.
+## 6. The Test Configuration
 
 <details>
-<summary> 1. Author Test Specs </summary>
+<summary> 👉🏽 | Want to understand test configuration settings & overrides? </summary>
+
+🚧 TODO: Explain what we are configuring, why we have `.env`, why we activated `webserver` and why we have timeouts in both test and webserver levels.
+
 </details>
 
-## 4. Developer Tools
-
-Expand sections for brief introductions to developer tooling in Playwright.
+## 7. Playwright Test UI Mode
 
 <details>
-<summary> 1. Playwright Extension </summary>
-</details>
+<summary> 👉🏽 | Want a more interactive testing workflow? This is magical! </summary>
 
-<details>
-<summary> 2. Playwright CLI </summary>
-</details>
+🚧 TODO: Explain what `npm run test-ui` does in project
 
-<details>
-<summary> 3. Playwright UI Mode </summary>
-</details>
-
-<details>
-<summary> 4. Test Authoring </summary>
-</details>
-
-<details>
-<summary> 5. Test Debugging </summary>
-</details>
-
-<details>
-<summary> 6. Test Reporting </summary>
 </details>
 
 
-## Troubleshooting
+## 🛠 | Troubleshooting
 
-This section will be used to document any issues, gotchas, tips and tricks for use with Playwright.
+We can use this section to capture any _gotchas_ or best practices for _this_ test suite, as we learn more. Help us out by filing bugs, or using issues to start a discussion for new features, or request clarity around existing ones.
 
+## 🙋🏽‍♀️ | Want to help?
+
+Want to file a bug, contribute code or content, or improve the documentation and training resources? Excellent! 
+ - Read up on our guidelines for [contributing](./CONTRIBUTING.md).
+ - Check out [open issues](https://github.com/Azure-Samples/contoso-real-estate/issues) that could use help.
+ - File [a new issue](https://github.com/Azure-Samples/contoso-real-estate/issues/new/choose) to start a related discussion.
