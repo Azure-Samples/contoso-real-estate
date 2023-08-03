@@ -1,10 +1,3 @@
-/**
- * file: packages/api-v4/src/models/listing.ts
- * description: file responsible for the 'Listing' model
- * data: 02/08/2023
- * author: Glaucia Lemos
- */
-
 import { pgQuery } from "../config/pgclient";
 import { Listing } from "./listing.schema";
 

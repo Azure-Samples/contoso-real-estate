@@ -1,11 +1,3 @@
-/**
- * file: packages/api-v4/src/models/user.schema.ts
- * description: file responsible for the 'User' mongoose schema
- * data: 08/01/2023
- * author: Glaucia Lemos
- * documentation reference: https://mongoosejs.com/docs/typescript.html
- */
-
 import { ObjectId } from "mongodb";
 import { model, Schema } from "mongoose";
 

@@ -1,11 +1,3 @@
-/**
- * file: packages/api-v4/src/models/listing.schema.ts
- * description: file responsible for the 'Listing' mongoose schema
- * data: 07/27/2023
- * author: Glaucia Lemos
- * documentation reference: https://mongoosejs.com/docs/typescript.html
- */
-
 import { ObjectId } from 'mongodb';
 import { model, Schema } from 'mongoose';
 
