@@ -74,7 +74,8 @@
         "angular.ng-template",
         "42Crunch.vscode-openapi",
         "EditorConfig.EditorConfig",
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "ms-playwright.playwright"
       ]
     }
   },
