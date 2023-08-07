@@ -36,42 +36,42 @@ module cms '../core/host/container-app.bicep' = {
     containerMemory: '2.0Gi'
     secrets: [
       {
-        name: 'APPINSIGHTS_CS'
+        name: 'appinsights-cs'
         value: applicationInsights.properties.ConnectionString
       }
       {
-        name: 'DATABASE_USERNAME'
+        name: 'database-username'
         value: databaseUsername
       }
       {
-        name: 'DATABASE_PASSWORD'
+        name: 'database-password'
         value: databasePassword
       }
       {
-        name: 'JWT_SECRET'
+        name: 'jwt-secret'
         value: jwtSecret
       }
       {
-        name: 'APP_KEYS'
+        name: 'app-keys'
         value: appKeys
       }
       {
-        name: 'API_TOKEN_SALT'
+        name: 'api-token-salt'
         value: apiTokenSalt
       }
       {
-        name: 'ADMIN_JWT_SECRET'
+        name: 'admin-jwt-secret'
         value: adminJwtSecret
       }
       {
-        name: 'STORAGE_ACCOUNT_KEY'
+        name: 'storage-account-key'
         value: storageAccount.listKeys().keys[0].value
       }
     ]
     env: [
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: 'secretref:APPINSIGHTS_CS'
+        value: 'secretref:appinsights-cs'
       }
       {
         name: 'DATABASE_HOST'
@@ -79,11 +79,11 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'DATABASE_USERNAME'
-        value: 'secretref:DATABASE_USERNAME'
+        value: 'secretref:database-username'
       }
       {
         name: 'DATABASE_PASSWORD'
-        value: 'secretref:DATABASE_PASSWORD'
+        value: 'secretref:database-password'
       }
       {
         name: 'DATABASE_NAME'
@@ -91,19 +91,19 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'JWT_SECRET'
-        value: 'secretref:JWT_SECRET'
+        value: 'secretref:jwt-secret'
       }
       {
         name: 'APP_KEYS'
-        value: 'secretref:APP_KEYS'
+        value: 'secretref:app-keys'
       }
       {
         name: 'API_TOKEN_SALT'
-        value: 'secretref:API_TOKEN_SALT'
+        value: 'secretref:api-token-salt'
       }
       {
         name: 'ADMIN_JWT_SECRET'
-        value: 'secretref:ADMIN_JWT_SECRET'
+        value: 'secretref:admin-jwt-secret'
       }
       {
         name: 'NODE_ENV'
@@ -115,7 +115,7 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'STORAGE_ACCOUNT_KEY'
-        value: 'secretref:STORAGE_ACCOUNT_KEY'
+        value: 'secretref:storage-account-key'
       }
       {
         name: 'STORAGE_CONTAINER_NAME'

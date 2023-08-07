@@ -24,14 +24,14 @@ module app '../core/host/container-app.bicep' = {
     containerMemory: '2.0Gi'
     secrets: [
       {
-        name: 'APPINSIGHTS_CS'
+        name: 'appinsights-cs'
         value: applicationInsights.properties.ConnectionString
       }
     ]
     env: [
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: 'secretref:APPINSIGHTS_CS'
+        value: 'secretref:appinsights-cs'
       }
       {
         name: 'NEXT_PUBLIC_STRAPI_API_URL'
