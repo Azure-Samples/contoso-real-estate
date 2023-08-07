@@ -29,26 +29,26 @@ module stripe '../core/host/container-app.bicep' = {
     containerMemory: '2.0Gi'
     secrets: [
       {
-        name: 'APPINSIGHTS_CS'
+        name: 'appinsights-cs'
         value: applicationInsights.properties.ConnectionString
       }
       {
-        name: 'STRIPE_PUBLIC_KEY'
+        name: 'stripe-public-key'
         value: stripePublicKey
       }
       {
-        name: 'STRIPE_SECRET_KEY'
+        name: 'stripe-secret-key'
         value: stripeSecretKey
       }
       {
-        name: 'STRIPE_WEBHOOK'
+        name: 'stripe-webhook'
         value: stripeWebhookSecret
       }
     ]
     env: [
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: 'secretref:APPINSIGHTS_CS'
+        value: 'secretref:appinsights-cs'
       }
       {
         name: 'API_URL'
@@ -60,15 +60,15 @@ module stripe '../core/host/container-app.bicep' = {
       }
       {
         name: 'STRIPE_PUBLIC_KEY'
-        value: 'secretref:STRIPE_PUBLIC_KEY'
+        value: 'secretref:stripe-public-key'
       }
       {
         name: 'STRIPE_SECRET_KEY'
-        value: 'secretref:STRIPE_SECRET_KEY'
+        value: 'secretref:stripe-secret-key'
       }
       {
         name: 'STRIPE_WEBHOOK_SECRET'
-        value: 'secretref:STRIPE_WEBHOOK'
+        value: 'secretref:stripe-webhook'
       }
     ]
     imageName: !empty(stripeImageName) ? stripeImageName : 'nginx:latest'
