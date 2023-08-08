@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "noEmit": true,
+    "outDir": "../test-dist/",
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,

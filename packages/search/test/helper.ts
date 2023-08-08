@@ -1,18 +1,22 @@
 // This file contains code that we reuse between our tests.
-import * as path from "node:path";
 import * as helper from "fastify-cli/helper.js";
+import * as path from "path";
 import * as tap from "tap";
+import process from "process";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 export type Test = (typeof tap)["Test"]["prototype"];
 
-const AppPath = path.join(__dirname, "..", "src", "app.ts");
+const AppPath = path.join(__dirname, "..", "src", "app.js");
 
 // Fill in this config with all the configurations
 // needed for testing the application
 async function config() {
+  process.env.LISTINGS_API_URL = "https://example.com";
+  process.env.OPENAI_API_URL = "https://api.com";
+  process.env.OPENAI_API_KEY = "123";
   return {};
 }
 
