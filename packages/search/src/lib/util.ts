@@ -1,10 +1,7 @@
-import crypto from 'node:crypto';
+import crypto from "node:crypto";
 
 export function anonymizeString(str: string): string {
-  return crypto
-    .createHash('md5')
-    .update(str)
-    .digest('hex');
+  return crypto.createHash("md5").update(str).digest("hex");
 }
 
 export function createTokenCacheKey(token: string): string {
@@ -33,15 +30,15 @@ export async function retry<T>(fn: () => Promise<T>, maxTries = 3): Promise<T> {
 export function unescapeHtml(html?: string) {
   return (
     html
-      ?.replaceAll(/&(amp|#38);/gi, '&')
-      .replaceAll(/&(lt|#60);/gi, '<')
-      .replaceAll(/&(gt|#62);/gi, '>')
+      ?.replaceAll(/&(amp|#38);/gi, "&")
+      .replaceAll(/&(lt|#60);/gi, "<")
+      .replaceAll(/&(gt|#62);/gi, ">")
       .replaceAll(/&(quot|#34);/gi, '"')
       .replaceAll(/&(apos|#39);/gi, "'")
       .replaceAll(/&#(\d+);/gi, (_match, numberString: string) => {
         const number_ = Number.parseInt(numberString, 10);
         return String.fromCodePoint(number_);
-      }) ?? ''
+      }) ?? ""
   );
 }
 

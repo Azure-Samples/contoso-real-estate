@@ -1,4 +1,4 @@
-import { FastifyPluginAsync, FastifyRequest } from "fastify"
+import { FastifyPluginAsync, FastifyRequest } from "fastify";
 import { createSuggestionCacheKey, createTokenCacheKey } from "../../lib/util.js";
 import { Cache } from "../../plugins/cache.js";
 import { SearchResult } from "../../models/search.js";
@@ -7,25 +7,24 @@ import { CompletionMessages } from "../../plugins/openai.js";
 export type SuggestionRequest = FastifyRequest<{
   Params: {
     token: string;
-  },
-  Querystring: { 
+  };
+  Querystring: {
     user: string;
-  }
+  };
 }>;
 
 const suggestion: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-
   const suggestionSchema = {
     schema: {
       params: {
-        token: { type: 'string' },
+        token: { type: "string" },
       },
       querystring: {
-        user: { type: 'string' },
+        user: { type: "string" },
       },
     },
   };
-  fastify.get('/:token', suggestionSchema, async function (request: SuggestionRequest, reply) {
+  fastify.get("/:token", suggestionSchema, async function (request: SuggestionRequest, reply) {
     const { token } = request.params;
     const { user } = request.query;
     const suggestionCacheKey = createSuggestionCacheKey(token);
@@ -37,19 +36,19 @@ const suggestion: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       reply.sseContext.source.end();
       return;
     }
-    
+
     const tokenKey = createTokenCacheKey(token);
     const search = fastify.cache.get(tokenKey);
 
     if (!search) {
-      reply.code(404).send('Suggestion not found or expired');
+      reply.code(404).send("Suggestion not found or expired");
       return;
     }
 
     const messages: CompletionMessages = [
-      {"role": "system", "content": getPromptFromSearch(search)},
-      {"role": "user", "content": search.query},
-    ]
+      { role: "system", content: getPromptFromSearch(search) },
+      { role: "user", content: search.query },
+    ];
 
     const completion = await fastify.openai.getChatCompletion(messages, user);
 
@@ -74,13 +73,12 @@ const suggestion: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     reply.sse({ data: JSON.stringify(completion) });
     reply.sseContext.source.end();
   });
-}
+};
 
 export default suggestion;
 
 function getPromptFromSearch(search: SearchResult): string {
-  let prompt = 
-`
+  let prompt = `
 You are a travel agent. You are working for Consto Real Estate. You have 20 years' experience in the travel industry and have also worked as a life coach. Today, we are the ${new Date().toISOString()}.
 
 You MUST:
@@ -109,9 +107,8 @@ Answer with a help to find a listing best matching the user needs.
 
 `;
 
-    for (const answer of search.answers) {
-      prompt +=
-`
+  for (const answer of search.answers) {
+    prompt += `
 LISTING START
 
 Audience:
@@ -141,7 +138,7 @@ ${answer.metadata.url}
 LISTING END
 
 `;
-    }
+  }
 
   return prompt;
 }

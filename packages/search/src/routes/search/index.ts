@@ -1,23 +1,21 @@
-import { FastifyPluginAsync, FastifyRequest } from "fastify"
-import { v4 as uuidv4 } from 'uuid';
+import { FastifyPluginAsync, FastifyRequest } from "fastify";
+import { v4 as uuidv4 } from "uuid";
 import { createTokenCacheKey } from "../../lib/util.js";
 import { Cache } from "../../plugins/cache.js";
 import { SearchAnswer, SearchResult } from "../../models/search.js";
 import { Metadata } from "../../models/metadata.js";
 
 export type SearchRequest = FastifyRequest<{
-  Querystring: { 
+  Querystring: {
     query: string;
     limit: number;
     user: string;
-  }
+  };
 }>;
 
 const search: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-
   async function searchAnswer(query: string, limit: number, user: string) {
-    const prompt = 
-`Today, we are the ${new Date().toISOString()}.
+    const prompt = `Today, we are the ${new Date().toISOString()}.
 
 QUERY START
 ${query}
@@ -37,13 +35,13 @@ QUERY END`;
   const searchSchema = {
     schema: {
       querystring: {
-        query: { type: 'string' },
-        limit: { type: 'number', default: 10 },
-        user: { type: 'string' },
+        query: { type: "string" },
+        limit: { type: "number", default: 10 },
+        user: { type: "string" },
       },
     },
   };
-  fastify.get('/', searchSchema, async function (request: SearchRequest, reply) {
+  fastify.get("/", searchSchema, async function (request: SearchRequest, reply) {
     const { query, limit, user } = request.query;
     const start = Date.now();
     request.log.info(`Search for text: ${JSON.stringify(request.query)}`);
@@ -88,6 +86,6 @@ QUERY END`;
       return searchResult;
     }
   });
-}
+};
 
 export default search;

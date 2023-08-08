@@ -7,4 +7,4 @@ export type Metadata = {
   tags: string[];
   title: string;
   url: string;
-}
+};

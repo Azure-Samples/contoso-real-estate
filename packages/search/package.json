@@ -47,8 +47,13 @@
     "xo": "^0.55.0"
   },
   "prettier": {
-    "trailingComma": "none",
-    "bracketSpacing": true
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": false,
+    "printWidth": 120,
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
   },
   "xo": {
     "space": true,

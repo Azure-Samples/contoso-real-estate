@@ -3,22 +3,21 @@ import { Metadata } from "../../models/metadata";
 import { sanitizeForEmbedding } from "../../lib/util.js";
 
 export type IndexRequest = FastifyRequest<{
-  Querystring: { 
+  Querystring: {
     user: string;
     force: boolean;
-  }
+  };
 }>;
 
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   async function indexer(user: string, force: boolean) {
-
     const response = await fetch("https://microsoft.github.io/moaw/workshops.json");
     const workshops = await response.json();
-  
+
     const ids = [];
     const payloads = [];
     const vectors = [];
-  
+
     for (const workshop of workshops) {
       const { id } = workshop;
       const metadata = {
@@ -77,17 +76,17 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   const indexSchema = {
     schema: {
       querystring: {
-        user: { type: 'string' },
-        force: { type: 'boolean' },
+        user: { type: "string" },
+        force: { type: "boolean" },
       },
     },
   };
-  fastify.get('/', indexSchema, async function (request: IndexRequest, reply) {
+  fastify.get("/", indexSchema, async function (request: IndexRequest, reply) {
     const { user, force } = request.query;
     indexer(user, force);
-    reply.code(202).send('Indexing started');
+    reply.code(202).send("Indexing started");
   });
-}
+};
 
 export default index;
 
@@ -111,7 +110,7 @@ async function createEmbeddingTextFromMetadata(metadata: Metadata) {
   const description = sanitizeForEmbedding(metadata.description);
   const [content, url] = await getWorkshop(metadata.url);
   const contentText = sanitizeForEmbedding(content).slice(0, 7500);
-  
+
   // Update model with the real URL
   metadata.url = url;
 
@@ -126,13 +125,13 @@ Content:
 ${contentText}
 
 Tags:
-${metadata.tags.join(', ')}
+${metadata.tags.join(", ")}
 
 Authors:
-${metadata.authors.join(', ')}
+${metadata.authors.join(", ")}
 
 Audience:
-${metadata.audience.join(', ')}
+${metadata.audience.join(", ")}
 
 Last updated:
 ${metadata.last_updated}

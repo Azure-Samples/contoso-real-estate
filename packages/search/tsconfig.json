@@ -5,7 +5,7 @@
     "module": "esnext",
     "sourceMap": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom"]
   },
   "include": ["src/**/*.ts"]
 }
