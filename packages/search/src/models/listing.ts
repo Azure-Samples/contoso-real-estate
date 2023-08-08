@@ -16,4 +16,4 @@ export type Listing = {
   address: string;
   fees: string;
   createdAt: string;
-}
+};
