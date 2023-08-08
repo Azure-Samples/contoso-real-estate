@@ -13,11 +13,11 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   async function indexer(user: string, force: boolean) {
     const { listingsApiUrl } = fastify.config;
     const response = await fetch(listingsApiUrl);
-    const listings = await response.json() as Listing[];
+    const listings = (await response.json()) as Listing[];
 
-    const ids = [];
-    const payloads = [];
-    const vectors = [];
+    const ids: string[] = [];
+    const payloads: any[] = [];
+    const vectors: number[][] = [];
 
     for (const rawListing of listings) {
       const { id } = rawListing;
