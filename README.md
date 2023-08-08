@@ -158,6 +158,90 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 
 > _Note: The URLs above are just examples. The URLs will be different for your fork. The ports however will be the same._
 
+## Developer Guide (Website)
+
+The project has a  [Developer Guide](./packages/docs/website/README.md) implemented as an interactive website using the [Docusaurus](https://docusaurus.io) platform. 
+
+### 1 | Preview Website 
+
+Read the [website/README](./packages/docs/website/README.md) more details on setting up and building this package. For a quickstart, we recommend the following to _get a local dev preview_ of the guide.
+
+```bash
+# Change to the packages/docs/website directory
+$ cd packages/docs/website
+
+# Install dependencies (verify you have Node.js v18+)
+$ node --version
+v18.17.0
+
+# Install dependencies
+$ npm install
+
+# Run local dev server for preview (will auto-launch browser)
+$ npm run start
+..
+[INFO] Starting the development server...
+[SUCCESS] Docusaurus website is running at: http://localhost:3000/
+```
+
+This should launch the browser to the landing page of the guide as shown below:
+
+<p align="center">
+  <img src="assets/screenshots/contoso-docs-website-preview.png" width="100%" alt="Contoso Real Estate Developer Guide: Preview"/>
+</p>
+
+### 2 | Deploy Website
+
+This repo is not configured for automated deployment of the website to a static site hosting service. However Docusaurus provides [Deployment guidance](https://docusaurus.io/docs/deployment) that works for most options - we've validated this for [Azure Static Web Apps](https://docusaurus.io/docs/deployment#deploying-to-azure-static-web-apps) and [GitHub Pages](https://docusaurus.io/docs/deployment#deploying-to-github-pages).
+
+If you want a hosted version of the guide, we recommend you maintain a personal fork and set it up for automated build-deploy with GitHub Actions. Then keep up-to-date with origin, for content.
+ - See [this personal fork](https://github.com/30DaysOf/contoso-real-estate) for a working example for reference
+ - Visit [this GitHub Pages endpoint](https://30daysof.github.io/contoso-real-estate/) to see the associated live deployment.
+ - Note that this example may _not always reflect the latest repo changes_ in content.
+ 
+
+### 3 | Test Website
+
+The website comes with its _own_ Playwright testing harness which is **different from the tests under `packages/testing`** that focus on e2e testing of the Contoso Real Estate application itself. It currently has basic test specs for usage, but may be extended to add more tests for validating routes and accessibility.
+
+ - Learn more about test setup in [website/README.TESTING.md](./packages/docs/website/README.md). 
+ - Use the following instructions for a quickstart.
+
+
+```bash
+# Change to the packages/docs/website directory
+$ cd packages/docs/website
+
+# Install dependencies (verify you have Node.js v18+)
+$ node --version
+v18.17.0
+
+# Install dependencies
+$ npm install
+
+# Run tests (will automatically start dev server first if not running)
+$ npm run test
+
+..  
+[WebServer] [INFO] Starting the development server...
+[WebServer] [SUCCESS] Docusaurus website is running at: http://localhost:3000/
+..
+Running 12 tests using 6 workers
+  12 passed (16.9s)
+
+# View the last test report
+$ npm run report
+
+Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.
+```
+
+The default report will look something like this. Want to get a more interactive look at what that provides? Explore a [cached version of this report](https://30daysof.github.io/contoso-real-estate/playwright-trace/) to understand what the HTML report structure and detail provides. Note that the cached version may not reflect the latest tests in codebase.
+
+<p align="center">
+  <img src="assets/screenshots/contoso-docs-website-testreport.png" width="100%" alt="Contoso Real Estate Developer Guide: Test Report"/>
+</p>
+
+
 
 ## Usage costs
 
@@ -175,6 +259,7 @@ The project is using `npm` workspaces. The project structure is as follows:
   - [`portal`](packages/portal) - contains the Angular web portal.
   - [`blog`](packages/blog) - contains the Next.js blog.
   - [`blog-cms`](packages/blog-cms) - contains the Strapi CMS.
+  - [`docs`](packages/docs) - contains the Developer Guide website
   - [`stripe`](packages/stripe) - contains the Stripe webhook.
   - [`testing`](packages/testing) - contains the Playwright tests.
 
