@@ -1,5 +1,5 @@
 import { FastifyPluginAsync, FastifyRequest } from "fastify";
-import { Metadata } from "../../models/metadata";
+import { Listing } from "../../models/listing";
 import { sanitizeForEmbedding } from "../../lib/util.js";
 
 export type IndexRequest = FastifyRequest<{
@@ -11,55 +11,65 @@ export type IndexRequest = FastifyRequest<{
 
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   async function indexer(user: string, force: boolean) {
-    const response = await fetch("https://microsoft.github.io/moaw/workshops.json");
-    const workshops = await response.json();
+    const { listingsApiUrl } = fastify.config;
+    const response = await fetch(listingsApiUrl);
+    const listings = await response.json() as Listing[];
 
     const ids = [];
     const payloads = [];
     const vectors = [];
 
-    for (const workshop of workshops) {
-      const { id } = workshop;
-      const metadata = {
-        audience: workshop.audience,
-        authors: workshop.authors,
-        description: workshop.description,
-        language: workshop.language,
-        last_updated: new Date(workshop.lastUpdated).toUTCString(),
-        tags: workshop.tags,
-        title: workshop.title,
-        url: workshop.url,
+    for (const rawListing of listings) {
+      const { id } = rawListing;
+      const listing = {
+        id,
+        title: rawListing.title,
+        slug: rawListing.slug,
+        description: rawListing.description,
+        bedrooms: rawListing.bedrooms,
+        bathrooms: rawListing.bathrooms,
+        type: rawListing.type,
+        isFeatured: rawListing.isFeatured,
+        isRecommended: rawListing.isRecommended,
+        capacity: rawListing.capacity,
+        ammenities: rawListing.ammenities,
+        reviews_stars: rawListing.reviews_stars,
+        reviews_number: rawListing.reviews_number,
+        createdAt: new Date(rawListing.createdAt).toUTCString(),
+        address: rawListing.address,
+        fees: rawListing.fees,
+        photos: rawListing.photos,
       };
 
       if (!force) {
         const response = await fastify.qdrant.retrieve([id]);
         if (response.length > 0) {
-          const stored = response[0].payload as Metadata;
-          if (stored.last_updated === metadata.last_updated) {
-            fastify.log.info(`Workshop "${metadata.title}" already indexed`);
+          const stored = response[0].payload as Listing;
+          if (stored.createdAt === listing.createdAt) {
+            fastify.log.info(`Listing "${listing.title}" already indexed`);
             continue;
           }
         }
       }
 
-      fastify.log.info(`Indexing workshop "${metadata.title}"`);
+      fastify.log.info(`Indexing listing "${listing.title}"`);
       try {
-        const text = await createEmbeddingTextFromMetadata(metadata);
+        const text = await createEmbeddingTextFromListing(listing);
         fastify.log.debug(`Text: ${text}`);
         const vector = await fastify.openai.getVectorFromText(text, user);
 
         // Create Qdrant payload
         vectors.push(vector);
         ids.push(id);
-        payloads.push(metadata);
+        payloads.push(listing);
       } catch (_error: unknown) {
         const error = _error as Error;
-        fastify.log.warn(`Failed to index workshop "${metadata.title}": `, error);
+        fastify.log.warn(`Failed to index listing "${listing.title}": `, error);
       }
     }
 
     if (ids.length === 0) {
-      fastify.log.info("No new workshops to index");
+      fastify.log.info("No new listings to index");
       return;
     }
 
@@ -70,7 +80,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       vectors,
     });
 
-    fastify.log.info(`Indexed ${ids.length} workshops`);
+    fastify.log.info(`Indexed ${ids.length} listings`);
   }
 
   const indexSchema = {
@@ -90,50 +100,53 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
 
 export default index;
 
-async function getWorkshop(url: string) {
-  let returnUrl = url;
-
-  if (!url.startsWith("http")) {
-    url = `https://microsoft.github.io/moaw/workshops/${url}workshop.md`;
-    returnUrl = `https://microsoft.github.io/moaw/workshop/${url}`;
-  }
-
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch workshop from ${url}`);
-  }
-  const text = await response.text();
-  return [text, returnUrl];
-}
-
-async function createEmbeddingTextFromMetadata(metadata: Metadata) {
-  const description = sanitizeForEmbedding(metadata.description);
-  const [content, url] = await getWorkshop(metadata.url);
-  const contentText = sanitizeForEmbedding(content).slice(0, 7500);
-
-  // Update model with the real URL
-  metadata.url = url;
-
+async function createEmbeddingTextFromListing(listing: Listing) {
+  const description = sanitizeForEmbedding(listing.description);
   return `
+
 Title:
-${metadata.title}
+${listing.title}
 
 Description:
 ${description}
 
-Content:
-${contentText}
+Type:
+${listing.type}
 
-Tags:
-${metadata.tags.join(", ")}
+Capacity:
+${listing.capacity}
 
-Authors:
-${metadata.authors.join(", ")}
+Bathrooms:
+${listing.bathrooms}
 
-Audience:
-${metadata.audience.join(", ")}
+Bedrooms:
+${listing.bedrooms}
 
-Last updated:
-${metadata.last_updated}
+Ammenities:
+${listing.ammenities}
+
+Fees:
+${listing.fees}
+
+Address:
+${listing.address}
+
+Is featured:
+${listing.isFeatured}
+
+Is recommended:
+${listing.isRecommended}
+
+Reviews stars:
+${listing.reviews_stars}
+
+Reviews number:
+${listing.reviews_number}
+
+Created at:
+${listing.createdAt}
+
+SLUG:
+${listing.slug}
 `;
 }

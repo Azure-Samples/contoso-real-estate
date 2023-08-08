@@ -52,22 +52,6 @@ const suggestion: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
 
     const completion = await fastify.openai.getChatCompletion(messages, user);
 
-    // let cancelled = false;
-
-    // async function suggestionSseGenerator(search: SearchResult, user: string) {
-    //   fastify.log.info(`Starting SSE for suggestion ${search.query} for user ${user}`);
-    // }
-
-    // request.socket.on('close', () => {
-    //   request.log.info(`Disconnected from client (via refresh/close) (token=${token}, user=${user})`);
-
-    //   request.log.debug("Cancelling suggestion generation");
-    //   cancelled = true;
-
-    //   request.log.debug("Deleting temporary cache key");
-    //   fastify.cache.delete(tokenKey);
-    // });
-
     fastify.cache.set(suggestionCacheKey, completion, Cache.SuggestionTtl);
 
     reply.sse({ data: JSON.stringify(completion) });
@@ -111,29 +95,47 @@ Answer with a help to find a listing best matching the user needs.
     prompt += `
 LISTING START
 
-Audience:
-${answer.metadata.audience}
-
-Authors:
-${answer.metadata.authors}
+Title:
+${answer.listing.title}
 
 Description:
-${answer.metadata.description}
+${answer.listing.description}
 
-Language:
-${answer.metadata.language}
+Type:
+${answer.listing.type}
 
-Last updated:
-${answer.metadata.last_updated}
+Capacity:
+${answer.listing.capacity}
 
-Tags:
-${answer.metadata.tags}
+Bathrooms:
+${answer.listing.bathrooms}
 
-Title:
-${answer.metadata.title}
+Bedrooms:
+${answer.listing.bedrooms}
 
-URL:
-${answer.metadata.url}
+Ammenities:
+${answer.listing.ammenities}
+
+Fees:
+${answer.listing.fees}
+
+Address:
+${answer.listing.address}
+
+Is featured:
+${answer.listing.isFeatured}
+
+Is recommended:
+${answer.listing.isRecommended}
+
+Reviews stars:
+${answer.listing.reviews_stars}
+
+Reviews number:
+${answer.listing.reviews_number}
+
+SLUG:
+${answer.listing.slug}
 
 LISTING END
 

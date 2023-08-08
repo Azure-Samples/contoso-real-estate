@@ -93,6 +93,9 @@ services:
       - QD_PORT=6333
       - OPENAI_API_URL=${OPENAI_API_URL}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LISTINGS_API_URL=http://host.docker.internal:7071/api/listings
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   qdrant:
     image: docker.io/qdrant/qdrant:v1.2.0

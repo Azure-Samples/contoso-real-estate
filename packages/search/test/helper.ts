@@ -1,6 +1,6 @@
 // This file contains code that we reuse between our tests.
+import * as path from "node:path";
 import * as helper from "fastify-cli/helper.js";
-import * as path from "path";
 import * as tap from "tap";
 import { fileURLToPath } from "url";
 

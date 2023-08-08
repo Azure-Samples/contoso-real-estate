@@ -1,8 +1,8 @@
-import { Metadata } from "./metadata.js";
+import { Listing } from "./listing.js";
 
 export type SearchAnswer = {
   id: string;
-  metadata: Metadata;
+  listing: Listing;
   score: number;
 };
 
@@ -15,5 +15,5 @@ export type SearchResult = {
   answers: SearchAnswer[];
   query: string;
   stats: SearchStats;
-  suggestion_token: string;
+  suggestionToken: string;
 };

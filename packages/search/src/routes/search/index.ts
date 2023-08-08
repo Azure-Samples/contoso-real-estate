@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { createTokenCacheKey } from "../../lib/util.js";
 import { Cache } from "../../plugins/cache.js";
 import { SearchAnswer, SearchResult } from "../../models/search.js";
-import { Metadata } from "../../models/metadata.js";
+import { Listing } from "../../models/listing.js";
 
 export type SearchRequest = FastifyRequest<{
   Querystring: {
@@ -63,7 +63,7 @@ QUERY END`;
       for (const result of results) {
         answers.push({
           id: String(result.id),
-          metadata: result.payload as Metadata,
+          listing: result.payload as Listing,
           score: result.score,
         });
       }
@@ -75,9 +75,9 @@ QUERY END`;
           time: Date.now() - start,
           total,
         },
-        suggestion_token: uuidv4(),
+        suggestionToken: uuidv4(),
       };
-      const tokenKey = createTokenCacheKey(searchResult.suggestion_token);
+      const tokenKey = createTokenCacheKey(searchResult.suggestionToken);
 
       fastify.cache.set(searchCacheKey, searchResult);
       fastify.cache.set(tokenKey, searchResult, Cache.SuggestionTtl);

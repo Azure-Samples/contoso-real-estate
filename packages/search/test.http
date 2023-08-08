@@ -3,8 +3,7 @@
 # Download at: https://aka.ms/vscode/rest-client
 ##################################################################
 
-# @search_host = http://localhost:3000
-@search_host = https://ca-search-api-ix746qmr7mlqc.blackocean-cce4c9a5.westeurope.azurecontainerapps.io
+@search_host = http://localhost:3001
 @user = {{$guid}}
 
 
@@ -14,12 +13,12 @@ GET {{search_host}}/search?query=javascript&limit=10&user={{user}}
 
 ###
 
-@token = {{search.response.body.suggestion_token}}
+@token = {{search.response.body.suggestionToken}}
 
 # Get AI suggestion from a search
 GET {{search_host}}/suggestion/{{token}}?user={{user}}
 
 ###
 
-# Index workshops (background task)
+# Index listings (background task)
 GET {{search_host}}/index?force=false&user={{user}}

@@ -44,23 +44,23 @@ export function unescapeHtml(html?: string) {
 
 export function sanitizeForEmbedding(raw: string) {
   // Remove HTML doctype
-  raw = raw.replace(/<!DOCTYPE[^>]*>/g, " ");
+  raw = raw.replaceAll(/<!DOCTYPE[^>]*>/g, " ");
   // Remove HTML head
-  raw = raw.replace(/<head\b[^>]*>[\s\S]*<\/head>/g, " ");
+  raw = raw.replaceAll(/<head\b[^>]*>[\s\S]*<\/head>/g, " ");
   // Remove HTML scripts
-  raw = raw.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, " ");
+  raw = raw.replaceAll(/<script\b[^>]*>[\s\S]*?<\/script>/g, " ");
   // Remove HTML styles
-  raw = raw.replace(/<style\b[^>]*>[\s\S]*?<\/style>/g, " ");
+  raw = raw.replaceAll(/<style\b[^>]*>[\s\S]*?<\/style>/g, " ");
   // Remove HTML tags
-  raw = raw.replace(/<[^>]*>/g, " ");
+  raw = raw.replaceAll(/<[^>]*>/g, " ");
   // Remove Markdown tables
-  raw = raw.replace(/[-|]{2,}/g, " ");
+  raw = raw.replaceAll(/[-|]{2,}/g, " ");
   // Remove Markdown code blocks
-  raw = raw.replace(/```[\s\S]*```/g, " ");
+  raw = raw.replaceAll(/```[\s\S]*```/g, " ");
   // Remove Markdown bold, italic, strikethrough, code, heading, table delimiters, links, images, comments, and horizontal rules
-  raw = raw.replace(/[*_`~#|!\[\]<>-]+/g, " ");
+  raw = raw.replaceAll(/[*_`~#|!\[\]<>-]+/g, " ");
   // Remove line returns, tabs and spaces
-  raw = raw.replace(/[\n\t\v ]+/g, " ");
+  raw = raw.replaceAll(/[\n\t\v ]+/g, " ");
   // Remove HTML entities
   raw = unescapeHtml(raw);
   // Remove leading and trailing spaces

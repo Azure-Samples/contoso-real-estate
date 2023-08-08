@@ -4,6 +4,7 @@ import * as dotenv from "dotenv";
 import fp from "fastify-plugin";
 
 export interface AppConfig {
+  listingsApiUrl: string;
   qdHost: string;
   qdPort: string;
   openaiApiUrl: string;
@@ -22,6 +23,7 @@ export default fp(
     dotenv.config({ path: envPath });
 
     const config: AppConfig = {
+      listingsApiUrl: process.env.LISTINGS_API_URL || "",
       qdHost: process.env.QD_HOST || "localhost",
       qdPort: process.env.QD_PORT || "6333",
       openaiApiKey: process.env.OPENAI_API_KEY || "",
@@ -29,6 +31,12 @@ export default fp(
       openaiAdaId: process.env.OPENAI_ADA_ID || "text-embedding-ada-002",
       openaiGptId: process.env.OPENAI_GPT_ID || "gpt-35-turbo",
     };
+
+    if (!config.listingsApiUrl) {
+      const message = `LISTINGS_API_URL is missing!`;
+      fastify.log.error(message);
+      throw new Error(message);
+    }
 
     if (!config.openaiApiKey) {
       const message = `OPENAI_API_KEY key is missing!`;

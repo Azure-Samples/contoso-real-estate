@@ -1,7 +1,7 @@
 {
   "name": "search",
-  "version": "0.0.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "AI search service",
   "private": true,
   "type": "module",
   "exports": "./src/app.ts",
@@ -43,28 +43,6 @@
     "pino-pretty": "^10.2.0",
     "tap": "^16.1.0",
     "ts-node": "^10.4.0",
-    "typescript": "^5.1.6",
-    "xo": "^0.55.0"
-  },
-  "prettier": {
-    "trailingComma": "all",
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": false,
-    "printWidth": 120,
-    "bracketSpacing": true,
-    "arrowParens": "avoid"
-  },
-  "xo": {
-    "space": true,
-    "prettier": true,
-    "envs": [
-      "node",
-      "jest"
-    ]
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "typescript": "^5.1.6"
   }
 }
