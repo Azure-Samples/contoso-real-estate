@@ -17,6 +17,36 @@ param stripeSecretKey string
 @secure()
 param stripeWebhookSecret string
 
+// Stripe is optional but secrets must not be empty if provided
+var stripeSecrets = empty(stripePublicKey) ? [] : [
+  {
+    name: 'stripe-public-key'
+    value: stripePublicKey
+  }
+  {
+    name: 'stripe-secret-key'
+    value: stripeSecretKey
+  }
+  {
+    name: 'stripe-webhook'
+    value: stripeWebhookSecret
+  }
+]
+var stripeEnvVariables = empty(stripePublicKey) ? [] : [
+  {
+    name: 'STRIPE_PUBLIC_KEY'
+    value: 'secretref:stripe-public-key'
+  }
+  {
+    name: 'STRIPE_SECRET_KEY'
+    value: 'secretref:stripe-secret-key'
+  }
+  {
+    name: 'STRIPE_WEBHOOK_SECRET'
+    value: 'secretref:stripe-webhook'
+  }
+]
+
 module stripe '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
   params: {
@@ -27,25 +57,13 @@ module stripe '../core/host/container-app.bicep' = {
     containerRegistryName: containerRegistryName
     containerCpuCoreCount: '1.0'
     containerMemory: '2.0Gi'
-    secrets: [
+    secrets: concat([
       {
         name: 'appinsights-cs'
         value: applicationInsights.properties.ConnectionString
       }
-      {
-        name: 'stripe-public-key'
-        value: stripePublicKey
-      }
-      {
-        name: 'stripe-secret-key'
-        value: stripeSecretKey
-      }
-      {
-        name: 'stripe-webhook'
-        value: stripeWebhookSecret
-      }
-    ]
-    env: [
+    ], stripeSecrets)
+    env: concat([
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
         value: 'secretref:appinsights-cs'
@@ -58,19 +76,7 @@ module stripe '../core/host/container-app.bicep' = {
         name: 'WEB_APP_URL'
         value: portalUrl
       }
-      {
-        name: 'STRIPE_PUBLIC_KEY'
-        value: 'secretref:stripe-public-key'
-      }
-      {
-        name: 'STRIPE_SECRET_KEY'
-        value: 'secretref:stripe-secret-key'
-      }
-      {
-        name: 'STRIPE_WEBHOOK_SECRET'
-        value: 'secretref:stripe-webhook'
-      }
-    ]
+    ], stripeEnvVariables)
     imageName: !empty(stripeImageName) ? stripeImageName : 'nginx:latest'
     targetPort: 4242
   }
