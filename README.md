@@ -160,25 +160,16 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 
 ## Developer Guide (Website)
 
-The project has a  [Developer Guide](./packages/docs/website/README.md) implemented as an interactive website using the [Docusaurus](https://docusaurus.io) platform. 
-
+The project has a  [Developer Guide](./packages/docs/website/README.md) defined under `packages/docs` and implemented as an interactive website using the [Docusaurus](https://docusaurus.io) platform.
 ### 1 | Preview Website 
 
-Read the [website/README](./packages/docs/website/README.md) more details on setting up and building this package. For a quickstart, we recommend the following to _get a local dev preview_ of the guide.
+ - Read the [website/README](./packages/docs/website/README.md) more details on setting up and building this package. 
+ - Use the following instructions for a quickstart.
 
 ```bash
-# Change to the packages/docs/website directory
-$ cd packages/docs/website
-
-# Install dependencies (verify you have Node.js v18+)
-$ node --version
-v18.17.0
-
-# Install dependencies
-$ npm install
-
-# Run local dev server for preview (will auto-launch browser)
-$ npm run start
+$ cd packages/docs/website     # Set working directory
+$ npm install                  # Install dependencies
+$ npm run start                # Run dev server, launch preview
 ..
 [INFO] Starting the development server...
 [SUCCESS] Docusaurus website is running at: http://localhost:3000/
@@ -202,40 +193,19 @@ If you want a hosted version of the guide, we recommend you maintain a personal 
 
 ### 3 | Test Website
 
-The website comes with its _own_ Playwright testing harness which is **different from the tests under `packages/testing`** that focus on e2e testing of the Contoso Real Estate application itself. It currently has basic test specs for usage, but may be extended to add more tests for validating routes and accessibility.
-
+The website comes with its own Playwright testing harness with a separate configuration and a base test specification. Use it for _test-driven documentation_ to validate the existence of routes and sections, and check content for accessibility compliance. _Note - this test suite is separate from e2e testing setup for Contoso Real Estate application (located in `packages/testing`_). 
  - Learn more about test setup in [website/README.TESTING.md](./packages/docs/website/README.md). 
  - Use the following instructions for a quickstart.
 
 
 ```bash
-# Change to the packages/docs/website directory
-$ cd packages/docs/website
-
-# Install dependencies (verify you have Node.js v18+)
-$ node --version
-v18.17.0
-
-# Install dependencies
-$ npm install
-
-# Run tests (will automatically start dev server first if not running)
-$ npm run test
-
-..  
-[WebServer] [INFO] Starting the development server...
-[WebServer] [SUCCESS] Docusaurus website is running at: http://localhost:3000/
-..
-Running 12 tests using 6 workers
-  12 passed (16.9s)
-
-# View the last test report
-$ npm run report
-
-Serving HTML report at http://localhost:9323. Press Ctrl+C to quit.
+$ cd packages/docs/website     # Set working directory
+$ npm install                  # Install dependencies
+$ npm run test                 # Run dev server => launches browser to preview
+$ npm run report               # View last HTML report => open browser to specified URL
 ```
 
-The default report will look something like this. Want to get a more interactive look at what that provides? Explore a [cached version of this report](https://30daysof.github.io/contoso-real-estate/playwright-trace/) to understand what the HTML report structure and detail provides. Note that the cached version may not reflect the latest tests in codebase.
+Want to understand what the test report provides? You can explore [this cached version of the report](https://30daysof.github.io/contoso-real-estate/playwright-trace/) interactively (screenshot below) to dive into detailed traces. Note that the cached version _will not reflect the latest codebase updates_ and is meant only as an example.
 
 <p align="center">
   <img src="assets/screenshots/contoso-docs-website-testreport.png" width="100%" alt="Contoso Real Estate Developer Guide: Test Report"/>
