@@ -19,6 +19,7 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
 
   const { userId, listingId, aggregate } = request.params;
 
+  // UserID is the only required parameter
   if (!userId || userId === 'undefined') {
     return {
       status: 400,
