@@ -64,7 +64,7 @@ export const populateEnvironmentFromKeyVault = async () => {
 
       // KeyVault does not support underscores in key names and replaces '-' with '_'
       // Expect KeyVault secret names to be in conventional capitalized snake casing after conversion
-      const keyName = secret.name.replace(/-/g, "_").toUpperCase();
+      const keyName = secret.name.replace(/-/g, "_");
       process.env[keyName] = secret.value;
     }
   } catch (err) {
