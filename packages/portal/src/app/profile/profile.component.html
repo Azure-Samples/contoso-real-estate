@@ -86,7 +86,7 @@
                   <span [ngPlural]="reservation.guests">
                     <ng-template ngPluralCase="=1">guest</ng-template>
                     <ng-template ngPluralCase="other">guests</ng-template>
-                  </span>
+                  </span>)
                   <span class="reservation-status" [ngClass]="reservation.status">{{ reservation.status }}</span>
                 </div>
                 <div mat-line class="reservation-subtitle">
