@@ -2,6 +2,13 @@
   width: 100%;
   position: relative;
 
+  @media (max-width: 480px){
+    .login-container{
+      width: 90%;
+      margin: 40px auto;
+    }
+  }
+
   @media screen and (min-width: 1024px) {
     width: 300px;
     height: 100%;
