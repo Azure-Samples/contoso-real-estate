@@ -44,18 +44,18 @@
     <aside>
       <app-favorite-button *appHasRole="[userRole.Admin, userRole.Renter]" [listing]="listing()"></app-favorite-button>
 
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <span aria-hidden="false" aria-label="Share listing" class="material-symbols-outlined"> share </span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" title="Share listing" aria-label="Share listing to social media">
+        <span aria-hidden="false" aria-label="Share listing to social media" class="material-symbols-outlined"> share </span>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <span>Facebook</span>
+        <button mat-menu-item (click)="share()" title="Share listing to Facebook" class="bookmark-listing">
+          <span aria-hidden="false" aria-label="Share listing to Facebook">Facebook</span>
         </button>
-        <button mat-menu-item>
-          <span>Twitter</span>
+        <button mat-menu-item (click)="share()" title="Share listing to Twitter" class="bookmark-listing">
+          <span aria-hidden="false" aria-label="Share listing to Twitter">Twitter</span>
         </button>
-        <button mat-menu-item>
-          <span>Instagram</span>
+        <button mat-menu-item (click)="share()" title="Share listing to Instagram" class="bookmark-listing">
+          <span aria-hidden="false" aria-label="Share listing to Instagram">Instagram</span>
         </button>
       </mat-menu>
     </aside>
