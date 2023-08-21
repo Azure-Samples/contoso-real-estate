@@ -6,7 +6,7 @@ import { WindowService } from "../core/window/window.service";
 })
 export class ListingService {
   private windowService = inject(WindowService);
-  
+
   async getListings({ limit = 10, offset = 0 } = {}): Promise<Listing[]> {
     const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}`).then(response => {
       if (response.status === 200) {
@@ -39,16 +39,36 @@ export class ListingService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async share(listing: Listing) {
+  async share(platform: string, listing: Listing) {
     const rent = listing.fees.at(0);
     const currency = listing.fees.at(-1);
-    this.windowService
+    if(platform === "facebook"){
+      this.windowService
+        .nativeWindow()
+        .open(
+          `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(
+            4,
+          )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=#renting+#apartment`,
+        );
+    }
+    else if(platform === "twitter"){
+      this.windowService
       .nativeWindow()
       .open(
         `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(
           4,
         )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=#renting+#apartment`,
       );
+    }
+    else if(platform === "instagram"){
+      this.windowService
+      .nativeWindow()
+      .open(
+        `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(
+          4,
+        )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=#renting+#apartment`,
+      );
+    }
   }
 
   async reserve(reservationDetails: ReservationRequest): Promise<CheckoutSession> {

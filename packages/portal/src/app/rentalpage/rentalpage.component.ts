@@ -58,8 +58,8 @@ export class RentalpageComponent implements OnInit {
       .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
   }
 
-  async share() {
-    await this.listingService.share(this.listing());
+  async share(platform: string) {
+    await this.listingService.share(platform, this.listing());
   }
 
   async onRent(reservationDetails: ReservationRequest) {

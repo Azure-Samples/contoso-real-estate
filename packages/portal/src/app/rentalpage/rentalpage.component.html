@@ -48,13 +48,13 @@
         <span aria-hidden="false" aria-label="Share listing to social media" class="material-symbols-outlined"> share </span>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="share()" title="Share listing to Facebook" class="bookmark-listing">
+        <button mat-menu-item (click)="share('facebook')" title="Share listing to Facebook" class="bookmark-listing">
           <span aria-hidden="false" aria-label="Share listing to Facebook">Facebook</span>
         </button>
-        <button mat-menu-item (click)="share()" title="Share listing to Twitter" class="bookmark-listing">
+        <button mat-menu-item (click)="share('twitter')" title="Share listing to Twitter" class="bookmark-listing">
           <span aria-hidden="false" aria-label="Share listing to Twitter">Twitter</span>
         </button>
-        <button mat-menu-item (click)="share()" title="Share listing to Instagram" class="bookmark-listing">
+        <button mat-menu-item (click)="share('instagram')" title="Share listing to Instagram" class="bookmark-listing">
           <span aria-hidden="false" aria-label="Share listing to Instagram">Instagram</span>
         </button>
       </mat-menu>
