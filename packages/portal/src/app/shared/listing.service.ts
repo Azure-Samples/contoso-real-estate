@@ -48,7 +48,7 @@ export class ListingService {
         .open(
           `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(
             4,
-          )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=#renting+#apartment`,
+          )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=renting,apartment`,
         );
     }
     else if(platform === "twitter"){
@@ -57,7 +57,7 @@ export class ListingService {
       .open(
         `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(
           4,
-        )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=#renting+#apartment`,
+        )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=renting,apartment`,
       );
     }
     else if(platform === "instagram"){
@@ -66,7 +66,7 @@ export class ListingService {
       .open(
         `http://twitter.com/share?text=Checkout+this+cool+apartment+I+found+in+${listing.address.at(
           4,
-        )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=#renting+#apartment`,
+        )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&hashtags=renting,apartment`,
       );
     }
   }
