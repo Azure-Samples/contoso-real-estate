@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from "@angular/material/menu";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
 import { HasRoleDirective } from "../shared/has-role/has-role.directive";
