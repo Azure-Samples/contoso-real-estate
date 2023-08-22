@@ -91,7 +91,7 @@ export class BookingFormComponent implements OnInit {
     }
 
     const rentPriceWithDiscount = this.monthlyRentPrice() * (1 - (parseInt(this.listing?.fees?.[4], 10) || 0) / 100);
-    this.monthlyRentPrice.set(Number(this.listing?.fees?.[4]) || 0);
+    this.monthlyRentPrice.set(Number(this.listing?.fees?.[3]) || 0);
     this.monthlyRentPriceWithDiscount.set(Math.max(0, rentPriceWithDiscount));
     this.currency_code = this.listing?.fees?.[5].substring(0, 3);
     this.currency_symbol.set(this.listing?.fees?.[5].substring(4));
