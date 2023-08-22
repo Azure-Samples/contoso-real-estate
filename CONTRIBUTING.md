@@ -86,7 +86,7 @@ You can file new issues by selecting from our [new issue templates][github-issue
 
 ### Build the project from source
 
-If you are contributing bux fixes or new features to this project, you will need to clone the repository in your local machine and build the project from source, then run both unit tests and e2e tests before submitting your PR.
+If you are contributing bug fixes or new features to this project, you will need to clone the repository in your local machine and build the project from source, then run both unit tests and e2e tests before submitting your PR.
 
 Follow our instructions [here][dev-doc] to build the project from source.
 
