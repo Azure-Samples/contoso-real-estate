@@ -42,7 +42,7 @@ export class ListingService {
   async share(platform: string, listing: Listing) {
     const rent = listing.fees.at(0);
     const currency = listing.fees.at(-1);
-    if (platform === "facebook"){
+    if (platform && platform === "facebook"){
       this.windowService
         .nativeWindow()
         .open(
@@ -51,7 +51,7 @@ export class ListingService {
           )}+on+Contoso+Rental+at+${currency}${rent}/month` + `&u=`+ window.location.href,
         );
     }
-    else if (platform === "twitter"){
+    else if (platform && platform === "twitter"){
       this.windowService
       .nativeWindow()
       .open(
