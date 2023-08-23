@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Ops+One&display=swap');
+
+h1 {
+  // font-family: 'Black Ops One', cursive;
+  font-family: 'Bebas Neue', cursive;
+}
+
+._404-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+      font-size: 4.5em;
+      margin-top: .5em;
+    }
+
+    ._404-header {
+      font-size: 3em;
+      line-height: 1em;
+      padding: 2%;
+    }
+
+    ._404-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+          margin-right: 10%;
+          padding: 10px;
+        }
+    }
+}
+
+img {
+    max-width: 700px;
+}
+
+@media
+only screen and (max-width: 992px) {
+    ._404-container {
+        ._404-header {
+          font-size: 2em;
+        }
+    }
+}
+
+@media
+only screen and (max-width: 768px) {
+    ._404-container {
+        ._404-header {
+          font-size: 1.5em;
+        }
+    }
+}
+
+@media
+only screen and (max-width: 600px) {
+    ._404-container {
+        ._404-header {
+          font-size: 1em;
+        }
+    }
+}
