@@ -1,3 +1,8 @@
 {
-  "recommendations": ["ms-azuretools.azure-dev", "angular.ng-template", "42Crunch.vscode-openapi"]
+  "recommendations": [
+    "ms-azuretools.vscode-azurefunctions",
+    "ms-azuretools.azure-dev",
+    "angular.ng-template",
+    "42Crunch.vscode-openapi"
+  ]
 }
