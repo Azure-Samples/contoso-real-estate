@@ -8,6 +8,13 @@ import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.
 import { ListingService } from "../shared/listing.service";
 import { UserRole, UserService } from "../shared/user/user.service";
 
+// Could you please explain what is happening here?
+// We are importing the Listing type from the shared folder
+// We are importing the ListingService from the shared folder
+// We are importing the UserService from the shared folder
+
+
+
 @Component({
   selector: "app-rentalpage",
   templateUrl: "./rentalpage.component.html",
@@ -16,6 +23,11 @@ import { UserRole, UserService } from "../shared/user/user.service";
   imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective, FavoriteButtonComponent],
 })
 export class RentalpageComponent implements OnInit {
+  //Could you explain what this class does?
+  //This class is the rental page component. It is used to display the rental page for a specific listing. It is used to display the listing details, the booking form, and the favorite button. It also has a share button and a reviews section. It also has a user role directive that is used to display the favorite button only if the user is logged in. It also has a listing detail component that is used to display the listing details. It also has a booking form component that is used to display the booking form. It also has a favorite button component that is used to display the favorite button. It also has a has role directive that is used to display the favorite button only if the user is logged in. It also has a listing detail component that is used to display the listing details. It also has a booking form component that is used to display the booking form. It also has a favorite button component that is used to display the favorite button.
+
+  // Where are the listing details sourced from?
+  // The listing details are sourced from the listing service.
   userRole: typeof UserRole = UserRole;
   user: User;
   navigation: Navigation | null;
