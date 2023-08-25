@@ -42,7 +42,7 @@ export class BookingFormComponent implements OnInit {
 
   capacityMapping: { [k: string]: string } = { "=1": "One guest", other: "# guests" };
   monthsMapping: { [k: string]: string } = { "=0": "0 month", "=1": "1 month", other: "# months" };
-  
+
   isGuest = signal(false);
   monthlyRentPrice = signal(0);
   monthlyRentPriceWithDiscount = signal(0);
@@ -90,8 +90,8 @@ export class BookingFormComponent implements OnInit {
       return;
     }
 
-    const rentPriceWithDiscount = this.monthlyRentPrice() * (1 - (parseInt(this.listing?.fees?.[4], 10) || 0) / 100);
-    this.monthlyRentPrice.set(Number(this.listing?.fees?.[4]) || 0);
+    const rentPriceWithDiscount = (Number(this.listing?.fees?.[3]) || 0) * (1 - (parseInt(this.listing?.fees?.[4], 10) || 0) / 100);
+    this.monthlyRentPrice.set(Number(this.listing?.fees?.[3]) || 0);
     this.monthlyRentPriceWithDiscount.set(Math.max(0, rentPriceWithDiscount));
     this.currency_code = this.listing?.fees?.[5].substring(0, 3);
     this.currency_symbol.set(this.listing?.fees?.[5].substring(4));
