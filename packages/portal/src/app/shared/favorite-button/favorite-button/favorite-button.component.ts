@@ -21,51 +21,42 @@ export class FavoriteButtonComponent implements OnChanges {
   isOperationLoading = signal(false);
   user: User | null = null;
 
-  // private changes$ = new Subject<void>();
-  // private changesSubscription: Subscription;
+  private changes$ = new Subject<void>();
+  private changesSubscription: Subscription;
 
   private favoriteService = inject(FavoriteService);
   private userService = inject(UserService);
+
 
   constructor() {
     this.userService.user$.subscribe(user => {
       this.user = user;
     });
-  }
-  // constructor() {
-  //   this.userService.user$.subscribe(user => {
-  //     this.user = user;
-  //   });
 
-  //   this.changesSubscription = this.changes$
-  //     .pipe(
-  //       debounceTime(200),
-  //       switchMap(async () => {
-  //         if (this.listing && this.user) {
-  //           return this.favoriteService.getFavorite(this.listing, this.user);
-  //         }
-  //         return of(null);
-  //       })
-  //     )
-  //     .subscribe((result) => {
-  //       if (result !== null && this.listing) {
-  //         console.log(result);
-  //         this.listing.$$isFavorited = result;
-  //       }
-  //     });
-  // }
-
-  // ngOnChanges() {
-  //   this.changes$.next();
-  // }
-// ngOnDestroy() {
-//   this.changesSubscription.unsubscribe();
-// }
-async ngOnChanges() {
-  if (this.listing && this.user) {
-    this.listing.$$isFavorited = await this.favoriteService.getFavorite(this.listing, this.user);
+    this.changesSubscription = this.changes$
+      .pipe(
+        debounceTime(200),
+        switchMap(async () => {
+          if (this.listing && this.user) {
+            return this.favoriteService.getFavorite(this.listing, this.user);
+          }
+          return of(null);
+        })
+      )
+      .subscribe((result) => {
+        if (result !== null && this.listing) {
+          console.log(result);
+          this.listing.$$isFavorited = result;
+        }
+      });
   }
-}
+
+  ngOnChanges() {
+    this.changes$.next();
+  }
+  ngOnDestroy() {
+    this.changesSubscription.unsubscribe();
+  }
 
   async bookmark() {
     if (this.listing && this.user) {
