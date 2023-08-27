@@ -247,6 +247,9 @@ This project uses [Azure Developer CLI (`azd`)](https://aka.ms/azd) to provision
 # Login to azd. Only required once per install.
 azd auth login
 
+# Use Flag if login does not work
+azd auth login --use-device-code
+
 # Provision infrastructure and the azd development environment
 azd provision
 
