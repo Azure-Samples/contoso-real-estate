@@ -4,7 +4,7 @@
 
 This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer. This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer. 
 
-It will also instruct you how to deploy it to [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview), to publish it to the cloud, independenty, using the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/).
+It will also instruct you how to deploy it to [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview), to publish it to the cloud, independently, using the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/).
 
 ## Prerequisites
 
@@ -23,13 +23,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Steps to start the portal
 
 1. fork or clone the repository locally
-2. assumming you are in the folder containing `contoso-real-estate/packages/portal`, go to the terminal and run 
+2. assuming you are in the folder containing `contoso-real-estate/packages/portal`, go to the terminal and run 
 
 ```bash
 npm run clean:install
 ```
     
-at the root level of the respository. This will install all dependencies for all scenarios. 
+at the root level of the repository. This will install all dependencies for all scenarios. 
 
 This operation will also install the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/docs/intro). This tool includes a local dev server and emulator, to test the application and the corresponding API together, locally.
 
