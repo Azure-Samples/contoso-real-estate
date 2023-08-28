@@ -71,7 +71,7 @@ module cms '../core/host/container-app.bicep' = {
     env: [
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: 'secretref:appinsights-cs'
+        secretRef: 'appinsights-cs'
       }
       {
         name: 'DATABASE_HOST'
@@ -79,11 +79,11 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'DATABASE_USERNAME'
-        value: 'secretref:database-username'
+        secretRef: 'database-username'
       }
       {
         name: 'DATABASE_PASSWORD'
-        value: 'secretref:database-password'
+        secretRef: 'database-password'
       }
       {
         name: 'DATABASE_NAME'
@@ -91,19 +91,19 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'JWT_SECRET'
-        value: 'secretref:jwt-secret'
+        secretRef: 'jwt-secret'
       }
       {
         name: 'APP_KEYS'
-        value: 'secretref:app-keys'
+        secretRef: 'app-keys'
       }
       {
         name: 'API_TOKEN_SALT'
-        value: 'secretref:api-token-salt'
+        secretRef: 'api-token-salt'
       }
       {
         name: 'ADMIN_JWT_SECRET'
-        value: 'secretref:admin-jwt-secret'
+        secretRef: 'admin-jwt-secret'
       }
       {
         name: 'NODE_ENV'
@@ -115,7 +115,7 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'STORAGE_ACCOUNT_KEY'
-        value: 'secretref:storage-account-key'
+        secretRef: 'storage-account-key'
       }
       {
         name: 'STORAGE_CONTAINER_NAME'
