@@ -31,7 +31,7 @@ module app '../core/host/container-app.bicep' = {
     env: [
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: 'secretref:appinsights-cs'
+        secretRef: 'appinsights-cs'
       }
       {
         name: 'NEXT_PUBLIC_STRAPI_API_URL'
