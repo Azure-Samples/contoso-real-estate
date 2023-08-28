@@ -7,6 +7,7 @@ import { HasRoleDirective } from "../shared/has-role/has-role.directive";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/listing.service";
 import { UserRole, UserService } from "../shared/user/user.service";
+import { generateComments, generateCommentor, generateTime, randomLikeDislike } from "./comment-generator"
 
 // Could you please explain what is happening here?
 // We are importing the Listing type from the shared folder
@@ -35,6 +36,11 @@ export class RentalpageComponent implements OnInit {
 
   listing = signal<Listing>({} as Listing);
   reviewStars = signal<number[]>([]);
+  comments : string[] = [];
+  commentors : string[] = [];
+  commentTime : string[] = [];
+  likes : number[] = [];
+  dislikes : number[] = [];
   isLoading = signal(true);
 
   private router = inject(Router);
@@ -67,6 +73,16 @@ export class RentalpageComponent implements OnInit {
     this.reviewStars.set(Array(5)
       .fill(0)
       .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
+
+    //Generate random comments for the listing based on the number of reviews but only 10 comments should be displayed
+    for (let i = 0; i < this.listing().reviews_number; i++){
+      this.comments.push(generateComments(this.listing().reviews_stars));
+      this.commentors.push(generateCommentor());
+      this.commentTime.push(generateTime());
+      this.likes.push(randomLikeDislike());
+      this.dislikes.push(randomLikeDislike());
+    }
+
   }
 
   async share() {

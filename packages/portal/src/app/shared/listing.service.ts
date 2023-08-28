@@ -17,6 +17,8 @@ export class ListingService {
     return resource;
   }
 
+
+  //! This is called to get the featured listings in home page!!!!
   async getFeaturedListings({ limit = 10, offset = 0 } = {}): Promise<Listing[]> {
     // TODO: prevent loading the same listings multiple times when we hit the end of the list
     const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}&featured=true`).then(response => {
