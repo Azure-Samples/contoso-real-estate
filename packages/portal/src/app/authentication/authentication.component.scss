@@ -24,9 +24,20 @@ section {
     width: 100%;
     max-width: 400px;
 
-    button {
+    a {
       width: 100%;
       margin: 10px 0;
+
+      .content {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .text {
+          margin-left: 16px;
+        }
+      }
     }
   }
   img {
@@ -46,7 +57,7 @@ section {
 }
 
 .btn__twitter {
-  background-color: #1da1f2;
+  background-color: #183343dd;
   color: #fff;
 }
 

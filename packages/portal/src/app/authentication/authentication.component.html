@@ -6,7 +6,11 @@
     <nav>
 
       <a *ngFor="let provider of providers" mat-raised-button class="button btn__{{provider.id}}" [href]="loginWith(provider.id)">
-        Sign in with {{ provider.name }}
+        <div class="content">
+          <mat-icon svgIcon="{{provider.id}}" />
+
+          <span class="text">Sign in with {{ provider.name }}</span>
+        </div>
       </a>
 
     </nav>

@@ -1,6 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
+import { DomSanitizer } from "@angular/platform-browser";
+import { MatIconRegistry, MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -12,10 +14,16 @@ import { TextBlockComponent } from "../shared/text-block/text-block.component";
   selector: "app-authentication",
   templateUrl: "./authentication.component.html",
   styleUrls: ["./authentication.component.scss"],
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, TextBlockComponent],
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, TextBlockComponent, MatIconModule],
   standalone: true,
 })
 export class AuthenticationComponent implements OnInit {
+  public constructor(iconRegistry: MatIconRegistry, santizer: DomSanitizer) {
+    for (const provider of this.providers) {
+      iconRegistry.addSvgIcon(provider.id, santizer.bypassSecurityTrustResourceUrl(`../assets/company-logos/${provider.id}.svg`));
+    }
+  }
+
   redirectURL = "/home";
 
   providers = [
