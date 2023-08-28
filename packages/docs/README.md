@@ -9,7 +9,7 @@ This is the "developer guide" documentation package for the Contoso Real Estate 
 
  - **`website/`** | source for the _static website_ hosting a developer guide for self-guided exploration of documentation from _design_ to _deployment_ steps. See [website/README](website/README.md) for details.
  
- - **`training/`** | content for _interactive workshops_ to explore the sample in a hands-on, step-by-step manner ex: _Learn Live_ events. See [training/README](website/README.md).
+ - **`training/`** | content for _interactive workshops_ to explore the samples in a hands-on, step-by-step manner ex: _Learn Live_ events. See [training/README](website/README.md).
  
 
 ## 🚀 | Local Preview

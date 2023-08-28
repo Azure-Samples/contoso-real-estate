@@ -33,7 +33,7 @@ npm start
 
 To test Stripe integration, you need to create a Stripe account and get the API keys.
 
-Then, you need to add your `packages/api/.env` file in the following content:
+Then, you need to add in the following variables in your `packages/api/.env` file in the following content:
 
 ```bash
 STRIPE_PUBLIC_KEY=<YOUR_STRIPE_PUBLIC_KEY>
