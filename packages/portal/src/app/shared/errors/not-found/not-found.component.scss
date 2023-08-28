@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Ops+One&display=swap');
-
 h1 {
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Bungee Shade', cursive;
 }
+
 
 .container {
     display: flex;
@@ -43,10 +41,10 @@ h1 {
         flex-direction: column;
 
         h3 {
-          font-family: 'Black Ops One', cursive;
-          font-size: 3.5em;
+          font-family: 'Bungee Hairline', cursive;
+          font-size: 4.5em;
           font-weight: 700;
-          margin-top: .5em;
+          margin-bottom: .5em;
           color: #ff0000;
         }
 
