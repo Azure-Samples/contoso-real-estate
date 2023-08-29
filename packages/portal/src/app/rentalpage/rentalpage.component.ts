@@ -7,6 +7,14 @@ import { HasRoleDirective } from "../shared/has-role/has-role.directive";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/listing.service";
 import { UserRole, UserService } from "../shared/user/user.service";
+import { generateComments, generateCommentor, generateTime, randomLikeDislike } from "./comment-generator"
+
+// Could you please explain what is happening here?
+// We are importing the Listing type from the shared folder
+// We are importing the ListingService from the shared folder
+// We are importing the UserService from the shared folder
+
+
 
 @Component({
   selector: "app-rentalpage",
@@ -16,6 +24,11 @@ import { UserRole, UserService } from "../shared/user/user.service";
   imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective, FavoriteButtonComponent],
 })
 export class RentalpageComponent implements OnInit {
+  //Could you explain what this class does?
+  //This class is the rental page component. It is used to display the rental page for a specific listing. It is used to display the listing details, the booking form, and the favorite button. It also has a share button and a reviews section. It also has a user role directive that is used to display the favorite button only if the user is logged in. It also has a listing detail component that is used to display the listing details. It also has a booking form component that is used to display the booking form. It also has a favorite button component that is used to display the favorite button. It also has a has role directive that is used to display the favorite button only if the user is logged in. It also has a listing detail component that is used to display the listing details. It also has a booking form component that is used to display the booking form. It also has a favorite button component that is used to display the favorite button.
+
+  // Where are the listing details sourced from?
+  // The listing details are sourced from the listing service.
   userRole: typeof UserRole = UserRole;
   user: User;
   navigation: Navigation | null;
@@ -23,6 +36,11 @@ export class RentalpageComponent implements OnInit {
 
   listing = signal<Listing>({} as Listing);
   reviewStars = signal<number[]>([]);
+  comments : string[] = [];
+  commentors : string[] = [];
+  commentTime : string[] = [];
+  likes : number[] = [];
+  dislikes : number[] = [];
   isLoading = signal(true);
 
   private router = inject(Router);
@@ -55,6 +73,16 @@ export class RentalpageComponent implements OnInit {
     this.reviewStars.set(Array(5)
       .fill(0)
       .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
+
+    //Generate random comments for the listing based on the number of reviews but only 10 comments should be displayed
+    for (let i = 0; i < this.listing().reviews_number; i++){
+      this.comments.push(generateComments(this.listing().reviews_stars));
+      this.commentors.push(generateCommentor());
+      this.commentTime.push(generateTime());
+      this.likes.push(randomLikeDislike());
+      this.dislikes.push(randomLikeDislike());
+    }
+
   }
 
   async share() {

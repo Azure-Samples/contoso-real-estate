@@ -96,6 +96,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 0;
+    border: solid 1px #ccc;
+    border-radius: 13px 13px 0 0;
+    padding: 10px;
 
     main {
       display: flex;
@@ -131,6 +134,12 @@
     justify-content: left;
     padding: 10px 0;
 
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
     h1 {
       font-size: 2rem;
       font-weight: 600;
@@ -142,12 +151,128 @@
     }
   }
 
+
   .listing-amenities {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: left;
     padding: 10px 0;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: left;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        align-items: flex-end;
+        margin-right: 4px;
+        padding: 2px 6px;
+        color: #999;
+
+        span {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .listing-comments {
+    display: flex;
+    margin-top: 0.5px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    padding: 10px 0;
+    border: solid 1px #ccc;
+    border-radius: 0 0 13px 13px;
+    min-height: fit-content;
+    max-height: 400px;
+    overflow-y: scroll;
+
+    .listing-comments__comment {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: left;
+      padding: 10px 0;
+      border-bottom: solid 1px #ccc;
+      width: 730px;
+      min-height: 100px;
+      max-height: fit-content;
+
+      .listing-comments__comment__header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        color: #999;
+        width: 100%;
+
+        .listing-comments__comment__header__user {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: left;
+          margin: 2px;
+        }
+
+
+        .listing-comments__comment__header__date {
+          margin: 2px;
+        }
+      }
+
+      .listing-comments__comment__body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+
+        .listing-comments__comment__body__text {
+          color: #999;
+          margin: 2px;
+        }
+      }
+
+      .listing-comments__comment__footer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: default;
+        color: #999;
+        width: 100%;
+        .listing-comments__comment__footer__upvotes{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: left;
+          margin: 4px;
+        }
+        .listing-comments__comment__footer__downvotes{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: left;
+          margin: 4px;
+        }
+      }
+    }
 
     h2 {
       font-size: 1.5rem;
