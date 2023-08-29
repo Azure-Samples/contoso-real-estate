@@ -79,8 +79,10 @@ export class RentalpageComponent implements OnInit {
       this.comments.push(generateComments(this.listing().reviews_stars));
       this.commentors.push(generateCommentor());
       this.commentTime.push(generateTime());
-      this.likes.push(randomLikeDislike());
-      this.dislikes.push(randomLikeDislike());
+
+      //these magic numbers are sample max number of likes and dislikes - just for realism
+      this.likes.push(randomLikeDislike(100));
+      this.dislikes.push(randomLikeDislike(40));
     }
 
   }

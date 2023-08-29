@@ -3,7 +3,9 @@
 const positive = [
   'Great place to stay!',
   'I would recommend this place to anyone!',
-  'I had a great time here!',
+  'I had a great time here!😜',
+  'I had a great time here!!!',
+  'Awesome sunset view; golden!🌄',
   'I would stay here again!',
   'Nice place!',
   'Great location!',
@@ -13,6 +15,7 @@ const negative = [
   'Shower doesnt work🙄',
   'I had a terrible time here!',
   'loudest neighbors ever!',
+   'All taps are leaking. Please fix this!🥲',
   'I am fifty-fifty on this place🙂',
   'At your own risk my guy🥺'
 ]
@@ -59,7 +62,6 @@ export function generateComments(starRating: number): string {
     const comment = negative[Math.floor(Math.random() * (negative.length - 1))]
     return comment;
   }
-
 }
 
 
@@ -73,10 +75,15 @@ export function generateTime(): string{
   return randomTime;
 }
 
-export function randomLikeDislike(): number{
+export function randomLikeDislike(max: number): number{
   {
-    const exampleNumOfComments = 100;
-    const random = Math.floor(Math.random() * exampleNumOfComments);
+    const random = Math.floor(Math.random() * max);
     return random;
   }
 }
+
+//can I use playright instead of this?
+//
+//   } catch (e) {
+//     console.error(e);
+//   }
