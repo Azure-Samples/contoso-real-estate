@@ -34,7 +34,6 @@ declare interface Listing {
   bathrooms: number;
   bedrooms: number;
   description: string;
-  comments: string[];
   type: string;
   isFeatured: boolean;
   isRecommended: boolean;
@@ -57,7 +56,6 @@ declare interface ListingAttributes {
   bathrooms: number;
   bedrooms: number;
   description: string;
-  comments: string[];
   type: string;
   isFeatured: boolean;
   isRecommended: boolean;
