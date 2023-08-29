@@ -19,6 +19,10 @@ You can navigate through the documentation using the table of contents below:
     - [DevOps](#devops)
     - [Developer tools](#developer-tools)
   - [Development environment](#development-environment)
+  - [Developer Guide (Website)](#developer-guide-website)
+    - [1 | Preview Website](#1--preview-website)
+    - [2 | Deploy Website](#2--deploy-website)
+    - [3 | Test Website](#3--test-website)
   - [Usage costs](#usage-costs)
   - [Project structure](#project-structure)
   - [Deploy to Azure](#deploy-to-azure)
@@ -253,6 +257,9 @@ azd provision
 # Package the app using the environment variables in .azure/env + deploy the code on Azure
 azd deploy
 ```
+
+>The `--use-device-code` flag is used log in by using a device code instead of a browser. Which may resolve any browser issues when attempting to login.
+>For more information on when & why to use flags , please check [here](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/reference#azd-auth-login)
 
 > If you encounter issues with the Azure Developer CLI, please open an issue [here](https://github.com/Azure/azure-dev/issues/new/choose).
 
