@@ -2,10 +2,10 @@
   <section class="listing-photos">
     <main>
       <div
-      [ngClass]="{ 'loading-background': isLoading() }"
-      [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[0] + ')' }"
-      alt="Main listing photo"
-    ></div>
+        [ngClass]="{ 'loading-background': isLoading() }"
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[0] + ')' }"
+        alt="Main listing photo"
+      ></div>
     </main>
     <aside>
       <div
@@ -30,8 +30,7 @@
 
 
 
-
-  <section class="listing-details" [ngClass]="{ 'loading-background': isLoading() }">
+  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading() }"></section>
     <h1>{{ listing().title }}</h1>
     <p>
       {{ listing().address[0] }}, {{ listing().address[1] }}, {{ listing().address[2] }},
