@@ -19,4 +19,4 @@ export async function pgQuery(transaction: string, args?: any[]) {
   } finally {
     await client?.end();
   }
-};
+}

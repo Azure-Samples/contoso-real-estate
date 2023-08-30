@@ -24,7 +24,7 @@ export class AuthenticationComponent implements OnInit {
     { name: "Google", id: "google" },
     { name: "Twitter", id: "twitter" },
     { name: "GitHub", id: "github" },
-    { name: "Apple", id: "apple" }
+    { name: "Apple", id: "apple" },
   ];
 
   private router = inject(Router);

@@ -2,7 +2,11 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { getConfig, initializeDatabaseConfiguration } from "../config";
 import { getListingById } from "../models/listing";
 import { Listing } from "../models/listing.schema";
-import { findReservationsByListingIdAndDateRange, saveReservation, updateReservationStatus } from "../models/reservation";
+import {
+  findReservationsByListingIdAndDateRange,
+  saveReservation,
+  updateReservationStatus,
+} from "../models/reservation";
 import { ReservationRequest } from "../models/reservation-request";
 
 const postCheckout: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
@@ -58,7 +62,9 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   }
 
   if (!reservation.from || from.getTime() < now.getTime()) {
-    context.log.error(`Invalid reservation start date: ${reservation.from} (resolved: ${from.toISOString()}, now: ${now.toISOString()}`);
+    context.log.error(
+      `Invalid reservation start date: ${reservation.from} (resolved: ${from.toISOString()}, now: ${now.toISOString()}`,
+    );
     context.res = {
       status: 400,
       body: {
@@ -69,7 +75,9 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
   }
 
   if (!reservation.to || to.getTime() <= from.getTime()) {
-    context.log.error(`Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`);
+    context.log.error(
+      `Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`,
+    );
     context.res = {
       status: 400,
       body: {
@@ -81,7 +89,11 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
 
   const overlaps = await findReservationsByListingIdAndDateRange(listing.id, from.toISOString(), to.toISOString());
   if (overlaps.length > 0) {
-    context.log.error(`Reservation overlaps with existing reservation(s): ${overlaps.map((o) => o.id).join(", ")} (from: ${from.toISOString()}, to: ${to.toISOString()})`);
+    context.log.error(
+      `Reservation overlaps with existing reservation(s): ${overlaps
+        .map(o => o.id)
+        .join(", ")} (from: ${from.toISOString()}, to: ${to.toISOString()})`,
+    );
     context.res = {
       status: 400,
       body: {
@@ -126,10 +138,10 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
         createdAt: now.toISOString(),
       };
 
-      const response = await fetch(config.stripeServiceUrl + '/stripe/checkout', {
-        method: 'POST',
+      const response = await fetch(config.stripeServiceUrl + "/stripe/checkout", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(checkout),
       });
@@ -137,19 +149,17 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
         const error = await response.text();
         throw new Error(error);
       }
-      const { sessionUrl } = await response.json() as any;
-      
+      const { sessionUrl } = (await response.json()) as any;
+
       context.res = {
         body: { sessionUrl },
       };
-
     } catch (error: unknown) {
       const err = error as Error;
       context.log.error(`Error creating stripe checkout session: ${err.message}`);
       await updateReservationStatus(reservationRecord.id, "cancelled");
       throw error;
     }
-
   } catch (error: unknown) {
     const err = error as Error;
     context.log.error(`Error creating checkout session: ${err.message}`);

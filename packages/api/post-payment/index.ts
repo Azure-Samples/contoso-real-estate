@@ -9,7 +9,15 @@ const postPayment: AzureFunction = async function (context: Context, req: HttpRe
 
   const payment = req.body;
 
-  if (!payment.userId || payment.userId === 'undefined' || !payment.reservationId || !payment.provider || !payment.status || payment.amount === undefined || !payment.currency) {
+  if (
+    !payment.userId ||
+    payment.userId === "undefined" ||
+    !payment.reservationId ||
+    !payment.provider ||
+    !payment.status ||
+    payment.amount === undefined ||
+    !payment.currency
+  ) {
     context.res = {
       status: 400,
       body: {
@@ -31,7 +39,7 @@ const postPayment: AzureFunction = async function (context: Context, req: HttpRe
       };
       return;
     }
-  
+
     const reservationRecord = await updateReservationStatus(payment.reservationId, "active");
     if (!reservationRecord) {
       context.log.error(`Error payment received for unknown reservation id: ${payment.reservationId}`);
@@ -43,13 +51,13 @@ const postPayment: AzureFunction = async function (context: Context, req: HttpRe
       };
       return;
     }
-  
+
     const paymentRecord = await savePayment(payment);
-  
+
     context.res = {
-      body: paymentRecord
+      body: paymentRecord,
     };
-  } catch(error: unknown) {
+  } catch (error: unknown) {
     const err = error as Error;
     context.log.error(`Error creating payment: ${err.message}`);
     context.res = {

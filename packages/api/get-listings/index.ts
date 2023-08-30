@@ -2,11 +2,10 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { pgQuery } from "../config/pgclient";
 
 const getListings: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-
   try {
     const offset = Number(req.query.offset) || 0;
     const limit = Number(req.query.limit) || 10;
-    const featured = Boolean(req.query.featured) === true ? '1' : '0';
+    const featured = Boolean(req.query.featured) === true ? "1" : "0";
 
     if (offset < 0) {
       context.res = {
@@ -34,7 +33,11 @@ const getListings: AzureFunction = async function (context: Context, req: HttpRe
       return;
     }
 
-    const result = await pgQuery(`SELECT * FROM listings WHERE is_featured = $3 LIMIT $1 OFFSET $2`, [limit, offset, featured]);
+    const result = await pgQuery(`SELECT * FROM listings WHERE is_featured = $3 LIMIT $1 OFFSET $2`, [
+      limit,
+      offset,
+      featured,
+    ]);
 
     const listing = result.rows.map((row: any) => {
       row.fees = row.fees.split("|");
@@ -54,6 +57,6 @@ const getListings: AzureFunction = async function (context: Context, req: HttpRe
       body: "An error occurred while processing the request",
     };
   }
-}
+};
 
 export default getListings;

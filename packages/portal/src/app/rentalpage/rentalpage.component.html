@@ -28,9 +28,7 @@
     </aside>
   </section>
 
-
-
-  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading() }">
+  <section class="listing-details" [ngClass]="{ 'loading-background': isLoading() }">
     <h1>{{ listing().title }}</h1>
     <p>
       {{ listing().address[0] }}, {{ listing().address[1] }}, {{ listing().address[2] }},
@@ -68,13 +66,15 @@
     <main>
       <div>{{ listing().reviews_number | i18nPlural : reviewsMapping }}</div>
       <div>
-        <span *ngFor="let star of reviewStars()" class="material-symbols-outlined listing-review__stars"
-          [ngClass]="{ fill: star === 1 }">
+        <span
+          *ngFor="let star of reviewStars()"
+          class="material-symbols-outlined listing-review__stars"
+          [ngClass]="{ fill: star === 1 }"
+        >
           star
         </span>
       </div>
     </main>
-
   </section>
   <section class="listing-comments" [ngClass]="{ 'loading-background': isLoading() }">
     <!-- create a dynamic number of divs according to the length of comments in Listing-->
@@ -82,32 +82,31 @@
       <div class="listing-comments__comment">
         <div class="listing-comments__comment__header">
           <div class="listing-comments__comment__header__user">
-            <span class ="material-symbols-outlined">account_circle</span>
+            <span class="material-symbols-outlined">account_circle</span>
             <!-- {{ comment.user }} -->
-            <span>{{commentors[i] }}</span>
+            <span>{{ commentors[i] }}</span>
           </div>
           <div class="listing-comments__comment__header__date">
             <!-- <span>{{ comment.date }}</span> -->
-            <span>{{commentTime[i]}}</span>
+            <span>{{ commentTime[i] }}</span>
           </div>
         </div>
         <div class="listing-comments__comment__body">
-
-          <span>{{comment}}</span>
+          <span>{{ comment }}</span>
         </div>
 
         <div class="listing-comments__comment__footer">
           <div class="listing-comments__comment__footer__upvotes">
             <span class="material-symbols-outlined">thumb_up</span>
             <!-- {{ comment.upvotes }} -->
-            <span>{{likes[i]}}</span>
+            <span>{{ likes[i] }}</span>
           </div>
           <div class="listing-comments__comment__footer__downvotes">
             <span class="material-symbols-outlined">thumb_down</span>
             <!-- {{ comment.downvotes }} -->
-            <span>{{dislikes[i]}}</span>
+            <span>{{ dislikes[i] }}</span>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   </section>

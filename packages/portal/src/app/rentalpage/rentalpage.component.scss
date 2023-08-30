@@ -9,13 +9,13 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
 
-    .listing-container{
+    .listing-container {
       width: 750px;
 
       .listing-photos {
-         align-items: flex-start;
-         aspect-ratio: auto;
-         overflow: visible;
+        align-items: flex-start;
+        aspect-ratio: auto;
+        overflow: visible;
       }
     }
   }
@@ -118,7 +118,6 @@
     }
 
     aside {
-
       button {
         background-color: transparent;
         border: none;
@@ -150,7 +149,6 @@
       color: #999;
     }
   }
-
 
   .listing-amenities {
     display: flex;
@@ -233,7 +231,6 @@
           margin: 2px;
         }
 
-
         .listing-comments__comment__header__date {
           margin: 2px;
         }
@@ -251,21 +248,21 @@
         }
       }
 
-      .listing-comments__comment__footer{
+      .listing-comments__comment__footer {
         display: flex;
         flex-direction: row;
         align-items: center;
         cursor: default;
         color: #999;
         width: 100%;
-        .listing-comments__comment__footer__upvotes{
+        .listing-comments__comment__footer__upvotes {
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: left;
           margin: 4px;
         }
-        .listing-comments__comment__footer__downvotes{
+        .listing-comments__comment__footer__downvotes {
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -308,4 +305,3 @@
     }
   }
 }
-

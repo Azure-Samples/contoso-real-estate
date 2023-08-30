@@ -1,25 +1,24 @@
 <section class="search-page inner-wrapper">
   <div class="container">
     <form class="searchform" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline">
-          <mat-label>Search for a rental</mat-label>
-          <input matInput formControlName="term" placeholder="Search a Rental">
-          <mat-hint>Search a rental property by any keyword</mat-hint>
-          </mat-form-field>
-          <button mat-flat-button color="primary">Search
-          </button>
+      <mat-form-field appearance="outline">
+        <mat-label>Search for a rental</mat-label>
+        <input matInput formControlName="term" placeholder="Search a Rental" />
+        <mat-hint>Search a rental property by any keyword</mat-hint>
+      </mat-form-field>
+      <button mat-flat-button color="primary">Search</button>
     </form>
-    </div>
-    <div class="search-results">
-      <section class="featured-listings inner-wrapper">
-        <app-card-list [listings]="listings()"></app-card-list>
-        <div class="featured-listings__loading"></div>
-        <div *ngIf="seatrchTermInvalid()" class="notification error">
-          <p>{{ searchTermInvalidMessage }}</p>
-        </div>
-        <div *ngIf="noresults" class="notification info">
-          <p>{{ noresultsMessage }}</p>
-        </div>
-      </section>
-    </div>
+  </div>
+  <div class="search-results">
+    <section class="featured-listings inner-wrapper">
+      <app-card-list [listings]="listings()"></app-card-list>
+      <div class="featured-listings__loading"></div>
+      <div *ngIf="seatrchTermInvalid()" class="notification error">
+        <p>{{ searchTermInvalidMessage }}</p>
+      </div>
+      <div *ngIf="noresults" class="notification info">
+        <p>{{ noresultsMessage }}</p>
+      </div>
+    </section>
+  </div>
 </section>

@@ -54,6 +54,7 @@ The following VSCode extensions were used in this scenario:
 - [Playwright](https://marketplace.visualstudio.com/items?itemName=microsoft.vscode-playwright)
 
 ## Command Line Tools
+
 If you're working locally, outside of Codespaces and in order to run the commands in this scenario, we recommend the following command line tools installed:
 
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)

@@ -7,7 +7,7 @@ import { HasRoleDirective } from "../shared/has-role/has-role.directive";
 import { ListingDetailComponent } from "../shared/listing-detail/listing-detail.component";
 import { ListingService } from "../shared/listing.service";
 import { UserRole, UserService } from "../shared/user/user.service";
-import { generateComments, generateCommentor, generateTime, randomLikeDislike } from "./comment-generator"
+import { generateComments, generateCommentor, generateTime, randomLikeDislike } from "./comment-generator";
 
 @Component({
   selector: "app-rentalpage",
@@ -24,11 +24,11 @@ export class RentalpageComponent implements OnInit {
 
   listing = signal<Listing>({} as Listing);
   reviewStars = signal<number[]>([]);
-  comments : string[] = [];
-  commentors : string[] = [];
-  commentTime : string[] = [];
-  likes : number[] = [];
-  dislikes : number[] = [];
+  comments: string[] = [];
+  commentors: string[] = [];
+  commentTime: string[] = [];
+  likes: number[] = [];
+  dislikes: number[] = [];
   isLoading = signal(true);
 
   private router = inject(Router);
@@ -58,12 +58,14 @@ export class RentalpageComponent implements OnInit {
       this.router.navigate(["/404"]);
     }
 
-    this.reviewStars.set(Array(5)
-      .fill(0)
-      .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
+    this.reviewStars.set(
+      Array(5)
+        .fill(0)
+        .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)),
+    );
 
     //Generate random comments for the listing based on the number of reviews but only 10 comments should be displayed
-    for (let i = 0; i < this.listing().reviews_number; i++){
+    for (let i = 0; i < this.listing().reviews_number; i++) {
       this.comments.push(generateComments(this.listing().reviews_stars));
       this.commentors.push(generateCommentor());
       this.commentTime.push(generateTime());
@@ -72,7 +74,6 @@ export class RentalpageComponent implements OnInit {
       this.likes.push(randomLikeDislike(100));
       this.dislikes.push(randomLikeDislike(40));
     }
-
   }
 
   async share() {
@@ -83,12 +84,12 @@ export class RentalpageComponent implements OnInit {
     try {
       const checkoutSession = await this.listingService.reserve(reservationDetails);
       const sessionURL = new URL(checkoutSession.sessionUrl);
-      if (sessionURL.hostname === 'localhost' && window.location.hostname !== 'localhost') {
+      if (sessionURL.hostname === "localhost" && window.location.hostname !== "localhost") {
         // Fix for local testing on Codespaces
         sessionURL.hostname = window.location.hostname;
-        sessionURL.port = '';
+        sessionURL.port = "";
       }
-      console.info('Redirecting to ' + sessionURL);
+      console.info("Redirecting to " + sessionURL);
       window.location.href = sessionURL.toString();
     } catch (error: unknown) {
       if (error instanceof Error) {

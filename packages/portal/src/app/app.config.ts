@@ -7,11 +7,5 @@ import { provideApollo } from "./core/apollo/provide-apollo";
 import { provideUser } from "./core/user/provide-user";
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideApollo(),
-    provideRouter(ROUTES),
-    provideHttpClient(),
-    provideAnimations(),
-    provideUser(),
-  ],
+  providers: [provideApollo(), provideRouter(ROUTES), provideHttpClient(), provideAnimations(), provideUser()],
 };

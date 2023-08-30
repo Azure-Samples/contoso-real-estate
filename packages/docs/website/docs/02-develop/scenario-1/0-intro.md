@@ -8,7 +8,7 @@ description: Kickoff implementation with Scenario 1 - Headless CMS and Blog App
 
 ![Scenario Architecture Diagram](./../../../static/docs/png/contoso-architecture.png)
 
-This is the most important scenario of the application, providing data authoring and storing capabilities for both vertical micro-frontend applications, that compose it. We enable this capabilities, via the implementation of a Headless CMS, powered by Strapi. 
+This is the most important scenario of the application, providing data authoring and storing capabilities for both vertical micro-frontend applications, that compose it. We enable this capabilities, via the implementation of a Headless CMS, powered by Strapi.
 
 There are two components that make up the architecture of this solution:
 
@@ -25,7 +25,6 @@ Both of these applications are hosted in [Azure Container Apps](https://learn.mi
 The Headless CMS is a Strapi application that is hosted in Azure Container Apps and uses Azure Data for PostgreSQL as its database.
 
 To store the media assets, Azure Blob Storage is used, via the [Strapi Azure Storage plugin](https://github.com/jakeFeldman/strapi-provider-upload-azure-storage).
-
 
 ### 2.2 Frontend Application
 

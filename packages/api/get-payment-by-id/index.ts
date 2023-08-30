@@ -5,7 +5,7 @@ import { findPaymentById } from "../models/payment";
 const getPaymentById: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();
 
-  const id = req.params.id ?? '';
+  const id = req.params.id ?? "";
   const model = await findPaymentById(id);
 
   if (model) {

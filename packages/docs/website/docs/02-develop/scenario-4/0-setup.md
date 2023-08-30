@@ -19,7 +19,7 @@ In order to start the development server for local development or locally browsi
 
 This scenario depends on the following scenarios:
 
-- Scenario 1:  [Building a frontend application with Static Web Apps, Azure Functions and Cosmos DB](../scenario-1/0-intro.md)
+- Scenario 1: [Building a frontend application with Static Web Apps, Azure Functions and Cosmos DB](../scenario-1/0-intro.md)
 - Scenario 3: [Building and deploying a micro-frontend blog app capability for the portal served by a headless CMS deployed to Azure Container Apps](../scenario-3/0-intro.md)
 - Scenario 4: [Implementing federated user authentication with a standard provider, client-side](../scenario-5/0-intro.md)
 
@@ -35,6 +35,5 @@ In order to complete the setup for this scenario, you will need to complete the 
 - [ ] Start the development server for the API project
 
 Once you have the setup completed, you can start working on the scenario, that will allow authenticated users to complete the booking process, with [Stripe](https://stripe.com/).
-
 
 Happy coding! 🚀

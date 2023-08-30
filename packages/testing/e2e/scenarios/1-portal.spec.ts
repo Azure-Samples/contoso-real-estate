@@ -9,11 +9,9 @@ import { TOSPage } from "../models/tos-page";
  * See: https://playwright.dev/docs/api/class-testoptions
  */
 test.use({
-
-// screenshot:'on', // 'only-on-failure',
-// video: 'on', //'retain-on-failure',
-// trace: 'on' // 'retain-on-failure',
-
+  // screenshot:'on', // 'only-on-failure',
+  // video: 'on', //'retain-on-failure',
+  // trace: 'on' // 'retain-on-failure',
 });
 
 /**
@@ -77,7 +75,7 @@ test.describe("As a guest, I visit the Contoso HR Home page", () => {
     await homePage.firstCardHasTitle("Practical loft downtown");
     await homePage.firstCardHasSubtitle("Hanvegib, MN");
     await homePage.firstCardHasDescription(
-      "Beautiful home in a great neighborhood. This home has a large yard and is close to downtown...."
+      "Beautiful home in a great neighborhood. This home has a large yard and is close to downtown....",
     );
     await homePage.firstCardHasPricing("£1,239.04/month");
     await homePage.firstCardHasAmenities("4 bedrooms, 2 bathrooms");
@@ -122,9 +120,7 @@ test.describe("As guest, I can view Featured Listing details in card", () => {
     await new HomePage(page).firstCardHasImage();
   });
   test("the image should have alt text", async ({ page }) => {
-    await new HomePage(page).firstCardImageHasAltText(
-      "Practical loft downtown"
-    );
+    await new HomePage(page).firstCardImageHasAltText("Practical loft downtown");
   });
   test("it should have a title", async ({ page }) => {
     await new HomePage(page).firstCardHasTitle("Practical loft downtown");
@@ -134,7 +130,7 @@ test.describe("As guest, I can view Featured Listing details in card", () => {
   });
   test("it should have a description", async ({ page }) => {
     await new HomePage(page).firstCardHasDescription(
-      "Beautiful home in a great neighborhood. This home has a large yard and is close to downtown...."
+      "Beautiful home in a great neighborhood. This home has a large yard and is close to downtown....",
     );
   });
   test("it should have pricing", async ({ page }) => {

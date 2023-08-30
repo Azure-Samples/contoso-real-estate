@@ -17,10 +17,7 @@ export class HasRoleDirective {
 
   private authService = inject(AuthService);
 
-  constructor(
-    private templateRef: TemplateRef<unknown>,
-    private viewContainerRef: ViewContainerRef
-  ) {}
+  constructor(private templateRef: TemplateRef<unknown>, private viewContainerRef: ViewContainerRef) {}
 
   hide() {
     this.viewContainerRef.clear();

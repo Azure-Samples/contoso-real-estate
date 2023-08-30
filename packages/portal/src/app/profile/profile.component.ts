@@ -85,7 +85,7 @@ export class ProfileComponent implements OnInit {
     if (!listing) {
       return;
     }
-    this.router.navigate([`/listing/${listing.id}/${listing.slug}`], { state: { listing } } );
+    this.router.navigate([`/listing/${listing.id}/${listing.slug}`], { state: { listing } });
   }
 
   trackByReservationId(_index: number, reservation: Reservation) {

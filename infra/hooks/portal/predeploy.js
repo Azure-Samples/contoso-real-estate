@@ -24,14 +24,12 @@ function replaceEnvURIs(filePath) {
     const blogValue = matchBlog[1];
     const cmsValue = matchCms[1];
     const fileContents = readFileSync(filePath, "utf-8");
-    const newFileContent = fileContents.replace(blogPlaceholderValue, blogValue)
-                                        .replace(cmsPlaceholderValue, cmsValue);
+    const newFileContent = fileContents.replace(blogPlaceholderValue, blogValue).replace(cmsPlaceholderValue, cmsValue);
 
     writeFileSync(filePath, newFileContent);
 
     process.exit(0);
-  }
-  else {
+  } else {
     if (!matchBlog) {
       console.log(`No match found for ${blogPlaceholderValue}. Skipping replacement.`);
       process.exit(1);

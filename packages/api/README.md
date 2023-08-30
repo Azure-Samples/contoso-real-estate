@@ -2,7 +2,6 @@
 
 **IMPORTANT: THIS REPOSITORY IS OPTIMIZED FOR CODESPACES AND TO WORK AS A SET OF COMPOSABLE APPS AND APIS. STANDALONE PACKAGE FUNCTIONALITY IS LIMITED AND MAY REQUIRE ADDITIONAL CONFIGURATION OR DEVELOPMENT**
 
-
 This package deploys an Azure Functions API that is used by the Contoso Real Estate App, with multiple endpoints, and serving multiple applications, that are part of the scenarios.
 
 ## Pre-requisites
@@ -23,6 +22,7 @@ If you want to run the API independently and locally, the following technologies
 ```bash
 cd packages/api && npm install
 ```
+
 Now you have all the dependencies installed for the API and can run
 
 ```bash

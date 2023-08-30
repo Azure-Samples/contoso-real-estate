@@ -36,13 +36,13 @@ However, in the local development environment, the Static Web Apps in-built auth
 
 The Static Web Apps in-built authentication mechanism is enabled for the application. The following identity providers are available by default:
 
-| Identity Provider | Sign-in endpoint | How-To guidance |
-| --- | --- | --- |
-| Microsoft Identity Platform | `/.auth/login/aad` | [App Service Microsoft Identity Platform login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-microsoft-identity-platform-login) |
-| Facebook | `/.auth/login/facebook` | [App Service Facebook login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-facebook-login) |
-| Google | `/.auth/login/google` | [App Service Google login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-google-login) |
-| Twitter | `/.auth/login/twitter` | [App Service Twitter login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-twitter-login) |
-| GitHub | `/.auth/login/github` | [App Service GitHub login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-github-login) |
-| Sign in with Apple | `/.auth/login/apple` | [App Service Sign in With Apple login (Preview)](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-sign-in-with-apple-login-preview) |
+| Identity Provider           | Sign-in endpoint        | How-To guidance                                                                                                                                                              |
+| --------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Microsoft Identity Platform | `/.auth/login/aad`      | [App Service Microsoft Identity Platform login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-microsoft-identity-platform-login) |
+| Facebook                    | `/.auth/login/facebook` | [App Service Facebook login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-facebook-login)                                       |
+| Google                      | `/.auth/login/google`   | [App Service Google login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-google-login)                                           |
+| Twitter                     | `/.auth/login/twitter`  | [App Service Twitter login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-twitter-login)                                         |
+| GitHub                      | `/.auth/login/github`   | [App Service GitHub login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-github-login)                                           |
+| Sign in with Apple          | `/.auth/login/apple`    | [App Service Sign in With Apple login (Preview)](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-sign-in-with-apple-login-preview) |
 
 In addition to the default identity providers, any OpenID Connect provider can be used. Read more about [App Service OpenID Connect login](https://learn.microsoft.com/azure/static-web-apps/authentication-custom?tabs=aad%2Cinvitations).
