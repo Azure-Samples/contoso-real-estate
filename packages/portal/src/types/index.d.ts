@@ -24,8 +24,6 @@ declare type UserRole = "guest" | "renter" | "admin";
 
 declare interface Listing {
   // we will add attributes so we don't have to write a new component for search
-
-
   attributes?: ListingAttributes;
   id: string;
   title: string;
@@ -130,7 +128,7 @@ declare interface CheckoutSession {
   sessionUrl: string;
 }
 
-declare type CheckoutResult = 'error' | 'success' | 'cancel';
+declare type CheckoutResult = 'error' | 'success' | 'cancel'; 
 
 declare interface SearchResult {
   listings: CleanResults;

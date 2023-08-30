@@ -1,19 +1,28 @@
 <section class="listing-container">
   <section class="listing-photos">
     <main>
-      <div [ngClass]="{ 'loading-background': isLoading() }"
-        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[0] + ')' }" alt="Main listing photo">
-      </div>
+      <div
+      [ngClass]="{ 'loading-background': isLoading() }"
+      [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[0] + ')' }"
+      alt="Main listing photo"
+    ></div>
     </main>
     <aside>
-      <div [ngClass]="{ 'loading-background': isLoading() }"
-        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[1] + ')' }" alt="Listing photo #1">
-      </div>
-      <div [ngClass]="{ 'loading-background': isLoading() }"
-        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[2] + ')' }" alt="Listing photo #2">
-      </div>
-      <div [ngClass]="{ 'loading-background': isLoading() }"
-        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[3] + ')' }" alt="Listing photo #3">
+      <div
+        [ngClass]="{ 'loading-background': isLoading() }"
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[1] + ')' }"
+        alt="Listing photo #1"
+      ></div>
+      <div
+        [ngClass]="{ 'loading-background': isLoading() }"
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[2] + ')' }"
+        alt="Listing photo #2"
+      ></div>
+      <div
+        [ngClass]="{ 'loading-background': isLoading() }"
+        [ngStyle]="{ 'background-image': 'url(/assets/images/' + listing().photos[3] + ')' }"
+        alt="Listing photo #3"
+      >
         <span>+{{ (listing().photos.length || 3) - 3 }} Photos</span>
       </div>
     </aside>
