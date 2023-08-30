@@ -30,7 +30,7 @@
 
 
 
-  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading() }"></section>
+  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading() }">
     <h1>{{ listing().title }}</h1>
     <p>
       {{ listing().address[0] }}, {{ listing().address[1] }}, {{ listing().address[2] }},
