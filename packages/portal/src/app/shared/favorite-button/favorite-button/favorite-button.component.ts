@@ -3,9 +3,9 @@ import { Component, Input, OnChanges, inject, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { FavoriteService } from "../../favorite.service";
 import { UserService } from "../../user/user.service";
-import { Subject, of } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Subject, of , Subscription,debounceTime,switchMap} from 'rxjs';
+
+
 
 
 @Component({
@@ -28,6 +28,7 @@ export class FavoriteButtonComponent implements OnChanges {
   private userService = inject(UserService);
 
 
+
   constructor() {
     this.userService.user$.subscribe(user => {
       this.user = user;
@@ -45,7 +46,7 @@ export class FavoriteButtonComponent implements OnChanges {
       )
       .subscribe((result) => {
         if (result !== null && this.listing) {
-          console.log(result);
+
           this.listing.$$isFavorited = result;
         }
       });
@@ -57,6 +58,7 @@ export class FavoriteButtonComponent implements OnChanges {
   ngOnDestroy() {
     this.changesSubscription.unsubscribe();
   }
+
 
   async bookmark() {
     if (this.listing && this.user) {
