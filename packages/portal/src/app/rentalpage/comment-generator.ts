@@ -81,9 +81,3 @@ export function randomLikeDislike(max: number): number{
     return random;
   }
 }
-
-//can I use playright instead of this?
-//
-//   } catch (e) {
-//     console.error(e);
-//   }
