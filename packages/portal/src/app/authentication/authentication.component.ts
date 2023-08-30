@@ -9,12 +9,14 @@ import { MatInputModule } from "@angular/material/input";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "../shared/authentication/auth.service";
 import { TextBlockComponent } from "../shared/text-block/text-block.component";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faApple, faFacebook, faGithub, faGoogle, faMicrosoft, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 @Component({
   selector: "app-authentication",
   templateUrl: "./authentication.component.html",
   styleUrls: ["./authentication.component.scss"],
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, TextBlockComponent, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, TextBlockComponent, MatIconModule,FontAwesomeModule],
   standalone: true,
 })
 export class AuthenticationComponent implements OnInit {
@@ -25,16 +27,14 @@ export class AuthenticationComponent implements OnInit {
   }
 
   redirectURL = "/home";
-
   providers = [
-    { name: "Microsoft", id: "microsoft" },
-    { name: "Facebook", id: "facebook" },
-    { name: "Google", id: "google" },
-    { name: "Twitter", id: "twitter" },
-    { name: "GitHub", id: "github" },
-    { name: "Apple", id: "apple" }
+    { name: "Microsoft", id: "microsoft", icon: faFacebook },
+    { name: "Facebook", id: "facebook", icon: faMicrosoft },
+    { name: "Google", id: "google", icon: faGoogle },
+    { name: "Twitter", id: "twitter", icon: faTwitter },
+    { name: "GitHub", id: "github", icon: faGithub },
+    { name: "Apple", id: "apple", icon: faApple }
   ];
-
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
