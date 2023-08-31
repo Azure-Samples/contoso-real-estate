@@ -1,3 +1,4 @@
+<div [ngClass]="isDarkTheme ? 'darkMode' : ''">
 <mat-toolbar>
   <div class="header__logo">
     <a href="/"><img src="assets/contoso-real-estate-logo.svg" alt="Contoso Real Estate Fictitious Logo" /></a>
@@ -6,6 +7,9 @@
   <span class="spacer"></span>
 
   <app-main-nav></app-main-nav>
+  <mat-slide-toggle [checked]="isDarkTheme" (change)="toggleTheme()" class="darkMode">
+    Toggle Theme
+  </mat-slide-toggle>
 </mat-toolbar>
 <main class="main">
   <!-- pages -->
@@ -25,3 +29,4 @@
     <a href="/"><img src="assets/contoso-real-estate-logo.svg" alt="Contoso Real Estate Fictitious Logo" width="100" height="50"/></a>
   </div>
 </footer>
+</div>
