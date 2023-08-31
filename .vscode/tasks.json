@@ -4,7 +4,10 @@
     {
       "label": "Start Web",
       "type": "dotenv",
-      "targetTasks": ["Restore Web", "Web npm start"],
+      "targetTasks": [
+        "Restore Web",
+        "Web npm start"
+      ],
       "file": "${input:dotEnvFilePath}"
     },
     {
@@ -35,7 +38,10 @@
     {
       "label": "Start API",
       "type": "dotenv",
-      "targetTasks": ["Restore API", "API npm start"],
+      "targetTasks": [
+        "Restore API",
+        "API npm start"
+      ],
       "file": "${input:dotEnvFilePath}"
     },
     {
@@ -65,7 +71,10 @@
     },
     {
       "label": "Start API and Web",
-      "dependsOn": ["Start API", "Start Web"],
+      "dependsOn": [
+        "Start API",
+        "Start Web"
+      ],
       "problemMatcher": []
     },
     {
