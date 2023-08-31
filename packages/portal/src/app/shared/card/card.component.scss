@@ -60,7 +60,6 @@ img {
 // code for hover effect, if there are any  issues with feel free to edilt it
 .background-hover{
   border: 4px solid transparent;
-  overflow: hidden;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -69,27 +68,12 @@ img {
    transition: 0.5s;
   background-color:white;
    color: black;
-
 }
-.background-hover img {
-  overflow: hidden;
-  box-sizing: border-box;
-  transition: all 0.3s;
-  box-sizing: border-box;
-}
-
 .background-hover:hover {
   box-shadow: rgba(14, 30, 37, 0.1) 0px 2px 4px 0px, rgba(14, 30, 37, 0.82) 0px 2px 16px 0px;
   transition: background-color 0.3s, box-shadow 0.3s border .3s ease-in-out;
-  border: 4px solid #5000e4;
-  -webkit-transition: all 0.2s ease-in-out;
-  img {
-      transform: scaleX(1.1) rotate(2deg);
-  }
-
+  border: 4px solid #fdfdfd;
 }
-
-
 // this end of work, code for hover effect
 
 @media (min-width: 1100px) {
