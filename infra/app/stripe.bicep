@@ -35,15 +35,15 @@ var stripeSecrets = empty(stripePublicKey) ? [] : [
 var stripeEnvVariables = empty(stripePublicKey) ? [] : [
   {
     name: 'STRIPE_PUBLIC_KEY'
-    value: 'secretref:stripe-public-key'
+    secretRef: 'stripe-public-key'
   }
   {
     name: 'STRIPE_SECRET_KEY'
-    value: 'secretref:stripe-secret-key'
+    secretRef: 'stripe-secret-key'
   }
   {
     name: 'STRIPE_WEBHOOK_SECRET'
-    value: 'secretref:stripe-webhook'
+    secretRef: 'stripe-webhook'
   }
 ]
 
@@ -66,7 +66,7 @@ module stripe '../core/host/container-app.bicep' = {
     env: concat([
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: 'secretref:appinsights-cs'
+        secretRef: 'appinsights-cs'
       }
       {
         name: 'API_URL'
