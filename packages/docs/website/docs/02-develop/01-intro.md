@@ -50,4 +50,4 @@ In this tutorial, you'll create a serverless web application that  enables enter
 
 Contribute to the [reference implementation](https://github.com/Azure-Samples/contoso-real-estate) directly by opening a pull request or filing an issue on that repository. We would love to get your feedback on how you are re-implementing the reference architecture, or extending the reference implementation, in your own projects.
 
-Have feedback on this developer guide? Share your questions and comments via the relevant topic on our [Discussion Forum](https://github.com/contoso-real-estate/docs-website/discussions). Use this also to share your own insights or observations with community peers.
+Have feedback on this developer guide? Share your questions and comments via the relevant topic on our [Discussion Forum](https://github.com/Azure-Samples/contoso-real-estate/discussions). Use this also to share your own insights or observations with community peers.
