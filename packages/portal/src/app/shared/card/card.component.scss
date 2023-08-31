@@ -57,6 +57,15 @@ img {
   display: block;
 }
 
+.listing-review__stars {
+  color: #fcd53f;
+  font-size: 1.2rem;
+
+  &.fill {
+    font-variation-settings: "FILL" 1;
+  }
+}
+
 @media (min-width: 1100px) {
   mdc-card__actions {
     display: flex;
