@@ -167,7 +167,7 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 The project has a  [Developer Guide](./packages/docs/website/README.md) defined under `packages/docs` and implemented as an interactive website using the [Docusaurus](https://docusaurus.io) platform.
 ### 1 | Preview Website 
 
- - Read the [website/README](./packages/docs/website/README.md) more details on setting up and building this package. 
+ - Read the [website/README](./packages/docs/website/README.md) for more details on setting up and building this package. 
  - Use the following instructions for a quickstart.
 
 ```bash
