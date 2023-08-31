@@ -18,7 +18,7 @@
     "applicationinsights": "^2.3.4",
     "dotenv": "^16.0.1",
     "mongodb": "^4.7.0",
-    "mongoose": "^6.5.3",
+    "mongoose": "^6.11.3",
     "pg": "^8.8.0",
     "swagger-ui-dist": "^4.14.0",
     "winston": "^3.8.1",
