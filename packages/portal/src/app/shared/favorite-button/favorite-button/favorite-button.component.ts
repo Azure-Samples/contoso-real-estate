@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, inject, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { FavoriteService } from "../../favorite.service";
 import { UserService } from "../../user/user.service";
+import { Subject, of, Subscription ,debounceTime ,switchMap } from 'rxjs';
 
 @Component({
   selector: "app-favorite-button",
@@ -11,11 +12,14 @@ import { UserService } from "../../user/user.service";
   standalone: true,
   imports: [CommonModule, MatButtonModule],
 })
+
 export class FavoriteButtonComponent implements OnChanges {
   @Input() listing!: Listing | null;
   isOperationLoading = signal(false);
   user: User | null = null;
 
+  private changes$ = new Subject<void>();
+  private changesSubscription: Subscription;
   private favoriteService = inject(FavoriteService);
   private userService = inject(UserService);
 
@@ -23,14 +27,30 @@ export class FavoriteButtonComponent implements OnChanges {
     this.userService.user$.subscribe(user => {
       this.user = user;
     });
+
+    this.changesSubscription = this.changes$
+      .pipe(
+        debounceTime(200),
+        switchMap(async () => {
+          if (this.listing && this.user) {
+            return this.favoriteService.getFavorite(this.listing, this.user);
+          }
+          return of(null);
+        })
+      )
+      .subscribe((result) => {
+        if (result !== null && this.listing) {
+          this.listing.$$isFavorited = result;
+        }
+      });
   }
 
-  async ngOnChanges() {
-    if (this.listing && this.user) {
-      this.listing.$$isFavorited = await this.favoriteService.getFavorite(this.listing, this.user);
-    }
+  ngOnChanges() {
+    this.changes$.next();
   }
-
+  ngOnDestroy() {
+    this.changesSubscription.unsubscribe();
+  }
   async bookmark() {
     if (this.listing && this.user) {
       this.isOperationLoading.set(true);
@@ -46,7 +66,6 @@ export class FavoriteButtonComponent implements OnChanges {
           this.listing.$$isFavorited = true;
         }
       }
-
       this.isOperationLoading.set(false);
     }
   }
