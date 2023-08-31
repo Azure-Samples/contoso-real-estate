@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
+import { MatMenuModule } from "@angular/material/menu";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
 import { HasRoleDirective } from "../shared/has-role/has-role.directive";
@@ -21,7 +22,7 @@ import { generateComments, generateCommentor, generateTime, randomLikeDislike } 
   templateUrl: "./rentalpage.component.html",
   styleUrls: ["./rentalpage.component.scss"],
   standalone: true,
-  imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective, FavoriteButtonComponent],
+  imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective, FavoriteButtonComponent, MatMenuModule],
 })
 export class RentalpageComponent implements OnInit {
   //Could you explain what this class does?
@@ -85,8 +86,8 @@ export class RentalpageComponent implements OnInit {
 
   }
 
-  async share() {
-    await this.listingService.share(this.listing());
+  async share(platform: string) {
+    await this.listingService.share(platform, this.listing());
   }
 
   async onRent(reservationDetails: ReservationRequest) {
