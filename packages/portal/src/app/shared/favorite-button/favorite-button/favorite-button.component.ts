@@ -3,10 +3,7 @@ import { Component, Input, OnChanges, inject, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { FavoriteService } from "../../favorite.service";
 import { UserService } from "../../user/user.service";
-import { Subject, of , Subscription,debounceTime,switchMap} from 'rxjs';
-
-
-
+import { Subject, of, Subscription ,debounceTime ,switchMap } from 'rxjs';
 
 @Component({
   selector: "app-favorite-button",
@@ -23,11 +20,8 @@ export class FavoriteButtonComponent implements OnChanges {
 
   private changes$ = new Subject<void>();
   private changesSubscription: Subscription;
-
   private favoriteService = inject(FavoriteService);
   private userService = inject(UserService);
-
-
 
   constructor() {
     this.userService.user$.subscribe(user => {
@@ -46,7 +40,6 @@ export class FavoriteButtonComponent implements OnChanges {
       )
       .subscribe((result) => {
         if (result !== null && this.listing) {
-
           this.listing.$$isFavorited = result;
         }
       });
@@ -58,8 +51,6 @@ export class FavoriteButtonComponent implements OnChanges {
   ngOnDestroy() {
     this.changesSubscription.unsubscribe();
   }
-
-
   async bookmark() {
     if (this.listing && this.user) {
       this.isOperationLoading.set(true);
@@ -75,7 +66,6 @@ export class FavoriteButtonComponent implements OnChanges {
           this.listing.$$isFavorited = true;
         }
       }
-
       this.isOperationLoading.set(false);
     }
   }
