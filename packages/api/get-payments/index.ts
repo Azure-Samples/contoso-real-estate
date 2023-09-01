@@ -4,7 +4,7 @@ import { findPaymentsByUserId } from "../models/payment";
 
 const getPayments: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();
-  
+
   const offset = Number(req.query.offset) || 0;
   const limit = Number(req.query.limit) || 10;
   const { userId } = req.query;

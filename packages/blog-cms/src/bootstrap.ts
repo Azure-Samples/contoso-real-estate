@@ -152,7 +152,6 @@ async function importArticles() {
 async function importListing() {
   return Promise.all(
     listings.map(listing => {
-
       return createEntry({
         model: "listing",
         entry: {
@@ -182,7 +181,7 @@ async function importSeedData() {
     article: ["find", "findOne"],
     category: ["find", "findOne"],
     writer: ["find", "findOne"],
-    listing: ["find", "findOne"]
+    listing: ["find", "findOne"],
   });
 
   // Create all entries

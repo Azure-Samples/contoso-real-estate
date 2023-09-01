@@ -65,6 +65,7 @@ Once your Stripe keys have been configured, you can provision the Azure resource
 This all-in-one script will provision all the needed Azure resources, setup the database, build the projects, and deploy them to Azure.
 
 It will also create various `.env` files:
+
 - `scripts/infra/.env`: contains all environments variables and secrets required for deployment
 - `.env.local`: contains all environment variables and secrets required for local development, with the services running locally but connected to the Azure database
 - `.env.docker`: same as `.env.local` but in a format without quotes that can be used for running Docker containers

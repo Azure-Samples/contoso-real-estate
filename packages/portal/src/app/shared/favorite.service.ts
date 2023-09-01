@@ -60,6 +60,6 @@ export class FavoriteService {
       return [];
     }
 
-    return await resource.json()
+    return await resource.json();
   }
 }

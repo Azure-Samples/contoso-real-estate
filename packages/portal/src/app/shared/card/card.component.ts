@@ -12,7 +12,15 @@ import { UserRole } from "../user/user.service";
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.scss"],
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, NgOptimizedImage, RouterModule, HasRoleDirective, FavoriteButtonComponent],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    NgOptimizedImage,
+    RouterModule,
+    HasRoleDirective,
+    FavoriteButtonComponent,
+  ],
 })
 export class CardComponent implements OnChanges {
   @Input() listing!: Listing | null;
@@ -25,7 +33,7 @@ export class CardComponent implements OnChanges {
   bedroomsMapping: { [k: string]: string } = { "=1": "1 bedroom", other: "# bedrooms" };
   bathroomsMapping: { [k: string]: string } = { "=1": "1 bathroom", other: "# bathrooms" };
 
-  renderer= inject(Renderer2);
+  renderer = inject(Renderer2);
 
   async ngOnChanges() {
     if (this.listing && this.listing.attributes) {
@@ -36,9 +44,9 @@ export class CardComponent implements OnChanges {
         address: this.listing.attributes.address.split("|"),
         ammenities: this.listing.attributes.ammenities.split("|"),
         slug: this.listing.attributes.slug,
-        id: this.listing.id
-      }
-      const castedListing = {...this.listing.attributes} as unknown as Listing;
+        id: this.listing.id,
+      };
+      const castedListing = { ...this.listing.attributes } as unknown as Listing;
       castedListing.fees = tmp.fees;
       castedListing.photos = tmp.photos;
       castedListing.address = tmp.address;

@@ -1,9 +1,9 @@
-import { TestBed } from '@angular/core/testing';
-import { SearchService } from './search.service';
-import { ApolloTestingController, ApolloTestingModule } from 'apollo-angular/testing';
+import { TestBed } from "@angular/core/testing";
+import { SearchService } from "./search.service";
+import { ApolloTestingController, ApolloTestingModule } from "apollo-angular/testing";
 import { provideNoopAnimations } from "@angular/platform-browser/animations";
 
-describe('SearchService', () => {
+describe("SearchService", () => {
   let service: SearchService;
   let controller: ApolloTestingController;
 
@@ -16,7 +16,7 @@ describe('SearchService', () => {
     controller = TestBed.inject(ApolloTestingController);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 

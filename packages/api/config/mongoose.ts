@@ -16,8 +16,7 @@ export const configureMongoose = async (config: DatabaseConfig) => {
       console.log("Mongoose connecting...");
       await mongoose.connect(config.connectionString, { dbName: config.database });
       console.log("Mongoose connected successfully!");
-    }
-    else {
+    } else {
       console.log("Mongoose already connected! Status:", db.readyState);
     }
   } catch (err) {

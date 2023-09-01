@@ -30,13 +30,7 @@
 
 
 
-  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading() }">
-    <h1>{{ listing().title }}</h1>
-    <p>
-      {{ listing().address[0] }}, {{ listing().address[1] }}, {{ listing().address[2] }},
-      {{ listing().address[3] }}
-    </p>
-  </section>
+
 
   <section class="listing-description" [ngClass]="{ 'loading-background': isLoading() }">
     <p>
@@ -55,6 +49,7 @@
       </li>
     </ul>
   </section>
+
   <section class="listing-review" [ngClass]="{ 'loading-background': isLoading() }">
     <main>
       <div>{{ listing().reviews_number | i18nPlural : reviewsMapping }}</div>
@@ -83,6 +78,7 @@
         </button>
       </mat-menu>
     </aside>
+
   </section>
   <section class="listing-comments" [ngClass]="{ 'loading-background': isLoading() }">
     <!-- create a dynamic number of divs according to the length of comments in Listing-->

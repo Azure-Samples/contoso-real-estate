@@ -3,6 +3,7 @@
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
 ## 1. Docusaurus Setup
+
 Expand the sections below for more details on the setup.
 
 <details>
@@ -16,7 +17,7 @@ $ cd packages
 $ mkdir docs
 
 # Verify you have Node.js v18+
-$ nvm use --lts  
+$ nvm use --lts
 Now using node v18.17.0 (npm v9.6.7)
 
 # Scaffold a "classic" site in `website` folder
@@ -29,25 +30,26 @@ $ npx docusaurus start
 [INFO] Starting the development server...
 [SUCCESS] Docusaurus website is running at: http://localhost:3000/
 ```
-</details>
 
+</details>
 
 <details>
 <summary> 2. Customize Configuration </summary>
 
 Docusaurus configuration is done through one main file - `docusaurus.config.js`. It helps to understand three core concepts: themes, plugins and presets.
- - Docusaurus [themes](https://docusaurus.io/docs/api/themes) implement the user interface of website pages and views. Currently [theme-classic](https://docusaurus.io/docs/api/themes/@docusaurus/theme-classic) is the only officially-supported theme.
- - Docusaurus [plugins](https://docusaurus.io/docs/using-plugins) implement functionality that are activated to provide site features. The Docusaurus core has no features on its own; everything is plugin-based, with [official](https://docusaurus.io/docs/api/plugins) and [community-based](https://docusaurus.io/community/resources#community-plugins) plugins available.
- - Docusuaurus [presets](https://docusaurus.io/docs/using-plugins#using-presets) are "bundles" of plugins that are often activated together (e.g, used by a specific theme). For instance, the default _classic_ theme preset contains the docs, blog and pages plugins.
+
+- Docusaurus [themes](https://docusaurus.io/docs/api/themes) implement the user interface of website pages and views. Currently [theme-classic](https://docusaurus.io/docs/api/themes/@docusaurus/theme-classic) is the only officially-supported theme.
+- Docusaurus [plugins](https://docusaurus.io/docs/using-plugins) implement functionality that are activated to provide site features. The Docusaurus core has no features on its own; everything is plugin-based, with [official](https://docusaurus.io/docs/api/plugins) and [community-based](https://docusaurus.io/community/resources#community-plugins) plugins available.
+- Docusuaurus [presets](https://docusaurus.io/docs/using-plugins#using-presets) are "bundles" of plugins that are often activated together (e.g, used by a specific theme). For instance, the default _classic_ theme preset contains the docs, blog and pages plugins.
 
 Each of the above has a section in the `docusaurus.config.js` where it can be customized - typically plugins that are part of a preset will be configured in that section, while others get configured in the plugins section. _However, read the plugin-specific requirements to verify requirements_. Read [the documentation](https://docusaurus.io/docs/api/docusaurus-config) for all the details, then look at the config file in the repo to understand changes made.
 
 In addition to this, we have two other files that see a lot of configuration changes:
- - [sidebars.js](https://docusaurus.io/docs/sidebar#default-sidebar) for the "docs" collections
- - [custom.css](https://docusaurus.io/docs/styling-layout) for global style changes
+
+- [sidebars.js](https://docusaurus.io/docs/sidebar#default-sidebar) for the "docs" collections
+- [custom.css](https://docusaurus.io/docs/styling-layout) for global style changes
 
 </details>
-
 
 <details>
 <summary> 3. Install Plugins, Themes, Dependencies </summary>
@@ -64,7 +66,7 @@ We'll document any non-preset plugins we install in this section for reference.
 <details>
 <summary> 4. Create Components </summary>
 
-Docusaurus has the following [core concepts](https://docusaurus.io/docs/category/guides) to help with content creation and site configuration. Content can be authored as Markdown _or_ as [MDX (enhanced Markdown)](https://docusaurus.io/docs/markdown-features/react) which helps you bring custom React components into Markdown files. 
+Docusaurus has the following [core concepts](https://docusaurus.io/docs/category/guides) to help with content creation and site configuration. Content can be authored as Markdown _or_ as [MDX (enhanced Markdown)](https://docusaurus.io/docs/markdown-features/react) which helps you bring custom React components into Markdown files.
 
 This can be a useful way to _template_ a specific element or section of a page in a way that allows us to "stamp out" instances with different data bindings. It also enables us to make these elements interactive and style them differently for enhanced effect. _However components will add cost and complexity so use with care. Remember that Markdown can also embed HTML directly with less overheads_.
 
@@ -103,11 +105,9 @@ $ touch pages/api.js
 # to add an API item linked to /api
 ```
 
-Since the YAML is soft-linked to the original source, the docs should reflect the latest chamges to the code. You can now see the API docs at /api on website. 
+Since the YAML is soft-linked to the original source, the docs should reflect the latest chamges to the code. You can now see the API docs at /api on website.
 
 </details>
-
-
 
 ## 2. Local Development
 
@@ -119,12 +119,14 @@ Now using node v18.17.0 (npm v9.6.7)
 $ cd website
 $ npm install
 ```
+
 Run the dev server to preview site locally:
 
 ```bash
-$ npx docusaurus start 
+$ npx docusaurus start
 ```
-This starts a local development server and opens up a browser window to the server URL by default. Most changes are reflected live without having to restart the server. 
+
+This starts a local development server and opens up a browser window to the server URL by default. Most changes are reflected live without having to restart the server.
 
 ## 3. Production Build
 
@@ -142,7 +144,7 @@ This command generates static content into the `build/` directory and can be ser
 
 ```
 $npx docusaurus serve
-? [WARNING] Something is already running on port 3000. 
+? [WARNING] Something is already running on port 3000.
 ...
 Would you like to run the app on another port instead? … yes
 [SUCCESS] Serving "build" directory at: http://localhost:3001/
@@ -152,14 +154,13 @@ As shown, if the default port (3000) is in use, the process automatically prompt
 
 ## 4. Production Deployment
 
-The static build can be deployed to any static site hosting service. Check the [Deployment](https://docusaurus.io/docs/deployment) documentation for details. 
+The static build can be deployed to any static site hosting service. Check the [Deployment](https://docusaurus.io/docs/deployment) documentation for details.
 
 The process has been validated for Azure Static Web Apps and GitHub Pages options. Deploying to GitHub pages [is particularly easy](https://docusaurus.io/docs/deployment#deploying-to-github-pages).
 
- 1.  [Update `docusaurus.config.js` settings](https://docusaurus.io/docs/deployment#docusaurusconfigjs-settings).
- 2.  [Deploy manually with `yarn deploy`](https://docusaurus.io/docs/deployment#deploy)
- 3. [Automate build/deploy with GitHub Actions](https://docusaurus.io/docs/deployment#triggering-deployment-with-github-actions)
-
+1.  [Update `docusaurus.config.js` settings](https://docusaurus.io/docs/deployment#docusaurusconfigjs-settings).
+2.  [Deploy manually with `yarn deploy`](https://docusaurus.io/docs/deployment#deploy)
+3.  [Automate build/deploy with GitHub Actions](https://docusaurus.io/docs/deployment#triggering-deployment-with-github-actions)
 
 ## Troubleshooting
 

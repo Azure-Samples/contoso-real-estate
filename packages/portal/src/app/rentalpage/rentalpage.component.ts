@@ -59,15 +59,19 @@ export class RentalpageComponent implements OnInit {
       this.router.navigate(["/404"]);
     }
 
+
     this.reviewStars.set(Array(5)
       .fill(0)
       .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
+
 
     //Generate random comments for the listing based on the number of reviews but only 10 comments should be displayed
     for (let i = 0; i < this.listing().reviews_number; i++) {
       this.comments.push(generateComments(this.listing().reviews_stars));
       this.commentors.push(generateCommentor());
+
       this.commentTime.push(generateTime())
+
       //these magic numbers are sample max number of likes and dislikes - just for realism
       this.likes.push(randomLikeDislike(100));
       this.dislikes.push(randomLikeDislike(40));
@@ -82,12 +86,12 @@ export class RentalpageComponent implements OnInit {
     try {
       const checkoutSession = await this.listingService.reserve(reservationDetails);
       const sessionURL = new URL(checkoutSession.sessionUrl);
-      if (sessionURL.hostname === 'localhost' && window.location.hostname !== 'localhost') {
+      if (sessionURL.hostname === "localhost" && window.location.hostname !== "localhost") {
         // Fix for local testing on Codespaces
         sessionURL.hostname = window.location.hostname;
-        sessionURL.port = '';
+        sessionURL.port = "";
       }
-      console.info('Redirecting to ' + sessionURL);
+      console.info("Redirecting to " + sessionURL);
       window.location.href = sessionURL.toString();
     } catch (error: unknown) {
       if (error instanceof Error) {

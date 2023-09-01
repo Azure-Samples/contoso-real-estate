@@ -4,11 +4,14 @@
     <!-- <img src="/assets/images/pic-purple.png" alt="Login background image" /> -->
 
     <nav>
-
-      <a *ngFor="let provider of providers" mat-raised-button class="button btn__{{provider.id}}" [href]="loginWith(provider.id)">
+      <a
+        *ngFor="let provider of providers"
+        mat-raised-button
+        class="button btn__{{ provider.id }}"
+        [href]="loginWith(provider.id)"
+      >
         Sign in with {{ provider.name }}
       </a>
-
     </nav>
   </section>
 </app-text-block>
