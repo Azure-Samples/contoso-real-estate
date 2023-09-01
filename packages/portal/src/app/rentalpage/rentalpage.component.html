@@ -28,6 +28,33 @@
     </aside>
   </section>
 
+
+
+  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading() }">
+    <h1>{{ listing().title }}</h1>
+    <p>
+      {{ listing().address[0] }}, {{ listing().address[1] }}, {{ listing().address[2] }},
+      {{ listing().address[3] }}
+    </p>
+  </section>
+
+  <section class="listing-description" [ngClass]="{ 'loading-background': isLoading() }">
+    <p>
+      {{ listing().description }}
+    </p>
+  </section>
+
+  <section class="listing-amenities" [ngClass]="{ 'loading-background': isLoading() }">
+    <h3>Features</h3>
+    <ul>
+      <li *ngFor="let feature of listing().ammenities">
+        <span aria-hidden="false" aria-label="Listing ammenity" class="material-symbols-outlined">
+          {{ feature.split("|")[0] }}
+        </span>
+        {{ feature.split("|")[1] }}
+      </li>
+    </ul>
+  </section>
   <section class="listing-review" [ngClass]="{ 'loading-background': isLoading() }">
     <main>
       <div>{{ listing().reviews_number | i18nPlural : reviewsMapping }}</div>
@@ -57,31 +84,39 @@
       </mat-menu>
     </aside>
   </section>
+  <section class="listing-comments" [ngClass]="{ 'loading-background': isLoading() }">
+    <!-- create a dynamic number of divs according to the length of comments in Listing-->
+    <div *ngFor="let comment of comments; let i = index">
+      <div class="listing-comments__comment">
+        <div class="listing-comments__comment__header">
+          <div class="listing-comments__comment__header__user">
+            <span class="material-symbols-outlined">account_circle</span>
+            <!-- {{ comment.user }} -->
+            <span>{{ commentors[i] }}</span>
+          </div>
+          <div class="listing-comments__comment__header__date">
+            <!-- <span>{{ comment.date }}</span> -->
+            <span>{{ commentTime[i] }}</span>
+          </div>
+        </div>
+        <div class="listing-comments__comment__body">
+          <span>{{ comment }}</span>
+        </div>
 
-  <section class="listing-details"  [ngClass]="{ 'loading-background': isLoading() }">
-    <h1>{{ listing().title }}</h1>
-    <p>
-      {{ listing().address[0] }}, {{ listing().address[1] }}, {{ listing().address[2] }},
-      {{ listing().address[3] }}
-    </p>
-  </section>
-
-  <section class="listing-description" [ngClass]="{ 'loading-background': isLoading() }">
-    <p>
-      {{ listing().description }}
-    </p>
-  </section>
-
-  <section class="listing-amenities" [ngClass]="{ 'loading-background': isLoading() }">
-    <h3>Features</h3>
-    <ul>
-      <li *ngFor="let feature of listing().ammenities">
-        <span aria-hidden="false" aria-label="Listing ammenity" class="material-symbols-outlined">
-          {{ feature.split("|")[0] }}
-        </span>
-        {{ feature.split("|")[1] }}
-      </li>
-    </ul>
+        <div class="listing-comments__comment__footer">
+          <div class="listing-comments__comment__footer__upvotes">
+            <span class="material-symbols-outlined">thumb_up</span>
+            <!-- {{ comment.upvotes }} -->
+            <span>{{ likes[i] }}</span>
+          </div>
+          <div class="listing-comments__comment__footer__downvotes">
+            <span class="material-symbols-outlined">thumb_down</span>
+            <!-- {{ comment.downvotes }} -->
+            <span>{{ dislikes[i] }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </section>
 
