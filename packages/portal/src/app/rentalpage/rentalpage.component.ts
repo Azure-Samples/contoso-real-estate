@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject, signal } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
+import { MatMenuModule } from "@angular/material/menu";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
 import { HasRoleDirective } from "../shared/has-role/has-role.directive";
@@ -14,7 +15,7 @@ import { generateComments, generateCommentor, generateTime, randomLikeDislike } 
   templateUrl: "./rentalpage.component.html",
   styleUrls: ["./rentalpage.component.scss"],
   standalone: true,
-  imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective, FavoriteButtonComponent],
+  imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective, FavoriteButtonComponent, MatMenuModule],
 })
 export class RentalpageComponent implements OnInit {
   userRole: typeof UserRole = UserRole;
@@ -58,17 +59,18 @@ export class RentalpageComponent implements OnInit {
       this.router.navigate(["/404"]);
     }
 
-    this.reviewStars.set(
-      Array(5)
-        .fill(0)
-        .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)),
-    );
+
+    this.reviewStars.set(Array(5)
+      .fill(0)
+      .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
+
 
     //Generate random comments for the listing based on the number of reviews but only 10 comments should be displayed
     for (let i = 0; i < this.listing().reviews_number; i++) {
       this.comments.push(generateComments(this.listing().reviews_stars));
       this.commentors.push(generateCommentor());
-      this.commentTime.push(generateTime());
+
+      this.commentTime.push(generateTime())
 
       //these magic numbers are sample max number of likes and dislikes - just for realism
       this.likes.push(randomLikeDislike(100));
@@ -76,8 +78,8 @@ export class RentalpageComponent implements OnInit {
     }
   }
 
-  async share() {
-    await this.listingService.share(this.listing());
+  async share(platform: string) {
+    await this.listingService.share(platform, this.listing());
   }
 
   async onRent(reservationDetails: ReservationRequest) {

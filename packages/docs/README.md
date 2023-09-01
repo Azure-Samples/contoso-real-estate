@@ -7,13 +7,16 @@
 
 This is the "developer guide" documentation package for the Contoso Real Estate reference sample. It has 2 components:
 
-- **`website/`** | source for the _static website_ hosting a developer guide for self-guided exploration of documentation from _design_ to _deployment_ steps. See [website/README](website/README.md) for details.
 
-- **`training/`** | content for _interactive workshops_ to explore sample in a hands-on, step-by-step manner ex: _Learn Live_ events. See [training/README](website/README.md).
+ - **`website/`** | source for the _static website_ hosting a developer guide for self-guided exploration of documentation from _design_ to _deployment_ steps. See [website/README](website/README.md) for details.
+ 
+ - **`training/`** | content for _interactive workshops_ to explore the samples in a hands-on, step-by-step manner ex: _Learn Live_ events. See [training/README](website/README.md).
+ 
+
 
 ## 🚀 | Local Preview
 
-We recommend using the dev server to view the guide locally. This command will start the dev server _and_ launch browser to the correct preview URL.
+We recommend using the dev server to view the guide locally. This command will start the dev server _and_ launch the browser to the correct preview URL.
 
 ```bash
 # Requires Node.js v18+.
