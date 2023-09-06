@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { TextBlockComponent } from "../shared/text-block/text-block.component";
 
 @Component({
@@ -8,10 +8,6 @@ import { TextBlockComponent } from "../shared/text-block/text-block.component";
   standalone: true,
   imports: [TextBlockComponent],
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
   title = "About";
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

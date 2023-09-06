@@ -17,6 +17,36 @@ param stripeSecretKey string
 @secure()
 param stripeWebhookSecret string
 
+// Stripe is optional but secrets must not be empty if provided
+var stripeSecrets = empty(stripePublicKey) ? [] : [
+  {
+    name: 'stripe-public-key'
+    value: stripePublicKey
+  }
+  {
+    name: 'stripe-secret-key'
+    value: stripeSecretKey
+  }
+  {
+    name: 'stripe-webhook'
+    value: stripeWebhookSecret
+  }
+]
+var stripeEnvVariables = empty(stripePublicKey) ? [] : [
+  {
+    name: 'STRIPE_PUBLIC_KEY'
+    secretRef: 'stripe-public-key'
+  }
+  {
+    name: 'STRIPE_SECRET_KEY'
+    secretRef: 'stripe-secret-key'
+  }
+  {
+    name: 'STRIPE_WEBHOOK_SECRET'
+    secretRef: 'stripe-webhook'
+  }
+]
+
 module stripe '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
   params: {
@@ -27,10 +57,16 @@ module stripe '../core/host/container-app.bicep' = {
     containerRegistryName: containerRegistryName
     containerCpuCoreCount: '1.0'
     containerMemory: '2.0Gi'
-    env: [
+    secrets: concat([
+      {
+        name: 'appinsights-cs'
+        value: applicationInsights.properties.ConnectionString
+      }
+    ], stripeSecrets)
+    env: concat([
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: applicationInsights.properties.ConnectionString
+        secretRef: 'appinsights-cs'
       }
       {
         name: 'API_URL'
@@ -40,19 +76,7 @@ module stripe '../core/host/container-app.bicep' = {
         name: 'WEB_APP_URL'
         value: portalUrl
       }
-      {
-        name: 'STRIPE_PUBLIC_KEY'
-        value: stripePublicKey
-      }
-      {
-        name: 'STRIPE_SECRET_KEY'
-        value: stripeSecretKey
-      }
-      {
-        name: 'STRIPE_WEBHOOK_SECRET'
-        value: stripeWebhookSecret
-      }
-    ]
+    ], stripeEnvVariables)
     imageName: !empty(stripeImageName) ? stripeImageName : 'nginx:latest'
     targetPort: 4242
   }

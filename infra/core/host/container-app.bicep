@@ -6,6 +6,7 @@ param containerAppsEnvironmentName string = ''
 param containerName string = 'main'
 param containerRegistryName string = ''
 param env array = []
+param secrets array = []
 param external bool = true
 param imageName string
 param keyVaultName string = ''
@@ -32,12 +33,12 @@ resource app 'Microsoft.App/containerApps@2022-03-01' = {
         targetPort: targetPort
         transport: 'auto'
       }
-      secrets: [
+      secrets: concat(secrets, [
         {
           name: 'registry-password'
           value: containerRegistry.listCredentials().passwords[0].value
         }
-      ]
+      ])
       registries: [
         {
           server: '${containerRegistry.name}.azurecr.io'
