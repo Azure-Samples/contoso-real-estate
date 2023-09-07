@@ -33,7 +33,6 @@ export class CardComponent implements OnChanges {
       const tmp = {
         fees: this.listing.attributes.fees.split("|"),
         photos: this.listing.attributes.photos.split("|"),
-        review_stars: this.listing.attributes.reviews_stars,
         address: this.listing.attributes.address.split("|"),
         ammenities: this.listing.attributes.ammenities.split("|"),
         slug: this.listing.attributes.slug,
@@ -54,21 +53,6 @@ export class CardComponent implements OnChanges {
     }
   }
 
-  stars(){
-    const stars = [];
-    const numberOfStars = 5;
-    if(this.listing?.reviews_stars != null){
-    for(let i = 0; i < numberOfStars; i++){
-      if( i < this.listing?.reviews_stars){
-        stars.push(1)
-      }
-      else{
-        stars.push(0)
-      }
-    }
-  }
-    return stars;
-  }
 
   onImageLoad(event: Event) {
     const target = (event.target as HTMLImageElement).closest(".loading-background") as HTMLDivElement;
