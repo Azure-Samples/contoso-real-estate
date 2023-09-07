@@ -9,6 +9,7 @@ ENV PATH /opt/node_modules/.bin:$PATH
 RUN npm install --production
 WORKDIR /opt/app
 COPY ./ .
+RUN npm install
 RUN npm run build
 
 
