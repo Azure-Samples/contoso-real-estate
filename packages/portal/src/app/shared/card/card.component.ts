@@ -53,7 +53,6 @@ export class CardComponent implements OnChanges {
     }
   }
 
-
   onImageLoad(event: Event) {
     const target = (event.target as HTMLImageElement).closest(".loading-background") as HTMLDivElement;
     this.renderer.removeClass(target, "loading-background");
