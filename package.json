@@ -41,5 +41,10 @@
     "printWidth": 120,
     "bracketSpacing": true,
     "arrowParens": "avoid"
+  },
+  "dependencies": {
+    "and": "^0.0.3",
+    "npm": "^10.0.0",
+    "start": "^5.1.0"
   }
 }
