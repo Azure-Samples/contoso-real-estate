@@ -1,5 +1,5 @@
-import process from 'process';
-import path from 'path';
+import process from "process";
+import path from "path";
 import { AppConfig } from "./appConfig";
 import * as dotenv from "dotenv";
 import { DefaultAzureCredential } from "@azure/identity";
@@ -11,13 +11,13 @@ let configCache: AppConfig | undefined;
 let dbInitialized = false;
 
 export const getConfig: () => Promise<AppConfig> = async () => {
-
   if (configCache) {
     return configCache;
   }
 
+  // Load any ENV vars from local .env.local file
   if (process.env.NODE_ENV !== "production") {
-    logger.warn("Loading environment variables from root '.env.local' file. THIS SHOULD NOT BE USED IN PRODUCTION!");
+    console.warn("Loading environment variables from root '.env.local' file. THIS SHOULD NOT BE USED IN PRODUCTION!");
     dotenv.config({ path: path.resolve(process.cwd(), "../../.env.local") });
   }
 
@@ -46,7 +46,10 @@ export const getConfig: () => Promise<AppConfig> = async () => {
   return configCache;
 };
 
-export const populateEnvironmentFromKeyVault = async () => {
+const populateEnvironmentFromKeyVault = async () => {
+  // If Azure key vault endpoint is defined
+  // 1. Login with Default credential (managed identity or service principal)
+  // 2. Overlay key vault secrets on top of ENV vars
   const keyVaultEndpoint = process.env.AZURE_KEY_VAULT_ENDPOINT || "";
 
   if (!keyVaultEndpoint) {
@@ -67,12 +70,11 @@ export const populateEnvironmentFromKeyVault = async () => {
       const keyName = secret.name.replace(/-/g, "_");
       process.env[keyName] = secret.value;
     }
-  } catch (err) {
-    if (err instanceof Error) {
-      logger.error(`Error authenticating with Azure KeyVault. Ensure your managed identity or service principal has GET/LIST permissions. Error: ${err}`);
-    } else {
-      throw err;
-    }
+  } catch (err: any) {
+    logger.error(
+      `Error authenticating with Azure KeyVault. Ensure your managed identity or service principal has GET/LIST permissions. Error: ${err}`,
+    );
+    throw err;
   }
 };
 
@@ -80,9 +82,7 @@ export async function initializeDatabaseConfiguration() {
   if (dbInitialized) {
     return;
   }
-
   const config = await getConfig();
   await configureMongoose(config.database);
-
   dbInitialized = true;
 }
