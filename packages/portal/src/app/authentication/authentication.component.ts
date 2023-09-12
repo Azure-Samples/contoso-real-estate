@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, Input, OnInit, inject } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MatIconRegistry, MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { AuthService } from "../shared/authentication/auth.service";
 import { TextBlockComponent } from "../shared/text-block/text-block.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -20,13 +20,14 @@ import { faApple, faFacebook, faGithub, faGoogle, faMicrosoft, faTwitter } from 
   standalone: true,
 })
 export class AuthenticationComponent implements OnInit {
+
   public constructor(iconRegistry: MatIconRegistry, santizer: DomSanitizer) {
     for (const provider of this.providers) {
       iconRegistry.addSvgIcon(provider.id, santizer.bypassSecurityTrustResourceUrl(`../assets/company-logos/${provider.id}.svg`));
     }
   }
 
-  redirectURL = "/home";
+  @Input() redirectURL = "/home";
   providers = [
     { name: "Microsoft", id: "microsoft", icon: faFacebook },
     { name: "Facebook", id: "facebook", icon: faMicrosoft },
@@ -36,15 +37,10 @@ export class AuthenticationComponent implements OnInit {
     { name: "Apple", id: "apple", icon: faApple }
   ];
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
 
-  async ngOnInit() {
-    const params = this.route.snapshot.queryParams;
-    if (params["redirectURL"]) {
-      this.redirectURL = params["redirectURL"];
-    }
 
+  async ngOnInit() {
     if (this.isAuthenticated()) {
       this.router.navigate([this.redirectURL]);
     }
