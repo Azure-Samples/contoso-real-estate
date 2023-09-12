@@ -2,11 +2,13 @@
   <h1>Join with your favorite social media account</h1>
   <section>
     <!-- <img src="/assets/images/pic-purple.png" alt="Login background image" /> -->
-
     <nav>
-
       <a *ngFor="let provider of providers" mat-raised-button class="button btn__{{provider.id}}" [href]="loginWith(provider.id)">
-        Sign in with {{ provider.name }}
+        <div class="content">
+          <fa-icon size="xl" [icon]="provider.icon"></fa-icon>
+
+          <span class="text">Sign in with {{ provider.name }}</span>
+        </div>
       </a>
 
     </nav>
