@@ -18,7 +18,7 @@ If you want to run the API independently and locally, the following technologies
 ## Steps to start the API
 
 1. fork or clone the repository locally
-2. assumming you are in the folder containing your clone, go to the terminal and run
+2. assuming you are in the folder containing your clone, go to the terminal and run
 
 ```bash
 cd packages/api && npm install
@@ -33,7 +33,7 @@ npm start
 
 To test Stripe integration, you need to create a Stripe account and get the API keys.
 
-Then, you need to add in your `packages/api/.env` file in the following content:
+Then, you need to add the following variables in your `packages/api/.env` file:
 
 ```bash
 STRIPE_PUBLIC_KEY=<YOUR_STRIPE_PUBLIC_KEY>

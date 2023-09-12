@@ -44,9 +44,17 @@
     <aside>
       <app-favorite-button *appHasRole="[userRole.Admin, userRole.Renter]" [listing]="listing()"></app-favorite-button>
 
-      <button (click)="share()" title="Share listing" class="bookmark-listing">
-        <span aria-hidden="false" aria-label="Share listing" class="material-symbols-outlined"> share </span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" title="Share listing" aria-label="Share listing to social media">
+        <span aria-hidden="false" aria-label="Share listing to social media" class="material-symbols-outlined"> share </span>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="share('facebook')" title="Share listing to Facebook" class="bookmark-listing">
+          <span aria-hidden="false" aria-label="Share listing to Facebook">Facebook</span>
+        </button>
+        <button mat-menu-item (click)="share('twitter')" title="Share listing to X (Formerly Twitter)" class="bookmark-listing">
+          <span aria-hidden="false" aria-label="Share listing to Twitter">Twitter</span>
+        </button>
+      </mat-menu>
     </aside>
   </section>
 

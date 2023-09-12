@@ -17,9 +17,9 @@
 <section class="guests-container" [formGroup]="bookingForm" [ngClass]="{ 'filter-blur': isGuest() }">
   <mat-form-field appearance="outline">
     <mat-label>Enter renting period</mat-label>
-    <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker" [min]="startFromToday()">
-      <input required matStartDate formControlName="start" placeholder="Start date" />
-      <input required matEndDate formControlName="end" placeholder="End date" />
+    <mat-date-range-input [formGroup]="rentingPeriod" [rangePicker]="picker" [min]="startFromToday()" [disabled]="isGuest()">
+      <input required matStartDate formControlName="start" placeholder="Start date" [disabled]="isGuest()"/>
+      <input required matEndDate formControlName="end" placeholder="End date" [disabled]="isGuest()"/>
     </mat-date-range-input>
     <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -28,7 +28,7 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Number of Guests</mat-label>
-    <mat-select formControlName="guests">
+    <mat-select formControlName="guests" [disabled]="isGuest()" >
       <mat-option *ngFor="let num of capacity()" [value]="num">{{ num | i18nPlural : capacityMapping }}</mat-option>
     </mat-select>
     <mat-hint>Max. {{ capacity().length }} guests are allowed</mat-hint>

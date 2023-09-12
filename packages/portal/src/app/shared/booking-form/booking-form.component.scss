@@ -110,6 +110,7 @@
 
 .filter-blur {
   filter: blur(5px);
+  pointer-events: none;
 }
 
 .login-container {

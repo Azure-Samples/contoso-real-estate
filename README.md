@@ -19,6 +19,10 @@ You can navigate through the documentation using the table of contents below:
     - [DevOps](#devops)
     - [Developer tools](#developer-tools)
   - [Development environment](#development-environment)
+  - [Developer Guide (Website)](#developer-guide-website)
+    - [1 | Preview Website](#1--preview-website)
+    - [2 | Deploy Website](#2--deploy-website)
+    - [3 | Test Website](#3--test-website)
   - [Usage costs](#usage-costs)
   - [Project structure](#project-structure)
   - [Deploy to Azure](#deploy-to-azure)
@@ -163,7 +167,7 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 The project has a  [Developer Guide](./packages/docs/website/README.md) defined under `packages/docs` and implemented as an interactive website using the [Docusaurus](https://docusaurus.io) platform.
 ### 1 | Preview Website 
 
- - Read the [website/README](./packages/docs/website/README.md) more details on setting up and building this package. 
+ - Read the [website/README](./packages/docs/website/README.md) for more details on setting up and building this package. 
  - Use the following instructions for a quickstart.
 
 ```bash
@@ -245,6 +249,7 @@ This project uses [Azure Developer CLI (`azd`)](https://aka.ms/azd) to provision
 
 ```bash
 # Login to azd. Only required once per install.
+# If the command fails, try using the --use-device-code flag
 azd auth login
 
 # Provision infrastructure and the azd development environment
@@ -253,6 +258,8 @@ azd provision
 # Package the app using the environment variables in .azure/env + deploy the code on Azure
 azd deploy
 ```
+
+>The `--use-device-code` is used to log in by using a device code instead of a browser, this may resolve any browser issues while logging in. For more information on when & why to use flags, check [here](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/reference#azd-auth-login)
 
 > If you encounter issues with the Azure Developer CLI, please open an issue [here](https://github.com/Azure/azure-dev/issues/new/choose).
 
