@@ -45,27 +45,22 @@ const time = [
 
 export function generateComments(starRating: number): string {
   if (starRating >= 3) {
-    const comment = positive[Math.floor(Math.random() * (positive.length - 1))];
-    return comment;
+    return positive[Math.floor(Math.random() * (positive.length - 1))];
   } else {
-    const comment = negative[Math.floor(Math.random() * (negative.length - 1))];
-    return comment;
+    return negative[Math.floor(Math.random() * (negative.length - 1))];;
   }
 }
 
 export function generateCommentor(): string {
-  const user = users[Math.floor(Math.random() * (users.length - 1))];
-  return user;
+  return users[Math.floor(Math.random() * (users.length - 1))];;
 }
 
 export function generateTime(): string {
-  const randomTime = time[Math.floor(Math.random() * (time.length - 1))];
-  return randomTime;
+  return time[Math.floor(Math.random() * (time.length - 1))];;
 }
 
 export function randomLikeDislike(max: number): number {
   {
-    const random = Math.floor(Math.random() * max);
-    return random;
+    return Math.floor(Math.random() * max);;
   }
 }

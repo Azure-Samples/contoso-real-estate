@@ -25,11 +25,11 @@ export class RentalpageComponent implements OnInit {
 
   listing = signal<Listing>({} as Listing);
   reviewStars = signal<number[]>([]);
-  comments: string[] = [];
-  commentors: string[] = [];
-  commentTime: string[] = [];
-  likes: number[] = [];
-  dislikes: number[] = [];
+  comments = signal<string[]>([]);
+  commentors = signal<string[]>([]);
+  commentTime = signal<string[]>([]);
+  likes= signal<number[]>([]);
+  dislikes = signal<number[]>([]);
   isLoading = signal(true);
 
   private router = inject(Router);
@@ -66,16 +66,33 @@ export class RentalpageComponent implements OnInit {
 
 
     //Generate random comments for the listing based on the number of reviews but only 10 comments should be displayed
-    for (let i = 0; i < this.listing().reviews_number; i++) {
-      this.comments.push(generateComments(this.listing().reviews_stars));
-      this.commentors.push(generateCommentor());
+    // for (let i = 0; i < this.listing().reviews_number; i++) {
+    //   this.comments.push(generateComments(this.listing().reviews_stars));
+    //   this.commentors.push(generateCommentor());
 
-      this.commentTime.push(generateTime())
+    //   this.commentTime.push(generateTime())
 
-      //these magic numbers are sample max number of likes and dislikes - just for realism
-      this.likes.push(randomLikeDislike(100));
-      this.dislikes.push(randomLikeDislike(40));
-    }
+    //   //these magic numbers are sample max number of likes and dislikes - just for realism
+    //   this.likes.push(randomLikeDislike(100));
+    //   this.dislikes.push(randomLikeDislike(40));
+    // }
+
+    this.comments.set(Array(this.listing().reviews_number)
+      .fill(0)
+      .map((x, i) => generateComments(this.listing().reviews_stars)));
+    this.commentors.set(Array(this.listing().reviews_number)
+      .fill(0)
+      .map((x, i) => generateCommentor()));
+    this.commentTime.set(Array(this.listing().reviews_number)
+      .fill(0)
+      .map((x, i) => generateTime()));
+    this.likes.set(Array(this.listing().reviews_number)
+      .fill(0)
+      .map((x, i) => randomLikeDislike(100)));
+    this.dislikes.set(Array(this.listing().reviews_number)
+      .fill(0)
+      .map((x, i) => randomLikeDislike(40)));
+
   }
 
   async share(platform: string) {

@@ -86,17 +86,17 @@
   </section>
   <section class="listing-comments" [ngClass]="{ 'loading-background': isLoading() }">
     <!-- create a dynamic number of divs according to the length of comments in Listing-->
-    <div *ngFor="let comment of comments; let i = index">
+    <div *ngFor="let comment of comments(); let i = index">
       <div class="listing-comments__comment">
         <div class="listing-comments__comment__header">
           <div class="listing-comments__comment__header__user">
             <span class="material-symbols-outlined">account_circle</span>
             <!-- {{ comment.user }} -->
-            <span>{{ commentors[i] }}</span>
+            <span>{{ commentors()[i] }}</span>
           </div>
           <div class="listing-comments__comment__header__date">
             <!-- <span>{{ comment.date }}</span> -->
-            <span>{{ commentTime[i] }}</span>
+            <span>{{ commentTime()[i] }}</span>
           </div>
         </div>
         <div class="listing-comments__comment__body">
@@ -107,12 +107,12 @@
           <div class="listing-comments__comment__footer__upvotes">
             <span class="material-symbols-outlined">thumb_up</span>
             <!-- {{ comment.upvotes }} -->
-            <span>{{ likes[i] }}</span>
+            <span>{{ likes()[i] }}</span>
           </div>
           <div class="listing-comments__comment__footer__downvotes">
             <span class="material-symbols-outlined">thumb_down</span>
             <!-- {{ comment.downvotes }} -->
-            <span>{{ dislikes[i] }}</span>
+            <span>{{ dislikes()[i] }}</span>
           </div>
         </div>
       </div>
