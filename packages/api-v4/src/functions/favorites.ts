@@ -3,12 +3,6 @@ import { initializeDatabaseConfiguration } from "../config";
 import { fetchFavoritesDataByUserId, findFavorite, getFavoritesByUserId, saveFavorite, removeFavorite } from '../models/favorite';
 import { User } from "../models/user.schema";
 import { Listing } from "../models/listing.schema";
-import { Favorite } from "../models/favorite.schema";
-
-type DeleteFavoriteRequestBody = {
-  listingId: Favorite['listingId'];
-  userId: Favorite['userId'];
-};
 
 // GET: Favorites
 export async function getFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -17,7 +11,9 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
   const offset = Number(request.query.get('offset')) || 0;
   const limit = Number(request.query.get('limit')) || 10;
 
-  const { userId, listingId, aggregate } = request.params;
+  const userId = request.query.get('userId');
+  const listingId = request.query.get('listingId');
+  const aggregate = request.query.get('aggregate');
 
   // UserID is the only required parameter
   if (!userId || userId === 'undefined') {
@@ -166,8 +162,8 @@ export async function deleteFavorite(request: HttpRequest, context: InvocationCo
 
   await initializeDatabaseConfiguration();
 
-  const jsonData = await request.json() as DeleteFavoriteRequestBody;
-  const { listingId, userId } = jsonData;
+  const userId = request.query.get('userId');
+  const listingId = request.query.get('listingId');
 
   if (!listingId || !userId) {
     return {
