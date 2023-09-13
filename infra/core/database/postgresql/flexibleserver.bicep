@@ -75,4 +75,4 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
   name: keyVaultName
 }
 
-output POSTGRES_DOMAIN_NAME string = postgresServer.properties.fullyQualifiedDomainName
+output POSTGRES_SERVER_NAME string = postgresServer.name
