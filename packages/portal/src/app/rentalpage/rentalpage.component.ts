@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject, signal } from "@angular/core";
+import { Component, Input, OnInit, inject, signal } from "@angular/core";
 import { ActivatedRoute, Navigation, Router } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
@@ -37,6 +37,8 @@ export class RentalpageComponent implements OnInit {
   private listingService = inject(ListingService);
   private userService = inject(UserService);
 
+  @Input('id') listId = '';
+
   constructor() {
     this.navigation = this.router.getCurrentNavigation();
     this.listing.set(this.navigation?.extras.state?.["listing"] || {});
@@ -50,7 +52,7 @@ export class RentalpageComponent implements OnInit {
       return;
     }
 
-    const listing = await this.listingService.getListingById(this.route.snapshot.params["id"]);
+    const listing = await this.listingService.getListingById(this.listId);
 
     if (listing !== undefined) {
       this.listing.set(listing);
@@ -107,7 +109,7 @@ export class RentalpageComponent implements OnInit {
     try {
       const checkoutSession = await this.listingService.reserve(reservationDetails);
       const sessionURL = new URL(checkoutSession.sessionUrl);
-      if (sessionURL.hostname === "localhost" && window.location.hostname !== "localhost") {
+      if (sessionURL.hostname === 'localhost' && window.location.hostname !== 'localhost') {
         // Fix for local testing on Codespaces
         sessionURL.hostname = window.location.hostname;
         sessionURL.port = "";
