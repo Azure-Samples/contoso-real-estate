@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit, inject, signal } from "@angular/core";
-import { ActivatedRoute, Navigation, Router } from "@angular/router";
+import { Navigation, Router } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
@@ -112,9 +112,9 @@ export class RentalpageComponent implements OnInit {
       if (sessionURL.hostname === 'localhost' && window.location.hostname !== 'localhost') {
         // Fix for local testing on Codespaces
         sessionURL.hostname = window.location.hostname;
-        sessionURL.port = "";
+        sessionURL.port = '';
       }
-      console.info("Redirecting to " + sessionURL);
+      console.info('Redirecting to ' + sessionURL);
       window.location.href = sessionURL.toString();
     } catch (error: unknown) {
       if (error instanceof Error) {
