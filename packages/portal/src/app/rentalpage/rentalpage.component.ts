@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnInit, inject, signal } from "@angular/core";
-import { Navigation, Router } from "@angular/router";
+import { Component, OnInit, inject, signal } from "@angular/core";
+import { ActivatedRoute, Navigation, Router } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
@@ -28,15 +28,14 @@ export class RentalpageComponent implements OnInit {
   comments = signal<string[]>([]);
   commentors = signal<string[]>([]);
   commentTime = signal<string[]>([]);
-  likes= signal<number[]>([]);
+  likes = signal<number[]>([]);
   dislikes = signal<number[]>([]);
   isLoading = signal(true);
 
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private listingService = inject(ListingService);
   private userService = inject(UserService);
-
-  @Input('id') listId = '';
 
   constructor() {
     this.navigation = this.router.getCurrentNavigation();
@@ -51,7 +50,7 @@ export class RentalpageComponent implements OnInit {
       return;
     }
 
-    const listing = await this.listingService.getListingById(this.listId);
+    const listing = await this.listingService.getListingById(this.route.snapshot.params["id"]);
 
     if (listing !== undefined) {
       this.listing.set(listing);
@@ -60,39 +59,44 @@ export class RentalpageComponent implements OnInit {
       this.router.navigate(["/404"]);
     }
 
+
     this.reviewStars.set(Array(5)
       .fill(0)
       .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
 
 
-    //Generate random comments for the listing based on the number of reviews but only 10 comments should be displayed
-    // for (let i = 0; i < this.listing().reviews_number; i++) {
-    //   this.comments.push(generateComments(this.listing().reviews_stars));
-    //   this.commentors.push(generateCommentor());
 
-    //   this.commentTime.push(generateTime())
+    const limit = this.listing().reviews_number > 20 ? 20 : this.listing().reviews_number;
+    // this.comments.set(Array(limit)
+    //   .fill(0)
+    //   .map(() => generateComments(this.listing().reviews_stars)));
+    // this.commentors.set(Array(limit)
+    //   .fill(0)
+    //   .map(() => generateCommentor()));
+    // this.commentTime.set(Array(limit)
+    //   .fill(0)
+    //   .map(() => generateTime()));
+    // this.likes.set(Array(limit)
+    //   .fill(0)
+    //   .map(() => randomLikeDislike(100)));
+    // this.dislikes.set(Array(limit)
+    //   .fill(0)
+    //   .map(() => randomLikeDislike(40)));
 
-    //   //these magic numbers are sample max number of likes and dislikes - just for realism
-    //   this.likes.push(randomLikeDislike(100));
-    //   this.dislikes.push(randomLikeDislike(40));
-    // }
+    //! ive commented this block out because I felt it might not be really concincise or easily readable
+    //! I can revert it back if its better that way
 
-    this.comments.set(Array(this.listing().reviews_number)
-      .fill(0)
-      .map((x, i) => generateComments(this.listing().reviews_stars)));
-    this.commentors.set(Array(this.listing().reviews_number)
-      .fill(0)
-      .map((x, i) => generateCommentor()));
-    this.commentTime.set(Array(this.listing().reviews_number)
-      .fill(0)
-      .map((x, i) => generateTime()));
-    this.likes.set(Array(this.listing().reviews_number)
-      .fill(0)
-      .map((x, i) => randomLikeDislike(100)));
-    this.dislikes.set(Array(this.listing().reviews_number)
-      .fill(0)
-      .map((x, i) => randomLikeDislike(40)));
+    const commentsArray = Array(limit).fill(0).map(() => generateComments(this.listing().reviews_stars));
+    const commentorsArray = Array(limit).fill(0).map(() => generateCommentor());
+    const commentTimeArray = Array(limit).fill(0).map(() => generateTime());
+    const likesArray = Array(limit).fill(0).map(() => randomLikeDislike(100));
+    const dislikesArray = Array(limit).fill(0).map(() => randomLikeDislike(40));
 
+    this.comments.set(commentsArray);
+    this.commentors.set(commentorsArray);
+    this.commentTime.set(commentTimeArray);
+    this.likes.set(likesArray);
+    this.dislikes.set(dislikesArray);
   }
 
   async share(platform: string) {
@@ -103,12 +107,12 @@ export class RentalpageComponent implements OnInit {
     try {
       const checkoutSession = await this.listingService.reserve(reservationDetails);
       const sessionURL = new URL(checkoutSession.sessionUrl);
-      if (sessionURL.hostname === 'localhost' && window.location.hostname !== 'localhost') {
+      if (sessionURL.hostname === "localhost" && window.location.hostname !== "localhost") {
         // Fix for local testing on Codespaces
         sessionURL.hostname = window.location.hostname;
-        sessionURL.port = '';
+        sessionURL.port = "";
       }
-      console.info('Redirecting to ' + sessionURL);
+      console.info("Redirecting to " + sessionURL);
       window.location.href = sessionURL.toString();
     } catch (error: unknown) {
       if (error instanceof Error) {

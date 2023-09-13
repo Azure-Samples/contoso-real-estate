@@ -2,11 +2,10 @@
 name: "[Hack-together] "
 about: Generic issues/tasks
 title: "[Hack-together] "
-labels: ["status: needs triage","Hack-together"]
+labels: ["status: needs triage", "Hack-together"]
 assignees:
   - juliamuiruri4
 ---
-
 
 **Are you accessing the project from the GitHub Codespaces?**
 
@@ -18,7 +17,6 @@ assignees:
 **Describe the bug**
 A clear and concise description of what the bug is.
 
-
 **To Reproduce**
 Steps to reproduce the behavior:
 
@@ -28,22 +26,19 @@ Steps to reproduce the behavior:
 4. Scroll down to '...'
 5. See error
 
-
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
-
 
 **OS (please complete the following information):**
 
 - OS:
 - OS Version:
-- npm version: 
+- npm version:
 - Node.js version:
-- output of `azd version`: 
+- output of `azd version`:
 
 **Additional context**
 Add any other context about the problem here.
