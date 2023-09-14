@@ -1,5 +1,3 @@
-//import a way to get random numbers
-
 import { Injectable } from '@angular/core';
 
 @Injectable({
