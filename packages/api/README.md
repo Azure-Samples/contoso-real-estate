@@ -17,17 +17,31 @@ If you want to run the API independently and locally, the following technologies
 
 ## Steps to start the API
 
-1. fork or clone the repository locally
-2. assuming you are in the folder containing your clone, go to the terminal and run
+Complete the following steps **after provisioning the Azure resources** in order to develop and debug against Azure resources.
 
-```bash
-cd packages/api && npm install
-```
-Now you have all the dependencies installed for the API and can run
+1. Fork or clone the repository locally
+2. Provision Azure resources. 
 
-```bash
-npm start
-```
+  ```bash
+  azd auth login
+  azd provision
+  ```
+3. Assuming you are in the folder containing your clone, go to the terminal and run
+
+  ```bash
+  cd packages/api && npm install
+  ```
+4. Now you have all the dependencies installed for the API and can run
+
+  ```bash
+  npm start
+  ```
+
+5. Copy the provisioned environment file, `./.azure/YOUR-ENV/.env`, to this package.
+
+  ```bash
+  npm run env
+  ```
 
 ## Stripe API integration
 
