@@ -17,31 +17,17 @@ If you want to run the API independently and locally, the following technologies
 
 ## Steps to start the API
 
-Complete the following steps **after provisioning the Azure resources** in order to develop and debug against Azure resources.
+1. fork or clone the repository locally
+2. assuming you are in the folder containing your clone, go to the terminal and run
 
-1. Fork or clone the repository locally
-2. Provision Azure resources. 
+```bash
+cd packages/api && npm install
+```
+Now you have all the dependencies installed for the API and can run
 
-  ```bash
-  azd auth login
-  azd provision
-  ```
-3. Assuming you are in the folder containing your clone, go to the terminal and run
-
-  ```bash
-  cd packages/api && npm install
-  ```
-4. Now you have all the dependencies installed for the API and can run
-
-  ```bash
-  npm start
-  ```
-
-5. Copy the provisioned environment file, `./.azure/YOUR-ENV/.env`, to this package.
-
-  ```bash
-  npm run env
-  ```
+```bash
+npm start
+```
 
 ## Stripe API integration
 
@@ -70,3 +56,38 @@ stripe trigger payment_intent.succeeded
 ```
 
 To test payments, you can use the [Stripe test cards](https://stripe.com/docs/testing#cards).
+
+## Local development with Azure resources
+
+To develop the Azure Functions app with the Azure databases, use the following steps.
+
+1. Fork the repository and open in Codespaces or Visual Studio dev container.
+1. In a terminal at the root of the repository, use a terminal to login to Azure Developer CLI. Complete the steps.
+
+  ```bash
+  azd auth login
+  ```
+
+1. Provision your Azure resources which also creates your local environment file with secrets and configurations.
+
+  ```bash
+  azd provision
+  ```
+
+1. Install the project dependencies.
+
+  ```bash
+  npm install
+  ```
+
+1. In a terminal at the `./packages/API` subfolder, create an `.env.local` file for the Azure Functions app. This creates an environment file with Azure resource values.
+
+  ```bash
+  npm run env
+  ```
+
+1. Run the Functions app.
+
+  ```bash
+  npm run start
+  ```
