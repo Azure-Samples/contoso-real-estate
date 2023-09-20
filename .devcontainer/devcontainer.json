@@ -24,6 +24,9 @@
     },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
+    },
+    "ghcr.io/azure/azure-dev/azd:0": {
+      "version": "latest"
     }
   },
 
