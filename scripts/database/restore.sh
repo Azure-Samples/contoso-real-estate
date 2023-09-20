@@ -70,11 +70,6 @@ PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
   --dbname="$STRAPI_DATABASE_NAME" \
   "$file" || true
 
-if [[ $? -ne 0 ]]; then
-  echo "!!Failed to restore PostgreSQL Database"
-  exit 1
-fi
-
 echo "PostgreSQL Database restored successfully"
 
 if [[ "$AZD_INSTALLED" == "true" ]]; then
