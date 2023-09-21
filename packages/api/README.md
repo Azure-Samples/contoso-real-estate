@@ -62,7 +62,7 @@ To test payments, you can use the [Stripe test cards](https://stripe.com/docs/te
 To develop the Azure Functions app with the Azure databases, use the following steps.
 
 1. Fork the repository and open in Codespaces or Visual Studio dev container.
-1. In a terminal at the root of the repository, use a terminal to login to Azure Developer CLI. Complete the steps.
+1. At the root of the repository, use a terminal to login to Azure Developer CLI. Complete the steps.
 
   ```bash
   azd auth login
