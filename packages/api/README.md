@@ -80,7 +80,7 @@ To develop the Azure Functions app with the Azure databases, use the following s
   npm install
   ```
 
-1. In a terminal at the `./packages/API` subfolder, create an `.env.local` file for the Azure Functions app. This creates an environment file with Azure resource values.
+1. In a terminal at the `./packages/api` subfolder, create an `.env.local` file for the Azure Functions app. This creates an environment file with Azure resource values.
 
   ```bash
   npm run env
