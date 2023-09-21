@@ -89,5 +89,5 @@ To develop the Azure Functions app with the Azure databases, use the following s
 1. Run the Functions app.
 
   ```bash
-  npm run start
+  npm start
   ```
