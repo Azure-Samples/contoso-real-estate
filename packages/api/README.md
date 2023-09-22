@@ -56,3 +56,38 @@ stripe trigger payment_intent.succeeded
 ```
 
 To test payments, you can use the [Stripe test cards](https://stripe.com/docs/testing#cards).
+
+## Local development with Azure resources
+
+To develop the Azure Functions app with the Azure databases, use the following steps.
+
+1. Fork the repository and open in Codespaces or Visual Studio dev container.
+1. At the root of the repository, use a terminal to login to Azure Developer CLI. Complete the steps.
+
+  ```bash
+  azd auth login
+  ```
+
+1. Provision your Azure resources which also creates your local environment file with secrets and configurations.
+
+  ```bash
+  azd provision
+  ```
+
+1. Install the project dependencies.
+
+  ```bash
+  npm install
+  ```
+
+1. In a terminal at the `./packages/api` subfolder, create an `.env.local` file for the Azure Functions app. This creates an environment file with Azure resource values.
+
+  ```bash
+  npm run env
+  ```
+
+1. Run the Functions app.
+
+  ```bash
+  npm start
+  ```
