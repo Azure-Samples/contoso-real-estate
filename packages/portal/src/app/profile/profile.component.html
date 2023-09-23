@@ -5,18 +5,18 @@
     <aside class="aside-left">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>{{ user().name }}</mat-card-title>
+          <mat-card-title>{{ user.name }}</mat-card-title>
           <div mat-card-avatar>
             <!-- <img class="user__avatar" [src]="user.avatar" alt="User avatar"> -->
             <span class="material-symbols-outlined user__avatar"> account_circle </span>
           </div>
-          <mat-card-subtitle>{{ user().role }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ user.role }}</mat-card-subtitle>
         </mat-card-header>
       </mat-card>
     </aside>
 
     <section class="profile-body">
-      <mat-tab-group [selectedIndex]="selectedTabIndex()">
+      <mat-tab-group [selectedIndex]="selectedTabIndex">
 
         <!-- favorites -->
         <mat-tab label="Saved Listings">

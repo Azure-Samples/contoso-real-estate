@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject, signal } from "@angular/core";
-import { ActivatedRoute, Navigation, Router } from "@angular/router";
+import { Component, Input, OnInit, inject, signal } from "@angular/core";
+import { Navigation, Router } from "@angular/router";
 import { MatMenuModule } from "@angular/material/menu";
 import { BookingFormComponent } from "../shared/booking-form/booking-form.component";
 import { FavoriteButtonComponent } from "../shared/favorite-button/favorite-button/favorite-button.component";
@@ -27,9 +27,10 @@ export class RentalpageComponent implements OnInit {
   isLoading = signal(true);
 
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
   private listingService = inject(ListingService);
   private userService = inject(UserService);
+
+  @Input('id') listId = '';
 
   constructor() {
     this.navigation = this.router.getCurrentNavigation();
@@ -44,7 +45,7 @@ export class RentalpageComponent implements OnInit {
       return;
     }
 
-    const listing = await this.listingService.getListingById(this.route.snapshot.params["id"]);
+    const listing = await this.listingService.getListingById(this.listId);
 
     if (listing !== undefined) {
       this.listing.set(listing);

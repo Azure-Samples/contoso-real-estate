@@ -51,7 +51,7 @@
       "value": "${SERVICE_STRIPE_URI}"
     },
     "storageContainerName": {
-      "value": "${STORAGE_CONTAINER_NAME}"
+      "value": "${STORAGE_CONTAINER_NAME=strapi-media}"
     }
   }
 }

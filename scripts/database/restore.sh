@@ -30,11 +30,25 @@ else
   echo "Getting values from .env"
 fi
 
-
 # if database has already been migrated, exit
 if [[ "$STRAPI_DATABASE_MIGRATED" == "true" ]]; then
   echo "Strapi database has already been migrated"
   exit 0
+fi
+
+# Skip for local development
+if [ ! -f /.dockerenv ]; then
+  # Add current public IP to firewall exceptions 
+  my_public_ip="$(curl -s https://api.ipify.org)"
+
+  echo "Adding current public IP to firewall exceptions..."
+  az postgres flexible-server firewall-rule create \
+    --resource-group "rg-$AZURE_ENV_NAME" \
+    --name "$CMS_DATABASE_SERVER_NAME" \
+    --rule-name "AllowMyIP" \
+    --start-ip-address "$my_public_ip" \
+    --end-ip-address "$my_public_ip" \
+    --output none
 fi
 
 filename="${1:-}"
@@ -55,11 +69,6 @@ PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
   --username="$STRAPI_DATABASE_USERNAME" \
   --dbname="$STRAPI_DATABASE_NAME" \
   "$file" || true
-
-if [[ $? -ne 0 ]]; then
-  echo "!!Failed to restore PostgreSQL Database"
-  exit 1
-fi
 
 echo "PostgreSQL Database restored successfully"
 
