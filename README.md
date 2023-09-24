@@ -76,7 +76,7 @@ flowchart TD
     Storage([Azure Blob Storage - CMS])
     end 
 
-    Portal --> SWA_Angular -- "portal.contoso.com/api/**" --> APIM -- "portal.contoso.com/api/**" --> Functions
+    Portal --> SWA_Angular -- "portal.contoso.com/api/**" --> Functions
     
     Blog -- "blog.contoso.com" --> ACA_Next -. "Strapi API" .-> ACA_Strapi
     
@@ -86,7 +86,7 @@ flowchart TD
     
     API --> APIM -- "api.contoso.com" --> Functions <-- "read/write" --> DB_Mongo
 
-    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate payment (through APIM)" .-> Functions
+    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate payment (through APIM -optional-)" .-> Functions
     
     %% Portal
     linkStyle 0 stroke:pink
