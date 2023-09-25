@@ -130,9 +130,8 @@ flowchart TD
 - [Azure Container Apps](https://azure.microsoft.com/services/container-apps/) - The hosting of the Blog, Stripe and Strapi APIs.
 - [Azure Application Insights](https://azure.microsoft.com/services/monitor/) - Monitoring and accessing logs for the applications and APIs.
 
-In order use [API Management](https://azure.microsoft.com/products/api-management), please set the boolean flag `useAPIM` on (./infra/main.bicep) to true. This will provision the API Management instance and configure the APIs to use it. Please note that this will incur additional costs and the provisioning process may take up to 40 minutes.
+In order use [API Management](https://azure.microsoft.com/products/api-management), please set the boolean flag `useAPIM` on [the main bicep file](./infra/main.bicep) to true. This will provision the API Management instance and configure the APIs to use it. Please note that this will incur additional costs and the provisioning process may take up to 40 minutes.
 
-```bash
 ### DevOps
 
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) - Provisioning, managing and deploying the application to Azure.
