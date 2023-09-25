@@ -76,7 +76,7 @@ flowchart TD
     Storage([Azure Blob Storage - CMS])
     end 
 
-    Portal --> SWA_Angular -- "portal.contoso.com/api/**" --> APIM -- "portal.contoso.com/api/**" --> Functions
+    Portal --> SWA_Angular -- "portal.contoso.com/api/**" --> Functions
     
     Blog -- "blog.contoso.com" --> ACA_Next -. "Strapi API" .-> ACA_Strapi
     
@@ -86,7 +86,7 @@ flowchart TD
     
     API --> APIM -- "api.contoso.com" --> Functions <-- "read/write" --> DB_Mongo
 
-    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate payment (through APIM)" .-> Functions
+    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate payment (through APIM -optional-)" .-> Functions
     
     %% Portal
     linkStyle 0 stroke:pink
@@ -130,6 +130,9 @@ flowchart TD
 - [Azure Container Apps](https://azure.microsoft.com/services/container-apps/) - The hosting of the Blog, Stripe and Strapi APIs.
 - [Azure Application Insights](https://azure.microsoft.com/services/monitor/) - Monitoring and accessing logs for the applications and APIs.
 
+In order use [API Management](https://azure.microsoft.com/products/api-management), please set the boolean flag `useAPIM` on (./infra/main.bicep) to true. This will provision the API Management instance and configure the APIs to use it. Please note that this will incur additional costs and the provisioning process may take up to 40 minutes.
+
+```bash
 ### DevOps
 
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) - Provisioning, managing and deploying the application to Azure.
