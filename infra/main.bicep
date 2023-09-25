@@ -61,7 +61,7 @@ param stripeSecretKey string
 @secure()
 param stripeWebhookSecret string
 
-// TODO: fix APIM
+// Set to true to use Azure API Management
 @description('Flag to use Azure API Management to mediate the calls between the Web frontend and the backend API')
 param useAPIM bool = false
 
