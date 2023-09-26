@@ -15,10 +15,10 @@ export const getConfig: () => Promise<AppConfig> = async () => {
     return configCache;
   }
 
-  // Load any ENV vars from local .env.local file
+  // Load any ENV vars from local .env file
   if (process.env.NODE_ENV !== "production") {
-    console.warn("Loading environment variables from root '.env.local' file. THIS SHOULD NOT BE USED IN PRODUCTION!");
-    dotenv.config({ path: path.resolve(process.cwd(), "../../.env.local") });
+    console.warn("Loading environment variables from root '.env' file. THIS SHOULD NOT BE USED IN PRODUCTION!");
+    dotenv.config({ path: path.resolve(process.cwd(), "../../.env") });
   }
 
   await populateEnvironmentFromKeyVault();
