@@ -8,7 +8,7 @@
       "name": "Debug Web",
       "request": "launch",
       "type": "msedge",
-      "webRoot": "${workspaceFolder}/packages/contoso-real-estate-ui",
+      "webRoot": "${workspaceFolder}/packages/portal",
       "url": "http://localhost:4280"
     },
     {
@@ -18,7 +18,7 @@
       "runtimeExecutable": "func",
       "skipFiles": ["<node_internals>/**"],
       "type": "node",
-      "cwd": "${workspaceFolder}/packages/contoso-real-estate-api",
+      "cwd": "${workspaceFolder}/packages/api",
       "envFile": "${input:dotEnvFilePath}",
       "env": {
         "NODE_ENV": "development"
