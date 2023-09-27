@@ -79,7 +79,7 @@ After the deployment is complete, you will need to update the Stripe webhook end
 1. First, run the following command to get the endpoint URL:
     ```bash
     # Create a .env file with the environment variables from the azd environment
-    azd env get-env > .env
+    azd env get-values > .env
 
     # Get the endpoint URL
     source .env && echo "Your Stripe webhook endpoint URL is:\n$SERVICE_STRIPE_URI/stripe-api/stripe/webhook"
