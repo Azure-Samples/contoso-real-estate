@@ -9,21 +9,32 @@ import { MatInputModule } from "@angular/material/input";
 import { Router } from "@angular/router";
 import { AuthService } from "../shared/authentication/auth.service";
 import { TextBlockComponent } from "../shared/text-block/text-block.component";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faApple, faFacebook, faGithub, faGoogle, faMicrosoft, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 @Component({
   selector: "app-authentication",
   templateUrl: "./authentication.component.html",
   styleUrls: ["./authentication.component.scss"],
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, TextBlockComponent, MatIconModule,FontAwesomeModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    TextBlockComponent,
+    MatIconModule,
+    FontAwesomeModule,
+  ],
   standalone: true,
 })
 export class AuthenticationComponent implements OnInit {
-
   public constructor(iconRegistry: MatIconRegistry, santizer: DomSanitizer) {
     for (const provider of this.providers) {
-      iconRegistry.addSvgIcon(provider.id, santizer.bypassSecurityTrustResourceUrl(`../assets/company-logos/${provider.id}.svg`));
+      iconRegistry.addSvgIcon(
+        provider.id,
+        santizer.bypassSecurityTrustResourceUrl(`../assets/company-logos/${provider.id}.svg`),
+      );
     }
   }
 
@@ -34,11 +45,10 @@ export class AuthenticationComponent implements OnInit {
     { name: "Google", id: "google", icon: faGoogle },
     { name: "Twitter", id: "twitter", icon: faTwitter },
     { name: "GitHub", id: "github", icon: faGithub },
-    { name: "Apple", id: "apple", icon: faApple }
+    { name: "Apple", id: "apple", icon: faApple },
   ];
   private router = inject(Router);
   private authService = inject(AuthService);
-
 
   async ngOnInit() {
     if (this.isAuthenticated()) {

@@ -1,11 +1,11 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 export interface Payment {
   id: string;
   userId: string;
   reservationId: string;
-  provider: 'stripe' | 'paypal';
-  status: 'pending' | 'declined' | 'completed' | 'cancelled';
+  provider: "stripe" | "paypal";
+  status: "pending" | "declined" | "completed" | "cancelled";
   amount: number;
   currency: string;
   createdAt: Date;
@@ -24,12 +24,12 @@ const PaymentSchema = new Schema<Payment>({
   provider: {
     type: String,
     required: true,
-    enum: ['stripe', 'paypal'],
+    enum: ["stripe", "paypal"],
   },
   status: {
     type: String,
     required: true,
-    enum: ['pending', 'declined', 'completed', 'cancelled'],
+    enum: ["pending", "declined", "completed", "cancelled"],
   },
   amount: {
     type: Number,
@@ -42,12 +42,11 @@ const PaymentSchema = new Schema<Payment>({
   createdAt: {
     type: Date,
     required: true,
-  }
+  },
 });
 
-PaymentSchema.set('toJSON', {
+PaymentSchema.set("toJSON", {
   virtuals: true,
 });
 
-export default model<Payment>('Payment', PaymentSchema);
-
+export default model<Payment>("Payment", PaymentSchema);

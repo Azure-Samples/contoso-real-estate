@@ -20,7 +20,7 @@ import { ReservationService } from "../shared/reservation.service";
 })
 export class ProfileComponent implements OnInit {
   @Input() user: User = {} as User;
-  @Input('tab') selectedTab = 'favorites';
+  @Input("tab") selectedTab = "favorites";
 
   readonly tabs = ["favorites", "payments", "reservations"];
 
@@ -29,8 +29,8 @@ export class ProfileComponent implements OnInit {
   payments = signal<Payment[]>([]);
 
   get selectedTabIndex() {
-    return this.tabs.indexOf(this.selectedTab || "favorites")
-  };
+    return this.tabs.indexOf(this.selectedTab || "favorites");
+  }
 
   private favoriteService = inject(FavoriteService);
   private reservationService = inject(ReservationService);

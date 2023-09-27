@@ -4,4 +4,4 @@ export interface ReservationRequest {
   from: string;
   to: string;
   guests: number;
-};
+}

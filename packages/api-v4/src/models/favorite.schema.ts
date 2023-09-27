@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 export interface Favorite {
   userId: string;
@@ -21,4 +21,4 @@ const FavoriteSchema = new Schema<Favorite>({
   },
 });
 
-export default model<Favorite>('Favorite', FavoriteSchema);
+export default model<Favorite>("Favorite", FavoriteSchema);

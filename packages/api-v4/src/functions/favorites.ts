@@ -1,6 +1,12 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
-import { fetchFavoritesDataByUserId, findFavorite, getFavoritesByUserId, saveFavorite, removeFavorite } from '../models/favorite';
+import {
+  fetchFavoritesDataByUserId,
+  findFavorite,
+  getFavoritesByUserId,
+  saveFavorite,
+  removeFavorite,
+} from "../models/favorite";
 import { User } from "../models/user.schema";
 import { Listing } from "../models/listing.schema";
 
@@ -8,19 +14,19 @@ import { Listing } from "../models/listing.schema";
 export async function getFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getFavorites processed request for url "${request.url}"`);
 
-  const offset = Number(request.query.get('offset')) || 0;
-  const limit = Number(request.query.get('limit')) || 10;
+  const offset = Number(request.query.get("offset")) || 0;
+  const limit = Number(request.query.get("limit")) || 10;
 
-  const userId = request.query.get('userId');
-  const listingId = request.query.get('listingId');
-  const aggregate = request.query.get('aggregate');
+  const userId = request.query.get("userId");
+  const listingId = request.query.get("listingId");
+  const aggregate = request.query.get("aggregate");
 
   // UserID is the only required parameter
-  if (!userId || userId === 'undefined') {
+  if (!userId || userId === "undefined") {
     return {
       status: 400,
       jsonBody: {
-        error: 'UserId is missing',
+        error: "UserId is missing",
       },
     };
   }
@@ -29,21 +35,21 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
     return {
       status: 400,
       jsonBody: {
-        error: 'Offset must be greater than or equal to 0',
+        error: "Offset must be greater than or equal to 0",
       },
     };
   } else if (limit < 0) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Limit must be greater than or equal to 0',
+        error: "Limit must be greater than or equal to 0",
       },
     };
   } else if (offset > limit) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Offset must be less than or equal to limit',
+        error: "Offset must be less than or equal to limit",
       },
     };
   }
@@ -52,7 +58,7 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
     if (userId && !listingId) {
       let favorites = [];
 
-      if (aggregate === 'true') {
+      if (aggregate === "true") {
         // get a list of favorites with listing data (from Strapi)
         favorites = await fetchFavoritesDataByUserId({ userId });
       } else {
@@ -63,12 +69,12 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
       if (favorites.length > 0) {
         return {
           jsonBody: favorites,
-        }
+        };
       } else {
         return {
           status: 404,
           jsonBody: {
-            error: 'Favorites not found',
+            error: "Favorites not found",
           },
         };
       }
@@ -78,23 +84,23 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
       if (favorite) {
         return {
           jsonBody: [favorite],
-        }
+        };
       } else {
         return {
           status: 404,
           jsonBody: {
-            error: 'Favorite not found',
+            error: "Favorite not found",
           },
         };
       }
     }
   } catch (error: unknown) {
     const err = error as Error;
-    context.error('Error...', err.message);
+    context.error("Error...", err.message);
     return {
       status: 500,
       jsonBody: {
-        error: 'Internal server error',
+        error: "Internal server error",
       },
     };
   }
@@ -102,10 +108,10 @@ export async function getFavorites(request: HttpRequest, context: InvocationCont
   return {
     status: 500,
     jsonBody: {
-      error: 'Internal server error',
+      error: "Internal server error",
     },
   };
-};
+}
 
 // POST: Favorites
 export async function postFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -115,22 +121,22 @@ export async function postFavorites(request: HttpRequest, context: InvocationCon
 
   const jsonData = await request.json();
 
-  const { listing, user } = jsonData as { listing: Listing, user: User };
+  const { listing, user } = jsonData as { listing: Listing; user: User };
 
   if (!listing || !user) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Missing query parameters',
+        error: "Missing query parameters",
       },
     };
-  };
+  }
 
   if (listing.id === undefined) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Listing id is not valid',
+        error: "Listing id is not valid",
       },
     };
   }
@@ -149,12 +155,11 @@ export async function postFavorites(request: HttpRequest, context: InvocationCon
     return {
       status: 500,
       jsonBody: {
-        error: 'Internal server error',
+        error: "Internal server error",
       },
     };
   }
-
-};
+}
 
 // DELETE: Favorite
 export async function deleteFavorite(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -162,14 +167,14 @@ export async function deleteFavorite(request: HttpRequest, context: InvocationCo
 
   await initializeDatabaseConfiguration();
 
-  const userId = request.query.get('userId');
-  const listingId = request.query.get('listingId');
+  const userId = request.query.get("userId");
+  const listingId = request.query.get("listingId");
 
   if (!listingId || !userId) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Missing query parameters'
+        error: "Missing query parameters",
       },
     };
   }
@@ -181,13 +186,12 @@ export async function deleteFavorite(request: HttpRequest, context: InvocationCo
     };
   } catch (error: unknown) {
     const err = error as Error;
-    context.error('Error...', err.message);
+    context.error("Error...", err.message);
     return {
       status: 500,
       jsonBody: {
-        error: 'Internal server error',
+        error: "Internal server error",
       },
     };
   }
-};
-
+}

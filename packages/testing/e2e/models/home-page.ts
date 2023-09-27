@@ -161,7 +161,7 @@ export class HomePage {
     });
 
     this.heroSubtitle = page.getByText(
-      "The Contoso Portal is a place where you can find all the information you need to"
+      "The Contoso Portal is a place where you can find all the information you need to",
     );
 
     this.heroListingsButton = page.getByRole("link", {
@@ -192,15 +192,11 @@ export class HomePage {
     // footerHomeLink, footerAboutLink, footerTOSLink,
     // footerCopyright
     // -----------------------
-    this.footerLogo = page
-      .getByRole("contentinfo")
-      .getByRole("link", { name: "Contoso Rentals" });
+    this.footerLogo = page.getByRole("contentinfo").getByRole("link", { name: "Contoso Rentals" });
     this.footerAboutLink = page.getByRole("link", { name: "About" });
     this.footerHomeLink = page.getByRole("link", { name: "Home" });
     this.footerTOSLink = page.getByRole("link", { name: "Terms of Service" });
-    this.footerCopyright = page.getByText(
-      "©2023 - JavaScript @ Contoso HR Rentals App"
-    );
+    this.footerCopyright = page.getByText("©2023 - JavaScript @ Contoso HR Rentals App");
 
     // ------------- featured listings section
     // featuredListingsTitle, featuredListingsList
@@ -221,32 +217,15 @@ export class HomePage {
     // FIXME: These need to be refactored to use the data-testid attribute
     // or use Playwright-specific CSS locator guidance at:
     // https://playwright.dev/docs/other-locators#css-locator
-    this.firstListingsCard = this.featuredListings
-      .locator("mat-card")
-      .locator("nth=0");
+    this.firstListingsCard = this.featuredListings.locator("mat-card").locator("nth=0");
     this.firstListingsCardImage = this.firstListingsCard.getByRole("img");
-    this.firstListingsCardTitle = this.firstListingsCard.locator(
-      "mat-card-content > mat-card-title"
-    );
-    this.firstListingsCardSubtitle = this.firstListingsCard.locator(
-      "mat-card-content > mat-card-subtitle"
-    );
-    this.firstListingsCardDescription = this.firstListingsCard.locator(
-      "mat-card-content > p"
-    );
-    this.firstListingsCardViewButton = this.firstListingsCard.getByRole(
-      "link",
-      { name: "View listing" }
-    );
-    this.firstListingsCardPricing = this.firstListingsCard.locator(
-      "mat-card-actions h2"
-    );
-    this.firstListingsCardAmenities = this.firstListingsCard.locator(
-      "mat-card-actions h5"
-    );
-    this.firstListingsCardSaveButton = this.firstListingsCard.locator(
-      "app-favorite-button button"
-    );
+    this.firstListingsCardTitle = this.firstListingsCard.locator("mat-card-content > mat-card-title");
+    this.firstListingsCardSubtitle = this.firstListingsCard.locator("mat-card-content > mat-card-subtitle");
+    this.firstListingsCardDescription = this.firstListingsCard.locator("mat-card-content > p");
+    this.firstListingsCardViewButton = this.firstListingsCard.getByRole("link", { name: "View listing" });
+    this.firstListingsCardPricing = this.firstListingsCard.locator("mat-card-actions h2");
+    this.firstListingsCardAmenities = this.firstListingsCard.locator("mat-card-actions h5");
+    this.firstListingsCardSaveButton = this.firstListingsCard.locator("app-favorite-button button");
 
     // ------------- visitable pages
     // HomePage, TOSPage, AboutPage, BlogPage, ListingsPage
@@ -317,7 +296,7 @@ export class HomePage {
   }
 
   async firstCardImageHasAltText(altText: string) {
-    await expect(this.firstListingsCardImage).toHaveAttribute("alt", altText );
+    await expect(this.firstListingsCardImage).toHaveAttribute("alt", altText);
   }
 
   async firstCardHasDescription(description: string) {
@@ -335,7 +314,4 @@ export class HomePage {
   async firstCardHasViewButton() {
     await expect(this.firstListingsCardViewButton).toBeVisible();
   }
-
-
-
 }

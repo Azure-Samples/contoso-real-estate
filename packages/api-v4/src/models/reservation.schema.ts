@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from "mongoose";
 
 export interface Reservation {
   id: string;
@@ -44,7 +44,7 @@ const ReservationSchema = new Schema<Reservation>({
   status: {
     type: String,
     required: true,
-    enum: ['pending', 'active', 'cancelled', 'archived'],
+    enum: ["pending", "active", "cancelled", "archived"],
   },
   createdAt: {
     type: Date,
@@ -52,9 +52,8 @@ const ReservationSchema = new Schema<Reservation>({
   },
 });
 
-ReservationSchema.set('toJSON', {
+ReservationSchema.set("toJSON", {
   virtuals: true,
 });
 
-export default model<Reservation>('Reservation', ReservationSchema);
-
+export default model<Reservation>("Reservation", ReservationSchema);

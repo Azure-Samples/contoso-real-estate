@@ -1,5 +1,5 @@
-import { ObjectId } from 'mongodb';
-import { model, Schema } from 'mongoose';
+import { ObjectId } from "mongodb";
+import { model, Schema } from "mongoose";
 
 export interface Listing {
   _id: ObjectId;
@@ -95,5 +95,4 @@ const ListingSchema = new Schema<Listing>({
   },
 });
 
-export default model<Listing>('Listing', ListingSchema);
-
+export default model<Listing>("Listing", ListingSchema);

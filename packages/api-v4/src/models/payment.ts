@@ -3,9 +3,12 @@ import PaymentModel, { Payment } from "./payment.schema";
 
 export async function savePayment(payment: Partial<Payment>): Promise<Payment> {
   return PaymentModel.create(payment);
-};
+}
 
-export async function updatePaymentStatus(id: string, status: 'pending' | 'declined' | 'completed' | 'cancelled'): Promise<Payment | null> {
+export async function updatePaymentStatus(
+  id: string,
+  status: "pending" | "declined" | "completed" | "cancelled",
+): Promise<Payment | null> {
   const payment = await PaymentModel.findOne({ _id: id });
 
   if (!payment) {
@@ -14,7 +17,7 @@ export async function updatePaymentStatus(id: string, status: 'pending' | 'decli
 
   payment.status = status;
   return await payment.save();
-};
+}
 
 export async function findPaymentById(id: string): Promise<Payment | null> {
   try {
@@ -23,15 +26,11 @@ export async function findPaymentById(id: string): Promise<Payment | null> {
   } catch (error) {
     return null;
   }
-};
+}
 
 export async function findPaymentsByUserId(userId: string, offset: number, limit: number): Promise<Payment[]> {
-  return await PaymentModel
-    .find({ userId })
-    .skip(offset)
-    .limit(limit)
-    .sort({ _id: -1 });
-};
+  return await PaymentModel.find({ userId }).skip(offset).limit(limit).sort({ _id: -1 });
+}
 
 export function isValidPayment(payment: Payment): boolean {
   // Check if properties are not undefined
@@ -48,21 +47,19 @@ export function isValidPayment(payment: Payment): boolean {
 
   // Check if the userId and reservationId are non-empty strings
   if (
-    typeof payment.userId !== 'string' ||
-    payment.userId.trim() === '' ||
-    typeof payment.reservationId !== 'string' ||
-    payment.reservationId.trim() === ''
+    typeof payment.userId !== "string" ||
+    payment.userId.trim() === "" ||
+    typeof payment.reservationId !== "string" ||
+    payment.reservationId.trim() === ""
   ) {
     return false;
   }
 
   // Check if the amount is a positive number
-  if (typeof payment.amount !== 'number' || payment.amount <= 0) {
+  if (typeof payment.amount !== "number" || payment.amount <= 0) {
     return false;
   }
 
   // If all checks pass, return true
   return true;
-};
-
-
+}

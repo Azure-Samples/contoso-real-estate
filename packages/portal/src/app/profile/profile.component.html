@@ -17,7 +17,6 @@
 
     <section class="profile-body">
       <mat-tab-group [selectedIndex]="selectedTabIndex">
-
         <!-- favorites -->
         <mat-tab label="Saved Listings">
           <div class="tab-wrapper">
@@ -67,7 +66,7 @@
                   <span class="payment-status" [ngClass]="payment.status">{{ payment.status }}</span>
                 </div>
                 <div mat-line class="payment-subtitle">
-                  {{ payment.createdAt | date: 'mediumDate' }}
+                  {{ payment.createdAt | date : "mediumDate" }}
                 </div>
                 <mat-divider></mat-divider>
               </mat-list-item>
@@ -85,14 +84,22 @@
                   {{ reservation.title }} ({{ reservation.guests }}
                   <span [ngPlural]="reservation.guests">
                     <ng-template ngPluralCase="=1">guest</ng-template>
-                    <ng-template ngPluralCase="other">guests</ng-template>
-                  </span>)
+                    <ng-template ngPluralCase="other">guests</ng-template> </span
+                  >)
                   <span class="reservation-status" [ngClass]="reservation.status">{{ reservation.status }}</span>
                 </div>
                 <div mat-line class="reservation-subtitle">
-                  {{ reservation.from | date: 'mediumDate' }} - {{ reservation.to | date: 'mediumDate' }}
+                  {{ reservation.from | date : "mediumDate" }} - {{ reservation.to | date : "mediumDate" }}
                 </div>
-                <button class="reservation-view" mat-flat-button color="primary" [title]="reservation?.title" (click)="viewListing(reservation.listingId)">View Listing</button>
+                <button
+                  class="reservation-view"
+                  mat-flat-button
+                  color="primary"
+                  [title]="reservation?.title"
+                  (click)="viewListing(reservation.listingId)"
+                >
+                  View Listing
+                </button>
                 <mat-divider></mat-divider>
               </mat-list-item>
             </mat-list>

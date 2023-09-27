@@ -2,7 +2,11 @@ import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functio
 import { getConfig, initializeDatabaseConfiguration } from "../config";
 import { ReservationRequest } from "../models/reservation-request";
 import { getListingById } from "../models/listing";
-import { findReservationsByListingIdAndDateRange, saveReservation, updateReservationStatus } from "../models/reservation";
+import {
+  findReservationsByListingIdAndDateRange,
+  saveReservation,
+  updateReservationStatus,
+} from "../models/reservation";
 import { Listing } from "../models/listing.schema";
 
 // POST: Checkout
@@ -12,7 +16,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
   await initializeDatabaseConfiguration();
 
   const config = await getConfig();
-  const reservation = await request.json() as ReservationRequest;
+  const reservation = (await request.json()) as ReservationRequest;
   const guests = Number(reservation.guests) || 0;
 
   const from = new Date(reservation.from);
@@ -23,7 +27,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
     return {
       status: 400,
       jsonBody: {
-        error: 'User ID is required',
+        error: "User ID is required",
       },
     };
   }
@@ -32,7 +36,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
     return {
       status: 400,
       jsonBody: {
-        error: 'Listing ID is required',
+        error: "Listing ID is required",
       },
     };
   }
@@ -43,7 +47,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
     return {
       status: 404,
       jsonBody: {
-        error: 'Listing not found for specified id',
+        error: "Listing not found for specified id",
       },
     };
   }
@@ -53,13 +57,15 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
     return {
       status: 400,
       jsonBody: {
-        error: 'Invalid number of guests',
+        error: "Invalid number of guests",
       },
     };
   }
 
   if (!reservation.from || from.getTime() < now.getTime()) {
-    context.error(`Invalid reservation start date: ${reservation.from} (resolved: ${from.toISOString()}, now: ${now.toISOString()}`);
+    context.error(
+      `Invalid reservation start date: ${reservation.from} (resolved: ${from.toISOString()}, now: ${now.toISOString()}`,
+    );
     return {
       status: 400,
       jsonBody: {
@@ -69,7 +75,9 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
   }
 
   if (!reservation.to || to.getTime() <= from.getTime()) {
-    context.error(`Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`);
+    context.error(
+      `Invalid reservation end date: ${reservation.to} (resolved: ${to.toISOString()}, from: ${from.toISOString()}`,
+    );
     return {
       status: 400,
       jsonBody: {
@@ -84,7 +92,9 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
     return {
       status: 400,
       jsonBody: {
-        error: `Reservation overlaps with existing reservation(s): ${overlaps.map((o) => o.id).join(", ")} (from: ${from.toISOString()}, to: ${to.toISOString()})`,
+        error: `Reservation overlaps with existing reservation(s): ${overlaps
+          .map(o => o.id)
+          .join(", ")} (from: ${from.toISOString()}, to: ${to.toISOString()})`,
       },
     };
   }
@@ -124,10 +134,10 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
         createdAt: now.toISOString(),
       };
 
-      const response = await fetch(config.stripeServiceUrl + '/stripe/checkout', {
-        method: 'POST',
+      const response = await fetch(config.stripeServiceUrl + "/stripe/checkout", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(checkout),
       });
@@ -137,16 +147,16 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
         throw new Error(error);
       }
 
-      const { sessionUrl } = await response.json() as any;
+      const { sessionUrl } = (await response.json()) as any;
 
       return {
         jsonBody: {
           sessionUrl,
-        }
+        },
       };
     } catch (error: unknown) {
       const err = error as Error;
-      context.error(`Error creating checkout session: ${err.message}`)
+      context.error(`Error creating checkout session: ${err.message}`);
       await updateReservationStatus(reservationRecord.id, "cancelled");
       throw error;
     }
@@ -156,11 +166,10 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
     return {
       status: 500,
       jsonBody: {
-        error: 'Cannot create checkout session',
+        error: "Cannot create checkout session",
       },
-    }
+    };
   }
-
 
   function getMonths(from: Date, to: Date) {
     if (!from || !to) {
@@ -190,6 +199,4 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
     const utc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
     return new Date(utc);
   }
-};
-
-
+}

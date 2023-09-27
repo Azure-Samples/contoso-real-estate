@@ -1,11 +1,17 @@
-import React from 'react';
-import clsx from 'clsx';
-import styles from './styles.module.css';
+import React from "react";
+import clsx from "clsx";
+import styles from "./styles.module.css";
 
 // GitHub Octicons
 // See: https://github.com/primer/octicons/tree/main/lib/octicons_react
 import {
-  CopilotIcon, MarkGithubIcon, CloudIcon, PeopleIcon, WorkflowIcon, RocketIcon, CodespacesIcon
+  CopilotIcon,
+  MarkGithubIcon,
+  CloudIcon,
+  PeopleIcon,
+  WorkflowIcon,
+  RocketIcon,
+  CodespacesIcon,
 } from "@primer/octicons-react";
 
 const FeatureList = [
@@ -16,9 +22,7 @@ const FeatureList = [
         <MarkGithubIcon size="large" aria-label="GitHub" />
       </a>
     ),
-    description: (
-      <> Fork the reference implementation. Then use the guide to explore it. </>
-    ),
+    description: <> Fork the reference implementation. Then use the guide to explore it. </>,
   },
   {
     title: "AI Assistance",
@@ -27,11 +31,7 @@ const FeatureList = [
         <CopilotIcon size="large" aria-label="GitHub Copilot" />
       </a>
     ),
-    description: (
-      <>
-        Activate GitHub Copilot. Use it to author, explain and explore, application code.
-      </>
-    ),
+    description: <>Activate GitHub Copilot. Use it to author, explain and explore, application code.</>,
   },
   {
     title: "Dev Environments",
@@ -40,11 +40,7 @@ const FeatureList = [
         <CodespacesIcon size="large" aria-label="Seamless local & remote development with Codespaces" />
       </a>
     ),
-    description: (
-      <>
-        Activate GitHub Codespaces. Get a consistent dev environment everywhere.
-      </>
-    ),
+    description: <>Activate GitHub Codespaces. Get a consistent dev environment everywhere.</>,
   },
   {
     title: "Extensible Scenarios",
@@ -53,11 +49,7 @@ const FeatureList = [
         <PeopleIcon size="large" aria-label="User Stories as Design Specification" />
       </a>
     ),
-    description: (
-      <>
-        Define and prioritize scenarios to drive iterative development & extensibility.
-      </>
-    ),
+    description: <>Define and prioritize scenarios to drive iterative development & extensibility.</>,
   },
   {
     title: "Composable Architecture",
@@ -66,11 +58,7 @@ const FeatureList = [
         <WorkflowIcon size="large" aria-label="Composable Architecture with building blocks" />
       </a>
     ),
-    description: (
-      <>
-        Drive API-first design with a composable architecture for optimal flexibility.
-      </>
-    ),
+    description: <>Drive API-first design with a composable architecture for optimal flexibility.</>,
   },
   {
     title: "Cloud-native Deployment",
@@ -79,16 +67,9 @@ const FeatureList = [
         <CloudIcon size="large" aria-label="Cloud-native apps with Azure" />
       </a>
     ),
-    description: (
-      <>
-        Build on managed Azure services and enterprise-grade tools for scalablility.
-      </>
-    ),
+    description: <>Build on managed Azure services and enterprise-grade tools for scalablility.</>,
   },
 ];
-
-
-
 
 function Feature({ title, description, icon }) {
   return (

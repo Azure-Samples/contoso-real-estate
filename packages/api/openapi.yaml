@@ -28,7 +28,6 @@ tags:
   - name: checkout
     description: Related to Checkout
 
-
 paths:
   /listings:
     get:
@@ -671,7 +670,7 @@ paths:
       summary: Checkout a reservation
       description: Creates a checkout session for a reservation
       operationId: checkout
-      tags: 
+      tags:
         - checkout
       requestBody:
         description: ReservationRequest object to be checked out
@@ -679,44 +678,44 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReservationRequest'
+              $ref: "#/components/schemas/ReservationRequest"
       responses:
-        '200':
+        "200":
           description: OK - Returns CheckoutSession object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CheckoutSession'
-        '400':
+                $ref: "#/components/schemas/CheckoutSession"
+        "400":
           description: Bad Request - Invalid request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '401':
+                $ref: "#/components/schemas/Error"
+        "401":
           description: Unauthorized - User is not logged in
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '403':
+                $ref: "#/components/schemas/Error"
+        "403":
           description: Forbidden - User is not authorized to access this resource
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '404':
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Not Found -  Resource not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '5XX':
+                $ref: "#/components/schemas/Error"
+        "5XX":
           description: Internal Server Error - Something went wrong
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /payments:
     get:
@@ -868,7 +867,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-
 
 components:
   schemas:
@@ -1070,7 +1068,7 @@ components:
         isFeatured:
           type: boolean
           description: listing is featured on home page
-          example: true 
+          example: true
         isRecommended:
           type: boolean
           description: listing recommended to 1+ users
@@ -1193,25 +1191,25 @@ components:
 
     ReservationRequest:
       type: object
-      required:  
+      required:
         - userId
         - listingId
         - from
         - to
         - guests
       properties:
-        userId: 
+        userId:
           type: object
           description: ID of the user who made reservation
-        listingId: 
+        listingId:
           type: object
           description: ID of the listing reserved
-        from: 
+        from:
           type: string
           format: date-time
           description: reservation from date
           example: "2020-01-01T00:00:00.000Z"
-        to: 
+        to:
           type: string
           format: date-time
           description: reservation to date

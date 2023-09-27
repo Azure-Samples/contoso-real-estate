@@ -3,6 +3,5 @@
 // https://playwright.dev/docs/test-typescript#tsconfigjson
 
 {
-    "compilerOptions": {
-    }
+  "compilerOptions": {}
 }

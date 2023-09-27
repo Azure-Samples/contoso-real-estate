@@ -1,9 +1,9 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
 import { findPaymentById, findPaymentsByUserId, savePayment, isValidPayment } from "../models/payment";
-import { findUserById } from '../models/user';
-import { updateReservationStatus } from '../models/reservation';
-import { Payment } from '../models/payment.schema';
+import { findUserById } from "../models/user";
+import { updateReservationStatus } from "../models/reservation";
+import { Payment } from "../models/payment.schema";
 
 // GET: Get Payment by Id
 export async function getPaymentById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -12,7 +12,7 @@ export async function getPaymentById(request: HttpRequest, context: InvocationCo
   // uncomment if you decide to test the api in production (using database)
   await initializeDatabaseConfiguration();
 
-  const id = request.params.id ?? '';
+  const id = request.params.id ?? "";
 
   const payment = await findPaymentById(id);
 
@@ -28,21 +28,21 @@ export async function getPaymentById(request: HttpRequest, context: InvocationCo
       },
     };
   }
-};
+}
 
 // GET: Get Payments
 export async function getPayments(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getPayments processed request for url "${request.url}"`);
 
-  const offset = Number(request.query.get('offset')) || 0;
-  const limit = Number(request.query.get('limit')) || 10;
+  const offset = Number(request.query.get("offset")) || 0;
+  const limit = Number(request.query.get("limit")) || 10;
   const { userId } = request.params;
 
-  if (!userId || userId === 'undefined') {
+  if (!userId || userId === "undefined") {
     return {
       status: 400,
       jsonBody: {
-        error: 'UserId is missing',
+        error: "UserId is missing",
       },
     };
   }
@@ -51,21 +51,21 @@ export async function getPayments(request: HttpRequest, context: InvocationConte
     return {
       status: 400,
       jsonBody: {
-        error: 'Offset must be greater than or equal to 0',
+        error: "Offset must be greater than or equal to 0",
       },
     };
   } else if (limit < 0) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Limit must be greater than or equal to 0',
+        error: "Limit must be greater than or equal to 0",
       },
     };
   } else if (offset > limit) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Offset must be less than or equal to limit',
+        error: "Offset must be less than or equal to limit",
       },
     };
   }
@@ -81,7 +81,7 @@ export async function getPayments(request: HttpRequest, context: InvocationConte
       return {
         status: 404,
         jsonBody: {
-          error: 'Payments not found',
+          error: "Payments not found",
         },
       };
     }
@@ -89,11 +89,11 @@ export async function getPayments(request: HttpRequest, context: InvocationConte
     return {
       status: 500,
       jsonBody: {
-        error: 'Internal Server Error',
+        error: "Internal Server Error",
       },
     };
   }
-};
+}
 
 // POST: Create Payment
 export async function postPayment(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -101,7 +101,7 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
 
   await initializeDatabaseConfiguration();
 
-  const payment = await request.json() as Payment;
+  const payment = (await request.json()) as Payment;
 
   const isValid = isValidPayment(payment);
 
@@ -109,7 +109,8 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
     return {
       status: 400,
       jsonBody: {
-        error: 'Invalid payment data. Make sure userId, reservationId, provider, status, amount, and currency are specified correctly.',
+        error:
+          "Invalid payment data. Make sure userId, reservationId, provider, status, amount, and currency are specified correctly.",
       },
     };
   }
@@ -117,22 +118,22 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
   try {
     const user = await findUserById(payment.userId);
     if (!user) {
-      context.error(`Error payment received for unknown user id: ${payment.userId}`)
+      context.error(`Error payment received for unknown user id: ${payment.userId}`);
       return {
         status: 404,
         jsonBody: {
-          error: 'User not found for specified id',
+          error: "User not found for specified id",
         },
       };
     }
 
-    const reservationRecord = await updateReservationStatus(payment.reservationId, 'active');
+    const reservationRecord = await updateReservationStatus(payment.reservationId, "active");
     if (!reservationRecord) {
       context.error(`Error payment received for unknown reservation id: ${payment.reservationId}`);
       return {
         status: 404,
         jsonBody: {
-          error: 'Reservation not found for specified id',
+          error: "Reservation not found for specified id",
         },
       };
     }
@@ -149,10 +150,8 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
     return {
       status: 500,
       jsonBody: {
-        error: 'Error creating payment',
+        error: "Error creating payment",
       },
     };
   }
-};
-
-
+}

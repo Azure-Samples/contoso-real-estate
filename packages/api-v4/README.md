@@ -17,13 +17,13 @@ If you want to run the API independently and locally, the following technologies
 
 Azure Functions v4 is the latest version of the Node.js programming model for Azure Functions. It comes with a bunch of new features and improvements, such as:
 
-* Flexible folder structure
-* Being able to define function.json directly in the function's in the code
-* New HTTP trigger types
-* Improved IntelliSense
-* Timer Trigger (TypeScript)
-* Durable Functions (TypeScript)
-  
+- Flexible folder structure
+- Being able to define function.json directly in the function's in the code
+- New HTTP trigger types
+- Improved IntelliSense
+- Timer Trigger (TypeScript)
+- Durable Functions (TypeScript)
+
 ## Steps to start the API
 
 1. fork or clone the repository locally
@@ -50,6 +50,3 @@ cd packages/api-v4
 ```bash
 npm install && npm start
 ```
-
-
-

@@ -7,39 +7,39 @@ import { Reservation } from "../models/reservation.schema";
 export async function getReservationById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getReservationById processed request for url "${request.url}"`);
 
-  const id = request.params.id ?? '';
+  const id = request.params.id ?? "";
 
   const reservation = await findReservationById(id);
 
   if (reservation) {
     return {
       jsonBody: reservation,
-    }
+    };
   } else {
     return {
       status: 404,
       jsonBody: {
-        error: "Reservation record not found"
-      }
-    }
+        error: "Reservation record not found",
+      },
+    };
   }
-};
+}
 
 // GET: Get Reservations
 export async function getReservations(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getReservations processed request for url "${request.url}"`);
 
-  const offset = Number(request.query.get('offset')) || 0;
-  const limit = Number(request.query.get('limit')) || 10;
+  const offset = Number(request.query.get("offset")) || 0;
+  const limit = Number(request.query.get("limit")) || 10;
 
   const { userId } = request.params;
 
   // UserID is the only required parameter
-  if (!userId || userId === 'undefined') {
+  if (!userId || userId === "undefined") {
     return {
       status: 400,
       jsonBody: {
-        error: 'userId is missing',
+        error: "userId is missing",
       },
     };
   }
@@ -48,27 +48,27 @@ export async function getReservations(request: HttpRequest, context: InvocationC
     return {
       status: 400,
       jsonBody: {
-        error: 'Offset must be greater than or equal to 0'
+        error: "Offset must be greater than or equal to 0",
       },
     };
   } else if (limit < 0) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Limit must be greater than or equal to 0'
+        error: "Limit must be greater than or equal to 0",
       },
     };
   } else if (offset > limit) {
     return {
       status: 400,
       jsonBody: {
-        error: 'Offset must be less than or equal to limit'
+        error: "Offset must be less than or equal to limit",
       },
     };
   }
 
   try {
-    const reservations = await findReservationsByUserId(userId, offset, limit)
+    const reservations = await findReservationsByUserId(userId, offset, limit);
 
     if (reservations) {
       return {
@@ -78,7 +78,7 @@ export async function getReservations(request: HttpRequest, context: InvocationC
       return {
         status: 404,
         jsonBody: {
-          error: "Reservation not found"
+          error: "Reservation not found",
         },
       };
     }
@@ -86,20 +86,23 @@ export async function getReservations(request: HttpRequest, context: InvocationC
     return {
       status: 500,
       jsonBody: {
-        error: 'Internal Server Error'
+        error: "Internal Server Error",
       },
     };
   }
-};
+}
 
 // PATCH: Reservation by Id
-export async function patchReservationById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+export async function patchReservationById(
+  request: HttpRequest,
+  context: InvocationContext,
+): Promise<HttpResponseInit> {
   context.log(`Http function patchReservationById processed request for url "${request.url}"`);
 
   await initializeDatabaseConfiguration();
 
   const id = request.params.id as string;
-  const status = await request.json() as Reservation['status'];
+  const status = (await request.json()) as Reservation["status"];
 
   if (!status) {
     return {
@@ -108,13 +111,13 @@ export async function patchReservationById(request: HttpRequest, context: Invoca
         error: "Reservation status is missing",
       },
     };
-  } else if (status !== 'active' && status !== 'cancelled') {
+  } else if (status !== "active" && status !== "cancelled") {
     return {
       status: 400,
       jsonBody: {
-        error: "Reservation status must be either 'active' or 'canceled'"
+        error: "Reservation status must be either 'active' or 'canceled'",
       },
-    }
+    };
   }
 
   try {
@@ -128,7 +131,7 @@ export async function patchReservationById(request: HttpRequest, context: Invoca
       return {
         status: 404,
         jsonBody: {
-          error: 'Reservation not found for specified id',
+          error: "Reservation not found for specified id",
         },
       };
     }
@@ -138,8 +141,8 @@ export async function patchReservationById(request: HttpRequest, context: Invoca
     return {
       status: 500,
       jsonBody: {
-        error: 'Error updating reservation status'
+        error: "Error updating reservation status",
       },
     };
   }
-};
+}

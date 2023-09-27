@@ -1,28 +1,28 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { existsSync, readFileSync } from "fs";
-import yaml from 'yamljs';
-import * as swaggerUi from 'swagger-ui-dist'
+import yaml from "yamljs";
+import * as swaggerUi from "swagger-ui-dist";
 
 export async function openApi(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function openApi processed request for url "${request.url}"`);
 
   try {
-    const filename = request.params.filename || 'index.html';
+    const filename = request.params.filename || "index.html";
     const format = request.params.format;
     const swaggerUiDistPath = swaggerUi.getAbsoluteFSPath();
-    const filePath = swaggerUiDistPath + '/' + filename;
-    const swaggerDocument = yaml.load('openapi.yaml');
+    const filePath = swaggerUiDistPath + "/" + filename;
+    const swaggerDocument = yaml.load("openapi.yaml");
 
-    let mimetype = 'text/html';
-    let fileContent = '';
+    let mimetype = "text/html";
+    let fileContent = "";
 
-    if (format === 'json') {
+    if (format === "json") {
       return {
         headers: {
           "content-type": "application/json; charset=utf-8",
         },
         body: JSON.stringify(swaggerDocument),
-      }
+      };
     }
 
     if (!existsSync(filePath)) {
@@ -34,7 +34,7 @@ export async function openApi(request: HttpRequest, context: InvocationContext):
       };
     }
 
-    if (filename.endsWith('swagger-initializer.js')) {
+    if (filename.endsWith("swagger-initializer.js")) {
       fileContent = `
       window.onload = function() {
         window.ui = SwaggerUIBundle({
@@ -53,15 +53,15 @@ export async function openApi(request: HttpRequest, context: InvocationContext):
       };
     `;
     } else {
-      fileContent = readFileSync(filePath).toString('utf-8');
+      fileContent = readFileSync(filePath).toString("utf-8");
     }
 
-    if (filename.endsWith('.css')) {
-      mimetype = 'text/css';
-    } else if (filename.endsWith('.js')) {
-      mimetype = 'application/javascript';
-    } else if (filename.endsWith('.png')) {
-      mimetype = 'image/png';
+    if (filename.endsWith(".css")) {
+      mimetype = "text/css";
+    } else if (filename.endsWith(".js")) {
+      mimetype = "application/javascript";
+    } else if (filename.endsWith(".png")) {
+      mimetype = "image/png";
     }
 
     return {
@@ -72,14 +72,12 @@ export async function openApi(request: HttpRequest, context: InvocationContext):
     };
   } catch (error: unknown) {
     const err = error as Error;
-    context.error('Error...', err.message);
+    context.error("Error...", err.message);
     return {
       status: 500,
       jsonBody: {
-        error: 'Internal server error',
+        error: "Internal server error",
       },
     };
   }
-};
-
-
+}
