@@ -27,7 +27,7 @@ export class AuthenticationComponent implements OnInit {
     }
   }
 
-  @Input() redirectURL='';
+  @Input() redirectURL = "";
 
   getRedirectURLWithDefault() {
     return this.redirectURL || "/home";
