@@ -2,6 +2,7 @@ import { FastifyPluginAsync } from "fastify"
 import Stripe from "stripe";
 import { Checkout, validateCheckout } from "../../models/checkout.js";
 import { Payment } from "../../models/payment.js";
+import { HttpError } from "../../plugins/api.js";
 
 const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   const config = fastify.config;
@@ -53,6 +54,9 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
           const err = error as Error;
           const errorMessage = `Error processing completed checkout session: ${err.message}`;
           fastify.log.error(errorMessage);
+          if (error instanceof HttpError) {
+            fastify.log.error(error.response);
+          }
           reply.statusCode = 500;
           return { error: errorMessage };
         }
@@ -90,11 +94,12 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
           return { error: errorMessage };
         }
 
-      default:
+      default: {
         const errorMessage = `Unhandled event type ${event.type}`;
         fastify.log.info(errorMessage);
         reply.statusCode = 400;
         return { error: errorMessage };
+      }
     }
   });
 

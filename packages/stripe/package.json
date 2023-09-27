@@ -14,7 +14,7 @@
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
-    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
+    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -p 4242 -P dist/app.js",
     "docker:build": "docker build --tag stripe --file ./Dockerfile ../..",
     "docker:run": "docker run --rm --publish 4242:4242 --env-file ../../.env.docker stripe"
   },
@@ -26,7 +26,7 @@
     "fastify-plugin": "^4.0.0",
     "fastify-raw-body": "^4.2.0",
     "node-fetch": "^3.3.0",
-    "stripe": "~11.8.0"
+    "stripe": "^13.7.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
