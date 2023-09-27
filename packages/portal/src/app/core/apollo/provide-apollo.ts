@@ -7,18 +7,11 @@ import { environment } from "../../../environments/environment";
 function createApollo(httpLink: HttpLink): ApolloClientOptions<NormalizedCacheObject> {
   return {
     link: httpLink.create({
-      uri: uri(),
+      uri: environment.strapiGraphQlUri,
     }),
     cache: new InMemoryCache(),
   };
 }
-
-const uri = () => {
-  if (!environment.production && environment.isCodespaces) {
-    return environment.strapiGraphQlUriInCodespace;
-  }
-  return environment.strapiGraphQlUriFallback;
-};
 
 export function provideApollo(): EnvironmentProviders {
   const apolloOptionsProvider: FactoryProvider = {
