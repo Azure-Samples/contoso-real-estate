@@ -29,8 +29,8 @@ export class AuthenticationComponent implements OnInit {
 
   @Input() redirectURL = "/home";
   providers = [
-    { name: "Microsoft", id: "microsoft", icon: faFacebook },
-    { name: "Facebook", id: "facebook", icon: faMicrosoft },
+    { name: "Microsoft", id: "microsoft", icon: faMicrosoft },
+    { name: "Facebook", id: "facebook", icon: faFacebook },
     { name: "Google", id: "google", icon: faGoogle },
     { name: "Twitter", id: "twitter", icon: faTwitter },
     { name: "GitHub", id: "github", icon: faGithub },
