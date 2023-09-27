@@ -94,11 +94,12 @@ const stripe: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
           return { error: errorMessage };
         }
 
-      default:
+      default: {
         const errorMessage = `Unhandled event type ${event.type}`;
         fastify.log.info(errorMessage);
         reply.statusCode = 400;
         return { error: errorMessage };
+      }
     }
   });
 
