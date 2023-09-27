@@ -8,11 +8,11 @@ $grey-palette:  mat.define-palette(mat.$grey-palette);
 }
 
 .profile-body {
-  .mat-card {
+  .mat-mdc-card {
     margin: 15px;
     cursor: pointer;
 
-    .mat-card-actions {
+    .mat-mdc-card-actions {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -20,7 +20,7 @@ $grey-palette:  mat.define-palette(mat.$grey-palette);
     }
   }
 
-  .mat-card:hover {
+  .mat-mdc-card:hover {
     @include mat.elevation(8);
   }
 }
@@ -50,7 +50,9 @@ $grey-palette:  mat.define-palette(mat.$grey-palette);
   font-size: 45px;
 }
 
-.mat-list-base .mat-list-item {
+.mat-mdc-list-base .mat-mdc-list-item {
+  height: auto;
+
   .reservation-title, .payment-title {
     font-weight: bold;
   }
@@ -78,7 +80,7 @@ $grey-palette:  mat.define-palette(mat.$grey-palette);
     }
   }
 
-  .mat-line {
+  .mat-mdc-line {
     white-space: initial;
   }
 
