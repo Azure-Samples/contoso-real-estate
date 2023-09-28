@@ -38,10 +38,15 @@ export class AuthenticationComponent implements OnInit {
     }
   }
 
-  @Input() redirectURL = "/home";
+  @Input() redirectURL = "";
+
+  getRedirectURLWithDefault() {
+    return this.redirectURL || "/home";
+  }
+
   providers = [
-    { name: "Microsoft", id: "microsoft", icon: faFacebook },
-    { name: "Facebook", id: "facebook", icon: faMicrosoft },
+    { name: "Microsoft", id: "microsoft", icon: faMicrosoft },
+    { name: "Facebook", id: "facebook", icon: faFacebook },
     { name: "Google", id: "google", icon: faGoogle },
     { name: "Twitter", id: "twitter", icon: faTwitter },
     { name: "GitHub", id: "github", icon: faGithub },
@@ -61,6 +66,6 @@ export class AuthenticationComponent implements OnInit {
   }
 
   loginWith(provider: string) {
-    return `/.auth/login/${provider}?post_login_redirect_uri=` + this.redirectURL;
+    return `/.auth/login/${provider}?post_login_redirect_uri=${this.getRedirectURLWithDefault()}`;
   }
 }
