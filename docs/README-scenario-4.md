@@ -1,11 +1,6 @@
+# Scenario 4: Payments integration with Stripe
+
 This document will guide you through the prerequisites and commands necessary to setup and preview the portal project with complete Stripe integration, locally on your computer.
-
-## Prerequisites
-
-- [VS Code](https://code.visualstudio.com/)
-  - You can use any other editor of choice but this guide will assume you are using VS Code
-- [VS Code Dev Containers](https://code.visualstudio.com/docs/remote/containers)
-  - This will allow you to run the project in a containerized environment
 
 ## Project Structure
 
@@ -15,9 +10,9 @@ Within the `packages` folder, you will find the three projects that make up this
 - `api` - The web app backend
 - `stripe` - The Stripe backend
 
-## Local Development
+## Running this scenario
 
-_Note: This scenario has been optimised for use with [VS Code Remote Containers](https://code.visualstudio.com/docs/remote/containers), and contains definitions to setup the PostgreSQL database that Strapi uses, and this guide makes the assumption that you will use the dev container._
+_Note: This scenario has been optimised for use with [GitHub Codespaces](https://github.com/features/codespaces), a development environment hosted in the GitHub cloud, as we prepared predefined environment with everything installed._
 
 ### Install the required Node.js packages
 
@@ -93,51 +88,59 @@ You should now have a fully working Stripe test integration.
 
 > **Note:** if you want to test the Stripe integration, you can use the [Stripe test cards](https://stripe.com/docs/testing#cards).
 
-### Starting the Stripe service
+### Running locally
 
-To start the Stripe service, run the following commands:
+By default, the project is configured to skip the Stripe integration with a warning, to make it easier to run locally without having to configure Stripe.
+If you want to run the Stripe integration locally, you need to edit the `docker-compose.yml` file to add this line to the stripe service definition:
 
-```bash
-npm run docker:build --workspace=stripe-api
-npm run docker:run --workspace=stripe-api
+```yaml
+services:
+  stripe:
+    build:
+      context: .
+      dockerfile: ./packages/stripe/Dockerfile
+    environment:
+      API_URL: http://host.docker.internal:7071
+    ports:
+      - "4242:4242"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Add this line to enable the Stripe integration
+    env_file:
+      - .stripe.env
 ```
 
-This will build the stripe container and run it locally, listening on port `http://localhost:4242`.
+This will enable the Stripe integration, and use the `.stripe.env` file you created to configure the Stripe keys.
 
-As an alternative if you do not want to use Docker, you can also run the Stripe service directly:
-
-```bash
-npm run build:ts --workspace=stripe-api
-npm run start --workspace=stripe-api
-```
-
-### Starting the API
-
-To start the API, run the following command:
+If you want to debug the Stripe integration, you can use the [Stripe CLI](https://stripe.com/docs/stripe-cli) to forward the Stripe webhooks to your local machine. To do this, run the following command:
 
 ```bash
-npm start --workspace=api
+# Login to stripe (only required once the first time)
+stripe login
+
+# Forward the Stripe webhooks to your local machine
+stripe listen --forward-to http://localhost:4242/stripe/webhook
 ```
 
-> Note: if you're not using the devcontainer or Codespaces, you need to have the [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local?tabs=v4%2Cmacos%2Ccsharp%2Cportal%2Cbash#install-the-azure-functions-core-tools) installed.
+At this point, the Stripe CLI will print a webhook secret key that's only valid for local testing.
+Copy this key, and paste it into the `.stripe.env` file, like this:
 
-The API will then be running at `http://localhost:7071`.
+```bash
+STRIPE_WEBHOOK_SECRET=<your local webhook key>
+```
 
-### Starting the portal
-
-To start the portal, run the following commands:
+You can now run the project locally using the following command:
 
 ```bash
 npm start
 ```
 
-This will run the Static Web Apps CLI emulator, listening on `http://localhost:4280`.
-You can then open this in your browser to test the application.
+It will start the web app portal, the API, and the Stripe backend, and you can access the portal at http://localhost:4280.
 
-### Running in GitHub Codespaces
+You can now simulate Stripe events by using the Stripe CLI to send test events to your local machine. For example, to simulate a successful payment, you can run the following command:
 
-An alternative way to run the environment is using [GitHub Codespaces](https://github.com/codespaces), which will use the devcontainer definition, but create a remote containerised environment, rather than running the environment locally.
+```bash
+stripe trigger checkout.session.completed
+```
 
-_Note: GitHub Codespaces is a paid component of GitHub. Review [the GitHub Codespaces billing](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces) before using it._
-
-To run in GitHub Codespaces, the machine will need at least 4 CPUs and 8GB of memory, which is defined in the [`devcontainer.json`](./.devcontainer/devcontainer.json) file, to ensure all the services are started.
+You should see the event being processed by your Stripe backend, and you can use it to debug your integration.
