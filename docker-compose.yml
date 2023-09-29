@@ -46,8 +46,8 @@ services:
     image: mongo:5.0
     restart: always
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongo
-      - MONGO_INITDB_ROOT_PASSWORD=MongoPass
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: MongoPass
     ports:
       - "27017:27017"
     volumes:
@@ -64,7 +64,7 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -87,3 +87,4 @@ services:
 volumes:
   pgdata:
   mongodata:
+
