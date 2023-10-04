@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "env": "azd env get-values --no-prompt > .env",
+    "env": "azd env get-values --no-prompt > ../../.env",
     "build": "tsc",
     "watch": "tsc --w",
     "prestart": "tsc && func extensions install",
