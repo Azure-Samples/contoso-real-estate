@@ -34,7 +34,7 @@ export class AuthenticationComponent implements OnInit {
   }
 
   providers = [
-    { name: "Microsoft", id: "microsoft", icon: faMicrosoft },
+    { name: "Microsoft", id: "aad", icon: faMicrosoft },
     { name: "Facebook", id: "facebook", icon: faFacebook },
     { name: "Google", id: "google", icon: faGoogle },
     { name: "Twitter", id: "twitter", icon: faTwitter },
