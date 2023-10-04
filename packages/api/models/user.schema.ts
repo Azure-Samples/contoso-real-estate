@@ -14,7 +14,7 @@ export interface User {
   };
   email: string;
   auth: {
-    provider: "aad" | "apple" | "twitter" | "google" | "facebook";
+    provider: "aad" | "apple" | "google" | "facebook";
     token: string;
     lastLogin: number;
   };
@@ -61,7 +61,7 @@ const UserSchema = new Schema<User>({
     provider: {
       type: String,
       required: true,
-      enum: ["aad", "github", "twitter", "google", "facebook"],
+      enum: ["aad", "github", "google", "facebook"],
     },
     token: {
       type: String,

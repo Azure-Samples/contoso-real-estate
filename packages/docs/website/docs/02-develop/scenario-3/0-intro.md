@@ -41,7 +41,6 @@ The Static Web Apps in-built authentication mechanism is enabled for the applica
 | Microsoft Identity Platform | `/.auth/login/aad` | [App Service Microsoft Identity Platform login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-microsoft-identity-platform-login) |
 | Facebook | `/.auth/login/facebook` | [App Service Facebook login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-facebook-login) |
 | Google | `/.auth/login/google` | [App Service Google login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-google-login) |
-| Twitter | `/.auth/login/twitter` | [App Service Twitter login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-twitter-login) |
 | GitHub | `/.auth/login/github` | [App Service GitHub login](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-github-login) |
 | Sign in with Apple | `/.auth/login/apple` | [App Service Sign in With Apple login (Preview)](https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#app-service-sign-in-with-apple-login-preview) |
 
