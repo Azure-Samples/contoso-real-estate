@@ -17,6 +17,18 @@ module cosmos '../../cosmos/cosmos-account.bicep' = {
   }
 }
 
+resource cosmosConnectionStringSecret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
+  parent: keyVault
+  name: connectionStringKey
+  properties: {
+    value: cosmos.outputs.connectionString
+  }
+}
+
+resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+  name: keyVaultName
+}
+
 output connectionString string = cosmos.outputs.connectionString
 output connectionStringKey string = cosmos.outputs.connectionStringKey
 output endpoint string = cosmos.outputs.endpoint

@@ -50,6 +50,7 @@ param cmsDatabaseName string = 'strapi'
 param cmsDatabaseUser string = 'strapi'
 param cmsDatabaseServerName string = ''
 param cmsDatabasePort string = '5432'
+param strapiAdminPasswordKey string = 'strapi-admin-password'
 @secure()
 param cmsDatabasePassword string
 
@@ -243,14 +244,15 @@ module api './app/api.bicep' = {
     eventGridName: eventGrid.name
     storageAccountName: storageAccount.outputs.name
     allowedOrigins: [ portal.outputs.SERVICE_WEB_URI ]
+    strapiAdminPassword: cmsDatabasePassword
+    strapiAdminPasswordKey: strapiAdminPasswordKey
     appSettings: {
       AZURE_COSMOS_CONNECTION_STRING_KV: cosmos.outputs.connectionStringKey
-      AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionString
       AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
       AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint
       STRAPI_DATABASE_NAME: cmsDatabaseName
       STRAPI_DATABASE_USERNAME: cmsDatabaseUser
-      STRAPI_DATABASE_PASSWORD: cmsDatabasePassword
+      STRAPI_DATABASE_PASSWORD_KV: strapiAdminPasswordKey
       STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
       STRAPI_DATABASE_PORT: cmsDatabasePort
       STRAPI_DATABASE_SSL: 'true'

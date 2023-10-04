@@ -11,6 +11,10 @@ param serviceName string = 'api'
 param storageAccountName string
 param stripeServiceUrl string
 
+param strapiAdminPasswordKey string
+@secure()
+param strapiAdminPassword string
+
 // TODO: enable Event Grid when endpoints are available
 param eventGridName string
 
@@ -43,6 +47,18 @@ module api '../core/host/functions.bicep' = {
 // resource eventGrid 'Microsoft.EventGrid/systemTopics@2020-10-15-preview' existing = {
 //   name: eventGridName
 // }
+
+resource strapiAdminPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
+  parent: keyVault
+  name: strapiAdminPasswordKey
+  properties: {
+    value: strapiAdminPassword
+  }
+}
+
+resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+  name: keyVaultName
+}
 
 output SERVICE_API_IDENTITY_PRINCIPAL_ID string = api.outputs.identityPrincipalId
 output SERVICE_API_NAME string = api.outputs.name
