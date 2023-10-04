@@ -10,7 +10,6 @@ In our case, we will use a pre-configured provider. You can enable your required
 
 - Azure Active Directory
 - GitHub
-- Twitter
 
 In this document, we will use GitHub as the provider.
 

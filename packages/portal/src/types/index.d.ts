@@ -19,7 +19,7 @@ declare interface UserClientPrincipal {
   identityProvider: string;
 }
 
-declare type AuthProvider = "aad" | "github" | "twitter" | "google" | "facebook";
+declare type AuthProvider = "aad" | "github" | "google" | "facebook";
 declare type UserRole = "guest" | "renter" | "admin";
 
 declare interface Listing {
