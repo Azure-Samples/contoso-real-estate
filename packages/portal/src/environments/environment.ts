@@ -4,11 +4,8 @@
 
 export const environment = {
   production: false,
-  blogUrl: "http://localhost:3000",
-
-  isCodespaces: process.env["CODESPACE_NAME"] ? true : false,
-  strapiGraphQlUriInCodespace: `https://${process.env["CODESPACE_NAME"]}-1337.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}/graphql`,
-  strapiGraphQlUriFallback: "http://localhost:1337/graphql",
+  blogUrl: process.env["CODESPACE_NAME"] ? `https://${process.env["CODESPACE_NAME"]}-3000.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}` : 'http://localhost:3000',
+  strapiGraphQlUri: process.env["CODESPACE_NAME"] ? `https://${process.env["CODESPACE_NAME"]}-1337.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}/graphql` : 'http://localhost:1337/graphql'
 };
 
 /*

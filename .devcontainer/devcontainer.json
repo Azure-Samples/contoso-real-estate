@@ -8,6 +8,7 @@
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
+    "ghcr.io/azure/azure-dev/azd:latest": {},
     "ghcr.io/devcontainers/features/node:1": {
       // NOTE: See https://github.com/Azure-Samples/contoso-real-estate/pull/191
       "version": "18.15.0"
