@@ -30,6 +30,7 @@ else
   echo "Getting values from .env"
 fi
 
+
 # if database has already been migrated, exit
 if [[ "$STRAPI_DATABASE_MIGRATED" == "true" ]]; then
   echo "Strapi database has already been migrated"

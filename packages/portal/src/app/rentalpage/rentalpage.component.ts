@@ -14,7 +14,14 @@ import { UserRole, UserService } from "../shared/user/user.service";
   templateUrl: "./rentalpage.component.html",
   styleUrls: ["./rentalpage.component.scss"],
   standalone: true,
-  imports: [CommonModule, ListingDetailComponent, BookingFormComponent, HasRoleDirective, FavoriteButtonComponent, MatMenuModule],
+  imports: [
+    CommonModule,
+    ListingDetailComponent,
+    BookingFormComponent,
+    HasRoleDirective,
+    FavoriteButtonComponent,
+    MatMenuModule,
+  ],
 })
 export class RentalpageComponent implements OnInit {
   userRole: typeof UserRole = UserRole;
@@ -30,7 +37,7 @@ export class RentalpageComponent implements OnInit {
   private listingService = inject(ListingService);
   private userService = inject(UserService);
 
-  @Input('id') listId = '';
+  @Input("id") listId = "";
 
   constructor() {
     this.navigation = this.router.getCurrentNavigation();
@@ -54,9 +61,11 @@ export class RentalpageComponent implements OnInit {
       this.router.navigate(["/404"]);
     }
 
-    this.reviewStars.set(Array(5)
-      .fill(0)
-      .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)));
+    this.reviewStars.set(
+      Array(5)
+        .fill(0)
+        .map((x, i) => (i < this.listing().reviews_stars ? 1 : 0)),
+    );
   }
 
   async share(platform: string) {
@@ -67,12 +76,12 @@ export class RentalpageComponent implements OnInit {
     try {
       const checkoutSession = await this.listingService.reserve(reservationDetails);
       const sessionURL = new URL(checkoutSession.sessionUrl);
-      if (sessionURL.hostname === 'localhost' && window.location.hostname !== 'localhost') {
+      if (sessionURL.hostname === "localhost" && window.location.hostname !== "localhost") {
         // Fix for local testing on Codespaces
         sessionURL.hostname = window.location.hostname;
-        sessionURL.port = '';
+        sessionURL.port = "";
       }
-      console.info('Redirecting to ' + sessionURL);
+      console.info("Redirecting to " + sessionURL);
       window.location.href = sessionURL.toString();
     } catch (error: unknown) {
       if (error instanceof Error) {

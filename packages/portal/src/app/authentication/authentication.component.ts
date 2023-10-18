@@ -16,14 +16,25 @@ import { faApple, faFacebook, faGithub, faGoogle, faMicrosoft } from "@fortaweso
   selector: "app-authentication",
   templateUrl: "./authentication.component.html",
   styleUrls: ["./authentication.component.scss"],
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, TextBlockComponent, MatIconModule,FontAwesomeModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    TextBlockComponent,
+    MatIconModule,
+    FontAwesomeModule,
+  ],
   standalone: true,
 })
 export class AuthenticationComponent implements OnInit {
-
   public constructor(iconRegistry: MatIconRegistry, santizer: DomSanitizer) {
     for (const provider of this.providers) {
-      iconRegistry.addSvgIcon(provider.id, santizer.bypassSecurityTrustResourceUrl(`../assets/company-logos/${provider.id}.svg`));
+      iconRegistry.addSvgIcon(
+        provider.id,
+        santizer.bypassSecurityTrustResourceUrl(`../assets/company-logos/${provider.id}.svg`),
+      );
     }
   }
 
@@ -38,11 +49,10 @@ export class AuthenticationComponent implements OnInit {
     { name: "Facebook", id: "facebook", icon: faFacebook },
     { name: "Google", id: "google", icon: faGoogle },
     { name: "GitHub", id: "github", icon: faGithub },
-    { name: "Apple", id: "apple", icon: faApple }
+    { name: "Apple", id: "apple", icon: faApple },
   ];
   private router = inject(Router);
   private authService = inject(AuthService);
-
 
   async ngOnInit() {
     if (this.isAuthenticated()) {

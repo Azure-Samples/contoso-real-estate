@@ -2,7 +2,7 @@
 
 **IMPORTANT: THIS REPOSITORY IS OPTIMIZED FOR CODESPACES AND TO WORK AS A SET OF COMPOSABLE APPS AND APIS. STANDALONE PACKAGE FUNCTIONALITY IS LIMITED AND MAY REQUIRE ADDITIONAL CONFIGURATION OR DEVELOPMENT**
 
-This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer. This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer. 
+This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer. This document will guide you through the prerequisites and commands necessary to setup and preview the portal project, locally on your computer.
 
 It will also instruct you how to deploy it to [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/overview), to publish it to the cloud, independently, using the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/).
 
@@ -23,16 +23,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Steps to start the portal
 
 1. fork or clone the repository locally
-2. assuming you are in the folder containing `contoso-real-estate/packages/portal`, go to the terminal and run 
+2. assuming you are in the folder containing `contoso-real-estate/packages/portal`, go to the terminal and run
 
 ```bash
 npm run clean:install
 ```
-    
-at the root level of the repository. This will install all dependencies for all scenarios. 
+
+at the root level of the repository. This will install all dependencies for all scenarios.
 
 This operation will also install the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/docs/intro). This tool includes a local dev server and emulator, to test the application and the corresponding API together, locally.
-
 
 3. assuming you are now in the `contoso-real-estate`, go to the terminal and run
 
@@ -41,9 +40,8 @@ npm start
 ```
 
 Follow the [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/docs/cli/swa) prompts to complete the configuration.
-    
-Your default browser should open a new window with the application running. If you did not pass a port option, it should be running at [http://localhost:4280](http://localhost:4280)
 
+Your default browser should open a new window with the application running. If you did not pass a port option, it should be running at [http://localhost:4280](http://localhost:4280)
 
 5. Go to `http://localhost:4280`. The application and the API should be running and functional. You should be able to see the homepage and the cards or teasers for the listings. You should be able to navigate to any of the listings detail page by clicking in any of the cards.
 
@@ -68,7 +66,7 @@ If you want to deploy to Azure using this tool, you will need an active subscrip
 swa deploy
 ```
 
-2. Follow prompt instructions. 
+2. Follow prompt instructions.
 
 ## Troubleshooting the deployment
 
@@ -91,13 +89,13 @@ AZURE_REGION_LOCATION=
 - **Check** for a configuration file called `staticwebapp.config.json`, under `contoso-real-estate/packages/portal/src/assets/`. Make sure to add the following snippet:
 
 ```json
-{ 
+{
   // other config: {
   // ... config
   // },
   "platform": {
-      "apiRuntime": "node:16"
-  } 
+    "apiRuntime": "node:16"
+  }
 }
 ```
 

@@ -1,6 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, OnInit, Output, inject, signal } from "@angular/core";
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn } from "@angular/forms";
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+} from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
@@ -54,7 +61,6 @@ export class BookingFormComponent implements OnInit {
   private userService = inject(UserService);
 
   constructor() {
-
     this.isGuest.set(this.authService.hasRole([UserRole.Guest]));
 
     const differentThanStartDateValidator = (): ValidatorFn => {
@@ -64,7 +70,7 @@ export class BookingFormComponent implements OnInit {
         const sameDate = startDate === endDate;
         return sameDate ? { sameDate: { value: control.value } } : null;
       };
-    }
+    };
 
     this.rentingPeriod = new FormGroup({
       start: new FormControl<Date | null>(null),
@@ -75,7 +81,7 @@ export class BookingFormComponent implements OnInit {
 
     this.bookingForm = new FormGroup({
       rentingPeriod: this.rentingPeriod,
-      guests: this.guests
+      guests: this.guests,
     });
 
     this.onRent = new EventEmitter<ReservationRequest>();
@@ -90,15 +96,18 @@ export class BookingFormComponent implements OnInit {
       return;
     }
 
-    const rentPriceWithDiscount = (Number(this.listing?.fees?.[3]) || 0) * (1 - (parseInt(this.listing?.fees?.[4], 10) || 0) / 100);
+    const rentPriceWithDiscount =
+      (Number(this.listing?.fees?.[3]) || 0) * (1 - (parseInt(this.listing?.fees?.[4], 10) || 0) / 100);
     this.monthlyRentPrice.set(Number(this.listing?.fees?.[3]) || 0);
     this.monthlyRentPriceWithDiscount.set(Math.max(0, rentPriceWithDiscount));
     this.currency_code = this.listing?.fees?.[5].substring(0, 3);
     this.currency_symbol.set(this.listing?.fees?.[5].substring(4));
     this.discount.set(Number(this.listing?.fees?.[4]) || 0);
-    this.capacity.set(Array(this.listing?.capacity)
-      .fill(0)
-      .map((x, i) => i + 1));
+    this.capacity.set(
+      Array(this.listing?.capacity)
+        .fill(0)
+        .map((x, i) => i + 1),
+    );
   }
 
   total() {

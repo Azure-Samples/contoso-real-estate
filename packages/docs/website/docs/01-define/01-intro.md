@@ -13,15 +13,17 @@ The Contoso HR team has designed requirements for a **Contoso Real Estate** appl
 ## User Roles
 
 The application has three kinds of users (roles or personas):
+
 - **HR Admin** - _is a current employee of the company working in the Contoso HR organization._ They are responsible for maintaining the property listings, featuring select properties, and publishing blog posts with rental advice.
 - **New Hire** - _is a new employee going through the orientation process._ They can browse the rentals portal to find suitable rentals (by location, amenities, price), save listings for review, and reserve listings with a payment.
 - **Guest** - _is an anonymous visitor to the portal._ Since this is an internal app, any Contoso corporation employee should be able to view listed properties in guest mode but can't take actions to save or reserve listings unless they login (activating New Hire role).
 
-## User Experiences 
+## User Experiences
 
 From a user experience perspective, the Contoso HR team see envisions the following:
- - A **portal UI** for New Hires to explore HR-approved rental listings
- - A **blog UI** for New Hires to explore HR-authored blog posts
- - An **admin UI** for HR Admins to manage content (for rental listings, blog posts)
+
+- A **portal UI** for New Hires to explore HR-approved rental listings
+- A **blog UI** for New Hires to explore HR-authored blog posts
+- An **admin UI** for HR Admins to manage content (for rental listings, blog posts)
 
 The Contoso HR team takes their requirements to a solutions architect, who breaks this down into prioritized scenarios and designs the reference architecture to implement them.

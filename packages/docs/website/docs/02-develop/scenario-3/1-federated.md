@@ -25,5 +25,3 @@ Once you have enabled authentication, Azure Static Web Apps will offer two built
 - authenticated
 
 The `anonymous` role is assigned to all users, including unauthenticated users. The `authenticated` role is assigned to all authenticated users.
-
-

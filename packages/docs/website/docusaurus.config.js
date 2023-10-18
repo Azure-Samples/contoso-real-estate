@@ -1,40 +1,38 @@
 // @ts-check
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-
   // ------- Required Fields -------
-  title: 'Contoso Real Estate: Developer Guide',
-  url: 'https://azure-samples.github.io',
-  baseUrl: '/',  // set this to '/contoso-real-estate/' for GitHub pages deployment
+  title: "Contoso Real Estate: Developer Guide",
+  url: "https://azure-samples.github.io",
+  baseUrl: "/", // set this to '/contoso-real-estate/' for GitHub pages deployment
 
   // ------- Optional: deploy related -------
-  organizationName: 'Azure-Samples',  // needed only for GitHub Pages deployment
-  projectName: 'contoso-real-estate', // -- ditto --
+  organizationName: "Azure-Samples", // needed only for GitHub Pages deployment
+  projectName: "contoso-real-estate", // -- ditto --
   deploymentBranch: "gh-pages",
 
   //------- Optional: build checks -----
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
 
   //------ Optional: Other fields -----
-  tagline: 'Build enterprise-grade composable web apps on Azure',
-  favicon: 'img/favicon.ico',
+  tagline: "Build enterprise-grade composable web apps on Azure",
+  favicon: "img/favicon.ico",
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
   //------- Optional: Configure theme (presets = plugin bundles) ----
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
@@ -43,16 +41,15 @@ const config = {
         blog: false,
 
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
 
         sitemap: {
-          changefreq: 'weekly',
+          changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: ['/tags/**'],
-          filename: 'sitemap.xml',
+          ignorePatterns: ["/tags/**"],
+          filename: "sitemap.xml",
         },
-
       }),
     ],
   ],
@@ -62,16 +59,15 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-
       // Theme mode (light/dark or system default)
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: false,
       },
 
       // Meta image (og:image and twitter:image default)
-      image: 'img/docusaurus-social-card.jpg',
+      image: "img/docusaurus-social-card.jpg",
 
       // Other Metadata (use to override existing <meta> tags)
       metadata: [
@@ -88,12 +84,11 @@ const config = {
 
       // Navbar: https://docusaurus.io/docs/api/themes/configuration#navbar
       navbar: {
-
-        title: 'Contoso Real Estate',
+        title: "Contoso Real Estate",
 
         logo: {
-          alt: 'Contoso Real Estate Application Logo',
-          src: 'img/logo.svg',
+          alt: "Contoso Real Estate Application Logo",
+          src: "img/logo.svg",
           target: "_self",
           width: 32,
           height: 32,
@@ -102,8 +97,8 @@ const config = {
         style: "primary", // "dark" or "primary"
 
         items: [
-          { href: "/api", position: "right", label: "API"},
-          { href: "/training", position: "right", label: "Training"},
+          { href: "/api", position: "right", label: "API" },
+          { href: "/training", position: "right", label: "Training" },
 
           /* === START: Comment out to remove from navbar === *
           { to: "/define", label: "Define", position: "left" },
@@ -140,10 +135,10 @@ const config = {
           /* === END: Comment out to remove from navbar */
 
           {
-            type: 'docSidebar',
-            sidebarId: 'guideSidebar',
-            position: 'left',
-            label: 'Guide',
+            type: "docSidebar",
+            sidebarId: "guideSidebar",
+            position: "left",
+            label: "Guide",
           },
           {
             href: "https://github.com/Azure-Samples/contoso-real-estate",
@@ -156,13 +151,12 @@ const config = {
 
       // Footer: https://docusaurus.io/docs/api/themes/configuration#footer-1
       footer: {
-
-        style: 'dark', // "dark" or "light"
+        style: "dark", // "dark" or "light"
 
         logo: {
-          alt: 'Contoso Real Estate Application Logo',
-          src: 'img/logo.svg',
-          href: 'https://opensource.fb.com',
+          alt: "Contoso Real Estate Application Logo",
+          src: "img/logo.svg",
+          href: "https://opensource.fb.com",
           width: 160,
           height: 51,
         },
@@ -174,8 +168,8 @@ const config = {
       // Theming: https://mermaid.js.org/config/theming.html
       mermaid: {
         theme: {
-          light: 'neutral',
-          dark: 'forest'
+          light: "neutral",
+          dark: "forest",
         },
         options: {
           maxTextSize: 50,
@@ -186,7 +180,6 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-
     }),
 
   //------- Optional: Configure plugins ----
@@ -208,7 +201,6 @@ const config = {
     mermaid: true,
   },
   themes: ["@docusaurus/theme-mermaid"],
-
 };
 
 module.exports = config;

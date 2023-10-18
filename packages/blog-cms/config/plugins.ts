@@ -1,10 +1,9 @@
-
 export default {
   //
   graphql: {
     enabled: true,
     config: {
-      endpoint: '/graphql',
+      endpoint: "/graphql",
       shadowCRUD: true,
       playgroundAlways: true,
       depthLimit: 7,

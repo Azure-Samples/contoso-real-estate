@@ -117,8 +117,8 @@ declare interface Payment {
   id: string;
   userId: string;
   reservationId: string;
-  provider: 'stripe' | 'paypal';
-  status: 'pending' | 'declined' | 'completed' | 'cancelled';
+  provider: "stripe" | "paypal";
+  status: "pending" | "declined" | "completed" | "cancelled";
   amount: number;
   currency: string;
   createdAt: Date;
@@ -128,7 +128,7 @@ declare interface CheckoutSession {
   sessionUrl: string;
 }
 
-declare type CheckoutResult = 'error' | 'success' | 'cancel'; 
+declare type CheckoutResult = "error" | "success" | "cancel";
 
 declare interface SearchResult {
   listings: CleanResults;
@@ -139,5 +139,5 @@ declare interface CleanResults {
 }
 
 declare interface ListingsResult {
-  attributes: Listing
+  attributes: Listing;
 }

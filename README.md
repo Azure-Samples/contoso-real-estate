@@ -2,7 +2,6 @@
 
 This repository contains the reference architecture and components for building enterprise-grade modern composable frontends (or micro-frontends) and cloud-native applications. It is a collection of best practices, architecture patterns, and functional components that can be used to build and deploy modern JavaScript applications to Azure.
 
-
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/contoso-real-estate?devcontainer_path=.devcontainer/devcontainer.json)
 
 ## Table of Contents
@@ -42,7 +41,7 @@ You can navigate through the documentation using the table of contents below:
 
 ```mermaid
 flowchart TD
-    %% 
+    %%
 
     subgraph Internet
     Portal[https://portal.contoso.com]
@@ -51,43 +50,43 @@ flowchart TD
     Stripe[https://stripe.contoso.com]
     API[https://api.contoso.com]
     end
-    
+
     subgraph Azure API Management
     APIM(API Gateway)
     end
-    
+
     subgraph Azure Static Web Apps
     SWA_Angular([Angular])
-    end 
+    end
 
     subgraph Azure Functions
     Functions([Node.js])
-    end 
+    end
 
     subgraph Azure Container Apps
     ACA_Next([Next.js])
     ACA_Strapi([Strapi])
     ACA_Stripe([Stripe])
-    end 
+    end
 
     subgraph Database/Storage
     DB_PostresSQL[(PostgreSQL - Strapi)]
     DB_Mongo[(MongoDB - Portal)]
     Storage([Azure Blob Storage - CMS])
-    end 
+    end
 
-    Portal --> SWA_Angular -- "portal.contoso.com/api/**" --> Functions
-    
+    Portal --> SWA_Angular -- "portal.contoso.com/api/**" --> APIM -- "portal.contoso.com/api/**" --> Functions
+
     Blog -- "blog.contoso.com" --> ACA_Next -. "Strapi API" .-> ACA_Strapi
-    
+
     CMS -- "cms.contoso.com" --> ACA_Strapi
     ACA_Strapi -- "read/write" ----> DB_PostresSQL -- "read only" --> Functions
     ACA_Strapi -- "upload" --> Storage
-    
+
     API --> APIM -- "api.contoso.com" --> Functions <-- "read/write" --> DB_Mongo
 
-    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate payment (through APIM -optional-)" .-> Functions
-    
+    Stripe ---> APIM -- "stripe.contoso.com" --> ACA_Stripe <-. "validate payment (through APIM)" .-> Functions
+
     %% Portal
     linkStyle 0 stroke:pink
     linkStyle 1 stroke:pink
@@ -97,12 +96,12 @@ flowchart TD
     linkStyle 3 stroke:blue
     linkStyle 4 stroke:blue
     linkStyle 5 stroke:blue
-    
+
     %% CMS
     linkStyle 5 stroke:red
     linkStyle 6 stroke:red
     linkStyle 8 stroke:red
-    
+
     linkStyle 7 stroke:lime
     linkStyle 9 stroke:lime
     linkStyle 10 stroke:lime
@@ -151,7 +150,7 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 1. Fork this repository.
 1. Create a new GitHub Codespaces from your fork. This will automatically provision a new Codespaces with all the required dependencies preinstalled and configured.
 1. Open the terminal and run `npm install && npm start` to start the development servers.
-  *Note: Codespaces will show a series of windows on the right side of the screen while starting all servers. This is normal and expected.*
+   _Note: Codespaces will show a series of windows on the right side of the screen while starting all servers. This is normal and expected._
 1. Once all dev servers have started, the following URLs will be available:
 
 | Application    | URL                                                      | Port |
@@ -166,11 +165,12 @@ This project is optimized for use with [GitHub Codespaces](https://github.com/fe
 
 ## Developer Guide (Website)
 
-The project has a  [Developer Guide](./packages/docs/website/README.md) defined under `packages/docs` and implemented as an interactive website using the [Docusaurus](https://docusaurus.io) platform.
-### 1 | Preview Website 
+The project has a [Developer Guide](./packages/docs/website/README.md) defined under `packages/docs` and implemented as an interactive website using the [Docusaurus](https://docusaurus.io) platform.
 
- - Read the [website/README](./packages/docs/website/README.md) for more details on setting up and building this package. 
- - Use the following instructions for a quickstart.
+### 1 | Preview Website
+
+- Read the [website/README](./packages/docs/website/README.md) for more details on setting up and building this package.
+- Use the following instructions for a quickstart.
 
 ```bash
 $ cd packages/docs/website     # Set working directory
@@ -192,17 +192,17 @@ This should launch the browser to the landing page of the guide as shown below:
 This repo is not configured for automated deployment of the website to a static site hosting service. However Docusaurus provides [Deployment guidance](https://docusaurus.io/docs/deployment) that works for most options - we've validated this for [Azure Static Web Apps](https://docusaurus.io/docs/deployment#deploying-to-azure-static-web-apps) and [GitHub Pages](https://docusaurus.io/docs/deployment#deploying-to-github-pages).
 
 If you want a hosted version of the guide, we recommend you maintain a personal fork and set it up for automated build-deploy with GitHub Actions. Then keep up-to-date with origin, for content.
- - See [this personal fork](https://github.com/30DaysOf/contoso-real-estate) for a working example for reference
- - Visit [this GitHub Pages endpoint](https://30daysof.github.io/contoso-real-estate/) to see the associated live deployment.
- - Note that this example may _not always reflect the latest repo changes_ in content.
- 
+
+- See [this personal fork](https://github.com/30DaysOf/contoso-real-estate) for a working example for reference
+- Visit [this GitHub Pages endpoint](https://30daysof.github.io/contoso-real-estate/) to see the associated live deployment.
+- Note that this example may _not always reflect the latest repo changes_ in content.
 
 ### 3 | Test Website
 
-The website comes with its own Playwright testing harness with a separate configuration and a base test specification. Use it for _test-driven documentation_ to validate the existence of routes and sections, and check content for accessibility compliance. _Note - this test suite is separate from e2e testing setup for Contoso Real Estate application (located in `packages/testing`_). 
- - Learn more about test setup in [website/README.TESTING.md](./packages/docs/website/README.md). 
- - Use the following instructions for a quickstart.
+The website comes with its own Playwright testing harness with a separate configuration and a base test specification. Use it for _test-driven documentation_ to validate the existence of routes and sections, and check content for accessibility compliance. _Note - this test suite is separate from e2e testing setup for Contoso Real Estate application (located in `packages/testing`_).
 
+- Learn more about test setup in [website/README.TESTING.md](./packages/docs/website/README.md).
+- Use the following instructions for a quickstart.
 
 ```bash
 $ cd packages/docs/website     # Set working directory
@@ -217,14 +217,13 @@ Want to understand what the test report provides? You can explore [this cached v
   <img src="assets/screenshots/contoso-docs-website-testreport.png" width="100%" alt="Contoso Real Estate Developer Guide: Test Report"/>
 </p>
 
-
-
 ## Usage costs
 
 Github Codespaces usage is [billed](https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces) either to an organization or to the user creating it. There are limits to the number of concurrent codespaces you can create or run, so here are a few things to keep in mind:
- - Personal accounts get a [free monthly usage quota](https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts) of 120 hours and 15GB storage - enough to explore this project!
- - You can [lookup current usage](https://github.com/settings/billing) or [set spending limits](https://github.com/settings/billing/spending_limit) on your profile - to ensure you don't accidentally exceed your quota or budget.
- - We recommend you [delete codespaces](https://docs.github.com/codespaces/developing-in-codespaces/deleting-a-codespace) you are not actively using, and [configure default retention periods](https://docs.github.com/en/codespaces/customizing-your-codespace/configuring-automatic-deletion-of-your-codespaces?tool=webui) to maximize usage of your free quota and minimize costs for paid usage.
+
+- Personal accounts get a [free monthly usage quota](https://docs.github.com/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts) of 120 hours and 15GB storage - enough to explore this project!
+- You can [lookup current usage](https://github.com/settings/billing) or [set spending limits](https://github.com/settings/billing/spending_limit) on your profile - to ensure you don't accidentally exceed your quota or budget.
+- We recommend you [delete codespaces](https://docs.github.com/codespaces/developing-in-codespaces/deleting-a-codespace) you are not actively using, and [configure default retention periods](https://docs.github.com/en/codespaces/customizing-your-codespace/configuring-automatic-deletion-of-your-codespaces?tool=webui) to maximize usage of your free quota and minimize costs for paid usage.
 
 ## Project structure
 
@@ -261,7 +260,7 @@ azd provision
 azd deploy
 ```
 
->The `--use-device-code` is used to log in by using a device code instead of a browser, this may resolve any browser issues while logging in. For more information on when & why to use flags, check [here](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/reference#azd-auth-login)
+> The `--use-device-code` is used to log in by using a device code instead of a browser, this may resolve any browser issues while logging in. For more information on when & why to use flags, check [here](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/reference#azd-auth-login)
 
 > If you encounter issues with the Azure Developer CLI, please open an issue [here](https://github.com/Azure/azure-dev/issues/new/choose).
 

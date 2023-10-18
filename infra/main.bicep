@@ -405,6 +405,5 @@ output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 output STRAPI_DATABASE_PORT string = cmsDatabasePort
 
 output CMS_DATABASE_SERVER_NAME string = cmsDB.outputs.POSTGRES_SERVER_NAME
-
 // We need this to manually restore the database
 output STRAPI_DATABASE_PASSWORD string = cmsDatabasePassword

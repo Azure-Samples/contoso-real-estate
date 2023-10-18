@@ -6,7 +6,7 @@ description: Welcome to the Contoso Real Estate Developer Guide. Explore the sit
 
 **Welcome to the Developer Guide for the [Contoso Real Estate Reference Sample](https://github.com/Azure-Samples/contoso-real-estate).**
 
-The repository contains the reference architecture and implementation for a complex multi-scenario enterprise-grade application built on Microsoft Azure, with best-in-class developer tooling and technologies. 
+The repository contains the reference architecture and implementation for a complex multi-scenario enterprise-grade application built on Microsoft Azure, with best-in-class developer tooling and technologies.
 
 It provides a JavaScript/Web developer with a comprehensive collection of architecture patterns, functional components, developer tools and best practices to streamline and enhance their productivity in building scalable solutions in cloud-native environments.
 
@@ -23,7 +23,8 @@ Here's a sneak peek at what the application experience looks like:
 ## Developer Guide
 
 In the following sections, we'll dive into the details behind this reference architecture and sample implementation, exploring it in four dimensions, reflecting the end-to-end developer workflow:
- - **Define** - Understand requirements, define architecture, setup environment.
- - **Develop** - Prioritize scenarios, implement with API-first, composabability in mind
- - **Deploy** -  Provision resources, validate deploy, activate monitoring & insights
- - **DevOps** -  Integrate end-to-end testing, automate CI/CD, optimize costs
+
+- **Define** - Understand requirements, define architecture, setup environment.
+- **Develop** - Prioritize scenarios, implement with API-first, composabability in mind
+- **Deploy** - Provision resources, validate deploy, activate monitoring & insights
+- **DevOps** - Integrate end-to-end testing, automate CI/CD, optimize costs

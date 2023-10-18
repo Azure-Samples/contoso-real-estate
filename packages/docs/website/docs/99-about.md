@@ -5,9 +5,10 @@ description: A quick overview of how the website is structured, and key visual c
 ---
 
 Welcome to the Contoso Real Estate Application Developer Guide. We created this developer guide with three objectives in mind:
- 1. **Specification** | Explain the user scenarios driving this solution.
- 2. **Implementation** | Explore the architecture and codebase in context.
- 3. **Contribution** | Encourage you to contribute with code & discussions.
+
+1.  **Specification** | Explain the user scenarios driving this solution.
+2.  **Implementation** | Explore the architecture and codebase in context.
+3.  **Contribution** | Encourage you to contribute with code & discussions.
 
 ## Workflow
 

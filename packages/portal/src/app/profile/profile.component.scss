@@ -1,7 +1,7 @@
 @use "@angular/material" as mat;
-$accent-palette:  mat.define-palette(mat.$amber-palette);
-$green-palette:  mat.define-palette(mat.$green-palette);
-$grey-palette:  mat.define-palette(mat.$grey-palette);
+$accent-palette: mat.define-palette(mat.$amber-palette);
+$green-palette: mat.define-palette(mat.$green-palette);
+$grey-palette: mat.define-palette(mat.$grey-palette);
 
 .profile-page .subtitle {
   margin: 16px;
@@ -57,11 +57,13 @@ $grey-palette:  mat.define-palette(mat.$grey-palette);
     font-weight: bold;
   }
 
-  .reservation-subtitle, .payment-subtitle {
+  .reservation-subtitle,
+  .payment-subtitle {
     font-size: 0.8em;
   }
 
-  .reservation-status, .payment-status {
+  .reservation-status,
+  .payment-status {
     font-size: 0.7em;
     padding: 2px 8px;
     border-radius: 8px;
@@ -69,7 +71,8 @@ $grey-palette:  mat.define-palette(mat.$grey-palette);
     background-color: mat.get-color-from-palette($accent-palette, 500);
     color: mat.get-color-from-palette($accent-palette, 500-contrast);
 
-    &.active, &.completed {
+    &.active,
+    &.completed {
       background-color: mat.get-color-from-palette($green-palette, A200);
       color: mat.get-color-from-palette($green-palette, A200-contrast);
     }

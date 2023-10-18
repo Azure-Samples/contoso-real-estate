@@ -5,6 +5,7 @@ This section helps troubleshoot various issues that you might encounter while in
 ## A service is not starting
 
 After running `npm start`, the following services are started:
+
 - `packages/portal` for the portal frontend
 - `packages/api` for the API backend
 - `packages/blog` for the blog frontend
@@ -14,11 +15,13 @@ After running `npm start`, the following services are started:
 Note: The services are started in parallel, so if one of them fails to start, it will not stop the others from starting. If you see an error message in the console, try to fix the issue and restart the service.
 
 The following services are started inside Docker containers:
-- `packages/blog-cms` 
+
+- `packages/blog-cms`
 - `packages/blog`
 - `packages/stripe`
 
 In addition, the following database services are started inside of Docker containers:
+
 - `postgres` for the CMS database
 - `mongo` for the Portal application's database
 
@@ -54,7 +57,6 @@ The CMS service provides a search API that is used by the Portal application to 
 1. If the project is running on GitHub Codespaces (remotely or locally in VSCode), the URI is set to `https://${process.env["CODESPACE_NAME"]}-1337.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}/graphql`.
 2. If the project is running locally (outside of GitHub Codespaces), the URI is set to `http://localhost:1337/graphql`.
 3. If the project has been deployed to Azure, hence running in production, the URI is set from the `SERVICE_CMS_URI` environment variable provided by the Azure Developer CLI (`azd`) during the pre-deployment step (see [`infra/hooks/portal/predeploy.js`](https://github.com/Azure-Samples/contoso-real-estate/blob/main/infra/hooks/portal/predeploy.js)).
-
 
 ## How the Blog URL is configured
 

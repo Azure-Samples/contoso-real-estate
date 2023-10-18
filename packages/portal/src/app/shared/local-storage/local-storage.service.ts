@@ -4,7 +4,6 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class LocalStorageService {
-
   prefix = "contoso";
 
   save(key: string, value: object) {

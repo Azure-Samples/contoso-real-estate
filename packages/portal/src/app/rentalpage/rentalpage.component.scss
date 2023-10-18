@@ -9,13 +9,13 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
 
-    .listing-container{
+    .listing-container {
       width: 750px;
 
       .listing-photos {
-         align-items: flex-start;
-         aspect-ratio: auto;
-         overflow: visible;
+        align-items: flex-start;
+        aspect-ratio: auto;
+        overflow: visible;
       }
     }
   }
@@ -115,7 +115,6 @@
     }
 
     aside {
-
       button {
         background-color: transparent;
         border: none;
@@ -182,4 +181,3 @@
     }
   }
 }
-

@@ -4,7 +4,7 @@ import { findReservationById } from "../models/reservation";
 
 const getReservationById: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();
-  const id = req.params.id ?? '';
+  const id = req.params.id ?? "";
 
   const model = await findReservationById(id);
 
