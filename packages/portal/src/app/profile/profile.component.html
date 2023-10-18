@@ -17,16 +17,15 @@
 
     <section class="profile-body">
       <mat-tab-group [selectedIndex]="selectedTabIndex">
-
         <!-- favorites -->
         <mat-tab label="Saved Listings">
           <div class="tab-wrapper">
-            <p *ngIf="!listings || listings.length === 0">
+            <p *ngIf="!listings() || listings().length === 0">
               You have no saved listings. <a routerLink="/home">Browse listings</a>
             </p>
 
             <mat-card
-              *ngFor="let listing of listings"
+              *ngFor="let listing of listings()"
               [ngClass]="{ 'loading-background': !listing.title }"
               [title]="listing?.title"
             >
@@ -60,14 +59,14 @@
         <mat-tab label="Payment History">
           <div class="tab-wrapper">
             <mat-list>
-              <mat-list-item *ngIf="payments.length === 0">No payments found.</mat-list-item>
-              <mat-list-item *ngFor="let payment of payments; trackBy: trackByPaymentId">
+              <mat-list-item *ngIf="payments().length === 0">No payments found.</mat-list-item>
+              <mat-list-item *ngFor="let payment of payments(); trackBy: trackByPaymentId">
                 <div mat-line class="payment-title">
                   {{ showAmount(payment.amount) }} {{ payment.currency }} (via {{ payment.provider }})
                   <span class="payment-status" [ngClass]="payment.status">{{ payment.status }}</span>
                 </div>
                 <div mat-line class="payment-subtitle">
-                  {{ payment.createdAt | date: 'mediumDate' }}
+                  {{ payment.createdAt | date : "mediumDate" }}
                 </div>
                 <mat-divider></mat-divider>
               </mat-list-item>
@@ -79,20 +78,28 @@
         <mat-tab label="Reservations">
           <div class="tab-wrapper">
             <mat-list>
-              <mat-list-item *ngIf="reservations.length === 0">No reservations found.</mat-list-item>
-              <mat-list-item *ngFor="let reservation of reservations; trackBy: trackByReservationId">
+              <mat-list-item *ngIf="reservations().length === 0">No reservations found.</mat-list-item>
+              <mat-list-item *ngFor="let reservation of reservations(); trackBy: trackByReservationId">
                 <div mat-line class="reservation-title">
                   {{ reservation.title }} ({{ reservation.guests }}
                   <span [ngPlural]="reservation.guests">
                     <ng-template ngPluralCase="=1">guest</ng-template>
-                    <ng-template ngPluralCase="other">guests</ng-template>
-                  </span>
+                    <ng-template ngPluralCase="other">guests</ng-template> </span
+                  >)
                   <span class="reservation-status" [ngClass]="reservation.status">{{ reservation.status }}</span>
                 </div>
                 <div mat-line class="reservation-subtitle">
-                  {{ reservation.from | date: 'mediumDate' }} - {{ reservation.to | date: 'mediumDate' }}
+                  {{ reservation.from | date : "mediumDate" }} - {{ reservation.to | date : "mediumDate" }}
                 </div>
-                <button class="reservation-view" mat-flat-button color="primary" [title]="reservation?.title" (click)="viewListing(reservation.listingId)">View Listing</button>
+                <button
+                  class="reservation-view"
+                  mat-flat-button
+                  color="primary"
+                  [title]="reservation?.title"
+                  (click)="viewListing(reservation.listingId)"
+                >
+                  View Listing
+                </button>
                 <mat-divider></mat-divider>
               </mat-list-item>
             </mat-list>

@@ -8,6 +8,7 @@
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
+    "ghcr.io/azure/azure-dev/azd:latest": {},
     "ghcr.io/devcontainers/features/node:1": {
       // NOTE: See https://github.com/Azure-Samples/contoso-real-estate/pull/191
       "version": "18.15.0"
@@ -24,6 +25,26 @@
     },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
+    }
+  },
+
+  // add labels to ports
+  "portsAttributes": {
+    "4280": {
+      "label": "Portal App",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Blog",
+      "onAutoForward": "notify"
+    },
+    "1337": {
+      "label": "Strapi CMS",
+      "onAutoForward": "notify"
+    },
+    "4242": {
+      "label": "Stripe API",
+      "onAutoForward": "notify"
     }
   },
 
@@ -54,7 +75,8 @@
         "angular.ng-template",
         "42Crunch.vscode-openapi",
         "EditorConfig.EditorConfig",
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "ms-playwright.playwright"
       ]
     }
   },

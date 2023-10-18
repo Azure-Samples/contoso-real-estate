@@ -61,7 +61,7 @@ param stripeSecretKey string
 @secure()
 param stripeWebhookSecret string
 
-// TODO: fix APIM
+// Set to true to use Azure API Management
 @description('Flag to use Azure API Management to mediate the calls between the Web frontend and the backend API')
 param useAPIM bool = false
 
@@ -347,7 +347,7 @@ module stripe './app/stripe.bicep' = {
     stripeSecretKey: stripeSecretKey
     stripePublicKey: stripePublicKey
     stripeWebhookSecret: stripeWebhookSecret
-    apiUrl: api.outputs.SERVICE_API_URI
+    apiUrl: useAPIM ? api.outputs.SERVICE_API_URI : portal.outputs.SERVICE_WEB_URI
     portalUrl: portal.outputs.SERVICE_WEB_URI
   }
 }
@@ -404,5 +404,6 @@ output STRAPI_DATABASE_USERNAME string = cmsDatabaseUser
 output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 output STRAPI_DATABASE_PORT string = cmsDatabasePort
 
+output CMS_DATABASE_SERVER_NAME string = cmsDB.outputs.POSTGRES_SERVER_NAME
 // We need this to manually restore the database
 output STRAPI_DATABASE_PASSWORD string = cmsDatabasePassword

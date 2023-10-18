@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { CheckoutpageComponent } from './checkoutpage.component';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { CheckoutpageComponent } from "./checkoutpage.component";
 
-describe('CheckoutpageComponent', () => {
+describe("CheckoutpageComponent", () => {
   let component: CheckoutpageComponent;
   let fixture: ComponentFixture<CheckoutpageComponent>;
 
@@ -17,7 +17,7 @@ describe('CheckoutpageComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

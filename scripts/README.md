@@ -1,7 +1,7 @@
 # Scripts
 
 This folder contains scripts used for the infrastructure setup, building, and deployment.
- **_IMPORTANT: Please keep in mind that provisioning and deploying this infrastructure will incur costs in your Azure subscription. Please make sure to delete the resources once you are done with this project-_**
+**_IMPORTANT: Please keep in mind that provisioning and deploying this infrastructure will incur costs in your Azure subscription. Please make sure to delete the resources once you are done with this project-_**
 
 ## Region
 

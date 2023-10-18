@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PaymentService {
   async getPaymentsByUser(user: User, { limit = 10, offset = 0 } = {}): Promise<Payment[]> {

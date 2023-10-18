@@ -46,6 +46,6 @@ const getListingById: AzureFunction = async function (context: Context, req: Htt
       },
     };
   }
-}
+};
 
 export default getListingById;

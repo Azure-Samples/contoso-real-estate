@@ -34,10 +34,44 @@ module cms '../core/host/container-app.bicep' = {
     containerRegistryName: containerRegistryName
     containerCpuCoreCount: '1.0'
     containerMemory: '2.0Gi'
+    secrets: [
+      {
+        name: 'appinsights-cs'
+        value: applicationInsights.properties.ConnectionString
+      }
+      {
+        name: 'database-username'
+        value: databaseUsername
+      }
+      {
+        name: 'database-password'
+        value: databasePassword
+      }
+      {
+        name: 'jwt-secret'
+        value: jwtSecret
+      }
+      {
+        name: 'app-keys'
+        value: appKeys
+      }
+      {
+        name: 'api-token-salt'
+        value: apiTokenSalt
+      }
+      {
+        name: 'admin-jwt-secret'
+        value: adminJwtSecret
+      }
+      {
+        name: 'storage-account-key'
+        value: storageAccount.listKeys().keys[0].value
+      }
+    ]
     env: [
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-        value: applicationInsights.properties.ConnectionString
+        secretRef: 'appinsights-cs'
       }
       {
         name: 'DATABASE_HOST'
@@ -45,11 +79,11 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'DATABASE_USERNAME'
-        value: databaseUsername
+        secretRef: 'database-username'
       }
       {
         name: 'DATABASE_PASSWORD'
-        value: databasePassword
+        secretRef: 'database-password'
       }
       {
         name: 'DATABASE_NAME'
@@ -57,19 +91,19 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'JWT_SECRET'
-        value: jwtSecret
+        secretRef: 'jwt-secret'
       }
       {
         name: 'APP_KEYS'
-        value: appKeys
+        secretRef: 'app-keys'
       }
       {
         name: 'API_TOKEN_SALT'
-        value: apiTokenSalt
+        secretRef: 'api-token-salt'
       }
       {
         name: 'ADMIN_JWT_SECRET'
-        value: adminJwtSecret
+        secretRef: 'admin-jwt-secret'
       }
       {
         name: 'NODE_ENV'
@@ -81,7 +115,7 @@ module cms '../core/host/container-app.bicep' = {
       }
       {
         name: 'STORAGE_ACCOUNT_KEY'
-        value: storageAccount.listKeys().keys[0].value
+        secretRef: 'storage-account-key'
       }
       {
         name: 'STORAGE_CONTAINER_NAME'

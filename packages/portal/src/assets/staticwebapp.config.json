@@ -5,27 +5,19 @@
   "routes": [
     {
       "route": "/api/users/*",
-      "allowedRoles": [
-        "authenticated"
-      ]
+      "allowedRoles": ["authenticated"]
     },
     {
       "route": "/api/reservations/*",
-      "allowedRoles": [
-        "authenticated"
-      ]
+      "allowedRoles": ["authenticated"]
     },
     {
       "route": "/api/favorites/*",
-      "allowedRoles": [
-        "authenticated"
-      ]
+      "allowedRoles": ["authenticated"]
     },
     {
       "route": "/api/stripe/*",
-      "allowedRoles": [
-        "authenticated"
-      ]
+      "allowedRoles": ["authenticated"]
     }
   ],
   "platform": {

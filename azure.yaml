@@ -5,12 +5,12 @@ metadata:
   template: contoso-real-estate@0.0.1
 hooks:
   postprovision:
-    shell: 'sh'
+    shell: "sh"
     continueOnError: false
     interactive: true
 
     # TODO: provide a cross platform way to run this script
-    run: ./scripts/database/restore.sh strapi_20230202
+    run: ./scripts/database/restore.sh strapi_20230922
 
 services:
   portal:

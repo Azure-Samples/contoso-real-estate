@@ -58,3 +58,21 @@ ul {
     display: block;
   }
 }
+.mat-mdc-card {
+  height:490px;
+  }
+  @media screen and (min-width: 900px) and (max-width: 1100px) {
+    .mat-mdc-card {
+      height: 536px;
+  }
+  }
+  @media screen and (min-width: 768px) and (max-width: 899px) {
+    .mat-mdc-card {
+      height: 520px;
+  }
+  }
+  @media screen and (min-width: 500px) and (max-width: 767px) {
+    .mat-mdc-card {
+      height: 637px;
+  }
+  }

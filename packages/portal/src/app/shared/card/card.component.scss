@@ -16,12 +16,16 @@ img {
   @include mat.elevation(8);
 }
 
+.mat-mdc-card-title{
+  padding-top:6px;
+}
+
 .mat-card-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 260px;
-  margin: 6px 0;
+  margin: 10px 0;
   font-size: 1rem;
 }
 
@@ -55,6 +59,7 @@ img {
 
 .mdc-card__actions {
   display: block;
+  padding:16px;
 }
 
 @media (min-width: 1100px) {

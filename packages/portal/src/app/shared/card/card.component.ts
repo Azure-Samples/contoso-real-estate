@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from "@angular/common";
-import { Component, Input, OnChanges, Renderer2, inject } from "@angular/core";
+import { Component, Input, OnChanges, Renderer2, inject, signal } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { RouterModule } from "@angular/router";
@@ -12,18 +12,28 @@ import { UserRole } from "../user/user.service";
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.scss"],
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, NgOptimizedImage, RouterModule, HasRoleDirective, FavoriteButtonComponent],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    NgOptimizedImage,
+    RouterModule,
+    HasRoleDirective,
+    FavoriteButtonComponent,
+  ],
 })
 export class CardComponent implements OnChanges {
   @Input() listing!: Listing | null;
   @Input() user!: User | null;
   userRole: typeof UserRole = UserRole;
-  monthlyRentPriceWithDiscount = 0;
-  isOperationLoading = true;
+
+  monthlyRentPriceWithDiscount = signal(0);
+  isOperationLoading = signal(true);
+
   bedroomsMapping: { [k: string]: string } = { "=1": "1 bedroom", other: "# bedrooms" };
   bathroomsMapping: { [k: string]: string } = { "=1": "1 bathroom", other: "# bathrooms" };
 
-  renderer= inject(Renderer2);
+  renderer = inject(Renderer2);
 
   async ngOnChanges() {
     if (this.listing && this.listing.attributes) {
@@ -34,9 +44,9 @@ export class CardComponent implements OnChanges {
         address: this.listing.attributes.address.split("|"),
         ammenities: this.listing.attributes.ammenities.split("|"),
         slug: this.listing.attributes.slug,
-        id: this.listing.id
-      }
-      const castedListing = {...this.listing.attributes} as unknown as Listing;
+        id: this.listing.id,
+      };
+      const castedListing = { ...this.listing.attributes } as unknown as Listing;
       castedListing.fees = tmp.fees;
       castedListing.photos = tmp.photos;
       castedListing.address = tmp.address;
@@ -47,13 +57,13 @@ export class CardComponent implements OnChanges {
     }
     if (this.listing && this.listing.fees && this.listing.fees.length != 0) {
       const discount = parseInt(this.listing.fees[3], 10) * (1 - parseInt(this.listing.fees[4], 10) / 100);
-      this.monthlyRentPriceWithDiscount = Math.max(0, discount);
+      this.monthlyRentPriceWithDiscount.set(Math.max(0, discount));
     }
   }
 
   onImageLoad(event: Event) {
     const target = (event.target as HTMLImageElement).closest(".loading-background") as HTMLDivElement;
     this.renderer.removeClass(target, "loading-background");
-    this.isOperationLoading = false;
+    this.isOperationLoading.set(false);
   }
 }

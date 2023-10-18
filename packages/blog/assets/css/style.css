@@ -8,20 +8,21 @@ html {
 a,
 a:hover {
   text-decoration: none;
-  color: rgba(0,0,0,.87);
+  color: rgba(0, 0, 0, 0.87);
 }
 
 a.button {
-  transition: opacity 200ms cubic-bezier(0.35, 0, 0.25, 1), background-color 200ms cubic-bezier(0.35, 0, 0.25, 1);
+  transition: opacity 200ms cubic-bezier(0.35, 0, 0.25, 1),
+    background-color 200ms cubic-bezier(0.35, 0, 0.25, 1);
   box-sizing: border-box;
   position: relative;
   -webkit-user-select: none;
-  color: #FFFFFF;
+  color: #ffffff;
   user-select: none;
   cursor: pointer;
   outline: none;
   border: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   display: inline-block;
   white-space: nowrap;
   text-decoration: none;
@@ -72,7 +73,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 .stage h1 {
   text-align: center;
@@ -106,7 +107,7 @@ h1 {
 
 .card {
   background: #fff;
-  color: rgba(0,0,0,.87);
+  color: rgba(0, 0, 0, 0.87);
   font-family: Roboto, "Helvetica Neue", sans-serif;
   transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
@@ -114,12 +115,12 @@ h1 {
   padding: 16px;
   border-radius: 4px;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-  0px 1px 1px 0px rgb(0 0 0 / 14%),
-  0px 1px 3px 0px rgb(0 0 0 / 12%);
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 
 .card:hover {
-  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+    0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
 }
 
 .card-media {
@@ -187,7 +188,7 @@ img:hover {
   position: absolute;
   top: 0;
   left: 0;
-  color:rgb(255 255 255 / 50%)
+  color: rgb(255 255 255 / 50%);
 }
 
 .uk-section {
@@ -211,7 +212,7 @@ img:hover {
 }
 
 .footer .inner-wrapper {
-  font-size: .8rem;
+  font-size: 0.8rem;
   display: flex;
   justify-content: center;
   padding-top: 50px;
@@ -226,8 +227,9 @@ img:hover {
   flex: 1 1 auto;
 }
 
-.footer__copy, .footer__links {
-  font-size: .64rem;
+.footer__copy,
+.footer__links {
+  font-size: 0.64rem;
 }
 
 .footer__links {

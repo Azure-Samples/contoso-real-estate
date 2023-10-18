@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-text-block",
@@ -8,10 +8,6 @@ import { Component, Input, OnInit } from "@angular/core";
   standalone: true,
   imports: [CommonModule],
 })
-export class TextBlockComponent implements OnInit {
+export class TextBlockComponent {
   @Input() title = "";
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

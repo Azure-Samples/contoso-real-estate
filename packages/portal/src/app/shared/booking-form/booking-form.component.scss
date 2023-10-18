@@ -109,6 +109,7 @@
 
 .filter-blur {
   filter: blur(5px);
+  pointer-events: none;
 }
 
 .login-container {
@@ -116,7 +117,8 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 100%;
+  width: 90%;
+  margin-left: 1vw;
   background: white;
   top: 45%;
   justify-content: center;

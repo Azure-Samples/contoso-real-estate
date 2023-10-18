@@ -1,17 +1,15 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Inject, Injectable, InjectionToken } from "@angular/core";
 
-export const BROWSER_STORAGE = new InjectionToken<Window>('Browser Window', {
-  providedIn: 'root',
-  factory: () => window
+export const BROWSER_STORAGE = new InjectionToken<Window>("Browser Window", {
+  providedIn: "root",
+  factory: () => window,
 });
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class WindowService {
-
-  constructor(@Inject(BROWSER_STORAGE) public win: Window) { }
+  constructor(@Inject(BROWSER_STORAGE) public win: Window) {}
 
   nativeWindow(): Window {
     return this.win;
