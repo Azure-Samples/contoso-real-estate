@@ -6,7 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "payment/{id}"
+      "route": "payments/{id}"
     },
     {
       "type": "http",
