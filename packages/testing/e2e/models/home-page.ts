@@ -20,7 +20,7 @@ import { TOSPage } from "./tos-page";
  *  3. This *abstracts implementation* of methods from usage (allowing for refactoring)
  *
  * A good example for #3 is with locators used for testing.
- *  1. Initial locators may be sub-optimal (refactor without rewritimg tests)
+ *  1. Initial locators may be sub-optimal (refactor without rewriting tests)
  *  2. Page implementations may change
  *  3. Locators may cause errors (we can centralize fixes for all tests in one place)
  *
