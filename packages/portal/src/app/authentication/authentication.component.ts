@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../shared/authentication/auth.service";
 import { TextBlockComponent } from "../shared/text-block/text-block.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faApple, faFacebook, faGithub, faGoogle, faMicrosoft } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faGithub, faGoogle, faMicrosoft } from "@fortawesome/free-brands-svg-icons";
 
 @Component({
   selector: "app-authentication",
@@ -48,8 +48,7 @@ export class AuthenticationComponent implements OnInit {
     { name: "Microsoft", id: "aad", icon: faMicrosoft },
     { name: "Facebook", id: "facebook", icon: faFacebook },
     { name: "Google", id: "google", icon: faGoogle },
-    { name: "GitHub", id: "github", icon: faGithub },
-    { name: "Apple", id: "apple", icon: faApple },
+    { name: "GitHub", id: "github", icon: faGithub }
   ];
   private router = inject(Router);
   private authService = inject(AuthService);

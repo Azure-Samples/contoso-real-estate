@@ -14,7 +14,7 @@ export interface User {
   };
   email: string;
   auth: {
-    provider: "aad" | "apple" | "twitter" | "google" | "facebook";
+    provider: "aad" | "twitter" | "google" | "facebook";
     token: string;
     lastLogin: number;
   };
