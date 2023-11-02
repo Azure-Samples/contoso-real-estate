@@ -25,7 +25,6 @@
     "@angular/platform-browser-dynamic": "^16.0.5",
     "@angular/router": "^16.0.5",
     "@apollo/client": "^3.8.3",
-    "apollo-angular": "^4.2.1",
     "@fortawesome/angular-fontawesome": "^0.13.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
