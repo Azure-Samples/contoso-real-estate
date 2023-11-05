@@ -29,7 +29,6 @@
     "winston-transport": "^4.5.0"
   },
   "devDependencies": {
-    "@azure/functions": "^1.2.3",
     "@types/node": "^18.16.19",
     "@types/pg": "^8.10.2",
     "@types/swagger-ui-dist": "^3.30.1",
