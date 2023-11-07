@@ -96,6 +96,7 @@ module monitoring './core/monitor/monitoring.bicep' = {
   params: {
     location: location
     tags: tags
+    keyVaultName: keyVault.name
     logAnalyticsName: !empty(logAnalyticsName) ? logAnalyticsName : '${abbrs.operationalInsightsWorkspaces}${resourceToken}'
     applicationInsightsName: !empty(applicationInsightsName) ? applicationInsightsName : '${abbrs.insightsComponents}${resourceToken}'
     applicationInsightsDashboardName: !empty(applicationInsightsDashboardName) ? applicationInsightsDashboardName : '${abbrs.portalDashboards}${resourceToken}'
@@ -364,11 +365,9 @@ module eventGrid './app/events.bicep' = {
 }
 
 // Data outputs
-output AZURE_COSMOS_CONNECTION_STRING_KEY string = cosmos.outputs.connectionStringKey
 output AZURE_COSMOS_DATABASE_NAME string = cosmos.outputs.databaseName
 
 // App outputs
-output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
 output APPLICATIONINSIGHTS_NAME string = monitoring.outputs.applicationInsightsName
 
 output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.environmentName
@@ -405,5 +404,3 @@ output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 output STRAPI_DATABASE_PORT string = cmsDatabasePort
 
 output CMS_DATABASE_SERVER_NAME string = cmsDB.outputs.POSTGRES_SERVER_NAME
-// We need this to manually restore the database
-output STRAPI_DATABASE_PASSWORD string = cmsDatabasePassword
