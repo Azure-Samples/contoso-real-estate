@@ -27,13 +27,13 @@
       "value": "$(secretOrRandomPassword)"
     },
     "stripePublicKey": {
-      "value": "${STRIPE_PUBLIC_KEY}"
+      "value": "${STRIPE_PUBLIC_KEY=''}"
     },
     "stripeSecretKey": {
-      "value": "${STRIPE_SECRET_KEY}"
+      "value": "${STRIPE_SECRET_KEY=''}"
     },
     "stripeWebhookSecret": {
-      "value": "${STRIPE_WEBHOOK_SECRET}"
+      "value": "${STRIPE_WEBHOOK_SECRET=''}"
     },
     "cmsDatabaseHost": {
       "value": "${SERVICE_CMS_SERVER_HOST}"
