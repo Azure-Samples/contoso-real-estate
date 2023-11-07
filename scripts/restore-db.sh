@@ -5,12 +5,19 @@
 ##############################################################################
 # v1.0.0 | dependencies: AZ login via environment
 ##############################################################################
+DUMP_FILE_NAME="$1"
+
+# Get the directory of the current script
+DIR="$(dirname "$0")"
+
+chmod +x "$DIR/keyvault/read-secrets.sh"
+chmod +x "$DIR/database/restore.sh"
 
 # Add Key vault secrets to environment
-./scripts/keyvault/read-secrets.sh
+"$DIR/keyvault/read-secrets.sh"
 
 # Restore database with param
-./scripts/restore-db.sh "$1"
+"$DIR/database/restore.sh" "$DUMP_FILE_NAME"
 
 
 

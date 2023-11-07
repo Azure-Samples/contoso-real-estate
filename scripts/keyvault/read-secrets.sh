@@ -6,22 +6,25 @@
 # v1.0.0 | dependencies: AZ login via environment
 ##############################################################################
 # load environment variables
+DIR="$(dirname "$0")"
+
 keyVaultName="$AZURE_KEY_VAULT_NAME"
+echo "[READ SECRETS] Key vault name: $keyVaultName"
 
 # if key vault name is not set, exit
 if [[ -z "$keyVaultName" ]]; then
-  echo "Usage: ./read-secrets"
-  echo "Please set the AZURE_KEY_VAULT_NAME environment variable"
+  echo "[READ SECRETS] Usage: ./read-secrets"
+  echo "[READ SECRETS] Please set the AZURE_KEY_VAULT_NAME environment variable"
   exit 1
 fi
 
 # get all secrets from the key vault
-secrets=$(az keyvault secret list --vault-name "kv-s6ajwqewoawku" --query "[].name" --output tsv)
-echo "$secrets"
+secrets=$(az keyvault secret list --vault-name "$AZURE_KEY_VAULT_NAME" --query "[].name" --output tsv)
+echo "[READ SECRETS] $secrets"
 
 # if secrets are not set, exit
 if [[ -z "$secrets" ]]; then
-  echo "No secrets found in key vault"
+  echo "[READ SECRETS] No secrets found in key vault"
   exit 1
 fi
 
@@ -36,7 +39,7 @@ for secretId in $secrets; do
 
   # if secretValue is not empty, convert case and put in environment
   if [[ -z "$secretValue" ]]; then
-    echo "Secret value is empty"
+    echo "[READ SECRETS] Secret value is empty"
     continue
   fi
 
@@ -45,8 +48,6 @@ for secretId in $secrets; do
   secretNameSnakeCase=$(echo "$secretName" | sed -e 's/-/_/g')
 
   # export the secret as an environment variable
-  export $secretNameSnakeCase="$secretValue"
+  echo "export $secretNameSnakeCase=\"$secretValue\"" >> "$DIR/KeyVaultVariables.sh"
 done
 
-# print all environment variables for testing
-printenv

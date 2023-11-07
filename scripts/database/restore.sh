@@ -9,6 +9,9 @@
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
+# get variables in alpha order
+source "../keyvault/KeyVaultVariables.sh"
+
 STRAPI_DATABASE_MIGRATED="${STRAPI_DATABASE_MIGRATED:-false}"
 AZD_INSTALLED=false
 
@@ -18,6 +21,12 @@ if [[ -x "$(command -v azd)" ]]; then
   AZD_INSTALLED=true
 else
   AZD_INSTALLED=false
+fi
+
+# exit if STRAPI_DATABASE_PASSWORD is not set
+if [[ -z "$STRAPI_DATABASE_PASSWORD" ]]; then
+  echo "STRAPI_DATABASE_PASSWORD is not set"
+  exit 1
 fi
 
 # if azd is installed, get values from azd, otherwise get values from .env
@@ -39,7 +48,7 @@ fi
 
 # Skip for local development
 if [ ! -f /.dockerenv ]; then
-  # Add current public IP to firewall exceptions 
+  # Add current public IP to firewall exceptions
   my_public_ip="$(curl -s https://api.ipify.org)"
 
   echo "Adding current public IP to firewall exceptions..."
@@ -77,3 +86,6 @@ if [[ "$AZD_INSTALLED" == "true" ]]; then
   echo "Setting STRAPI_DATABASE_MIGRATED to true in azd"
   azd env set STRAPI_DATABASE_MIGRATED true
 fi
+
+# get variables in alpha order
+rm "../keyvault/KeyVaultVariables.sh"
