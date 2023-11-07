@@ -96,7 +96,7 @@ module monitoring './core/monitor/monitoring.bicep' = {
   params: {
     location: location
     tags: tags
-    keyVaultName: keyVault.name
+    keyVaultName: keyVault.outputs.name
     logAnalyticsName: !empty(logAnalyticsName) ? logAnalyticsName : '${abbrs.operationalInsightsWorkspaces}${resourceToken}'
     applicationInsightsName: !empty(applicationInsightsName) ? applicationInsightsName : '${abbrs.insightsComponents}${resourceToken}'
     applicationInsightsDashboardName: !empty(applicationInsightsDashboardName) ? applicationInsightsDashboardName : '${abbrs.portalDashboards}${resourceToken}'
@@ -246,12 +246,10 @@ module api './app/api.bicep' = {
     allowedOrigins: [ portal.outputs.SERVICE_WEB_URI ]
     appSettings: {
       AZURE_COSMOS_CONNECTION_STRING_KV: cosmos.outputs.connectionStringKey
-      AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionString
       AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
       AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint
       STRAPI_DATABASE_NAME: cmsDatabaseName
       STRAPI_DATABASE_USERNAME: cmsDatabaseUser
-      STRAPI_DATABASE_PASSWORD: cmsDatabasePassword
       STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
       STRAPI_DATABASE_PORT: cmsDatabasePort
       STRAPI_DATABASE_SSL: 'true'
