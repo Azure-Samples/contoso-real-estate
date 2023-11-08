@@ -1,5 +1,5 @@
 {
-  "name": "api-v4",
+  "name": "api",
   "version": "1.0.0",
   "description": "A v4 programming model Azure Functions application.",
   "scripts": {
@@ -8,7 +8,7 @@
     "watch": "tsc -w",
     "clean": "rimraf dist",
     "prestart": "npm run clean && npm run build",
-    "start:host": "func start --typescript",
+    "start:host": "func start --typescript --verbose",
     "start": "npm-run-all --parallel start:host watch",
     "lint": "eslint --config ../../.eslintrc.js",
     "lint:fix": "npm run lint -- --fix",
