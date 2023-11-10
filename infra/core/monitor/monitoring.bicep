@@ -3,7 +3,6 @@ param applicationInsightsName string
 param applicationInsightsDashboardName string
 param location string = resourceGroup().location
 param tags object = {}
-param keyVaultName string
 
 module logAnalytics 'loganalytics.bicep' = {
   name: 'loganalytics'
@@ -23,18 +22,6 @@ module applicationInsights 'applicationinsights.bicep' = {
     dashboardName: applicationInsightsDashboardName
     logAnalyticsWorkspaceId: logAnalytics.outputs.id
   }
-}
-
-resource postgresPassword 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
-  parent: keyVault
-  name: 'APPLICATIONINSIGHTS-CONNECTION-STRING'
-  properties: {
-    value: applicationInsights.outputs.connectionString
-  }
-}
-
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
-  name: keyVaultName
 }
 
 output applicationInsightsConnectionString string = applicationInsights.outputs.connectionString

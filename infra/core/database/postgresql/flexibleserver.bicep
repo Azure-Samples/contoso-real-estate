@@ -11,8 +11,7 @@ param databaseNames array = []
 param allowAzureIPsFirewall bool = false
 param allowAllIPsFirewall bool = false
 param allowedSingleIPs array = []
-
-param administratorLoginPasswordKeyName string = 'STRAPI-DATABASE-PASSWORD'
+param administratorLoginPasswordKey string = 'cmsDatabasePassword'
 param keyVaultName string
 
 // PostgreSQL version
@@ -66,7 +65,7 @@ resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2022-12-01' =
 
 resource postgresPassword 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   parent: keyVault
-  name: administratorLoginPasswordKeyName
+  name: administratorLoginPasswordKey
   properties: {
     value: administratorLoginPassword
   }
