@@ -11,14 +11,27 @@ let configCache: AppConfig | undefined;
 let dbInitialized = false;
 
 export const getConfig: () => Promise<AppConfig> = async () => {
+
+  console.log(`LOGGER: Config started`);
+
+
   if (configCache) {
+    console.log(`LOGGER: Config already cached! configCache:${JSON.stringify(configCache)}`);
     return configCache;
   }
+
+  console.log(`LOGGER: Loading configuration...process.env.NODE_ENV: ${process.env.NODE_ENV}`);
 
   // Load any ENV vars from local .env.local file
   if (process.env.NODE_ENV !== "production") {
     console.warn("Loading environment variables from root '.env.local' file. THIS SHOULD NOT BE USED IN PRODUCTION!");
-    dotenv.config({ path: path.resolve(process.cwd(), "../../.env.local") });
+
+    const pathEnv = path.resolve(process.cwd(), "../../.env.local")
+    console.log(pathEnv)
+
+    const test = dotenv.config({ path:pathEnv });
+
+    console.log(test);
   }
 
   await populateEnvironmentFromKeyVault();
@@ -43,6 +56,8 @@ export const getConfig: () => Promise<AppConfig> = async () => {
     stripeServiceUrl: process.env.STRIPE_SERVICE_URL || "http://localhost:4242",
   } as AppConfig;
 
+  console.log(`LOGGER: Configuration loaded successfully! configCache:${JSON.stringify(configCache)}`);
+
   return configCache;
 };
 
@@ -53,12 +68,11 @@ const populateEnvironmentFromKeyVault = async () => {
   const keyVaultEndpoint = process.env.AZURE_KEY_VAULT_ENDPOINT || "";
 
   if (!keyVaultEndpoint) {
-    logger.warn("AZURE_KEY_VAULT_ENDPOINT has not been set. Configuration will be loaded from current environment.");
     return;
   }
 
   try {
-    logger.info("Populating environment from Azure KeyVault...");
+    console.log("Populating environment from Azure KeyVault...");
     const credential = new DefaultAzureCredential();
     const secretClient = new SecretClient(keyVaultEndpoint, credential);
 
@@ -70,8 +84,8 @@ const populateEnvironmentFromKeyVault = async () => {
       const keyName = secret.name.replace(/-/g, "_");
       process.env[keyName] = secret.value;
     }
-  } catch (err: any) {
-    logger.error(
+  } catch (err: unknown) {
+    console.log(
       `Error authenticating with Azure KeyVault. Ensure your managed identity or service principal has GET/LIST permissions. Error: ${err}`,
     );
     throw err;
@@ -85,4 +99,14 @@ export async function initializeDatabaseConfiguration() {
   const config = await getConfig();
   await configureMongoose(config.database);
   dbInitialized = true;
+}
+
+
+export async function initializeObservability() {
+  /*if(observabilityInitialized){
+    return;
+  }
+  const config = await getConfig();
+  observability(config.observability);
+  observabilityInitialized = true;*/
 }

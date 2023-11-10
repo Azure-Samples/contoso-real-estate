@@ -253,6 +253,9 @@ module api './app/api.bicep' = {
       STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
       STRAPI_DATABASE_PORT: cmsDatabasePort
       STRAPI_DATABASE_SSL: 'true'
+      AZURE_KEY_VAULT_NAME: keyVault.outputs.name
+      APPLICATIONINSIGHTS_NAME: monitoring.outputs.applicationInsightsName
+      APPLICATIONINSIGHTS_CONNECTION_STRING: monitoring.outputs.applicationInsightsConnectionString
     }
 
     // Note:  this property is passed as params to avoid circular dependency (see api.bicep)
