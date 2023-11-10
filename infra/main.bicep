@@ -245,7 +245,6 @@ module api './app/api.bicep' = {
     storageAccountName: storageAccount.outputs.name
     allowedOrigins: [ portal.outputs.SERVICE_WEB_URI ]
     appSettings: {
-      AZURE_COSMOS_CONNECTION_STRING_KV: cosmos.outputs.connectionStringKey
       AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
       AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint
       STRAPI_DATABASE_NAME: cmsDatabaseName
@@ -255,7 +254,6 @@ module api './app/api.bicep' = {
       STRAPI_DATABASE_SSL: 'true'
       AZURE_KEY_VAULT_NAME: keyVault.outputs.name
       APPLICATIONINSIGHTS_NAME: monitoring.outputs.applicationInsightsName
-      APPLICATIONINSIGHTS_CONNECTION_STRING: monitoring.outputs.applicationInsightsConnectionString
     }
 
     // Note:  this property is passed as params to avoid circular dependency (see api.bicep)
