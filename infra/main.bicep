@@ -352,6 +352,18 @@ module stripe './app/stripe.bicep' = {
   }
 }
 
+//////////////// KEY VAULT secrets  /////////////////////////
+module keyVaultSecrets './app/key-vault-secrets.bicep' = {
+  name: 'keyVaultSecrets'
+  scope: rg
+  params: {
+    keyVaultName: keyVaultName
+    administratorLoginPasswordKSecretValue: cmsDatabasePassword
+    cosmosDbSecretNameValue: cosmos.outputs.connectionStringKey
+    appInsightsConnectionStringValue: monitoring.outputs.applicationInsightsConnectionString
+  }
+}
+
 module eventGrid './app/events.bicep' = {
   name: 'events'
   scope: rg
