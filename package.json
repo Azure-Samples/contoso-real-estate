@@ -21,7 +21,8 @@
   "author": "Microsoft",
   "license": "MIT",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "!packages/api-legacy"
   ],
   "engines": {
     "node": "18.15.0",
