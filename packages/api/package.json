@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
-    "@azure/identity": "^3.2.3",
+    "@azure/identity": "^4.0.0",
     "@azure/keyvault-secrets": "^4.7.0",
     "applicationinsights": "^2.8.0",
     "dotenv": "^16.3.1",

@@ -13,7 +13,7 @@ If you want to run the API independently and locally, the following technologies
 - [node.js](https://nodejs.org) LTS, with the corresponding npm version
 - [Azure Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
 
-## Instructions for using the API-V4
+## Instructions for using the API
 
 Azure Functions v4 is the latest version of the Node.js programming model for Azure Functions. It comes with a bunch of new features and improvements, such as:
 
@@ -30,7 +30,7 @@ Azure Functions v4 is the latest version of the Node.js programming model for Az
 2. assuming you are in the folder containing your clone, go to the terminal and run
 
 ```bash
-cd packages/api-v4
+cd packages/api
 ```
 
 3. create the `local.settings.json` file and add the following block of code:
