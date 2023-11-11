@@ -9,6 +9,10 @@
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
+# Run bash script to add variables from key vault
+# so the PostgreSQL password is available in this script
+source "$2"
+
 STRAPI_DATABASE_MIGRATED="${STRAPI_DATABASE_MIGRATED:-false}"
 AZD_INSTALLED=false
 
@@ -20,29 +24,35 @@ else
   AZD_INSTALLED=false
 fi
 
+# exit if STRAPI_DATABASE_PASSWORD is not set
+if [[ -z "$STRAPI_DATABASE_PASSWORD" ]]; then
+  echo "[DB MIGRATION] STRAPI_DATABASE_PASSWORD is not set"
+  exit 1
+fi
+
 # if azd is installed, get values from azd, otherwise get values from .env
 if [[ "$AZD_INSTALLED" == "true" ]]; then
-  echo "Getting values from azd"
+  echo "[DB MIGRATION] Getting values from azd"
   azd env get-values > .env
   source .env
   rm .env
 else
-  echo "Getting values from .env"
+  echo "[DB MIGRATION] Getting values from .env"
 fi
 
 
 # if database has already been migrated, exit
 if [[ "$STRAPI_DATABASE_MIGRATED" == "true" ]]; then
-  echo "Strapi database has already been migrated"
+  echo "[DB MIGRATION] Strapi database has already been migrated"
   exit 0
 fi
 
 # Skip for local development
 if [ ! -f /.dockerenv ]; then
-  # Add current public IP to firewall exceptions 
+  # Add current public IP to firewall exceptions
   my_public_ip="$(curl -s https://api.ipify.org)"
 
-  echo "Adding current public IP to firewall exceptions..."
+  echo "[DB MIGRATION] Adding current public IP to firewall exceptions..."
   az postgres flexible-server firewall-rule create \
     --resource-group "rg-$AZURE_ENV_NAME" \
     --name "$CMS_DATABASE_SERVER_NAME" \
@@ -56,11 +66,11 @@ filename="${1:-}"
 file="$(pwd)/dumps/$filename.sql"
 
 if [[ -z "$file" ]]; then
-  echo "Usage: ./restore.sh <dump_file>"
+  echo "[DB MIGRATION] Usage: ./restore.sh <dump_file>"
   exit 1
 fi
 
-echo "Restoring PostgreSQL Database from $file"
+echo "[DB MIGRATION] Restoring PostgreSQL Database from $file"
 
 # Restore strapi database ----------------------------------------------------
 PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
@@ -71,9 +81,9 @@ PGPASSWORD="$STRAPI_DATABASE_PASSWORD" pg_restore -v \
   --dbname="$STRAPI_DATABASE_NAME" \
   "$file" || true
 
-echo "PostgreSQL Database restored successfully"
+echo "[DB MIGRATION] PostgreSQL Database restored successfully"
 
 if [[ "$AZD_INSTALLED" == "true" ]]; then
-  echo "Setting STRAPI_DATABASE_MIGRATED to true in azd"
+  echo "[DB MIGRATION] Setting STRAPI_DATABASE_MIGRATED to true in azd"
   azd env set STRAPI_DATABASE_MIGRATED true
 fi
