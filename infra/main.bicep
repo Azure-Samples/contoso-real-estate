@@ -245,17 +245,18 @@ module api './app/api.bicep' = {
     allowedOrigins: [ portal.outputs.SERVICE_WEB_URI ]
     appSettings: {
       AZURE_COSMOS_CONNECTION_STRING_KV: cosmos.outputs.connectionStringKey
-      AZURE_COSMOS_CONNECTION_STRING_KEY: cosmos.outputs.connectionString
       AZURE_COSMOS_DATABASE_NAME: cosmos.outputs.databaseName
       AZURE_COSMOS_ENDPOINT: cosmos.outputs.endpoint
       STRAPI_DATABASE_NAME: cmsDatabaseName
       STRAPI_DATABASE_USERNAME: cmsDatabaseUser
-      STRAPI_DATABASE_PASSWORD: cmsDatabasePassword
       STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
       STRAPI_DATABASE_PORT: cmsDatabasePort
       STRAPI_DATABASE_SSL: 'true'
     }
 
+    postgresqlPassword: cmsDatabasePassword
+    cosmosDbConnectionString: cosmos.outputs.connectionStringKey
+    appInsightsConnectionString: monitoring.outputs.applicationInsightsConnectionString
     // Note:  this property is passed as params to avoid circular dependency (see api.bicep)
     stripeServiceUrl: stripeServiceUrl
   }
@@ -364,11 +365,9 @@ module eventGrid './app/events.bicep' = {
 }
 
 // Data outputs
-output AZURE_COSMOS_CONNECTION_STRING_KEY string = cosmos.outputs.connectionStringKey
 output AZURE_COSMOS_DATABASE_NAME string = cosmos.outputs.databaseName
 
 // App outputs
-output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.applicationInsightsConnectionString
 output APPLICATIONINSIGHTS_NAME string = monitoring.outputs.applicationInsightsName
 
 output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.environmentName
@@ -405,5 +404,4 @@ output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 output STRAPI_DATABASE_PORT string = cmsDatabasePort
 
 output CMS_DATABASE_SERVER_NAME string = cmsDB.outputs.POSTGRES_SERVER_NAME
-// We need this to manually restore the database
-output STRAPI_DATABASE_PASSWORD string = cmsDatabasePassword
+
