@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 import { DefaultAzureCredential } from "@azure/identity";
 import { SecretClient } from "@azure/keyvault-secrets";
 import { configureMongoose } from "./mongoose";
-import { logger } from "./observability";
+import { logger, observability } from "./observability";
 
 let configCache: AppConfig | undefined;
 let dbInitialized = false;
@@ -42,6 +42,10 @@ export const getConfig: () => Promise<AppConfig> = async () => {
     },
     stripeServiceUrl: process.env.STRIPE_SERVICE_URL || "http://localhost:4242",
   } as AppConfig;
+
+  if(configCache.observability.connectionString){
+    observability(configCache.observability)
+  }
 
   return configCache;
 };
