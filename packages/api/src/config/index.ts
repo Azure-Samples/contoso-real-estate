@@ -29,7 +29,7 @@ export const getConfig: () => Promise<AppConfig> = async () => {
       roleName: process.env.APPLICATIONINSIGHTS_NAME,
     },
     database: {
-      connectionString: process.env.AZURE_COSMOS_CONNECTION_STRING_KEY || "mongodb://mongo:MongoPass@localhost:27017",
+      connectionString: process.env.AZURE_COSMOS_CONNECTION_STRING || "mongodb://mongo:MongoPass@localhost:27017",
       database: process.env.AZURE_COSMOS_DATABASE_NAME || "contosoportal",
     },
     strapi: {

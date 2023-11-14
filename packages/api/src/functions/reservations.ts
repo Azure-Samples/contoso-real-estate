@@ -32,7 +32,7 @@ export async function getReservations(request: HttpRequest, context: InvocationC
   const offset = Number(request.query.get("offset")) || 0;
   const limit = Number(request.query.get("limit")) || 10;
 
-  const { userId } = request.params;
+  const userId = request.query.get("userId");
 
   // UserID is the only required parameter
   if (!userId || userId === "undefined") {

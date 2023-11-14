@@ -255,7 +255,7 @@ module api './app/api.bicep' = {
     }
 
     postgresqlPassword: cmsDatabasePassword
-    cosmosDbConnectionString: cosmos.outputs.connectionStringKey
+    cosmosDbConnectionString: cosmos.outputs.connectionString
     appInsightsConnectionString: monitoring.outputs.applicationInsightsConnectionString
     // Note:  this property is passed as params to avoid circular dependency (see api.bicep)
     stripeServiceUrl: stripeServiceUrl
