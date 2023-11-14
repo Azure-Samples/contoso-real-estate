@@ -6,7 +6,7 @@ import { Reservation } from "../models/reservation.schema";
 // GET: Get Reservation by Id
 export async function getReservationById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getReservationById processed request for url "${request.url}"`);
-
+  await initializeDatabaseConfiguration();
   const id = request.params.id ?? "";
 
   const reservation = await findReservationById(id);
@@ -28,7 +28,7 @@ export async function getReservationById(request: HttpRequest, context: Invocati
 // GET: Get Reservations
 export async function getReservations(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getReservations processed request for url "${request.url}"`);
-
+  await initializeDatabaseConfiguration();
   const offset = Number(request.query.get("offset")) || 0;
   const limit = Number(request.query.get("limit")) || 10;
 

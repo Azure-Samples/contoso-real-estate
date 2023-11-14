@@ -33,7 +33,7 @@ export async function getPaymentById(request: HttpRequest, context: InvocationCo
 // GET: Get Payments
 export async function getPayments(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getPayments processed request for url "${request.url}"`);
-
+  await initializeDatabaseConfiguration();
   const offset = Number(request.query.get("offset")) || 0;
   const limit = Number(request.query.get("limit")) || 10;
   const { userId } = request.params;
