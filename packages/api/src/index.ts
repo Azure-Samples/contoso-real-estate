@@ -28,7 +28,7 @@ app.post("post-users", {
 //#endregion
 
 //#region Payment Function
-app.get("get-payment-by-id", {
+app.get("get-payments-by-id", {
   route: "payments/{id}",
   authLevel: "anonymous",
   handler: getPaymentById,
@@ -48,7 +48,7 @@ app.post("post-payment", {
 //#endregion
 
 //#region Reservation Function
-app.get("get-reservation-by-id", {
+app.get("get-reservations-by-id", {
   route: "reservations/{id}",
   authLevel: "anonymous",
   handler: getReservationById,
@@ -60,7 +60,7 @@ app.get("get-reservations", {
   handler: getReservations,
 });
 
-app.patch("get-reservations", {
+app.patch("patch-reservations-by-id", {
   route: "reservations/{id}",
   authLevel: "anonymous",
   handler: patchReservationById,
@@ -88,7 +88,7 @@ app.deleteRequest("delete-favorites", {
 //#endregion
 
 //#region Listing Function
-app.get("get-listing-by-id", {
+app.get("get-listings-by-id", {
   route: "listings/{id}",
   authLevel: "anonymous",
   handler: getListingById,
@@ -102,7 +102,7 @@ app.get("get-listings", {
 //#endregion
 
 //#region OpenApi Function
-app.get("openapi", {
+app.get("get-openapi", {
   route: "{filename?}",
   authLevel: "anonymous",
   handler: openApi,
@@ -110,7 +110,7 @@ app.get("openapi", {
 //#endregion
 
 //#region Checkout Function
-app.post("checkout", {
+app.post("post-checkout", {
   route: "checkout",
   authLevel: "anonymous",
   handler: postCheckout,
