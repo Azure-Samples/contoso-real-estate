@@ -1,6 +1,7 @@
+metadata description = 'Assigns an Azure Key Vault access policy.'
 param name string = 'add'
 
-param keyVaultName string = ''
+param keyVaultName string
 param permissions object = { secrets: [ 'get', 'list' ] }
 param principalId string
 

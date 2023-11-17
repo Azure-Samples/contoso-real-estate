@@ -1,3 +1,4 @@
+metadata description = 'Creates or updates a secret in an Azure Key Vault.'
 param name string
 param tags object = {}
 param keyVaultName string

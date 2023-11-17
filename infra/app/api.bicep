@@ -5,12 +5,14 @@ param tags object = {}
 param allowedOrigins array = []
 param applicationInsightsName string = ''
 param appServicePlanId string
+@secure()
 param appSettings object = {}
 param keyVaultName string
 param serviceName string = 'api'
 param storageAccountName string
 param stripeServiceUrl string
 param cosmosDbConnectionString string
+@secure()
 param postgresqlPassword string
 param appInsightsConnectionString string
 
@@ -46,7 +48,7 @@ module api '../core/host/functions.bicep' = {
 // resource eventGrid 'Microsoft.EventGrid/systemTopics@2020-10-15-preview' existing = {
 //   name: eventGridName
 // }
- 
+
 resource secretCosmosDb 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   parent: keyVault
   name: 'AZURE-COSMOS-CONNECTION-STRING'

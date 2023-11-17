@@ -1,3 +1,4 @@
+metadata description = 'Creates an Azure API Management instance.'
 param name string
 param location string = resourceGroup().location
 param tags object = {}

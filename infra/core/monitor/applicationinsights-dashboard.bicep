@@ -1,3 +1,4 @@
+metadata description = 'Creates a dashboard for an Application Insights instance.'
 param name string
 param applicationInsightsName string
 param location string = resourceGroup().location

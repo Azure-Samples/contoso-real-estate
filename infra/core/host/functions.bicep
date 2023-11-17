@@ -1,3 +1,4 @@
+metadata description = 'Creates an Azure Function in an existing Azure App Service plan.'
 param name string
 param location string = resourceGroup().location
 param tags object = {}
@@ -30,6 +31,7 @@ param kind string = 'functionapp,linux'
 param allowedOrigins array = []
 param alwaysOn bool = true
 param appCommandLine string = ''
+@secure()
 param appSettings object = {}
 param clientAffinityEnabled bool = false
 param enableOryxBuild bool = contains(kind, 'linux')
@@ -39,6 +41,7 @@ param minimumElasticInstanceCount int = -1
 param numberOfWorkers int = -1
 param scmDoBuildDuringDeployment bool = true
 param use32BitWorkerProcess bool = false
+param healthCheckPath string = ''
 
 module functions 'appservice.bicep' = {
   name: '${name}-functions'
@@ -59,6 +62,7 @@ module functions 'appservice.bicep' = {
     clientAffinityEnabled: clientAffinityEnabled
     enableOryxBuild: enableOryxBuild
     functionAppScaleLimit: functionAppScaleLimit
+    healthCheckPath: healthCheckPath
     keyVaultName: keyVaultName
     kind: kind
     linuxFxVersion: linuxFxVersion
@@ -70,15 +74,6 @@ module functions 'appservice.bicep' = {
     runtimeNameAndVersion: runtimeNameAndVersion
     scmDoBuildDuringDeployment: scmDoBuildDuringDeployment
     use32BitWorkerProcess: use32BitWorkerProcess
-  }
-}
-
-// Give the Function access to KeyVault
-module apiKeyVaultAccess '../security/keyvault-access.bicep' = {
-  name: 'api-keyvault-access'
-  params: {
-    keyVaultName: keyVaultName
-    principalId: functions.outputs.identityPrincipalId
   }
 }
 

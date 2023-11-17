@@ -1,3 +1,4 @@
+metadata description = 'Creates link between Static web app `staticwebapp.config.json` and Azure Functions API for portal.'
 param name string
 param location string = resourceGroup().location
 param tags object = {}

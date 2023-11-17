@@ -1,21 +1,37 @@
+metadata description = 'Creates an Azure Container Registry.'
 param name string
 param location string = resourceGroup().location
 param tags object = {}
 
-param adminUserEnabled bool = true
+@description('Indicates whether admin user is enabled')
+param adminUserEnabled bool = false
+
+@description('Indicates whether anonymous pull is enabled')
 param anonymousPullEnabled bool = false
+
+@description('Indicates whether data endpoint is enabled')
 param dataEndpointEnabled bool = false
+
+@description('Encryption settings')
 param encryption object = {
   status: 'disabled'
 }
+
+@description('Options for bypassing network rules')
 param networkRuleBypassOptions string = 'AzureServices'
+
+@description('Public network access setting')
 param publicNetworkAccess string = 'Enabled'
+
+@description('SKU settings')
 param sku object = {
   name: 'Basic'
 }
+
+@description('Zone redundancy setting')
 param zoneRedundancy string = 'Disabled'
 
-@description('The log analytics workspace id used for logging & monitoring')
+@description('The log analytics workspace ID used for logging and monitoring')
 param workspaceId string = ''
 
 // 2022-02-01-preview needed for anonymousPullEnabled

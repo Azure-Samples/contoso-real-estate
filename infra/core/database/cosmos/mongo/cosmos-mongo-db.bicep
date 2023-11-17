@@ -1,3 +1,4 @@
+metadata description = 'Creates an Azure Cosmos DB for MongoDB account with a database.'
 param accountName string
 param databaseName string
 param location string = resourceGroup().location
@@ -41,7 +42,6 @@ resource database 'Microsoft.DocumentDB/databaseAccounts/mongodbDatabases@2022-0
   ]
 }
 
-output connectionString string = cosmos.outputs.connectionString
 output connectionStringKey string = connectionStringKey
 output databaseName string = databaseName
 output endpoint string = cosmos.outputs.endpoint

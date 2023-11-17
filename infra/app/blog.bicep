@@ -42,8 +42,8 @@ module app '../core/host/container-app.bicep' = {
         value: portalUrl
       }
     ]
+    identityType: !empty(keyVaultName) ? 'SystemAssigned' : 'None'
     imageName: !empty(blogImageName) ? blogImageName : 'nginx:latest'
-    keyVaultName: keyVault.name
     targetPort: 3000
   }
 }
@@ -52,9 +52,6 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing
   name: applicationInsightsName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
-  name: keyVaultName
-}
 
 output SERVICE_BLOG_IDENTITY_PRINCIPAL_ID string = app.outputs.identityPrincipalId
 output SERVICE_BLOG_NAME string = app.outputs.name

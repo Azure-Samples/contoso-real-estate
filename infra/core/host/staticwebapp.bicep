@@ -1,3 +1,4 @@
+metadata description = 'Creates an Azure Static Web Apps instance.'
 param name string
 param location string = resourceGroup().location
 param tags object = {}
@@ -13,7 +14,7 @@ resource web 'Microsoft.Web/staticSites@2022-03-01' = {
   tags: tags
   sku: sku
   properties: {
-    provider: 'SwaCli'
+    provider: 'Custom'
   }
 }
 

@@ -52,7 +52,7 @@ param cmsDatabaseServerName string = ''
 param cmsDatabasePort string = '5432'
 @secure()
 param cmsDatabasePassword string
-
+@secure()
 param stripePublicKey string
 
 @secure()
@@ -324,6 +324,7 @@ module blog './app/blog.bicep' = {
     name: !empty(blogContainerAppName) ? blogContainerAppName : '${abbrs.appContainerApps}blog-${resourceToken}'
     blogImageName: blogImageName
     location: location
+    // Set as env secret on container app
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
@@ -403,5 +404,7 @@ output STRAPI_DATABASE_USERNAME string = cmsDatabaseUser
 output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 output STRAPI_DATABASE_PORT string = cmsDatabasePort
 
-output CMS_DATABASE_SERVER_NAME string = cmsDB.outputs.POSTGRES_SERVER_NAME
+// Todo: fix - ./scripts/database/restore needs the password
+// need to get it from keyvault
+//output CMS_DATABASE_SERVER_NAME string = cmsDB.outputs.POSTGRES_SERVER_NAME
 

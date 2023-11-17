@@ -1,3 +1,4 @@
+metadata description = 'Creates an Azure Kubernetes Service (AKS) cluster with a system agent pool.'
 @description('The name for the AKS managed cluster')
 param name string
 
@@ -46,7 +47,7 @@ param networkPolicy string = 'azure'
 param disableLocalAccounts bool = false
 
 @description('The managed cluster SKU.')
-@allowed([ 'Paid', 'Free' ])
+@allowed([ 'Free', 'Paid', 'Standard' ])
 param sku string = 'Free'
 
 @description('Configuration of AKS add-ons')
@@ -61,7 +62,7 @@ param systemPoolConfig object
 @description('The DNS prefix to associate with the AKS cluster')
 param dnsPrefix string = ''
 
-resource aks 'Microsoft.ContainerService/managedClusters@2022-11-02-preview' = {
+resource aks 'Microsoft.ContainerService/managedClusters@2023-03-02-preview' = {
   name: name
   location: location
   tags: tags
@@ -69,7 +70,7 @@ resource aks 'Microsoft.ContainerService/managedClusters@2022-11-02-preview' = {
     type: 'SystemAssigned'
   }
   sku: {
-    name: 'Basic'
+    name: 'Base'
     tier: sku
   }
   properties: {

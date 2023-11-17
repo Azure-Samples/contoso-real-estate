@@ -1,3 +1,4 @@
+metadata description = 'Creates a SQL role definition under an Azure Cosmos DB account.'
 param accountName string
 
 resource roleDefinition 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2022-08-15' = {
