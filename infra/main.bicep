@@ -384,7 +384,7 @@ output SERVICE_WEB_NAME string = portal.outputs.SERVICE_WEB_NAME
 
 output USE_APIM bool = useAPIM
 
-output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI, api.outputs.SERVICE_API_URI ] : []
+output SERVICE_API_ENDPOINTS array = useAPIM ? [ apimApi.outputs.SERVICE_API_URI, api.outputs.SERVICE_API_URI ] : [api.outputs.SERVICE_API_URI]
 
 output SERVICE_WEB_URI string = portal.outputs.SERVICE_WEB_URI
 output SERVICE_BLOG_URI string = blog.outputs.SERVICE_BLOG_URI
