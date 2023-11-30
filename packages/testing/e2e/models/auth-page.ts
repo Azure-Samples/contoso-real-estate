@@ -1,4 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { CONFIG } from "../config";
 
 export class AuthPage {
   readonly page: Page;
@@ -9,6 +10,6 @@ export class AuthPage {
 
   // Go to this page
   async goto() {
-    await this.page.goto("/auth/login");
+    await this.page.goto(CONFIG.BASE_URL + "/auth/login");
   }
 }

@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-
+import { CONFIG } from "../config";
 export class ReservationsPage {
   readonly page: Page;
 
@@ -9,11 +9,11 @@ export class ReservationsPage {
 
   // Go to this page
   async goto() {
-    await this.page.goto("/me/reservations");
+    await this.page.goto(CONFIG.BASE_URL + "/me/reservations");
   }
 
   // Validate we are at "/me/payments"
   async isAtHome() {
-    expect(this.page.url()).toBe(process.env.PROD_EP + ",me/payments");
+    expect(this.page.url()).toBe(CONFIG.BASE_URL + ",me/payments");
   }
 }

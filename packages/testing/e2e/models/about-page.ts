@@ -1,4 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { CONFIG } from "../config";
 export class AboutPage {
   readonly page: Page;
 
@@ -8,6 +9,6 @@ export class AboutPage {
 
   // Validate we are at "/about"
   async isAtAbout() {
-    expect(this.page.url()).toBe(process.env.PROD_EP + "about");
+    expect(this.page.url()).toBe(CONFIG.BASE_URL + "/about");
   }
 }
