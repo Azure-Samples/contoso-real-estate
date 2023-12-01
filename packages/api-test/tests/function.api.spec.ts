@@ -6,9 +6,7 @@ import { test, expect  } from '@playwright/test';
 // 3. Local development on a local machine: `localhost:7071`
 const BASE_URL = process.env.SERVICE_API_ENDPOINTS
   ? JSON.parse(process.env.SERVICE_API_ENDPOINTS)[0]
-  : process.env.CODESPACE_NAME
-    ? `https://${process.env.CODESPACE_NAME}-${process.env.CODESPACE_PORT}.githubpreview.dev`
-    : 'http://localhost:7072';
+  : 'http://localhost:7071';
 
 console.log(`BASE_URL: ${BASE_URL}`);
 
