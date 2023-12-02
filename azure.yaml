@@ -44,10 +44,10 @@ services:
     language: js
     module: app/blog
 
-  # stripe:
-  #   project: packages/stripe
-  #   host: containerapp
-  #   language: js
-  #   docker:
-  #     context: ../..
-  #   module: app/stripe
+  stripe:
+    project: packages/stripe
+    host: containerapp
+    language: js
+    docker:
+      context: ../..
+    module: app/stripe
