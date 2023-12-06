@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-
+import { CONFIG } from "../config";
 export class DetailsPage {
   readonly page: Page;
 
@@ -9,6 +9,6 @@ export class DetailsPage {
 
   // Go to this page
   async goto(id: string) {
-    await this.page.goto("/listing/" + id);
+    await this.page.goto(CONFIG.BASE_URL + "/listing/" + id);
   }
 }

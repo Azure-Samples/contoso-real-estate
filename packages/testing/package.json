@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This document will guide you through the process of setting up a new Playwright test project, and authoring and running end-to-end tests for the Contoso web application.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "env": "azd env get-values --no-prompt > .env"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

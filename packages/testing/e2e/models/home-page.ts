@@ -1,4 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { CONFIG } from "../config";
 
 // Page Object Model defined for every "route"
 // With focus on sub-component related to route topic
@@ -80,7 +81,7 @@ export class HomePage {
 
   // ------------- The Playwright Page fixture (POM base)
   readonly page: Page;
-  readonly path: string = "/home";
+  readonly path: string = CONFIG.BASE_URL + "/home";
 
   // ------------- Navbar
   readonly navLogo: Locator;
