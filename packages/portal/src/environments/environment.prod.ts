@@ -5,5 +5,6 @@ export const environment = {
   // If you hard-code the URL here, it will be used instead of the placeholder and
   // no replacement will be made.
   blogUrl: "{{SERVICE_BLOG_URI_PLACEHOLDER}}",
-  strapiGraphQlUri: "{{SERVICE_CMS_URI_PLACEHOLDER}}/graphql"
+  strapiGraphQlUri: "{{SERVICE_CMS_URI_PLACEHOLDER}}/graphql",
+  enableAiChat: "{{ENABLE_AI_CHAT_PLACEHOLDER}}",
 };
