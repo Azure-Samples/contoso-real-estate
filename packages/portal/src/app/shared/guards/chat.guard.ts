@@ -2,5 +2,5 @@ import { CanActivateFn } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 export const canActivateChatGuard: CanActivateFn = (route, state) => {
-  return Boolean(environment.enableAiChat);
+  return Boolean(environment.aiEnableChat);
 };
