@@ -6,5 +6,6 @@ export const environment = {
   // no replacement will be made.
   blogUrl: "{{SERVICE_BLOG_URI_PLACEHOLDER}}",
   strapiGraphQlUri: "{{SERVICE_CMS_URI_PLACEHOLDER}}/graphql",
-  enableAiChat: "{{ENABLE_AI_CHAT_PLACEHOLDER}}",
+  aiEnableChat: "{{AI_ENABLE_CHAT_PLACEHOLDER}}",
+  aiChatApiUri: "{{AI_CHAT_API_URI_PLACEHOLDER}}",
 };

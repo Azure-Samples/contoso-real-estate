@@ -30,7 +30,7 @@
             ],
             "scripts": [],
             "ngxEnv": {
-              "prefix": "(CODESPACE|GITHUB)_"
+              "prefix": "(CODESPACE|GITHUB|AI)_"
             }
           },
           "configurations": {
