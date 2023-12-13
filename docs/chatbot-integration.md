@@ -17,7 +17,7 @@ In order to deploy and run the chatbot sample, you'll need:
 
 Follow these steps to enable the AI chatbot integration:
 
-1. Clone the Chat sample repository as a subfolder of the Contoso Real Estate repository:
+1. Clone the Chat sample in the Contoso Real Estate repository. To avoid misconfiguration, consider cloning it at root level, in a subfolder:
 
     ```bash
     git clone https://github.com/Azure-Samples/azure-search-openai-javascript.git chat-sample
@@ -56,6 +56,7 @@ Follow these steps to enable the AI chatbot integration:
       "../../chat-sample/packages/chat-component/dist/chat-component.umd.cjs"
     ],
     ```
+** The path may vary, depending on the location of your clone.
 
 You're almost done! Now it's a good idea to test the integration to make sure everything is working as expected.
 
