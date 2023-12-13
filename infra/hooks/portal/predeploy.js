@@ -12,6 +12,10 @@ const blogRegex = /SERVICE_BLOG_URI="([^"]+)"/;
 const blogPlaceholderValue = "{{SERVICE_BLOG_URI_PLACEHOLDER}}";
 const cmsRegex = /SERVICE_CMS_URI="([^"]+)"/;
 const cmsPlaceholderValue = "{{SERVICE_CMS_URI_PLACEHOLDER}}";
+const aiEnableRegex = /AI_ENABLE_CHAT="([^"]+)"/;
+const aiEnablePlaceholderValue = "\"{{AI_ENABLE_CHAT_PLACEHOLDER}}\"";
+const aiChatApiRegex = /AI_CHAT_API_URI="([^"]+)"/;
+const aiChatApiPlaceholderValue = "{{AI_CHAT_API_URI_PLACEHOLDER}}";
 
 // Note: this script is run by azd from the root of ./packages/portal
 const distPath = resolve(__dirname, "../../../packages/portal/dist/contoso-app");
@@ -27,8 +31,6 @@ function replaceEnvURIs(filePath) {
     const newFileContent = fileContents.replace(blogPlaceholderValue, blogValue).replace(cmsPlaceholderValue, cmsValue);
 
     writeFileSync(filePath, newFileContent);
-
-    process.exit(0);
   } else {
     if (!matchBlog) {
       console.log(`No match found for ${blogPlaceholderValue}. Skipping replacement.`);
@@ -39,6 +41,23 @@ function replaceEnvURIs(filePath) {
       process.exit(1);
     }
   }
+
+  const matchAiEnable = envVars.match(aiEnableRegex);
+  const matchAiChatApi = envVars.match(aiChatApiRegex);
+  const aiEnableValue = matchAiEnable ? matchAiEnable[1] : false;
+  const aiChatApiValue = matchAiChatApi ? matchAiChatApi[1] : '';
+  if (matchAiEnable && matchAiChatApi) {
+    console.log(`AI chatbot is enabled. Chat API URI: ${aiChatApiValue}`);
+  }
+
+  const fileContents = readFileSync(filePath, "utf-8");
+  const newFileContent = fileContents
+    .replace(aiEnablePlaceholderValue, aiEnableValue)
+    .replace(aiChatApiPlaceholderValue, aiChatApiValue);
+
+  writeFileSync(filePath, newFileContent);
+
+  process.exit(0);
 }
 
 function findMainFile(directoryPath) {

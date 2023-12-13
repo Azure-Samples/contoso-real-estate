@@ -24,10 +24,11 @@
     "packages/*"
   ],
   "engines": {
-    "node": "18.15.0",
+    "node": ">=18.16.0",
     "npm": ">=8"
   },
   "devDependencies": {
+    "azure-functions-core-tools": "^4.0.5455",
     "concurrently": "^7.6.0",
     "git-commit-msg-linter": "^4.2.1",
     "prettier": "^2.7.1",

@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   blogUrl: process.env["CODESPACE_NAME"] ? `https://${process.env["CODESPACE_NAME"]}-3000.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}` : 'http://localhost:3000',
-  strapiGraphQlUri: process.env["CODESPACE_NAME"] ? `https://${process.env["CODESPACE_NAME"]}-1337.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}/graphql` : 'http://localhost:1337/graphql'
+  strapiGraphQlUri: process.env["CODESPACE_NAME"] ? `https://${process.env["CODESPACE_NAME"]}-1337.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}/graphql` : 'http://localhost:1337/graphql',
+  aiEnableChat: process.env["AI_ENABLE_CHAT"],
+  aiChatApiUri: process.env["AI_CHAT_API_URI"],
 };
 
 /*

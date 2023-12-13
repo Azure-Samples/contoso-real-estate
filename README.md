@@ -53,6 +53,7 @@ You can navigate through the documentation using the table of contents below:
     - [Deploy to Azure](#deploy-to-azure-1)
     - [Configure CI-CD](#configure-ci-cd)
     - [Clean up resources](#clean-up-resources)
+  - [AI chatbot integration](#ai-chatbot-integration)
   - [Want to help?](#want-to-help)
 
 ## Architecture Diagram
@@ -307,6 +308,12 @@ When you are done, you can delete all the Azure resources created with this temp
 ```bash
 azd down
 ```
+
+## AI chatbot integration
+
+The Contoso Real Estate application can be integrated with an AI support chatbot built using [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service).
+
+For more details about enabling the chatbot integration, see [this section](./docs/chatbot-integration.md).
 
 ## Want to help?
 

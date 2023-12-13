@@ -3,12 +3,20 @@ import { HomepageComponent } from "./homepage/homepage.component";
 import { canActiveAuthGuard } from "./shared/guards/auth-guard.service";
 import { UserService } from "./shared/user/user.service";
 import { SearchpageComponent } from "./searchpage/searchpage.component";
+import { ChatComponent } from "./chat/chat.component";
+import { canActivateChatGuard } from "./shared/guards/chat.guard";
 
 export const ROUTES: Routes = [
   {
     path: "",
     redirectTo: "home",
     pathMatch: "full",
+  },
+  {
+    path: "chat",
+    pathMatch: "full",
+    component: ChatComponent,
+    canActivate: [canActivateChatGuard],
   },
   {
     path: "search",
