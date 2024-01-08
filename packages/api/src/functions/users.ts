@@ -7,6 +7,8 @@ import { User } from "../models/user.schema";
 export async function getUsers(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getUsers processed request for url "${request.url}"`);
 
+  await initializeDatabaseConfiguration();
+
   const offset = Number(request.query.get("offset")) || 0;
   const limit = Number(request.query.get("limit")) || 10;
 
@@ -62,6 +64,8 @@ export async function getUsers(request: HttpRequest, context: InvocationContext)
 export async function getUserById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getUserById processed request for url "${request.url}"`);
   const id = request.params.id;
+
+  await initializeDatabaseConfiguration();
 
   if (!id) {
     return {

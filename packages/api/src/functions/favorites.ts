@@ -14,6 +14,8 @@ import { Listing } from "../models/listing.schema";
 export async function getFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log(`Http function getFavorites processed request for url "${request.url}"`);
 
+  await initializeDatabaseConfiguration();
+
   const offset = Number(request.query.get("offset")) || 0;
   const limit = Number(request.query.get("limit")) || 10;
 
