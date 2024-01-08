@@ -1,11 +1,11 @@
 {
   "cSpell.words": ["azdo", "Contoso", "Quickstart"],
-  "azureFunctions.deploySubpath": "packages/api-v4",
+  "azureFunctions.deploySubpath": "packages/api",
   "azureFunctions.postDeployTask": "npm install (functions)",
   "azureFunctions.projectLanguage": "TypeScript",
   "azureFunctions.projectRuntime": "~4",
   "debug.internalConsoleOptions": "neverOpen",
   "azureFunctions.projectLanguageModel": 4,
-  "azureFunctions.projectSubpath": "packages/api-v4",
+  "azureFunctions.projectSubpath": "packages/api",
   "azureFunctions.preDeployTask": "npm prune (functions)"
 }
