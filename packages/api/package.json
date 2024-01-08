@@ -1,5 +1,5 @@
 {
-  "name": "api-v4",
+  "name": "api",
   "version": "1.0.0",
   "description": "A v4 programming model Azure Functions application.",
   "scripts": {
