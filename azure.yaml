@@ -20,7 +20,7 @@ services:
     host: staticwebapp
     module: app/portal
     hooks:
-      predeploy:
+      postpackage:
         shell: sh
         interactive: true
         # Note: the current working directory is ./packages/portal
