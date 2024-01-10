@@ -114,7 +114,7 @@
       "isBackground": true,
       "dependsOn": "npm build (functions)",
       "options": {
-        "cwd": "${workspaceFolder}/packages/api-v4"
+        "cwd": "${workspaceFolder}/packages/api"
       }
     },
     {
@@ -124,7 +124,7 @@
       "dependsOn": "npm clean (functions)",
       "problemMatcher": "$tsc",
       "options": {
-        "cwd": "${workspaceFolder}/packages/api-v4"
+        "cwd": "${workspaceFolder}/packages/api"
       }
     },
     {
@@ -132,7 +132,7 @@
       "label": "npm install (functions)",
       "command": "npm install",
       "options": {
-        "cwd": "${workspaceFolder}/packages/api-v4"
+        "cwd": "${workspaceFolder}/packages/api"
       }
     },
     {
@@ -142,7 +142,7 @@
       "dependsOn": "npm build (functions)",
       "problemMatcher": [],
       "options": {
-        "cwd": "${workspaceFolder}/packages/api-v4"
+        "cwd": "${workspaceFolder}/packages/api"
       }
     },
     {
@@ -151,7 +151,7 @@
       "command": "npm run clean",
       "dependsOn": "npm install (functions)",
       "options": {
-        "cwd": "${workspaceFolder}/packages/api-v4"
+        "cwd": "${workspaceFolder}/packages/api"
       }
     }
   ],

@@ -1,4 +1,4 @@
-# Contoso Real Estate App: API Package
+# Contoso Real Estate App: API Package (v4)
 
 **IMPORTANT: THIS REPOSITORY IS OPTIMIZED FOR CODESPACES AND TO WORK AS A SET OF COMPOSABLE APPS AND APIS. STANDALONE PACKAGE FUNCTIONALITY IS LIMITED AND MAY REQUIRE ADDITIONAL CONFIGURATION OR DEVELOPMENT**
 
@@ -12,7 +12,17 @@ If you want to run the API independently and locally, the following technologies
 
 - [node.js](https://nodejs.org) LTS, with the corresponding npm version
 - [Azure Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
-- [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/)
+
+## Instructions for using the API
+
+Azure Functions v4 is the latest version of the Node.js programming model for Azure Functions. It comes with a bunch of new features and improvements, such as:
+
+- Flexible folder structure
+- Being able to define function.json directly in the function's in the code
+- New HTTP trigger types
+- Improved IntelliSense
+- Timer Trigger (TypeScript)
+- Durable Functions (TypeScript)
 
 ## Steps to start the API
 
@@ -20,39 +30,109 @@ If you want to run the API independently and locally, the following technologies
 2. assuming you are in the folder containing your clone, go to the terminal and run
 
 ```bash
-cd packages/api && npm install
+cd packages/api
 ```
 
-Now you have all the dependencies installed for the API and can run
+3. create the `local.settings.json` file and add the following block of code:
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing"
+  }
+}
+```
+
+4. Now install all the dependencies for the API and run it
 
 ```bash
-npm start
+npm install && npm start
 ```
 
-## Stripe API integration
+## Manually testing in dev container
 
-To test Stripe integration, you need to create a Stripe account and get the API keys.
+1. Comment out Stripe in `azure.yaml` and `docker-compose.yml`. 
 
-Then, you need to add the following variables in your `packages/api/.env` file:
+1. Start local services in dev container
 
-```bash
-STRIPE_PUBLIC_KEY=<YOUR_STRIPE_PUBLIC_KEY>
-STRIPE_SECRET_KEY=<YOUR_STRIPE_SECRET_KEY>
-STRIPE_WEBHOOK_SECRET=<YOUR_STRIPE_WEBHOOK_SECRET>
-```
+  ```bash
+  npm run start:services
+  ```
 
-To test the webhook integration, you need to install the [Stripe CLI](https://stripe.com/docs/stripe-cli) and run the following commands:
+1. Rename env file for Azure Functions
 
-```bash
-# Make sure the app is running first with `npm start`
-stripe login
-stripe listen --forward-to localhost:7071/api/checkout/complete
-```
+  ```bash
+  mv ./packages/api/local.settings.sample.json ./packages/api/local.settings.json
+  ```
 
-Then you can trigger events such as:
+1. In new dev container terminal, Build API
 
-```bash
-stripe trigger payment_intent.succeeded
-```
+  ```bash
+  npm run start:host --workspace=api
+  ```
 
-To test payments, you can use the [Stripe test cards](https://stripe.com/docs/testing#cards).
+  Output should include APIs such as: 
+
+  ```console
+  Azure Functions Core Tools
+  Core Tools Version:       4.0.5455 Commit hash: N/A  (64-bit)
+  Function Runtime Version: 4.27.5.21554
+
+  [2024-01-04T16:49:20.258Z] Worker process started and initialized.
+
+  Functions:
+
+          delete-favorites: [DELETE] http://localhost:7071/api/favorites
+
+          get-favorites: [GET] http://localhost:7071/api/favorites
+
+          get-listings: [GET] http://localhost:7071/api/listings
+
+          get-listings-by-id: [GET] http://localhost:7071/api/listings/{id}
+
+          get-openapi: [GET] http://localhost:7071/api/{filename?}
+
+          get-payments: [GET] http://localhost:7071/api/payments
+
+          get-payments-by-id: [GET] http://localhost:7071/api/payments/{id}
+
+          get-reservations: [GET] http://localhost:7071/api/reservations
+
+          get-reservations-by-id: [GET] http://localhost:7071/api/reservations/{id}
+
+          get-users: [GET] http://localhost:7071/api/users
+
+          get-users-by-id: [GET] http://localhost:7071/api/users/{id}
+
+          patch-reservations-by-id: [PATCH] http://localhost:7071/api/reservations/{id}
+
+          post-checkout: [POST] http://localhost:7071/api/checkout
+
+          post-favorites: [POST] http://localhost:7071/api/favorites
+
+          post-payment: [POST] http://localhost:7071/api/payments
+
+          post-users: [POST] http://localhost:7071/api/users
+  ```
+
+1. In new dev container terminal, use cURL to get all listings from PostgreSQL.
+
+  ```bash
+  curl "http://localhost:7071/api/listings" --verbose
+  ```
+
+  This proves that the API can successfully talk to PostgreSQL.
+
+1. Use cURL to favorite a listing for a fake user, adding favorite into MongoDB.
+
+  ```bash
+  curl -X POST http://localhost:7071/api/favorites -H "Content-Type: application/json" -d '{"listing": {"id": "1"}, "user": {"id": "123"}}' --verbose
+  ```
+
+1. Use cURL to get all favorited items for fake user, querying into MongoDB. 
+
+  ```bash
+  curl "http://localhost:7071/api/favorites?userId=123" --verbose
+  ```
