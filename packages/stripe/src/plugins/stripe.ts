@@ -9,7 +9,7 @@ export default fp(
     if (!config.secretKey || !config.publicKey || !config.webhookSecret) {
       fastify.decorate("stripe", undefined);
     } else {
-      fastify.decorate("stripe", new Stripe(config.secretKey, { apiVersion: "2022-11-15" }));
+      fastify.decorate("stripe", new Stripe(config.secretKey, { apiVersion: "2023-10-16" }));
     }
   },
   {
