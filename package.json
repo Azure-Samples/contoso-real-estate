@@ -8,6 +8,7 @@
     "start:services": "docker compose up",
     "start:api": "npm run start --workspace=api",
     "start:website": "npm run start:swa --workspace=portal",
+    "start:realtime": "npm run start --workspace=realtime",
     "test": "npm run test -ws --if-present",
     "build": "npm run build -ws --if-present",
     "format": "prettier --write .",

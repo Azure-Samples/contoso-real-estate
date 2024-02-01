@@ -1,10 +1,13 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { UserRole } from "./user/user.service";
+import { RealtimeService } from "./realtime.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class FavoriteService {
+  private realtimeService = inject(RealtimeService);
+
   async addFavorite(listing: Listing, user: User) {
     const resource = await fetch("/api/favorites", {
       method: "POST",
@@ -13,7 +16,7 @@ export class FavoriteService {
         user,
       }),
     });
-
+    this.realtimeService.broadcastFavouriteNotification(listing);
     return resource.status === 200;
   }
 
