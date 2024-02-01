@@ -9,7 +9,7 @@
       "apiBuildCommand": "npm run build",
       "run": "npm start",
       "appDevserverUrl": "http://localhost:4200",
-      "apiDevserverUrl": "http://127.0.01:7071"
+      "apiDevserverUrl": "http://127.0.0.1:7071"
     }
   }
 }
