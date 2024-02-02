@@ -23,4 +23,16 @@ export class RealtimeService {
   broadcastCheckoutNotification(listing: Listing, from: string, to: string) {
     this.client.emit("sendCheckout", listing, from, to);
   }
+
+  getNotifiedForFavourite(notifyAction: (listingTitle: string) => void | Promise<void>) {
+    this.client.on("notifyFavourite", async (listingTitle: string) => {
+      await notifyAction(listingTitle);
+    });
+  }
+
+  getNotifiedForCheckout(notifyAction: (listing: Listing, from: string, to: string) => void | Promise<void>) {
+    this.client.on("notifyCheckout", async (listing: Listing, from: string, to: string) => {
+      await notifyAction(listing, from, to);
+    });
+  }
 }

@@ -43,21 +43,22 @@ export class HomepageComponent implements OnInit {
     this.user = await this.userService.currentUser();
     this.featuredListings = await this.listingService.getFeaturedListings();
 
-    this.realtimeService.client.on("notifyFavourite", (listingTitle) => {
-      console.log(`should notify favourite ${listingTitle}`);
+    // Get notification when someone favourtied a listing
+    this.realtimeService.getNotifiedForFavourite((listingTitle) => {
       const notifyMessage = this.user?.name?.length > 0
         ? `Hurry up! Another user has favorited the listing "${listingTitle}".`
         : `A user has favorited the listing "${listingTitle}".`;
       this.notify(notifyMessage);
     });
 
-    this.realtimeService.client.on("notifyCheckout", async (listing, from, to) => {
-      console.log(`should notify checkout`, listing, from, to);
+    this.realtimeService.getNotifiedForCheckout(async (listing: Listing, from: string, to: string) => {
+      // Get notification when someone booked any listing
       let notifyMessage = this.user?.name?.length > 0
         ? `Hurry up! Another user has booked the listing "${listing.title}" but didn't complete the payment.`
         : `A user has booked the listing "${listing}". but didn't complete the payment`;
       this.notify(notifyMessage);
 
+      // Get notification when someone booked a listing which is favourited by current user
       const favourites: Array<Listing> = await this.favoriteService.getFavoritesByUser(this.user) ?? [];
 
       for (const favour of favourites) {
