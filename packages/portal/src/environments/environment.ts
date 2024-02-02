@@ -8,6 +8,8 @@ export const environment = {
   strapiGraphQlUri: process.env["CODESPACE_NAME"] ? `https://${process.env["CODESPACE_NAME"]}-1337.${process.env["GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN"]}/graphql` : 'http://localhost:1337/graphql',
   aiEnableChat: process.env["AI_ENABLE_CHAT"],
   aiChatApiUri: process.env["AI_CHAT_API_URI"],
+  notificationUrl: process.env["SERVICE_WEB_PUB_SUB_URL"] as string,
+  notificationPath: process.env["SERVICE_WEB_PUB_SUB_PATH"] as string,
 };
 
 /*

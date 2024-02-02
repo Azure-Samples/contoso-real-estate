@@ -4,11 +4,11 @@ const { useAzureSocketIO } = require("@azure/web-pubsub-socket.io");
 
 // Add a Web PubSub Option
 const wpsOptions = {
-    hub: "eio_hub",
-    connectionString: process.env.WebPubSubConnectionString
+    hub: "Hub",
+    connectionString: process.env.SERVICE_WEB_PUBSUB_CONNECTION_STRING
 };
 console.log(wpsOptions);
-const io = new Server(process.env.port || 3000);
+const io = new Server(process.env.SERVICE_WEB_PUBSUB_PORT || 4242);
 useAzureSocketIO(io, wpsOptions);
 
 io.on("connection", (socket) => {
