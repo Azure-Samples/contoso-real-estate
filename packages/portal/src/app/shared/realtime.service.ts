@@ -1,18 +1,22 @@
 import { Injectable } from "@angular/core";
-import { UserRole } from "./user/user.service";
 import * as sioClient from "socket.io-client";
-import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class RealtimeService {
-  public client = {} as sioClient.Socket;
+  client = {} as sioClient.Socket;
 
   constructor() {
-    this.client = sioClient.io("https://sio-prod-eastus.webpubsub.azure.com", {
-        path: "/clients/socketio/hubs/eio_hub",
+
+    if (!environment.notificationUrl || !environment.notificationPath) {
+      // TODO: disable this feature at the injector level if the URL or Path is not set.
+      alert("RealtimeService: Notification URL or Path is not set. Please check environment.ts file.");
+    }
+
+    this.client = sioClient.io(environment.notificationUrl, {
+      path: environment.notificationPath,
     });
   }
 
@@ -23,7 +27,7 @@ export class RealtimeService {
   broadcastCheckoutNotification(listing: Listing, from: string, to: string) {
     this.client.emit("sendCheckout", listing, from, to);
   }
-
+  
   getNotifiedForFavourite(notifyAction: (listingTitle: string) => void | Promise<void>) {
     this.client.on("notifyFavourite", async (listingTitle: string) => {
       await notifyAction(listingTitle);
