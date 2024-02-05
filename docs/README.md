@@ -29,6 +29,10 @@ The following scenarios are part of the application sample
 
 - [Headless CMS and blog](./blog-scenario.md)
 
+## Developer guidelines
+
+The page you're reading and other documentation in this folder, are a summary guide. The project has a standalone [Developer Guide](./packages/docs/website/README.md) defined under `packages/docs` and implemented as an interactive website using the [Docusaurus](https://docusaurus.io) platform. To learn more about it, [go here](./packages/docs/website/developer-guidelines.md).
+
 # Contoso Rentals Overview
 
 Contoso Corporation is a fictional but representative global manufacturing conglomerate with its headquarters in Paris. The company deployed Microsoft 365 for enterprise and addressed major design decisions and implementation details for networking, identity, Windows 10 Enterprise, Microsoft 365 Apps for enterprise, mobile device management, information protection, and security.
