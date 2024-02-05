@@ -12,31 +12,18 @@ It will also instruct you how to deploy it to [Azure Static Web Apps](https://le
 
 In order to start the development server for local development or locally browsing the portal site, the following technologies must be installed in your computer:
 
-- [node.js](https://nodejs.org)
+- [Node.js LTS](https://nodejs.org)
 - [Azure Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
 - [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/)
 
-### Enabling the Realtime notifications service
-
-In order to enable the realtime notifications service, you will need to follow the instructions in the `./packages/notifications` package. This service is required to enable the realtime notifications feature in the portal.
-
-Once you have the notifications service running, you will need to create and configure the `./packages/portal/.env` file with the following variables:
-
-```bash
-SERVICE_WEB_PUB_SUB_URL="https://<resource-name>.webpubsub.azure.com"
-SERVICE_WEB_PUB_SUB_PATH="/clients/socketio/hubs/Hub"
-```
-
-In order to get these values, from the `Client URL Generator` section, copy the Client Endpoint (e.g. `https://<resource-name>.webpubsub.azure.com`) and Client Path (e.g. `/clients/socketio/hubs/Hub`) and update the `SERVICE_WEB_PUB_SUB_URL` and `SERVICE_WEB_PUB_SUB_PATH` in `./packages/portal/.env` file.
-
 ### Angular CLI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
 
 ## Steps to start the portal
 
 1. fork or clone the repository locally
-2. assuming you are in the folder containing `./packages/portal`, go to the terminal and run
+2. assuming you are in the folder containing `contoso-real-estate/packages/portal`, go to the terminal and run
 
 ```bash
 npm run clean:install
@@ -120,4 +107,8 @@ swa deploy verbose=silly
 
 Copy the log and open an issue in our open-source [Azure Static Web Apps CLI repository](https://github.com/Azure/static-web-apps-cli). We will love to hear from you!
 
-Happy coding! 🚀
+### Portal scenario diagram
+
+This scenario is represented by the following diagram
+![Contoso Real Estate Portal - Scenario 2](../assets/scenarios/scenario2.png)
+
