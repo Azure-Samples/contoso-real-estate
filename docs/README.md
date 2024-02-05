@@ -8,7 +8,26 @@ ms.topic: overview #Required
 ms.date: #Required; mm/dd/yyyy format.
 ---
 
-# Contoso rentals
+# Enterprise-grade Reference Architecture for JavaScript
+
+
+This repository contains the reference architecture and components for building enterprise-grade modern composable frontends (or micro-frontends) and cloud-native applications. It is a collection of best practices, architecture patterns, and functional components that can be used to build and deploy modern JavaScript applications to Azure.
+
+[Additional details about what the Contoso Real Estate app is and what it does from a high-level – possibly has some images from the running app].
+
+### Supported App Scenarios
+
+- [AI Chatbot integration](./chatbot-integration.md)
+
+- [Payments integration with Stripe](./payments-service-scenario.md)
+
+- Real-time Notifications
+
+- Portal application, a main portal entry point, featuring listings, favorites, user authentication and profile
+
+- [Headless CMS and blog](./blog-scenario.md)
+
+# Contoso Rentals Overview
 
 Contoso Corporation is a fictional but representative global manufacturing conglomerate with its headquarters in Paris. The company deployed Microsoft 365 for enterprise and addressed major design decisions and implementation details for networking, identity, Windows 10 Enterprise, Microsoft 365 Apps for enterprise, mobile device management, information protection, and security.
 
@@ -24,7 +43,7 @@ The Contoso HR App is part of the Contoso platform and designed to serve interna
 
 ## App architecture
 
-To support this app functionality, the Contoso engineering team decided to build the app with the following:
+To support this app functionality, the Contoso engineering team decided to build the app with the following structure:
 
 - Web app with a custom domain
   - UI for blog and portal front ends
