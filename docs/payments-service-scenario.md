@@ -144,3 +144,8 @@ stripe trigger checkout.session.completed
 ```
 
 You should see the event being processed by your Stripe backend, and you can use it to debug your integration.
+
+### Payment service scenario diagram
+
+This scenario is represented by the following diagram
+![Contoso Real Estate Payment Service - Scenario 4](../assets/scenarios/scenario4.png)

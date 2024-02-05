@@ -110,3 +110,8 @@ An alternative way to run the environment is using [GitHub Codespaces](https://g
 _Note: GitHub Codespaces is a paid component of GitHub. Review [the GitHub Codespaces billing](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces) before using it._
 
 To run in GitHub Codespaces, the machine will need at least 4 CPUs and 8GB of memory, which is defined in the [`devcontainer.json`](./.devcontainer/devcontainer.json) file, to ensure all the services are started.
+
+### Blog scenario diagram
+
+This scenario is represented by the following diagram
+![Contoso Real Estate Blog - Scenario 1](../assets/scenarios/scenario1.png)
