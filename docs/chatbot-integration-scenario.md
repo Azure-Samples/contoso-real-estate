@@ -100,3 +100,8 @@ To deploy the Contoso Real Estate application with the chatbot integration enabl
     ```
 
 That's it! Now you can navigate to the Portal URL and test the chatbot integration.
+
+### Chat integration scenario diagram
+
+This scenario is represented by the following diagram
+![Contoso Real Estate Chat Integration - Scenario 5](../assets/scenarios/scenario5.png)
