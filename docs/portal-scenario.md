@@ -12,7 +12,7 @@ It will also instruct you how to deploy it to [Azure Static Web Apps](https://le
 
 In order to start the development server for local development or locally browsing the portal site, the following technologies must be installed in your computer:
 
-- [node.js](https://nodejs.org)
+- [Node.js LTS](https://nodejs.org)
 - [Azure Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
 - [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/)
 
@@ -107,4 +107,8 @@ swa deploy verbose=silly
 
 Copy the log and open an issue in our open-source [Azure Static Web Apps CLI repository](https://github.com/Azure/static-web-apps-cli). We will love to hear from you!
 
-Happy coding! 🚀
+### Portal scenario diagram
+
+This scenario is represented by the following diagram
+![Contoso Real Estate Portal - Scenario 2](../assets/scenarios/scenario2.png)
+

@@ -19,11 +19,11 @@ This repository contains the reference architecture and components for building 
 
 The following scenarios are part of the application sample
 
-- [AI Chatbot integration (RAG Pattern)](./chatbot-integration.md)
+- [AI Chatbot integration (RAG Pattern)](./chatbot-integration-scenario.md)
 
 - [Payments integration with Stripe](./payments-service-scenario.md)
 
-- Real-time Notifications
+- Real-time Notifications 
 
 - Portal application, a main portal entry point, featuring listings, favorites, user authentication and profile
 
