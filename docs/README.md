@@ -17,7 +17,9 @@ This repository contains the reference architecture and components for building 
 
 ### Supported App Scenarios
 
-- [AI Chatbot integration](./chatbot-integration.md)
+The following scenarios are part of the application sample
+
+- [AI Chatbot integration (RAG Pattern)](./chatbot-integration.md)
 
 - [Payments integration with Stripe](./payments-service-scenario.md)
 
@@ -57,7 +59,7 @@ To support this app functionality, the Contoso engineering team decided to build
     - Monitoring
     - Payments
 
-![](./media/block-architecture.png)
+![](../assets/diagrams/block-architecture.png)
 
 ## Azure architecture
 
@@ -65,6 +67,4 @@ To build, deploy, manage, test, and monitor this web app, Contoso selected Azure
 
 ![](../assets/diagrams/e2e-full-horizontal.drawio.png)
 
-## Next steps
 
-- Build the first iteration of the web app
