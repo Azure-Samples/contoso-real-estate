@@ -6,7 +6,7 @@ description: Kickoff implementation with Scenario 1 - Headless CMS and Blog App
 
 ## 1. Architecture
 
-![Scenario Architecture Diagram](./../../../static/docs/png/contoso-architecture.png)
+![Scenario Architecture Diagram](./../../../static/docs/png/contoso-scenario-1.png)
 
 This is the most important scenario of the application, providing data authoring and storing capabilities for both vertical micro-frontend applications, that compose it. We enable this capabilities, via the implementation of a Headless CMS, powered by Strapi.
 
