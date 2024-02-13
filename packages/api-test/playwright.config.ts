@@ -1,15 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// create base URL from 3 sources:
-// 1. SERVICE_API_ENDPOINTS - set by GitHub Actions
-// 2. CODESPACE_NAME - set by GitHub Codespaces
-// 3. localhost:7071 - default
-// const BASE_URL = process.env.SERVICE_API_ENDPOINTS && process.env.SERVICE_API_ENDPOINTS[0]
-//   ? process.env.SERVICE_API_ENDPOINTS[0]
-//   : process.env.CODESPACE_NAME
-//     ? `https://${process.env.CODESPACE_NAME}-${process.env.CODESPACE_PORT}.githubpreview.dev`
-//     : 'http://localhost:7072';
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
