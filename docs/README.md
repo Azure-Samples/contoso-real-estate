@@ -49,7 +49,7 @@ The Contoso HR App is part of the Contoso platform and designed to serve interna
 
 ## App architecture
 
-To support this app functionality, the Contoso engineering team decided to build the app with the following structure:
+To support this app functionality, the Contoso engineering team used the following structure:
 
 - Web app with a custom domain
   - UI for blog and portal front ends
