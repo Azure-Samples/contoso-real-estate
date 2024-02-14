@@ -4,7 +4,7 @@ sudo apt update
 npm i -g npm@latest fuzz-run
 
 # https://github.com/microsoft/playwright/issues/28331
-npx playwright install --with-deps
+npx --yes playwright install --with-deps
 
 # Azure Functions core tools
 npm i -g azure-functions-core-tools@4 --unsafe-perm true
