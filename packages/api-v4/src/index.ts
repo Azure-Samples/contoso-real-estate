@@ -60,7 +60,7 @@ app.get("get-reservations", {
   handler: getReservations,
 });
 
-app.patch("get-reservations", {
+app.patch("patch-reservations", {
   route: "reservations/{id}",
   authLevel: "anonymous",
   handler: patchReservationById,
