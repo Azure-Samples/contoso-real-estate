@@ -4,14 +4,13 @@
   "name": "Node.js",
 
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18-bullseye",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
     "ghcr.io/azure/azure-dev/azd:latest": {},
     "ghcr.io/devcontainers/features/node:1": {
-      // NOTE: See https://github.com/Azure-Samples/contoso-real-estate/pull/191
-      "version": "18.15.0"
+      "version": "18"
     },
     "ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
