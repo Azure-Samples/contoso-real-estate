@@ -7,7 +7,7 @@ WORKDIR /app
 COPY ./package*.json ./
 COPY ./packages/stripe ./packages/stripe
 RUN npm ci --workspace=stripe-api --cache /tmp/empty-cache
-RUN npm run build:ts --workspace=stripe-api
+RUN npm run build --workspace=stripe-api
 
 # Run Node.js app
 # ------------------------------------
