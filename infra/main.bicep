@@ -32,6 +32,8 @@ param appServicePlanName string = ''
 param eventGridName string = ''
 param cmsImageName string = ''
 param blogImageName string = ''
+param notificationsServiceName string = ''
+param notificationsImageName string = ''
 param stripeImageName string = ''
 param stripeServiceUrl string = ''
 
@@ -48,7 +50,7 @@ param adminJwtSecret string
 
 param cmsDatabaseName string = 'strapi'
 param cmsDatabaseUser string = 'strapi'
-param cmsDatabaseServerName string = ''
+// param cmsDatabaseServerName string = ''
 param cmsDatabasePort string = '5432'
 @secure()
 param cmsDatabasePassword string
@@ -201,6 +203,34 @@ module portalBackend './app/portal-backend.bicep' = {
   }
 }
 
+
+// the realt-time notification integration
+module notifications 'app/notifications.bicep' = {
+  name: 'notifications'
+  scope: rg
+  params: {
+    name: !empty(notificationsServiceName) ? notificationsServiceName :  '${abbrs.appContainerApps}web-${resourceToken}'
+    location: location
+    tags: tags
+  }
+}
+
+module notificationsBackend 'app/notifications-backend.bicep' = {
+  name: 'notifications-api'
+  scope: rg
+  params: {
+    name: !empty(notificationsServiceName) ? notificationsServiceName :  '${abbrs.appContainerApps}api-${resourceToken}'
+    location: location
+    tags: tags
+    notificationsImageName: notificationsImageName
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
+    notificationsServiceName: notifications.outputs.SERVICE_WEBPUBSUB_NAME
+    containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
+    containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
 // The application database
 module cosmos './app/db.bicep' = {
   name: 'cosmos'
@@ -251,7 +281,7 @@ module api './app/api.bicep' = {
       STRAPI_DATABASE_NAME: cmsDatabaseName
       STRAPI_DATABASE_USERNAME: cmsDatabaseUser
       STRAPI_DATABASE_PASSWORD: cmsDatabasePassword
-      STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
+      // STRAPI_DATABASE_HOST: cmsDB.outputs.POSTGRES_DOMAIN_NAME
       STRAPI_DATABASE_PORT: cmsDatabasePort
       STRAPI_DATABASE_SSL: 'true'
     }
@@ -273,7 +303,7 @@ module cms './app/cms.bicep' = {
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: !empty(containerAppsEnvironmentName) ? containerAppsEnvironmentName : '${abbrs.appManagedEnvironments}${resourceToken}'
     containerRegistryName: !empty(containerRegistryName) ? containerRegistryName : '${abbrs.containerRegistryRegistries}${resourceToken}'
-    databaseHost: cmsDB.outputs.POSTGRES_DOMAIN_NAME
+    databaseHost: '' //cmsDB.outputs.POSTGRES_DOMAIN_NAME
     databaseName: cmsDatabaseName
     databaseUsername: cmsDatabaseUser
     databasePassword: cmsDatabasePassword
@@ -290,29 +320,29 @@ module cms './app/cms.bicep' = {
   }
 }
 
-// The cms database
-module cmsDB './core/database/postgresql/flexibleserver.bicep' = {
-  name: 'postgresql'
-  scope: rg
-  params: {
-    name: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
-    location: location
-    tags: tags
-    sku: {
-      name: 'Standard_B1ms'
-      tier: 'Burstable'
-    }
-    storage: {
-      storageSizeGB: 32
-    }
-    version: '13'
-    administratorLogin: cmsDatabaseUser
-    administratorLoginPassword: cmsDatabasePassword
-    databaseNames: [ cmsDatabaseName ]
-    allowAzureIPsFirewall: true
-    keyVaultName: keyVault.outputs.name
-  }
-}
+// // The cms database
+// module cmsDB './core/database/postgresql/flexibleserver.bicep' = {
+//   name: 'postgresql'
+//   scope: rg
+//   params: {
+//     name: !empty(cmsDatabaseServerName) ? cmsDatabaseServerName : '${abbrs.dBforPostgreSQLServers}db-${resourceToken}'
+//     location: location
+//     tags: tags
+//     sku: {
+//       name: 'Standard_B1ms'
+//       tier: 'Burstable'
+//     }
+//     storage: {
+//       storageSizeGB: 32
+//     }
+//     version: '13'
+//     administratorLogin: cmsDatabaseUser
+//     administratorLoginPassword: cmsDatabasePassword
+//     databaseNames: [ cmsDatabaseName ]
+//     allowAzureIPsFirewall: true
+//     keyVaultName: keyVault.outputs.name
+//   }
+// }
 
 /////////// Blog ///////////
 
@@ -397,13 +427,18 @@ output SERVICE_STRIPE_NAME string = stripe.outputs.SERVICE_STRIPE_NAME
 
 output STORAGE_ACCOUNT_NAME string = storageAccount.outputs.name
 output STORAGE_CONTAINER_NAME string = storageContainerName
-output SERVICE_CMS_SERVER_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
+// output SERVICE_CMS_SERVER_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 
 output STRAPI_DATABASE_NAME string = cmsDatabaseName
 output STRAPI_DATABASE_USERNAME string = cmsDatabaseUser
-output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
+// output STRAPI_DATABASE_HOST string = cmsDB.outputs.POSTGRES_DOMAIN_NAME
 output STRAPI_DATABASE_PORT string = cmsDatabasePort
 
-output CMS_DATABASE_SERVER_NAME string = cmsDB.outputs.POSTGRES_SERVER_NAME
+// output CMS_DATABASE_SERVER_NAME string = cmsDB.outputs.POSTGRES_SERVER_NAME
 // We need this to manually restore the database
 output STRAPI_DATABASE_PASSWORD string = cmsDatabasePassword
+
+
+
+output SERVICE_WEBPUBSUB_NAME string = notifications.outputs.SERVICE_WEBPUBSUB_NAME
+output SERVICE_WEBPUBSUB_URI string = notifications.outputs.SERVICE_WEBPUBSUB_NAME

@@ -1,11 +1,13 @@
 import { Injectable, inject } from "@angular/core";
 import { WindowService } from "../core/window/window.service";
+import { RealtimeService } from "./realtime.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class ListingService {
   private windowService = inject(WindowService);
+  private realtimeService = inject(RealtimeService);
 
   async getListings({ limit = 10, offset = 0 } = {}): Promise<Listing[]> {
     const resource = await fetch(`/api/listings?limit=${limit}&offset=${offset}`).then(response => {
@@ -69,6 +71,7 @@ export class ListingService {
   }
 
   async reserve(reservationDetails: ReservationRequest): Promise<CheckoutSession> {
+    console.log("reservationDetails = ", reservationDetails)
     const resource = await fetch(`/api/checkout`, {
       method: "POST",
       headers: {
@@ -79,6 +82,13 @@ export class ListingService {
     const checkoutSession = await resource.json();
     if (resource.status !== 200) {
       throw new Error(checkoutSession.error);
+    }
+    const listing = await this.getListingById(reservationDetails.listingId ?? "");
+    if (listing) {
+      this.realtimeService.broadcastCheckoutNotification(listing, reservationDetails.from, reservationDetails.to);
+    }
+    else {
+      console.log(`Invalid reservationDetails.listingId = ${reservationDetails.listingId}`);
     }
     return checkoutSession;
   }

@@ -1,0 +1,16 @@
+{
+  "name": "notifications",
+  "version": "0.0.0",
+  "main": "server.js",
+  "private": true,
+  "dependencies": {
+    "@azure/web-pubsub-socket.io": "1.0.0-beta.6",
+    "dotenv": "^16.3.1",
+    "socket.io-client": "^4.7.2"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "docker:build": "docker build --tag notifications .",
+    "docker:run": "docker run --rm --publish 4300:4300 --env-file ../../.env.docker notifications"
+  }
+}
