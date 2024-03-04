@@ -5,7 +5,7 @@ services:
     build:
       context: ./packages/notifications
     environment:
-      SERVICE_WEB_PUBSUB_CONNECTION_STRING: "Endpoint=https://contoso-realtime.webpubsub.azure.com;AccessKey=rZbmrucfuf6Bg0emc1WD4y9Cw8CBK02Ui5Gg/UoMqZA=;Version=1.0;"
+      SERVICE_WEB_PUBSUB_CONNECTION_STRING: "Endpoint=https://foobar.webpubsub.azure.com;AccessKey=abc;Version=1.0;"
       SERVICE_WEB_PUBSUB_PORT: 4300
     ports:
       - "4300:4300"
