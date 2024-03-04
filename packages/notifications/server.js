@@ -7,9 +7,11 @@ const wpsOptions = {
     hub: "Hub",
     connectionString: process.env.SERVICE_WEB_PUBSUB_CONNECTION_STRING
 };
-console.log(wpsOptions);
-const io = new Server(process.env.SERVICE_WEB_PUBSUB_PORT || 4242);
+const port = process.env.SERVICE_WEB_PUBSUB_PORT || 4300;
+const io = new Server(port);
 useAzureSocketIO(io, wpsOptions);
+
+console.log("Socket server is running on 127.0.0.1:%s", port);
 
 io.on("connection", (socket) => {
     // receive a message from the client

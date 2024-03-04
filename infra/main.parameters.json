@@ -44,6 +44,9 @@
     "blogImageName": {
       "value": "${SERVICE_BLOG_IMAGE_NAME}"
     },
+    "notificationsImageName": {
+      "value": "${SERVICE_NOTIFICATIONS_IMAGE_NAME}"
+    },
     "stripeImageName": {
       "value": "${SERVICE_STRIPE_IMAGE_NAME}"
     },
