@@ -8,7 +8,7 @@
     "start:services": "docker compose up",
     "start:api": "npm run start --workspace=api",
     "start:portal": "npm run start:swa --workspace=portal",
-    "start:realtime": "npm run start --workspace=realtime",
+    "start:notifications": "npm run start --workspace=notifications",
     "test": "npm run test -ws --if-present",
     "build": "npm run build -ws --if-present",
     "format": "prettier --write .",
@@ -30,7 +30,7 @@
     "npm": ">=8"
   },
   "devDependencies": {
-    "azure-functions-core-tools": "^4.0.5455",
+    "azure-functions-core-tools": "4.0.5530",
     "concurrently": "^7.6.0",
     "git-commit-msg-linter": "^4.2.1",
     "prettier": "^2.7.1",

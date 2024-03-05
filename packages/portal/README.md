@@ -16,14 +16,27 @@ In order to start the development server for local development or locally browsi
 - [Azure Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local)
 - [Azure Static Web Apps CLI](https://azure.github.io/static-web-apps-cli/)
 
+### Enabling the Realtime notifications service
+
+In order to enable the realtime notifications service, you will need to follow the instructions in the `./packages/notifications` package. This service is required to enable the realtime notifications feature in the portal.
+
+Once you have the notifications service running, you will need to create and configure the `./packages/portal/.env` file with the following variables:
+
+```bash
+SERVICE_WEB_PUB_SUB_URL="https://<resource-name>.webpubsub.azure.com"
+SERVICE_WEB_PUB_SUB_PATH="/clients/socketio/hubs/Hub"
+```
+
+In order to get these values, from the `Client URL Generator` section, copy the Client Endpoint (e.g. `https://<resource-name>.webpubsub.azure.com`) and Client Path (e.g. `/clients/socketio/hubs/Hub`) and update the `SERVICE_WEB_PUB_SUB_URL` and `SERVICE_WEB_PUB_SUB_PATH` in `./packages/portal/.env` file.
+
 ### Angular CLI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 ## Steps to start the portal
 
 1. fork or clone the repository locally
-2. assuming you are in the folder containing `contoso-real-estate/packages/portal`, go to the terminal and run
+2. assuming you are in the folder containing `./packages/portal`, go to the terminal and run
 
 ```bash
 npm run clean:install
