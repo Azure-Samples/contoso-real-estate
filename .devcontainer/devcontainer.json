@@ -45,6 +45,10 @@
     "4242": {
       "label": "Stripe API",
       "onAutoForward": "notify"
+    },
+    "4300": {
+      "label": "Web PubSub API",
+      "onAutoForward": "notify"
     }
   },
 

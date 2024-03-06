@@ -1,11 +1,13 @@
-require("dotenv/config");
-const { Server } = require("socket.io");
-const { useAzureSocketIO } = require("@azure/web-pubsub-socket.io");
+import { Server } from "socket.io";
+import { useAzureSocketIO } from "@azure/web-pubsub-socket.io";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // Add a Web PubSub Option
 const wpsOptions = {
-    hub: "Hub",
-    connectionString: process.env.SERVICE_WEB_PUBSUB_CONNECTION_STRING
+  hub: "Hub",
+  connectionString: process.env.SERVICE_WEB_PUBSUB_CONNECTION_STRING
 };
 const port = process.env.SERVICE_WEB_PUBSUB_PORT || 4300;
 const io = new Server(port);
