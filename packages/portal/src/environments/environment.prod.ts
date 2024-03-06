@@ -8,5 +8,6 @@ export const environment = {
   strapiGraphQlUri: "{{SERVICE_CMS_URI_PLACEHOLDER}}/graphql",
   aiEnableChat: "{{AI_ENABLE_CHAT_PLACEHOLDER}}",
   aiChatApiUri: "{{AI_CHAT_API_URI_PLACEHOLDER}}",
-  notificationUrl: "{{WEB_PUB_SUB_URL_PLACEHOLDER}}",
+  notificationUrl: "{{SERVICE_WEB_PUB_SUB_URL_PLACEHOLDER}}",
+  notificationPath: "{{SERVICE_WEB_PUB_SUB_PATH_PLACEHOLDER}}",
 };

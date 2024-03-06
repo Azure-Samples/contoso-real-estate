@@ -16,6 +16,10 @@ const aiEnableRegex = /AI_ENABLE_CHAT="([^"]+)"/;
 const aiEnablePlaceholderValue = "\"{{AI_ENABLE_CHAT_PLACEHOLDER}}\"";
 const aiChatApiRegex = /AI_CHAT_API_URI="([^"]+)"/;
 const aiChatApiPlaceholderValue = "{{AI_CHAT_API_URI_PLACEHOLDER}}";
+const webPubSubUrlRegex = /SERVICE_WEB_PUB_SUB_URL="([^"]+)"/;
+const webPubSubUrlPlaceholderValue = "{{SERVICE_WEB_PUB_SUB_URL_PLACEHOLDER}}";
+const webPubSubPathRegex = /SERVICE_WEB_PUB_SUB_PATH="([^"]+)"/;
+const webPubSubPathPlaceholderValue = "{{SERVICE_WEB_PUB_SUB_PATH_PLACEHOLDER}}";
 
 // Note: this script is run by azd from the root of ./packages/portal
 const distPath = resolve(__dirname, "../../../packages/portal/dist/contoso-app");
@@ -23,12 +27,19 @@ const distPath = resolve(__dirname, "../../../packages/portal/dist/contoso-app")
 function replaceEnvURIs(filePath) {
   const matchBlog = envVars.match(blogRegex);
   const matchCms = envVars.match(cmsRegex);
+  const webPubSubUrl = envVars.match(webPubSubUrlRegex);
+  const webPubSubPath = envVars.match(webPubSubPathRegex);
 
   if (matchBlog && matchCms) {
     const blogValue = matchBlog[1];
     const cmsValue = matchCms[1];
     const fileContents = readFileSync(filePath, "utf-8");
-    const newFileContent = fileContents.replace(blogPlaceholderValue, blogValue).replace(cmsPlaceholderValue, cmsValue);
+    const newFileContent = fileContents
+      .replace(blogPlaceholderValue, blogValue)
+      .replace(cmsPlaceholderValue, cmsValue)
+      .replace(webPubSubUrlPlaceholderValue, webPubSubUrl)
+      .replace(webPubSubPathPlaceholderValue, webPubSubPath)
+      ;
 
     writeFileSync(filePath, newFileContent);
   } else {
