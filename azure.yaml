@@ -3,28 +3,28 @@
 name: contoso-real-estate
 metadata:
   template: contoso-real-estate@0.0.1
-# hooks:
-  # postprovision:
-  #   shell: "sh"
-  #   continueOnError: false
-  #   interactive: true
+hooks:
+  postprovision:
+    shell: "sh"
+    continueOnError: false
+    interactive: true
 
-  #   # TODO: provide a cross platform way to run this script
-  #   run: ./scripts/database/restore.sh strapi_20230922
+    # TODO: provide a cross platform way to run this script
+    run: ./scripts/database/restore.sh strapi_20230922
 
 services:
-  # portal:
-  #   project: packages/portal
-  #   dist: dist/contoso-app
-  #   language: ts
-  #   host: staticwebapp
-  #   module: app/portal
-  #   hooks:
-  #     postpackage:
-  #       shell: sh
-  #       interactive: true
-  #       # Note: the current working directory is ./packages/portal
-  #       run: ../../infra/hooks/portal/predeploy.js
+  portal:
+    project: packages/portal
+    dist: dist/contoso-app
+    language: ts
+    host: staticwebapp
+    module: app/portal
+    hooks:
+      postpackage:
+        shell: sh
+        interactive: true
+        # Note: the current working directory is ./packages/portal
+        run: ../../infra/hooks/portal/predeploy.js
 
   notifications:
     project: packages/notifications
@@ -35,28 +35,28 @@ services:
     host: containerapp
     module: app/notifications
 
-  # api:
-  #   project: packages/api
-  #   language: ts
-  #   host: function
-  #   module: app/api
+  api:
+    project: packages/api
+    language: ts
+    host: function
+    module: app/api
 
-  # cms:
-  #   project: packages/blog-cms
-  #   host: containerapp
-  #   language: js
-  #   module: app/cms
+  cms:
+    project: packages/blog-cms
+    host: containerapp
+    language: js
+    module: app/cms
 
-  # blog:
-  #   project: packages/blog
-  #   host: containerapp
-  #   language: js
-  #   module: app/blog
+  blog:
+    project: packages/blog
+    host: containerapp
+    language: js
+    module: app/blog
 
-  # stripe:
-  #   project: packages/stripe
-  #   host: containerapp
-  #   language: js
-  #   docker:
-  #     context: ../..
-  #   module: app/stripe
+  stripe:
+    project: packages/stripe
+    host: containerapp
+    language: js
+    docker:
+      context: ../..
+    module: app/stripe
