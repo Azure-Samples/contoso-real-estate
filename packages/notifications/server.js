@@ -4,6 +4,15 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+if (process.env.SERVICE_WEB_PUBSUB_CONNECTION_STRING === undefined) {
+  console.log("*** Error: Missing configuration. ***")
+  console.log("SERVICE_WEB_PUBSUB_CONNECTION_STRING is not set");
+  console.log("Please read ./packages/notifications/README.md for how to set up the project.");
+  console.log("*******************************");
+  process.exit(0);
+}
+
+
 // Add a Web PubSub Option
 const wpsOptions = {
   hub: "Hub",
