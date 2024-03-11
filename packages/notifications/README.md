@@ -22,7 +22,7 @@ In order to enable and try out the realtime notification feature, you will need 
 1. Assuming you are in `./packages/notifications`, run:
 
 ```bash
-npm run install
+npm install
 ```
 
 2. Start the server by running:
