@@ -24,10 +24,15 @@
     },
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
     }
   },
 
-  // add labels to ports
+  // add labels to ports that are being used
+  // this will make it easier to identify what is running on each port
+  // it's also used by nightly builds to check all services are running as expected
   "portsAttributes": {
     "4280": {
       "label": "Portal App",
@@ -48,10 +53,15 @@
     "4300": {
       "label": "Web PubSub API",
       "onAutoForward": "notify"
+    },
+    "4200": {
+      "label": "Angular",
+      "onAutoForward": "notify"
     }
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // Note: do not forward 4200 as it's being proxied by 4280
   "forwardPorts": [4280, 4242, 3000, 1337],
 
   // Use 'postCreateCommand' to run commands after the container is created.
@@ -90,7 +100,4 @@
     "memory": "8gb",
     "storage": "32gb"
   }
-
-  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-  // "remoteUser": "root"
 }
