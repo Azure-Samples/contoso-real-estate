@@ -9,7 +9,7 @@ import { postCheckout } from "./functions/checkout";
 
 // This route is used by nightly builds as a health check
 app.get("get-root", {
-  route: "/",
+  route: "",
   authLevel: "anonymous",
   handler: async () => {
     return {
