@@ -23,9 +23,9 @@ The following scenarios are part of the application sample
 
 - [Payments integration with Stripe](./payments-service-scenario.md)
 
-- Real-time Notifications 
+- [Real-time Notifications](./real-time-notifications-scenario.md) 
 
-- Portal application, a main portal entry point, featuring listings, favorites, user authentication and profile
+- [Portal application](./portal-scenario.md), a main portal entry point, featuring listings, favorites, user authentication and profile
 
 - [Headless CMS and blog](./blog-scenario.md)
 
