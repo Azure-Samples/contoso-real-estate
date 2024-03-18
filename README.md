@@ -29,9 +29,26 @@ description: Intelligent enterprise-grade reference architecture for JavaScript,
 
 # Enterprise-grade Reference Architecture for JavaScript
 
-This repository contains the reference architecture and components for building enterprise-grade modern composable frontends (or micro-frontends) and cloud-native applications. It is a collection of best practices, architecture patterns, and functional components that can be used to build and deploy modern JavaScript applications to Azure.
+This repository contains the reference architecture and components for building enterprise-grade modern composable frontends (or micro-frontends) and cloud-native applications. It is a collection of best practices, architecture patterns, and functional components that can be used to build and deploy modern JavaScript applications to Azure. 
+
+> [!IMPORTANT]
+> The application code is meant to serve as a reference. Please incorporate your security governance, audits and conventions before productionizing.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/contoso-real-estate?devcontainer_path=.devcontainer/devcontainer.json)
+
+### Supported Application Scenarios
+
+The following scenarios are part of the application sample
+
+- [AI Chatbot integration (RAG Pattern)](./chatbot-integration-scenario.md)
+
+- [Payments integration with Stripe](./payments-service-scenario.md)
+
+- [Real-time Notifications](./real-time-notifications-scenario.md) 
+
+- [Portal application](./portal-scenario.md), a main portal entry point, featuring listings, favorites, user authentication and profile
+
+- [Headless CMS and blog](./blog-scenario.md)
 
 ## Table of Contents
 
