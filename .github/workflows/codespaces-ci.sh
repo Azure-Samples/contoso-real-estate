@@ -3,7 +3,7 @@ set -e
 
 GITHUB_REPOSITORY="Azure-Samples/contoso-real-estate"
 BRANCH="codespaces-ci"
-CODESPACE_NAME="nightly-build-$(date +%s)"
+CODESPACE_NAME="ci-nightly-build-$(date +%s)"
 CODESPACE_ID=""
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -25,8 +25,8 @@ function gh_create_codespace() {
         --repo $GITHUB_REPOSITORY \
         --branch $BRANCH \
         --display-name $CODESPACE_NAME \
-        --retention-period "1h" \
-        --idle-timeout "1h" \
+        --retention-period "15min" \
+        --idle-timeout "5min" \
         --machine "largePremiumLinux" \
         --status \
         --default-permissions
@@ -42,8 +42,8 @@ function api_create_codespace() {
         -f repo="$GITHUB_REPOSITORY" \
         -f ref="$BRANCH" \
         -f display_name="$CODESPACE_NAME" \
-        -f retentionPeriod='1h' \
-        -f idleTimeout='1h' \
+        -f retentionPeriod='15min' \
+        -f idleTimeout='5min' \
         -f machineType=l'argePremiumLinux' \
         -f status='true' \
         -f defaultPermissions='true' \
@@ -60,7 +60,8 @@ function gh_fetch_codespace_id() {
 # connect to the codespace and start the services
 function gh_codespace_start_services() {
     echo "Running all services (over SSH)..."
-    (gh codespace ssh -c $CODESPACE_ID "npm start --prefix /workspaces/contoso-real-estate") &
+    # (gh codespace ssh -c $CODESPACE_ID "npm start --prefix /workspaces/contoso-real-estate") &
+    (gh codespace ssh -c $CODESPACE_ID "env")
 }
 
 # check all services are running
@@ -146,7 +147,8 @@ gh_login;
 # gh_create_codespace;
 api_create_codespace;
 # gh_fetch_codespace_id;
-gh_codespace_start_services;
+wait_for_services;
+# gh_codespace_start_services;
 wait_for_services;
 gh_codespace_check_services_status;
 gh_codespace_stop_and_delete;
