@@ -20,7 +20,7 @@ function gh_login() {
 
 # create a codespace
 function gh_create_codespace() {
-    echo "Creating a codespace $CODESPACE_NAME for $GITHUB_REPOSITORY on branch $BRANCH..."
+    echo "Creating a codespace $CODESPACE_NAME for $GITHUB_REPOSITORY on branch $BRANCH (w/ ssh)..."
     gh codespace create \
         --repo $GITHUB_REPOSITORY \
         --branch $BRANCH \
@@ -30,6 +30,25 @@ function gh_create_codespace() {
         --machine "largePremiumLinux" \
         --status \
         --default-permissions
+}
+function api_create_codespace() {
+    echo "Creating a codespace $CODESPACE_NAME for $GITHUB_REPOSITORY on branch $BRANCH (w/ api)..."
+    CODESPACE_ID=$(gh api \
+        /repos/$GITHUB_REPOSITORY/codespaces \
+        -X POST \
+        -H 'Accept: application/vnd.github+json' \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        -f owner="$GITHUB_REPOSITORY" \
+        -f repo="$GITHUB_REPOSITORY" \
+        -f ref="$BRANCH" \
+        -f display_name="$CODESPACE_NAME" \
+        -f retentionPeriod='1h' \
+        -f idleTimeout='1h' \
+        -f machineType=l'argePremiumLinux' \
+        -f status='true' \
+        -f defaultPermissions='true' \
+        -q '.name')
+    echo "Codespace created and started: $CODESPACE_ID"
 }
 
 # fetch the codespace ID
@@ -124,8 +143,9 @@ function print_report_and_exit() {
 
 ############################################
 gh_login;
-gh_create_codespace;
-gh_fetch_codespace_id;
+# gh_create_codespace;
+api_create_codespace;
+# gh_fetch_codespace_id;
 gh_codespace_start_services;
 wait_for_services;
 gh_codespace_check_services_status;
