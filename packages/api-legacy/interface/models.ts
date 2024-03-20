@@ -1,5 +1,4 @@
 import { ObjectId } from "mongodb";
-import { IPaymentStatus, IProvider, ReservationStatus } from "../types/models";
 
 // Favorite
 export interface Favorite {
@@ -46,8 +45,8 @@ export interface Payment {
     id: string;
     userId: string;
     reservationId: string;
-    provider: IProvider;
-    status: IPaymentStatus;
+    provider: "stripe" | "paypal";
+    status: "pending" | "declined" | "completed" | "cancelled";
     amount: number;
     currency: string;
     createdAt: Date;
@@ -73,7 +72,7 @@ export interface Reservation {
     guests: number;
     from: Date;
     to: Date;
-    status: ReservationStatus;
+    status: "pending" | "active" | "cancelled" | "archived";
     createdAt: Date;
 };
 
@@ -92,9 +91,9 @@ export interface User {
     };
     email: string;
     auth: {
-      provider: "aad" | "twitter" | "google" | "facebook";
+      provider: "aad" | "google" | "facebook";
       token: string;
       lastLogin: number;
     };
-    createdAt: Date;
+    createdAt: string;
 };
