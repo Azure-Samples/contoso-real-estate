@@ -1,10 +1,5 @@
 import { model, Schema } from "mongoose";
-
-export interface Favorite {
-  userId: string;
-  listingId: string;
-  createdAt?: string;
-}
+import { Favorite } from "../interface/models";
 
 const FavoriteSchema = new Schema<Favorite>({
   userId: {

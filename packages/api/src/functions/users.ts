@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
 import { findUsers, findUserById, saveUserSession } from "../models/user";
-import { User } from "../models/user.schema";
+import { User } from "../interface/models";
 
 // GET: Get all users
 export async function getUsers(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
