@@ -114,8 +114,8 @@ function gh_codespace_check_services_status() {
 
 # Wait for the services to start
 function wait_for_services() {
-    echo -ne "Waiting 30s for all services to start"
-    for i in {1..30}; do
+    echo -ne "Waiting 6 mintues for all dependencies to be installed and starting all services..."
+    for i in {1..360}; do
         echo -ne "."
         sleep 1
     done
@@ -147,7 +147,7 @@ gh_login;
 # gh_create_codespace;
 api_create_codespace;
 # gh_fetch_codespace_id;
-wait_for_services;
+# wait_for_services;
 # gh_codespace_start_services;
 wait_for_services;
 gh_codespace_check_services_status;
