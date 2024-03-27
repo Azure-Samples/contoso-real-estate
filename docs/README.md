@@ -41,7 +41,7 @@ The company's overall goal for Microsoft 365 for enterprise is to accelerate its
 
 Contoso has 3 office tiers (Headquarters, Regional and Satellite) with a total of almost 30K employees.
 
-![Geographical distribution of Contoso](./media/contoso-world-wide.png)
+![Geographical distribution of Contoso](../assets/miscs/contoso-world-wide.png)
 
 Contoso is expanding its configuration, and rolling out to new regions and countries, which will result in massive hiring. They offer relocation and have designed an application, to help HR and new hires find the right housing. This web app is an internal tool used by Contoso HR and new hire or relocating employees.
 
