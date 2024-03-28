@@ -1,16 +1,5 @@
 import { model, Schema } from "mongoose";
-
-export interface Reservation {
-  id: string;
-  userId: string;
-  listingId: string;
-  title: string;
-  guests: number;
-  from: Date;
-  to: Date;
-  status: "pending" | "active" | "cancelled" | "archived";
-  createdAt: Date;
-}
+import { Reservation } from "../interface/models";
 
 const ReservationSchema = new Schema<Reservation>({
   userId: {

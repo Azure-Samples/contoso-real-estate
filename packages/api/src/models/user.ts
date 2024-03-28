@@ -1,4 +1,5 @@
-import UserModel, { User } from "../models/user.schema";
+import UserModel from "../models/user.schema";
+import { User } from "../interface/models";
 
 export async function saveUserSession(user: User): Promise<User> {
   const { id } = user;

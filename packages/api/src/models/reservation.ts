@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
-import ReservationModel, { Reservation } from "./reservation.schema";
+import ReservationModel from "./reservation.schema";
+import { Reservation } from "../interface/models";
+
+enum ReservationStatus { 
+  Pending = "pending", 
+  Active = "active", 
+  Cancelled = "cancelled" , 
+  Archived = "archived" 
+};
 
 export async function saveReservation(reservation: Partial<Reservation>): Promise<Reservation> {
   return ReservationModel.create(reservation);
@@ -7,7 +15,7 @@ export async function saveReservation(reservation: Partial<Reservation>): Promis
 
 export async function updateReservationStatus(
   id: string,
-  status: "pending" | "active" | "cancelled" | "archived",
+  status: ReservationStatus,
 ): Promise<Reservation | null> {
   const reservation = await ReservationModel.findById(id);
 
@@ -16,8 +24,8 @@ export async function updateReservationStatus(
   }
 
   if (
-    (status === "active" && reservation.status !== "pending") ||
-    (status === "cancelled" && reservation.status !== "pending")
+    (status === ReservationStatus.Active && reservation.status !== ReservationStatus.Pending) ||
+    (status === ReservationStatus.Cancelled && reservation.status !== ReservationStatus.Pending)
   ) {
     throw new Error(`Invalid reservation status transition: ${reservation.status} -> ${status}`);
   }
