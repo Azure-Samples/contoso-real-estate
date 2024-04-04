@@ -1,18 +1,20 @@
 #!/bin/bash
 set -e
 
+# IMPORTANT:a valid GITHUB_TOKEN is required to run this script
+
 GITHUB_REPOSITORY="Azure-Samples/contoso-real-estate"
 BRANCH="codespaces-ci"
 CODESPACE_NAME="ci-nightly-build-$(date +%s)"
 CODESPACE_ID=""
-RED='\033[0;31m'
+RED='\033[0;35m' # this is not red, it's purple!
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 # login to GitHub CLI
 function gh_login() {
     echo "Loging in with GitHub CLI as admin..."
-    echo $X_GITHUB_TOKEN | gh auth login --with-token 
+    echo $X_GITHUB_TOKEN | gh auth login --with-token
 
     echo "Checking auth status..."
     gh auth status
@@ -33,7 +35,7 @@ function gh_create_codespace() {
 }
 function api_create_codespace() {
     echo "Creating a codespace $CODESPACE_NAME for $GITHUB_REPOSITORY on branch $BRANCH (w/ api)..."
-    CODESPACE_ID=$(gh api \
+    response=$(gh api \
         /repos/$GITHUB_REPOSITORY/codespaces \
         -X POST \
         -H 'Accept: application/vnd.github+json' \
@@ -46,9 +48,14 @@ function api_create_codespace() {
         -f idleTimeout='5min' \
         -f machineType=l'argePremiumLinux' \
         -f status='true' \
-        -f defaultPermissions='true' \
-        -q '.name')
-    echo "Codespace created and started: $CODESPACE_ID"
+        -f defaultPermissions='true')
+    CODESPACE_ID=$(echo "$response" | jq '.name')
+    CODESPACE_URL=$(echo "$response" | jq '.web_url')
+    CODESPACE_API=$(echo "$response" | jq '.url')
+    echo "Codespace created and started:"
+    echo " -  ID: $CODESPACE_ID"
+    echo " - Web: $CODESPACE_URL"
+    echo " - API: $CODESPACE_API"
 }
 
 # fetch the codespace ID
@@ -81,7 +88,7 @@ function gh_codespace_check_services_status() {
         fi
 
         nb_services_down=0
-        echo "---------------------------------------------------------------------------------------------------------" 
+        echo "---------------------------------------------------------------------------------------------------------"
         for service in $services; do
             echo -ne "Inspecting: $service ... "
             status=$(curl -H "X-Github-Token: $GITHUB_TOKEN" -s -o /dev/null -w  "%{http_code}" $service)
@@ -112,12 +119,15 @@ function gh_codespace_check_services_status() {
     done
 }
 
-# Wait for the services to start
+# Wait for all services to start
 function wait_for_services() {
-    echo -ne "Waiting 6 mintues for all dependencies to be installed and starting all services..."
-    for i in {1..360}; do
+    echo "Waiting 10 mintues for all dependencies to be installed and starting all services"
+    for i in {1..600}; do
         echo -ne "."
         sleep 1
+        if ! ((i % 60)); then
+            echo ""
+        fi
     done
     echo ""
 }
