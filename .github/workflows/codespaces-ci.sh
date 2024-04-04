@@ -1,13 +1,14 @@
 #!/bin/bash
 set -e
 
-# IMPORTANT:a valid GITHUB_TOKEN is required to run this script
+# IMPORTANT: a valid X_GITHUB_TOKEN is required to run this script
+# Token must have the following permissions: 'admin:org', 'codespace', 'repo'
 
 GITHUB_REPOSITORY="Azure-Samples/contoso-real-estate"
 BRANCH="codespaces-ci"
 CODESPACE_NAME="ci-nightly-build-$(date +%s)"
 CODESPACE_ID=""
-RED='\033[0;35m' # this is not red, it's purple!
+RED='\033[0m' # this is not red, it's just to reset the color
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
@@ -49,9 +50,9 @@ function api_create_codespace() {
         -f machineType=l'argePremiumLinux' \
         -f status='true' \
         -f defaultPermissions='true')
-    CODESPACE_ID=$(echo "$response" | jq '.name')
-    CODESPACE_URL=$(echo "$response" | jq '.web_url')
-    CODESPACE_API=$(echo "$response" | jq '.url')
+    CODESPACE_ID=$(echo "$response" | jq -r '.name')
+    CODESPACE_URL=$(echo "$response" | jq -r '.web_url')
+    CODESPACE_API=$(echo "$response" | jq -r '.url')
     echo "Codespace created and started:"
     echo " -  ID: $CODESPACE_ID"
     echo " - Web: $CODESPACE_URL"
@@ -91,7 +92,7 @@ function gh_codespace_check_services_status() {
         echo "---------------------------------------------------------------------------------------------------------"
         for service in $services; do
             echo -ne "Inspecting: $service ... "
-            status=$(curl -H "X-Github-Token: $GITHUB_TOKEN" -s -o /dev/null -w  "%{http_code}" $service)
+            status=$(curl -H "X-Github-Token: $X_GITHUB_TOKEN" -s -o /dev/null -w  "%{http_code}" $service)
 
             if [ $status == 200 ] || [ $status == 404 ]; then
                 echo -e "${GREEN}$status OK${NC}"
@@ -121,7 +122,7 @@ function gh_codespace_check_services_status() {
 
 # Wait for all services to start
 function wait_for_services() {
-    echo "Waiting 10 mintues for all dependencies to be installed and starting all services"
+    echo "Waiting 10 minutes for all dependencies to be installed and starting all services\n"
     for i in {1..600}; do
         echo -ne "."
         sleep 1

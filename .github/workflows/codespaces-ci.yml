@@ -18,5 +18,5 @@ jobs:
 
       - name: Deploy to Codespace
         env:
-          X_GITHUB_TOKEN: ${{ secrets.CODESPACES_TOKEN }}
+          X_GITHUB_TOKEN: ${{ secrets.X_GITHUB_TOKEN }}
         run: ./.github/workflows/codespaces-ci.sh
