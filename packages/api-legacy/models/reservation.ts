@@ -1,6 +1,5 @@
-import ReservationModel from "./reservation.schema";
-import { Reservation } from "../interface/models";
-import { ReservationStatus } from "../enum/reservation-status";
+import ReservationModel, { Reservation } from "./reservation.schema";
+import { ReservationStatus } from "./reservation-status";
 
 export async function saveReservation(reservation: Partial<Reservation>): Promise<Reservation> {
   return ReservationModel.create(reservation);

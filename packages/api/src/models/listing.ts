@@ -1,11 +1,15 @@
 import { pgQuery } from "../config/pgclient";
-import { Listing, ListingProps } from "../interface/models";
+import { Listing } from "../models/listing.schema";
 
 export async function getListings({
   offset,
   limit,
   featured,
-}: Partial<ListingProps>): Promise<Listing[]> {
+}: {
+  offset: number;
+  limit: number;
+  featured: boolean;
+}): Promise<Listing[]> {
   const queryListing = `SELECT * FROM listings WHERE is_featured = $1 ORDER BY id LIMIT $2 OFFSET $3`;
   const params = [featured, limit, offset];
   const listings = await pgQuery(queryListing, params);
@@ -13,7 +17,7 @@ export async function getListings({
   return listings.rows.map(listingMapper);
 }
 
-export async function getListingById({ id }: Partial<ListingProps>): Promise<Listing> {
+export async function getListingById({ id }: { id: string | undefined }): Promise<Listing> {
   try {
     const listing = await pgQuery(`SELECT * FROM listings WHERE id = $1 LIMIT 1`, [id]);
 

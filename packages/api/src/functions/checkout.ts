@@ -1,14 +1,14 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { getConfig, initializeDatabaseConfiguration } from "../config";
-import { ReservationRequest } from "../interface/models";
+import { ReservationRequest } from "../models/reservation-request";
 import { getListingById } from "../models/listing";
 import {
   findReservationsByListingIdAndDateRange,
   saveReservation,
   updateReservationStatus,
 } from "../models/reservation";
-import { Listing } from "../interface/models";
-import { ReservationStatus } from "../types/models";
+import { Listing } from "../models/listing.schema";
+import { ReservationStatus } from "../models/reservation-status";
 
 // POST: Checkout
 export async function postCheckout(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {

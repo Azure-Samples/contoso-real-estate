@@ -1,8 +1,9 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { getConfig, initializeDatabaseConfiguration } from "../config";
 import { getListingById } from "../models/listing";
-import { Listing, ReservationRequest } from "../interface/models";
-import { ReservationStatus } from "../enum/reservation-status";
+import { Listing } from "../models/listing.schema";
+import { ReservationRequest } from "../models/reservation-request";
+import { ReservationStatus } from "../models/reservation-status";
 import {
   findReservationsByListingIdAndDateRange,
   saveReservation,

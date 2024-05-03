@@ -3,7 +3,7 @@ import { initializeDatabaseConfiguration } from "../config";
 import { findUserById } from "../models/user";
 import { savePayment } from "../models/payment";
 import { updateReservationStatus } from "../models/reservation";
-import { ReservationStatus } from "../enum/reservation-status";
+import { ReservationStatus } from "../models/reservation-status";
 
 const postPayment: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();

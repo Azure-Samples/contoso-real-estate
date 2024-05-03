@@ -1,5 +1,15 @@
 import { model, Schema } from "mongoose";
-import { Payment } from "../interface/models";
+
+export interface Payment {
+  id: string;
+  userId: string;
+  reservationId: string;
+  provider: "stripe" | "paypal";
+  status: "pending" | "declined" | "completed" | "cancelled";
+  amount: number;
+  currency: string;
+  createdAt: Date;
+}
 
 const PaymentSchema = new Schema<Payment>({
   userId: {

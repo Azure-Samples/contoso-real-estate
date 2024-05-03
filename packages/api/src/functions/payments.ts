@@ -3,8 +3,8 @@ import { initializeDatabaseConfiguration } from "../config";
 import { findPaymentById, findPaymentsByUserId, savePayment, isValidPayment } from "../models/payment";
 import { findUserById } from "../models/user";
 import { updateReservationStatus } from "../models/reservation";
-import { Payment } from "../interface/models";
-import { ReservationStatus } from "../types/models";
+import { Payment } from "../models/payment.schema";
+import { ReservationStatus } from "../models/reservation-status";
 
 // GET: Get Payment by Id
 export async function getPaymentById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {

@@ -1,5 +1,26 @@
+import { ObjectId } from "mongodb";
 import { model, Schema } from "mongoose";
-import { Listing } from "../interface/models";
+
+export interface Listing {
+  _id: ObjectId;
+  id: string;
+  title: string;
+  slug: string;
+  bathrooms: number;
+  bedrooms: number;
+  description: string;
+  type: string;
+  isFeatured: boolean;
+  isRecommended: boolean;
+  photos: string;
+  capacity: number;
+  ammenities: string;
+  reviews_stars: number;
+  reviews_number: number;
+  address: string;
+  fees: string;
+  createdAt: string;
+};
 
 const ListingSchema = new Schema<Listing>({
   id: {

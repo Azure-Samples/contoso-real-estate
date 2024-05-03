@@ -1,7 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
 import { updateReservationStatus } from "../models/reservation";
-import { ReservationStatus } from "../enum/reservation-status";
+import { ReservationStatus } from "../models/reservation-status";
 
 const patchReservationById: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();

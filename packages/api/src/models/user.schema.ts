@@ -1,5 +1,25 @@
+import { ObjectId } from "mongoose";
 import { model, Schema } from "mongoose";
-import { User } from "../interface/models";
+
+export interface User {
+  _id: ObjectId;
+  id: string;
+  name: string;
+  role: "guest" | "renter" | "admin";
+  status: "active" | "suspended" | "inactive";
+  photo: string;
+  address: string;
+  payment: {
+    _id: ObjectId;
+  };
+  email: string;
+  auth: {
+    provider: "aad" | "twitter" | "google" | "facebook";
+    token: string;
+    lastLogin: number;
+  };
+  createdAt: Date;
+};
 
 const UserSchema = new Schema<User>({
   id: {

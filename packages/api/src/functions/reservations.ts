@@ -1,8 +1,8 @@
 import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
 import { findReservationById, findReservationsByUserId, updateReservationStatus } from "../models/reservation";
-import { Reservation } from "../interface/models";
-import { ReservationStatus } from "../types/models";
+import { Reservation } from "../models/reservation.schema";
+import { ReservationStatus } from "../models/reservation-status";
 
 // GET: Get Reservation by Id
 export async function getReservationById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {

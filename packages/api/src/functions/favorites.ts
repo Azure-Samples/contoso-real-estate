@@ -7,7 +7,8 @@ import {
   saveFavorite,
   removeFavorite,
 } from "../models/favorite";
-import { User, Listing } from "../interface/models";
+import { User } from "../models/user.schema";
+import { Listing } from "../models/listing.schema";
 
 // GET: Favorites
 export async function getFavorites(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {

@@ -1,13 +1,13 @@
-import PaymentModel from "./payment.schema";
-import { Payment } from "../interface/models";
-
-type IPaymentStatus = "pending" | "declined" | "completed" | "cancelled";
+import PaymentModel, { Payment } from "./payment.schema";
 
 export async function savePayment(payment: Partial<Payment>): Promise<Payment> {
   return PaymentModel.create(payment);
 }
 
-export async function updatePaymentStatus(id: string, status: IPaymentStatus): Promise<Payment | null> {
+export async function updatePaymentStatus(
+  id: string,
+  status: "pending" | "declined" | "completed" | "cancelled",
+): Promise<Payment | null> {
   const record = await PaymentModel.findOne({ _id: id });
   if (record) {
     record.status = status;

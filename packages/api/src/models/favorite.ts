@@ -1,7 +1,7 @@
 import { pgQuery } from "../config/pgclient";
-import FavoriteModel from "./favorite.schema";
+import FavoriteModel, { Favorite } from "./favorite.schema";
 import { listingMapper } from "./listing";
-import { Favorite, Listing } from "../interface/models";
+import { Listing } from "./listing.schema";
 
 export async function saveFavorite(fav: Favorite): Promise<Favorite | null> {
   const recordFavorite = await findFavorite(fav);
