@@ -1,0 +1,22 @@
+name: Nightly Codespace CI
+
+on:
+  push:
+    branches:
+      - main
+      - codespaces-ci
+  schedule:
+    # Runs every day at 4:00 AM pacific (UTC-7)
+    - cron: '0 12 * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Codespace
+        env:
+          X_GITHUB_TOKEN: ${{ secrets.X_GITHUB_TOKEN }}
+        run: ./.github/workflows/codespaces-ci.sh
