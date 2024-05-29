@@ -2,12 +2,13 @@ import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { getConfig, initializeDatabaseConfiguration } from "../config";
 import { getListingById } from "../models/listing";
 import { Listing } from "../models/listing.schema";
+import { ReservationRequest } from "../models/reservation-request";
+import { ReservationStatus } from "../models/reservation-status";
 import {
   findReservationsByListingIdAndDateRange,
   saveReservation,
   updateReservationStatus,
 } from "../models/reservation";
-import { ReservationRequest } from "../models/reservation-request";
 
 const postCheckout: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();
@@ -157,7 +158,7 @@ const postCheckout: AzureFunction = async function (context: Context, req: HttpR
     } catch (error: unknown) {
       const err = error as Error;
       context.log.error(`Error creating stripe checkout session: ${err.message}`);
-      await updateReservationStatus(reservationRecord.id, "cancelled");
+      await updateReservationStatus(reservationRecord.id, ReservationStatus.Cancelled);
       throw error;
     }
   } catch (error: unknown) {

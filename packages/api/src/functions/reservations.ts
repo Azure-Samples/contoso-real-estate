@@ -2,6 +2,7 @@ import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functio
 import { initializeDatabaseConfiguration } from "../config";
 import { findReservationById, findReservationsByUserId, updateReservationStatus } from "../models/reservation";
 import { Reservation } from "../models/reservation.schema";
+import { ReservationStatus } from "../models/reservation-status";
 
 // GET: Get Reservation by Id
 export async function getReservationById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -115,7 +116,7 @@ export async function patchReservationById(
         error: "Reservation status is missing",
       },
     };
-  } else if (status !== "active" && status !== "cancelled") {
+  } else if (status !== ReservationStatus.Active && status !== ReservationStatus.Cancelled) {
     return {
       status: 400,
       jsonBody: {

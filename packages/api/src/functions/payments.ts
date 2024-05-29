@@ -4,6 +4,7 @@ import { findPaymentById, findPaymentsByUserId, savePayment, isValidPayment } fr
 import { findUserById } from "../models/user";
 import { updateReservationStatus } from "../models/reservation";
 import { Payment } from "../models/payment.schema";
+import { ReservationStatus } from "../models/reservation-status";
 
 // GET: Get Payment by Id
 export async function getPaymentById(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -127,7 +128,7 @@ export async function postPayment(request: HttpRequest, context: InvocationConte
       };
     }
 
-    const reservationRecord = await updateReservationStatus(payment.reservationId, "active");
+    const reservationRecord = await updateReservationStatus(payment.reservationId, ReservationStatus.Active);
     if (!reservationRecord) {
       context.error(`Error payment received for unknown reservation id: ${payment.reservationId}`);
       return {

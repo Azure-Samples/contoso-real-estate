@@ -1,7 +1,7 @@
 export interface ReservationRequest {
-  userId: string;
-  listingId: string;
-  from: string;
-  to: string;
-  guests: number;
-}
+    userId: string;
+    listingId: string;
+    from: string;
+    to: string;
+    guests: number;
+};

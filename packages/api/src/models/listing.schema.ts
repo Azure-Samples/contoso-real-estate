@@ -20,7 +20,7 @@ export interface Listing {
   address: string;
   fees: string;
   createdAt: string;
-}
+};
 
 const ListingSchema = new Schema<Listing>({
   id: {

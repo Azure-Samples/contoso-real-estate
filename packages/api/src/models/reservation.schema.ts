@@ -8,9 +8,9 @@ export interface Reservation {
   guests: number;
   from: Date;
   to: Date;
-  status: "pending" | "active" | "cancelled" | "archived";
+  status: ReservationStatus;
   createdAt: Date;
-}
+};
 
 const ReservationSchema = new Schema<Reservation>({
   userId: {

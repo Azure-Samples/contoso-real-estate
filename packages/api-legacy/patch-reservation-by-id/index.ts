@@ -1,6 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { initializeDatabaseConfiguration } from "../config";
 import { updateReservationStatus } from "../models/reservation";
+import { ReservationStatus } from "../models/reservation-status";
 
 const patchReservationById: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();
@@ -16,7 +17,7 @@ const patchReservationById: AzureFunction = async function (context: Context, re
       },
     };
     return;
-  } else if (status !== "active" && status !== "cancelled") {
+  } else if (status !== ReservationStatus.Active && status !== ReservationStatus.Cancelled) {
     context.res = {
       status: 400,
       body: {

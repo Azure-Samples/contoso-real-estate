@@ -1,5 +1,5 @@
 import { pgQuery } from "../config/pgclient";
-import { Listing } from "./listing.schema";
+import { Listing } from "../models/listing.schema";
 
 export async function getListings({
   offset,
