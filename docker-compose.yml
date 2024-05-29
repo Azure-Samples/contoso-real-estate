@@ -48,8 +48,14 @@ services:
     ports:
       - "1337:1337"
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
+
+    # The following condition seems to trigger an issue that causes cms-blog to fail to start
+    # See https://github.com/strapi/strapi/issues/12493
+    # TODO: re-enable when issue is resolved
+    # depends_on:
+    #   postgres:
+    #     condition: service_healthy
 
   mongodb:
     image: mongo:5.0
