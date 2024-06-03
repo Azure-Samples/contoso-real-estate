@@ -23,6 +23,7 @@ param kind string = 'app,linux'
 param allowedOrigins array = []
 param alwaysOn bool = true
 param appCommandLine string = ''
+@secure()
 param appSettings object = {}
 param clientAffinityEnabled bool = false
 param enableOryxBuild bool = contains(kind, 'linux')
