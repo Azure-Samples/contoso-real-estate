@@ -52,7 +52,7 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing
   name: applicationInsightsName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
   name: keyVaultName
 }
 

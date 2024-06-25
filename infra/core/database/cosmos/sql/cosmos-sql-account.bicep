@@ -12,6 +12,7 @@ module cosmos '../../cosmos/cosmos-account.bicep' = {
     tags: tags
     keyVaultName: keyVaultName
     kind: 'GlobalDocumentDB'
+    connectionStringKey: ''
   }
 }
 

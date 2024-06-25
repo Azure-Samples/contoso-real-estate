@@ -1,6 +1,6 @@
 param accountName string
 
-resource roleDefinition 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2022-08-15' = {
+resource roleDefinition 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2024-05-15' = {
   parent: cosmos
   name: guid(cosmos.id, accountName, 'sql-role')
   properties: {
@@ -22,7 +22,7 @@ resource roleDefinition 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinition
   }
 }
 
-resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2022-08-15' existing = {
+resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2024-05-15' existing = {
   name: accountName
 }
 

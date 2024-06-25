@@ -25,7 +25,7 @@ param apiBackendUrl string
 
 var apiPolicyContent = replace(loadTextContent('apim-api-policy.xml'), '{origin}', webFrontendUrl)
 
-resource restApi 'Microsoft.ApiManagement/service/apis@2021-12-01-preview' = {
+resource restApi 'Microsoft.ApiManagement/service/apis@2023-05-01-preview' = {
   name: apiName
   parent: apimService
   properties: {
@@ -41,7 +41,7 @@ resource restApi 'Microsoft.ApiManagement/service/apis@2021-12-01-preview' = {
   }
 }
 
-resource apiPolicy 'Microsoft.ApiManagement/service/apis/policies@2021-12-01-preview' = {
+resource apiPolicy 'Microsoft.ApiManagement/service/apis/policies@2023-05-01-preview' = {
   name: 'policy'
   parent: restApi
   properties: {
@@ -50,7 +50,7 @@ resource apiPolicy 'Microsoft.ApiManagement/service/apis/policies@2021-12-01-pre
   }
 }
 
-resource apiDiagnostics 'Microsoft.ApiManagement/service/apis/diagnostics@2021-12-01-preview' = {
+resource apiDiagnostics 'Microsoft.ApiManagement/service/apis/diagnostics@2023-05-01-preview' = {
   name: 'applicationinsights'
   parent: restApi
   properties: {
@@ -91,7 +91,7 @@ resource apiDiagnostics 'Microsoft.ApiManagement/service/apis/diagnostics@2021-1
   }
 }
 
-resource apimProduct 'Microsoft.ApiManagement/service/products@2022-08-01' = {
+resource apimProduct 'Microsoft.ApiManagement/service/products@2023-05-01-preview' = {
   name: 'apim-api-product'
   parent: apimService
   properties: {
@@ -104,11 +104,11 @@ resource apimProduct 'Microsoft.ApiManagement/service/products@2022-08-01' = {
   }
 }
 
-resource apimService 'Microsoft.ApiManagement/service@2021-08-01' existing = {
+resource apimService 'Microsoft.ApiManagement/service@2023-05-01-preview' existing = {
   name: name
 }
 
-resource apimLogger 'Microsoft.ApiManagement/service/loggers@2021-12-01-preview' existing = {
+resource apimLogger 'Microsoft.ApiManagement/service/loggers@2023-05-01-preview' existing = {
   name: 'app-insights-logger'
   parent: apimService
 }
