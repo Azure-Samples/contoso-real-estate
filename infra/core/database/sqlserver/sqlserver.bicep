@@ -13,7 +13,7 @@ param sqlAdminPassword string
 @secure()
 param appUserPassword string
 
-resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
+resource sqlServer 'Microsoft.Sql/servers@2023-05-01-preview' = {
   name: name
   location: location
   tags: tags
@@ -42,7 +42,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
   }
 }
 
-resource sqlDeploymentScript 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
+resource sqlDeploymentScript 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   name: '${name}-deployment-script'
   location: location
   kind: 'AzureCLI'
@@ -96,7 +96,7 @@ SCRIPT_END
   }
 }
 
-resource sqlAdminPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
+resource sqlAdminPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   parent: keyVault
   name: 'sqlAdminPassword'
   properties: {
@@ -104,7 +104,7 @@ resource sqlAdminPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' =
   }
 }
 
-resource appUserPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
+resource appUserPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   parent: keyVault
   name: 'appUserPassword'
   properties: {
@@ -112,7 +112,7 @@ resource appUserPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = 
   }
 }
 
-resource sqlAzureConnectionStringSercret 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
+resource sqlAzureConnectionStringSercret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   parent: keyVault
   name: connectionStringKey
   properties: {
@@ -120,7 +120,7 @@ resource sqlAzureConnectionStringSercret 'Microsoft.KeyVault/vaults/secrets@2022
   }
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
   name: keyVaultName
 }
 

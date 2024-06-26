@@ -35,7 +35,7 @@ param sku string = 'Free_F1'
 param pricingTier string = 'Free'
 
 // Resource definition
-resource webpubsub 'Microsoft.SignalRService/webPubSub@2023-02-01' = {
+resource webpubsub 'Microsoft.SignalRService/webPubSub@2023-08-01-preview' = {
   name: name
   location: location
   tags: union(tags, { 'azd-service-name': name })

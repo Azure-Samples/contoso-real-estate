@@ -89,7 +89,7 @@ var addOnsConfig = union(
 )
 
 // Link to existing log analytics workspace when available
-resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' existing = if (!empty(logAnalyticsName)) {
+resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2022-10-01' existing = if (!empty(logAnalyticsName)) {
   name: logAnalyticsName
 }
 
