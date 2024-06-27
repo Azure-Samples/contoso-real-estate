@@ -7,7 +7,7 @@ param sku object = {
   tier: 'Free'
 }
 
-resource web 'Microsoft.Web/staticSites@2022-03-01' = {
+resource web 'Microsoft.Web/staticSites@2022-09-01' = {
   name: name
   location: location
   tags: tags

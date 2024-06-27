@@ -56,11 +56,11 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing
   name: applicationInsightsName
 }
 
-resource awps 'Microsoft.SignalRService/webPubSub@2023-02-01' existing = {
+resource awps 'Microsoft.SignalRService/webPubSub@2023-08-01-preview' existing = {
   name: notificationsServiceName
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
   name: keyVaultName
 }
 
