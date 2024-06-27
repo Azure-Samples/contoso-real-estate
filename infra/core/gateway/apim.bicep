@@ -26,7 +26,7 @@ param skuCount int = 0
 @description('Azure Application Insights Name')
 param applicationInsightsName string
 
-resource apimService 'Microsoft.ApiManagement/service@2023-05-01-preview' = {
+resource apimService 'Microsoft.ApiManagement/service@2021-08-01' = {
   name: name
   location: location
   tags: union(tags, { 'azd-service-name': name })
