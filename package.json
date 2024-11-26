@@ -32,9 +32,9 @@
   "devDependencies": {
     "azure-functions-core-tools": "4.0.5530",
     "concurrently": "^7.6.0",
+    "esbuild": "^0.16.7",
     "git-commit-msg-linter": "^4.2.1",
     "prettier": "^2.7.1",
-    "esbuild": "^0.16.7",
     "rimraf": "^4.3.1"
   },
   "prettier": {
@@ -45,5 +45,9 @@
     "printWidth": 120,
     "bracketSpacing": true,
     "arrowParens": "avoid"
+  },
+  "dependencies": {
+    "@grafana/faro-web-sdk": "^1.12.2",
+    "@grafana/faro-web-tracing": "^1.12.2"
   }
 }
