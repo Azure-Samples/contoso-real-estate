@@ -1,33 +1,11 @@
----
-page_type: sample
-languages:
-- azdeveloper
-- javascript
-- typescript
-- nodejs
-- bicep
-products:
-- azure
-- azure-container-apps
-- azure-container-registry
-- azure-cosmos-db
-- azure-database-postgresql
-- azure-functions
-- azure-key-vault
-- azure-sdks
-- azure-storage
-- static-web-apps
-- entra-id
-- playwright
-- vs-code
-- azure-pipelines
-urlFragment: contoso-real-estate
-name: "Contoso Real Estate: JavaScript + Enterprise"
-description: Intelligent enterprise-grade reference architecture for JavaScript, featuring OpenAI integration, Azure Developer CLI template and Playwright tests.
----
-<!-- YAML front-matter schema: https://review.learn.microsoft.com/en-us/help/contribute/samples/process/onboarding?branch=main#supported-metadata-fields-for-readmemd -->
+> [!WARNING]
+> ⚠️ THIS REPOSITORY IS NOW ARCHIVED AND NO LONGER MAINTAINED ⚠️
+> The code-base is no longer maintained and deployability with the [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd) **is not guaranteed**.
 
-# Enterprise-grade Reference Architecture for JavaScript
+
+Thank you for your interest!
+
+## Enterprise-grade Reference Architecture for JavaScript
 
 This repository contains the reference architecture and components for building enterprise-grade modern composable frontends (or micro-frontends) and cloud-native applications. It is a collection of best practices, architecture patterns, and functional components that can be used to build and deploy modern JavaScript applications to Azure. 
 
