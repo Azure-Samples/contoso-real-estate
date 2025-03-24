@@ -7,6 +7,18 @@ import { getListingById, getListings } from "./functions/listings";
 import { openApi } from "./functions/openapi";
 import { postCheckout } from "./functions/checkout";
 
+// This route is used by nightly builds as a health check
+app.get("get-root", {
+  route: "",
+  authLevel: "anonymous",
+  handler: async () => {
+    return {
+      status: 200,
+      body: "Welcome to Contoso Real Estate API",
+    };
+  }
+});
+
 //#region User Function
 app.get("get-users", {
   route: "users",
