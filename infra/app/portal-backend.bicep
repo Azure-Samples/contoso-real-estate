@@ -5,7 +5,7 @@ param useAPIM bool
 param portalName string
 param apiServiceName string
 
-resource portalApimProperties 'Microsoft.Web/staticSites/linkedBackends@2022-03-01' = {
+resource portalApimProperties 'Microsoft.Web/staticSites/linkedBackends@2022-09-01' = {
   parent: portal
   name: name
 
@@ -20,11 +20,11 @@ resource portalApimProperties 'Microsoft.Web/staticSites/linkedBackends@2022-03-
   }
 }
 
-resource portal 'Microsoft.Web/staticSites@2022-03-01' existing = {
+resource portal 'Microsoft.Web/staticSites@2022-09-01' existing = {
   name: portalName
 }
 
-resource apimService 'Microsoft.ApiManagement/service@2021-08-01' existing = {
+resource apimService 'Microsoft.ApiManagement/service@2023-05-01-preview' existing = {
   name: name
 }
 

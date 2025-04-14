@@ -18,7 +18,7 @@ param keyVaultName string
 param version string
 
 // Latest official version 2022-12-01 does not have Bicep types available
-resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2022-12-01' = {
+resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview' = {
   location: location
   tags: tags
   name: name
@@ -63,7 +63,7 @@ resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2022-12-01' =
 
 }
 
-resource postgresPassword 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
+resource postgresPassword 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   parent: keyVault
   name: administratorLoginPasswordKey
   properties: {
@@ -71,7 +71,7 @@ resource postgresPassword 'Microsoft.KeyVault/vaults/secrets@2022-07-01' = {
   }
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
   name: keyVaultName
 }
 
