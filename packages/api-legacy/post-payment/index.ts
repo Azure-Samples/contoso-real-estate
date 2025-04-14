@@ -3,6 +3,7 @@ import { initializeDatabaseConfiguration } from "../config";
 import { findUserById } from "../models/user";
 import { savePayment } from "../models/payment";
 import { updateReservationStatus } from "../models/reservation";
+import { ReservationStatus } from "../models/reservation-status";
 
 const postPayment: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
   await initializeDatabaseConfiguration();
@@ -40,7 +41,7 @@ const postPayment: AzureFunction = async function (context: Context, req: HttpRe
       return;
     }
 
-    const reservationRecord = await updateReservationStatus(payment.reservationId, "active");
+    const reservationRecord = await updateReservationStatus(payment.reservationId, ReservationStatus.Active);
     if (!reservationRecord) {
       context.log.error(`Error payment received for unknown reservation id: ${payment.reservationId}`);
       context.res = {

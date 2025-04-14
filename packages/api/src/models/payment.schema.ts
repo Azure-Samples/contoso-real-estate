@@ -9,7 +9,7 @@ export interface Payment {
   amount: number;
   currency: string;
   createdAt: Date;
-}
+};
 
 const PaymentSchema = new Schema<Payment>({
   userId: {

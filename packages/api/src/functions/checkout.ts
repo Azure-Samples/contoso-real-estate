@@ -8,6 +8,7 @@ import {
   updateReservationStatus,
 } from "../models/reservation";
 import { Listing } from "../models/listing.schema";
+import { ReservationStatus } from "../models/reservation-status";
 
 // POST: Checkout
 export async function postCheckout(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -114,7 +115,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
       guests,
       from,
       to,
-      status: "pending" as const,
+      status: ReservationStatus.Pending as const,
       createdAt: now,
     };
 
@@ -157,7 +158,7 @@ export async function postCheckout(request: HttpRequest, context: InvocationCont
     } catch (error: unknown) {
       const err = error as Error;
       context.error(`Error creating checkout session: ${err.message}`);
-      await updateReservationStatus(reservationRecord.id, "cancelled");
+      await updateReservationStatus(reservationRecord.id, ReservationStatus.Cancelled);
       throw error;
     }
   } catch (error: unknown) {

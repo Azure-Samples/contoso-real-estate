@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { ObjectId } from "mongoose";
 import { model, Schema } from "mongoose";
 
 export interface User {
@@ -19,7 +19,7 @@ export interface User {
     lastLogin: number;
   };
   createdAt: Date;
-}
+};
 
 const UserSchema = new Schema<User>({
   id: {
